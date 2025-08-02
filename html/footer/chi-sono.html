@@ -21,13 +21,7 @@
   <script src="/js/components/footer.js"></script>
 
   <style>
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--color-three);
-      margin-bottom: 1rem;
-      line-height: 1;
-    }
+    
 
     .content-section {
       max-width: 1900px;
@@ -45,50 +39,47 @@
       margin-bottom: 1.5rem;
     }
 
-    .logo {
+    .logo-minimal {
       display: block;
       margin: 0 auto;
       margin-bottom: 100px;
       margin-top: 80px;
     }
 
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 2.5rem;
-      }
-    }
+
   </style>
 </head>
 
 <body>
   <header>
-    <nav class="navbar">
+     <nav class="navbar" aria-label="Navigazione principale">
       <div class="navbar-container">
-        <h1>Chi Sono</h1>
+        <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="120" height="120" />
+
         <div class="menu-icon">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <ul class="nav-menu">
+        <ul id="nav-menu" class="nav-menu">
           <li class="nav-item">
-            <a href="/html/home/index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a href="/html/home/#risorse" class="nav-link"><i class="fas fa-book"></i>Risorse</a>
+            <a href="/html/home/index.html" class="nav-link" aria-current="page"><i class="fas fa-home"
+                aria-hidden="true"></i>Home</a>
           </li>
           <li class="nav-item">
-            <a href="/html/home/#strumenti" class="nav-link"><i class="fas fa-tools"></i>Strumenti</a>
+            <a href="#risorse" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
           </li>
           <li class="nav-item">
-            <a href="/html/home/#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"></i>Progetti
-              Pratici</a>
+            <a href="#strumenti" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
           </li>
           <li class="nav-item">
-            <a href="/html/home/#percorsi-apprendimento" class="nav-link"><i class="fas fa-graduation-cap"></i>Percorsi
-              di
-              Apprendimento</a>
+            <a href="#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"
+                aria-hidden="true"></i>Progetti Pratici</a>
+          </li>
+          <li class="nav-item">
+            <a href="#percorsi-apprendimento" class="nav-link"><i class="fas fa-graduation-cap"
+                aria-hidden="true"></i>Percorsi di Apprendimento</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -96,7 +87,7 @@
 
   <main>
     <section class="content-section">
-      <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="1200" height="90" />
+      <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo-minimal" width="1200" height="90" />
       <p>
         Ciao, mi presento brevemente: mi chiamo Alessandro e sono l’autore di questo sito.
         Il mondo dell’IT mi ha sempre affascinato e incuriosito, tanto da diventare col tempo
