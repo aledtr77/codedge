@@ -1,255 +1,246 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contatti Codedge</title>
-    <link rel="alternate icon" href="/assets/icons/codedge_logo_minimal.svg" />
 
-    <!-- moduli css -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="/css/components/main.css" />
-    <link rel="stylesheet" href="/css/components/navbar.css" />
-    <link rel="stylesheet" href="/css/components/button.css" />
-    <link rel="stylesheet" href="/css/components/footer.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contatti Codedge</title>
+  <link rel="alternate icon" href="/assets/icons/codedge_logo_minimal.svg" />
 
-    <!-- moduli js -->
-    <script src="/js/components/navbar.js" defer></script>
-    <script src="/js/components/button.js" defer></script>
-    <script src="/js/components/footer.js"></script>
+  <!-- moduli css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/components/main.css" />
+  <link rel="stylesheet" href="/css/components/navbar.css" />
+  <link rel="stylesheet" href="/css/components/button.css" />
+  <link rel="stylesheet" href="/css/components/footer.css" />
 
-    <style>
-      .contact-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 1rem;
-      }
+  <!-- moduli js -->
+  <script src="/js/components/navbar.js" defer></script>
+  <script src="/js/components/button.js" defer></script>
+  <script src="/js/components/footer.js"></script>
 
-      .container {
-        padding: 2rem;
-        border-radius: 10px;
-        max-width: 400px;
-      }
+  <style>
+    .contact-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
 
+    .container {
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background-color: var(--background-two);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .contact-form,
+    .contact-info {
+      padding: 2rem;
+    }
+
+    .contact-form h3,
+    .contact-info h3 {
+      font-family: var(--heading-font);
+      color: var(--color-three);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bf0;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #3a3a3a;
+      padding: 0 5px;
+      color: white;
+      transition: 0.2s ease all;
+      pointer-events: none;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #007bf0;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #3a3a3a;
+      color: white;
+      outline: none;
+    }
+
+    /* Aggiungi queste regole per gestire l'autocompletamento */
+    .form-group input:-webkit-autofill,
+    .form-group input:-webkit-autofill:hover,
+    .form-group input:-webkit-autofill:focus,
+    .form-group textarea:-webkit-autofill,
+    .form-group textarea:-webkit-autofill:hover,
+    .form-group textarea:-webkit-autofill:focus {
+      -webkit-text-fill-color: white;
+      -webkit-box-shadow: 0 0 0px 1000px #3a3a3a inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .form-group input:focus+label,
+    .form-group textarea:focus+label,
+    .form-group input:not(:placeholder-shown)+label,
+    .form-group textarea:not(:placeholder-shown)+label {
+      top: 0;
+      font-size: 12px;
+    }
+
+    .button-simple {
+      max-width: 250px;
+    }
+
+    .button-simple i {
+      margin-left: 10px;
+    }
+
+    .contact-info ul li {
+      margin-bottom: 1rem;
+      display: flex;
+      text-align: justify;
+    }
+
+    .contact-info ul li i {
+      margin-right: 1rem;
+      color: var(--color-three);
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      margin-top: 2rem;
+    }
+
+    .social-icon {
+      font-size: 1.8rem;
+      color: var(--text-color);
+      margin-right: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      color: var(--color-three);
+    }
+
+    @media (max-width: 768px) {
       .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        background-color: var(--background-two);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
+        grid-template-columns: 1fr;
       }
+    }
+  </style>
+</head>
 
-      .contact-form,
-      .contact-info {
-        padding: 2rem;
-      }
-
-      .contact-form h3,
-      .contact-info h3 {
-        font-family: var(--heading-font);
-        color: var(--color-three);
-        margin-bottom: 1.5rem;
-        font-size: 1.8rem;
-      }
-
-      h1 {
-        text-align: center;
-        color: #007bf0;
-        margin-bottom: 2rem;
-      }
-
-      .form-group {
-        margin-bottom: 1.5rem;
-        position: relative;
-      }
-
-      .form-group label {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #3a3a3a;
-        padding: 0 5px;
-        color: white;
-        transition: 0.2s ease all;
-        pointer-events: none;
-      }
-
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #007bf0;
-        border-radius: 5px;
-        font-size: 16px;
-        background-color: #3a3a3a;
-        color: white;
-        outline: none;
-      }
-
-      /* Aggiungi queste regole per gestire l'autocompletamento */
-      .form-group input:-webkit-autofill,
-      .form-group input:-webkit-autofill:hover,
-      .form-group input:-webkit-autofill:focus,
-      .form-group textarea:-webkit-autofill,
-      .form-group textarea:-webkit-autofill:hover,
-      .form-group textarea:-webkit-autofill:focus {
-        -webkit-text-fill-color: white;
-        -webkit-box-shadow: 0 0 0px 1000px #3a3a3a inset;
-        transition: background-color 5000s ease-in-out 0s;
-      }
-
-      .form-group textarea {
-        height: 100px;
-        resize: vertical;
-      }
-
-      .form-group input:focus + label,
-      .form-group textarea:focus + label,
-      .form-group input:not(:placeholder-shown) + label,
-      .form-group textarea:not(:placeholder-shown) + label {
-        top: 0;
-        font-size: 12px;
-      }
-
-      .button-simple {
-        max-width: 250px;
-      }
-
-      .button-simple i {
-        margin-left: 10px;
-      }
-
-      .contact-info ul li {
-        margin-bottom: 1rem;
-        display: flex;
-        text-align: justify;
-      }
-
-      .contact-info ul li i {
-        margin-right: 1rem;
-        color: var(--color-three);
-        font-size: 1.2rem;
-      }
-
-      .social-links {
-        margin-top: 2rem;
-      }
-
-      .social-icon {
-        font-size: 1.8rem;
-        color: var(--text-color);
-        margin-right: 1.5rem;
-        transition: color 0.3s ease;
-      }
-
-      .social-icon:hover {
-        color: var(--color-three);
-      }
-
-      @media (max-width: 768px) {
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="navbar-container">
-          <h1>Contatti</h1>
-          <div class="menu-icon">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
-          <ul class="nav-menu">
-            <li class="nav-item">
-              <a href="/html/home/index.html" class="nav-link"
-                ><i class="fas fa-home"></i>Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="/html/home/#risorse" class="nav-link"
-                ><i class="fas fa-book"></i>Risorse</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="/html/home/#strumenti" class="nav-link"
-                ><i class="fas fa-tools"></i>Strumenti</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="/html/home/#progetti-pratici" class="nav-link"
-                ><i class="fas fa-project-diagram"></i>Progetti Pratici</a
-              >
-            </li>
-            <li class="nav-item">
-              <a href="/html/home/#percorsi-apprendimento" class="nav-link"
-                ><i class="fas fa-graduation-cap"></i>Percorsi di
-                Apprendimento</a
-              >
-            </li>
-          </ul>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <h1>Contatti</h1>
+        <div class="menu-icon">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-      </nav>
-    </header>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/html/home/index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#risorse" class="nav-link"><i class="fas fa-book"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#strumenti" class="nav-link"><i class="fas fa-tools"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"></i>Progetti
+              Pratici</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#percorsi-apprendimento" class="nav-link"><i class="fas fa-graduation-cap"></i>Percorsi
+              di
+              Apprendimento</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <main role="main" class="contact-container">
-      <section class="contact-grid">
-        <div class="contact-info">
-          <h3>Informazioni di contatto</h3>
-          <ul>
-            <li>
-              Hai domande, proposte o curiosità? Scrivimi. Non sono un guru,
-              solo uno che impara sul campo e condivide quello che scopre.
-            </li>
-            <li>
-              Accolgo con piacere i vostri suggerimenti su bug, miglioramenti
-              del sito e nuove idee.
-            </li>
-          </ul>
-          <!--  <h3>Seguici sui social</h3>
+  <main role="main" class="contact-container">
+    <section class="contact-grid">
+      <div class="contact-info">
+        <h3>Informazioni di contatto</h3>
+        <ul>
+          <li>
+            Hai domande, proposte o curiosità? Scrivimi. Non sono un guru,
+            solo uno che impara sul campo e condivide quello che scopre.
+          </li>
+          <li>
+            Accolgo con piacere i vostri suggerimenti su bug, miglioramenti
+            del sito e nuove idee.
+          </li>
+        </ul>
+        <!--  <h3>Seguimi sui social</h3>
           <div class="social-links">
             <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
           </div> -->
-        </div>
+      </div>
 
-        <div class="container">
-          <h1><i class="fas fa-envelope"></i> Invia messaggio</h1>
-          <form>
-            <div class="form-group">
-              <input type="text" id="nome" required placeholder=" " />
-              <label for="nome">Nome</label>
-            </div>
-            <div class="form-group">
-              <input type="email" id="email" required placeholder=" " />
-              <label for="email">Email</label>
-            </div>
-            <div class="form-group">
-              <input type="text" id="oggetto" required placeholder=" " />
-              <label for="oggetto">Oggetto</label>
-            </div>
-            <div class="form-group">
-              <textarea id="messaggio" required placeholder=" "></textarea>
-              <label for="messaggio">Messaggio</label>
-            </div>
-            <button type="submit" class="button-simple">
-              Invia messaggio <i class="fa-solid fa-share"></i>
-            </button>
-          </form>
-        </div>
-      </section>
-    </main>
-  </body>
+      <div class="container">
+        <h1><i class="fas fa-envelope"></i> Invia messaggio</h1>
+        <form>
+          <div class="form-group">
+            <input type="text" id="nome" required placeholder=" " />
+            <label for="nome">Nome</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" required placeholder=" " />
+            <label for="email">Email</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="oggetto" required placeholder=" " />
+            <label for="oggetto">Oggetto</label>
+          </div>
+          <div class="form-group">
+            <textarea id="messaggio" required placeholder=" "></textarea>
+            <label for="messaggio">Messaggio</label>
+          </div>
+          <button type="submit" class="button-simple">
+            Invia messaggio <i class="fa-solid fa-share"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>
