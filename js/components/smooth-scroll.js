@@ -1,7 +1,7 @@
 // smooth-scroll.js
 document.addEventListener('DOMContentLoaded', function () {
     const links = document.querySelectorAll('.nav-link');
-    const offset = 60; // Altezza della navbar più un piccolo spazio extra
+    const offset = 160; // Altezza della navbar più un piccolo spazio extra
 
     links.forEach(link => {
         link.addEventListener('click', function (e) {
