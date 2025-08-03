@@ -14,3 +14,20 @@ menuIcon.addEventListener('click', () => {
     menuIcon.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
+
+/* --- LOGO + H1 PER QUALSIASI NAVBAR --- */
+const logos = document.querySelectorAll('.logo'); // può esserci più di un logo
+const headings = document.querySelectorAll('.invisible-text, .resize-text'); // prende entrambe le classi
+
+function handleResize() {
+    if (window.innerWidth < 860) {
+        logos.forEach(logo => logo.style.display = 'none');
+        headings.forEach(h1 => h1.style.display = 'none');
+    } else {
+        logos.forEach(logo => logo.style.display = '');
+        headings.forEach(h1 => h1.style.display = '');
+    }
+}
+
+window.addEventListener('resize', handleResize);
+handleResize();
