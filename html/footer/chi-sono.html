@@ -22,7 +22,12 @@
 
   <style>
     .content-section {
-      max-width: 1900px;
+      display: flex;
+      justify-content: center;
+      /* orizzontale */
+      align-items: center;
+      /* verticale, se serve */
+      flex-direction: column;
       padding: 2rem;
       background-color: var(--background-three);
       border-radius: 8px;
@@ -35,6 +40,7 @@
       line-height: 1.8;
       color: var(--text-color);
       margin-bottom: 1.5rem;
+      margin-top: 2rem;
     }
 
     .logo-minimal {
@@ -52,7 +58,7 @@
       <div class="navbar-container">
         <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
         <h1 class="resize-text">Chi Sono</h1>
-        
+
         <div class="menu-icon">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -85,7 +91,7 @@
 
   <main>
     <section class="content-section">
-      <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo-minimal" width="1200" height="90" />
+      <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo-chi-sono" width="1200" height="90" />
       <p>
         Ciao, mi presento brevemente: mi chiamo Alessandro e sono l’autore di questo sito.
         Il mondo dell’IT mi ha sempre affascinato e incuriosito, tanto da diventare col tempo
