@@ -19,6 +19,14 @@
   <script src="/js/components/button.js" defer></script>
   <script src="/js/components/footer.js"></script>
 
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("_jaOmpsmW4bnrY_bq"); // Sostituisci con la tua Public Key di EmailJS
+    })();
+  </script>
+
   <style>
     .contact-container {
       max-width: 1000px;
@@ -58,7 +66,6 @@
     h1 {
       text-align: center;
       color: #007bf0;
-
     }
 
     .form-group {
@@ -90,7 +97,6 @@
       outline: none;
     }
 
-    /* Aggiungi queste regole per gestire l'autocompletamento */
     .form-group input:-webkit-autofill,
     .form-group input:-webkit-autofill:hover,
     .form-group input:-webkit-autofill:focus,
@@ -209,32 +215,25 @@
             del sito e nuove idee.
           </li>
         </ul>
-        <!--  <h3>Seguimi sui social</h3>
-          <div class="social-links">
-            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-          </div> -->
       </div>
 
       <div class="container">
         <h1><i class="fas fa-envelope"></i> Invia messaggio</h1>
-        <form>
+        <form id="contact-form">
           <div class="form-group">
-            <input type="text" id="nome" required placeholder=" " />
+            <input type="text" id="nome" name="name" required placeholder=" " />
             <label for="nome">Nome</label>
           </div>
           <div class="form-group">
-            <input type="email" id="email" required placeholder=" " />
+            <input type="email" id="email" name="email" required placeholder=" " />
             <label for="email">Email</label>
           </div>
           <div class="form-group">
-            <input type="text" id="oggetto" required placeholder=" " />
+            <input type="text" id="oggetto" name="subject" required placeholder=" " />
             <label for="oggetto">Oggetto</label>
           </div>
           <div class="form-group">
-            <textarea id="messaggio" required placeholder=" "></textarea>
+            <textarea id="messaggio" name="message" required placeholder=" "></textarea>
             <label for="messaggio">Messaggio</label>
           </div>
           <button type="submit" class="button-simple">
@@ -244,6 +243,26 @@
       </div>
     </section>
   </main>
+
+  <!-- Script invio EmailJS -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      emailjs.sendForm('service_7629q4n', 'template_6gwohrk', this)
+        .then(function () {
+          alert('✅ Messaggio inviato con successo!');
+        }, function (error) {
+          alert('❌ Errore nell\'invio: ' + JSON.stringify(error));
+        });
+    });
+  </script>
 </body>
 
 </html>
+<!-- Cosa devi sostituire:
+TUO_USER_ID → la Public Key dal tuo account EmailJS
+
+TUO_SERVICE_ID → lo Service ID che hai creato
+
+TUO_TEMPLATE_ID → il Template ID del template email -->
