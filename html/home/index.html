@@ -74,9 +74,10 @@
 
     .hero-content {
       max-width: 1350px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+      width: 100%;
+      padding: 0 2rem;
+      /* Spazio laterale */
+      box-sizing: border-box;
     }
 
     .hero-title {
@@ -102,7 +103,7 @@
     }
 
     .hero p {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--text-color);
       margin-bottom: 2rem;
       line-height: 1.8;
@@ -203,8 +204,6 @@
       background-color: #ccc;
       color: black;
     }
-
-    
   </style>
 </head>
 
@@ -214,7 +213,7 @@
       <div class="navbar-container">
         <img src="/assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
         <h1 class="invisible-text">Home</h1>
-        
+
         <div class="menu-icon">
           <span class="bar"></span>
           <span class="bar"></span>
