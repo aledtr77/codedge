@@ -6,22 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contatti Codedge</title>
   <link rel="alternate icon" href="/assets/icons/codedge_logo_minimal.svg" />
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- CSS -->
+
+  <!-- CSS originali -->
   <link rel="stylesheet" href="/css/components/main.css" />
   <link rel="stylesheet" href="/css/components/navbar.css" />
   <link rel="stylesheet" href="/css/components/button.css" />
   <link rel="stylesheet" href="/css/components/footer.css" />
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("_jaOmpsmW4bnrY_bq"); // <-- Sostituisci con il tuo publicKey
-    })();
-  </script>
 
   <style>
+    /* Manteniamo il layout originale */
     .contact-container {
       max-width: 1000px;
       margin: 0 auto;
@@ -32,7 +28,6 @@
       padding: 2rem;
       border-radius: 10px;
       max-width: 400px;
-      position: relative;
     }
 
     .contact-grid {
@@ -92,17 +87,6 @@
       outline: none;
     }
 
-    .form-group input:-webkit-autofill,
-    .form-group input:-webkit-autofill:hover,
-    .form-group input:-webkit-autofill:focus,
-    .form-group textarea:-webkit-autofill,
-    .form-group textarea:-webkit-autofill:hover,
-    .form-group textarea:-webkit-autofill:focus {
-      -webkit-text-fill-color: white;
-      -webkit-box-shadow: 0 0 0px 1000px #3a3a3a inset;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-
     .form-group textarea {
       height: 100px;
       resize: vertical;
@@ -118,74 +102,58 @@
 
     .button-simple {
       max-width: 250px;
-      cursor: pointer;
+      position: relative;
     }
 
     .button-simple i {
       margin-left: 10px;
     }
 
-    .contact-info ul li {
-      margin-bottom: 1rem;
-      display: flex;
-      text-align: justify;
-    }
-
-    .contact-info ul li i {
-      margin-right: 1rem;
+    /* Feedback tooltip */
+    .feedback-message {
+      position: fixed;
+      bottom: 300px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--background-two);
       color: var(--color-three);
-      font-size: 1.2rem;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 9999;
     }
 
-    .social-links {
-      margin-top: 2rem;
+    .feedback-message.show {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .social-icon {
-      font-size: 1.8rem;
-      color: var(--text-color);
-      margin-right: 1.5rem;
-      transition: color 0.3s ease;
+    /* Spinner */
+    .spinner {
+      border: 3px solid #ccc;
+      border-top: 3px solid var(--color-three);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+      margin-left: 8px;
     }
 
-    .social-icon:hover {
-      color: var(--color-three);
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     @media (max-width: 768px) {
       .contact-grid {
         grid-template-columns: 1fr;
       }
-    }
-
-    /* ✅ Feedback Style */
-    .feedback-message {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      padding: 12px;
-      border-radius: 6px;
-      text-align: center;
-      font-size: 16px;
-      display: none;
-      font-weight: bold;
-      background: #3a3a3a;
-      color: #fff;
-      border: 1px solid #007bf0;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .feedback-message.show {
-      display: block;
-      opacity: 1;
-    }
-
-    .feedback-message i {
-      margin-right: 8px;
-      color: #007bf0;
     }
   </style>
 </head>
@@ -202,19 +170,24 @@
           <span class="bar"></span>
         </div>
         <ul id="nav-menu" class="nav-menu">
-          <li><a href="/html/home/index.html" class="nav-link"><i class="fas fa-home"></i>Home</a></li>
-          <li><a href="/html/home/#risorse" class="nav-link"><i class="fas fa-book"></i>Risorse</a></li>
-          <li><a href="/html/home/#strumenti" class="nav-link"><i class="fas fa-tools"></i>Strumenti</a></li>
-          <li><a href="/html/home/#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"></i>Progetti
-              Pratici</a></li>
-          <li><a href="/html/home/#percorsi-apprendimento" class="nav-link"><i
-                class="fas fa-graduation-cap"></i>Percorsi di Apprendimento</a></li>
+          <li class="nav-item">
+            <a href="/html/home/index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#risorse" class="nav-link"><i class="fas fa-book"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#strumenti" class="nav-link"><i class="fas fa-tools"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/html/home/#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"></i>Progetti</a>
+          </li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <main role="main" class="contact-container">
+  <main class="contact-container">
     <section class="contact-grid">
       <div class="contact-info">
         <h3>Informazioni di contatto</h3>
@@ -227,7 +200,6 @@
 
       <div class="container">
         <h1><i class="fas fa-envelope"></i> Invia messaggio</h1>
-        <div id="feedback" class="feedback-message"></div>
         <form id="contact-form">
           <div class="form-group">
             <input type="text" id="nome" name="nome" required placeholder=" " />
@@ -245,50 +217,76 @@
             <textarea id="messaggio" name="messaggio" required placeholder=" "></textarea>
             <label for="messaggio">Messaggio</label>
           </div>
-          <button type="submit" class="button-simple">Invia messaggio <i class="fa-solid fa-share"></i></button>
+          <button type="submit" class="button-simple">
+            Invia messaggio <i class="fa-solid fa-share"></i>
+          </button>
         </form>
       </div>
     </section>
   </main>
 
+  <!-- Feedback container -->
+  <div id="feedback" class="feedback-message"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
+    emailjs.init("_jaOmpsmW4bnrY_bq"); // Inserisci la tua PUBLIC KEY
+
     const form = document.getElementById("contact-form");
     const feedback = document.getElementById("feedback");
+    const button = form.querySelector("button");
+
+    // TEMPI personalizzabili
+    const FEEDBACK_DURATION = 4000; // ms - tempo di visualizzazione del messaggio finale
+    const LOADING_MESSAGE = "Invio in corso..."; // testo iniziale
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      emailjs.send('service_7629q4n', 'template_6gwohrk', {
-        nome: form.nome.value,
-        email: form.email.value,
-        oggetto: form.oggetto.value,
-        messaggio: form.messaggio.value
-      })
+      // Mostra subito il feedback con spinner
+      showFeedback(`${LOADING_MESSAGE} <span class="spinner"></span>`);
+
+      // Disabilita il bottone durante l'invio
+      button.disabled = true;
+
+      const templateParams = {
+        contatto: form.nome.value,   // Per il Subject ({{contatto}})
+        name: form.nome.value,       // Per il body ({{name}})
+        email: form.email.value,     // Per il campo Reply To ({{email}})
+        message: form.messaggio.value // Per il body ({{message}})
+      };
+
+      emailjs.send("service_7629q4n", "template_6gwohrk", templateParams)
         .then(() => {
-          showFeedback("Messaggio inviato con successo!", true);
-          form.reset();
+          showFeedback("Messaggio inviato con successo!");
+          resetForm();
         })
         .catch(() => {
-          showFeedback("Errore durante l'invio. Riprova più tardi.", false);
+          showFeedback("Errore durante l'invio. Riprova.");
+        })
+        .finally(() => {
+          button.disabled = false;
         });
     });
 
-    function showFeedback(message, success) {
+    // Mostra il messaggio di feedback
+    function showFeedback(message) {
+      feedback.innerHTML = message;
       feedback.classList.add("show");
-      feedback.innerHTML = `<i class="fa ${success ? 'fa-check-circle' : 'fa-times-circle'}"></i>${message}`;
 
-      setTimeout(() => {
-        feedback.classList.remove("show");
-      }, 4000);
+      // Nasconde dopo FEEDBACK_DURATION solo se non è il messaggio di caricamento
+      if (!message.includes("Invio in corso")) {
+        setTimeout(() => {
+          feedback.classList.remove("show");
+        }, FEEDBACK_DURATION);
+      }
+    }
+
+    // Reset form
+    function resetForm() {
+      form.reset();
     }
   </script>
 </body>
 
 </html>
-
-<!-- Cosa devi sostituire:
-TUO_USER_ID → la Public Key dal tuo account EmailJS
-
-TUO_SERVICE_ID → lo Service ID che hai creato
-
-TUO_TEMPLATE_ID → il Template ID del template email -->
