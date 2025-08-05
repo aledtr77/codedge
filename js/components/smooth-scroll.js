@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
     links.forEach(link => {
         link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            const isHomePage = window.location.pathname.endsWith('/html/home/index.html') || window.location.pathname.endsWith('/html/home/');
+            const isHomePage = window.location.pathname.endsWith('html/home/index.html') || window.location.pathname.endsWith('html/home/');
 
             // Gestisci il link Home
-            if (href === '/html/home/index.html' || href === '/html/home/' || href === '#') {
+            if (href === 'html/home/index.html' || href === 'html/home/' || href === '#') {
                 if (isHomePage) {
                     e.preventDefault();
                     window.scrollTo({
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             behavior: 'smooth'
                         });
                     }
-                } else if (path === '/html/home/' || path === '/html/home/index.html') {
+                } else if (path === 'html/home/' || path === 'html/home/index.html') {
                     // Se non siamo nella homepage, lascia che il link funzioni normalmente
                     // Il browser gestirà lo scroll alla sezione dopo il caricamento della pagina
                     return;
