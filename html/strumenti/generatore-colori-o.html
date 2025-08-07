@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore colori Codehive</title>
+    <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
+
+    <!-- moduli css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/components/main.css">
+    <link rel="stylesheet" href="../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../css/components/tooltip.css">
+    <link rel="stylesheet" href="../../css/components/button.css">
+    <link rel="stylesheet" href="../../css/components/footer.css">
+
+    <!-- moduli js -->
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script src="../../js/components/navbar.js" defer></script>
+    <script src="../../js/components/tooltip.js" defer></script>
+    <script src="../../js/components/button.js" defer></script>
+    <script src="../../js/components/footer.js"></script>
+
+    <!-- stile proprietario della pagina generatore colori-->
+    <style>
+        /* Typography */
+        h1 .fas.fa-palette {
+            margin-right: 10px;
+        }
+
+        h2 {
+            color: var(--hover-color);
+            border-bottom: 2px solid var(--color-three);
+            padding-bottom: 0.5rem;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Sections and Layout */
+        .section {
+            background-color: var(--background-two);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            min-width: 360px;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .color-generator-main {
+            flex: 1;
+            max-width: calc(100% - 320px);
+        }
+
+        .color-notes {
+            width: 400px;
+            flex-shrink: 0;
+        }
+
+        /* Color Picker and Preview */
+        .color-picker-container,
+        .color-preview-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .color-preview-container {
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .color-preview {
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--text-color);
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 10px;
+        }
+
+        .color-preview-container:hover .color-preview {
+            transform: scale(1.05);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Palette and Color Swatches */
+        .palette-container,
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+            margin-right: 10px;
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--text-color);
+            position: relative;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch .hex-value {
+            background-color: var(--background-two);
+            color: var(--text-color);
+            padding: 2px 5px;
+            border-radius: 3px;
+            position: absolute;
+            bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* Form Elements */
+        input[type="text"],
+        select,
+        button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid var(--text-color);
+            border-radius: 4px;
+            margin-left: 0.75rem;
+        }
+
+        .button-simple {
+            width: 30%;
+        }
+
+        #generatePalette {
+            margin-top: 1rem;
+        }
+
+        /* Color Analysis and Manipulation */
+        .color-analysis {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .color-info-column,
+        .color-manipulation-column {
+            flex: 1 1 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .color-info,
+        .color-manipulation,
+        .contrast-check {
+            margin-bottom: 1rem;
+        }
+
+        .contrast-preview {
+            padding: 0.5rem;
+            border-radius: 4px;
+            width: 90%;
+            margin: 10px 0;
+            border: 1px solid;
+            text-align: center;
+        }
+
+        /* Color Manipulation Specific */
+        .color-manipulation {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #manipulatedColorContainer {
+            width: 80px;
+            height: 80px;
+            margin: 20px 0;
+        }
+
+        #manipulatedColor {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border: 1px solid var(--text-color);
+            border-radius: 5px;
+            transition: transform 0.2s linear, opacity 0.2s linear;
+        }
+
+        #manipulatedColor:hover {
+            transform: scale(1.05);
+            box-shadow: var(--box-shadow);
+            opacity: 1 !important;
+        }
+
+        #manipulatedColorText {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 16px;
+        }
+
+        .color-manipulation input[type="range"] {
+            width: 100%;
+            margin: 0.5rem 0 10px 0;
+        }
+
+        .color-manipulation label {
+            align-self: flex-start;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Color Notes */
+        .color-notes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .color-note {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .color-note .color-preview {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .color-note .color-preview:hover {
+            transform: scale(1.1);
+        }
+
+        .color-note button {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 12px;
+
+            font-size: 12px;
+        }
+
+        .color-note .color-hex {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        /* Utility Classes */
+        .win-border-solid {
+            border: 1px solid var(--text-color);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Contrast Check */
+        .contrast-check {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        #contrastColorInput {
+            width: 120px;
+            padding: 0.5rem;
+            margin-bottom: 50px;
+        }
+
+        .button-simple {
+            max-width: 180px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+
+            .main-content,
+            .color-analysis {
+                flex-direction: column;
+            }
+
+            .color-generator-main,
+            .color-notes,
+            .color-info-column,
+            .color-manipulation-column {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .color-notes {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .color-notes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Nuovo input per inserire il colore manualmente */
+        #manualColorInput {
+            width: 100px;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            margin-left: 180px;
+            font-size: 1rem;
+            border: 1px solid var(--text-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <img src="../../assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
+                <h1 class="resize-text"><i class="fas fa-palette"></i>Generatori colori</h1>
+                <div class="menu-icon">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link" aria-current="page"><i class="fas fa-home"
+                                aria-hidden="true"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#risorse" class="nav-link"><i class="fas fa-book"
+                                aria-hidden="true"></i>Risorse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#strumenti" class="nav-link"><i class="fas fa-tools"
+                                aria-hidden="true"></i>Strumenti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"
+                                aria-hidden="true"></i>Progetti Pratici</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#percorsi-apprendimento" class="nav-link"><i class="fas fa-graduation-cap"
+                                aria-hidden="true"></i>Percorsi di Apprendimento</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>Generatore di Palette di Colori</h2>
+            <div class="main-content">
+                <div class="color-generator-main">
+                    <!-- Nuovo input per inserire il colore manualmente -->
+                    <input type="text" id="manualColorInput" placeholder="#FF0000" />
+                    <div class="color-picker-container">
+                        <div id="picker"></div>
+                        <div class="color-preview-container" id="colorPreviewContainer">
+                            <div class="color-preview" id="colorPreviewReal"></div>
+                            <span id="selectedColorValue">#007bff</span>
+                        </div>
+                    </div>
+                    <select id="harmonies">
+                        <option value="monochromatic">Monocromatica</option>
+                        <option value="analogous">Analoga</option>
+                        <option value="complementary">Complementare</option>
+                        <option value="triadic">Triadica</option>
+                        <option value="tetradic">Tetradica</option>
+                    </select>
+
+                    <button id="generatePalette" class="button-simple">Genera Palette</button>
+                    <div class="palette-container tooltip-bottom" id="paletteContainer"></div>
+                </div>
+
+                <div class="color-notes">
+                    <h3>Tavolozza di Appunti</h3>
+                    <div class="color-notes-grid">
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                        <div class="color-note">
+                            <div class="color-preview"></div>
+                            <span class="color-hex"></span>
+                            <button class="button-simple pin-color tooltip">Appunta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Analizzatore e Manipolatore di Colori</h2>
+
+            <div class="color-analysis">
+                <div class="color-info-column">
+                    <div class="color-info">
+                        <h3>Informazioni sul Colore</h3>
+                        <div id="colorPreview" class="color-preview"></div>
+                        <div id="colorDetails"></div>
+                    </div>
+                    <div class="contrast-check">
+                        <input type="text" id="contrastColorInput" placeholder="#FF0000">
+                        <div id="contrastResult"></div>
+                    </div>
+                </div>
+                <div class="color-manipulation-column">
+                    <div class="color-manipulation">
+                        <h3>Manipolazione del Colore</h3>
+                        <label for="lightenDarken">Schiarisci/Scurisci:</label>
+                        <input type="range" id="lightenDarken" min="-100" max="100" value="0">
+                        <label for="saturate">Saturazione:</label>
+                        <input type="range" id="saturate" min="0" max="100" value="50">
+                        <div class="tooltip-bottom" id="manipulatedColorContainer">
+                            <div id="manipulatedColor"></div>
+                        </div>
+                        <div id="manipulatedColorText"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script>
+        let lastCopiedColor = '';
+        let colorPicker;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const pickerElement = document.getElementById('picker');
+            if (!pickerElement) {
+                console.error("Elemento 'picker' non trovato. Assicurati di avere un elemento con id 'picker' nel tuo HTML.");
+                return;
+            }
+
+            const selectedColorValue = document.getElementById('selectedColorValue');
+            const contrastColorInput = document.getElementById('contrastColorInput');
+            const colorPreviewReal = document.getElementById('colorPreviewReal');
+            const colorPreview = document.getElementById('colorPreview');
+            const manipulatedColorElement = document.getElementById('manipulatedColor');
+            const contrastResult = document.getElementById('contrastResult');
+            const colorPreviewContainer = document.getElementById('colorPreviewContainer');
+
+            // Inizializza il color picker di iro.js
+            try {
+                colorPicker = new iro.ColorPicker("#picker", {
+                    width: 200,
+                    color: "#007bff"
+                });
+                console.log("Color picker inizializzato con successo");
+            } catch (error) {
+                console.error("Errore nell'inizializzazione del color picker:", error);
+                return;
+            }
+
+            function updateHexValue(color) {
+                selectedColorValue.textContent = color.hexString;
+                colorPicker.color.set(color.hexString);
+
+                colorPreviewReal.style.backgroundColor = color.hexString;
+                colorPreview.style.backgroundColor = color.hexString;
+                manipulatedColorElement.style.backgroundColor = color.hexString;
+
+                analyzeColor(color.hexString);
+                checkContrast(color.hexString, contrastColorInput.value);
+            }
+
+            colorPicker.on('color:change', function (color) {
+                updateHexValue(color);
+                manipulateColor(color.hexString);
+            });
+
+            contrastColorInput.addEventListener('input', function (event) {
+                const newColor = event.target.value;
+                const parsedColor = parseColor(newColor);
+                if (parsedColor) {
+                    contrastColorInput.style.backgroundColor = parsedColor;
+                    contrastColorInput.style.color = getContrastingTextColor(parsedColor);
+                    checkContrast(colorPicker.color.hexString, parsedColor);
+                }
+            });
+
+            colorPreviewContainer.addEventListener('click', () => {
+                const colorValue = colorPicker.color.hexString;
+                navigator.clipboard.writeText(colorValue).then(() => {
+                    lastCopiedColor = colorValue;
+                    showTooltip(colorPreviewContainer, 'Copiato!');
+                }).catch(err => {
+                    console.error('Errore nel copiare il testo: ', err);
+                    showTooltip(colorPreviewContainer, 'Errore!');
+                });
+            });
+
+            document.getElementById('generatePalette').addEventListener('click', () => generatePalette(colorPicker.color.hexString));
+            document.getElementById('lightenDarken').addEventListener('input', () => manipulateColor(colorPicker.color.hexString));
+            document.getElementById('saturate').addEventListener('input', () => manipulateColor(colorPicker.color.hexString));
+
+            // Gestione della tavolozza di appunti
+            const colorNotes = document.querySelectorAll('.color-note');
+            colorNotes.forEach((note, index) => {
+                const preview = note.querySelector('.color-preview');
+                const hexSpan = note.querySelector('.color-hex');
+                const pinButton = note.querySelector('.pin-color');
+
+                function updateColorNote(color) {
+                    preview.style.backgroundColor = color;
+                    hexSpan.textContent = color.toUpperCase();
+                    pinButton.textContent = 'Cambia';
+                    localStorage.setItem(`pinnedColor${index}`, color);
+                }
+
+                pinButton.addEventListener('click', () => {
+                    const currentColor = lastCopiedColor || colorPicker.color.hexString;
+                    updateColorNote(currentColor);
+                    showTooltip(preview, 'Colore appuntato!');
+                });
+
+                preview.addEventListener('click', () => {
+                    const hexColor = hexSpan.textContent;
+                    navigator.clipboard.writeText(hexColor).then(() => {
+                        lastCopiedColor = hexColor;
+                        showTooltip(preview, 'Copiato!');
+                    }).catch(err => {
+                        console.error('Errore nel copiare il colore:', err);
+                        showTooltip(preview, 'Errore!');
+                    });
+                });
+
+                // Carica i colori salvati al caricamento della pagina
+                const savedColor = localStorage.getItem(`pinnedColor${index}`);
+                if (savedColor) {
+                    updateColorNote(savedColor);
+                }
+            });
+
+            initializeSliders(colorPicker.color.hexString);
+            updateHexValue(colorPicker.color);
+            manipulateColor(colorPicker.color.hexString);
+            setupManipulatedColorCopy();
+
+            const manualColorInput = document.getElementById('manualColorInput');
+
+            manualColorInput.addEventListener('input', function (event) {
+                const inputColor = event.target.value;
+                const parsedColor = parseColor(inputColor);
+                if (parsedColor) {
+                    colorPicker.color.set(parsedColor);
+                    updateHexValue(colorPicker.color);
+                }
+            });
+        });
+
+        function initializeSliders(color) {
+            const lightenDarkenSlider = document.getElementById('lightenDarken');
+            const saturateSlider = document.getElementById('saturate');
+
+            lightenDarkenSlider.value = 0; // Inizia al centro
+            saturateSlider.value = 50; // Inizia a metà della corsa
+        }
+
+        function manipulateColor(color) {
+            const lightenDarken = parseInt(document.getElementById('lightenDarken').value);
+            const saturate = parseInt(document.getElementById('saturate').value);
+
+            const rgb = hexToRgb(color);
+            let hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+            // Mappiamo il valore lightenDarken da -100,100 a 0,100 per la luminosità
+            // -100 corrisponde a 100% di luminosità, 0 a 50%, e 100 a 0% di luminosità
+            hsl.l = 100 - (lightenDarken + 100) / 2;
+
+            // Saturazione: usa il valore direttamente (da 0 a 100)
+            hsl.s = saturate;
+
+            const manipulatedColor = hslToHex(hsl.h, hsl.s, hsl.l);
+            const manipulatedRgb = hexToRgb(manipulatedColor);
+            const manipulatedColorElement = document.getElementById('manipulatedColor');
+            const manipulatedColorTextElement = document.getElementById('manipulatedColorText');
+
+            if (manipulatedColorElement) {
+                manipulatedColorElement.style.backgroundColor = manipulatedColor;
+            }
+            if (manipulatedColorTextElement) {
+                manipulatedColorTextElement.innerHTML = `
+            Colore manipolato:<br>
+            HEX: ${manipulatedColor}<br>
+            RGB: ${manipulatedRgb.r}, ${manipulatedRgb.g}, ${manipulatedRgb.b}<br>
+            HSL: ${Math.round(hsl.h)}°, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%
+        `;
+            }
+        }
+
+        function setupManipulatedColorCopy() {
+            const manipulatedColorElement = document.getElementById('manipulatedColor');
+
+            if (manipulatedColorElement) {
+                manipulatedColorElement.style.cursor = 'pointer';
+
+                manipulatedColorElement.addEventListener('mouseover', () => {
+                    manipulatedColorElement.style.opacity = '0.8';
+                });
+
+                manipulatedColorElement.addEventListener('mouseout', () => {
+                    manipulatedColorElement.style.opacity = '1';
+                });
+
+                manipulatedColorElement.addEventListener('click', () => {
+                    const colorValue = manipulatedColorElement.style.backgroundColor;
+                    navigator.clipboard.writeText(rgbToHex(colorValue)).then(() => {
+                        lastCopiedColor = rgbToHex(colorValue);
+                        showTooltip(manipulatedColorElement, 'Copiato!');
+                        setTimeout(() => hideTooltip(manipulatedColorElement), 1500);
+                    }).catch(err => {
+                        console.error('Errore nel copiare il colore:', err);
+                        showTooltip(manipulatedColorElement, 'Errore!');
+                        setTimeout(() => hideTooltip(manipulatedColorElement), 1500);
+                    });
+                });
+            }
+        }
+
+        function generatePalette(baseColor) {
+            const harmony = document.getElementById('harmonies').value;
+            const paletteContainer = document.getElementById('paletteContainer');
+            paletteContainer.innerHTML = '';
+
+            let colors;
+            switch (harmony) {
+                case 'monochromatic':
+                    colors = generateMonochromaticPalette(baseColor);
+                    break;
+                case 'analogous':
+                    colors = generateAnalogousPalette(baseColor);
+                    break;
+                case 'complementary':
+                    colors = generateComplementaryPalette(baseColor);
+                    break;
+                case 'triadic':
+                    colors = generateTriadicPalette(baseColor);
+                    break;
+                case 'tetradic':
+                    colors = generateTetradicPalette(baseColor);
+                    break;
+                default:
+                    colors = [baseColor];
+            }
+
+            colors.forEach(color => {
+                const swatch = createColorSwatch(color);
+                paletteContainer.appendChild(swatch);
+            });
+        }
+
+        function createColorSwatch(color) {
+            const swatch = document.createElement('div');
+            swatch.className = 'color-swatch';
+            swatch.style.backgroundColor = color;
+
+            const hex = color.startsWith('#') ? color : rgbToHex(color);
+            const hexSpan = document.createElement('span');
+            hexSpan.className = 'hex-value';
+            hexSpan.textContent = hex.toUpperCase();
+            swatch.appendChild(hexSpan);
+
+            swatch.addEventListener('click', () => {
+                navigator.clipboard.writeText(hex).then(() => {
+                    lastCopiedColor = hex;
+                    showTooltip(swatch, 'Copiato!');
+                }).catch(err => {
+                    console.error('Errore nel copiare il testo: ', err);
+                    showTooltip(swatch, 'Errore!');
+                });
+            });
+
+            return swatch;
+        }
+
+        function analyzeColor(color) {
+            updateColorInfo(color);
+        }
+
+        function updateColorInfo(color) {
+            const preview = document.getElementById('colorPreview');
+            const details = document.getElementById('colorDetails');
+            preview.style.backgroundColor = color;
+
+            const rgb = hexToRgb(color);
+            const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            const luminance = calculateLuminance(rgb);
+            const dominantShade = getDominantShade(rgb);
+
+            details.innerHTML = `
+        HEX: ${color}<br>
+        RGB: ${rgb.r}, ${rgb.g}, ${rgb.b}<br>
+        HSL: ${hsl.h}°, ${hsl.s}%, ${hsl.l}%<br>
+        Luminosità: ${luminance.toFixed(2)}<br>
+        Tinta dominante: ${dominantShade}
+    `;
+        }
+
+        function checkContrast(color1, color2) {
+            color2 = parseColor(color2) || '#FFFFFF';
+            const contrast = calculateContrast(color1, color2);
+            const result = document.getElementById('contrastResult');
+            const wcag = getWCAGLevel(contrast);
+
+            result.innerHTML = `
+        <div class="contrast-preview" style="background-color: ${color1}; color: ${color2};">
+            Testo di esempio
+        </div>
+        Rapporto di contrasto: ${contrast.toFixed(2)}:1<br>
+        WCAG 2.1: ${wcag}
+    `;
+        }
+
+        function showTooltip(element, message) {
+            element.setAttribute('data-tooltip', message);
+            element.classList.add('show-tooltip');
+        }
+
+        function hideTooltip(element) {
+            element.classList.remove('show-tooltip');
+        }
+
+        function parseColor(color) {
+            if (color.startsWith('#')) {
+                if (color.length === 4) {
+                    return '#' + color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
+                } else if (color.length === 7) {
+                    return color;
+                }
+            }
+
+            const rgbMatch = color.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+            if (rgbMatch) {
+                return rgbToHex(`rgb(${rgbMatch[1]}, ${rgbMatch[2]}, ${rgbMatch[3]})`);
+            }
+
+            const tempElem = document.createElement('div');
+            tempElem.style.color = color;
+            document.body.appendChild(tempElem);
+            const computedColor = getComputedStyle(tempElem).color;
+            document.body.removeChild(tempElem);
+            if (computedColor !== color) {
+                return rgbToHex(computedColor);
+            }
+
+            return null;
+        }
+
+        function getContrastingTextColor(bgColor) {
+            const rgb = hexToRgb(bgColor);
+            const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+            return brightness > 128 ? '#000000' : '#FFFFFF';
+        }
+
+        function generateMonochromaticPalette(baseColor) {
+            const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
+            return [
+                baseColor,
+                hslToHex(hsl.h, hsl.s, Math.max(0, hsl.l - 20)),
+                hslToHex(hsl.h, hsl.s, Math.min(100, hsl.l + 20)),
+                hslToHex(hsl.h, Math.max(0, hsl.s - 20), hsl.l),
+                hslToHex(hsl.h, Math.min(100, hsl.s + 20), hsl.l)
+            ];
+        }
+
+        function generateAnalogousPalette(baseColor) {
+            const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
+            return [
+                baseColor,
+                hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h + 60) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h - 60 + 360) % 360, hsl.s, hsl.l)
+            ];
+        }
+
+        function generateComplementaryPalette(baseColor) {
+            const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
+            const complementHue = (hsl.h + 180) % 360;
+            return [
+                baseColor,
+                hslToHex(complementHue, hsl.s, hsl.l),
+                hslToHex(hsl.h, Math.max(0, hsl.s - 20), hsl.l),
+                hslToHex(hsl.h, Math.min(100, hsl.s + 20), hsl.l),
+                hslToHex(complementHue, Math.min(100, hsl.s + 20), hsl.l)
+            ];
+        }
+
+        function generateTriadicPalette(baseColor) {
+            const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
+            return [
+                baseColor,
+                hslToHex((hsl.h + 120) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l),
+                hslToHex(hsl.h, Math.max(0, hsl.s - 20), hsl.l),
+                hslToHex(hsl.h, Math.min(100, hsl.s + 20), hsl.l)
+            ];
+        }
+
+        function generateTetradicPalette(baseColor) {
+            const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
+            return [
+                baseColor,
+                hslToHex((hsl.h + 90) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l),
+                hslToHex((hsl.h + 270) % 360, hsl.s, hsl.l),
+                hslToHex(hsl.h, Math.min(100, hsl.s + 20), hsl.l)
+            ];
+        }
+
+        function rgbToHex(rgb) {
+            if (typeof rgb === 'string') {
+                const [r, g, b] = rgb.match(/\d+/g);
+                return `#${((1 << 24) + (+r << 16) + (+g << 8) + +b).toString(16).slice(1)}`;
+            }
+            return rgb;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255, g /= 255, b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+
+        function hslToHex(h, s, l) {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`;
+        }
+
+        function calculateLuminance(rgb) {
+            const a = [rgb.r, rgb.g, rgb.b].map(v => {
+                v /= 255;
+                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+        }
+
+        function calculateContrast(color1, color2) {
+            const lum1 = calculateLuminance(hexToRgb(color1));
+            const lum2 = calculateLuminance(hexToRgb(color2));
+            const brightest = Math.max(lum1, lum2);
+            const darkest = Math.min(lum1, lum2);
+            return (brightest + 0.05) / (darkest + 0.05);
+        }
+
+        function getWCAGLevel(contrast) {
+            if (contrast >= 7) return 'AAA';
+            if (contrast >= 4.5) return 'AA';
+            if (contrast >= 3) return 'AA (Large Text)';
+            return 'Fail';
+        }
+
+        function getDominantShade(rgb) {
+            const max = Math.max(rgb.r, rgb.g, rgb.b);
+            if (rgb.r === max) return 'Rosso';
+            if (rgb.g === max) return 'Verde';
+            if (rgb.b === max) return 'Blu';
+            return 'Neutro';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore Gradienti Codehive</title>
+    <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
+
+    <!-- moduli css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/components/main.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/components/button.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+
+    <!-- moduli js -->
+    <script src="/js/components/navbar.js" defer></script>
+    <script src="/js/components/button.js" defer></script>
+    <script src="/js/components/footer.js"></script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-one);
+        }
+
+        .section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .generator-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            background: var(--background-two);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-box {
+            height: 300px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: 0.3s ease;
+        }
+
+        .color-stop {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .color-input {
+            width: 60px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .position-input {
+            width: 60px;
+            padding: 0.25rem;
+            border: 1px solid var(--text-color);
+            border-radius: 4px;
+        }
+
+
+        .code-output {
+            background: var(--background-two);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-top: 1rem;
+        }
+
+        .gradient-type {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-type button {
+            flex: 1;
+        }
+
+        .angle-control {
+            display: none;
+            margin-bottom: 1rem;
+        }
+
+        .angle-control.active {
+            display: block;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .preset-gradients {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preset {
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--text-color);
+        }
+
+        .tooltip-container {
+            position: relative;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 1;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 6px;
+            opacity: 0;
+            background-color: var(--background-six);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 14px;
+        }
+
+        .bg-align {
+            background-color: var(--background-two);
+        }
+
+        h3 {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <img src="../../assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
+                <h1 class="resize-text"><i class="fas fa-tint"></i> Generatore Gradienti</h1>
+
+                <div class="menu-icon">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link" aria-current="page"><i class="fas fa-home"
+                                aria-hidden="true"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#risorse" class="nav-link"><i class="fas fa-book"
+                                aria-hidden="true"></i>Risorse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#strumenti" class="nav-link"><i class="fas fa-tools"
+                                aria-hidden="true"></i>Strumenti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#progetti-pratici" class="nav-link"><i class="fas fa-project-diagram"
+                                aria-hidden="true"></i>Progetti Pratici</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../#percorsi-apprendimento" class="nav-link"><i class="fas fa-graduation-cap"
+                                aria-hidden="true"></i>Percorsi di Apprendimento</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section">
+
+        <div class="generator-container">
+            <div class="controls">
+                <div class="gradient-type">
+                    <button class="button-simple" data-type="linear">Lineare</button>
+                    <button class="button-simple button-outline" data-type="radial">Radiale</button>
+                </div>
+
+                <div class="angle-control">
+                    <label for="angle">Angolo: <span id="angleValue">90</span>°</label>
+                    <input type="range" id="angle" min="0" max="360" value="90">
+                </div>
+
+                <div id="colorStops">
+                    <div class="color-stop">
+                        <input type="color" class="color-input" value="#3b82f6">
+                        <input type="number" class="position-input" value="0" min="0" max="100"> %
+                        <button class="button-simple">x</button>
+                    </div>
+                    <div class="color-stop">
+                        <input type="color" class="color-input" value="#ef4444">
+                        <input type="number" class="position-input" value="100" min="0" max="100"> %
+                        <button class="button-simple">x</button>
+                    </div>
+                </div>
+
+                <button class="button-simple" id="addColor">+ Aggiungi Colore</button>
+
+                <h3>Preset</h3>
+                <div class="preset-gradients">
+                    <!-- I preset saranno generati via JavaScript -->
+                </div>
+            </div>
+
+            <div class="preview">
+                <div class="preview-box" id="previewBox"></div>
+                <button class="button-simple bg-align" onclick="copyToClipboard(this)">Copia CSS</button>
+                <div class="code-output" id="cssCode"></div>
+                <div class="tooltip-container">
+                    <span class="tooltip">CSS copiato!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const previewBox = document.getElementById('previewBox');
+        const cssCode = document.getElementById('cssCode');
+        const colorStops = document.getElementById('colorStops');
+        const addColorBtn = document.getElementById('addColor');
+        const angleControl = document.querySelector('.angle-control');
+        const angleInput = document.getElementById('angle');
+        const angleValue = document.getElementById('angleValue');
+
+        let gradientType = 'radial';
+
+        // Preset di gradienti
+        const presets = [
+            { colors: ['#3b82f6', '#ef4444'], angle: 90 },
+            { colors: ['#10b981', '#3b82f6'], angle: 45 },
+            { colors: ['#8b5cf6', '#ec4899'], angle: 135 },
+            { colors: ['#f59e0b', '#ef4444'], angle: 0 },
+            { colors: ['#6366f1', '#8b5cf6'], angle: 180 },
+            { colors: ['#14b8a6', '#10b981'], angle: 225 }
+        ];
+
+        // Genera i preset
+        const presetContainer = document.querySelector('.preset-gradients');
+        presets.forEach(preset => {
+            const presetEl = document.createElement('div');
+            presetEl.className = 'preset';
+            presetEl.style.background = `linear-gradient(${preset.angle}deg, ${preset.colors.join(', ')})`;
+            presetEl.addEventListener('click', () => applyPreset(preset));
+            presetContainer.appendChild(presetEl);
+        });
+
+        // Gestione tipo di gradiente
+        document.querySelectorAll('.gradient-type button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.gradient-type button').forEach(b =>
+                    b.classList.toggle('button-outline'));
+                gradientType = btn.dataset.type;
+                angleControl.classList.toggle('active', gradientType === 'linear');
+                updateGradient();
+            });
+        });
+
+        // Gestione angolo
+        angleInput.addEventListener('input', () => {
+            angleValue.textContent = angleInput.value;
+            updateGradient();
+        });
+
+        // Aggiungi colore
+        addColorBtn.addEventListener('click', () => {
+            const newStop = document.createElement('div');
+            newStop.className = 'color-stop';
+            newStop.innerHTML = `
+                <input type="color" class="color-input" value="#3b82f6">
+                <input type="number" class="position-input" value="50" min="0" max="100"> %
+                <button class="button-simple button-outline">×</button>
+            `;
+            colorStops.appendChild(newStop);
+            attachColorStopListeners(newStop);
+            updateGradient();
+        });
+
+        function attachColorStopListeners(stop) {
+            const inputs = stop.querySelectorAll('input');
+            inputs.forEach(input => input.addEventListener('input', updateGradient));
+
+            const removeBtn = stop.querySelector('button');
+            removeBtn.addEventListener('click', () => {
+                if (colorStops.children.length > 2) {
+                    stop.remove();
+                    updateGradient();
+                }
+            });
+        }
+
+        function updateGradient() {
+            const stops = Array.from(colorStops.children).map(stop => {
+                const color = stop.querySelector('.color-input').value;
+                const position = stop.querySelector('.position-input').value;
+                return `${color} ${position}%`;
+            });
+
+            let gradient;
+            if (gradientType === 'linear') {
+                const angle = angleInput.value;
+                gradient = `linear-gradient(${angle}deg, ${stops.join(', ')})`;
+                angleControl.classList.add('active');
+            } else {
+                gradient = `radial-gradient(circle, ${stops.join(', ')})`;
+                angleControl.classList.remove('active');
+            }
+
+            previewBox.style.background = gradient;
+            cssCode.textContent = `background: ${gradient};`;
+        }
+
+        function applyPreset(preset) {
+            // Rimuovi tutti i color stop esistenti
+            while (colorStops.children.length > 0) {
+                colorStops.removeChild(colorStops.lastChild);
+            }
+
+            // Aggiungi i nuovi color stop dal preset
+            preset.colors.forEach((color, index) => {
+                const newStop = document.createElement('div');
+                newStop.className = 'color-stop';
+                const position = index === 0 ? 0 : index === preset.colors.length - 1 ? 100 : 50;
+                newStop.innerHTML = `
+                    <input type="color" class="color-input" value="${color}">
+                    <input type="number" class="position-input" value="${position}" min="0" max="100"> %
+                    <button class="button-simple button-outline">x</button>
+                `;
+                colorStops.appendChild(newStop);
+                attachColorStopListeners(newStop);
+            });
+
+            angleInput.value = preset.angle;
+            angleValue.textContent = preset.angle;
+
+            updateGradient();
+        }
+
+        // funzione tooltip
+        function copyToClipboard(element) {
+            const cssText = cssCode.textContent;
+            navigator.clipboard.writeText(cssText).then(() => {
+                showTooltip(element.parentNode);
+            });
+        }
+
+        function showTooltip(element) {
+            const tooltip = element.querySelector('.tooltip');
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '1';
+
+            setTimeout(() => {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Inizializza i listener per i color stop esistenti
+        document.querySelectorAll('.color-stop').forEach(attachColorStopListeners);
+
+        // Genera il gradiente iniziale
+        updateGradient();
+    </script>
+</body>
+
+</html>

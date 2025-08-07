@@ -1,18 +1,1 @@
-// button-simple-effects.js
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.button-simple');
-
-    buttons.forEach(button => {
-        button.addEventListener('mousedown', () => {
-            button.classList.add('clicked');
-        });
-
-        button.addEventListener('mouseup', () => {
-            button.classList.remove('clicked');
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.classList.remove('clicked');
-        });
-    });
-});
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".button-simple").forEach(e=>{e.addEventListener("mousedown",()=>{e.classList.add("clicked")}),e.addEventListener("mouseup",()=>{e.classList.remove("clicked")}),e.addEventListener("mouseleave",()=>{e.classList.remove("clicked")})})});
