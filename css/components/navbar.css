@@ -24,6 +24,7 @@ h1 {
 }
 
 .invisible-text {
+  font-size: 2em;
   color: transparent; /* testo trasparente */
   text-shadow: none; /* evita ombre visibili */
 }
