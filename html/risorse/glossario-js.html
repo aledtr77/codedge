@@ -8579,6 +8579,431 @@ console.log(perRuolo); // { admin: ["Ana"], user: ["Bea", "Cal"] }
                     </ol>
                 </details>
 
+                <details>
+                    <summary>forEach()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione su
+                            ogni elemento dell’array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `forEach()` esegue una funzione callback su ogni elemento di un array, in ordine, senza
+                            restituire un nuovo array.
+                        </li>
+                        <li>A cosa serve:
+                            Per eseguire operazioni o effetti collaterali su tutti gli elementi di un array.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi iterare un array per compiere azioni, ma non devi trasformarlo o filtrarlo.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Alternativa più leggibile di un ciclo `for` classico per iterazioni semplici.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Non restituisce nulla (`undefined`)</li>
+                                <li>Non interrompe l’esecuzione con `break` o `return`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per side-effect, non per costruire nuovi array</li>
+                                <li>Se devi fermarti prima, usa un `for` tradizionale</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const colori = ["rosso", "verde", "blu"];
+colori.forEach((colore, i) => {
+  console.log(`${i}: ${colore}`);
+});
+// Output:
+// 0: rosso
+// 1: verde
+// 2: blu
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`map()` se serve restituire un nuovo array</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che `forEach()` ritorni un nuovo array</li>
+                                <li>Tentare di uscire con `return` (non funziona)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Simile a un `for` classico, ma leggermente più lento</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `forEach()` è comodo per eseguire operazioni su tutti gli elementi di un array senza
+                            preoccuparsi dell’indice.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>find()<span class="tag-description" aria-label="descrizione tag">Restituisce il primo
+                            elemento che soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `find()` restituisce il primo elemento dell’array che soddisfa la condizione definita nella
+                            callback, oppure `undefined` se non lo trova.
+                        </li>
+                        <li>A cosa serve:
+                            Per cercare un singolo elemento in base a un criterio.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi solo il primo match, non tutti.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Metodo espressivo e chiaro per ricerche mirate.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Restituisce il valore trovato o `undefined`</li>
+                                <li>Interrompe l’iterazione al primo match</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES6+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando ti basta il primo risultato</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const utenti = [
+  { nome: "Luca", attivo: false },
+  { nome: "Anna", attivo: true },
+  { nome: "Marta", attivo: true }
+];
+const primoAttivo = utenti.find(u => u.attivo);
+console.log(primoAttivo); // { nome: "Anna", attivo: true }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`filter()` se ti servono tutti i match</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare che restituisce solo il primo match</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Si ferma appena trova un elemento valido</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `find()` è perfetto per ottenere un singolo elemento corrispondente a un criterio.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>findIndex()<span class="tag-description" aria-label="descrizione tag">Restituisce l’indice
+                            del primo elemento che soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `findIndex()` restituisce l’indice del primo elemento che soddisfa la condizione, oppure
+                            `-1` se nessun elemento è idoneo.
+                        </li>
+                        <li>A cosa serve:
+                            Per sapere dove si trova un elemento nell’array.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando ti serve l’indice, non il valore.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `find()` per lavorare sugli indici.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Restituisce il primo indice trovato o `-1`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES6+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando poi modificherai o accederai all’elemento per indice</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [5, 12, 8, 130, 44];
+const indice = numeri.findIndex(n => n > 100);
+console.log(indice); // 3
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`indexOf()` se cerchi un valore esatto</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confonderlo con `find()` (questo restituisce un numero, non l’elemento)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Si ferma al primo match</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `findIndex()` è ideale per individuare la posizione di un elemento che soddisfa una
+                            condizione.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>some()<span class="tag-description" aria-label="descrizione tag">Verifica se almeno un
+                            elemento soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `some()` restituisce `true` se almeno un elemento dell’array soddisfa la condizione nella
+                            callback, altrimenti `false`.
+                        </li>
+                        <li>A cosa serve:
+                            Per controllare se esiste almeno un elemento che rispetta un criterio.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando la presenza di un match è sufficiente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Espresso e leggibile per verifiche booleane.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Restituisce `true` o `false`</li>
+                                <li>Si ferma al primo match</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per condizioni di “esistenza”</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3, 4, 5];
+console.log(numeri.some(n => n > 4)); // true
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Loop con `if` e `break`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confonderlo con `every()` (logica opposta)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Si ferma al primo elemento valido</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `some()` è il metodo ideale per verificare se almeno un elemento dell’array soddisfa una
+                            condizione.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>every()<span class="tag-description" aria-label="descrizione tag">Verifica se tutti gli
+                            elementi soddisfano una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `every()` restituisce `true` se tutti gli elementi dell’array soddisfano la condizione nella
+                            callback, altrimenti `false`.
+                        </li>
+                        <li>A cosa serve:
+                            Per verificare che un array rispetti completamente un requisito.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando serve una condizione globale “tutti devono essere...”.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `some()` ma più restrittivo.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Restituisce `true` o `false`</li>
+                                <li>Si ferma al primo elemento che non soddisfa la condizione</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per validazioni complete</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [2, 4, 6];
+console.log(numeri.every(n => n % 2 === 0)); // true
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Loop con `if` e `break`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confonderlo con `some()`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Si ferma appena trova un elemento non valido</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `every()` è ottimo per verificare se un array rispetta completamente una regola.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>includes()<span class="tag-description" aria-label="descrizione tag">Verifica se un array
+                            contiene un certo elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `includes()` restituisce `true` se l’array contiene un elemento specifico, altrimenti
+                            `false`.
+                        </li>
+                        <li>A cosa serve:
+                            Per controllare la presenza di un valore in un array in modo semplice e leggibile.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi verificare rapidamente la presenza di un elemento.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Alternativa moderna a `indexOf()` per verifiche di appartenenza.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `includes(valore, fromIndex = 0)`</li>
+                                <li>Confronto con `===` (strict equality)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES7+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Preferiscilo a `indexOf()` per leggibilità</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const frutti = ["mela", "banana", "pera"];
+console.log(frutti.includes("banana")); // true
+console.log(frutti.includes("kiwi"));   // false
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`indexOf()` (restituisce -1 se non trovato)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confonderlo con `some()` (questo controlla esistenza diretta, non condizione)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Controlla ogni elemento fino a match o fine array</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `includes()` è il metodo più leggibile per verificare la presenza di un elemento in un
+                            array.
+                        </li>
+                    </ol>
+                </details>
+
+
+
+
+
+
+
 
 
 
