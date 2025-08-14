@@ -7926,6 +7926,667 @@ console.log(persona); // Output: { nome: "Mario", età: 30 }
                     </ol>
                 </details>
 
+                <details>
+                    <summary>push()<span class="tag-description" aria-label="descrizione tag">Aggiunge uno o più
+                            elementi alla fine di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `push()` aggiunge uno o più elementi alla fine di un array e ne restituisce la
+                            nuova lunghezza.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per estendere un array aggiungendo elementi alla sua fine.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole aggiungere dati in coda a un array in modo semplice.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È uno dei metodi fondamentali per la manipolazione degli array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Modifica l’array originale</li>
+                                <li>Restituisce la nuova lunghezza dell’array</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando vuoi aggiungere elementi in coda senza creare un nuovo array</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3];
+numeri.push(4);
+console.log(numeri); // Output: [1, 2, 3, 4]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Spread operator per creare un nuovo array: `[...array, elemento]`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che crei un nuovo array (modifica invece quello esistente)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto efficiente per aggiungere alla fine</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `push()` è il metodo standard per aggiungere elementi alla fine di un array.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>pop()<span class="tag-description" aria-label="descrizione tag">Rimuove l’ultimo elemento
+                            di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `pop()` rimuove l’ultimo elemento da un array e lo restituisce.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per togliere rapidamente l’ultimo elemento di un array.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole rimuovere l’elemento finale da una lista ordinata.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `push()` per la gestione della coda degli elementi.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Modifica l’array originale</li>
+                                <li>Restituisce l’elemento rimosso</li>
+                                <li>Restituisce `undefined` se l’array è vuoto</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando ti serve rimuovere l’ultimo elemento in modo rapido</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3];
+const ultimo = numeri.pop();
+console.log(ultimo); // Output: 3
+console.log(numeri); // Output: [1, 2]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Creare un nuovo array con `slice(0, -1)`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che non modifichi l’array originale</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto veloce per la rimozione dell’ultimo elemento</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `pop()` è il metodo più semplice per rimuovere l’ultimo elemento di un array.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>shift()<span class="tag-description" aria-label="descrizione tag">Rimuove il primo elemento
+                            di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `shift()` rimuove il primo elemento da un array e lo restituisce.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per togliere rapidamente l’elemento iniziale di un array.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole lavorare su una lista come fosse una coda (FIFO).
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `pop()` ma agisce sulla testa dell’array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Modifica l’array originale</li>
+                                <li>Restituisce l’elemento rimosso</li>
+                                <li>Restituisce `undefined` se l’array è vuoto</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo solo quando necessario: rimuovere il primo elemento è meno efficiente che
+                                    rimuovere l’ultimo</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3];
+const primo = numeri.shift();
+console.log(primo); // Output: 1
+console.log(numeri); // Output: [2, 3]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Creare un nuovo array con `slice(1)`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che non modifichi l’array originale</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Leggermente meno efficiente di `pop()` perché deve riposizionare tutti gli elementi
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `shift()` è utile per rimuovere il primo elemento di un array, ma può essere meno efficiente
+                            su array molto grandi.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>unshift()<span class="tag-description" aria-label="descrizione tag">Aggiunge uno o più
+                            elementi all’inizio di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `unshift()` aggiunge uno o più elementi all’inizio di un array e restituisce la
+                            nuova lunghezza.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per inserire elementi in testa a un array.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si lavora su una lista in cui l’ordine d’inserimento è importante e si vuole
+                            aggiungere in testa.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `shift()` per la gestione di code e pile.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Modifica l’array originale</li>
+                                <li>Restituisce la nuova lunghezza</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Evita di abusarne su array molto grandi perché richiede il riposizionamento di tutti
+                                    gli elementi</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [2, 3];
+numeri.unshift(1);
+console.log(numeri); // Output: [1, 2, 3]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Spread operator: `[nuovoElemento, ...array]`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usarlo su array molto grandi può rallentare le prestazioni</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Meno efficiente di `push()` per l’aggiunta in testa</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `unshift()` è utile per aggiungere elementi all’inizio di un array, ma può essere meno
+                            performante su dataset molto grandi.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>slice()<span class="tag-description" aria-label="descrizione tag">Restituisce una copia
+                            parziale di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `slice()` restituisce una copia superficiale di una porzione di un array in un
+                            nuovo array, senza modificare l’originale.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per estrarre una parte di un array in base a indici specificati.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando serve ottenere una sezione di un array senza alterare l’originale.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Metodo standard per la copia parziale di array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Accetta due argomenti: indice iniziale e indice finale (non incluso)</li>
+                                <li>Se omesso, prende fino alla fine dell’array</li>
+                                <li>Può accettare indici negativi</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per creare copie di array senza modificarli</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3, 4, 5];
+const parte = numeri.slice(1, 4);
+console.log(parte);   // Output: [2, 3, 4]
+console.log(numeri);  // Output: [1, 2, 3, 4, 5]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Spread operator per copiare l’intero array: `[...array]`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che modifichi l’array originale</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente su array di dimensioni moderate</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `slice()` è il metodo più sicuro per estrarre porzioni di un array senza alterarlo.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>splice()<span class="tag-description" aria-label="descrizione tag">Aggiunge/rimuove
+                            elementi modificando l’array originale.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `splice()` consente di rimuovere, sostituire o inserire elementi in un array **modificando
+                            l’array originale**.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per operazioni di editing “chirurgico” su un array: taglia, sostituisci, inserisci.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi cambiare l’array in-place (senza crearne uno nuovo).
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il coltellino svizzero delle modifiche distruttive sugli array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma base: `splice(indiceStart, deleteCount, ...itemsDaInserire)`</li>
+                                <li>Restituisce un array con gli elementi rimossi</li>
+                                <li>Se `deleteCount` è 0, non rimuove nulla (solo inserimento)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo solo quando vuoi davvero modificare l’array originale</li>
+                                <li>Se ti serve immutabilità, preferisci `slice()` + spread</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const colori = ["rosso", "verde", "blu"];
+
+// Rimuovi 1 elemento da index 1
+const rimossi = colori.splice(1, 1);
+console.log(rimossi); // ["verde"]
+console.log(colori);  // ["rosso", "blu"]
+
+// Inserisci senza rimuovere (deleteCount = 0)
+colori.splice(1, 0, "giallo", "viola");
+console.log(colori); // ["rosso", "giallo", "viola", "blu"]
+
+// Sostituisci 1 elemento con 2
+colori.splice(2, 1, "nero", "bianco");
+console.log(colori); // ["rosso", "giallo", "nero", "bianco", "blu"]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Immutabile: `[...a.slice(0,i), ...nuovi, ...a.slice(i+k)]`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare che modifica l’array originale</li>
+                                <li>Indici sbagliati → rimozioni/inserimenti imprevisti</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Può essere costoso su array grandi (shift degli elementi)</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `splice()` è potente ma “distruttivo”: ottimo per edit mirati, usalo con consapevolezza.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>map()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo array
+                            trasformando ogni elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `map()` applica una funzione a **ogni elemento** dell’array e restituisce **un nuovo array**
+                            con i risultati.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a trasformare dati (es. numeri → numeri raddoppiati, oggetti → solo un campo).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi la stessa lunghezza, ma con elementi trasformati.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Metodo funzionale, immutabile e leggibile per le trasformazioni.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Non modifica l’array originale</li>
+                                <li>Callback: `(valore, indice, array)`</li>
+                                <li>Restituisce sempre un array della stessa lunghezza</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Mantieni la callback pura (senza side-effect)</li>
+                                <li>Usa arrow function per sintassi compatta</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3];
+const raddoppiati = numeri.map(n => n * 2);
+console.log(raddoppiati); // [2, 4, 6]
+console.log(numeri);      // [1, 2, 3] (immutato)
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Loop `for` (più verboso)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare il `return` nella callback con corpo `{}`</li>
+                                <li>Usarlo per filtrare (per quello c’è `filter()`)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente e chiaro per trasformazioni elementari</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `map()` è la via maestra per trasformare array in modo pulito e immutabile.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>filter()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo array con
+                            gli elementi che passano un test.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `filter()` restituisce un nuovo array con **solo** gli elementi per cui la callback ritorna
+                            `true`.
+                        </li>
+                        <li>A cosa serve:
+                            A selezionare un sottoinsieme di elementi (es. numeri pari, oggetti attivi).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi **filtrare** senza trasformare e senza toccare l’originale.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Espressivo e immutabile per condizioni di selezione.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Callback: `(valore, indice, array)` → `boolean`</li>
+                                <li>Non modifica l’array originale</li>
+                                <li>La lunghezza del risultato può essere 0..N</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Callback semplice e leggibile</li>
+                                <li>Chaining con `map()` o `reduce()` quando serve</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const numeri = [1, 2, 3, 4, 5, 6];
+const pari = numeri.filter(n => n % 2 === 0);
+console.log(pari);   // [2, 4, 6]
+console.log(numeri); // [1, 2, 3, 4, 5, 6]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Loop con `if` e `push()` (più verboso)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Restituire valori non booleani confondendo la logica</li>
+                                <li>Usarlo per trasformare (per quello c’è `map()`)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Lineare: visita ogni elemento una volta</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `filter()` è il modo più semplice e pulito per selezionare elementi in base a una
+                            condizione.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>reduce()<span class="tag-description" aria-label="descrizione tag">Riduce l’array a un
+                            singolo valore accumulando risultati.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `reduce()` applica una funzione “accumulatore” agli elementi dell’array per ottenere **un
+                            unico risultato** (numero, stringa, oggetto, ecc.).
+                        </li>
+                        <li>A cosa serve:
+                            Somme, medie, raggruppamenti, conteggi, trasformazioni complesse in un solo passaggio.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi “condensare” l’array in un valore finale.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il colosso dei metodi funzionali sugli array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `reduce(callback, valoreIniziale?)`</li>
+                                <li>Callback: `(acc, valore, indice, array) → nuovoAcc`</li>
+                                <li>Consigliato passare sempre `valoreIniziale`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES5+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Scegli un `valoreIniziale` coerente (es. `0`, `""`, `{}`, `[]`)</li>
+                                <li>Mantieni la callback pura e breve</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// Somma
+const numeri = [1, 2, 3, 4];
+const somma = numeri.reduce((acc, n) => acc + n, 0);
+console.log(somma); // 10
+
+// Raggruppa per proprietà
+const utenti = [
+  { nome: "Ana", ruolo: "admin" },
+  { nome: "Bea", ruolo: "user" },
+  { nome: "Cal", ruolo: "user" }
+];
+const perRuolo = utenti.reduce((acc, u) => {
+  (acc[u.ruolo] ??= []).push(u.nome);
+  return acc;
+}, {});
+console.log(perRuolo); // { admin: ["Ana"], user: ["Bea", "Cal"] }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`map()` + `filter()` + altri metodi (ma spesso meno efficiente)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Omettere il `valoreIniziale` e trovarsi casi limite con array vuoti</li>
+                                <li>Accumulatore mutato in modo imprevedibile</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Una sola passata sull’array; ottimo per aggregazioni</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `reduce()` è il metodo definitivo per calcoli e aggregazioni: flessibile, potente, ma da
+                            usare con una callback chiara.
+                        </li>
+                    </ol>
+                </details>
+
+
+
+
+
+
+
+
+
 
 
 
