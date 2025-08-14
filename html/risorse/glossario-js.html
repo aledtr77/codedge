@@ -6852,6 +6852,165 @@ console.log(incrementa()); // 3
                     </ol>
                 </details>
 
+                <details>
+                    <summary>parametri di default<span class="tag-description" aria-label="descrizione tag">Valori
+                            predefiniti assegnati ai parametri di una funzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            I `parametri di default` sono valori predefiniti che una funzione utilizza se un parametro
+                            non viene fornito o è `undefined` al momento della chiamata.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a rendere le funzioni più flessibili e robuste, evitando errori dovuti a parametri
+                            mancanti.
+                        </li>
+                        <li>Quando usarli:
+                            Quando un parametro può avere un valore di default sensato in caso non venga passato
+                            dall’utente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Semplificano il codice, eliminando la necessità di controlli manuali per valori `undefined`.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Definiti direttamente nella dichiarazione della funzione</li>
+                                <li>Funzionano con funzioni normali e arrow function</li>
+                                <li>Il valore di default è usato solo se il parametro è `undefined`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotti in ES6 (2015)</li>
+                                <li>Compatibili con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa valori di default solo quando ha senso logico</li>
+                                <li>Evita valori complessi come default se non strettamente necessari</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function saluta(nome = "Ospite") {
+    console.log(`Ciao, ${nome}!`);
+}
+
+saluta();        // Output: Ciao, Ospite!
+saluta("Mario"); // Output: Ciao, Mario!
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Controllo manuale con `if` e assegnazione</li>
+                                <li>Operatore logico `||` per valori falsy (meno preciso)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere `undefined` con altri valori falsy come `null` o `0` (il default non si
+                                    applica)</li>
+                                <li>Mettere un parametro obbligatorio dopo uno con default, creando ambiguità</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile, gestito nativamente dal motore JS</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            I `parametri di default` sono un modo semplice ed efficace per gestire parametri mancanti,
+                            migliorando la leggibilità e la robustezza delle funzioni.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>rest parameters<span class="tag-description" aria-label="descrizione tag">Raccoglie un
+                            numero variabile di argomenti in un array.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            I `rest parameters` permettono a una funzione di accettare un numero indefinito di
+                            argomenti, raccogliendoli in un array.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a gestire funzioni che devono accettare un numero variabile di valori, senza dover
+                            definire parametri singoli uno per uno.
+                        </li>
+                        <li>Quando usarli:
+                            Quando non si conosce in anticipo quanti argomenti saranno passati alla funzione.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Rende il codice più flessibile e leggibile rispetto all’uso di `arguments`.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si dichiarano con tre puntini `...` prima del nome del parametro</li>
+                                <li>Raccolgono tutti gli argomenti extra in un array</li>
+                                <li>Funzionano solo come ultimo parametro della funzione</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotti in ES6 (2015)</li>
+                                <li>Compatibili con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usali quando il numero di parametri è variabile</li>
+                                <li>Evita di abusarne in funzioni che potrebbero essere più chiare con un array
+                                    esplicito</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function somma(...numeri) {
+    return numeri.reduce((totale, num) => totale + num, 0);
+}
+
+console.log(somma(1, 2, 3));       // Output: 6
+console.log(somma(4, 5, 6, 7, 8)); // Output: 30
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Oggetto `arguments` (meno leggibile e privo di metodi array)</li>
+                                <li>Passare direttamente un array come parametro</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dichiararli in posizione non finale tra i parametri</li>
+                                <li>Confonderli con lo spread operator (che li usa in modo inverso)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Prestazioni simili a passare un array tradizionale</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            I `rest parameters` rendono le funzioni molto più flessibili quando si lavora con un numero
+                            variabile di argomenti e sostituiscono in modo più leggibile l’uso di `arguments`.
+                        </li>
+                    </ol>
+                </details>
+
+
+
 
 
 
