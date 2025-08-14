@@ -7009,6 +7009,255 @@ console.log(somma(4, 5, 6, 7, 8)); // Output: 30
                     </ol>
                 </details>
 
+                <details>
+                    <summary>this<span class="tag-description" aria-label="descrizione tag">Riferimento al contesto di
+                            esecuzione corrente.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            In JavaScript, `this` è una parola chiave che fa riferimento all'oggetto su cui viene
+                            eseguita la funzione corrente, e il suo valore dipende da come la funzione viene chiamata.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per accedere a proprietà e metodi dell'oggetto corrente all’interno di una funzione o
+                            di un metodo.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si lavora con metodi di oggetti o quando si vuole che una funzione sia dinamicamente
+                            legata al contesto di chiamata.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fondamentale per comprendere il comportamento degli oggetti e della programmazione orientata
+                            agli oggetti in JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Il valore di `this` dipende dal contesto di esecuzione, non dalla posizione nel
+                                    codice</li>
+                                <li>In modalità `strict`, `this` è `undefined` se non è impostato esplicitamente</li>
+                                <li>Le arrow function ereditano `this` dal contesto esterno</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Disponibile in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa arrow function per mantenere il `this` esterno</li>
+                                <li>Evita di fare affidamento implicito su `this` quando possibile, passa invece
+                                    l’oggetto come argomento</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = {
+    nome: "Mario",
+    saluta: function() {
+        console.log(`Ciao, sono ${this.nome}`);
+    }
+};
+
+persona.saluta(); // Output: Ciao, sono Mario
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Passare esplicitamente l’oggetto come parametro</li>
+                                <li>Usare variabili di chiusura (`self` o `that`) per memorizzare il contesto</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Perdere il contesto quando si assegna un metodo a una variabile</li>
+                                <li>Confondere il comportamento in modalità `strict` e non strict</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto significativo</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Comprendere come funziona `this` è essenziale per lavorare con oggetti e metodi in
+                            JavaScript, soprattutto in contesti complessi come eventi e classi.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.create()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo
+                            oggetto con un prototipo specificato.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.create()` crea un nuovo oggetto, utilizzando un oggetto esistente come
+                            prototipo del nuovo oggetto.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per creare oggetti che ereditano proprietà e metodi da un altro oggetto.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole impostare manualmente la catena dei prototipi o creare oggetti con
+                            ereditarietà personalizzata.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fornisce un modo chiaro e diretto per implementare ereditarietà prototipale in JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Accetta come primo argomento l’oggetto da usare come prototipo</li>
+                                <li>Può accettare un secondo argomento con descrittori di proprietà</li>
+                                <li>Restituisce un nuovo oggetto con il prototipo specificato</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES5</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per ereditarietà semplice tra oggetti</li>
+                                <li>Evita catene di prototipi troppo profonde</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const animale = {
+    respira() {
+        console.log("Respiro...");
+    }
+};
+
+const cane = Object.create(animale);
+cane.abbaia = function() {
+    console.log("Bau!");
+};
+
+cane.respira(); // Output: Respiro...
+cane.abbaia();  // Output: Bau!
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Definizione di classi con `class` e `extends`</li>
+                                <li>Costruttori di funzione con prototipi</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Passare `null` come prototipo e poi aspettarsi proprietà predefinite</li>
+                                <li>Dimenticare che le proprietà ereditate non sono copie ma riferimenti condivisi</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente per creare oggetti con prototipo predefinito</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.create()` è un metodo semplice e potente per creare oggetti che ereditano
+                            direttamente da altri oggetti, utile per strutture ad hoc o ereditarietà personalizzata.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.assign()<span class="tag-description" aria-label="descrizione tag">Copia le
+                            proprietà enumerabili da uno o più oggetti in un oggetto target.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.assign()` copia tutte le proprietà enumerabili di uno o più oggetti
+                            sorgente in un oggetto target e restituisce quest’ultimo.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per unire più oggetti in uno, o per clonare oggetti superficiali.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole combinare dati da più oggetti o fare copie di oggetti esistenti senza
+                            modificarli direttamente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Utile per la gestione immutabile degli stati e per creare rapidamente oggetti combinati.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Accetta un oggetto target e uno o più oggetti sorgente</li>
+                                <li>Le proprietà con lo stesso nome vengono sovrascritte</li>
+                                <li>La copia è superficiale, non profonda</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES6 (2015)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per unioni semplici di oggetti</li>
+                                <li>Per copie profonde, utilizza altre tecniche come `structuredClone()` o librerie
+                                    dedicate</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+
+const risultato = Object.assign({}, obj1, obj2);
+console.log(risultato); // Output: { a: 1, b: 3, c: 4 }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Spread operator `{ ...obj1, ...obj2 }`</li>
+                                <li>Funzioni di merge di librerie come Lodash</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere copia superficiale con copia profonda</li>
+                                <li>Modificare accidentalmente l’oggetto target originale</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente per unioni e copie superficiali</li>
+                                <li>Evita di usarlo su oggetti molto annidati senza una strategia chiara</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.assign()` è un metodo rapido per unire oggetti o fare copie superficiali, utile
+                            soprattutto nella gestione degli stati e nella programmazione funzionale.
+                        </li>
+                    </ol>
+                </details>
+
+                
+
+
+
+
 
 
 
