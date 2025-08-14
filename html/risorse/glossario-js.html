@@ -160,6 +160,9 @@
                             <li class="clickable-item">Object.keys()</li>
                             <li class="clickable-item">Object.values()</li>
                             <li class="clickable-item">Object.entries()</li>
+                            <li class="clickable-item">Object.freeze()</li>
+                            <li class="clickable-item">Object.seal()</li>
+                            <li class="clickable-item">Object.hasOwn()</li>
                             <li class="clickable-item">Destructuring</li>
                             <li class="clickable-item">Shorthand property names</li>
                             <li class="clickable-item">Computed property names</li>
@@ -7470,6 +7473,464 @@ for (let [chiave, valore] of Object.entries(persona)) {
                         </li>
                     </ol>
                 </details>
+
+                <details>
+                    <summary>Object.freeze()<span class="tag-description" aria-label="descrizione tag">Rende un oggetto
+                            immutabile.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.freeze()` impedisce qualsiasi modifica a un oggetto: non è possibile
+                            aggiungere, rimuovere o cambiare proprietà.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a proteggere oggetti che non devono essere alterati, garantendo che il loro stato
+                            rimanga costante.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole assicurare l'immutabilità di un oggetto dopo la sua creazione.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Utile nella programmazione funzionale e nella gestione di stati in applicazioni complesse.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Le proprietà non possono essere modificate, aggiunte o rimosse</li>
+                                <li>Le proprietà con valori oggetto non vengono congelate in profondità</li>
+                                <li>Restituisce lo stesso oggetto passato come argomento</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES5</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per costanti e configurazioni che non devono cambiare</li>
+                                <li>Se serve una protezione profonda, combina con funzioni di deep freeze</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const config = { tema: "scuro", lingua: "it" };
+Object.freeze(config);
+
+config.tema = "chiaro"; // Non ha effetto
+console.log(config.tema); // Output: scuro
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`Object.seal()` per bloccare aggiunte e rimozioni ma permettere modifiche</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che anche gli oggetti annidati vengano congelati automaticamente</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile per oggetti piccoli</li>
+                                <li>Può essere costoso se usato su oggetti molto grandi</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.freeze()` è un metodo sicuro per rendere immutabile un oggetto, ma attenzione ai
+                            valori annidati che restano modificabili.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.seal()<span class="tag-description" aria-label="descrizione tag">Blocca l’aggiunta o
+                            la rimozione di proprietà di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.seal()` impedisce di aggiungere o rimuovere proprietà da un oggetto, ma
+                            permette di modificare i valori delle proprietà esistenti.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per proteggere la struttura di un oggetto senza bloccare la possibilità di aggiornare
+                            i suoi dati.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando la forma dell'oggetto deve rimanere fissa, ma i valori possono variare.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Una via di mezzo tra oggetti completamente mutabili e quelli completamente congelati.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Non è possibile aggiungere o eliminare proprietà</li>
+                                <li>È possibile modificare i valori delle proprietà esistenti</li>
+                                <li>Restituisce lo stesso oggetto passato come argomento</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES5</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando vuoi bloccare la struttura dell’oggetto ma mantenere i valori
+                                    aggiornabili</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = { nome: "Mario", età: 30 };
+Object.seal(persona);
+
+persona.nome = "Luca"; // Modifica consentita
+delete persona.età;     // Non ha effetto
+
+console.log(persona); // Output: { nome: "Luca", età: 30 }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`Object.freeze()` per bloccare anche le modifiche ai valori</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi che i valori siano immutabili (per quello serve `Object.freeze()`)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Basso impatto su oggetti piccoli</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.seal()` è utile per mantenere fissa la struttura di un oggetto pur permettendo la
+                            modifica dei suoi valori.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.hasOwn()<span class="tag-description" aria-label="descrizione tag">Verifica se un
+                            oggetto possiede una proprietà come propria.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.hasOwn()` verifica se un oggetto possiede una determinata proprietà come
+                            propria e non ereditata dal prototipo.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a distinguere tra proprietà dirette di un oggetto e quelle ereditate dalla catena dei
+                            prototipi.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si iterano le proprietà di un oggetto e si vuole filtrare solo quelle definite
+                            direttamente su di esso.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Alternativa moderna a `hasOwnProperty()`, più sicura e chiara.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Restituisce `true` se la proprietà esiste direttamente sull’oggetto</li>
+                                <li>Restituisce `false` se è ereditata o assente</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES2022</li>
+                                <li>Compatibile con i browser moderni e Node.js recenti</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo al posto di `hasOwnProperty()` per codice più pulito</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = { nome: "Mario" };
+
+console.log(Object.hasOwn(persona, "nome")); // true
+console.log(Object.hasOwn(persona, "età"));  // false
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`hasOwnProperty()` (meno sicuro in caso di override)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usarlo su ambienti JavaScript vecchi senza polyfill</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto veloce e sicuro per la verifica delle proprietà</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.hasOwn()` è il metodo consigliato per verificare se un oggetto possiede una
+                            proprietà direttamente, evitando le insidie del vecchio `hasOwnProperty()`.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Destructuring<span class="tag-description" aria-label="descrizione tag">Sintassi per
+                            estrarre valori da array o proprietà da oggetti in variabili separate.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il `destructuring` è una sintassi che consente di estrarre valori da array o proprietà da
+                            oggetti e assegnarli a variabili in modo conciso.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a semplificare l’assegnazione di variabili quando si lavora con array o oggetti
+                            complessi.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vogliono prelevare uno o più valori da un oggetto o array senza doverli accedere
+                            manualmente uno per uno.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Migliora la leggibilità e riduce la ripetizione di codice.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Funziona con oggetti e array</li>
+                                <li>Supporta valori di default</li>
+                                <li>Può rinominare le variabili assegnate</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES6 (2015)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per estrarre solo ciò che serve</li>
+                                <li>Evita destructuring troppo complessi in un'unica riga</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// Da oggetto
+const persona = { nome: "Mario", età: 30 };
+const { nome, età } = persona;
+console.log(nome, età); // Output: Mario 30
+
+// Da array
+const colori = ["rosso", "verde", "blu"];
+const [primo, secondo] = colori;
+console.log(primo, secondo); // Output: rosso verde
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Assegnazione tradizionale con punto o indice</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Tentare di destrutturare `undefined` o `null` (causa errore)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Praticamente nullo, migliora la leggibilità senza rallentare</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il `destructuring` è una sintassi potente e concisa per estrarre valori da array e oggetti,
+                            utile per codice pulito e leggibile.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Shorthand property names<span class="tag-description" aria-label="descrizione tag">Sintassi
+                            abbreviata per creare proprietà di oggetti.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Le `shorthand property names` sono una sintassi che consente di creare proprietà di oggetti
+                            usando direttamente il nome della variabile quando corrisponde al nome della proprietà.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a scrivere oggetti in modo più conciso ed evitare ripetizioni inutili.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando il nome della proprietà e quello della variabile da assegnare coincidono.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Migliora la leggibilità e riduce il codice ridondante.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Funziona solo quando nome proprietà e variabile coincidono</li>
+                                <li>Si applica alla definizione di oggetti letterali</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES6 (2015)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per oggetti piccoli e chiari</li>
+                                <li>Evita di abusarne in oggetti con molte proprietà dove i nomi non sono
+                                    autoesplicativi</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const nome = "Mario";
+const età = 30;
+
+// Sintassi abbreviata
+const persona = { nome, età };
+console.log(persona); // Output: { nome: "Mario", età: 30 }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Definizione tradizionale con `nome: nome`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usare variabili non dichiarate (causa errore ReferenceError)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto, è solo sintassi abbreviata</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `shorthand property names` rendono più veloce e leggibile la creazione di oggetti quando
+                            variabili e proprietà hanno lo stesso nome.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Computed property names<span class="tag-description" aria-label="descrizione tag">Sintassi
+                            per definire nomi di proprietà calcolati dinamicamente</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Le `computed property names` permettono di definire i nomi delle proprietà di un oggetto in
+                            modo dinamico, utilizzando un'espressione tra parentesi quadre.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a creare proprietà i cui nomi dipendono da variabili o calcoli effettuati al momento
+                            della creazione dell’oggetto.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando il nome della proprietà non è noto in anticipo e deve essere calcolato a runtime.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Utile per generare oggetti in maniera dinamica e personalizzata.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Il nome della proprietà viene valutato come espressione</li>
+                                <li>Funziona con variabili, stringhe, numeri e concatenazioni</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES6 (2015)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo quando i nomi delle proprietà sono effettivamente dinamici</li>
+                                <li>Evita espressioni troppo complesse che peggiorano la leggibilità</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const prop = "età";
+const persona = {
+    nome: "Mario",
+    [prop]: 30
+};
+
+console.log(persona); // Output: { nome: "Mario", età: 30 }
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Assegnazione successiva usando notazione con parentesi quadre</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare le parentesi quadre, creando una proprietà letterale con il nome
+                                    dell’espressione</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile, il calcolo del nome è fatto solo in fase di creazione</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `computed property names` offrono un modo potente e flessibile per creare proprietà di
+                            oggetti con nomi determinati a runtime.
+                        </li>
+                    </ol>
+                </details>
+
+
+
+
+
+
 
 
 
