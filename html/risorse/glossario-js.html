@@ -6042,8 +6042,8 @@
                     </summary>
                     <ol>
                         <li>Cos'è:
-                            Il ciclo <code>for</code> in JavaScript è una struttura di controllo che permette di
-                            eseguire ripetutamente un blocco di codice finché una condizione è vera.
+                            Il ciclo `for` in JavaScript è una struttura di controllo che permette di eseguire
+                            ripetutamente un blocco di codice finché una condizione è vera.
                         </li>
                         <li>A cosa serve:
                             Viene utilizzato per iterare su array, numeri o altre strutture dati quando si conosce il
@@ -6055,16 +6055,16 @@
                             iterazioni.
                         </li>
                         <li>Rilevanza semantica:
-                            Il ciclo <code>for</code> è fondamentale per il controllo del flusso di esecuzione in
-                            JavaScript, permettendo di automatizzare operazioni ripetitive in modo leggibile e ordinato.
+                            Il ciclo `for` è fondamentale per il controllo del flusso di esecuzione in JavaScript,
+                            permettendo di automatizzare operazioni ripetitive in modo leggibile e ordinato.
                         </li>
                         <li>Principali caratteristiche:
                             <ul>
                                 <li>È composto da tre parti: inizializzazione, condizione e incremento/decremento</li>
-                                <li>Il corpo del ciclo può contenere uno o più comandi, racchiusi tra parentesi graffe
+                                <li>Il corpo del ciclo può contenere uno o più comandi racchiusi tra parentesi graffe
                                 </li>
-                                <li>Supporta il controllo tramite <code>break</code> (uscita dal ciclo) e
-                                    <code>continue</code> (salta all'iterazione successiva)</li>
+                                <li>Supporta il controllo tramite `break` (uscita dal ciclo) e `continue` (salta
+                                    all'iterazione successiva)</li>
                                 <li>Può essere annidato all'interno di altri cicli per operazioni più complesse</li>
                             </ul>
                         </li>
@@ -6077,13 +6077,11 @@
                         </li>
                         <li>Best practices per il suo utilizzo:
                             <ul>
-                                <li>Usa il ciclo <code>for</code> quando conosci il numero di iterazioni</li>
+                                <li>Usa il ciclo `for` quando conosci il numero di iterazioni</li>
                                 <li>Evita di modificare l'indice all'interno del corpo del ciclo per non creare
                                     comportamenti imprevisti</li>
-                                <li>Considera alternative come <code>forEach</code> o <code>map</code> su array per
-                                    codice più leggibile</li>
-                                <li>Usa <code>break</code> e <code>continue</code> solo quando strettamente necessario
-                                </li>
+                                <li>Considera alternative come `forEach` o `map` su array per codice più leggibile</li>
+                                <li>Usa `break` e `continue` solo quando strettamente necessario</li>
                             </ul>
                         </li>
                         <li>Esempi di codice con casi d'uso:
@@ -6091,35 +6089,34 @@
                                 <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
                                     Copia</button>
                                 <pre><code>
-    // Ciclo for classico
-    for (let i = 0; i < 5; i++) {
-        console.log("Iterazione numero: " + i);
-    }
-    // Output:
-    // Iterazione numero: 0
-    // Iterazione numero: 1
-    // Iterazione numero: 2
-    // Iterazione numero: 3
-    // Iterazione numero: 4
+// Ciclo for classico
+for (let i = 0; i < 5; i++) {
+    console.log("Iterazione numero: " + i);
+}
+// Output:
+// Iterazione numero: 0
+// Iterazione numero: 1
+// Iterazione numero: 2
+// Iterazione numero: 3
+// Iterazione numero: 4
 
-    // Iterazione su array
-    let colori = ["rosso", "verde", "blu"];
-    for (let i = 0; i < colori.length; i++) {
-        console.log(colori[i]);
-    }
-    // Output:
-    // rosso
-    // verde
-    // blu
+// Iterazione su array
+let colori = ["rosso", "verde", "blu"];
+for (let i = 0; i < colori.length; i++) {
+    console.log(colori[i]);
+}
+// Output:
+// rosso
+// verde
+// blu
                 </code></pre>
                             </div>
                         </li>
                         <li>Alternative:
                             <ul>
-                                <li>Cicli <code>while</code> o <code>do...while</code> per condizioni non basate su
-                                    contatore</li>
-                                <li>Metodi nativi degli array come <code>forEach</code>, <code>map</code> o
-                                    <code>filter</code> per iterazioni più leggibili</li>
+                                <li>Cicli `while` o `do...while` per condizioni non basate su contatore</li>
+                                <li>Metodi nativi degli array come `forEach`, `map` o `filter` per iterazioni più
+                                    leggibili</li>
                             </ul>
                         </li>
                         <li>Potenziali errori comuni:
@@ -6133,17 +6130,205 @@
                         <li>Impatto sulle performance:
                             <ul>
                                 <li>Generalmente molto efficiente per iterazioni basate su contatore</li>
-                                <li>Iterazioni su array con <code>for</code> tradizionale possono essere più veloci di
-                                    <code>forEach</code> in grandi dataset</li>
+                                <li>Iterazioni su array con `for` tradizionale possono essere più veloci di `forEach` in
+                                    grandi dataset</li>
                             </ul>
                         </li>
                         <li>Conclusioni:
-                            Il ciclo <code>for</code> è uno strumento chiave in JavaScript per automatizzare compiti
-                            ripetitivi, gestire sequenze numeriche e iterare su collezioni. Con una corretta
-                            comprensione e applicazione, consente di scrivere codice chiaro, efficiente e manutenibile.
+                            Il ciclo `for` è uno strumento chiave in JavaScript per automatizzare compiti ripetitivi,
+                            gestire sequenze numeriche e iterare su collezioni. Con una corretta comprensione e
+                            applicazione, consente di scrivere codice chiaro, efficiente e manutenibile.
                         </li>
                     </ol>
                 </details>
+
+
+
+
+                <details>
+                    <summary>while<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo che
+                            continua finché la condizione è vera.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il ciclo `while` in JavaScript esegue un blocco di codice ripetutamente finché la condizione
+                            specificata è vera.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a ripetere operazioni quando non si conosce a priori il numero di iterazioni, ma si
+                            vuole continuare fino a quando una certa condizione rimane vera.
+                        </li>
+                        <li>Quando usarlo:
+                            Si usa quando il numero di ripetizioni dipende da eventi dinamici o dati in ingresso, e non
+                            da un contatore predeterminato.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Il ciclo `while` è fondamentale per la gestione di iterazioni condizionali, permettendo di
+                            creare cicli flessibili basati su condizioni variabili.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Controlla la condizione prima di ogni iterazione</li>
+                                <li>Il corpo del ciclo può contenere uno o più comandi racchiusi tra parentesi graffe
+                                </li>
+                                <li>Supporta `break` e `continue` per gestire il flusso all'interno del ciclo</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                                <li>Compatibile con tutti i browser moderni e legacy</li>
+                                <li>Funziona sia in ambienti client che server-side</li>
+                            </ul>
+                        </li>
+                        <li>Best practices per il suo utilizzo:
+                            <ul>
+                                <li>Assicurati che la condizione possa diventare falsa per evitare cicli infiniti</li>
+                                <li>Evita di modificare variabili esterne in modi complessi dentro il ciclo, può
+                                    generare bug difficili da trovare</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice con casi d'uso:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+let i = 0;
+while (i < 5) {
+    console.log("Iterazione numero: " + i);
+    i++;
+}
+// Output:
+// Iterazione numero: 0
+// Iterazione numero: 1
+// Iterazione numero: 2
+// Iterazione numero: 3
+// Iterazione numero: 4
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Ciclo `for` quando si conosce il numero di iterazioni</li>
+                                <li>Ciclo `do...while` quando si vuole eseguire almeno una volta il corpo del ciclo</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori comuni:
+                            <ul>
+                                <li>Creare cicli infiniti dimenticando di aggiornare le variabili nella condizione</li>
+                                <li>Confondere `while` con `do...while` e viceversa</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente se la condizione viene controllata correttamente</li>
+                                <li>Cicli infiniti o condizioni complesse possono rallentare l'esecuzione</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il ciclo `while` è utile per iterazioni condizionali flessibili, dove il numero di
+                            ripetizioni non è noto in anticipo. Una corretta gestione della condizione evita bug e
+                            garantisce un flusso controllato.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>do...while<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo che
+                            esegue il blocco di codice almeno una volta e poi continua finché la condizione è
+                            vera.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il ciclo `do...while` in JavaScript è simile a `while`, ma garantisce che il blocco di
+                            codice venga eseguito almeno una volta, prima di valutare la condizione.
+                        </li>
+                        <li>A cosa serve:
+                            Serve quando si vuole assicurare almeno un'esecuzione del blocco, e poi continuare finché la
+                            condizione è vera.
+                        </li>
+                        <li>Quando usarlo:
+                            Utile quando l'operazione deve essere eseguita almeno una volta, come chiedere input
+                            all'utente o inizializzare variabili.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fornisce un controllo più flessibile rispetto a `while`, consentendo di separare
+                            l'esecuzione iniziale dalla verifica della condizione.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Il corpo viene eseguito almeno una volta</li>
+                                <li>Controlla la condizione dopo l'esecuzione del blocco</li>
+                                <li>Supporta `break` e `continue` per gestire il flusso</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                                <li>Compatibile con tutti i browser moderni e legacy</li>
+                            </ul>
+                        </li>
+                        <li>Best practices per il suo utilizzo:
+                            <ul>
+                                <li>Usa `do...while` quando è necessario eseguire almeno una volta il ciclo</li>
+                                <li>Assicurati che la condizione possa diventare falsa per evitare cicli infiniti</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice con casi d'uso:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+let i = 0;
+do {
+    console.log("Iterazione numero: " + i);
+    i++;
+} while (i < 5);
+// Output:
+// Iterazione numero: 0
+// Iterazione numero: 1
+// Iterazione numero: 2
+// Iterazione numero: 3
+// Iterazione numero: 4
+
+// Esempio input simulato
+let input;
+do {
+    input = prompt("Inserisci un numero maggiore di 10");
+} while (input <= 10);
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Ciclo `while` se non è necessaria almeno una esecuzione</li>
+                                <li>Ciclo `for` per iterazioni basate su contatore</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori comuni:
+                            <ul>
+                                <li>Creare cicli infiniti dimenticando di aggiornare le variabili</li>
+                                <li>Confondere `do...while` con `while` nel comportamento iniziale</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto simile a `while`, con overhead minimo</li>
+                                <li>Cicli infiniti o condizioni complesse possono rallentare l'esecuzione</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `do...while` è utile quando è necessario eseguire almeno una volta un blocco di codice e poi
+                            ripetere finché la condizione è vera. Garantisce flessibilità nel flusso e controllo chiaro
+                            della logica iterativa.
+                        </li>
+                    </ol>
+                </details>
+
+
+
 
 
 
