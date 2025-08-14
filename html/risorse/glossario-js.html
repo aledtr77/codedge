@@ -6680,6 +6680,180 @@ saluta("Mario", () => {
                     </ol>
                 </details>
 
+                <details>
+                    <summary>IIFE<span class="tag-description" aria-label="descrizione tag">Funzione eseguita
+                            immediatamente dopo la sua definizione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Un'`IIFE` (Immediately Invoked Function Expression) è una funzione JavaScript che viene
+                            definita ed eseguita immediatamente, senza essere richiamata esplicitamente in un secondo
+                            momento.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a creare uno scope isolato per variabili e funzioni, evitando di inquinare lo scope
+                            globale.
+                        </li>
+                        <li>Quando usarla:
+                            Utile quando si vogliono eseguire operazioni subito senza lasciare variabili o funzioni
+                            disponibili all'esterno.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Molto usata prima dell'introduzione di `let` e `const` per simulare lo scope di blocco,
+                            ancora valida in certi casi.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si dichiara come espressione di funzione racchiusa tra parentesi</li>
+                                <li>Viene eseguita immediatamente grazie a un'altra coppia di parentesi `()`</li>
+                                <li>Crea uno scope separato</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportata in tutte le versioni di JavaScript</li>
+                                <li>Compatibile con tutti i browser e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usala per inizializzare dati o configurazioni senza esporre variabili globali</li>
+                                <li>Evita di abusarne per non rendere il codice meno leggibile</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// IIFE classica
+(function() {
+    console.log("Questa funzione si esegue subito!");
+})();
+
+// IIFE con arrow function
+(() => {
+    const messaggio = "Scope isolato";
+    console.log(messaggio);
+})();
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Scope di blocco con `let` o `const`</li>
+                                <li>Moduli JavaScript (ES Modules)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare le parentesi esterne, trasformandola in una dichiarazione di funzione
+                                    non eseguibile</li>
+                                <li>Confondere la sintassi con una normale funzione</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile, eseguita una sola volta</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `IIFE` sono utili per creare scope isolati ed eseguire codice immediatamente, evitando
+                            variabili globali non necessarie.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>closure<span class="tag-description" aria-label="descrizione tag">Funzione che mantiene
+                            accesso alle variabili del proprio scope anche dopo la sua esecuzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Una `closure` è una funzione che ricorda e può accedere alle variabili del proprio scope di
+                            dichiarazione, anche dopo che lo scope esterno è stato eseguito.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per mantenere uno stato privato, creare funzioni personalizzate e gestire dati senza
+                            esporli allo scope globale.
+                        </li>
+                        <li>Quando usarla:
+                            Quando si vogliono memorizzare informazioni in una funzione e mantenerle disponibili tra
+                            diverse esecuzioni.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È un concetto fondamentale di JavaScript, sfruttato in programmazione funzionale e in molte
+                            librerie.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Mantiene in vita lo scope della funzione esterna</li>
+                                <li>Permette di creare variabili private</li>
+                                <li>Funziona con funzioni normali e arrow function</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportata in tutte le versioni di JavaScript</li>
+                                <li>Compatibile con tutti gli ambienti JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa le closure per incapsulare dati che non devono essere accessibili globalmente
+                                </li>
+                                <li>Evita closure troppo complesse per non appesantire la memoria</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function contatore() {
+    let count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const incrementa = contatore();
+console.log(incrementa()); // 1
+console.log(incrementa()); // 2
+console.log(incrementa()); // 3
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Variabili globali (sconsigliato)</li>
+                                <li>Oggetti con metodi e proprietà private (classi con campi privati)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Creare closure non necessarie che occupano memoria</li>
+                                <li>Dimenticare che le variabili catturate possono essere modificate</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Leggero consumo di memoria in più per mantenere lo scope in vita</li>
+                                <li>Trascurabile in contesti normali</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `closure` sono uno strumento potente per gestire variabili private e stati persistenti
+                            all’interno di funzioni, ma vanno usate con consapevolezza.
+                        </li>
+                    </ol>
+                </details>
+
+
+
 
 
 
