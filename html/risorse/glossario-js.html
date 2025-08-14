@@ -7253,19 +7253,223 @@ console.log(risultato); // Output: { a: 1, b: 3, c: 4 }
                     </ol>
                 </details>
 
-                
+                <details>
+                    <summary>Object.keys()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array con le chiavi enumerabili di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.keys()` restituisce un array contenente i nomi (stringhe) delle proprietà
+                            enumerabili di un oggetto.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a ottenere rapidamente tutte le chiavi di un oggetto per iterarle o analizzarle.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si ha bisogno di conoscere o scorrere tutte le chiavi di un oggetto.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Utile per trasformare oggetti in strutture più facili da manipolare, ad esempio in array.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Restituisce solo le chiavi enumerabili proprie dell'oggetto</li>
+                                <li>L’ordine delle chiavi corrisponde all’ordine di inserimento</li>
+                                <li>Restituisce un array vuoto se l'oggetto non ha proprietà</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES5</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo con `forEach`, `map` o `for...of` per iterare sulle chiavi</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = { nome: "Mario", età: 30, città: "Roma" };
+console.log(Object.keys(persona));
+// Output: ["nome", "età", "città"]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`for...in` con `Object.hasOwn()`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi anche le proprietà non enumerabili o ereditate</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto efficiente per oggetti di dimensioni medio-piccole</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.keys()` è il metodo più rapido per ottenere un array con tutte le chiavi di un
+                            oggetto senza includere quelle ereditate.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Object.values()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array con i valori delle proprietà enumerabili di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.values()` restituisce un array contenente i valori delle proprietà
+                            enumerabili di un oggetto.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a ottenere tutti i valori di un oggetto in un array, utile per iterazioni e
+                            trasformazioni.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole lavorare direttamente con i valori di un oggetto senza le chiavi.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Complementare a `Object.keys()` per manipolare facilmente i dati.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Restituisce i valori nell’ordine corrispondente alle chiavi</li>
+                                <li>Restituisce un array vuoto se l'oggetto non ha proprietà</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES8 (2017)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per ottenere valori da manipolare con metodi come `map`, `filter` o `reduce`
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = { nome: "Mario", età: 30, città: "Roma" };
+console.log(Object.values(persona));
+// Output: ["Mario", 30, "Roma"]
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Iterazione con `for...in` e accesso diretto alle proprietà</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Aspettarsi di ottenere anche le chiavi</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente e semplice per oggetti di piccole/medie dimensioni</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.values()` è il modo più semplice per estrarre i valori di un oggetto in un array,
+                            utile per operazioni dirette sui dati.
+                        </li>
+                    </ol>
+                </details>
 
-
-
-
-
-
-
-
-
-
-
+                <details>
+                    <summary>Object.entries()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array di coppie chiave-valore di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il metodo `Object.entries()` restituisce un array contenente coppie `[chiave, valore]` per
+                            ogni proprietà enumerabile di un oggetto.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a trasformare un oggetto in un array di coppie chiave-valore, utile per iterazioni e
+                            conversioni in altre strutture dati.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando si vuole iterare contemporaneamente su chiavi e valori in modo semplice.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Combina le funzionalità di `Object.keys()` e `Object.values()` in un unico metodo.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Restituisce un array di array, ciascuno con due elementi: chiave e valore</li>
+                                <li>L’ordine è quello di inserimento delle proprietà</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotto in ES8 (2017)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo con `for...of` per iterare sulle coppie chiave-valore</li>
+                                <li>Utile per conversioni con `Map`</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const persona = { nome: "Mario", età: 30, città: "Roma" };
+for (let [chiave, valore] of Object.entries(persona)) {
+    console.log(`${chiave}: ${valore}`);
+}
+// Output:
+// nome: Mario
+// età: 30
+// città: Roma
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Iterazione con `for...in` e accesso diretto alle proprietà</li>
+                                <li>`Object.keys()` + accesso manuale ai valori</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di destrutturare le coppie, rendendo il codice meno leggibile</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente per oggetti medio-piccoli</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Object.entries()` è il metodo più pratico per ottenere sia chiavi che valori di un oggetto
+                            in un unico passaggio.
+                        </li>
+                    </ol>
+                </details>
 
 
 
