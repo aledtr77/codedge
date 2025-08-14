@@ -145,7 +145,6 @@
                         </ul>
                         <li>6. Funzioni</li>
                         <ul>
-                            <li class="clickable-item">return</li>
                             <li class="clickable-item">Arrow function</li>
                             <li class="clickable-item">Callback</li>
                             <li class="clickable-item">IIFE</li>
@@ -6505,6 +6504,183 @@ for (let carattere of "Ciao") {
                         </li>
                     </ol>
                 </details>
+
+                <details>
+                    <summary>arrow function<span class="tag-description" aria-label="descrizione tag">Sintassi compatta
+                            per definire funzioni anonime.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Un'`arrow function` è una sintassi introdotta in ES6 per scrivere funzioni anonime in modo
+                            più conciso rispetto alla sintassi tradizionale.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a creare funzioni più brevi, spesso utilizzate come funzioni di callback o per
+                            operazioni inline.
+                        </li>
+                        <li>Quando usarla:
+                            Si usa quando serve una funzione semplice, soprattutto quando non si vuole modificare il
+                            contesto (`this`) della funzione.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Rende il codice più leggibile e conciso, specialmente nelle funzioni brevi o passate come
+                            argomenti.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Sintassi più corta rispetto alle funzioni tradizionali</li>
+                                <li>Non ha il proprio `this`, eredita quello dal contesto esterno</li>
+                                <li>Non ha `arguments`, `super` o `new.target` propri</li>
+                                <li>Non può essere usata come costruttore</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Introdotta in ES6 (2015)</li>
+                                <li>Compatibile con tutti i browser moderni e Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usala per funzioni brevi o inline</li>
+                                <li>Evita di usarla quando serve un proprio `this` (es. in metodi di oggetti)</li>
+                                <li>Non usarla come costruttore</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// Arrow function base
+const somma = (a, b) => a + b;
+console.log(somma(3, 4)); // Output: 7
+
+// Arrow function con corpo esplicito
+const saluta = (nome) => {
+    return `Ciao, ${nome}!`;
+};
+console.log(saluta("Mario")); // Output: Ciao, Mario!
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Funzioni tradizionali con `function`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usarla in contesti dove serve un proprio `this`</li>
+                                <li>Dimenticare le parentesi tonde quando ci sono più parametri</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Prestazioni simili alle funzioni tradizionali</li>
+                                <li>Leggermente più veloce da scrivere e leggere per funzioni semplici</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `arrow function` sono una sintassi moderna e concisa per definire funzioni, ideali per
+                            callback e funzioni brevi, ma vanno usate con attenzione per via delle differenze nel
+                            comportamento di `this`.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>callback<span class="tag-description" aria-label="descrizione tag">Funzione passata come
+                            argomento ad un'altra funzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Una `callback` è una funzione passata come argomento a un'altra funzione e invocata in un
+                            momento successivo, di solito quando un'operazione è completata.
+                        </li>
+                        <li>A cosa serve:
+                            Serve a eseguire codice dopo un certo evento o azione, come la risposta di una richiesta
+                            HTTP o il completamento di un'operazione asincrona.
+                        </li>
+                        <li>Quando usarla:
+                            Quando si vuole personalizzare il comportamento di una funzione o reagire a eventi/risultati
+                            futuri.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Le `callback` sono alla base della programmazione asincrona in JavaScript, specialmente
+                            prima dell'introduzione di `Promise` e `async/await`.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Possono essere funzioni normali o arrow function</li>
+                                <li>Permettono di rendere una funzione più generica e riutilizzabile</li>
+                                <li>Possono essere sincrone o asincrone</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportate in tutte le versioni di JavaScript</li>
+                                <li>Funzionano in tutti gli ambienti JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa nomi chiari per le funzioni callback</li>
+                                <li>Evita il cosiddetto “callback hell” annidando troppe funzioni</li>
+                                <li>Valuta l’uso di `Promise` o `async/await` per codice più leggibile</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// Funzione che accetta una callback
+function saluta(nome, callback) {
+    console.log(`Ciao, ${nome}!`);
+    callback();
+}
+
+// Uso di una callback
+saluta("Mario", () => {
+    console.log("Benvenuto nel sito!");
+});
+// Output:
+// Ciao, Mario!
+// Benvenuto nel sito!
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`Promise`</li>
+                                <li>`async/await`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Non chiamare mai la callback, causando blocchi logici</li>
+                                <li>Chiamarla più volte per errore</li>
+                                <li>Annidare troppe callback rendendo il codice illeggibile</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto significativo rispetto a funzioni normali</li>
+                                <li>Troppi annidamenti possono peggiorare la leggibilità e il debug</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `callback` sono un concetto fondamentale in JavaScript per gestire codice da eseguire in
+                            risposta a eventi o azioni, ma vanno gestite con attenzione per evitare complessità
+                            eccessive.
+                        </li>
+                    </ol>
+                </details>
+
+
 
 
 
