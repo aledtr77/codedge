@@ -6034,6 +6034,122 @@
                         </li>
                     </ol>
                 </details>
+
+                <details>
+                    <summary>for<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo per ripetere
+                            un blocco di codice un numero definito di volte.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il ciclo <code>for</code> in JavaScript è una struttura di controllo che permette di
+                            eseguire ripetutamente un blocco di codice finché una condizione è vera.
+                        </li>
+                        <li>A cosa serve:
+                            Viene utilizzato per iterare su array, numeri o altre strutture dati quando si conosce il
+                            numero di ripetizioni o si vuole controllare manualmente l'indice.
+                        </li>
+                        <li>Quando usarlo:
+                            Si usa quando è necessario ripetere un'operazione più volte con un contatore o un indice
+                            definito, oppure quando si deve iterare su elementi di una collezione con un numero noto di
+                            iterazioni.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Il ciclo <code>for</code> è fondamentale per il controllo del flusso di esecuzione in
+                            JavaScript, permettendo di automatizzare operazioni ripetitive in modo leggibile e ordinato.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>È composto da tre parti: inizializzazione, condizione e incremento/decremento</li>
+                                <li>Il corpo del ciclo può contenere uno o più comandi, racchiusi tra parentesi graffe
+                                </li>
+                                <li>Supporta il controllo tramite <code>break</code> (uscita dal ciclo) e
+                                    <code>continue</code> (salta all'iterazione successiva)</li>
+                                <li>Può essere annidato all'interno di altri cicli per operazioni più complesse</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                                <li>Compatibile con tutti i browser moderni e legacy</li>
+                                <li>Funziona senza problemi sia in ambienti client che server-side (Node.js)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices per il suo utilizzo:
+                            <ul>
+                                <li>Usa il ciclo <code>for</code> quando conosci il numero di iterazioni</li>
+                                <li>Evita di modificare l'indice all'interno del corpo del ciclo per non creare
+                                    comportamenti imprevisti</li>
+                                <li>Considera alternative come <code>forEach</code> o <code>map</code> su array per
+                                    codice più leggibile</li>
+                                <li>Usa <code>break</code> e <code>continue</code> solo quando strettamente necessario
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice con casi d'uso:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+    // Ciclo for classico
+    for (let i = 0; i < 5; i++) {
+        console.log("Iterazione numero: " + i);
+    }
+    // Output:
+    // Iterazione numero: 0
+    // Iterazione numero: 1
+    // Iterazione numero: 2
+    // Iterazione numero: 3
+    // Iterazione numero: 4
+
+    // Iterazione su array
+    let colori = ["rosso", "verde", "blu"];
+    for (let i = 0; i < colori.length; i++) {
+        console.log(colori[i]);
+    }
+    // Output:
+    // rosso
+    // verde
+    // blu
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Cicli <code>while</code> o <code>do...while</code> per condizioni non basate su
+                                    contatore</li>
+                                <li>Metodi nativi degli array come <code>forEach</code>, <code>map</code> o
+                                    <code>filter</code> per iterazioni più leggibili</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori comuni:
+                            <ul>
+                                <li>Dimenticare di incrementare/decrementare l'indice, causando cicli infiniti</li>
+                                <li>Usare condizioni errate, portando a iterazioni inattese o mancanti</li>
+                                <li>Modificare l'array durante l'iterazione senza attenzione, creando comportamenti
+                                    imprevedibili</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Generalmente molto efficiente per iterazioni basate su contatore</li>
+                                <li>Iterazioni su array con <code>for</code> tradizionale possono essere più veloci di
+                                    <code>forEach</code> in grandi dataset</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il ciclo <code>for</code> è uno strumento chiave in JavaScript per automatizzare compiti
+                            ripetitivi, gestire sequenze numeriche e iterare su collezioni. Con una corretta
+                            comprensione e applicazione, consente di scrivere codice chiaro, efficiente e manutenibile.
+                        </li>
+                    </ol>
+                </details>
+
+
+
+
+
+
             </section>
         </main>
     </div>
