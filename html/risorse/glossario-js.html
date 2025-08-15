@@ -11373,11 +11373,356 @@ console.log(format(d), DAY);
                     </ol>
                 </details>
 
-                
+                <details>
+                    <summary>Strict mode<span class="tag-description" aria-label="descrizione tag">Modalità che abilita
+                            regole più restrittive in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Lo `Strict mode` è una modalità che rende JavaScript più rigoroso, attivando controlli e
+                            limitazioni che aiutano a evitare errori comuni.
+                        </li>
+                        <li>A cosa serve:
+                            A prevenire comportamenti impliciti e ambigui, migliorando la sicurezza e la compatibilità
+                            futura del codice.
+                        </li>
+                        <li>Quando usarlo:
+                            Sempre nei file o funzioni moderne; molti strumenti lo attivano automaticamente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Segnala che il codice segue regole più sicure e moderne.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si attiva con `"use strict";` all’inizio di file o funzione</li>
+                                <li>Blocca variabili globali implicite</li>
+                                <li>Impedisce di eliminare variabili e funzioni</li>
+                                <li>Previene nomi duplicati nei parametri</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser moderni e ambienti JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo sempre per codice nuovo</li>
+                                <li>Ricorda che i moduli ESM sono “strict” di default</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+"use strict";
+x = 10; // Errore: x non dichiarata
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Nessuna diretta; è una feature integrata</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di dichiarare le variabili</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Può leggermente migliorare le ottimizzazioni del motore JS</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Lo strict mode è come una cintura di sicurezza: meglio averla sempre allacciata.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Hoisting<span class="tag-description" aria-label="descrizione tag">Comportamento che sposta
+                            dichiarazioni in cima allo scope.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            L’`Hoisting` è il comportamento per cui le dichiarazioni (non le assegnazioni) vengono
+                            “spostate” in cima allo scope durante la fase di compilazione.
+                        </li>
+                        <li>A cosa serve:
+                            A permettere di usare variabili o funzioni dichiarate più in basso nel codice (ma con
+                            differenze tra `var`, `let`, `const`).
+                        </li>
+                        <li>Quando usarlo:
+                            Non va “usato”, ma conosciuto per capire perché certe cose funzionano o generano errori.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fondamentale per comprendere il comportamento dello scope in JS.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Le `function declaration` sono hoistate con il corpo</li>
+                                <li>`var` viene hoistata ma inizializzata a `undefined`</li>
+                                <li>`let` e `const` sono hoistate ma restano in TDZ fino alla dichiarazione</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Comportamento standard in tutti i motori JS</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Dichiara sempre variabili e funzioni prima di usarle</li>
+                                <li>Evita di fare affidamento sull’hoisting per chiarezza</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+saluta(); // Funziona
+function saluta() { console.log("Ciao"); }
 
+console.log(x); // undefined (hoisting var)
+var x = 5;
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Scrivere codice in ordine logico</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usare `let` o `const` prima della dichiarazione → TDZ Error</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto diretto; è parte del parsing JS</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            L’hoisting è utile da capire, ma non da sfruttare per “risparmiare righe”.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Temporal Dead Zone (TDZ)<span class="tag-description" aria-label="descrizione tag">Periodo
+                            tra hoisting e inizializzazione in cui la variabile non è accessibile.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            La `TDZ` è l’intervallo tra l’inizio dello scope e la dichiarazione effettiva di una
+                            variabile `let` o `const` in cui accedervi genera errore.
+                        </li>
+                        <li>A cosa serve:
+                            A prevenire l’uso di variabili non inizializzate, rendendo il codice più sicuro.
+                        </li>
+                        <li>Quando usarlo:
+                            Non è una feature da usare, ma un comportamento da conoscere per evitare ReferenceError.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Garantisce che `let` e `const` siano inizializzate prima dell’uso.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si applica solo a `let` e `const`</li>
+                                <li>Finisce al momento della dichiarazione</li>
+                                <li>Vale anche per parametri `default` che usano variabili non ancora inizializzate</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser moderni</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Dichiara e inizializza variabili subito, all’inizio dello scope</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+console.log(a); // ReferenceError
+let a = 3;
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Usare `var` (ma con effetti collaterali di hoisting)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usare una variabile in TDZ senza rendersene conto</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessuno; è solo un controllo in fase di esecuzione</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            La TDZ ti obbliga a usare le variabili in modo ordinato e sicuro.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Garbage collection<span class="tag-description" aria-label="descrizione tag">Processo
+                            automatico che libera memoria non più usata.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il `Garbage collection` è il meccanismo del motore JavaScript che rimuove dalla memoria gli
+                            oggetti non più raggiungibili.
+                        </li>
+                        <li>A cosa serve:
+                            A prevenire sprechi di memoria e rallentamenti dovuti a variabili inutilizzate.
+                        </li>
+                        <li>Quando usarlo:
+                            Sempre: è automatico e non richiede codice esplicito.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fondamentale per la gestione della memoria in linguaggi “managed” come JS.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Algoritmo comune: “mark-and-sweep”</li>
+                                <li>Non si può forzare direttamente in JS puro</li>
+                                <li>Funziona rilevando oggetti non più referenziati</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i motori JavaScript (V8, SpiderMonkey, Chakra, ecc.)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Annulla i riferimenti a oggetti grandi quando non servono</li>
+                                <li>Evita variabili globali non necessarie</li>
+                                <li>Chiudi timer/event listener quando non servono più</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+let bigData = { huge: "..." };
+bigData = null; // Ora l’oggetto è liberabile dal GC
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>In JS puro, nessuna; in WebAssembly o addon nativi può esserci manuale</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Creare memory leak mantenendo riferimenti non voluti</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Generalmente invisibile; pause brevi nei GC ciclici</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il GC ti evita la fatica di liberare memoria, ma richiede codice ordinato per funzionare
+                            bene.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Prototype chain<span class="tag-description" aria-label="descrizione tag">Meccanismo di
+                            ereditarietà tra oggetti in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            La `Prototype chain` è la catena di prototipi usata da JavaScript per cercare
+                            proprietà/metodi non presenti direttamente in un oggetto.
+                        </li>
+                        <li>A cosa serve:
+                            A implementare ereditarietà e condivisione di metodi tra oggetti.
+                        </li>
+                        <li>Quando usarlo:
+                            Sempre: ogni oggetto in JS (tranne `Object.create(null)`) ha un prototipo.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il cuore del modello a prototipi di JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si accede al prototipo con `Object.getPrototypeOf(obj)`</li>
+                                <li>`obj.__proto__` è deprecato (usa i metodi ufficiali)</li>
+                                <li>La catena finisce con `Object.prototype` o `null`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti gli ambienti JS</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Preferisci `class` o `Object.create()` per definire la catena</li>
+                                <li>Evita modifiche dirette a `Object.prototype` (rischio globale)</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function Animale(nome) {
+  this.nome = nome;
+}
+Animale.prototype.parla = function() {
+  console.log(this.nome + " fa un verso");
+};
+
+const cane = new Animale("Fido");
+cane.parla(); // "Fido fa un verso"
+console.log(Object.getPrototypeOf(cane) === Animale.prototype); // true
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Classi ES6 (syntax sugar sopra i prototipi)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere proprietà dell’istanza con quelle nel prototipo</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Lookup lungo la catena è leggermente più lento, ma di solito trascurabile</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            La prototype chain è il “DNA” degli oggetti JS: impararla sblocca comprensione profonda del
+                            linguaggio.</li>
+                    </ol>
+                </details>
 
             </section>
         </main>
