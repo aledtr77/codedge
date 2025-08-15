@@ -10361,6 +10361,703 @@ list.addEventListener("click", (e) =&gt; {
                     </ol>
                 </details>
 
+                <details>
+                    <summary>getElementById()<span class="tag-description" aria-label="descrizione tag">Seleziona un
+                            elemento tramite il suo id univoco.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `getElementById()` è un metodo del `document` che restituisce l’elemento con l’attributo
+                            `id` corrispondente.
+                        </li>
+                        <li>A cosa serve:
+                            A ottenere rapidamente un singolo nodo noto e univoco nel DOM.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando conosci l’`id` e vuoi la via più veloce e chiara per recuperare quell’elemento.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Selezione diretta e univoca; facilita codice chiaro e intenzionale.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `document.getElementById(id)`</li>
+                                <li>Restituisce un elemento o `null`</li>
+                                <li>Ricerca case-sensitive</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa `id` veramente unici nel documento</li>
+                                <li>Preferiscilo quando l’`id` esiste: è veloce e leggibile</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;div id="hero"&gt;Ciao&lt;/div&gt;
+const hero = document.getElementById("hero");
+if (hero) {
+  hero.textContent = "Benvenuto!";
+}
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`querySelector("#id")` (più flessibile, leggermente meno diretto)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Id duplicati nel documento (comportamento ambiguo)</li>
+                                <li>Assumere che non possa restituire `null`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto efficiente; tra le selezioni più rapide</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Semplice, chiaro e veloce quando lavori con `id` univoci.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>querySelector()<span class="tag-description" aria-label="descrizione tag">Seleziona il
+                            primo elemento che corrisponde a un selettore CSS.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `querySelector()` restituisce il primo elemento nel DOM che corrisponde al selettore CSS
+                            fornito.
+                        </li>
+                        <li>A cosa serve:
+                            A selezionare elementi in modo flessibile usando qualsiasi selettore CSS valido.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando ti basta il primo match o vuoi una sintassi CSS coerente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Uniforma la selezione DOM al linguaggio dei selettori del CSS.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `root.querySelector(selettore)` dove `root` può essere `document` o un nodo
+                                </li>
+                                <li>Accetta selettori complessi (`.class`, `#id`, `div > a[href^="/"]`)</li>
+                                <li>Restituisce un elemento o `null`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni e IE8+ (parziale)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Limita lo scope: usa `container.querySelector(...)` quando possibile</li>
+                                <li>Controlla sempre il `null` prima di usare il risultato</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;ul id="menu"&gt;&lt;li class="active"&gt;Home&lt;/li&gt;...&lt;/ul&gt;
+const activeItem = document.querySelector("#menu li.active");
+activeItem?.classList.remove("active");
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`getElementById()` per id univoci; `querySelectorAll()` per più elementi</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Selettori troppo generici che catturano nodi sbagliati</li>
+                                <li>Dare per scontato che trovi sempre qualcosa</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Efficiente; selettori molto complessi possono costare di più</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il coltellino svizzero per selezioni singole, leggibile e potente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>querySelectorAll()<span class="tag-description" aria-label="descrizione tag">Seleziona
+                            tutti gli elementi che corrispondono a un selettore CSS (NodeList).</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `querySelectorAll()` restituisce una `NodeList` statica di tutti gli elementi che
+                            corrispondono al selettore.
+                        </li>
+                        <li>A cosa serve:
+                            A ottenere collezioni di nodi su cui iterare (mappe, toggle classi, ecc.).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi agire su più elementi in una volta.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Selezione CSS coerente anche per liste multiple.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `root.querySelectorAll(selettore)`</li>
+                                <li>Ritorna `NodeList` statica (non si aggiorna automaticamente)</li>
+                                <li>Iterabile con `for...of`, convertibile in Array con `[...nodelist]`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni e IE9+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa selettori specifici per ridurre l’insieme</li>
+                                <li>Evita lavori pesanti dentro il loop; estrai funzioni</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;button class="filter"&gt;...&lt;/button&gt; (x N)
+const buttons = document.querySelectorAll("button.filter");
+for (const btn of buttons) {
+  btn.addEventListener("click", () =&gt; btn.classList.toggle("active"));
+}
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`getElementsByClassName()`/`getElementsByTagName()` (HTMLCollection live)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Credere che la lista sia “live” (non lo è)</li>
+                                <li>Usare metodi Array direttamente senza convertirla</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Dipende dalla dimensione del set; preferisci scope ristretto</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Ottimo per modifiche di massa con sintassi CSS pulita.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>innerHTML<span class="tag-description" aria-label="descrizione tag">Legge o imposta il
+                            markup HTML interno di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `innerHTML` è una proprietà che ritorna o imposta l’HTML interno di un nodo come stringa.
+                        </li>
+                        <li>A cosa serve:
+                            A aggiornare rapidamente porzioni di UI generando markup via stringhe.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi inserire blocchi di HTML completi e controlli la fonte dei dati.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Molto comodo ma attenzione alla sicurezza (XSS) e alla perdita di listener.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Assegna stringhe HTML che vengono parse e sostituiscono i figli</li>
+                                <li>Lettura restituisce il markup corrente</li>
+                                <li>Rimuove e ricrea i nodi figli (listener compresi)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Sanifica/escapa i dati non fidati</li>
+                                <li>Preferisci API DOM (`createElement`, `textContent`) quando possibile</li>
+                                <li>Evita aggiornamenti troppo frequenti su grandi blocchi</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;div id="out"&gt;&lt;/div&gt;
+const out = document.querySelector("#out");
+out.innerHTML = `&lt;h2&gt;Titolo&lt;/h2&gt;&lt;p&gt;Contenuto&lt;/p&gt;`;
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`textContent` per testo puro</li>
+                                <li>Costruzione DOM con `createElement` + `append`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Inserire HTML non fidato (XSS)</li>
+                                <li>Perdere listener e stato interno dei nodi</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Reflow/repaint potenzialmente costosi su blocchi grandi</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Potente e comodo, ma usalo con giudizio e in sicurezza.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>textContent<span class="tag-description" aria-label="descrizione tag">Legge o imposta il
+                            testo (non HTML) di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `textContent` è una proprietà che gestisce il contenuto testuale puro di un nodo.
+                        </li>
+                        <li>A cosa serve:
+                            A impostare/ottenere testo sicuro senza interpretare HTML.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi mostrare dati utente o testo dinamico non formattato.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Previene XSS e mantiene il contenuto come testo letterale.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Non parse l’HTML (lo mostra come testo)</li>
+                                <li>Più veloce e sicuro di `innerHTML` per solo testo</li>
+                                <li>Include il testo dei nodi discendenti</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser moderni</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Preferiscilo per dati esterni non fidati</li>
+                                <li>Usa `innerHTML` solo quando serve davvero markup</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;p id="msg"&gt;&lt;/p&gt;
+document.getElementById("msg").textContent = "Ciao &lt;strong&gt;mondo&lt;/strong&gt;!";
+// Renderizza letteralmente i tag, non li interpreta
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`innerText` (rispetta CSS, più lento; usalo raramente)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere `textContent` con `innerHTML` aspettandosi formattazione</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Ottimo: aggiornamenti testuali sono economici</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            La scelta sicura e veloce per testo puro.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>createElement()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo
+                            nodo elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `createElement()` crea un nuovo elemento DOM del tipo specificato.
+                        </li>
+                        <li>A cosa serve:
+                            A costruire interfacce dinamicamente senza passare da stringhe HTML.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi controllo fine e sicurezza nella generazione dei nodi.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Favorisce struttura DOM corretta e previene injection.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `document.createElement(tagName, opzioni)`</li>
+                                <li>Non è nel DOM finché non lo appendi</li>
+                                <li>Supporta elementi personalizzati (Web Components)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Imposta attributi, classi e `textContent` prima di appendere</li>
+                                <li>Usa `DocumentFragment` per inserimenti multipli</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const li = document.createElement("li");
+li.className = "todo-item";
+li.textContent = "Studiare DOM";
+document.querySelector("#todo").appendChild(li);
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`innerHTML` per blocchi semplici (con attenzione alla sicurezza)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di inserire il nodo nel DOM (non si vede nulla)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Molto buono, specialmente con `DocumentFragment` o batching</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Base solida per creare UI dinamiche e sicure.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>appendChild()<span class="tag-description" aria-label="descrizione tag">Inserisce un nodo
+                            come ultimo figlio di un altro nodo.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `appendChild()` aggiunge un nodo esistente o nuovo alla fine dei figli di un nodo padre.
+                        </li>
+                        <li>A cosa serve:
+                            A costruire/aggiornare la struttura DOM in modo esplicito.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi inserire un singolo nodo in coda ai figli.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Operazione fondamentale di manipolazione DOM.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `parent.appendChild(child)`</li>
+                                <li>Se `child` era già nel DOM, viene spostato</li>
+                                <li>Restituisce il nodo aggiunto</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Per inserire più nodi, usa `DocumentFragment`</li>
+                                <li>In alternativa moderna: `parent.append(node | string)`</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const list = document.querySelector("#todo");
+const item = document.createElement("li");
+item.textContent = "Fare pratica";
+list.appendChild(item);
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`append()` (accetta più nodi/stringhe)</li>
+                                <li>`insertBefore()` per posizioni specifiche</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Provare ad appendere `null` o nodi di tipo non valido</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Economico; riduci i reflow raggruppando gli inserimenti</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Semplice e affidabile per aggiungere contenuti in fondo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>removeChild()<span class="tag-description" aria-label="descrizione tag">Rimuove un nodo
+                            figlio da un nodo padre.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `removeChild()` elimina un nodo figlio specifico dal suo genitore.
+                        </li>
+                        <li>A cosa serve:
+                            A rimuovere elementi dalla pagina e liberare risorse collegate.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando conosci il riferimento al figlio da togliere.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fondamentale per aggiornamenti e cleanup del DOM.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `parent.removeChild(child)`</li>
+                                <li>Restituisce il nodo rimosso (non più nel DOM)</li>
+                                <li>Eventi/listener sul nodo vengono persi a meno di re-attach</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Verifica che `child` appartenga davvero a `parent`</li>
+                                <li>In alternativa moderna: `child.remove()`</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const list = document.querySelector("#todo");
+const first = list.querySelector("li");
+if (first) {
+  list.removeChild(first);
+}
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`Node.prototype.remove()` più conciso</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Chiamarlo con un nodo che non è figlio diretto (errore)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Leggero; rimuovere grandi sottoalberi può costare</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Metodo classico e preciso per rimuovere nodi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>setAttribute()<span class="tag-description" aria-label="descrizione tag">Imposta o aggiorna
+                            un attributo su un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `setAttribute()` definisce o modifica il valore di un attributo HTML su un elemento.
+                        </li>
+                        <li>A cosa serve:
+                            A gestire attributi generici come `src`, `href`, `aria-*`, `data-*`, ecc.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando l’attributo non ha una proprietà DOM diretta, o vuoi coerenza esplicita.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Mantiene sincronizzati DOM e markup; utile per accessibilità (ARIA).
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `element.setAttribute(nome, valore)`</li>
+                                <li>Crea l’attributo se non esiste</li>
+                                <li>Funziona bene con `data-*` e `aria-*`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Per attributi booleani usa proprietà (`el.disabled = true`) quando possibile</li>
+                                <li>Per `data-*` valuta `element.dataset` (più ergonomico)</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;img id="pic"&gt;
+const img = document.getElementById("pic");
+img.setAttribute("alt", "Foto profilo");
+img.setAttribute("src", "/img/me.jpg");
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Proprietà DOM: `img.src = "..."`, `link.href = "..."`</li>
+                                <li>`dataset` per `data-*`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere nome attributo e proprietà (es. `class` vs `className`)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Minimo; batch di aggiornamenti riducono reflow</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Strumento universale per gli attributi, chiaro e prevedibile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>classList<span class="tag-description" aria-label="descrizione tag">API per gestire le
+                            classi CSS di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `classList` è un’API dell’elemento che fornisce metodi per aggiungere, rimuovere, alternare
+                            e verificare classi CSS.
+                        </li>
+                        <li>A cosa serve:
+                            A manipolare le classi in modo semplice senza stringhe manuali.
+                        </li>
+                        <li>Quando usarlo:
+                            Quasi sempre quando cambi classi dinamicamente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Mantiene il CSS come sorgente di verità per lo stile/stato UI.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Metodi: `add`, `remove`, `toggle`, `contains`, `replace`</li>
+                                <li>Supporta più classi in un’unica chiamata</li>
+                                <li>Restituisce boolean da `toggle("x", force)`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni (IE10+ con limitazioni)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa classi come stati (es. `.is-open`, `.is-active`)</li>
+                                <li>Evita stringhe su `className` salvo necessità globali</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;div id="panel" class="panel"&gt;&lt;/div&gt;
+const panel = document.getElementById("panel");
+panel.classList.add("is-open");
+panel.classList.toggle("highlight");
+if (panel.classList.contains("is-open")) {
+  panel.classList.replace("is-open", "is-visible");
+}
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`element.className = "...";` (sostituisce l’intera stringa)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Toggle senza “force” e logiche che diventano imprevedibili</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Ottimo; cambi di classe sono economici e diffusi</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            L’API giusta per gestire stati CSS in modo pulito e scalabile.</li>
+                    </ol>
+                </details>
+
+
 
 
             </section>
