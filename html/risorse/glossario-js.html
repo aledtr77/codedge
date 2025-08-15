@@ -9297,7 +9297,465 @@ try {
                     </ol>
                 </details>
 
+                <details>
+                    <summary>setTimeout()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione
+                            dopo un certo intervallo di tempo.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `setTimeout()` esegue una funzione o un blocco di codice dopo un ritardo specificato in
+                            millisecondi.
+                        </li>
+                        <li>A cosa serve:
+                            Per pianificare l'esecuzione di codice in futuro, ad esempio ritardare un'animazione o un
+                            messaggio.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi posticipare un’azione senza bloccare il resto del programma.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È una delle funzioni temporali base in JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `setTimeout(funzione, ritardo, arg1, arg2, ...)`</li>
+                                <li>Restituisce un ID timer per poterlo annullare con `clearTimeout()`</li>
+                                <li>Il tempo non è garantito al millisecondo</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutti i browser e in Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Memorizza l’ID se hai bisogno di cancellare il timer</li>
+                                <li>Evita ritardi troppo brevi per operazioni costose</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+setTimeout(() => {
+  console.log("Eseguito dopo 2 secondi");
+}, 2000);
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`setInterval()` per esecuzioni ripetute</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare che il codice continua a eseguirsi nel frattempo</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile per usi normali</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `setTimeout()` è ideale per eseguire codice una sola volta dopo un ritardo definito.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>setInterval()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione
+                            ripetutamente a intervalli regolari.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `setInterval()` esegue una funzione o un blocco di codice a intervalli regolari, specificati
+                            in millisecondi.
+                        </li>
+                        <li>A cosa serve:
+                            Per compiti che si ripetono, come aggiornare un orologio o effettuare controlli periodici.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi ripetere un’azione più volte a intervalli fissi.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È la controparte di `setTimeout()` per esecuzioni ricorrenti.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `setInterval(funzione, intervallo, arg1, arg2, ...)`</li>
+                                <li>Restituisce un ID intervallo per poterlo annullare con `clearInterval()`</li>
+                                <li>Gli intervalli possono accumulare ritardi se il codice interno è lento</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutti i browser e in Node.js</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa `clearInterval()` quando non serve più</li>
+                                <li>Evita intervalli troppo brevi per codice pesante</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const id = setInterval(() => {
+  console.log("Ogni 1 secondo");
+}, 1000);
+
+// Interrompi dopo 5 secondi
+setTimeout(() => clearInterval(id), 5000);
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Ricorsione con `setTimeout()` per più controllo</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di interrompere intervalli non più necessari</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Intervalli inutilizzati possono consumare CPU</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `setInterval()` è perfetto per operazioni ripetitive e programmate a intervalli fissi.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise<span class="tag-description" aria-label="descrizione tag">Oggetto che rappresenta
+                            il risultato futuro di un'operazione asincrona.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Una `Promise` è un oggetto che rappresenta un valore che potrebbe essere disponibile ora, in
+                            futuro, o mai, come risultato di un'operazione asincrona.
+                        </li>
+                        <li>A cosa serve:
+                            Per gestire codice asincrono in modo più ordinato rispetto alle callback annidate.
+                        </li>
+                        <li>Quando usarla:
+                            Quando lavori con operazioni che richiedono tempo (API, file, timer) e vuoi gestire successi
+                            e fallimenti in modo chiaro.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È la base di molte API asincrone moderne in JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Stati: `pending`, `fulfilled`, `rejected`</li>
+                                <li>Metodi: `then()`, `catch()`, `finally()`</li>
+                                <li>Supporta chaining (concatenazione di operazioni)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES6+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Gestisci sempre gli errori con `catch()`</li>
+                                <li>Usa `async/await` per maggiore leggibilità</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const promessa = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Operazione completata");
+  }, 1000);
+});
+
+promessa
+  .then(risultato => console.log(risultato))
+  .catch(err => console.error("Errore:", err));
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Callback tradizionali (meno leggibili)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di gestire il caso `rejected`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto significativo, ma ogni promessa aggiunge un microtask alla coda</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Le `Promise` rendono la gestione asincrona più prevedibile e leggibile, soprattutto abbinate
+                            ad `async/await`.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>async<span class="tag-description" aria-label="descrizione tag">Dichiara una funzione che
+                            restituisce sempre una Promise.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `async` è una keyword che, messa davanti a una funzione, la rende asincrona e fa sì che
+                            restituisca sempre una `Promise`.
+                        </li>
+                        <li>A cosa serve:
+                            A scrivere codice asincrono in modo più leggibile, senza dover usare `then()` manualmente.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi usare `await` all'interno di una funzione o quando una funzione deve restituire
+                            una `Promise`.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Facilita l'uso delle `Promise` rendendo il codice simile a quello sincrono.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Restituisce sempre una `Promise`</li>
+                                <li>Gestisce automaticamente i valori di ritorno e le eccezioni</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES2017+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo con `await` per maggiore chiarezza</li>
+                                <li>Gestisci gli errori con `try...catch`</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+async function saluta() {
+  return "Ciao!";
+}
+
+saluta().then(console.log); // Output: Ciao!
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Promise con `then()` e `catch()`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di usare `await` su chiamate asincrone</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Trascurabile, ma crea sempre una Promise anche se il risultato è immediato</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `async` semplifica l’uso delle Promise e rende il codice asincrono più leggibile.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>await<span class="tag-description" aria-label="descrizione tag">Attende il completamento di
+                            una Promise all'interno di una funzione async.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `await` è una keyword che sospende l'esecuzione di una funzione `async` finché una `Promise`
+                            non è risolta o rigettata.
+                        </li>
+                        <li>A cosa serve:
+                            Per scrivere codice asincrono in stile sincrono, migliorando leggibilità e manutenzione.
+                        </li>
+                        <li>Quando usarlo:
+                            Dentro funzioni `async` quando devi aspettare il risultato di una `Promise`.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il complemento naturale di `async` per il controllo del flusso asincrono.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Funziona solo dentro funzioni dichiarate `async`</li>
+                                <li>Restituisce il valore risolto della Promise</li>
+                                <li>Genera un errore se la Promise viene rigettata</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>ES2017+</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo con `try...catch` per gestire errori</li>
+                                <li>Evita di usarlo in loop intensivi per non rallentare il codice</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+async function esempio() {
+  try {
+    const risultato = await Promise.resolve("Fatto!");
+    console.log(risultato);
+  } catch (err) {
+    console.error("Errore:", err);
+  }
+}
+
+esempio();
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Uso diretto di `then()` e `catch()`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usarlo fuori da una funzione `async`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Attende in modo bloccante per quella funzione, ma non blocca il thread principale
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `await` rende il codice asincrono più chiaro e simile a quello sincrono.
+                        </li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>fetch()<span class="tag-description" aria-label="descrizione tag">Effettua richieste HTTP e
+                            restituisce una Promise.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `fetch()` è una funzione nativa che permette di effettuare richieste HTTP e restituisce una
+                            `Promise` che si risolve con un oggetto `Response`.
+                        </li>
+                        <li>A cosa serve:
+                            Per recuperare dati da server o API web.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi leggere o inviare dati via rete in JavaScript.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È l’API moderna standard per le richieste HTTP in browser e Node.js (con compatibilità).
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `fetch(url, opzioni)`</li>
+                                <li>Restituisce una Promise</li>
+                                <li>Supporta metodi HTTP (`GET`, `POST`, `PUT`, `DELETE`, ...)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni</li>
+                                <li>Node.js 18+ nativo (o con librerie come node-fetch)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa `await` per maggiore leggibilità</li>
+                                <li>Gestisci sempre gli errori di rete e parsing</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+async function prendiDati() {
+  try {
+    const risposta = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    const dati = await risposta.json();
+    console.log(dati);
+  } catch (errore) {
+    console.error("Errore nella richiesta:", errore);
+  }
+}
+
+prendiDati();
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>XMLHttpRequest (vecchio)</li>
+                                <li>Librerie come Axios</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di chiamare `.json()` o `.text()` per leggere il body</li>
+                                <li>Non gestire errori di rete</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Leggero overhead di rete; il resto dipende dal server</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `fetch()` è la soluzione moderna per richieste HTTP in JavaScript, semplice e potente.
+                        </li>
+                    </ol>
+                </details>
+
                 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
