@@ -8999,24 +8999,305 @@ console.log(frutti.includes("kiwi"));   // false
                 </details>
 
 
+                <details>
+                    <summary>try...catch<span class="tag-description" aria-label="descrizione tag">Gestisce errori
+                            durante l'esecuzione del codice.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            La struttura `try...catch` permette di eseguire un blocco di codice (`try`) e catturare
+                            eventuali errori generati (`catch`) senza interrompere l’esecuzione del programma.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per gestire in modo sicuro errori previsti o imprevisti durante l'esecuzione.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando del codice potrebbe generare eccezioni (es. parsing JSON, chiamate API, accesso a
+                            file).
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il meccanismo principale di gestione delle eccezioni in JavaScript.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>`try` contiene il codice potenzialmente pericoloso</li>
+                                <li>`catch` riceve un oggetto errore con informazioni sul problema</li>
+                                <li>Previene il crash dell’applicazione</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa `try...catch` per errori che puoi prevedere e gestire</li>
+                                <li>Non abusarne per il flusso logico</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+try {
+  let dati = JSON.parse('{"nome": "Luca"}');
+  console.log(dati.nome);
+} catch (errore) {
+  console.error("Errore nel parsing:", errore.message);
+}
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Gestione errori con `if` per validazioni semplici</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Catturare errori troppo generici e non gestirli</li>
+                                <li>Lasciare il `catch` vuoto</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Leggero overhead se l’errore viene generato</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `try...catch` è essenziale per intercettare e gestire errori evitando blocchi
+                            dell’esecuzione.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>throw<span class="tag-description" aria-label="descrizione tag">Genera un'eccezione in
+                            JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            L’istruzione `throw` consente di generare manualmente un’eccezione, interrompendo
+                            l’esecuzione corrente e passando il controllo al blocco `catch` più vicino.
+                        </li>
+                        <li>A cosa serve:
+                            Serve per segnalare un errore o una condizione anomala all’interno del codice.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando una funzione o un’operazione incontra un input o stato non valido.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il meccanismo base per far emergere errori personalizzati.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Può lanciare valori di qualsiasi tipo (stringhe, numeri, oggetti, istanze di
+                                    `Error`)</li>
+                                <li>Di norma si lancia un oggetto `Error` o derivato</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Lancia oggetti `Error` per coerenza</li>
+                                <li>Fornisci messaggi chiari e utili al debug</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function dividi(a, b) {
+  if (b === 0) {
+    throw new Error("Divisione per zero non consentita");
+  }
+  return a / b;
+}
 
+try {
+  console.log(dividi(10, 0));
+} catch (err) {
+  console.error("Errore:", err.message);
+}
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Restituire valori speciali come `null` o `false` (meno esplicito)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Lanciare valori non informativi</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Interrompe il flusso, quindi va usato solo per errori reali</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `throw` è il modo standard per segnalare un errore in JavaScript e dovrebbe essere usato in
+                            combinazione con `try...catch`.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>finally<span class="tag-description" aria-label="descrizione tag">Esegue sempre un blocco
+                            di codice dopo try/catch.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il blocco `finally` viene eseguito dopo `try` e `catch`, indipendentemente dal fatto che si
+                            sia verificato un errore o meno.
+                        </li>
+                        <li>A cosa serve:
+                            Per eseguire codice di pulizia o chiusura (es. chiudere connessioni, liberare risorse).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando devi garantire che un’operazione venga eseguita sempre, anche in caso di errore.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Completa la gestione degli errori permettendo cleanup finali.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Viene eseguito dopo `try`/`catch`</li>
+                                <li>Ignora eventuali `return` nel blocco `try` o `catch`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo per cleanup, non per logica principale</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+try {
+  console.log("Apro connessione...");
+  throw new Error("Errore di rete");
+} catch (e) {
+  console.error(e.message);
+} finally {
+  console.log("Chiudo connessione");
+}
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Codice di cleanup subito dopo `try...catch` (ma meno chiaro)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Scrivere logica principale dentro `finally`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessun impatto significativo</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `finally` garantisce che il codice venga sempre eseguito, ed è perfetto per operazioni di
+                            chiusura e pulizia.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Error<span class="tag-description" aria-label="descrizione tag">Oggetto base per
+                            rappresentare errori in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `Error` è il costruttore base per creare oggetti errore in JavaScript, con proprietà come
+                            `message` e `name`.
+                        </li>
+                        <li>A cosa serve:
+                            A rappresentare errori in modo standardizzato e fornire informazioni utili al debug.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando lanci errori personalizzati con `throw`.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È il modello base per tutti i tipi di errore (`TypeError`, `ReferenceError`, ecc.).
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Proprietà comuni: `message`, `name`, `stack`</li>
+                                <li>Può essere esteso per creare errori personalizzati</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Supportato in tutte le versioni di JavaScript</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa sempre `Error` o sue sottoclassi per gli errori</li>
+                                <li>Fornisci messaggi chiari e utili</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+try {
+  throw new Error("Qualcosa è andato storto");
+} catch (e) {
+  console.error(e.name);    // "Error"
+  console.error(e.message); // "Qualcosa è andato storto"
+}
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Sottoclassi come `TypeError`, `RangeError`, `SyntaxError`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Lanciare stringhe invece di oggetti `Error`</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessuno, ma la creazione di stack trace può avere un minimo overhead</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `Error` è la base per gestire errori in JavaScript in modo chiaro e standard.
+                        </li>
+                    </ol>
+                </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                
 
 
 
