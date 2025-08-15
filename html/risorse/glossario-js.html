@@ -9744,23 +9744,622 @@ prendiDati();
                     </ol>
                 </details>
 
-                
+                <details>
+                    <summary>addEventListener()<span class="tag-description" aria-label="descrizione tag">Assegna un
+                            listener per un evento specifico a un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `addEventListener()` è un metodo degli elementi DOM che permette di ascoltare eventi
+                            specifici e di eseguire una funzione quando questi avvengono.
+                        </li>
+                        <li>A cosa serve:
+                            Per associare codice a eventi come `click`, `keydown`, `submit` e molti altri.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi reagire a un’azione dell’utente o a un evento generato dal browser.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È lo standard moderno per la gestione degli eventi nel DOM.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `element.addEventListener(tipo, callback, opzioni)`</li>
+                                <li>Supporta più listener per lo stesso evento</li>
+                                <li>Funziona anche con eventi personalizzati</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Compatibile con tutti i browser moderni</li>
+                                <li>IE9+ (versioni precedenti usano `attachEvent`)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa funzioni nominate per facilitarne la rimozione</li>
+                                <li>Evita di annidare troppi listener per motivi di performance</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+const bottone = document.querySelector("#mioBottone");
 
+function saluta() {
+  console.log("Ciao!");
+}
 
+bottone.addEventListener("click", saluta);
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Attributo HTML `onclick` (sconsigliato)</li>
+                                <li>Proprietà `element.onclick` (limita a un solo handler)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare di passare la stessa funzione a `removeEventListener()`</li>
+                                <li>Usare arrow function se poi devi rimuovere il listener (non rimuovibile senza
+                                    riferimento)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Listener multipli su molti elementi possono pesare sulle performance</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `addEventListener()` è il modo migliore e più flessibile per ascoltare eventi nel DOM.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>removeEventListener()<span class="tag-description" aria-label="descrizione tag">Rimuove un
+                            listener precedentemente assegnato.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `removeEventListener()` è un metodo che permette di rimuovere un evento precedentemente
+                            associato con `addEventListener()`.
+                        </li>
+                        <li>A cosa serve:
+                            Per evitare che una funzione venga eseguita dopo che non serve più.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando un listener è temporaneo o può causare problemi se lasciato attivo.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Completa la gestione degli eventi, evitando comportamenti indesiderati.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Firma: `element.removeEventListener(tipo, callback, opzioni)`</li>
+                                <li>Deve ricevere gli stessi parametri usati in `addEventListener()`</li>
+                                <li>Non rimuove eventi aggiunti con `onclick`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Compatibile con tutti i browser moderni</li>
+                                <li>IE9+ supportato</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Conserva il riferimento della funzione listener</li>
+                                <li>Rimuovi listener inutilizzati per liberare memoria</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+function saluta() {
+  console.log("Ciao!");
+}
 
+const bottone = document.querySelector("#mioBottone");
 
+bottone.addEventListener("click", saluta);
 
+// Rimuove il listener dopo 5 secondi
+setTimeout(() => {
+  bottone.removeEventListener("click", saluta);
+}, 5000);
+                </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Impostare `element.onclick = null` (solo per eventi assegnati così)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Non usare lo stesso riferimento della funzione usata in `addEventListener()`</li>
+                                <li>Parametri diversi impediscono la rimozione</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Rimuovere listener inutili migliora le performance e riduce la memoria usata</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `removeEventListener()` è fondamentale per una gestione efficiente e pulita degli eventi.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>click<span class="tag-description" aria-label="descrizione tag">Evento di attivazione
+                            tramite puntatore o tastiera.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `click` è un evento che si attiva quando un elemento viene “cliccato”: pressione e rilascio
+                            del tasto primario del mouse, tocco su dispositivi touch, oppure attivazione via tastiera su
+                            elementi interattivi (es. `Enter`/`Space` su `button`).
+                        </li>
+                        <li>A cosa serve:
+                            Per reagire alle interazioni più comuni dell’utente (apri modali, invia azioni, cambia stato
+                            UI).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi eseguire un’azione in risposta a un’“attivazione” generica dell’utente.
+                        </li>
+                        <li>Rilevanza semantica:
+                            È l’evento più diffuso per l’interazione generica. Su controlli nativi mantiene un buon
+                            livello di accessibilità.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si innesca su mouse, touch e tastiera (su elementi attivabili)</li>
+                                <li>Propaga in bubbling</li>
+                                <li>Può essere prevenuto con `event.preventDefault()` (es. su link)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Preferisci elementi semantici (`button`, `a`) invece di `div` cliccabili</li>
+                                <li>Evita doppie gestioni (es. sia `click` che `touchstart` senza necessità)</li>
+                                <li>Per link che non navigano, usa `button`</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;button id="openModal"&gt;Apri&lt;/button&gt;
+const btn = document.querySelector("#openModal");
+btn.addEventListener("click", (event) =&gt; {
+  console.log("Attivato!", event.type);
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`pointerup`/`pointerdown` per maggiore controllo multi-input</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Gestire `click` su elementi non focalizzabili (accessibilità scarsa)</li>
+                                <li>Dimenticare `preventDefault()` su `a` quando non vuoi navigare</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Minimo; attenzione solo a molti listener su molti nodi</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `click` è la scelta standard per attivazioni rapide e accessibili.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>keydown<span class="tag-description" aria-label="descrizione tag">Evento alla pressione di
+                            un tasto (prima del rilascio).</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `keydown` si attiva quando un tasto viene premuto (prima del rilascio).
+                        </li>
+                        <li>A cosa serve:
+                            Per scorciatoie da tastiera, navigazione, chiusura con `Esc`, etc.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi reagire immediatamente alla pressione di un tasto.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Fondamentale per accessibilità e UX da tastiera.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Proprietà chiave: `event.key`, `event.code`,
+                                    `event.ctrlKey`/`shiftKey`/`altKey`/`metaKey`</li>
+                                <li>`keypress` è deprecato; preferisci `keydown`/`keyup`</li>
+                                <li>Propaga (bubbling)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser moderni</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Controlla `event.key` (leggibile: `"Escape"`, `"Enter"`, `"ArrowDown"`)</li>
+                                <li>Evita `keyCode` (deprecato)</li>
+                                <li>Chiama `preventDefault()` solo se necessario</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+document.addEventListener("keydown", (e) =&gt; {
+  if (e.key === "Escape") {
+    console.log("Chiudi modale");
+    e.preventDefault();
+  }
+  if (e.key === "s" &amp;&amp; (e.ctrlKey || e.metaKey)) {
+    console.log("Salvataggio rapido");
+    e.preventDefault();
+  }
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`keyup` per reagire al rilascio</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare il focus (l’evento non arriva dove immagini)</li>
+                                <li>Usare `keyCode` (obsoleto e poco chiaro)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nullo; attenzione a logica pesante eseguita ad ogni tasto</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Con `keydown` implementi scorciatoie e controlli da tastiera in modo pulito.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>submit<span class="tag-description" aria-label="descrizione tag">Evento di invio di un
+                            form.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `submit` si attiva quando un `form` viene inviato (tasto di invio o `Enter` in un input).
+                        </li>
+                        <li>A cosa serve:
+                            Per validare, prevenire il redirect e inviare dati via fetch/AJAX.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando gestisci form in modo client-side o SPA.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Centrale per i flussi di input utente; mantiene accessibilità se usi elementi nativi.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Si attiva sul `form` (anche clic su `button[type="submit"]`)</li>
+                                <li>Usa `event.preventDefault()` per bloccare l’invio tradizionale</li>
+                                <li>Comodo con `FormData` per serializzare i campi</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Valida lato client e lato server</li>
+                                <li>Disabilita il bottone durante l’invio per evitare doppie submissions</li>
+                                <li>Gestisci gli errori di rete/validazione con messaggi chiari</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;form id="contact"&gt;...&lt;/form&gt;
+const form = document.querySelector("#contact");
 
+form.addEventListener("submit", async (e) =&gt; {
+  e.preventDefault();
+  const dati = new FormData(form);
+  try {
+    const res = await fetch("/api/contatti", { method: "POST", body: dati });
+    if (!res.ok) throw new Error("Errore di invio");
+    console.log("Inviato!");
+  } catch (err) {
+    console.error(err);
+  }
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Gestione `click` sul bottone (meno robusto: ignora `Enter`)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare `preventDefault()` quando usi fetch</li>
+                                <li>Non impostare `name` ai campi (FormData vuoto)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>I costi sono lato rete; lato client trascurabili</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `submit` è il gancio giusto per gestire form in modo accessibile e controllato.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Event object<span class="tag-description" aria-label="descrizione tag">L’oggetto passato ai
+                            listener con info e controlli sull’evento.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            L’`Event object` (spesso `event` o `e`) è il parametro che il browser passa ai listener,
+                            contenente dati e metodi dell’evento.
+                        </li>
+                        <li>A cosa serve:
+                            Per capire cosa è successo (`type`, `target`, tasto premuto, coordinate, ecc.) e controllare
+                            il flusso (`preventDefault()`, `stopPropagation()`).
+                        </li>
+                        <li>Quando usarlo:
+                            Praticamente sempre, appena devi leggere dettagli o modificare il comportamento di default.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Nodo centrale della gestione eventi; interfacce specializzate estendono `Event` (es.
+                            `KeyboardEvent`, `MouseEvent`, `PointerEvent`, `SubmitEvent`).
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Proprietà comuni: `type`, `target`, `currentTarget`, `timeStamp`, `defaultPrevented`
+                                </li>
+                                <li>Metodi: `preventDefault()`, `stopPropagation()`, `stopImmediatePropagation()`</li>
+                                <li>Extra per eventi specifici (es. `key`, `clientX`, `pointerType`)</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser; alcune proprietà variano per tipo di evento</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Preferisci `event.currentTarget` quando operi sull’elemento del listener</li>
+                                <li>Non abusare di `stopPropagation()`; spesso la delegazione è migliore</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+document.addEventListener("click", (event) =&gt; {
+  console.log(event.type);           // "click"
+  console.log(event.target);         // nodo reale cliccato
+  console.log(event.currentTarget);  // dove è agganciato il listener (document)
+  if (event.defaultPrevented) {
+    console.log("Default già prevenuto");
+  }
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Variabili esterne (ma perdi informazioni specifiche e timing)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Confondere `target` con `currentTarget`</li>
+                                <li>Assumere proprietà non presenti per quel tipo di evento</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Istanze leggere; l’impatto è nella logica del tuo handler</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            L’oggetto evento è il tuo “biglietto d’ingresso” a tutto ciò che riguarda l’interazione.
+                        </li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Event bubbling<span class="tag-description" aria-label="descrizione tag">Propagazione
+                            dell’evento dal nodo figlio verso gli antenati.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il `bubbling` è la fase in cui un evento, dopo aver raggiunto il target, risale la gerarchia
+                            DOM fino al `document`.
+                        </li>
+                        <li>A cosa serve:
+                            Permette di intercettare eventi a un livello superiore (utile per analitiche, delegazione,
+                            comportamenti globali).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi reagire a eventi dei figli senza aggiungere listener a ogni singolo nodo.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Concetto chiave del modello eventi del DOM insieme alla cattura.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Fasi: cattura → target → bubbling</li>
+                                <li>`event.stopPropagation()` ferma la risalita</li>
+                                <li>La maggior parte degli eventi DOM bubblano</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Evita di fermare la propagazione se non necessario</li>
+                                <li>Usa selettori specifici in delegazione per evitare falsi positivi</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;div id="parent"&gt;&lt;button id="child"&gt;Clicca&lt;/button&gt;&lt;/div&gt;
+const parent = document.querySelector("#parent");
+const child = document.querySelector("#child");
 
+parent.addEventListener("click", () =&gt; console.log("Parent (bubbling)"));
+child.addEventListener("click", () =&gt; console.log("Child (target)"));
+// Output tipico cliccando il bottone: "Child (target)" poi "Parent (bubbling)"
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Cattura (`{ capture: true }`) se vuoi intercettare in discesa</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Usare `stopPropagation()` rompendo listener a monte</li>
+                                <li>Non considerare che eventi sintetici possono comportarsi diversamente</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Positivo se riduci il numero di listener sfruttando un genitore</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Il bubbling è la “risalita” che ti permette di ascoltare eventi in un solo punto.</li>
+                    </ol>
+                </details>
 
+                <details>
+                    <summary>Event delegation<span class="tag-description" aria-label="descrizione tag">Gestire molti
+                            eventi figli con un solo listener sul genitore.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            La `delegation` consiste nell’attaccare un singolo listener su un antenato e distinguere i
+                            target veri all’interno del callback.
+                        </li>
+                        <li>A cosa serve:
+                            Per gestire liste dinamiche, molti elementi, contenuti generati dopo il load.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando il numero di nodi è grande o cambia nel tempo.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Pattern essenziale per UI dinamiche e performanti.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Sfrutta il bubbling</li>
+                                <li>Usa `event.target`/`closest()` per individuare l’elemento rilevante</li>
+                                <li>Riduce il numero di listener e la memoria usata</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Tutti i browser (metodo `closest()` supportato dai moderni)</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Filtra con `matches()` o `closest()`</li>
+                                <li>Non delegare su `document` se puoi limitare lo scope</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// HTML: &lt;ul id="todo"&gt;...&lt;/ul&gt;
+// Delego il click sui bottoni .remove dentro la lista
+const list = document.querySelector("#todo");
 
-
+list.addEventListener("click", (e) =&gt; {
+  const btn = e.target.closest("button.remove");
+  if (!btn) return; // click non rilevante
+  const item = btn.closest("li");
+  item?.remove();
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Un listener per ogni figlio (più semplice ma meno scalabile)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Selettori troppo generici che catturano click indesiderati</li>
+                                <li>Delegare troppo in alto aumentando il lavoro ad ogni evento</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Ottimo su liste grandi/dinamiche: meno listener, meno memoria</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            La delegazione rende le UI reattive e leggere, soprattutto su contenuti dinamici.</li>
+                    </ol>
+                </details>
 
 
 
