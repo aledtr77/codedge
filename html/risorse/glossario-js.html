@@ -11057,6 +11057,325 @@ if (panel.classList.contains("is-open")) {
                     </ol>
                 </details>
 
+                <details>
+                    <summary>import<span class="tag-description" aria-label="descrizione tag">Include
+                            funzioni/variabili/classi da altri moduli.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `import` è la sintassi degli ES Modules per usare codice esportato da un altro file
+                            (modulo).
+                        </li>
+                        <li>A cosa serve:
+                            A dividere il codice in file riutilizzabili, mantenendo dipendenze chiare.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi organizzare il progetto per feature, evitare variabili globali e abilitare il
+                            tree-shaking.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Standard moderno per modularizzare JavaScript in browser e Node.js.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Importa default e/o named exports</li>
+                                <li>Supporta alias (`as`)</li>
+                                <li>Import dinamico: `import("path")` ritorna una `Promise`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni con `&lt;script type="module"&gt;`</li>
+                                <li>Node.js con `"type": "module"` o estensione `.mjs`</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usa percorsi espliciti (`"./utils.js"`) nel browser</li>
+                                <li>Raggruppa import dallo stesso modulo in un’unica riga</li>
+                                <li>Usa import dinamico per caricare parti “pesanti” on-demand</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// utils.js
+export function somma(a, b) { return a + b; }
+export const PI = 3.14159;
+export default class Logger { log(x) { console.log(x); } }
+
+// main.js
+import Logger, { somma, PI as pi } from "./utils.js";
+const log = new Logger();
+log.log(somma(2, 3), pi);
+
+// import dinamico (code-splitting)
+document.getElementById("btn").addEventListener("click", async () =&gt; {
+  const mod = await import("./heavy-widget.js");
+  mod.mountWidget();
+});
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>CommonJS (`require`) in ambienti legacy</li>
+                                <li>Bundler che risolve “bare specifiers” (Vite, Webpack)</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Dimenticare `&lt;script type="module"&gt;` nel browser (niente import)</li>
+                                <li>Percorsi senza `./` o estensione quando il server non li risolve</li>
+                                <li>Confondere default e named import</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Migliora caching e caricamento grazie a chunk e import dinamici</li>
+                                <li>Troppi moduli minuscoli = molte richieste (usa bundling in produzione)</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `import` rende il codice modulare, testabile e ottimizzabile (tree-shaking + split).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>export<span class="tag-description" aria-label="descrizione tag">Rende elementi del modulo
+                            disponibili ad altri file.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            `export` espone funzioni, costanti, classi o valori dal modulo corrente.
+                        </li>
+                        <li>A cosa serve:
+                            A condividere API tra file mantenendo un encapsulamento naturale.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando vuoi riutilizzare codice o isolare responsabilità in più file.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Cardine degli ES Modules assieme a `import`.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Due forme: `export` nominato e `export default`</li>
+                                <li>Puoi re-esportare: `export { x } from "./mod.js"`</li>
+                                <li>Puoi esportare al volo: `export function foo(){}`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni (`type="module"`)</li>
+                                <li>Node.js con ESM abilitato</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Esporta solo ciò che fa parte dell’API pubblica</li>
+                                <li>Preferisci named exports per librerie; default per “singola cosa”</li>
+                                <li>Raggruppa gli export in fondo o crea un `index.js` re-export</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// math.js
+export const TAU = Math.PI * 2;
+export function clamp(n, min, max) { return Math.min(Math.max(n, min), max); }
+export default function media(...nums) {
+  return nums.reduce((a,n) =&gt; a + n, 0) / nums.length;
+}
+
+// alt-reexport.js
+export { clamp as limit } from "./math.js";
+export * as math from "./math.js";
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>CommonJS: `module.exports` / `exports.foo`</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Mescolare più `export default` (consentito uno solo per file)</li>
+                                <li>Esportare simboli non definiti o con nomi sbagliati</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Consente tree-shaking (rimuove export non usati) con bundler</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            `export` definisce l’API del file; mantienila piccola, chiara e documentata.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>default export<span class="tag-description" aria-label="descrizione tag">Esporta il “valore
+                            principale” del modulo.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            Il `default export` è l’esportazione di default di un modulo: ce n’è al massimo una per
+                            file.
+                        </li>
+                        <li>A cosa serve:
+                            A indicare un’uscita “principale” (es. una classe, una funzione factory, un componente).
+                        </li>
+                        <li>Quando usarlo:
+                            Quando il modulo ruota attorno a una singola entità.
+                        </li>
+                        <li>Rilevanza semantica:
+                            Comunica l’intento: “questo è ciò che probabilmente vuoi importare”.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Importazione libera nel nome: `import QualsiasiNome from "./mod.js"`</li>
+                                <li>Puoi combinarlo con named exports nello stesso file</li>
+                                <li>Puoi esportare inline: `export default function(){}`</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni e Node.js con ESM</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Usalo con parsimonia: molti default sparsi confondono</li>
+                                <li>Nelle librerie spesso sono preferibili solo named exports</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// modal.js
+export default class Modal {
+  open(){ /* ... */ }
+  close(){ /* ... */ }
+}
+export function createModal(){ return new Modal(); }
+
+// app.js
+import Modal, { createModal } from "./modal.js";
+const m = new Modal();
+const m2 = createModal();
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>Solo named exports per API più esplicite</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Credere di poter avere più `default` nello stesso file</li>
+                                <li>Importare come named: `import { Modal }` (sbagliato se era default)</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Nessuna differenza intrinseca rispetto ai named; conta l’uso</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Ottimo per moduli “monotematici”, ma non abusarne nei progetti grandi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>named export<span class="tag-description" aria-label="descrizione tag">Esporta uno o più
+                            simboli nominati.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    <ol>
+                        <li>Cos'è:
+                            I `named export` espongono più simboli con nome (funzioni, costanti, classi) dallo stesso
+                            modulo.
+                        </li>
+                        <li>A cosa serve:
+                            A fornire un set di utilità importabili selettivamente.
+                        </li>
+                        <li>Quando usarlo:
+                            Quando il modulo contiene più funzioni correlate o una piccola libreria.
+                        </li>
+                        <li>Rilevanza semantica:
+                            API più esplicite: chi importa decide cosa usare, favorendo tree-shaking.
+                        </li>
+                        <li>Principali caratteristiche:
+                            <ul>
+                                <li>Import esplicito per nome: `import { parse, format } from "./date.js"`</li>
+                                <li>Supporta alias: `import { parse as p } ...`</li>
+                                <li>Puoi esportare dichiarando o raggruppando in fondo</li>
+                            </ul>
+                        </li>
+                        <li>Compatibilità:
+                            <ul>
+                                <li>Browser moderni e Node.js con ESM</li>
+                            </ul>
+                        </li>
+                        <li>Best practices:
+                            <ul>
+                                <li>Mantieni i nomi coerenti e descrittivi</li>
+                                <li>Evita export “tutto e il lavandino”; esporta solo ciò che serve</li>
+                            </ul>
+                        </li>
+                        <li>Esempi di codice:
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i>
+                                    Copia</button>
+                                <pre><code>
+// date.js
+export function parse(str){ /* ... */ }
+export function format(date){ /* ... */ }
+export const ONE_DAY = 86400000;
+
+// usage.js
+import { parse, format, ONE_DAY as DAY } from "./date.js";
+const d = parse("2025-08-15");
+console.log(format(d), DAY);
+        </code></pre>
+                            </div>
+                        </li>
+                        <li>Alternative:
+                            <ul>
+                                <li>`export default` se esiste un’unica entità principale</li>
+                            </ul>
+                        </li>
+                        <li>Potenziali errori:
+                            <ul>
+                                <li>Importare un nome inesistente (errore in build/runtime)</li>
+                                <li>Rinominare in export ma dimenticare l’alias in import</li>
+                            </ul>
+                        </li>
+                        <li>Impatto sulle performance:
+                            <ul>
+                                <li>Favorisce il tree-shaking: bundle più piccoli</li>
+                            </ul>
+                        </li>
+                        <li>Conclusioni:
+                            Preferisci i named per API chiare, componibili e facilmente ottimizzabili.</li>
+                    </ol>
+                </details>
+
+                
+
+
 
 
 
