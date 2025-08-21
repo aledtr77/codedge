@@ -11,12 +11,18 @@
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
     <!-- moduli css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/components/main.css">
-    <link rel="stylesheet" href="../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../css/components/tooltip.css">
-    <link rel="stylesheet" href="../../css/components/button.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
+    <!-- CSS principale in preload+swap (non blocca il render) -->
+    <link rel="preload" href="../../css/components/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/main.css">
+    </noscript>
+
+    <!-- CSS non critici caricati in modalità 'print' trick -->
+    <link rel="preload" href="../../css/components/navbar.css" as="style">
+    <link rel="stylesheet" href="../../css/components/navbar.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../../css/components/tooltip.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../../css/components/button.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../../css/components/footer.css" media="print" onload="this.media='all'">
 
     <!-- moduli js -->
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
@@ -757,7 +763,7 @@
             const wcag = getWCAGLevel(contrast);
 
             result.innerHTML = `
-        <div class="contrast-preview" style="background-color: ${color1}; color: ${color2};">
+        <div class="contrast-preview" style="background-color: ${color1}; color: ${getContrastingTextColor(color1)};">
             Testo di esempio
         </div>
         Rapporto di contrasto: ${contrast.toFixed(2)}:1<br>
@@ -801,10 +807,12 @@
         }
 
         function getContrastingTextColor(bgColor) {
-            const rgb = hexToRgb(bgColor);
-            const brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
-            return brightness > 128 ? '#000000' : '#FFFFFF';
+            const bg = parseColor(bgColor) || '#FFFFFF';
+            const cBlack = calculateContrast(bg, '#000000');
+            const cWhite = calculateContrast(bg, '#FFFFFF');
+            return cBlack >= cWhite ? '#000000' : '#FFFFFF';
         }
+
 
         function generateMonochromaticPalette(baseColor) {
             const hsl = rgbToHsl(...Object.values(hexToRgb(baseColor)));
