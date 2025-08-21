@@ -219,6 +219,18 @@
             appearance: textfield;
             -moz-appearance: textfield;
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 1px, 1px);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 
@@ -269,6 +281,7 @@
             <div class="options">
                 <div class="option-row">
                     <span class="option-label">Output:</span>
+                    <label for="outputFormat" class="sr-only">Formato di uscita</label>
                     <select id="outputFormat">
                         <option value="jpeg">JPEG</option>
                         <option value="png">PNG</option>
@@ -280,23 +293,31 @@
                 <div class="option-row">
                     <span class="option-label">Quality:</span>
                     <div class="slider-container">
+                        <label for="qualityValue" class="sr-only">Valore qualità (%)</label>
                         <input type="text" id="qualityValue" class="value-input" min="10" max="100" value="75%">
+
                         <div class="slider-wrapper">
+                            <label for="quality" class="sr-only">Qualità immagine (%)</label>
                             <input type="range" id="quality" class="slider" min="10" max="100" value="75" step="1">
                             <div class="slider-fill" id="qualityFill"></div>
                         </div>
                     </div>
                 </div>
+
                 <div class="option-row">
                     <span class="option-label">Width:</span>
                     <div class="slider-container">
+                        <label for="maxWidthValue" class="sr-only">Larghezza massima (px)</label>
                         <input type="text" id="maxWidthValue" class="value-input" min="100" max="1920" value="1920px">
+
                         <div class="slider-wrapper">
+                            <label for="maxWidth" class="sr-only">Larghezza massima immagine (px)</label>
                             <input type="range" id="maxWidth" class="slider" min="100" max="1920" value="1920" step="1">
                             <div class="slider-fill" id="maxWidthFill"></div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <button class="button-simple" id="compressBtn">Comprimi e Converti Immagine</button>
             <div id="result"></div>
