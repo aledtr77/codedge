@@ -55,7 +55,7 @@ body {
 .button-outline {
     background-color: transparent;
     border-color: var(--color-one);
-    color: var(--color-one);
+    color: #fff;
     transition: background-color 0.2s ease-in-out, color ease-in-out 0.2s;
 }
 

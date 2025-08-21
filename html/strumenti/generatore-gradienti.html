@@ -11,11 +11,43 @@
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
     <!-- moduli css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/components/main.css">
-    <link rel="stylesheet" href="../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../css/components/button.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
+    <!-- performance: CSS non-bloccante -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- Font Awesome in modo non-bloccante -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        crossorigin onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- Il tuo CSS principale (meglio se minificato e con poco 'critical' già inline) -->
+    <link rel="preload" href="../../css/components/main.css" as="style">
+    <link rel="stylesheet" href="../../css/components/main.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/main.css">
+    </noscript>
+
+    <!-- Moduli CSS secondari: carica dopo paint -->
+    <link rel="preload" href="../../css/components/navbar.css" as="style">
+    <link rel="stylesheet" href="../../css/components/navbar.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/navbar.css">
+    </noscript>
+
+    <link rel="preload" href="../../css/components/button.css" as="style">
+    <link rel="stylesheet" href="../../css/components/button.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/button.css">
+    </noscript>
+
+    <link rel="preload" href="../../css/components/footer.css" as="style">
+    <link rel="stylesheet" href="../../css/components/footer.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/footer.css">
+    </noscript>
+
 
     <!-- moduli js -->
     <script src="../../js/components/navbar.js" defer></script>
