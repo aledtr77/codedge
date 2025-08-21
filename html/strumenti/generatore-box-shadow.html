@@ -33,7 +33,7 @@
             background-color: var(--background-one);
         }
 
-         h2 {
+        h2 {
             font-size: 1.5rem;
             text-align: center;
             margin-top: 60px;
@@ -268,7 +268,8 @@
                 <div class="control-group">
                     <label for="color">Colore Ombra</label>
                     <input type="color" id="color" value="#000000" class="color-picker">
-                    <input type="range" id="opacity" min="0" max="100" value="20">
+                    <label for="opacity">Opacità ombra</label>
+                    <input type="range" id="opacity" min="0" max="100" value="20" aria-describedby="opacity-value">
                     <span class="value-display" id="opacity-value">20%</span>
                 </div>
 
