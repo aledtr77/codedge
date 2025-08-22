@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Indicator</title>
+    <title>Scroll Indicator - Codedge</title>
+    <meta name="description"
+        content="Crea una barra di avanzamento dello scroll: esempio semplice con HTML, CSS e JavaScript. Codice pronto da copiare e adattare.">
     <link rel="canonical" href="https://codedge.it/html/progetti-pratici/scroll-indicator.html" />
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
@@ -19,6 +21,38 @@
     <script src="../../js/components/navbar.js" defer></script>
     <script src="../../js/components/button.js" defer></script>
     <script src="../../js/components/footer.js"></script>
+
+    <!-- Breadcrumbs per SERP “a briciole” -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codedge.it/" },
+    { "@type": "ListItem", "position": 2, "name": "Progetti pratici", "item": "https://codedge.it/#progetti-pratici" },
+    { "@type": "ListItem", "position": 3, "name": "Scroll Indicator", "item": "https://codedge.it/html/progetti-pratici/scroll-indicator.html" }
+  ]
+}
+</script>
+
+    <!-- HowTo (3 step: HTML, CSS, JS) per rich result tutorial -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Scroll Indicator con HTML, CSS e JavaScript",
+  "description": "Aggiungi un indicatore circolare dello scroll e un pulsante per tornare in cima alla pagina.",
+  "totalTime": "PT5M",
+  "tool": ["HTML","CSS","JavaScript"],
+  "estimatedCost": { "@type":"MonetaryAmount", "currency":"EUR", "value":"0" },
+  "step": [
+    { "@type":"HowToStep", "name":"HTML", "text":"Inserisci il contenitore #scrollIndicator con l'SVG del cerchio e l'icona di freccia." },
+    { "@type":"HowToStep", "name":"CSS",  "text":"Posiziona fisso in basso a destra; usa stroke-dasharray/dashoffset per il progresso." },
+    { "@type":"HowToStep", "name":"JavaScript", "text":"Calcola la percentuale di scroll e aggiorna lo stroke-dashoffset; implementa scrollToTop()." }
+  ]
+}
+</script>
+
     <style>
         /* Contenitore del pulsante di ritorno */
         #scrollIndicator {
@@ -92,14 +126,20 @@
             text-decoration: underline;
         }
 
-        h2 {
+        .h2_resize {
+            font-size: 1.5rem;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h3 {
             font-size: 1.8em;
             margin-top: 30px;
             margin-bottom: 15px;
             color: #1976D2;
         }
 
-        h3 {
+        h4 {
             font-size: 1.4em;
             margin-top: 25px;
             margin-bottom: 10px;
@@ -130,7 +170,7 @@
         <nav class="navbar">
             <div class="navbar-container">
                 <img src="../../assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
-                <h1 class="resize-text"><i class="fas fa-chevron-up"></i> Scroll Indicator</h1>
+                <h1 class="resize-text"><i class="fas fa-chevron-up" aria-hidden="true"></i> Scroll Indicator</h1>
 
                 <div class="menu-icon">
                     <span class="bar"></span>
@@ -160,6 +200,7 @@
             </div>
         </nav>
     </header>
+    <h2 class="h2_resize">Indicatore di scorrimento della pagina: descrizione e codice</h2>
     <main>
         <!-- Contenitore per il pulsante dello scroll -->
         <div id="scrollIndicator" onclick="scrollToTop()">
@@ -172,7 +213,7 @@
         </div>
 
         <section class="content-section">
-            <h2>Descrizione generale</h2>
+            <h3>Descrizione generale</h3>
             <p>Questo codice crea un&#39;interfaccia utente che include un indicatore di progresso dello scroll in forma
                 circolare e un pulsante di ritorno in cima alla pagina. La struttura utilizza un misto di HTML, CSS e
                 JavaScript per fornire una rappresentazione visiva del progresso dell&#39;utente mentre scorre la
@@ -180,8 +221,8 @@
                 progresso e il pulsante sono accompagnati da una freccia stilizzata che facilita la comprensione
                 dell&#39;azione.</p>
 
-            <h2>Come funziona il codice</h2>
-            <h3>1. HTML: Struttura del contenuto</h3>
+            <h3>Come funziona il codice</h3>
+            <h4>1. HTML: Struttura del contenuto</h4>
             <p>Il codice HTML definisce la struttura di base della pagina:</p>
             <ul class="feature-list">
                 <li><strong>Header:</strong> Include le meta informazioni per la pagina (codifica caratteri e
@@ -203,7 +244,7 @@
                 </li>
             </ul>
 
-            <h3>2. CSS: Stile visivo</h3>
+            <h4>2. CSS: Stile visivo</h4>
             <p>Il CSS gestisce la formattazione e lo stile visivo del pulsante e del contenuto:</p>
             <ul class="feature-list">
                 <li>Il pulsante di ritorno (<code>#scrollIndicator</code>) &egrave; un cerchio con larghezza e altezza
@@ -225,7 +266,7 @@
                 </li>
             </ul>
 
-            <h3>3. JavaScript: Logica di funzionamento</h3>
+            <h4>3. JavaScript: Logica di funzionamento</h4>
             <p>La logica principale per il funzionamento del pulsante di ritorno e del cerchio di avanzamento &egrave;
                 scritta in JavaScript:</p>
             <ul class="feature-list">
@@ -256,7 +297,7 @@
                 </li>
             </ul>
 
-            <h3>Funzionalità principali</h3>
+            <h4>Funzionalità principali</h4>
             <ul class="feature-list">
                 <li><strong>Indicatore di progresso dello scroll:</strong> Il cerchio dell&#39;SVG rappresenta la
                     progressione dello scroll nella pagina. Quando l&#39;utente inizia a scorrere, il cerchio inizia a
@@ -268,7 +309,7 @@
                     con animazioni fluide per migliorare l&#39;esperienza utente.</li>
             </ul>
 
-            <h3>Possibili varianti</h3>
+            <h4>Possibili varianti</h4>
             <ul class="feature-list">
                 <li><strong>Personalizzazione del pulsante:</strong> Si pu&ograve; aggiungere un&#39;interazione visiva,
                     ad esempio cambiando il colore del pulsante quando l&#39;utente passa il mouse sopra.</li>
@@ -276,12 +317,12 @@
                     l&#39;utente ha scrollato una certa quantit&agrave;, per evitare distrazioni quando ci si trova
                     ancora nella parte superiore della pagina.</li>
             </ul>
-            <h3>Conclusioni</h3>
+            <h4>Conclusioni</h4>
             <p>Questa soluzione è semplice ma efficace e offre all&#39;utente un&#39;esperienza più interattiva e
                 visivamente piacevole quando naviga in pagine con molto contenuto.</p>
 
-            <h3><i class="fas fa-download"></i>
-                Download codice</h3>
+            <h4><i class="fas fa-download"></i>
+                Download codice</h4>
             <p>Trovate il link con il codice completo della descrizione dettagliata riga per riga nella sezione
                 dedicata
                 <a href="../../html/risorse/snippet-library.html#scroll-indicator">UI Components.</a>
