@@ -11,11 +11,39 @@
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
     <!-- moduli css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CDN: aiuta la connessione -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Font Awesome NON-blocking -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            crossorigin>
+    </noscript>
+
+    <!-- Tieni SOLO il CSS critico blocking (main.css) -->
     <link rel="stylesheet" href="../../css/components/main.css">
-    <link rel="stylesheet" href="../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../css/components/button.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
+
+    <!-- Tutti gli altri CSS in preload+swap (non bloccano il paint) -->
+    <link rel="preload" as="style" href="../../css/components/navbar.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/navbar.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/button.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/button.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/footer.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/footer.css">
+    </noscript>
+
 
     <!-- moduli js -->
     <script src="../../js/components/navbar.js" defer></script>
@@ -118,7 +146,7 @@
 
         .content-section a {
             text-decoration: none;
-            color: #007bf0;
+            color: white;
 
         }
 
