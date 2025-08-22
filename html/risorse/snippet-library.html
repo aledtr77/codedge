@@ -2,30 +2,60 @@
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snippet Library HTML/CSS/JS - Codedge</title>
     <meta name="description"
         content="Raccolta di snippet HTML, CSS e JavaScript pronti all'uso: copia, incolla e personalizza per velocizzare lo sviluppo.">
     <link rel="canonical" href="https://codedge.it/html/risorse/snippet-library.html" />
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
-    <!-- moduli css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/components/main.css">
-    <link rel="stylesheet" href="../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
+    <!-- CDN warmup -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- CSS locali NON bloccanti -->
+    <link rel="preload" as="style" href="../../css/components/main.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/main.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/navbar.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/navbar.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/footer.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/footer.css">
+    </noscript>
+
+    <!-- (opzionale ma consigliato) Font Awesome non-bloccante se usi le icone -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- Prism: CSS non-bloccante + JS defer -->
+    <link rel="preload" as="style"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css"
+        onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    </noscript>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js" data-manual></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
 
     <!-- moduli js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
-    <script src="../../js/components/navbar.js" defer></script>
-    <script src="../../js/components/footer.js"></script>
+    <!-- Se serve davvero: -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.1/compressor.min.js"></script>
+    <script defer src="../../js/components/navbar.js"></script>
+    <script defer src="../../js/components/footer.js"></script>
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
 
 
 
@@ -284,6 +314,11 @@
         .spacer {
             height: 60px;
         }
+
+        .navbar .resize-text {
+            font-size: 2rem;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -321,10 +356,6 @@
             </div>
         </nav>
     </header>
-
-    <h2>Snippet HTML, CSS e JavaScript pronti all'uso</h2>
-
-
 
     <div class="content-wrapper snippet-container">
         <div class="sidebar-toggle">
@@ -422,6 +453,7 @@
 
         <main class="snippet-main">
             <section id="html-snippets" class="snippet-section">
+                <h2>Snippet HTML, CSS e JavaScript pronti all'uso</h2>
 
                 <div id="html-boilerplate" class="spacer"></div>
                 <div class="snippet-box">
@@ -2135,6 +2167,15 @@
             });
         });
     </script>
+
+    <script>
+        window.addEventListener('load', () => {
+            const run = () => { if (window.Prism && Prism.highlightAll) Prism.highlightAll(); };
+            if ('requestIdleCallback' in window) requestIdleCallback(run); else setTimeout(run, 0);
+        });
+    </script>
+
+
 </body>
 
 </html>
