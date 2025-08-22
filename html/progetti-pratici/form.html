@@ -4,21 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Effetti Resize</title>
+    <title>Form: Effetti di Resize - Codedge</title>
+    <meta name="description"
+        content="Esempio di form con textarea e input che si ridimensionano automaticamente: HTML, CSS e JavaScript essenziali con codice pronto da copiare.">
     <link rel="canonical" href="https://codedge.it/html/progetti-pratici/form.html" />
     <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg">
 
     <!-- moduli css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CDN: apri la connessione prima -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Font Awesome NON-blocking -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            crossorigin>
+    </noscript>
+
+    <!-- Tieni SOLO il CSS critico blocking -->
     <link rel="stylesheet" href="../../css/components/main.css">
-    <link rel="stylesheet" href="../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../css/components/button.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
+
+    <!-- Gli altri CSS in preload+swap -->
+    <link rel="preload" as="style" href="../../css/components/navbar.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/navbar.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/button.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/button.css">
+    </noscript>
+
+    <link rel="preload" as="style" href="../../css/components/footer.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/components/footer.css">
+    </noscript>
+
 
     <!-- moduli js -->
     <script src="../../js/components/navbar.js" defer></script>
     <script src="../../js/components/button.js" defer></script>
     <script src="../../js/components/footer.js"></script>
+
+    <!-- moduli breadcrumbs json.ld -->
+    <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://codedge.it/"},
+    {"@type":"ListItem","position":2,"name":"Progetti pratici","item":"https://codedge.it/html/progetti-pratici/"},
+    {"@type":"ListItem","position":3,"name":"Form: Effetti di Resize","item":"https://codedge.it/html/progetti-pratici/form.html"}
+  ]
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HowTo",
+  "name":"Form con effetti di resize (HTML/CSS)",
+  "description":"Input/label flottanti e textarea ridimensionabile.",
+  "totalTime":"PT5M",
+  "tool":["HTML","CSS"],
+  "estimatedCost":{"@type":"MonetaryAmount","currency":"EUR","value":"0"},
+  "step":[
+    {"@type":"HowToStep","name":"HTML","text":"Crea i campi con .form-group, input/textarea e label associata."},
+    {"@type":"HowToStep","name":"CSS","text":"Stili per label flottante con :focus e :placeholder-shown; textarea resize verticale."}
+  ]
+}
+</script>
 
     <style>
         .container {
@@ -38,6 +97,14 @@
         h1 {
             text-align: center;
             color: #007bf0;
+        }
+
+        .h2_resize {
+            font-size: 1.5rem;
+            text-align: center;
+            padding-top: 50px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
 
         .form-group {
@@ -97,7 +164,7 @@
         button {
             width: 100%;
             padding: 12px;
-            background: #4CAF50;
+            background: darkblue;
             color: white;
             border: none;
             border-radius: 5px;
@@ -107,7 +174,7 @@
         }
 
         button:hover {
-            background: #45a049;
+            background: blue;
         }
 
         @keyframes shake {
@@ -148,7 +215,7 @@
 
         .content-section a {
             text-decoration: none;
-            color: #007bf0;
+            color: white;
 
         }
 
@@ -156,14 +223,14 @@
             text-decoration: underline;
         }
 
-        h2 {
-            font-size: 1.8em;
+        h3 {
+            font-size: 1.6em;
             margin-top: 30px;
             margin-bottom: 15px;
-            color: #1976D2;
+            color: whitesmoke;
         }
 
-        h3 {
+        h4 {
             font-size: 1.4em;
             margin-top: 25px;
             margin-bottom: 10px;
@@ -195,7 +262,7 @@
         <nav class="navbar">
             <div class="navbar-container">
                 <img src="../../assets/icons/codedge_logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
-                <h1 class="resize-text"><i class="fas fa-list-check"></i> Form Effetti Resize</h1>
+                <h1 class="resize-text"><i class="fas fa-list-check" aria-hidden="true"></i> Form Effetti Resize</h1>
 
                 <div class="menu-icon">
                     <span class="bar"></span>
@@ -225,11 +292,11 @@
             </div>
         </nav>
     </header>
-
+    <h2 class="h2_resize">Form con effetti di resize: demo e codice</h2>
     <main>
 
         <div class="container">
-            <h1>Invia un messaggio</h1>
+            <h3>Invia un messaggio</h3>
             <form>
                 <div class="form-group">
                     <input type="text" id="nome" required placeholder=" ">
@@ -252,15 +319,15 @@
         </div>
 
         <section class="content-section">
-            <h2>Descrizione generale</h2>
+            <h3>Descrizione generale</h3>
             <p>Questo codice crea un modulo di contatto interattivo con effetti di animazione e resize sugli input. Il
                 modulo contiene campi per nome, email, oggetto e messaggio, ed è progettato per essere visivamente
                 accattivante grazie all'utilizzo di animazioni che migliorano l'esperienza utente. I campi di input e
                 textarea cambiano stile quando vengono selezionati, e sono presenti controlli di validazione che offrono
                 feedback visivo in caso di errore.</p>
 
-            <h2>Come funziona il codice</h2>
-            <h3>1. HTML: Struttura del contenuto</h3>
+            <h3>Come funziona il codice</h3>
+            <h4>1. HTML: Struttura del contenuto</h4>
             <p>Il codice HTML definisce la struttura base del modulo:</p>
             <ul class="feature-list">
                 <li><strong>Form:</strong> Ogni campo del modulo è racchiuso in un elemento <code>&lt;div&gt;</code> con
@@ -273,7 +340,7 @@
                     inviare il messaggio, corredato di un'icona per una maggiore chiarezza visiva.</li>
             </ul>
 
-            <h3>2. CSS: Stile visivo</h3>
+            <h4>2. CSS: Stile visivo</h4>
             <p>Il CSS gestisce lo stile del modulo e dei suoi elementi:</p>
             <ul class="feature-list">
                 <li><strong>Form responsive:</strong> Il modulo ha una larghezza massima impostata e utilizza Flexbox
@@ -284,7 +351,7 @@
                     viene applicata un'animazione di shake per indicare l'errore.</li>
             </ul>
 
-            <h3>3. Possibili estensioni con JavaScript</h3>
+            <h4>3. Possibili estensioni con JavaScript</h4>
             <p>Attualmente, il modulo non include JavaScript per l'interattività, ma può essere facilmente esteso per
                 aggiungere funzioni avanzate, come:</p>
             <ul class="feature-list">
@@ -299,7 +366,7 @@
                     utente.</li>
             </ul>
 
-            <h3>Funzionalità principali</h3>
+            <h4>Funzionalità principali</h4>
             <ul class="feature-list">
                 <li><strong>Effetti di animazione:</strong> Il modulo include animazioni fluide per migliorare
                     l'usabilità, come la riduzione delle etichette durante l'inserimento dei dati nei campi di input.
@@ -310,7 +377,7 @@
                     verticalmente, per adattarsi alla lunghezza del contenuto inserito.</li>
             </ul>
 
-            <h3><i class="fas fa-download"></i> Download codice</h3>
+            <h4><i class="fas fa-download"></i> Download codice</h4>
             <p>Trovate il link con il codice completo della descrizione dettagliata riga per riga nella sezione dedicata
                 <a href="../../html/risorse/snippet-library.html#form-effetti-resize">UI Components.</a>
             </p>
