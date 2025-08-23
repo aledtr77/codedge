@@ -190,6 +190,19 @@
         .feature-list li {
             margin-bottom: 10px;
         }
+
+        /* Mobile: +20px in alto e minimo 2px dal bordo destro */
+        @media (max-width: 768px) {
+            #scrollIndicator {
+                /* fallback semplice */
+                bottom: 120px;
+                right: 6px;
+
+                /* se c'è una safe-area (notch), aggiungila */
+                bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+                right: calc(6px + env(safe-area-inset-right, 0px));
+            }
+        }
     </style>
 </head>
 
