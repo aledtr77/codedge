@@ -4,22 +4,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contatti Codedge</title>
-  <link rel="canonical" href="https://codedge.it/html/footer/contatti.html" />
+  <title>Contatti - Codedge</title>
+  <meta name="description"
+    content="Contatti Codedge: come scrivermi, email e modulo di contatto per collaborazioni, domande o segnalazioni.">
   <link rel="alternate icon" href="../../assets/icons/codedge_logo_minimal.svg" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- moduli CSS -->
+  <!-- 0) Canonical (ti mancava) -->
+  <link rel="canonical" href="https://codedge.it/html/footer/contatti.html" />
+
+  <!-- 1) Preconnect al CDN -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- 2) Font Awesome NON-blocking -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin>
+  </noscript>
+
+  <!-- 3) Tieni SOLO il CSS critico in blocking -->
   <link rel="stylesheet" href="../../css/components/main.css" />
-  <link rel="stylesheet" href="../../css/components/navbar.css" />
-  <link rel="stylesheet" href="../../css/components/button.css" />
-  <link rel="stylesheet" href="../../css/components/footer.css" />
+
+  <!-- 4) Gli altri CSS in preload+swap -->
+  <link rel="preload" as="style" href="../../css/components/navbar.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="../../css/components/navbar.css">
+  </noscript>
+
+  <link rel="preload" as="style" href="../../css/components/button.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="../../css/components/button.css">
+  </noscript>
+
+  <link rel="preload" as="style" href="../../css/components/footer.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="../../css/components/footer.css">
+  </noscript>
+
 
   <!-- moduli js -->
   <script src="../../js/components/navbar.js" defer></script>
   <script src="../../js/components/footer.js"></script>
+
+  <!-- moduli breadcrumbs json-ld -->
+  <script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://codedge.it/"},
+    {"@type":"ListItem","position":2,"name":"Informazioni legali","item":"https://codedge.it/html/footer/"},
+    {"@type":"ListItem","position":3,"name":"Contatti","item":"https://codedge.it/html/footer/contatti.html"}
+  ]
+}
+</script>
 
   <style>
     /* Manteniamo il layout originale */
@@ -50,17 +92,31 @@
       padding: 2rem;
     }
 
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: var(--color-three);
+    }
+
+    .h2_resize {
+      font-size: 1.5rem;
+      text-align: center;
+      padding-top: 50px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .h3_description {
+      color: white;
+      margin-bottom: 8px;
+    }
+
     .contact-form h3,
     .contact-info h3 {
       font-family: var(--heading-font);
-      color: var(--color-three);
+      color: white;
       margin-bottom: 1.5rem;
       font-size: 1.8rem;
-    }
-
-    h1 {
-      text-align: center;
-      color: #007bf0;
     }
 
     .form-group {
@@ -196,7 +252,7 @@
       </div>
     </nav>
   </header>
-
+  <h2 class="h2_resize">Come contattarmi</h2>
   <main class="contact-container">
     <section class="contact-grid">
       <div class="contact-info">
@@ -209,26 +265,26 @@
       </div>
 
       <div class="container">
-        <h1><i class="fas fa-envelope"></i> Invia messaggio</h1>
+        <h3 class="h3_description"><i class="fas fa-envelope" aria-hidden="true"></i> Invia messaggio</h3>
         <form id="contact-form">
           <div class="form-group">
-            <input type="text" id="nome" name="nome" required placeholder=" " />
+            <input type="text" id="nome" name="nome" autocomplete="name" required placeholder=" " />
             <label for="nome">Nome</label>
           </div>
           <div class="form-group">
-            <input type="email" id="email" name="email" required placeholder=" " />
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder=" " />
             <label for="email">Email</label>
           </div>
           <div class="form-group">
-            <input type="text" id="oggetto" name="oggetto" required placeholder=" " />
+            <input type="text" id="oggetto" name="oggetto" autocomplete="off" required placeholder=" " />
             <label for="oggetto">Oggetto</label>
           </div>
           <div class="form-group">
-            <textarea id="messaggio" name="messaggio" required placeholder=" "></textarea>
+            <textarea id="messaggio" name="messaggio" autocomplete="off" required placeholder=" "></textarea>
             <label for="messaggio">Messaggio</label>
           </div>
           <button type="submit" class="button-simple">
-            Invia messaggio <i class="fa-solid fa-share"></i>
+            Invia messaggio <i class="fa-solid fa-share" aria-hidden="true"></i>
           </button>
         </form>
       </div>
