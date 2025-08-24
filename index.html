@@ -20,8 +20,6 @@
     <!-- module js -->
     <script src="./js/components/navbar.js" defer></script>
     <script src="./js/components/button.js" defer></script>
-    <script src="./js/components/smooth-scroll.js" defer></script>
-
 
     <!-- critical css-->
     <style>
@@ -528,6 +526,82 @@
                     // Usa history.replaceState per rimuovere l'hash senza ricaricare la pagina
                     history.replaceState(null, null, window.location.pathname);
                 }
+            }
+        });
+
+        /**
+ * smooth-scroll (isolato su singola pagina)
+ * - Default offset: 160px
+ * - Se viewport <= 640px: offset 30px
+ * - Usa la funzione getOffset() al momento del click / hash (no variabili fisse)
+ * - Mantiene la logica originale dei link verso la homepage e degli anchor
+ */
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.nav-link');
+
+            // Calcola dinamicamente l'offset in base alla media-query
+            function getOffset() {
+                return window.matchMedia('(max-width: 640px)').matches ? 40 : 160;
+            }
+
+            // Funzione helper per scrollare correttamente (calcolo robusto della posizione)
+            function scrollToElement(targetEl, offset) {
+                const targetY = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({
+                    top: Math.max(0, Math.floor(targetY)),
+                    behavior: 'smooth'
+                });
+            }
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    // Controlla se siamo sulla homepage (stessa logica di prima)
+                    const isHomePage = window.location.pathname.endsWith('/') ||
+                        window.location.pathname.endsWith('/index.html') ||
+                        window.location.pathname === '/';
+
+                    // Link "Home" (./index.html | / | #)
+                    if (href === './index.html' || href === '/' || href === '#') {
+                        if (isHomePage) {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                        return;
+                    }
+
+                    // Link che contengono anchor (#)
+                    if (href && href.includes('#')) {
+                        const [path, anchor] = href.split('#');
+
+                        if (isHomePage) {
+                            e.preventDefault();
+                            const targetElement = document.getElementById(anchor);
+                            if (targetElement) {
+                                const offset = getOffset();
+                                scrollToElement(targetElement, offset);
+                            }
+                        } else if (path === '' || path === './' || path === './index.html') {
+                            // link che puntano alla root con anchor: lascia navigare normalmente
+                            return;
+                        }
+                    }
+
+                    // altri link: comportamento normale (non interferiamo)
+                });
+            });
+
+            // Se l'URL contiene un hash al caricamento, scrolliamo rispettando l'offset corrente
+            if (window.location.hash) {
+                setTimeout(() => {
+                    const id = window.location.hash.substring(1);
+                    const targetElement = document.getElementById(id);
+                    if (targetElement) {
+                        const offset = getOffset();
+                        scrollToElement(targetElement, offset);
+                    }
+                }, 0);
             }
         });
     </script>
