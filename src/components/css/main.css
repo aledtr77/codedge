@@ -1,0 +1,79 @@
+:root {
+  --color-one: #14477d;
+  --color-two: #6c757d;
+  --color-three: #007bf0;
+  --color-four: #0b59ab;
+  --color-five: #888; /* aggiunta per hover scrollbar */
+  --background-one: #2a2a2a;
+  --background-two: #3a3a3a;
+  --background-three: #303030;
+  --background-four: #222222;
+  --background-five: #444;
+  --background-six: #555;
+  --text-color: #f2f2f2;
+  --border-color: #ccc;
+  --main-font: "Verdana", sans-serif;
+  --heading-font: "Arial", "Helvetica", sans-serif;
+  --box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ✅ Scrollbar per WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-one);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  border-radius: 10px;
+  border: 3px solid var(--background-one);
+  transition: background-color 0.3s;
+  min-height: 100px; /* Altezza minima */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(
+    --color-five
+  ); /* Cambia colore al passaggio del mouse */
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--text-color);
+  background-color: var(--background-one);
+  line-height: 1.6;
+}
+
+main {
+  max-width: 1900px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+a {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+img {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+

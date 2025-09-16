@@ -1,0 +1,145 @@
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-one);
+}
+.section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.intro,
+h2 {
+  text-align: center;
+}
+.intro {
+  margin-bottom: 2rem;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+  margin-top: 60px;
+}
+.generator-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.controls,
+.preview {
+  flex: 1;
+  min-width: 300px;
+}
+.controls {
+  background: var(--background-two);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.preview {
+  display: flex;
+  flex-direction: column;
+}
+.preview-box {
+  height: 300px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: 0.3s ease;
+}
+.color-stop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+.color-input {
+  width: 60px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.position-input {
+  width: 60px;
+  padding: 0.25rem;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+}
+.code-output {
+  background: var(--background-two);
+  color: var(--text-color);
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  margin-top: 1rem;
+}
+.gradient-type {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.gradient-type button {
+  flex: 1;
+}
+.angle-control {
+  display: none;
+  margin-bottom: 1rem;
+}
+.angle-control.active {
+  display: block;
+}
+input[type="range"] {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.preset-gradients {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.preset {
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--text-color);
+}
+.tooltip-container {
+  position: relative;
+}
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  background-color: var(--background-six);
+  color: var(--text-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  font-size: 14px;
+}
+.bg-align {
+  background-color: var(--background-two);
+}
+h3 {
+  margin-top: 15px;
+}

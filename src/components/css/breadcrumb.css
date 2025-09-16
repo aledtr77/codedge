@@ -1,0 +1,140 @@
+/* src/components/css/breadcrumb.css
+   FIX: scope specifico (senza !important) per evitare collisioni con ol/ol li globali.
+*/
+
+/* scope preciso per assicurare override delle regole globali su ol/ol li */
+#breadcrumb-container,
+header #breadcrumb-container,
+#breadcrumb-container .breadcrumb-nav {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-family: var(
+    --main-font,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif
+  );
+}
+
+/* reset mirato per il list container (sovrascrive ol {} globali) */
+#breadcrumb-container ol.breadcrumb-list {
+  /* reset margin/padding imposti globalmente */
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-wrap: nowrap; /* no wrap su larghezze desktop */
+  gap: 0.45rem;
+  align-items: center;
+  align-content: center;
+
+  overflow-x: auto; /* scroll orizzontale se troppe briciole */
+  -webkit-overflow-scrolling: touch;
+
+  /* Altezza fissa per evitare che il container si allarghi */
+  min-height: 26px;
+  height: 26px;
+  line-height: 26px;
+  /* top right bottom left */
+  margin: 15px 0 25px 20px;
+}
+
+/* assicuriamo che i singoli li non ereditino margin globali */
+#breadcrumb-container ol.breadcrumb-list > li.breadcrumb-item {
+  margin: 0; /* annulla il margin:25px globale */
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  line-height: 26px;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* separatore compatto e allineato */
+#breadcrumb-container
+  ol.breadcrumb-list
+  > li.breadcrumb-item
+  + li.breadcrumb-item::before {
+  content: "/";
+  margin: 0 0.45rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  line-height: 26px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* uniformiamo stile dei link e del current */
+#breadcrumb-container .breadcrumb-link,
+#breadcrumb-container .breadcrumb-link:visited,
+#breadcrumb-container .breadcrumb-current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  height: 26px;
+  padding: 0 8px; /* spazio orizzontale che non "aumenta" l'altezza */
+  border-radius: 6px;
+  font-size: 1rem; /* come hai impostato */
+  font-weight: 600; /* uniforme */
+  line-height: 1; /* gestito da align-items/min-height */
+  text-decoration: none;
+  color: #ffffff;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* hover & focus: cambia solo il colore (nessuna underline) */
+#breadcrumb-container .breadcrumb-link:hover,
+#breadcrumb-container .breadcrumb-link:focus {
+  color: #006eff;
+  background: rgba(0, 110, 255, 0.04);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(6, 95, 255, 0.03);
+  text-decoration: none;
+}
+
+/* focus-visible accessibile */
+#breadcrumb-container .breadcrumb-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 110, 255, 0.12);
+}
+
+/* quando lo spazio è davvero poco, permettiamo wrap e riduciamo padding */
+@media (max-width: 520px) {
+  #breadcrumb-container ol.breadcrumb-list {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 24px;
+  }
+  #breadcrumb-container ol.breadcrumb-list > li.breadcrumb-item {
+    height: auto;
+    min-height: 24px;
+  }
+  #breadcrumb-container .breadcrumb-link,
+  #breadcrumb-container .breadcrumb-current {
+    padding: 2px 6px;
+    font-size: 0.95rem;
+    min-height: 24px;
+  }
+  #breadcrumb-container
+    ol.breadcrumb-list
+    > li.breadcrumb-item
+    + li.breadcrumb-item::before {
+    margin: 0 0.35rem;
+  }
+}
+
+/* prefer-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  #breadcrumb-container .breadcrumb-link {
+    transition: none;
+    transform: none;
+  }
+}

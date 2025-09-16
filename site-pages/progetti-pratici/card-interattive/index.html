@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Card Interattive - Codedge</title>
+  <meta name="description"
+    content="Card interattive con effetti hover e piccole animazioni: HTML, CSS e JavaScript essenziali con esempi pronti da copiare.">
+  <link rel="canonical" href="https://codedge.it/progetti-pratici/card-interattive/">
+
+  <!-- ICONS (in public/icons/) -->
+  <!-- Favicon / icone in formati diversi per browser e dispositivi -->
+  <link rel="icon" href="/icons/codedge-logo-minimal.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona per quando l'utente aggiunge il sito alla Home su iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: definisce risorse e impostazioni per l'installazione come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Mask icon per Safari pinned tabs (colore specificato) -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore dell'interfaccia del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Abilita comportamento da web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        <h1 class="resize-text">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Card
+          Interattive
+        </h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu"></ul>
+      </div>
+    </nav>
+    <div id="breadcrumb-container" aria-hidden="false"></div>
+
+  </header>
+  <h2 class="h2_resize">
+    Card interattive: hover, animazioni, descrizione e codice
+  </h2>
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <p>Clicca per ruotare</p>
+          </div>
+          <div class="card-back">
+            <h3>Titolo</h3>
+            <p>Descrizione</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <p>Clicca per ruotare</p>
+          </div>
+          <div class="card-back">
+            <h3>Titolo</h3>
+            <p>Descrizione</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <p>Clicca per ruotare</p>
+          </div>
+          <div class="card-back">
+            <h3>Titolo</h3>
+            <p>Descrizione</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="content-section">
+      <h3>Descrizione generale</h3>
+      <p>
+        Questo codice crea un componente UI che presenta delle card
+        interattive, le quali ruotano su sé stesse quando cliccate. Ogni card
+        ha due lati: il fronte mostra un'immagine o un testo introduttivo,
+        mentre il retro visualizza ulteriori informazioni. Le animazioni 3D
+        rendono l'esperienza utente più coinvolgente e dinamica.
+      </p>
+      <h3>Come funziona il codice</h3>
+      <h4>1. HTML: Struttura del contenuto</h4>
+      <p>L'HTML definisce la struttura di base della pagina e delle card:</p>
+      <ul class="feature-list">
+        <li>
+          <strong>Container:</strong> Un elemento <code>&lt;div&gt;</code> con
+          classe <code>container</code> ospita tutte le card e le dispone in
+          modo flessibile e responsivo tramite Flexbox.
+        </li>
+        <li>
+          <strong>Card:</strong> Ogni card è composta da un elemento
+          <code>&lt;div&gt;</code> con classe <code>card</code>, contenente
+          due sottoelementi per il fronte e il retro della card:
+          <code>card-front</code> e <code>card-back</code>.
+        </li>
+        <li>
+          <strong>Interazione:</strong> Le card sono progettate per reagire ai
+          clic dell'utente grazie a JavaScript, ruotando di 180 gradi per
+          mostrare il lato posteriore.
+        </li>
+      </ul>
+      <h4>2. CSS: Stile visivo</h4>
+      <p>Il CSS è utilizzato per il layout e le animazioni delle card:</p>
+      <ul class="feature-list">
+        <li>
+          <strong>Card:</strong> Le card hanno una larghezza e un'altezza
+          definite e usano la proprietà <code>perspective</code> per applicare
+          l'effetto di rotazione 3D.
+        </li>
+        <li>
+          <strong>Rotazione:</strong> La classe <code>flipped</code> attiva la
+          rotazione 3D tramite la proprietà <code>transform</code>, invertendo
+          l'elemento <code>card-inner</code>.
+        </li>
+        <li>
+          <strong>Hover:</strong> Un effetto hover aumenta leggermente la
+          dimensione della card per migliorare l'interattività visiva.
+        </li>
+      </ul>
+      <h4>3. JavaScript: Logica di interazione</h4>
+      <p>Il JavaScript aggiunge interattività e gestione degli eventi:</p>
+      <ul class="feature-list">
+        <li>
+          <strong>Event listener:</strong> Un ascoltatore di eventi
+          <code>click</code> viene aggiunto a ogni card. Quando l'utente
+          clicca su una card, viene applicata la classe <code>flipped</code>,
+          che attiva la rotazione 3D.
+        </li>
+        <li>
+          <strong>Mouseover e timeout:</strong> Se il puntatore del mouse
+          lascia l'area della card, JavaScript imposta un timeout che, dopo un
+          secondo, riporta la card al suo stato originale, rimuovendo la
+          classe <code>flipped</code>.
+        </li>
+      </ul>
+      <h4>Funzionalità principali</h4>
+      <ul class="feature-list">
+        <li>
+          <strong>Rotazione 3D:</strong> Le card ruotano con un effetto 3D
+          quando vengono cliccate, offrendo un'esperienza visiva accattivante.
+        </li>
+        <li>
+          <strong>Animazioni fluide:</strong> Le transizioni CSS rendono
+          l'interazione fluida e piacevole per l'utente.
+        </li>
+      </ul>
+      <h4><i class="fas fa-download"></i> Download codice</h4>
+      <p>
+        Trovate il link con il codice completo della descrizione dettagliata
+        riga per riga nella sezione dedicata
+        <a href="/risorse/snippet-library/#card--interattive">UI Components.</a>
+      </p>
+    </section>
+  </main>
+  <!-- ENTRY MODULE (unico)
+       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
+       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
+  <script type="module" src="/src/pages/progetti-pratici/card-interattive/main.js"></script>
+
+</body>
+
+</html>

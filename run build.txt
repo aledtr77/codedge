@@ -1,0 +1,7 @@
+
+*costruisce e crea la build dist/ e serve la dist/ su server locale*
+npm run build && npm run preview
+
+
+*serve la dev sul server locale*
+npm run dev
