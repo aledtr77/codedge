@@ -1,0 +1,1 @@
+import{i as t}from"../breadcrumb-loader-DZKY_0fu.js";import"../glossario-DE3qK-i8.js";document.addEventListener("DOMContentLoaded",()=>{t({selector:"#breadcrumb-container",enableLog:!0,rootUrl:"https://codedge.it/",currentIsLink:!0,onMount:e=>console.log("mounted",e)})});
