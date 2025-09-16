@@ -402,6 +402,7 @@ aside::-webkit-scrollbar-track {
 
   aside.active {
     left: 0;
+    max-width: 250px;
   }
 }
 
@@ -444,3 +445,11 @@ aside::-webkit-scrollbar-track {
     border: 0;
   }
 }
+
+/* opzionale: comportamento per schermi molto piccoli */
+@media screen and (max-width: 480px) {
+  aside.active {
+    transform: translateY(-45px);      /* meno spostamento su schermi piccoli */
+  }
+}
+
