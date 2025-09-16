@@ -4,6 +4,17 @@ on:
   push:
     branches: [ main ]
 
+# permissions necessari per upload + deploy
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# evita deploy concorrenti
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,13 +40,17 @@ jobs:
           if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
 
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        # usa versione aggiornata per evitare dipendenze a upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
