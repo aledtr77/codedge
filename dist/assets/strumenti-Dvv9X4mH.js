@@ -1,0 +1,1 @@
+import{i as e}from"./breadcrumb-loader-DZKY_0fu.js";/* empty css             *//* empty css               */import"./button-Cm7ci3ck.js";document.addEventListener("DOMContentLoaded",()=>{e({selector:"#breadcrumb-container",enableLog:!0,rootUrl:"https://codedge.it/",currentIsLink:!0,onMount:t=>console.log("mounted",t)})});
