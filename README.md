@@ -57,7 +57,7 @@ Per la lista completa: vedi `package.json`.
 ├─ CNAME                   # domain: codedge.it
 └─ README.md
 
-````
+```
 
 **Nota**: il progetto usa `site-pages/` come sorgente delle pagine HTML. In dev Vite riscrive le richieste "pulite" (es. `/risorse/`) verso `site-pages/`; in build i file generati in `dist/site-pages/*` vengono spostati in `dist/*` e gli href vengono riscritti. Questo comportamento è implementato in `vite.config.js`.
 
