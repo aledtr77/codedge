@@ -138,3 +138,13 @@ header #breadcrumb-container,
     transform: none;
   }
 }
+@media (max-width: 520px) {
+  #breadcrumb-container::after,
+  header #breadcrumb-container::after {
+    content: "";
+    display: block;
+    height: 10px;
+    width: 100%;
+    pointer-events: none;
+  }
+}
