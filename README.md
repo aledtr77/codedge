@@ -42,8 +42,11 @@ Per la lista completa: vedi `package.json`.
 
 ---
 
-## Struttura del progetto
+
 ```
+
+```
+## Struttura del progetto
 
 /
 ├─ .github/workflows/      # workflow (build & deploy)
