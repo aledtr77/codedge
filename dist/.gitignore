@@ -1,0 +1,26 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+package-lock.json     # se vuoi committarlo (consigliato per stabilità), rimuovi questa riga
+.DS_Store
+
+# build output
+dist/
+html/
+public/build/
+.vite/
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

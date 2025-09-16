@@ -1,0 +1,133 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.card {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+.card-back,
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card-front {
+  background-color: rgba(255, 255, 255, 0.753);
+  color: #000;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.card-front p {
+  margin-top: 100px;
+  font-size: 1.6rem;
+}
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-back {
+  background-color: #0e4277;
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.card-back h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.card-back p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+.content-section {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: justify;
+  font-size: 20px;
+}
+.content-section a {
+  text-decoration: none;
+  color: #fff;
+}
+.content-section a:hover {
+  text-decoration: underline;
+}
+h1 {
+  font-size: 2rem;
+}
+.h2_resize {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 50px;
+  margin: 20px;
+}
+h3 {
+  font-size: 1.8em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+h4 {
+  font-size: 1.4em;
+  margin-top: 25px;
+  color: #1976d2;
+}
+.code-block {
+  background: #333131;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 15px 0;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+.feature-list {
+  padding-left: 20px;
+}
+.feature-list li,
+h4 {
+  margin-bottom: 10px;
+}
+img {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

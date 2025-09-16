@@ -1,0 +1,26 @@
+ h1 {
+        margin: 0;
+        font-size: 2rem;
+      }
+      main {
+        padding: 2rem;
+      }
+      .h2_resize {
+        font-size: 1.5rem;
+        text-align: center;
+        padding-top: 10px;
+        margin: 0 15px;
+      }
+      a:hover,
+      h3 {
+        color: var(--color-three);
+      }
+      p {
+        color: var(--text-color);
+      }
+      a {
+        color: var(--border-color);
+      }
+      a:hover {
+        text-decoration: underline;
+      }

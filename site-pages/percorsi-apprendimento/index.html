@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Percorsi Apprendimento - Codedge</title>
+  <meta name="description"
+    content="Percorsi pratici per chi vuole imparare il front-end: focus sui dettagli spesso trascurati che fanno davvero la differenza. Scopri Codedge.">
+  <link rel="canonical" href="https://codedge.it/percorsi-apprendimento/">
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/codedge-logo-minimal.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        <h1 class="resize-text">Percorsi Apprendimento</h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu"></ul>
+      </div>
+    </nav>
+    <div id="breadcrumb-container" aria-hidden="false"></div>
+
+  </header>
+  <h2>Oltre il codice alcune basi spesso sottovalutate</h2>
+  <main id="main-content">
+    <section id="percorsi-apprendimento" class="section" aria-labelledby="percorsi-title">
+      <div class="intro">
+        <h3 id="percorsi-title">Panoramica rapida</h3>
+        <p>
+          Se quello che hai trovato qui ti è stato utile in qualche modo, ottimo — ne sono felice: vuol dire che il
+          lavoro che ho fatto è servito. Ma non è tutto. Compatibilmente con il tempo a mia disposizione, sto preparando
+          alcuni contenuti pensati per chi, come me, vuole provare a capire come funzionano queste tecnologie;
+          sinceramente, però, non credo di avere l’esperienza sufficiente per aggiungere qualcosa in più ai corsi già
+          presenti in rete su HTML, CSS o JavaScript: ce ne sono troppi e spesso ripetono le stesse cose. Preferisco
+          invece concentrarmi su ciò che nei corsi mainstream dura “un minuto e via”: quel lato teorico — e anche
+          storico — meno esplorato, e quei dettagli pratici su cui io per primo ho sbagliato e che magari possono
+          risparmiarti tempo e fatica. Quindi — salvo richieste specifiche — la mia idea è creare contenuti nello
+          spirito di Codedge: non solo pratici, ma anche teorici, mirati e curiosi, focalizzati sui margini del codice
+          dove si nascondono le cose utili e meno discusse.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card coming-soon">
+          <h4>Internet Fondamenti Essenziali</h4>
+          <p>
+            Qui troverete il link al videocorso sui fondamentali di come
+            funziona Internet una base necessaria per chi parte da zero e
+            vuole approcciarsi al mondo del front end. In preparazione!
+          </p>
+          <span class="button-simple" aria-label="Corso in arrivo">Prossimamente</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ENTRY MODULE (unico)
+       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
+       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
+  <script type="module" src="/src/pages/percorsi-apprendimento/main.js"></script>
+
+</body>
+
+</html>

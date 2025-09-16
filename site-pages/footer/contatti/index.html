@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="it"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contatti - Codedge</title>
+    <meta name="description" content="Contatti Codedge: come scrivermi, email e modulo di contatto per collaborazioni, domande o segnalazioni.">
+    <link rel="canonical" href="https://codedge.it/html/footer/contatti/">
+   
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/codedge-logo-minimal.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" aria-label="Navigazione principale">
+        <div class="navbar-container">
+          <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+          <h1 class="resize-text">Contatti</h1>
+          <div class="menu-icon">
+            <span class="bar"></span> <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul id="nav-menu" class="nav-menu"></ul>
+        </div>
+      </nav>
+      <div id="breadcrumb-container" aria-hidden="false"></div>
+     
+    </header>
+    <h2 class="h2_resize">Come contattarmi</h2>
+    <main class="contact-container">
+      <section class="contact-grid">
+        <div class="contact-info">
+          <h3>Informazioni di contatto</h3>
+          <ul>
+            <li>
+              Hai domande, proposte o curiosità? Scrivimi. Non sono un guru,
+              solo uno che impara sul campo e condivide quello che scopre.
+            </li>
+            <li>
+              Accolgo con piacere i vostri suggerimenti su bug, miglioramenti
+              del sito e nuove idee.
+            </li>
+          </ul>
+        </div>
+        <div class="container">
+          <h3 class="h3_description">
+            <i class="fas fa-envelope" aria-hidden="true"></i> Invia messaggio
+          </h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <input id="nome" name="nome" autocomplete="name" required="" placeholder=" ">
+              <label for="nome">Nome</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" autocomplete="email" required="" placeholder=" ">
+              <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+              <input id="oggetto" name="oggetto" autocomplete="off" required="" placeholder=" ">
+              <label for="oggetto">Oggetto</label>
+            </div>
+            <div class="form-group">
+              <textarea id="messaggio" name="messaggio" autocomplete="off" required="" placeholder=" "></textarea>
+              <label for="messaggio">Messaggio</label>
+            </div>
+            <button type="submit" class="button-simple">
+              Invia messaggio
+              <i class="fa-solid fa-share" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div id="feedback" class="feedback-message"></div>
+
+   <!-- ENTRY MODULE (unico)
+       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
+       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
+  <script type="module" src="/src/pages/footer/contatti/main.js"></script>
+  
+
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Generatore colori - Codedge</title>
+  <meta name="description"
+    content="Crea palette e colori singoli, copia i codici HEX/RGB/HSL e salva le combinazioni. Strumento gratuito e veloce per designer e sviluppatori.">
+  <link rel="canonical" href="https://codedge.it/strumenti/generatore-colori/">
+
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/codedge-logo-minimal.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        <h1 class="resize-text">
+          <i class="fas fa-palette"></i>Generatore colori
+        </h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu"></ul>
+      </div>
+    </nav>
+    <div id="breadcrumb-container" aria-hidden="false"></div>
+
+  </header>
+  <main>
+    <h2 class="sub-title">Generatore di Palette di Colori</h2>
+    <section class="section">
+      <div class="main-content">
+        <div class="color-generator-main">
+          <input id="manualColorInput" placeholder="#FF0000">
+          <div class="color-picker-container">
+            <div id="picker"></div>
+            <div class="color-preview-container" id="colorPreviewContainer">
+              <div class="color-preview" id="colorPreviewReal"></div>
+              <span id="selectedColorValue">#007bff</span>
+            </div>
+          </div>
+          <select id="harmonies">
+            <option value="monochromatic">Monocromatica</option>
+            <option value="analogous">Analoga</option>
+            <option value="complementary">Complementare</option>
+            <option value="triadic">Triadica</option>
+            <option value="tetradic">Tetradica</option>
+          </select>
+          <button id="generatePalette" class="button-simple">
+            Genera Palette
+          </button>
+          <div class="palette-container tooltip-bottom" id="paletteContainer"></div>
+        </div>
+        <div class="color-notes">
+          <h3>Tavolozza di Appunti</h3>
+          <div class="color-notes-grid">
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+            <div class="color-note">
+              <div class="color-preview"></div>
+              <span class="color-hex"></span>
+              <button class="button-simple pin-color tooltip">Appunta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Analizzatore e Manipolatore di Colori</h2>
+      <div class="color-analysis">
+        <div class="color-info-column">
+          <div class="color-info">
+            <h3>Informazioni sul Colore</h3>
+            <div id="colorPreview" class="color-preview"></div>
+            <div id="colorDetails"></div>
+          </div>
+          <div class="contrast-check">
+            <input id="contrastColorInput" placeholder="#FF0000">
+            <div id="contrastResult"></div>
+          </div>
+        </div>
+        <div class="color-manipulation-column">
+          <div class="color-manipulation">
+            <h3>Manipolazione del Colore</h3>
+            <label for="lightenDarken">Schiarisci/Scurisci:</label>
+            <input type="range" id="lightenDarken" min="-100" max="100" value="0">
+            <label for="saturate">Saturazione:</label>
+            <input type="range" id="saturate" min="0" max="100" value="50">
+            <div class="tooltip-bottom" id="manipulatedColorContainer">
+              <div id="manipulatedColor"></div>
+            </div>
+            <div id="manipulatedColorText"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
+       type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
+  <script type="module" src="/src/pages/strumenti/generatore-colori/main.js"></script>
+
+</body>
+
+</html>

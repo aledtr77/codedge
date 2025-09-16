@@ -1,0 +1,24 @@
+{
+  "name": "codedge",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "gen:breadcrumbs": "node scripts/generate-breadcrumbs.js",
+    "dev": "npm run gen:breadcrumbs && vite",
+    "prebuild": "npm run gen:breadcrumbs",
+    "build": "vite build",
+    "preview": "vite preview --port 5000"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "vite": "^5.0.0"
+  },
+  "homepage": "https://codedge.it/",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "@jaames/iro": "^5.5.2",
+    "compressorjs": "^1.2.1",
+    "prismjs": "^1.30.0"
+  }
+}

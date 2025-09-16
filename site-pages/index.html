@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <!-- Imposta la codifica dei caratteri usata nella pagina -->
+  <meta charset="UTF-8" />
+  <!-- Imposta il comportamento responsive: scala la pagina alla larghezza del dispositivo -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
+  <title>Frontend per principianti | Impara HTML, CSS e JavaScript - CODEDGE</title>
+  <!-- Descrizione usata nei risultati di ricerca e anteprime -->
+  <meta name="description"
+    content="Guida al frontend per principianti: risorse gratuite, esempi e glossari per imparare HTML, CSS e JavaScript da zero con CODEDGE." />
+  <!-- Indica l'URL "ufficiale" di questa pagina per evitare contenuti duplicati -->
+  <link rel="canonical" href="https://codedge.it/" />
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/codedge-logo-minimal.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <!-- HEADER: area di intestazione contenente la navigazione principale -->
+  <header>
+    <!-- Nav identificata come 'Navigazione principale' per i lettori di schermo -->
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <!-- Logo: attributo alt descrive l'immagine per chi non la vede -->
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
+        <!-- H1 nella navbar che indica il titolo della pagina (qui Home) -->
+        <h1 class="resize-text">Home</h1>
+
+        <!-- Hamburger icon usata per aprire/chiudere il menu su schermi piccoli -->
+        <div class="menu-icon"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+
+        <!-- Menu dinamico: il markup è vuoto perché viene popolato via JavaScript.
+             Mantieni l'id #nav-menu: gli script lo usano per inserire gli item. -->
+        <ul id="nav-menu" class="nav-menu"></ul>
+      </div>
+    </nav>
+
+    <!-- Contenitore del breadcrumb:
+         elemento vuoto che il loader runtime riempie con la traccia di navigazione.
+         Mantieni id e attributi perché lo script li cerca direttamente. -->
+    <div id="breadcrumb-container" aria-hidden="false"></div>
+  </header>
+
+  <main id="main-content">
+    <!-- Sezione principale con riferimento al titolo per accessibilità -->
+    <section class="unified-section" aria-labelledby="hero-title">
+      <div class="hero-compact">
+        <!-- Logo grande nel hero per branding -->
+        <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="600" height="50" />
+        <!-- Titoli del hero: struttura semantica della pagina -->
+        <h2 class="hero-title-compact">
+          Sviluppo Front-end per principianti
+        </h2>
+        <h3 id="hero-title" class="hero-title-compact">CODEDGE</h3>
+
+        <!-- Paragrafo introduttivo: testo visibile agli utenti e utile per SEO -->
+        <p class="hero-description">
+          Benvenuto su Codedge! Un sito focalizzato sul front-end che ho
+          creato per fare pratica sul campo e raccontare qualcosa del mio
+          percorso da aspirante sviluppatore. Il codice non è perfetto, ci
+          saranno errori qua e là, ma va bene così. Questo è un laboratorio,
+          non una vetrina. Se anche tu sei agli inizi, con mille dubbi ma
+          tanta voglia di imparare, spero che qui dentro tu possa trovare
+          qualcosa di utile. Tutti cominciamo da zero. L'importante è
+          cominciare.
+        </p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <!-- Icona decorativa + titolo; se l'icona è solo decorativa si può aggiungere aria-hidden="true" -->
+          <h4><i class="fas fa-book"></i> Risorse</h4>
+          <p>
+            Materiale per prendere spunto o riprendere concetti di base per il
+            frontend.
+          </p>
+          <!-- Link con aria-label specifico per chiarezza negli screen reader -->
+          <a href="/risorse/" class="button-simple" aria-label="Esplora le risorse disponibili">Esplora</a>
+        </div>
+        <div class="card">
+          <h4><i class="fa-solid fa-tools"></i> Strumenti</h4>
+          <p>
+            Tool e utility con cui iniziare a testare e creare
+            personalizzazioni.
+          </p>
+          <a href="/strumenti/" class="button-simple" aria-label="Scopri gli strumenti utili">Esplora</a>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-project-diagram"></i> Progetti Pratici</h4>
+          <p>
+            Esempi concreti e con cui sperimentare e mettere in pratica le
+            competenze acquisite.
+          </p>
+          <a href="/progetti-pratici/" class="button-simple" aria-label="Vedi i progetti pratici">Esplora</a>
+        </div>
+        <div class="card">
+          <h4>
+            <i class="fas fa-graduation-cap"></i> Percorsi Apprendimento
+          </h4>
+          <p>
+            Roadmap pensate per offrirti un punto di vista con cui apprendere
+            il frontend.
+          </p>
+          <a href="/percorsi-apprendimento/" class="button-simple"
+            aria-label="Inizia un percorso di apprendimento">Esplora</a>
+        </div>
+      </div>
+    </section>
+    
+    
+  </main>
+  
+  <!-- ENTRY MODULE (unico)
+       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
+       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
+  <script type="module" src="/src/pages/index/main.js"></script>
+</body>
+
+</html>
