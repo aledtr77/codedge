@@ -146,8 +146,8 @@ window.addEventListener("resize", handleResize);
 handleResize();
 
 /* --------------------------
-   Replace hamburger handler
-   (single authoritative handler to remove double-listener bugs)
+   Replace hamburger handler - VERSIONE COMPLETAMENTE RIVISTA
+   (risolve problemi di sincronizzazione e conflitti)
    -------------------------- */
 (function replaceHamburgerHandler() {
   const toggleSelectors = ['.menu-icon', '.menu-toggle', '.menu-btn', '.nav-toggle', '.hamburger', '.menu-button', '#menuBtn'];
@@ -166,14 +166,21 @@ handleResize();
   // CLONE per rimuovere tutti i listener esistenti sul bottone
   const newBtn = oldBtn.cloneNode(true);
   oldBtn.parentNode.replaceChild(newBtn, oldBtn);
-  console.log('replaceHamburgerHandler: bottone clonato — listeners precedenti rimossi.');
+  console.log('replaceHamburgerHandler: bottone clonato – listeners precedenti rimossi.');
 
-  // helper visibility
+  // helper visibility - versione più accurata
   function isNavVisible(el) {
     if (!el) return false;
     const cs = getComputedStyle(el);
     const rect = el.getBoundingClientRect();
-    return cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity || '1') > 0 && rect.height > 2 && rect.width > 2;
+    
+    // Controlla se è effettivamente visibile (non solo display/visibility)
+    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
+    const hasOpacity = parseFloat(cs.opacity || '1') > 0;
+    const hasSize = rect.height > 2 && rect.width > 2;
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    
+    return isDisplayed && hasOpacity && hasSize && isInViewport;
   }
 
   // store/restore inline
@@ -211,53 +218,103 @@ handleResize();
       restoreInline(nav, savedInline);
       savedInline = null;
     }
-    // assicurati che nav venga nascosta se la classe non la nasconde più
-    // (non forziamo eventualmente display:none se il CSS gestisce la cosa)
   }
 
-  // funzione di toggle unica (non doppia)
-  function doToggle() {
-    const willBeActive = !newBtn.classList.contains('active'); // vogliamo lo stato finale
-    // Applica lo stato una sola volta
+  // Funzione per verificare lo stato REALE del menu (basata su visibilità, non solo classi)
+  function getMenuRealState() {
+    const hasActiveClass = nav.classList.contains('active') || nav.classList.contains('open') || nav.classList.contains('show');
+    const isActuallyVisible = isNavVisible(nav);
+    const btnActive = newBtn.classList.contains('active');
+    
+    console.log('Stato menu - Classi attive:', hasActiveClass, 'Visivamente visibile:', isActuallyVisible, 'Bottone attivo:', btnActive);
+    
+    return {
+      hasActiveClass,
+      isActuallyVisible,
+      btnActive,
+      shouldBeOpen: hasActiveClass && isActuallyVisible
+    };
+  }
+
+  // Funzione di sincronizzazione completa
+  function syncMenuState() {
+    const state = getMenuRealState();
+    
+    // Se c'è una discrepanza, forza la sincronizzazione
+    if (state.hasActiveClass !== state.btnActive || state.hasActiveClass !== state.isActuallyVisible) {
+      console.warn('Discrepanza negli stati del menu - forzando sincronizzazione');
+      
+      // Determina lo stato corretto basandosi sulla visibilità effettiva
+      const shouldBeOpen = state.isActuallyVisible;
+      
+      if (shouldBeOpen) {
+        newBtn.classList.add('active');
+        nav.classList.add('active','open','show');
+        document.body.classList.add('menu-open');
+        newBtn.setAttribute('aria-expanded','true');
+      } else {
+        newBtn.classList.remove('active');
+        nav.classList.remove('active','open','show');
+        document.body.classList.remove('menu-open');
+        newBtn.setAttribute('aria-expanded','false');
+        clearInlineFallback();
+      }
+      
+      console.log('Stati sincronizzati - Menu:', shouldBeOpen ? 'aperto' : 'chiuso');
+    }
+  }
+
+  // funzione di toggle unificata con controllo di sincronizzazione
+  function doToggle(forceClose = false) {
+    // Prima sincronizza lo stato attuale
+    syncMenuState();
+    
+    const currentState = getMenuRealState();
+    const willBeActive = forceClose ? false : !currentState.shouldBeOpen;
+    
+    console.log('doToggle chiamato - forceClose:', forceClose, 'stato attuale:', currentState.shouldBeOpen, 'sarà attivo:', willBeActive);
+    
+    // Applica lo stato una sola volta a TUTTI gli elementi
     if (willBeActive) {
       newBtn.classList.add('active');
       nav.classList.add('active','open','show');
       document.body.classList.add('menu-open');
       newBtn.setAttribute('aria-expanded','true');
+      console.log('Menu aperto tramite doToggle');
     } else {
       newBtn.classList.remove('active');
       nav.classList.remove('active','open','show');
       document.body.classList.remove('menu-open');
       newBtn.setAttribute('aria-expanded','false');
+      console.log('Menu chiuso tramite doToggle');
     }
 
-    // Delay per lasciare finire eventuali transition / altri handler
+    // Delay per lasciare finire eventuali transition
     setTimeout(() => {
-      const activeNow = newBtn.classList.contains('active');
-      if (activeNow) {
-        // se nav non è visibile, applica fallback
-        if (!isNavVisible(nav)) {
+      syncMenuState(); // Ri-sincronizza dopo le transizioni
+      
+      const finalState = getMenuRealState();
+      if (finalState.shouldBeOpen) {
+        if (!finalState.isActuallyVisible) {
           applyInlineFallbackShow();
-          console.info('replaceHamburgerHandler: fallback inline applicato (mobile).');
+          console.info('Fallback inline applicato (mobile).');
         } else {
           clearInlineFallback();
         }
       } else {
-        // stato chiuso -> pulisci fallback e assicurati nav nascosta
         clearInlineFallback();
-        // in alcuni casi il CSS legacy lascia il nav "visible but offscreen" — forziamo hide minimale
-        if (mobileQuery.matches && isNavVisible(nav)) {
-          // nascondiamo in modo pulito ma non tocchiamo desktop
+        if (mobileQuery.matches && finalState.isActuallyVisible) {
           nav.style.display = 'none';
         }
       }
-    }, 80);
+    }, 100);
   }
 
-  // Attach single, authoritative handler (preventiamo propagation per evitare interferenze)
+  // Attach single, authoritative handler
   newBtn.addEventListener('click', function(ev){
     ev.preventDefault();
     ev.stopPropagation();
+    console.log('Click su hamburger - chiamando doToggle');
     doToggle();
   }, { passive: false });
 
@@ -265,28 +322,57 @@ handleResize();
   nav.addEventListener('click', function(ev){
     const a = ev.target.closest('a');
     if (a) {
-      // chiudi
-      newBtn.classList.remove('active');
-      nav.classList.remove('active','open','show');
-      document.body.classList.remove('menu-open');
-      newBtn.setAttribute('aria-expanded','false');
-      clearInlineFallback();
-      // non fermiamo la navigazione
+      console.log('Click su link nel menu - chiudendo');
+      doToggle(true);
     }
   });
 
-  // click fuori per chiudere (aggiunto ma non rimuove altri handler globali)
+  // Click fuori per chiudere - con controllo più robusto
   document.addEventListener('click', function(ev){
-    if (!nav.contains(ev.target) && !newBtn.contains(ev.target) && nav.classList.contains('active')) {
-      newBtn.classList.remove('active');
-      nav.classList.remove('active','open','show');
-      document.body.classList.remove('menu-open');
-      newBtn.setAttribute('aria-expanded','false');
-      clearInlineFallback();
+    // Aspetta un frame per permettere ad altri handler di eseguire
+    setTimeout(() => {
+      const state = getMenuRealState();
+      
+      if (state.hasActiveClass || state.isActuallyVisible) {
+        // Verifica se il click è effettivamente fuori da menu e bottone
+        if (!nav.contains(ev.target) && !newBtn.contains(ev.target)) {
+          console.log('Click esterno rilevato - chiudendo menu');
+          doToggle(true);
+        }
+      }
+    }, 10);
+  });
+
+  // Observer per monitorare cambiamenti di visibilità del nav (per intercettare modifiche CSS esterne)
+  const navObserver = new MutationObserver(function(mutations) {
+    let shouldCheck = false;
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'style')) {
+        shouldCheck = true;
+      }
+    });
+    
+    if (shouldCheck) {
+      setTimeout(syncMenuState, 50); // Delay per permettere alle transizioni CSS di completarsi
     }
   });
+  
+  // Osserva cambiamenti di classe e stile sul nav
+  navObserver.observe(nav, {
+    attributes: true,
+    attributeFilter: ['class', 'style']
+  });
+
+  // Controllo periodico per sicurezza (ogni 2 secondi) - solo in development
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    setInterval(syncMenuState, 2000);
+  }
 
   // garantiamo che l'hamburger resti visibile sopra il nav
   newBtn.style.zIndex = newBtn.style.zIndex || '2600';
-  console.log('replaceHamburgerHandler: nuovo handler installato con successo.');
+  
+  // Sincronizzazione iniziale
+  setTimeout(syncMenuState, 100);
+  
+  console.log('replaceHamburgerHandler: nuovo handler con sincronizzazione avanzata installato.');
 })();
