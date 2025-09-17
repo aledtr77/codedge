@@ -1,8 +1,9 @@
 // src/components/js/breadcrumb-loader.js
 // ES module loader per breadcrumbs (importa e chiama esplicitamente).
-// Opzioni: { selector, enableLog, jsonCandidates, rootUrl, onMount, force, currentIsLink }
-// Piccola patch: normalizePath rimuove eventuali '/site-pages/' e '/html/' residui
-// per evitare che la fallback path generi la briciola "site-pages" nella build/preview.
+// Opzioni: { selector, enableLog, jsonCandidates, rootUrl, onMount, force, currentIsLink, excludeSegments }
+// Patch: normalizePath rimuove eventuali '/site-pages/' e '/html/' residui.
+// Nota: excludeSegments rimuove SOLO la briciola che rappresenta esattamente quel segmento,
+//       ma NON rimuove pagine che hanno quel segmento come parent (es. /footer/privacy-policy/ resta).
 
 export default async function initBreadcrumbs(opts = {}) {
   const DEFAULT_SELECTOR = '#breadcrumb-container';
@@ -22,19 +23,14 @@ export default async function initBreadcrumbs(opts = {}) {
   }
 
   // Normalize path: rimuove query/hash, pulisce double slashes, index.html
-  // PATCH: rimuove eventuali occorrenze di 'site-pages' e 'html' che possono comparire in preview/build
   function normalizePath(p) {
     if (!p) p = location.pathname || '/';
     p = String(p).split('?')[0].split('#')[0];
 
-    // ----- PATCH: rimuovi eventuali occorrenze di 'site-pages' o 'html' -----
-    // rimuove '/site-pages/' ovunque compaia (es. /site-pages/risorse/ -> /risorse/)
+    // rimuove '/site-pages/' e '/html/' residui
     p = p.replace(/\/site-pages\//g, '/');
-    // rimuove 'site-pages' se è l'unico segmento dopo la slash iniziale (es. '/site-pages' -> '/')
     p = p.replace(/^\/site-pages(\/?)/, '/');
-    // rimuove anche eventuali '/html/' residui
     p = p.replace(/\/html\//g, '/');
-    // --------------------------------------------------------------------
 
     p = p.replace(/\/index(\.html?)?$/i, '/');
     if (!p.startsWith('/')) p = '/' + p;
@@ -81,25 +77,27 @@ export default async function initBreadcrumbs(opts = {}) {
     });
   }
 
-  function fallbackFromPath(rootUrl, pathname) {
+  // fallbackFromPath: costruisce breadcrumbs dal pathname, saltando eventuali segmenti esclusi
+  function fallbackFromPath(rootUrl, pathname, excludeSegments = []) {
     const norm = normalizePath(pathname);
     const parts = norm.split('/').filter(Boolean);
     const items = [];
-    items.push({ label: 'Home', url: new URL('/', rootUrl).href, current: parts.length === 0 });
+    // filter parts but keep deeper parts; excludeSegments are skipped but deeper segments remain
+    const filteredParts = parts.filter(p => !excludeSegments.includes(p.toLowerCase()));
+    items.push({ label: 'Home', url: new URL('/', rootUrl).href, current: filteredParts.length === 0 });
     let cumulative = '/';
-    for (let i = 0; i < parts.length; i++) {
-      cumulative += parts[i] + '/';
+    for (let i = 0; i < filteredParts.length; i++) {
+      cumulative += filteredParts[i] + '/';
       items.push({
-        label: humanize(parts[i]),
+        label: humanize(filteredParts[i]),
         url: new URL(cumulative, rootUrl).href,
-        current: i === parts.length - 1
+        current: i === filteredParts.length - 1
       });
     }
     if (items.length === 1) items[0].current = true;
     return items;
   }
 
-  // build DOM nav: se currentIsLink === true, anche l'ultimo item viene renderizzato come <a> con aria-current
   function buildNav(items) {
     const nav = document.createElement('nav');
     nav.className = 'breadcrumb-nav';
@@ -122,7 +120,6 @@ export default async function initBreadcrumbs(opts = {}) {
         a.textContent = item.label;
         a.setAttribute('role', 'link');
         if (item.current) {
-          // se è current ma vogliamo il link (currentIsLink), manteniamo aria-current per accessibilità
           a.setAttribute('aria-current', 'page');
         }
         li.appendChild(a);
@@ -197,9 +194,14 @@ export default async function initBreadcrumbs(opts = {}) {
     if (items) items = ensureAbsoluteUrls(items, rootUrl);
   }
 
+  // if still no items, build fallback (respect excludeSegments)
+  const excludeSegments = Array.isArray(opts.excludeSegments) && opts.excludeSegments.length
+    ? opts.excludeSegments.map(s => String(s).toLowerCase())
+    : ['footer']; // default exclude 'footer'
+
   if (!items) {
     log('nessuna voce trovata nel JSON; costruisco fallback da pathname');
-    items = fallbackFromPath(rootUrl, location.pathname);
+    items = fallbackFromPath(rootUrl, location.pathname, excludeSegments);
   }
 
   // Forza che Home sia current SOLO se siamo nella root '/'
@@ -212,6 +214,58 @@ export default async function initBreadcrumbs(opts = {}) {
   } catch (e) {
     log('errore nel forzare lo stato Home/current', e && e.message);
   }
+
+  // ---------------------------
+  // FILTER: rimuovi SOLO le briciole che sono esattamente il segmento escluso
+  // Esempio: /footer/ -> rimuove la voce 'Footer' ma NON rimuove /footer/privacy-policy/
+  // ---------------------------
+  (function filterBreadcrumbItems() {
+    if (!Array.isArray(items) || items.length === 0) return;
+
+    const origLen = items.length;
+    items = items.filter(item => {
+      if (!item || !item.url) return false;
+      try {
+        const u = new URL(item.url, rootUrl);
+        // pathname normalizzato con trailing slash
+        const path = (u.pathname || '/').toLowerCase().replace(/\/+$/,'/') ;
+        const parts = path.split('/').filter(Boolean); // ['footer'] or ['footer','privacy-policy']
+
+        // se è esattamente il segmento da escludere (solo un segmento e corrisponde) -> scarta
+        if (parts.length === 1 && excludeSegments.includes(parts[0])) {
+          return false;
+        }
+        // se label è letteralmente 'Footer' (case-insensitive) e pathname corrisponde -> scarta
+        if (item.label && String(item.label).trim().toLowerCase() === 'footer' && parts.length === 1) {
+          return false;
+        }
+
+        // altrimenti mantieni (incluse pagine sotto /footer/...)
+        return true;
+      } catch (e) {
+        return true;
+      }
+    });
+
+    if (items.length !== origLen) {
+      log(`breadcrumb-filter: rimosse ${origLen - items.length} voci corrispondenti a excludeSegments=${JSON.stringify(excludeSegments)}`);
+    }
+
+    // se dopo il filtro rimane vuoto o solo Home, ricostruisci fallback senza i segmenti esclusi:
+    if (!items || items.length === 0) {
+      const p = normalizePath(location.pathname);
+      const parts = p.split('/').filter(Boolean).filter(part => !excludeSegments.includes(part.toLowerCase()));
+      const rebuilt = [];
+      rebuilt.push({ label: 'Home', url: new URL('/', rootUrl).href, current: parts.length === 0 });
+      let cumulative = '/';
+      for (let i = 0; i < parts.length; i++) {
+        cumulative += parts[i] + '/';
+        rebuilt.push({ label: humanize(parts[i]), url: new URL(cumulative, rootUrl).href, current: i === parts.length - 1 });
+      }
+      items = rebuilt;
+      log('breadcrumb-filter: fallback ricostruito escludendo segmenti', parts);
+    }
+  })();
 
   // mount into DOM
   try {

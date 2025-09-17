@@ -108,3 +108,113 @@ h4 {
   opacity: 1;
   pointer-events: auto;
 }
+/* ==========================
+   FIX RESPONSIVE: navbar / header / main per mobile
+   Aggiungi alla fine di index.css
+   ========================== */
+
+/* Assicuriamoci che il container della navbar sia flessibile e wrappi */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* permette il wrap su mobile */
+}
+
+/* Logo più piccolo su schermi piccoli (non altera desktop) */
+.logo {
+  max-width: 80px;   /* desktop */
+  height: auto;
+}
+
+/* Titolo grande: nascondilo su mobile (se occupa troppo) */
+@media (max-width: 768px) {
+  .resize-text,
+  .h2_resize {
+    display: none; /* evita overflow del titolo nella navbar */
+  }
+
+  .navbar-container .logo {
+    max-width: 48px; /* compatto */
+  }
+
+  /* rendiamo il menu icon sempre visibile e sopra gli altri elementi */
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    z-index: 2600;
+  }
+
+  /* Nav menu: di base nascosto su mobile, mostrato quando ha classe .active
+     (manteniamo display:block only when active per non interferire col desktop) */
+  #nav-menu,
+  .nav-menu {
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Stile del menu aperto (posizionato sotto la navbar) */
+  nav.navbar .nav-menu.active,
+  .nav-menu.active {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--background-one);
+    z-index: 2200;
+    padding: 8px 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* voce del menu in colonna per mobile */
+  .nav-menu li {
+    list-style: none;
+    padding: 8px 16px;
+  }
+  .nav-menu li a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Main content padding e wrapping per evitare overflow */
+  main, .content-section {
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Spazio per il scroll indicator (evitiamo collisioni con menu/aside) */
+  #scrollIndicator {
+    right: calc(6px + env(safe-area-inset-right, 0));
+    bottom: calc(120px + env(safe-area-inset-bottom, 0));
+  }
+
+  /* Evita che elementi con larghezze fisse rompano il layout */
+  img, svg, pre, code {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Piccole ottimizzazioni: testo leggibile e line-height su mobile */
+  .content-section {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+/* Ulteriore fallback per schermi molto stretti */
+@media (max-width: 420px) {
+  .navbar-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .logo { max-width: 40px; }
+}
