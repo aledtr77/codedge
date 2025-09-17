@@ -1,3 +1,8 @@
+:root {
+  --aside-hide-offset: 14px; /* margine per nascondere la scrollbar fuori schermo */
+}
+
+/* ---------- BASE ---------- */
 body {
   font-family: var(--main-font);
   margin: 0;
@@ -33,7 +38,6 @@ h1 {
 
 #search {
   width: 250px;
-  /* Larghezza fissa per tutti gli schermi */
   max-width: 100%;
   padding: 12px;
   border: none;
@@ -41,11 +45,11 @@ h1 {
   background-color: var(--background-two);
   color: var(--text-color);
   border: 1px solid;
-  border-color: var(--background-two) var(--background-four)
-    var(--background-four) var(--background-two);
+  border-color: var(--background-two) var(--background-four) var(--background-four) var(--background-two);
   box-shadow: var(--box-shadow);
 }
 
+/* DETAILS / SUMMARY */
 summary {
   padding: 9px 9px 9px 40px;
   background-color: var(--background-five);
@@ -55,13 +59,10 @@ summary {
   display: flex;
   align-items: center;
   border-radius: 6px;
-  /*effetto 3d*/
   border: 1px solid;
-  border-color: var(--background-two) var(--background-four)
-    var(--background-four) var(--background-two);
+  border-color: var(--background-two) var(--background-four) var(--background-four) var(--background-two);
   box-shadow: var(--box-shadow);
 }
-
 summary::before {
   content: "\25BC";
   position: absolute;
@@ -69,7 +70,6 @@ summary::before {
   top: 50%;
   transform: translateY(-50%);
 }
-
 summary:hover {
   background-color: var(--background-six);
 }
@@ -82,46 +82,27 @@ details {
   border-radius: 6px;
   overflow: hidden;
 }
-
 details p {
   padding: 18px;
   text-align: justify;
   margin: 0 18px;
 }
+details[open] > summary::before { content: "\25B2"; }
+details[open] > :not(summary) { animation: slideDown 0.3s ease-out; }
 
-details[open] > summary::before {
-  content: "\25B2";
-}
-
-details[open] > :not(summary) {
-  animation: slideDown 0.3s ease-out;
-}
-
+/* TAGS, LISTE */
 .tag-group {
   font-weight: normal;
   font-size: 0.9em;
   color: var(--text-color);
   margin-left: 20px;
 }
+.tag-description { font-weight: normal; margin-left: 18px; }
 
-.tag-description {
-  font-weight: normal;
-  margin-left: 18px;
-  /* Distanza fissa dal bordo della card */
-}
+ol { margin-left: 20px; padding-right: 18px; line-height: 1.8; }
+ol li { margin-bottom: 15px; text-align: justify; margin: 25px; }
 
-ol {
-  margin-left: 20px;
-  padding-right: 18px;
-  line-height: 1.8;
-}
-
-ol li {
-  margin-bottom: 15px;
-  text-align: justify;
-  margin: 25px;
-}
-
+/* CODE / SNIPPETS */
 .code-container {
   position: relative;
   margin: 20px 18px;
@@ -129,42 +110,26 @@ ol li {
   border-radius: 5px;
   overflow: hidden;
 }
-
 pre {
   margin: 0;
   padding: 40px 15px 15px;
   overflow-x: auto;
-
-  /* aggiunta modifiche mobile first */
-
   white-space: pre-wrap;
-  /* Mantiene i ritorni a capo ma consente la rottura delle righe */
   word-wrap: break-word;
-  /* Spezza le parole lunghe se necessario */
   overflow-wrap: break-word;
-  /* Compatibilità per il wrapping delle parole */
   text-align: left;
-  /* Allinea il testo a sinistra */
 }
-
 code {
   font-family: "Courier New", Courier, monospace;
   color: var(--text-color);
-
-  /* aggiunta modifiche mobile first */
-
   white-space: pre-wrap;
-  /* Spezza le righe automaticamente */
   word-wrap: break-word;
-  /* Spezza le parole lunghe */
   overflow-wrap: break-word;
-  /* Compatibilità con altre versioni del wrapping */
   display: block;
-  /* Mantiene il codice come blocco */
   text-align: left;
-  /* Allinea il testo a sinistra */
 }
 
+/* COPY BUTTON */
 .copy-btn {
   position: absolute;
   top: 5px;
@@ -174,98 +139,48 @@ code {
   color: var(--text-color);
   padding: 6px 10px;
   text-align: center;
-  text-decoration: none;
   display: inline-flex;
   align-items: center;
   font-size: 0.8em;
   cursor: pointer;
-  transition:
-    background-color 0.3s,
-    transform 0.1s;
+  transition: background-color 0.3s, transform 0.1s;
   border-radius: 3px;
   z-index: 10;
 }
+.copy-btn:hover { background-color: var(--background-five); transform: scale(1.05); }
+.copy-btn i { margin-right: 6px; }
 
-.copy-btn:hover {
-  background-color: var(--background-five);
-  transform: scale(1.05);
-}
-
-.copy-btn i {
-  margin-right: 6px;
-}
-
+/* ANIMAZIONI */
 @keyframes slideDown {
-  from {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  to {
-    max-height: 1000px;
-    opacity: 1;
-  }
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 1000px; opacity: 1; }
 }
 
-.main-content {
-  margin-left: 360px;
-}
+/* LAYOUT PRINCIPALE */
+.main-content { margin-left: 360px; }
+main { width: 100%; margin-top: 0; }
 
+/* ASIDE (desktop default) */
 aside {
   position: fixed;
-  top: 210px;
-  /* Modifica questo valore se hai un header fisso */
+  top: 210px; /* regola se l'header cambia altezza */
   left: 0;
   margin-left: 6px;
   width: 350px;
   max-height: 80%;
   background-color: var(--background-two);
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 1000;
   border-radius: 10px;
-  /*effetto 3d*/
   border: 1px solid;
-  border-color: var(--background-two) var(--background-four)
-    var(--background-four) var(--background-two);
+  border-color: var(--background-two) var(--background-four) var(--background-four) var(--background-two);
   box-shadow: var(--box-shadow);
 }
+.aside-content { padding: 10px; }
 
-.aside-content {
-  padding: 10px;
-}
-
-main {
-  width: 100%;
-  margin-top: 0;
-}
-
-/* Stile per la barra di scorrimento dell'aside */
-aside::-webkit-scrollbar {
-  width: 8px;
-}
-
-aside::-webkit-scrollbar-thumb {
-  background-color: var(--background-six);
-  border-radius: 4px;
-}
-
-aside::-webkit-scrollbar-track {
-  background-color: var(--background-two);
-}
-
-/* Stile per il contenuto dell'aside */
-.concept-list,
-.concept-list ul {
-  list-style-type: none;
-  padding-left: 15px;
-  margin: 0;
-}
-
-.concept-list > li {
-  font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
+/* CONTENUTI ASIDE */
+.concept-list, .concept-list ul { list-style-type: none; padding-left: 15px; margin: 0; }
+.concept-list > li { font-weight: bold; margin-top: 15px; margin-bottom: 5px; }
 
 .clickable-item {
   color: var(--text-color);
@@ -274,60 +189,31 @@ aside::-webkit-scrollbar-track {
   padding: 2px 0;
   margin-left: 35px;
 }
+.clickable-item:hover { color: var(--color-three); text-decoration: underline; }
 
-.clickable-item:hover {
-  color: var(--color-three);
-  text-decoration: underline;
-}
+/* SCROLLBAR (neutro) */
+aside::-webkit-scrollbar { width: 8px; }
+aside::-webkit-scrollbar-thumb { background-color: var(--background-six); border-radius: 4px; }
+aside::-webkit-scrollbar-track { background-color: var(--background-two); }
+aside { scrollbar-width: thin; scrollbar-color: var(--background-six) var(--background-two); }
 
-@media (max-height: 650px) {
-  aside {
-    max-height: 75%;
-  }
-}
+/* HEIGHT MEDIA QUERIES */
+@media (max-height: 650px) { aside { max-height: 75%; } }
+@media (max-height: 550px) { aside { max-height: 70%; } }
 
-@media (max-height: 550px) {
-  aside {
-    max-height: 70%;
-  }
-}
+/* small desktop adjustments */
+@media (max-width: 1024px) { .tag-group { display: none; } }
 
-@media (max-width: 1024px) {
-  .tag-group {
-    display: none;
-  }
-}
-
-/* Media query per tablet */
+/* ---------- MOBILE / TABLET (unica media query, mantiene cascata) ---------- */
 @media screen and (max-width: 1180px) {
-  body {
-    font-size: 1em;
-  }
+  body { font-size: 1em; }
+  pre { padding: 20px 10px 10px; }
+  .code-container { margin: 10px; }
+  .copy-btn { font-size: 0.7rem; padding: 5px; }
+  .logo { width: 35px; height: 37px; }
+  #search { max-width: none; }
 
-  pre {
-    padding: 20px 10px 10px;
-  }
-
-  .code-container {
-    margin: 10px;
-  }
-
-  .copy-btn {
-    font-size: 0.7rem;
-    padding: 5px;
-  }
-
-  .logo {
-    width: 35px;
-    height: 37px;
-  }
-
-  #search {
-    max-width: none;
-  }
-
-  /* sezione menu toggle */
-
+  /* sidebar toggle (hamburger sinistro) */
   .sidebar-toggle {
     display: flex;
     flex-direction: column;
@@ -337,100 +223,66 @@ aside::-webkit-scrollbar-track {
     height: 25px;
     position: fixed;
     top: 5px;
-    /* Aggiusta questa altezza in base all'altezza dell'header */
     left: 20px;
     z-index: 1002;
     background-color: transparent;
     border-radius: 3px;
+    cursor: pointer;
   }
-
-  .sidebar-toggle .bar,
-  .menu-icon .bar {
+  .sidebar-toggle .bar, .menu-icon .bar {
     width: 100%;
     height: 3px;
     background-color: var(--text-color);
     transition: all 0.3s;
   }
+  .sidebar-toggle:hover .bar, .menu-icon:hover .bar { background-color: var(--color-three); transform: scale(1.1); }
+  .sidebar-toggle.active .bar:nth-child(1), .menu-icon.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .sidebar-toggle.active .bar:nth-child(2), .menu-icon.active .bar:nth-child(2) { opacity: 0; }
+  .sidebar-toggle.active .bar:nth-child(3), .menu-icon.active .bar:nth-child(3) { transform: rotate(-45deg) translate(7.3px,-7.3px); }
 
-  /* Effetto hover */
-  .sidebar-toggle:hover .bar,
-  .menu-icon:hover .bar {
-    background-color: var(--color-three);
-    /* Cambia colore delle barre */
-    transform: scale(1.1);
-    /* Ingrandisce leggermente le barre */
-  }
+  .main-content.aside-open { margin-left: 0; }
+  main { margin-left: 0; }
+  details { position: relative; z-index: 1; }
+  .main-content { margin-left: 0; }
 
-  .sidebar-toggle.active .bar:nth-child(1),
-  .menu-icon.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .sidebar-toggle.active .bar:nth-child(2),
-  .menu-icon.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .sidebar-toggle.active .bar:nth-child(3),
-  .menu-icon.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(7.3px, -7.3px);
-  }
-
-  .main-content.aside-open {
-    margin-left: 0;
-    /* Rimuovi questo per evitare lo spostamento del contenuto */
-  }
-
-  main {
-    margin-left: 0;
-  }
-
-  details {
-    position: relative;
-    z-index: 1;
-    /* Assicura che i details siano sotto l'aside ma sopra altri elementi */
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-
+  /* ASIDE: mobile behavior — manteniamo lo stesso comportamento usato alla fine del file originale */
   aside {
-    left: -360px;
-    transition: left 0.3s ease;
+    left: 0;
+    position: fixed;
+    top: 210px;
+    width: 250px;
+    max-width: 250px;
+    /* sposto fuori schermo aggiungendo un offset per evitare sfilamenti */
+    transform: translateX(calc(-100% - var(--aside-hide-offset)));
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.18s;
+    will-change: transform;
+    box-shadow: none;
+    pointer-events: none;
+    overflow-y: auto;
+    z-index: 1100;
   }
 
   aside.active {
-    left: 0;
-    max-width: 250px;
+    transform: translateX(0);
+    box-shadow: var(--box-shadow);
+    pointer-events: auto;
   }
+
+  /* small screens */
+  @media (max-width: 480px) {
+    details p, ol { padding-left: 10px; padding-right: 10px; }
+    body { font-size: 0.9em; }
+    .code-container { margin: 5px; }
+    pre { padding: 15px 5px 5px; }
+    /* evita combinare translateX e translateY: mantenuto X-only per coerenza */
+  }
+
+  /* ensure toggle above aside */
+  .sidebar-toggle { z-index: 2600; }
 }
 
-@media (max-width: 480px) {
-  details p,
-  ol {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  body {
-    font-size: 0.9em;
-  }
-
-  .code-container {
-    margin: 5px;
-  }
-
-  pre {
-    padding: 15px 5px 5px;
-  }
-}
-
-.glossari_resize {
-  font-size: 1.5rem;
-  margin-left: 200px;
-}
-
+/* glossari resize helper (visually-hidden on small screens) */
+.glossari_resize { font-size: 1.5rem; margin-left: 200px; }
 @media (max-width: 1180px) {
   .glossari_resize {
     position: absolute;
@@ -446,10 +298,9 @@ aside::-webkit-scrollbar-track {
   }
 }
 
-/* opzionale: comportamento per schermi molto piccoli */
-@media screen and (max-width: 480px) {
-  aside.active {
-    transform: translateY(-45px);      /* meno spostamento su schermi piccoli */
-  }
-}
-
+/* utilities */
+.spacer { height: 60px; }
+.title-box { display: flex; justify-content: space-between; }
+button, button i { transition: all 0.3s ease; }
+button i { margin-right: 5px; }
+button:active { transform: scale(0.95); }

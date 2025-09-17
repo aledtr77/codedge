@@ -191,22 +191,22 @@
           <ol>
             <li>
               <strong>Valore fisso (px)</strong>
-              <pre><code>const THRESHOLD = 120; // px
-if (scrollTop &gt; THRESHOLD) indicator.classList.add("is-visible");
-else indicator.classList.remove("is-visible");</code></pre>
+              <p>Usa una soglia fissa in pixel (es. 120px). Quando l'utente scorre oltre quel valore il pulsante viene
+                mostrato. Metodo semplice, prevedibile e adatto a layout che non cambiano molto fra device.</p>
             </li>
+
             <li>
-              <strong>In base all’altezza dello schermo</strong>
-              <pre><code>const THRESHOLD = window.innerHeight * 0.25; // 25% della viewport
-if (scrollTop &gt; THRESHOLD) indicator.classList.add("is-visible");
-else indicator.classList.remove("is-visible");</code></pre>
+              <strong>In base all'altezza della viewport</strong>
+              <p>Calcola la soglia come percentuale dell'altezza della finestra (es. 25% di window.innerHeight). Utile
+                quando vuoi che il comportamento sia proporzionale alla dimensione dello schermo.</p>
             </li>
+
             <li>
               <strong>In base alla percentuale di pagina scrollata</strong>
-              <pre><code>// se hai già `percent`, es. mostra dopo il 10%:
-if (percent &gt; 10) indicator.classList.add("is-visible");
-else indicator.classList.remove("is-visible");</code></pre>
+              <p>Mostra il pulsante quando l'utente ha scrollato una certa percentuale della pagina (es. dopo il 10% del
+                documento). Funziona bene su pagine molto lunghe o con contenuti dinamici.</p>
             </li>
+
           </ol>
         </li>
       </ul>
