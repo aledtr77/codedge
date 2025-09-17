@@ -163,7 +163,7 @@ main { width: 100%; margin-top: 0; }
 /* ASIDE (desktop default) */
 aside {
   position: fixed;
-  top: 202px; /* regola se l'header cambia altezza */
+  top: 172px; /* regola se l'header cambia altezza */
   left: 0;
   margin-left: 6px;
   width: 350px;

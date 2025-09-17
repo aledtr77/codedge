@@ -25,12 +25,14 @@ header #breadcrumb-container,
 /* reset mirato per il list container (sovrascrive ol {} globali) */
 #breadcrumb-container ol.breadcrumb-list {
   /* reset margin/padding imposti globalmente */
-  padding: 30px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
   list-style: none;
 
   display: flex;
   flex-wrap: nowrap; /* no wrap su larghezze desktop */
-  gap: 0.45rem;
+  
   align-items: center;
   align-content: center;
 
