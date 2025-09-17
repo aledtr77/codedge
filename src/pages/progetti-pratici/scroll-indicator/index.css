@@ -126,7 +126,7 @@ h4 {
 
 /* Logo più piccolo su schermi piccoli (non altera desktop) */
 .logo {
-  max-width: 80px;   /* desktop */
+  max-width: 80px; /* desktop */
   height: auto;
 }
 
@@ -143,7 +143,6 @@ h4 {
 
   /* rendiamo il menu icon sempre visibile e sopra gli altri elementi */
   .menu-icon {
-   
     cursor: pointer;
     z-index: 2600;
   }
@@ -152,8 +151,6 @@ h4 {
      (manteniamo display:block only when active per non interferire col desktop) */
   #nav-menu,
   .nav-menu {
-    display: none;
-    width: 100%;
     box-sizing: border-box;
   }
 
@@ -168,7 +165,7 @@ h4 {
     background: var(--background-one);
     z-index: 2200;
     padding: 8px 0;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
   }
 
   /* voce del menu in colonna per mobile */
@@ -183,7 +180,8 @@ h4 {
   }
 
   /* Main content padding e wrapping per evitare overflow */
-  main, .content-section {
+  main,
+  .content-section {
     padding-left: 12px;
     padding-right: 12px;
     box-sizing: border-box;
@@ -198,7 +196,10 @@ h4 {
   }
 
   /* Evita che elementi con larghezze fisse rompano il layout */
-  img, svg, pre, code {
+  img,
+  svg,
+  pre,
+  code {
     max-width: 100%;
     height: auto;
   }
@@ -216,5 +217,7 @@ h4 {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .logo { max-width: 40px; }
+  .logo {
+    max-width: 40px;
+  }
 }

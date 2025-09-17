@@ -25,7 +25,7 @@ header #breadcrumb-container,
 /* reset mirato per il list container (sovrascrive ol {} globali) */
 #breadcrumb-container ol.breadcrumb-list {
   /* reset margin/padding imposti globalmente */
-  padding: 0;
+  padding: 30px;
   list-style: none;
 
   display: flex;
@@ -41,8 +41,7 @@ header #breadcrumb-container,
   min-height: 26px;
   height: 26px;
   line-height: 26px;
-  /* top right bottom left */
-  margin: 15px 0 25px 20px;
+  
 }
 
 /* assicuriamo che i singoli li non ereditino margin globali */
