@@ -80,20 +80,33 @@ export default async function initBreadcrumbs(opts = {}) {
   // fallbackFromPath: costruisce breadcrumbs dal pathname, saltando eventuali segmenti esclusi
   function fallbackFromPath(rootUrl, pathname, excludeSegments = []) {
     const norm = normalizePath(pathname);
-    const parts = norm.split('/').filter(Boolean);
+    const fullParts = norm.split('/').filter(Boolean); // tutti i segmenti reali
     const items = [];
-    // filter parts but keep deeper parts; excludeSegments are skipped but deeper segments remain
-    const filteredParts = parts.filter(p => !excludeSegments.includes(p.toLowerCase()));
-    items.push({ label: 'Home', url: new URL('/', rootUrl).href, current: filteredParts.length === 0 });
+
+    items.push({ label: 'Home', url: new URL('/', rootUrl).href, current: fullParts.length === 0 });
+
+    // troviamo l'ultimo indice non escluso così da marcare correttamente "current"
+    let lastNonExcludedIndex = -1;
+    for (let i = 0; i < fullParts.length; i++) {
+      if (!excludeSegments.includes(fullParts[i].toLowerCase())) lastNonExcludedIndex = i;
+    }
+
     let cumulative = '/';
-    for (let i = 0; i < filteredParts.length; i++) {
-      cumulative += filteredParts[i] + '/';
+    for (let i = 0; i < fullParts.length; i++) {
+      cumulative += fullParts[i] + '/';
+
+      // se questo segmento è escluso, lo SALTIAMO nella UI ma lo manteniamo nella cumulative
+      if (excludeSegments.includes(fullParts[i].toLowerCase())) {
+        continue;
+      }
+
       items.push({
-        label: humanize(filteredParts[i]),
+        label: humanize(fullParts[i]),
         url: new URL(cumulative, rootUrl).href,
-        current: i === filteredParts.length - 1
+        current: i === lastNonExcludedIndex
       });
     }
+
     if (items.length === 1) items[0].current = true;
     return items;
   }
@@ -251,19 +264,37 @@ export default async function initBreadcrumbs(opts = {}) {
       log(`breadcrumb-filter: rimosse ${origLen - items.length} voci corrispondenti a excludeSegments=${JSON.stringify(excludeSegments)}`);
     }
 
-    // se dopo il filtro rimane vuoto o solo Home, ricostruisci fallback senza i segmenti esclusi:
+    // se dopo il filtro rimane vuoto o solo Home, ricostruisci fallback senza rimuovere il segmento dalla URL
     if (!items || items.length === 0) {
       const p = normalizePath(location.pathname);
-      const parts = p.split('/').filter(Boolean).filter(part => !excludeSegments.includes(part.toLowerCase()));
+      const fullParts = p.split('/').filter(Boolean); // tutti i segmenti
       const rebuilt = [];
-      rebuilt.push({ label: 'Home', url: new URL('/', rootUrl).href, current: parts.length === 0 });
-      let cumulative = '/';
-      for (let i = 0; i < parts.length; i++) {
-        cumulative += parts[i] + '/';
-        rebuilt.push({ label: humanize(parts[i]), url: new URL(cumulative, rootUrl).href, current: i === parts.length - 1 });
+      rebuilt.push({ label: 'Home', url: new URL('/', rootUrl).href, current: fullParts.length === 0 });
+
+      // trova l'ultimo segmento che non è nello exclude (per marcare current)
+      let lastNonExcludedIndex = -1;
+      for (let i = 0; i < fullParts.length; i++) {
+        if (!excludeSegments.includes(fullParts[i].toLowerCase())) lastNonExcludedIndex = i;
       }
+
+      let cumulative = '/';
+      for (let i = 0; i < fullParts.length; i++) {
+        cumulative += fullParts[i] + '/';
+
+        if (excludeSegments.includes(fullParts[i].toLowerCase())) {
+          // non aggiungiamo la briciola per il segmento escluso, però lo includiamo nella cumulative
+          continue;
+        }
+
+        rebuilt.push({
+          label: humanize(fullParts[i]),
+          url: new URL(cumulative, rootUrl).href,
+          current: i === lastNonExcludedIndex
+        });
+      }
+
       items = rebuilt;
-      log('breadcrumb-filter: fallback ricostruito escludendo segmenti', parts);
+      log('breadcrumb-filter: fallback ricostruito escludendo segmenti', fullParts.filter(part => !excludeSegments.includes(part.toLowerCase())));
     }
   })();
 
