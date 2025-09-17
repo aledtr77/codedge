@@ -304,3 +304,5 @@ aside { scrollbar-width: thin; scrollbar-color: var(--background-six) var(--back
 button, button i { transition: all 0.3s ease; }
 button i { margin-right: 5px; }
 button:active { transform: scale(0.95); }
+
+
