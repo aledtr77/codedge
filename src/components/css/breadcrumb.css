@@ -26,7 +26,7 @@ header #breadcrumb-container,
 #breadcrumb-container ol.breadcrumb-list {
   /* reset margin/padding imposti globalmente */
   padding-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-left: 10px;
   list-style: none;
 
@@ -113,6 +113,7 @@ header #breadcrumb-container,
     flex-wrap: wrap;
     height: auto;
     min-height: 24px;
+    padding-top: 30px;
   }
   #breadcrumb-container ol.breadcrumb-list > li.breadcrumb-item {
     height: auto;
@@ -148,4 +149,10 @@ header #breadcrumb-container,
     width: 100%;
     pointer-events: none;
   }
+}
+/* preferibile: consente lo scroll orizzontale ma nasconde quello verticale */
+#breadcrumb-container .breadcrumb-list {
+  overflow-x: auto;
+  overflow-y: hidden;    /* elimina la scrollbar verticale */
+  box-sizing: border-box;
 }
