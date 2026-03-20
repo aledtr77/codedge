@@ -1,1 +1,0 @@
-import"../footer-Ckpdkru4.js";import{i as t}from"../breadcrumb-loader-BtCtay7-.js";document.addEventListener("DOMContentLoaded",()=>{t({selector:"#breadcrumb-container",enableLog:!0,rootUrl:"https://codedge.it/",currentIsLink:!0,onMount:e=>console.log("breadcrumbs montate",e)})});
