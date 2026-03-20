@@ -26,6 +26,8 @@ h1 {
 .nav-menu {
   display: flex;
   list-style-type: none;
+  align-items: center;
+  justify-content: flex-end;
   margin-left: auto;
   padding: 0;
 }
