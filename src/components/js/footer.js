@@ -8,6 +8,8 @@
 (function () {
   'use strict';
 
+  const READY_EVENT = 'codedge:footer-ready';
+
   // Lista di URL da provare in ordine — public/ è servito come root da Vite,
   // quindi la prima voce '/partials/footer.html' è la più corretta.
   const FALLBACKS = [
@@ -15,6 +17,12 @@
     '/site-pages/partials/footer.html',
     '/site-pages/footer.html'
   ];
+
+  function markReady() {
+    if (window.__footerReady) return;
+    window.__footerReady = true;
+    window.dispatchEvent(new Event(READY_EVENT));
+  }
 
   // Inserisce il markup HTML del footer: preferisce il placeholder se presente,
   // altrimenti appende in fondo al body.
@@ -90,10 +98,9 @@
       });
     }
 
-    // esegui alcune volte per coprire caricamenti ritardati
+    // Applichiamo subito e al load completo: i timeout ritardati introducevano
+    // un salto visibile del layout dopo il primo paint.
     setTimeout(adjust, 0);
-    setTimeout(adjust, 400);
-    setTimeout(adjust, 1200);
     window.addEventListener('resize', adjust, { passive: true });
     window.addEventListener('orientationchange', adjust, { passive: true });
     window.addEventListener('load', adjust);
@@ -114,6 +121,7 @@
         const footerEl = document.querySelector('footer');
         if (!footerEl) {
           console.error('Footer: markup inserito ma <footer> non trovato');
+          markReady();
           return;
         }
 
@@ -121,6 +129,7 @@
         initFooterAdjustment(footerEl);
 
         console.log('Footer: caricato correttamente da', url);
+        markReady();
         return;
       } catch (err) {
         console.warn('Footer: errore fetching', url, err && err.message ? err.message : err);
@@ -128,6 +137,7 @@
       }
     }
     console.error('Footer: tutti i tentativi falliti. Controlla che public/partials/footer.html esista e sia servito dal dev server.');
+    markReady();
   }
 
   // Avvia al DOMContentLoaded (comportamento semplice, side-effect voluto)
