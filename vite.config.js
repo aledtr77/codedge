@@ -43,6 +43,71 @@ const htmlMinifyOptions = {
   sortClassName: true
 };
 
+const antiFoucCss = [
+  'html{background:#2a2a2a;color:#f2f2f2}',
+  'body{margin:0;font-family:Verdana,sans-serif;color:#f2f2f2;background:#2a2a2a;line-height:1.6;transition:opacity .12s ease}',
+  'body[data-css-ready="pending"]{opacity:0;visibility:hidden}',
+  'body[data-css-ready="ready"]{opacity:1;visibility:visible}',
+  'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
+  'header{background:#2a2a2a}',
+  'a{color:inherit}',
+  'img{display:block;max-width:100%;height:auto}'
+].join('');
+
+function antiFoucHtmlPlugin() {
+  const criticalStyleRegex = /<style\b[^>]*data-critical-base[^>]*>[\s\S]*?<\/style>\s*/i;
+  const criticalScriptRegex = /<script\b[^>]*data-css-ready[^>]*>[\s\S]*?<\/script>\s*/i;
+  const noScriptRegex = /<noscript\b[^>]*data-critical-base[^>]*>[\s\S]*?<\/noscript>\s*/i;
+  const stylesheetRegex = /<link\b[^>]*rel=(?:"stylesheet"|'stylesheet')[^>]*>\s*/gi;
+  const firstRuntimeAssetRegex = /(<script\b[^>]*type=(?:"module"|'module')[^>]*>[\s\S]*?<\/script>|<script\b[^>]*type=(?:"module"|'module')[^>]*>|<link\b[^>]*rel=(?:"modulepreload"|'modulepreload')[^>]*>\s*)/i;
+
+  return {
+    name: 'anti-fouc-html',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        let updated = html
+          .replace(criticalStyleRegex, '')
+          .replace(noScriptRegex, '')
+          .replace(criticalScriptRegex, '');
+
+        updated = updated.replace(/<body([^>]*)>/i, (_match, attrs = '') => {
+          const cleanedAttrs = attrs.replace(/\sdata-css-ready=(?:"[^"]*"|'[^']*')/i, '');
+          return `<body${cleanedAttrs} data-css-ready="pending">`;
+        });
+
+        const headMatch = updated.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+        if (headMatch) {
+          let headContent = headMatch[1];
+          const stylesheets = headContent.match(stylesheetRegex) || [];
+          headContent = headContent.replace(stylesheetRegex, '');
+
+          const antiFoucTags = [
+            `<style data-critical-base>${antiFoucCss}</style>`,
+            '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1!important;visibility:visible!important}</style></noscript>',
+            ...stylesheets
+          ].join('');
+
+          if (firstRuntimeAssetRegex.test(headContent)) {
+            headContent = headContent.replace(firstRuntimeAssetRegex, `${antiFoucTags}$1`);
+          } else {
+            headContent += antiFoucTags;
+          }
+
+          updated = updated.replace(headMatch[0], `<head>${headContent}</head>`);
+        }
+
+        updated = updated.replace(
+          /<body[^>]*>/i,
+          (match) => `${match}<script data-css-ready>document.body.setAttribute('data-css-ready','ready');</script>`
+        );
+
+        return updated;
+      }
+    }
+  };
+}
+
 // --- plugin DEV: riscrive richieste "pulite" (/risorse/) a /site-pages/risorse/... ---
 function devSitePagesRewrite() {
   return {
@@ -195,6 +260,7 @@ export default defineConfig(({ command }) => {
   };
 
   const plugins = [];
+  plugins.push(antiFoucHtmlPlugin());
   if (command === 'serve') {
     plugins.push(devSitePagesRewrite());
   }
