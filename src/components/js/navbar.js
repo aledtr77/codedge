@@ -9,13 +9,10 @@ const menuIcon = document.querySelector(".menu-icon"),
 menuIcon.addEventListener("click", () => {
   (menuIcon.classList.toggle("active"), navMenu.classList.toggle("active"));
 });
-const logos = document.querySelectorAll(".logo"),
-  headings = document.querySelectorAll(".invisible-text, .resize-text");
+const headings = document.querySelectorAll(".invisible-text, .resize-text");
 function handleResize() {
   window.innerWidth < 860
-    ? (logos.forEach((e) => (e.style.display = "none")),
-      headings.forEach((e) => (e.style.display = "none")))
-    : (logos.forEach((e) => (e.style.display = "")),
-      headings.forEach((e) => (e.style.display = "")));
+    ? headings.forEach((e) => (e.style.display = "none"))
+    : headings.forEach((e) => (e.style.display = ""));
 }
 (window.addEventListener("resize", handleResize), handleResize());
