@@ -73,6 +73,13 @@ section h1 {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.shop-card-media picture,
+.shop-card-screen picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .shop-card-media img {
   width: 100%;
   height: 100%;
@@ -80,39 +87,99 @@ section h1 {
   display: block;
 }
 
-.shop-card-media-custom {
-  display: flex;
+.shop-card-media-etsy {
+  position: relative;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(255, 165, 0, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.24)),
+    var(--background-four);
 }
 
-.shop-card-custom {
+.shop-card-screen {
+  position: absolute;
+  inset: 3.4rem 1.2rem 1.15rem;
+  overflow: hidden;
+  border-radius: 22px;
+  background-color: #f3f0eb;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.2);
+}
+
+.shop-card-screen-bar {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 1.2rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.7rem 0.85rem 0.55rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(242, 236, 229, 0.92));
+}
+
+.shop-card-screen-bar span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-color: rgba(18, 18, 18, 0.22);
+}
+
+.shop-card-screen picture {
+  height: calc(100% - 2.2rem);
+}
+
+.shop-card-media-etsy img {
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  padding: 0.25rem 0.45rem 0.5rem;
+  background-color: #ffffff;
+}
+
+.shop-badge {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  backdrop-filter: blur(8px);
+}
+
+.shop-badge-primary {
+  top: 0.9rem;
+  left: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shop-badge-secondary {
+  top: 0.9rem;
+  right: 0.9rem;
+  background-color: rgba(255, 165, 0, 0.18);
+  color: #ffd8a2;
+  border: 1px solid rgba(255, 165, 0, 0.28);
+}
+
+.shop-badge-corner {
+  right: 1rem;
+  bottom: 1rem;
+  background-color: rgba(15, 15, 15, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shop-card-media-custom {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.18)),
     var(--background-four);
 }
 
-.shop-card-custom span {
-  display: inline-flex;
-  align-self: flex-start;
-  margin-bottom: 0.8rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: var(--text-color);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.shop-card-custom strong {
-  color: var(--text-color);
-  font-size: 1.15rem;
-  line-height: 1.45;
+.shop-card-media-custom img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .shop-card .button-simple {
@@ -126,5 +193,14 @@ section h1 {
 
   .intro p {
     text-align: left;
+  }
+
+  .shop-card-screen {
+    inset: 3.2rem 1rem 1rem;
+  }
+
+  .shop-badge {
+    font-size: 0.68rem;
+    padding: 0.34rem 0.72rem;
   }
 }
