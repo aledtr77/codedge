@@ -131,14 +131,11 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(handleSearch, 300);
 });
 
-const logos = document.querySelectorAll(".logo"),
-  headings = document.querySelectorAll(".invisible-text, .resize-text");
+const headings = document.querySelectorAll(".invisible-text, .resize-text");
 function handleResize() {
   if (window.innerWidth < 1200) {
-    logos.forEach((e) => (e.style.display = "none"));
     headings.forEach((e) => (e.style.display = "none"));
   } else {
-    logos.forEach((e) => (e.style.display = ""));
     headings.forEach((e) => (e.style.display = ""));
   }
 }

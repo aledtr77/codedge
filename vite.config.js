@@ -48,10 +48,12 @@ const antiFoucCss = [
   'body{margin:0;font-family:Verdana,sans-serif;color:#f2f2f2;background:#2a2a2a;line-height:1.6;transition:opacity .12s ease}',
   'body[data-css-ready="pending"]{opacity:0;visibility:hidden}',
   'body[data-css-ready="ready"]{opacity:1;visibility:visible}',
+  '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
   'header{background:#2a2a2a}',
   'a{color:inherit}',
-  'img{display:block;max-width:100%;height:auto}'
+  'img{display:block;max-width:100%;height:auto}',
+  '@media screen and (max-width:860px){.logo{width:48px;max-width:48px}.resize-text,.invisible-text{display:none}}'
 ].join('');
 
 function antiFoucHtmlPlugin() {
