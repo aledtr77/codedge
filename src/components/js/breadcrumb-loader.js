@@ -6,6 +6,7 @@
 //       ma NON rimuove pagine che hanno quel segmento come parent (es. /footer/privacy-policy/ resta).
 
 export default async function initBreadcrumbs(opts = {}) {
+  const READY_EVENT = 'codedge:breadcrumbs-ready';
   const DEFAULT_SELECTOR = '#breadcrumb-container';
   const DEFAULT_JSONS = ['/generated/breadcrumbs.json', '/src/generated/breadcrumbs.json'];
 
@@ -16,9 +17,14 @@ export default async function initBreadcrumbs(opts = {}) {
   const currentIsLink = !!opts.currentIsLink;
 
   const log = (...args) => enableLog && console.log('[breadcrumb-loader]', ...args);
+  const markReady = () => {
+    window.__breadcrumbsReady = true;
+    window.dispatchEvent(new Event(READY_EVENT));
+  };
 
   if (!container) {
     log('container non trovato:', selector);
+    markReady();
     return null;
   }
 
@@ -153,6 +159,7 @@ export default async function initBreadcrumbs(opts = {}) {
 
   if (window.__breadcrumbsLoaded && !opts.force) {
     log('breadcrumbs già caricate — usa {force:true} per forzare');
+    markReady();
     return window.__breadcrumbsItems || null;
   }
 
@@ -315,5 +322,6 @@ export default async function initBreadcrumbs(opts = {}) {
     try { opts.onMount(items); } catch (e) { log('onMount callback error', e && e.message); }
   }
 
+  markReady();
   return items;
 }

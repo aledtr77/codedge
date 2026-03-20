@@ -1,83 +1,118 @@
+// src/components/js/navbar-loader.js
+// Carica il partial della nav e segnala quando la navbar e' pronta,
+// cosi' il reveal iniziale puo' aspettare il layout definitivo.
+
 !(function () {
   "use strict";
+
   if (window.__navLoaderActive) return;
-  window.__navLoaderActive = !0;
-  const e = {
+  window.__navLoaderActive = true;
+
+  const READY_EVENT = "codedge:nav-ready";
+  const config = {
     placeholderSelector: "#nav-menu",
     partialPath: "/partials/nav.html",
     fetchOptions: { cache: "no-store" },
-    enableLog: !1,
-    forceReload: !1,
+    enableLog: false,
+    forceReload: false,
   };
-  function log(...t) {
-    e.enableLog && console.log("[nav-loader]", ...t);
+
+  function log(...args) {
+    if (config.enableLog) console.log("[nav-loader]", ...args);
   }
+
+  function markReady() {
+    if (window.__navReady) return;
+    window.__navReady = true;
+    window.dispatchEvent(new Event(READY_EVENT));
+  }
+
+  function normalizePath(pathname) {
+    const clean = String(pathname || "")
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/index\.html$/i, "")
+      .replace(/\/+$/g, "");
+
+    return clean === "" ? "/" : clean;
+  }
+
+  function markCurrent(container) {
+    const currentPath = normalizePath(location.pathname || "/");
+
+    container.querySelectorAll("a.nav-link").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      if (/^(mailto:|tel:|javascript:|#)/i.test(href)) return;
+
+      let targetPath;
+      try {
+        targetPath = new URL(href, location.origin).pathname;
+      } catch {
+        targetPath = href;
+      }
+
+      targetPath = normalizePath(targetPath);
+
+      if (targetPath === currentPath) {
+        link.setAttribute("aria-current", "page");
+        link.classList.add("is-active");
+      } else {
+        link.removeAttribute("aria-current");
+        link.classList.remove("is-active");
+      }
+    });
+  }
+
   async function loadNav() {
-    const t = document.querySelector(e.placeholderSelector);
-    if (t)
-      if ("true" !== t.dataset.partialLoaded || e.forceReload)
-        try {
-          const a = await fetch(e.partialPath, e.fetchOptions);
-          if (!a.ok)
-            return void console.error(
-              "[nav-loader] fetch fallito:",
-              a.status,
-              e.partialPath,
-            );
-          const o = await a.text(),
-            r = new DOMParser().parseFromString(o, "text/html"),
-            n = r.querySelector("ul"),
-            i = n ? n.innerHTML.trim() : r.body.innerHTML.trim(),
-            l = (t.innerHTML || "").trim();
-          if (l && l === i && !e.forceReload)
-            return (
-              log(
-                "Contenuto identico già presente nel placeholder, skip iniezione.",
-              ),
-              void (t.dataset.partialLoaded = "true")
-            );
-          ((t.innerHTML = ""),
-            (t.innerHTML = n ? n.innerHTML : r.body.innerHTML),
-            (t.dataset.partialLoaded = "true"),
-            log("Nav iniettata con successo."),
-            (function markCurrent(e) {
-              const t = normalizePath(location.pathname || "/");
-              e.querySelectorAll("a.nav-link").forEach((e) => {
-                const a = e.getAttribute("href") || "";
-                if (/^(mailto:|tel:|javascript:|#)/i.test(a)) return;
-                let o;
-                try {
-                  o = new URL(a, location.origin).pathname;
-                } catch {
-                  o = a;
-                }
-                ((o = normalizePath(o)),
-                  o === t
-                    ? (e.setAttribute("aria-current", "page"),
-                      e.classList.add("is-active"))
-                    : (e.removeAttribute("aria-current"),
-                      e.classList.remove("is-active")));
-              });
-            })(t));
-        } catch (e) {
-          console.error("[nav-loader] errore:", e);
-        }
-      else log("Placeholder già popolato; esco.");
-    else
-      console.warn(
-        "[nav-loader] placeholder non trovato:",
-        e.placeholderSelector,
-      );
+    const placeholder = document.querySelector(config.placeholderSelector);
+
+    if (!placeholder) {
+      console.warn("[nav-loader] placeholder non trovato:", config.placeholderSelector);
+      markReady();
+      return;
+    }
+
+    if (placeholder.dataset.partialLoaded === "true" && !config.forceReload) {
+      log("Placeholder gia' popolato; esco.");
+      markReady();
+      return;
+    }
+
+    try {
+      const response = await fetch(config.partialPath, config.fetchOptions);
+      if (!response.ok) {
+        console.error("[nav-loader] fetch fallito:", response.status, config.partialPath);
+        markReady();
+        return;
+      }
+
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const list = doc.querySelector("ul");
+      const nextHtml = (list ? list.innerHTML : doc.body.innerHTML).trim();
+      const currentHtml = (placeholder.innerHTML || "").trim();
+
+      if (currentHtml && currentHtml === nextHtml && !config.forceReload) {
+        log("Contenuto identico gia' presente nel placeholder, skip iniezione.");
+        placeholder.dataset.partialLoaded = "true";
+        markCurrent(placeholder);
+        markReady();
+        return;
+      }
+
+      placeholder.innerHTML = "";
+      placeholder.innerHTML = list ? list.innerHTML : doc.body.innerHTML;
+      placeholder.dataset.partialLoaded = "true";
+
+      markCurrent(placeholder);
+      log("Nav iniettata con successo.");
+      markReady();
+    } catch (error) {
+      console.error("[nav-loader] errore:", error);
+      markReady();
+    }
   }
-  function normalizePath(e) {
-    return "" ===
-      (e = (e = (e = (e || "").split("?")[0].split("#")[0]).replace(
-        /index\.html$/i,
-        "",
-      )).replace(/\/+$/g, ""))
-      ? "/"
-      : e;
-  }
-  (document.addEventListener("DOMContentLoaded", loadNav),
-    (window.navLoader = { load: loadNav, config: e }));
+
+  document.addEventListener("DOMContentLoaded", loadNav);
+  window.navLoader = { load: loadNav, config };
 })();
