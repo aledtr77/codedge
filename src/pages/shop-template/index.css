@@ -303,6 +303,10 @@ section h1 {
   opacity: 1;
 }
 
+.shop-callout-copy-custom .shop-action-button {
+  margin-top: 1rem;
+}
+
 .shop-callout-media-custom {
   min-height: 250px;
   border-radius: 18px;
