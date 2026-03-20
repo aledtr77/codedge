@@ -113,6 +113,19 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", loadNav);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadNav);
+  } else {
+    loadNav();
+  }
+
+  window.addEventListener("pageshow", () => {
+    const placeholder = document.querySelector(config.placeholderSelector);
+    if (!placeholder) return;
+    if (placeholder.children.length === 0 || placeholder.dataset.partialLoaded !== "true") {
+      loadNav();
+    }
+  });
+
   window.navLoader = { load: loadNav, config };
 })();
