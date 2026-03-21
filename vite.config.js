@@ -63,7 +63,7 @@ const antiFoucRevealScript = [
   'if(pending===0)resolve();});}',
   'function waitForFonts(){if(!document.fonts||!document.fonts.ready)return Promise.resolve();return Promise.race([document.fonts.ready,new Promise(function(resolve){setTimeout(resolve,1500);})]);}',
   'function waitForFlagOrEvent(flag,eventName,timeout){if(window[flag])return Promise.resolve();return new Promise(function(resolve){var done=false;function finish(){if(done)return;done=true;window.removeEventListener(eventName,finish);resolve();}window.addEventListener(eventName,finish,{once:true});setTimeout(finish,timeout||1500);});}',
-  'Promise.all([waitForStyles(),waitForFonts(),waitForFlagOrEvent("__navReady","codedge:nav-ready",1500),waitForFlagOrEvent("__footerReady","codedge:footer-ready",1500),waitForFlagOrEvent("__breadcrumbsReady","codedge:breadcrumbs-ready",1500)]).finally(reveal);',
+  'Promise.all([waitForStyles(),waitForFonts(),waitForFlagOrEvent("__navReady","codedge:nav-ready",1500),waitForFlagOrEvent("__footerReady","codedge:footer-ready",1500)]).finally(reveal);',
   'window.addEventListener("pageshow",reveal,{once:true});',
   'setTimeout(reveal,3000);',
   '})();'

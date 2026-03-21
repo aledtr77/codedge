@@ -4,7 +4,6 @@
 import '@/styles/components/main.css';
 import '@/styles/components/navbar.css';
 import '@/styles/components/footer.css';
-import '@/styles/components/breadcrumb.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // CSS specifico pagina
@@ -20,18 +19,8 @@ import 'prismjs/components/prism-javascript.js';
 import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
-import initBreadcrumbs from '@/scripts/components/breadcrumb-loader.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // --- breadcrumbs (manteniamo la tua configurazione) ---
-  initBreadcrumbs({
-    selector: "#breadcrumb-container",
-    enableLog: true,
-    rootUrl: "https://codedge.it/",
-    currentIsLink: true,
-    onMount: (items) => console.log("mounted", items),
-  });
-
   // --- import condizionale del modulo degli snippet (solo se servono) ---
   if (document.querySelector('.snippet-box') || document.querySelector('.snippet-sidebar')) {
     try {
@@ -64,6 +53,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ('requestIdleCallback' in window) requestIdleCallback(runPrism);
   else setTimeout(runPrism, 0);
 });
-
 
 

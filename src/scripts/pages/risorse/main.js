@@ -7,7 +7,6 @@ import "@/styles/components/navbar.css";
 import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
-import "@/styles/components/breadcrumb.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // CSS specifico pagina
@@ -19,14 +18,4 @@ import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
-import initBreadcrumbs from "@/scripts/components/breadcrumb-loader.js";
-
-document.addEventListener("DOMContentLoaded", () => {
-  initBreadcrumbs({
-    selector: "#breadcrumb-container",
-    enableLog: true,
-    rootUrl: "https://codedge.it/",
-    currentIsLink: true, // <- rende cliccabile anche l'ultimo elemento
-    onMount: (items) => console.log("mounted", items),
-  });
-});
+document.addEventListener("DOMContentLoaded", () => {});
