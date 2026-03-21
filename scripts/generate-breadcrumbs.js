@@ -3,10 +3,10 @@
  * scripts/generate-breadcrumbs.js
  *
  * Adattato al working tree di Ale (project-vite).
- * - Scansiona: site-pages/ + public/partials/ (poi puoi estendere)
+ * - Scansiona: pages/ + public/partials/ (poi puoi estendere)
  * - Produce: src/generated/breadcrumbs.json
  * - ROOT_URL di default: https://codedge.it/ (override con env ROOT_URL)
- * - Rimuove segmenti "site-pages", "html", "_includes", "partials", "assets", "public"
+ * - Rimuove segmenti "pages", "site-pages", "html", "_includes", "partials", "assets", "public"
  * - Normalizza index.html -> '/'
  * - Garantisce URL assoluti (rootUrl + path)
  *
@@ -18,7 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ENTRY_DIRS = ['site-pages', 'public/partials', 'public']; // ordine: priorità
+const ENTRY_DIRS = ['pages', 'public/partials', 'public']; // ordine: priorità
 const OUT_DIR = path.join('src', 'generated');
 const OUT_FILE = path.join(OUT_DIR, 'breadcrumbs.json');
 const DEFAULT_ROOT = 'https://codedge.it/';
@@ -28,7 +28,7 @@ const ROOT_URL = RAW_ROOT.endsWith('/') ? RAW_ROOT : RAW_ROOT + '/';
 
 // Segmenti da ignorare nei breadcrumb (non mostrati)
 const IGNORE_SEGMENTS = new Set([
-  'site-pages', 'site_pages', 'html', '_includes', 'includes', 'partials', 'public', 'assets'
+  'pages', 'site-pages', 'site_pages', 'html', '_includes', 'includes', 'partials', 'public', 'assets'
 ]);
 
 function log(...args) {
@@ -64,6 +64,7 @@ function normalizeFsToUrlPath(fsPath) {
   rel = rel.replace(/\/html\//g, '/');
 
   // rimuovi prefissi che non vogliamo mostrare
+  rel = rel.replace(/^pages\//, '');
   rel = rel.replace(/^site-pages\//, '');
   rel = rel.replace(/^public\//, '');
   rel = rel.replace(/^public\/partials\//, '');
@@ -140,7 +141,7 @@ function main() {
   for (const f of found) {
     try {
       const urlPath = normalizeFsToUrlPath(f);
-      // overwrite se duplicate: l'ultima occorrenza vince (public/partials vs site-pages)
+      // overwrite se duplicate: l'ultima occorrenza vince (public/partials vs pages)
       map[urlPath] = buildBreadcrumbItems(urlPath);
     } catch (err) {
       log('errore su', f, err && err.message);

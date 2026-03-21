@@ -1,7 +1,7 @@
 // src/components/js/breadcrumb-loader.js
 // ES module loader per breadcrumbs (importa e chiama esplicitamente).
 // Opzioni: { selector, enableLog, jsonCandidates, rootUrl, onMount, force, currentIsLink, excludeSegments }
-// Patch: normalizePath rimuove eventuali '/site-pages/' e '/html/' residui.
+// Patch: normalizePath rimuove eventuali '/pages/', '/site-pages/' e '/html/' residui.
 // Nota: excludeSegments rimuove SOLO la briciola che rappresenta esattamente quel segmento,
 //       ma NON rimuove pagine che hanno quel segmento come parent (es. /footer/privacy-policy/ resta).
 
@@ -33,7 +33,9 @@ export default async function initBreadcrumbs(opts = {}) {
     if (!p) p = location.pathname || '/';
     p = String(p).split('?')[0].split('#')[0];
 
-    // rimuove '/site-pages/' e '/html/' residui
+    // rimuove '/pages/', '/site-pages/' e '/html/' residui
+    p = p.replace(/\/pages\//g, '/');
+    p = p.replace(/^\/pages(\/?)/, '/');
     p = p.replace(/\/site-pages\//g, '/');
     p = p.replace(/^\/site-pages(\/?)/, '/');
     p = p.replace(/\/html\//g, '/');
@@ -189,7 +191,7 @@ export default async function initBreadcrumbs(opts = {}) {
     items = json.pages[currentPath];
 
     if (!items) {
-      const alt = currentPath.replace(/^\/(site-pages|html)\//, '/');
+      const alt = currentPath.replace(/^\/(pages|site-pages|html)\//, '/');
       if (json.pages[alt]) items = json.pages[alt];
     }
 

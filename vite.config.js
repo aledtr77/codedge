@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import { minify } from 'html-minifier-terser';
 
-const ENTRY_DIR = 'site-pages';
+const ENTRY_DIR = 'pages';
 
 function scanEntries(dir) {
   const root = path.resolve(process.cwd(), dir);
@@ -123,10 +123,10 @@ function antiFoucHtmlPlugin() {
   };
 }
 
-// --- DEV: riscrive URL pulite (/risorse/) verso site-pages/<route>/index.html ---
-function devSitePagesRewrite() {
+// --- DEV: riscrive URL pulite (/risorse/) verso pages/<route>/index.html ---
+function devPagesRewrite() {
   return {
-    name: 'dev-site-pages-rewrite',
+    name: 'dev-pages-rewrite',
     apply: 'serve',
     configureServer(server) {
       server.middlewares.use((req, _res, next) => {
@@ -137,7 +137,7 @@ function devSitePagesRewrite() {
         if (!pathname || pathname.startsWith('//')) return next();
 
         const skipPrefixes = [
-          '/site-pages/',
+          '/pages/',
           '/src/',
           '/@vite/',
           '/@fs/',
@@ -157,7 +157,7 @@ function devSitePagesRewrite() {
           : path.join(process.cwd(), ENTRY_DIR, cleanPath, 'index.html');
 
         if (fs.existsSync(candidate)) {
-          const rewritten = cleanPath === '' ? '/site-pages/index.html' : `/site-pages/${cleanPath}/index.html`;
+          const rewritten = cleanPath === '' ? '/pages/index.html' : `/pages/${cleanPath}/index.html`;
           req.url = query ? `${rewritten}?${query}` : rewritten;
         }
 
@@ -167,21 +167,21 @@ function devSitePagesRewrite() {
   };
 }
 
-// Build: sposta i file generati in dist/site-pages/* dentro dist/*
-function moveSitePagesToRootPlugin(outDir) {
+// Build: sposta i file generati in dist/pages/* dentro dist/*
+function movePagesToRootPlugin(outDir) {
   return {
-    name: 'move-site-pages-to-root',
+    name: 'move-pages-to-root',
     apply: 'build',
     writeBundle() {
       const distRoot = path.resolve(process.cwd(), outDir);
-      const sitePagesRoot = path.join(distRoot, 'site-pages');
-      if (!fs.existsSync(sitePagesRoot)) return;
+      const pagesRoot = path.join(distRoot, 'pages');
+      if (!fs.existsSync(pagesRoot)) return;
 
       try {
-        fs.cpSync(sitePagesRoot, distRoot, { recursive: true });
-        fs.rmSync(sitePagesRoot, { recursive: true, force: true });
+        fs.cpSync(pagesRoot, distRoot, { recursive: true });
+        fs.rmSync(pagesRoot, { recursive: true, force: true });
       } catch (e) {
-        this.error(`[move-site-pages] errore durante lo spostamento: ${e.message}`);
+        this.error(`[move-pages] errore durante lo spostamento: ${e.message}`);
       }
     }
   };
@@ -195,7 +195,7 @@ export default defineConfig(({ command }) => {
   if (Object.keys(entries).length > 0) {
     rollupInput = Object.fromEntries(Object.entries(entries));
   } else {
-    const fallback = path.resolve(process.cwd(), 'site-pages/index.html');
+    const fallback = path.resolve(process.cwd(), 'pages/index.html');
     if (fs.existsSync(fallback)) {
       rollupInput = { index: fallback };
       console.warn('[vite.config] no entries found, falling back to', fallback);
@@ -221,11 +221,11 @@ export default defineConfig(({ command }) => {
   const plugins = [];
   plugins.push(antiFoucHtmlPlugin());
   if (command === 'serve') {
-    plugins.push(devSitePagesRewrite());
+    plugins.push(devPagesRewrite());
   }
   if (command === 'build') {
     plugins.push(htmlMinifierPlugin);
-    plugins.push(moveSitePagesToRootPlugin(outDir));
+    plugins.push(movePagesToRootPlugin(outDir));
   }
 
   return {
