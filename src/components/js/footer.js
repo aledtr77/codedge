@@ -14,6 +14,8 @@
   // quindi la prima voce '/partials/footer.html' è la più corretta.
   const FALLBACKS = [
     '/partials/footer.html',
+    '/pages/partials/footer.html',
+    '/pages/footer.html',
     '/site-pages/partials/footer.html',
     '/site-pages/footer.html'
   ];
