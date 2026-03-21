@@ -155,7 +155,6 @@ function main() {
   // write output
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
   const output = {
-    generatedAt: new Date().toISOString(),
     rootUrl: ROOT_URL,
     pages: map
   };
