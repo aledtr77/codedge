@@ -2,7 +2,7 @@
 
 Sito: [https://codedge.it](https://codedge.it)
 
-![Anteprima Shop Template](public/images/shop-template/index.png)
+![Anteprima Shop Template](src/assets/images/shop-template/index.png)
 
 ## Cos'e questo sito
 Codedge e il mio spazio personale dove studio, provo e pubblico front-end.
