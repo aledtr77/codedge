@@ -1,8 +1,11 @@
 {
+  "id": "/",
   "name": "Codedge.it",
   "short_name": "Codedge.it",
   "description": "Tools e risorse gratuite — Codedge",
+  "lang": "it-IT",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#00A8FF",
