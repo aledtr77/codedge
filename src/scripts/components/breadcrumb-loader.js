@@ -8,7 +8,7 @@
 export default async function initBreadcrumbs(opts = {}) {
   const READY_EVENT = 'codedge:breadcrumbs-ready';
   const DEFAULT_SELECTOR = '#breadcrumb-container';
-  const DEFAULT_JSONS = ['/generated/breadcrumbs.json', '/src/generated/breadcrumbs.json'];
+  const DEFAULT_JSONS = [];
 
   const selector = opts.selector || DEFAULT_SELECTOR;
   const container = typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -166,7 +166,7 @@ export default async function initBreadcrumbs(opts = {}) {
   }
 
   let rootUrl = opts.rootUrl || null;
-  const loaded = await tryLoadJson(jsonCandidates);
+  const loaded = jsonCandidates.length ? await tryLoadJson(jsonCandidates) : null;
   let json = null;
   if (loaded) {
     json = loaded.json;
