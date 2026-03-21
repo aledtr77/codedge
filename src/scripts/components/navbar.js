@@ -1,3 +1,5 @@
+import "@/scripts/components/logo-loader.js";
+
 document.addEventListener("click", (e) => {
   navMenu.contains(e.target) ||
     menuIcon.contains(e.target) ||
