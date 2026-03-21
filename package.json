@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "gen:breadcrumbs": "node scripts/generate-breadcrumbs.js",
-    "dev": "npm run gen:breadcrumbs && vite",
-    "prebuild": "npm run gen:breadcrumbs",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5000"
   },
