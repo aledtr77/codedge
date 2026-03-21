@@ -1,4 +1,5 @@
 import "@/scripts/components/logo-loader.js";
+import "@/scripts/components/pwa.js";
 
 document.addEventListener("click", (e) => {
   navMenu.contains(e.target) ||
