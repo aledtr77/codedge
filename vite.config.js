@@ -16,11 +16,9 @@ function scanEntries(dir) {
     for (const it of list) {
       const full = path.join(cur, it.name);
       if (it.isDirectory()) walk(full);
-      else if (it.isFile() && it.name.endsWith('.html')) {
-        const rel = path.relative(root, full).split(path.sep).join('/');
-        let key = rel.replace(/\.html$/, '');
-        key = key.replace(/\/index$/, ''); // folder/index.html -> folder
-        if (key === '') key = 'index';
+      else if (it.isFile() && it.name === 'index.html') {
+        const relDir = path.relative(root, path.dirname(full)).split(path.sep).join('/');
+        const key = relDir === '' ? 'index' : relDir;
         inputs[key] = path.resolve(full);
       }
     }
@@ -125,46 +123,42 @@ function antiFoucHtmlPlugin() {
   };
 }
 
-// --- plugin DEV: riscrive richieste "pulite" (/risorse/) a /site-pages/risorse/... ---
+// --- DEV: riscrive URL pulite (/risorse/) verso site-pages/<route>/index.html ---
 function devSitePagesRewrite() {
   return {
     name: 'dev-site-pages-rewrite',
-    apply: 'serve', // SOLO in dev (vite serve)
+    apply: 'serve',
     configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((req, _res, next) => {
         if (req.method !== 'GET') return next();
         if (!req.url) return next();
 
-        // non toccare richieste che già puntano a /site-pages o asset noti
+        const [pathname, query = ''] = req.url.split('?');
+        if (!pathname || pathname.startsWith('//')) return next();
+
         const skipPrefixes = [
-          '/site-pages/', '/src/', '/@vite/', '/@fs/', '/node_modules/', '/api/',
-          '/favicon.ico', '/icons/', '/css/', '/js/', '/assets/', '/_app/', '/assets/'
+          '/site-pages/',
+          '/src/',
+          '/@vite/',
+          '/@fs/',
+          '/node_modules/',
+          '/assets/',
+          '/icons/',
+          '/api/'
         ];
-        if (skipPrefixes.some(p => req.url.startsWith(p))) return next();
-        if (req.url.startsWith('//')) return next(); // protocol-relative
+        if (skipPrefixes.some((p) => pathname.startsWith(p))) return next();
 
-        // normalizza path (rimuove query string e trailing slash)
-        const orig = req.url.split('?')[0];
-        const urlPath = orig.replace(/^\/+/, '').replace(/\/+$/, ''); // no leading, no trailing slash
-        // candidate files under site-pages
-        const candidatePaths = [
-          path.join(process.cwd(), 'site-pages', urlPath),                     // site-pages/risorse (file)
-          path.join(process.cwd(), 'site-pages', urlPath + '.html'),           // site-pages/risorse.html
-          path.join(process.cwd(), 'site-pages', urlPath, 'index.html')        // site-pages/risorse/index.html
-        ];
+        // evita rewrite di richieste file espliciti (es. /robots.txt)
+        if (path.extname(pathname)) return next();
 
-        for (const p of candidatePaths) {
-          if (fs.existsSync(p) && fs.statSync(p).isFile()) {
-            // riscrivi la richiesta verso l'html corretto sotto /site-pages
-            if (fs.existsSync(path.join(process.cwd(), 'site-pages', urlPath, 'index.html'))) {
-              req.url = '/site-pages/' + (urlPath === '' ? 'index.html' : urlPath + '/index.html');
-            } else if (fs.existsSync(path.join(process.cwd(), 'site-pages', urlPath + '.html'))) {
-              req.url = '/site-pages/' + urlPath + '.html';
-            } else {
-              req.url = '/site-pages/' + urlPath;
-            }
-            break;
-          }
+        const cleanPath = pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+        const candidate = cleanPath === ''
+          ? path.join(process.cwd(), ENTRY_DIR, 'index.html')
+          : path.join(process.cwd(), ENTRY_DIR, cleanPath, 'index.html');
+
+        if (fs.existsSync(candidate)) {
+          const rewritten = cleanPath === '' ? '/site-pages/index.html' : `/site-pages/${cleanPath}/index.html`;
+          req.url = query ? `${rewritten}?${query}` : rewritten;
         }
 
         next();
@@ -173,72 +167,22 @@ function devSitePagesRewrite() {
   };
 }
 
-// plugin che sposta i file generati da dist/site-pages/* -> dist/* e riscrive riferimenti "/site-pages/" in HTML
+// Build: sposta i file generati in dist/site-pages/* dentro dist/*
 function moveSitePagesToRootPlugin(outDir) {
   return {
     name: 'move-site-pages-to-root',
     apply: 'build',
-    async writeBundle() {
+    writeBundle() {
       const distRoot = path.resolve(process.cwd(), outDir);
       const sitePagesRoot = path.join(distRoot, 'site-pages');
       if (!fs.existsSync(sitePagesRoot)) return;
 
-      function moveRecursive(srcDir, dstDir, basePrefix) {
-        const entries = fs.readdirSync(srcDir, { withFileTypes: true });
-        for (const e of entries) {
-          const src = path.join(srcDir, e.name);
-          const rel = path.relative(basePrefix, src);
-          const dest = path.join(dstDir, rel);
-
-          if (e.isDirectory()) {
-            if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
-            moveRecursive(src, dstDir, basePrefix);
-          } else if (e.isFile()) {
-            fs.mkdirSync(path.dirname(dest), { recursive: true });
-            try { fs.renameSync(src, dest); }
-            catch {
-              fs.copyFileSync(src, dest);
-              fs.unlinkSync(src);
-            }
-          }
-        }
-      }
-
       try {
-        moveRecursive(sitePagesRoot, distRoot, sitePagesRoot);
-
-        // rimuovi ricorsivamente site-pages (tentativo)
-        const rim = (d) => {
-          if (!fs.existsSync(d)) return;
-          for (const c of fs.readdirSync(d)) {
-            const ch = path.join(d, c);
-            if (fs.statSync(ch).isDirectory()) rim(ch);
-            else fs.unlinkSync(ch);
-          }
-          try { fs.rmdirSync(d); } catch (e) {}
-        };
-        rim(sitePagesRoot);
+        fs.cpSync(sitePagesRoot, distRoot, { recursive: true });
+        fs.rmSync(sitePagesRoot, { recursive: true, force: true });
       } catch (e) {
         this.error(`[move-site-pages] errore durante lo spostamento: ${e.message}`);
       }
-
-      // riscrivi riferimenti dentro gli HTML che puntano esplicitamente a /site-pages/...
-      function rewriteHtmlFiles(root) {
-        const list = fs.readdirSync(root, { withFileTypes: true });
-        for (const it of list) {
-          const full = path.join(root, it.name);
-          if (it.isDirectory()) rewriteHtmlFiles(full);
-          else if (it.isFile() && it.name.endsWith('.html')) {
-            let txt = fs.readFileSync(full, 'utf8');
-            const updated = txt
-              .replace(/(["'\(])\/site-pages\//g, (m, p1) => `${p1}/`) // attr="/site-pages/.."
-              .replace(/https?:\/\/[^"']+\/site-pages\//g, (m) => m);   // non toccare URL assoluti
-            if (updated !== txt) fs.writeFileSync(full, updated, 'utf8');
-          }
-        }
-      }
-
-      try { rewriteHtmlFiles(distRoot); } catch (e) { this.warn(`[move-site-pages] rewriteHtmlFiles fallito: ${e.message}`); }
     }
   };
 }
@@ -246,8 +190,6 @@ function moveSitePagesToRootPlugin(outDir) {
 export default defineConfig(({ command }) => {
   const outDir = 'dist';
   const entries = scanEntries(ENTRY_DIR) || {};
-
-  console.log('[vite.config] found html entries:', Object.keys(entries));
 
   let rollupInput;
   if (Object.keys(entries).length > 0) {

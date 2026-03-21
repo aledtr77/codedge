@@ -1,5 +1,4 @@
 {
-  "generatedAt": "2026-03-20T22:22:47.255Z",
   "rootUrl": "https://codedge.it/",
   "pages": {
     "/footer/chi-sono/": [
@@ -70,6 +69,30 @@
         "current": true
       }
     ],
+    "/index/": [
+      {
+        "label": "Home",
+        "url": "https://codedge.it/",
+        "current": false
+      },
+      {
+        "label": "Index",
+        "url": "https://codedge.it/index/",
+        "current": true
+      }
+    ],
+    "/percorsi-apprendimento/": [
+      {
+        "label": "Home",
+        "url": "https://codedge.it/",
+        "current": false
+      },
+      {
+        "label": "Percorsi Apprendimento",
+        "url": "https://codedge.it/percorsi-apprendimento/",
+        "current": true
+      }
+    ],
     "/progetti-pratici/card-interattive/": [
       {
         "label": "Home",
@@ -101,6 +124,18 @@
       {
         "label": "Form",
         "url": "https://codedge.it/progetti-pratici/form/",
+        "current": true
+      }
+    ],
+    "/progetti-pratici/": [
+      {
+        "label": "Home",
+        "url": "https://codedge.it/",
+        "current": false
+      },
+      {
+        "label": "Progetti Pratici",
+        "url": "https://codedge.it/progetti-pratici/",
         "current": true
       }
     ],
@@ -189,6 +224,18 @@
         "current": true
       }
     ],
+    "/risorse/": [
+      {
+        "label": "Home",
+        "url": "https://codedge.it/",
+        "current": false
+      },
+      {
+        "label": "Risorse",
+        "url": "https://codedge.it/risorse/",
+        "current": true
+      }
+    ],
     "/risorse/snippet-library/": [
       {
         "label": "Home",
@@ -203,6 +250,18 @@
       {
         "label": "Snippet Library",
         "url": "https://codedge.it/risorse/snippet-library/",
+        "current": true
+      }
+    ],
+    "/shop-template/": [
+      {
+        "label": "Home",
+        "url": "https://codedge.it/",
+        "current": false
+      },
+      {
+        "label": "Shop Template",
+        "url": "https://codedge.it/shop-template/",
         "current": true
       }
     ],
@@ -288,66 +347,6 @@
       {
         "label": "Generatore Gradienti",
         "url": "https://codedge.it/strumenti/generatore-gradienti/",
-        "current": true
-      }
-    ],
-    "/index/": [
-      {
-        "label": "Home",
-        "url": "https://codedge.it/",
-        "current": false
-      },
-      {
-        "label": "Index",
-        "url": "https://codedge.it/index/",
-        "current": true
-      }
-    ],
-    "/percorsi-apprendimento/": [
-      {
-        "label": "Home",
-        "url": "https://codedge.it/",
-        "current": false
-      },
-      {
-        "label": "Percorsi Apprendimento",
-        "url": "https://codedge.it/percorsi-apprendimento/",
-        "current": true
-      }
-    ],
-    "/progetti-pratici/": [
-      {
-        "label": "Home",
-        "url": "https://codedge.it/",
-        "current": false
-      },
-      {
-        "label": "Progetti Pratici",
-        "url": "https://codedge.it/progetti-pratici/",
-        "current": true
-      }
-    ],
-    "/risorse/": [
-      {
-        "label": "Home",
-        "url": "https://codedge.it/",
-        "current": false
-      },
-      {
-        "label": "Risorse",
-        "url": "https://codedge.it/risorse/",
-        "current": true
-      }
-    ],
-    "/shop-template/": [
-      {
-        "label": "Home",
-        "url": "https://codedge.it/",
-        "current": false
-      },
-      {
-        "label": "Shop Template",
-        "url": "https://codedge.it/shop-template/",
         "current": true
       }
     ],
