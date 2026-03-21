@@ -9,12 +9,14 @@ export default async function initBreadcrumbs(opts = {}) {
   const READY_EVENT = 'codedge:breadcrumbs-ready';
   const DEFAULT_SELECTOR = '#breadcrumb-container';
   const DEFAULT_JSONS = [];
+  const DEFAULT_ENABLED = false;
 
   const selector = opts.selector || DEFAULT_SELECTOR;
   const container = typeof selector === 'string' ? document.querySelector(selector) : selector;
   const enableLog = !!opts.enableLog;
   const jsonCandidates = opts.jsonCandidates || DEFAULT_JSONS;
   const currentIsLink = !!opts.currentIsLink;
+  const enabled = opts.enabled ?? DEFAULT_ENABLED;
 
   const log = (...args) => enableLog && console.log('[breadcrumb-loader]', ...args);
   const markReady = () => {
@@ -24,6 +26,13 @@ export default async function initBreadcrumbs(opts = {}) {
 
   if (!container) {
     log('container non trovato:', selector);
+    markReady();
+    return null;
+  }
+
+  if (!enabled) {
+    container.innerHTML = '';
+    container.setAttribute('aria-hidden', 'true');
     markReady();
     return null;
   }
