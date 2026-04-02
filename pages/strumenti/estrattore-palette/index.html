@@ -42,6 +42,54 @@
   <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Estrattore Palette colore - Codedge",
+      "url": "https://codedge.it/strumenti/estrattore-palette/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Carica un'immagine ed estrai palette dominanti, gradienti e variabili CSS o JSON."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come funziona l estrattore palette?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Carichi una foto, il tool analizza i colori dominanti e propone palette, ruoli UI e suggerimenti di contrasto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I dati vengono inviati a server esterni?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, l analisi e client-side nel browser e puoi esportare CSS o JSON localmente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso usare subito i colori nel mio progetto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, puoi copiare variabili CSS, JSON e gradienti pronti da integrare nel tuo design system."
+          }
+        }
+      ]
+    }
+  </script>
 
 </head>
 
@@ -230,6 +278,20 @@
     <p class="tiny center mt12">
       MVP client-side. K-Means su campionamento — 6 cluster. WCAG contrast.
     </p>
+    <section class="panel mt12" aria-labelledby="faq-estrattore-title">
+      <h3 id="faq-estrattore-title">FAQ rapide su estrattore palette</h3>
+      <p class="tiny">
+        <strong>Come si usa?</strong> Carica una foto, avvia l analisi e scegli i ruoli UI suggeriti.
+      </p>
+      <p class="tiny">
+        <strong>I file restano privati?</strong> Si, l elaborazione avviene nel browser senza upload su server esterni.
+      </p>
+      <p class="tiny">
+        <strong>Tool collegati:</strong> puoi combinare i risultati con
+        <a href="/strumenti/generatore-colori/">Generatore Colori</a> e
+        <a href="/strumenti/generatore-gradienti/">Generatore Gradienti</a>.
+      </p>
+    </section>
   </div>
   <canvas id="canvas" style="display: none"></canvas>
 

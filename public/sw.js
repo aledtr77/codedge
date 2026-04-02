@@ -1,4 +1,4 @@
-const SW_VERSION = "v2";
+const SW_VERSION = "v3";
 const STATIC_CACHE = `codedge-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `codedge-runtime-${SW_VERSION}`;
 
@@ -12,8 +12,6 @@ const PRECACHE_URLS = [
   "/icons/favicon-16.png",
   "/icons/favicon-32.png",
   "/icons/favicon-mask.svg",
-  "/partials/nav.html",
-  "/partials/footer.html",
   "/og/opengraph.jpg",
   "/og/opengraph-1200x630.jpg"
 ];

@@ -43,7 +43,54 @@
   <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Generatore colori - Codedge",
+      "url": "https://codedge.it/strumenti/generatore-colori/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Generatore online per creare palette, analizzare colori e copiare codici HEX RGB HSL."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come usare il generatore colori?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scegli un colore dal picker o inserisci un codice HEX, poi genera la palette e copia i valori utili per il progetto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso copiare codici HEX, RGB e HSL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si. Lo strumento mostra i formati principali e puoi usarli subito nel tuo CSS o nel design system."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Il tool e gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, e utilizzabile gratis direttamente dal browser senza installazione."
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
@@ -152,6 +199,25 @@
             <div id="manipulatedColorText"></div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="faq-colori-title">
+      <h2 id="faq-colori-title">FAQ rapide sul generatore colori</h2>
+      <div>
+        <h3>Come si usa in modo veloce?</h3>
+        <p>
+          Inserisci un colore (o scegli dal picker), genera la palette e copia il formato che ti serve in CSS.
+        </p>
+        <h3>Quali formati supporta?</h3>
+        <p>
+          Puoi lavorare con HEX, RGB e HSL per passare rapidamente da concept a codice.
+        </p>
+        <h3>Altri strumenti collegati</h3>
+        <p>
+          Se vuoi completare il flusso colore, prova anche
+          <a href="/strumenti/generatore-gradienti/">Generatore Gradienti</a> e
+          <a href="/strumenti/estrattore-palette/">Estrattore Palette</a>.
+        </p>
       </div>
     </section>
   </main>

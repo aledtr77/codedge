@@ -1,24 +1,41 @@
 // src/scripts/components/footer.js
-// Semplice loader del partial footer + piccolo adjust "sticky".
+// Inietta il footer da template inline + piccolo adjust "sticky".
 // Modalità d'uso (semplice):
 //  - import '/src/scripts/components/footer.js' in main.js (o <script type="module" ...>)
-//  - assicurati che il partial esista in public/partials/footer.html
 //  - opzionale: inserisci <div id="footer-placeholder"></div> prima di </body> per controllare la posizione
 
 (function () {
   'use strict';
 
   const READY_EVENT = 'codedge:footer-ready';
-
-  // Lista di URL da provare in ordine — public/ è servito come root da Vite,
-  // quindi la prima voce '/partials/footer.html' è la più corretta.
-  const FALLBACKS = [
-    '/partials/footer.html',
-    '/pages/partials/footer.html',
-    '/pages/footer.html',
-    '/site-pages/partials/footer.html',
-    '/site-pages/footer.html'
-  ];
+  const FOOTER_MARKUP = `
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <div class="footer-copyright">
+        © 2025 Codedge. Tutti i diritti riservati.
+      </div>
+      <a href="/footer/privacy-policy/">Privacy Policy</a>
+      <a href="/footer/termini-servizio/">Termini di Servizio</a>
+      <a href="/footer/contatti/">Contatti</a>
+      <a href="/footer/chi-sono/">Chi Sono</a>
+      <a href="https://fontawesome.com/">Icone di Font Awesome</a>
+    </div>
+    <div class="footer-social">
+      <a
+        href="https://www.instagram.com/codedgestudio?igsh=MXJzcWxjNnpuNG5yZQ=="
+        class="footer-social-link footer-social-link-instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram Codedge"
+        title="Instagram Codedge"
+      >
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+`.trim();
 
   function markReady() {
     if (window.__footerReady) return;
@@ -32,10 +49,8 @@
     const placeholder = document.querySelector('#footer-placeholder');
     if (placeholder) {
       placeholder.innerHTML = html;
-      console.log('Footer: inserito in #footer-placeholder');
     } else {
       document.body.insertAdjacentHTML('beforeend', html);
-      console.log('Footer: inserito in document.body (append)');
     }
   }
 
@@ -108,37 +123,20 @@
     window.addEventListener('load', adjust);
   }
 
-  // Prova a caricare il partial usando la lista FALLBACKS (prima OK vince)
-  async function loadFooter() {
-    for (const url of FALLBACKS) {
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) {
-          console.warn(`Footer: fetch ${url} -> status ${res.status}`);
-          continue;
-        }
-        const html = await res.text();
-        insertFooterHtml(html);
-
-        const footerEl = document.querySelector('footer');
-        if (!footerEl) {
-          console.error('Footer: markup inserito ma <footer> non trovato');
-          markReady();
-          return;
-        }
-
-        initFooterLinks(footerEl);
-        initFooterAdjustment(footerEl);
-
-        console.log('Footer: caricato correttamente da', url);
-        markReady();
-        return;
-      } catch (err) {
-        console.warn('Footer: errore fetching', url, err && err.message ? err.message : err);
-        // prova il prossimo fallback
-      }
+  function loadFooter() {
+    if (!document.querySelector('footer')) {
+      insertFooterHtml(FOOTER_MARKUP);
     }
-    console.error('Footer: tutti i tentativi falliti. Controlla che public/partials/footer.html esista e sia servito dal dev server.');
+
+    const footerEl = document.querySelector('footer');
+    if (!footerEl) {
+      console.error('Footer: markup inserito ma <footer> non trovato');
+      markReady();
+      return;
+    }
+
+    initFooterLinks(footerEl);
+    initFooterAdjustment(footerEl);
     markReady();
   }
 
