@@ -1,6 +1,5 @@
 // src/scripts/components/navbar-loader.js
-// Carica il partial della nav e segnala quando la navbar e' pronta,
-// cosi' il reveal iniziale puo' aspettare il layout definitivo.
+// Inietta la nav da template inline e segnala quando la navbar e' pronta.
 
 !(function () {
   "use strict";
@@ -9,10 +8,29 @@
   window.__navLoaderActive = true;
 
   const READY_EVENT = "codedge:nav-ready";
+  const NAV_MARKUP = `
+    <li class="nav-item">
+      <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+    </li>
+    <li class="nav-item">
+      <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+    </li>
+    <li class="nav-item">
+      <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+    </li>
+    <li class="nav-item">
+      <a href="/progetti-pratici/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Progetti Pratici</a>
+    </li>
+    <li class="nav-item">
+      <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
+    </li>
+    <li class="nav-item">
+      <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
+    </li>
+  `.trim();
+
   const config = {
     placeholderSelector: "#nav-menu",
-    partialPath: "/partials/nav.html",
-    fetchOptions: { cache: "no-store" },
     enableLog: false,
     forceReload: false,
   };
@@ -78,39 +96,21 @@
       return;
     }
 
-    try {
-      const response = await fetch(config.partialPath, config.fetchOptions);
-      if (!response.ok) {
-        console.error("[nav-loader] fetch fallito:", response.status, config.partialPath);
-        markReady();
-        return;
-      }
-
-      const html = await response.text();
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const list = doc.querySelector("ul");
-      const nextHtml = (list ? list.innerHTML : doc.body.innerHTML).trim();
-      const currentHtml = (placeholder.innerHTML || "").trim();
-
-      if (currentHtml && currentHtml === nextHtml && !config.forceReload) {
-        log("Contenuto identico gia' presente nel placeholder, skip iniezione.");
-        placeholder.dataset.partialLoaded = "true";
-        markCurrent(placeholder);
-        markReady();
-        return;
-      }
-
-      placeholder.innerHTML = "";
-      placeholder.innerHTML = list ? list.innerHTML : doc.body.innerHTML;
+    const currentHtml = (placeholder.innerHTML || "").trim();
+    if (currentHtml && currentHtml === NAV_MARKUP && !config.forceReload) {
+      log("Contenuto nav gia' presente nel placeholder, skip iniezione.");
       placeholder.dataset.partialLoaded = "true";
-
       markCurrent(placeholder);
-      log("Nav iniettata con successo.");
       markReady();
-    } catch (error) {
-      console.error("[nav-loader] errore:", error);
-      markReady();
+      return;
     }
+
+    placeholder.innerHTML = NAV_MARKUP;
+    placeholder.dataset.partialLoaded = "true";
+
+    markCurrent(placeholder);
+    log("Nav iniettata con successo.");
+    markReady();
   }
 
   if (document.readyState === "loading") {

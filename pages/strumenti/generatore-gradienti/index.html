@@ -42,6 +42,54 @@
   <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Generatore gradienti CSS online - Codedge",
+      "url": "https://codedge.it/strumenti/generatore-gradienti/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Tool online per creare gradienti CSS personalizzati e copiare il codice pronto all'uso."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come creare un gradiente CSS con questo tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scegli tipo lineare o radiale, imposta angolo e stop colore, poi copia il CSS generato."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso aggiungere piu di due colori?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, puoi aggiungere stop multipli per creare sfumature piu complesse e personalizzate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Il codice e pronto per essere incollato?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, il CSS prodotto e pronto da incollare in classi, componenti o sezioni hero."
+          }
+        }
+      ]
+    }
+  </script>
 
 </head>
 
@@ -104,6 +152,25 @@
       </div>
     </div>
   </div>
+  <section class="section" aria-labelledby="faq-gradienti-title">
+    <h2 id="faq-gradienti-title">FAQ rapide sul generatore gradienti</h2>
+    <div>
+      <h3>Qual e il flusso piu semplice?</h3>
+      <p>
+        Scegli il tipo di gradiente, regola angolo e colori, verifica l'anteprima e copia il codice CSS.
+      </p>
+      <h3>Posso usare preset e poi modificarli?</h3>
+      <p>
+        Si, puoi partire dai preset e adattarli con stop colore e posizioni personalizzate.
+      </p>
+      <h3>Altri tool collegati</h3>
+      <p>
+        Per completare il lavoro colore, prova anche
+        <a href="/strumenti/generatore-colori/">Generatore Colori</a> e
+        <a href="/strumenti/estrattore-palette/">Estrattore Palette</a>.
+      </p>
+    </div>
+  </section>
  
  <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
        type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
