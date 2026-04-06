@@ -237,6 +237,14 @@ section h1 {
   display: block;
 }
 
+.shop-card-media-fitness {
+  aspect-ratio: 4 / 3;
+}
+
+.shop-card-media-fitness img {
+  object-position: center top;
+}
+
 .shop-callout-media-etsy img {
   display: block;
   width: 100%;
