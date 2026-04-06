@@ -15,6 +15,8 @@ import mindAndMotionPromoWebp from "@/assets/images/shop-template/mind-and-motio
 import mindAndMotionPromoJpg from "@/assets/images/shop-template/mind-and-motion-promo.jpg";
 import customWebsiteTemplateWebp from "@/assets/images/shop-template/custom-website-template.webp";
 import customWebsiteTemplateJpg from "@/assets/images/shop-template/custom-website-template.jpg";
+import fitnessCoachTemplateWebp from "@/assets/images/shop-template/fitness-coach-template.webp";
+import fitnessCoachTemplateJpg from "@/assets/images/shop-template/fitness-coach-template.jpg";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -28,7 +30,9 @@ const shopTemplateAssets = {
   mindAndMotionPromoWebp,
   mindAndMotionPromoJpg,
   customWebsiteTemplateWebp,
-  customWebsiteTemplateJpg
+  customWebsiteTemplateJpg,
+  fitnessCoachTemplateWebp,
+  fitnessCoachTemplateJpg
 };
 
 document.querySelectorAll("[data-asset]").forEach((el) => {
