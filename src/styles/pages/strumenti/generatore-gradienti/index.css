@@ -137,9 +137,6 @@ input[type="range"] {
     visibility 0.3s;
   font-size: 14px;
 }
-.bg-align {
-  background-color: var(--background-two);
-}
 h3 {
   margin-top: 15px;
 }
