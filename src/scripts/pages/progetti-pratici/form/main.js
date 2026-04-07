@@ -5,6 +5,7 @@
 import "@/styles/components/main.css";
 import "@/styles/components/navbar.css";
 import "@/styles/components/footer.css";
+import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // CSS specifico pagina

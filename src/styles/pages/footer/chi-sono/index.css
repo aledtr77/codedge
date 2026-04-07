@@ -29,3 +29,24 @@
         padding-top: 10px;
         margin: 0 20px;
       }
+
+      @media (max-width: 768px) {
+        .content-section {
+          padding: 0;
+          background-color: transparent;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .content-section p {
+          font-size: 1rem;
+          line-height: 1.75;
+          margin-top: 1.5rem;
+        }
+
+        .logo-minimal {
+          width: min(100%, 240px);
+          height: auto;
+          margin: 48px auto 64px;
+        }
+      }
