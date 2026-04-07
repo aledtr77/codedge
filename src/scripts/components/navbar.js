@@ -1,5 +1,14 @@
-import "@/scripts/components/logo-loader.js";
 import "@/scripts/components/pwa.js";
+
+function markPageReady() {
+  if (document.documentElement.dataset.pageReady === "true") return;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.dataset.pageReady = "true";
+    });
+  });
+}
 
 document.addEventListener("click", (e) => {
   navMenu.contains(e.target) ||
@@ -19,3 +28,9 @@ function handleResize() {
     : headings.forEach((e) => (e.style.display = ""));
 }
 (window.addEventListener("resize", handleResize), handleResize());
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", markPageReady, { once: true });
+} else {
+  markPageReady();
+}
+window.addEventListener("pageshow", markPageReady);
