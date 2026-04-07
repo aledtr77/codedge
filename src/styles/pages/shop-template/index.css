@@ -113,9 +113,42 @@ section h1 {
   width: fit-content;
   max-width: 100%;
   min-width: 0;
-  padding: 0.72rem 1.45rem;
+  min-height: 3.2rem;
+  padding: 0.82rem 1.45rem;
   flex: 0 0 auto;
   white-space: nowrap;
+  border-radius: 18px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.03rem;
+  text-transform: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%),
+    linear-gradient(135deg, rgba(12, 31, 49, 0.98) 0%, rgba(15, 58, 96, 0.96) 100%);
+  border-color: rgba(166, 220, 255, 0.34);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shop-callout .shop-action-button:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.02) 100%),
+    linear-gradient(135deg, rgba(15, 40, 63, 0.99) 0%, rgba(17, 73, 120, 0.97) 100%);
+  border-color: rgba(202, 235, 255, 0.52);
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(0, 123, 240, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.shop-callout .shop-action-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .shop-callout-media {
@@ -347,6 +380,8 @@ section h1 {
 
   .button-simple.shop-action-button {
     width: 100%;
+    min-height: 3.1rem;
+    border-radius: 16px;
   }
 
   .shop-section-heading {
@@ -416,6 +451,28 @@ section h1 {
 }
 
 @media (hover: none), (pointer: coarse) {
+  .shop-callout .shop-action-button,
+  .shop-callout .shop-action-button:hover {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%),
+      linear-gradient(135deg, rgba(14, 36, 58, 0.98) 0%, rgba(16, 67, 109, 0.96) 100%);
+    border-color: rgba(208, 237, 255, 0.54);
+    box-shadow:
+      0 12px 24px rgba(0, 0, 0, 0.26),
+      0 0 0 1px rgba(0, 123, 240, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+    transform: none;
+  }
+
+  .shop-callout .shop-action-button:active {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%),
+      linear-gradient(135deg, rgba(11, 28, 44, 0.98) 0%, rgba(14, 53, 84, 0.96) 100%);
+    border-color: rgba(154, 212, 255, 0.42);
+    transform: translateY(1px);
+  }
+
   .shop-card {
     border-color: rgba(104, 185, 255, 0.56);
     background:
