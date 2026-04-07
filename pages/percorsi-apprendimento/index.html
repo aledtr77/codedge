@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Percorsi Apprendimento - Codedge</title>
+  <script>document.documentElement.dataset.pageReady="false";</script>
+    <link rel="stylesheet" href="/critical.css" />
+<title>Percorsi Apprendimento - Codedge</title>
   <meta name="description"
     content="Percorsi pratici per chi vuole imparare il front-end: focus sui dettagli spesso trascurati che fanno davvero la differenza. Scopri Codedge.">
   <link rel="canonical" href="https://codedge.it/percorsi-apprendimento/">
@@ -49,13 +51,32 @@
   <header>
     <nav class="navbar" aria-label="Navigazione principale">
       <div class="navbar-container">
-        <img src="/icons/favicon-mask.svg" data-logo="full" alt="Logo codedge" class="logo" width="80" height="35">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
         <h1 class="resize-text">Percorsi Apprendimento</h1>
         <div class="menu-icon">
           <span class="bar"></span> <span class="bar"></span>
           <span class="bar"></span>
         </div>
-        <ul id="nav-menu" class="nav-menu"></ul>
+<ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/progetti-pratici/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Progetti Pratici</a>
+          </li>
+          <li class="nav-item">
+            <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
+          </li>
+          <li class="nav-item">
+            <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -76,14 +97,16 @@
         </p>
       </div>
       <div class="grid">
-        <div class="card coming-soon">
+        <div class="card coming-soon coming-soon-card">
+          <span class="coming-soon-badge">In arrivo</span>
           <h4>Internet Fondamenti Essenziali</h4>
           <p>
-            Qui troverete il link al videocorso sui fondamentali di come
-            funziona Internet una base necessaria per chi parte da zero e
-            vuole approcciarsi al mondo del front end. In preparazione!
+            Un percorso dedicato ai fondamenti di Internet: browser, server,
+            richieste, DNS, hosting e struttura del web. Pensato per chi parte
+            da zero e vuole capire davvero cosa c'e dietro a un progetto
+            front-end.
           </p>
-          <span class="button-simple" aria-label="Corso in arrivo">Prossimamente</span>
+          <span class="button-simple" aria-label="Corso in arrivo">Percorso in preparazione</span>
         </div>
       </div>
     </section>

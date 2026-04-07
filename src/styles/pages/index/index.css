@@ -1,34 +1,4 @@
- @keyframes logoAppear {
-        0% {
-          opacity: 0;
-          transform: scale(0.8);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-      @keyframes fadeInUp {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes cardSlideUp {
-        0% {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      *,
+ *,
       ::after,
       ::before {
         box-sizing: border-box;
@@ -49,98 +19,46 @@
       }
       .hero-compact,
       .unified-section {
-        margin-bottom: 3rem;
         position: relative;
       }
       .unified-section {
         background-color: var(--background-three);
-        padding: 2rem 1rem;
-        border-radius: 15px;
+        padding: clamp(2rem, 5vw, 3.35rem) clamp(1rem, 2.8vw, 2.5rem);
+        border-radius: 18px;
         box-shadow: var(--box-shadow);
         overflow: hidden;
       }
       .hero-compact {
         text-align: center;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .hero-compact::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--color-three),
-          var(--text-color)
-        );
-        border-radius: 2px;
+        width: min(100%, 1380px);
+        margin: 0 auto;
+        padding-bottom: 0;
       }
       .logo-compact {
         display: block;
         width: 100%;
-        max-width: 350px;
+        max-width: 390px;
         height: auto;
-        margin: 0 auto 1rem;
-        opacity: 0;
-        transform: scale(0.8);
-        animation: logoAppear 1.2s ease-out 0.3s forwards;
+        aspect-ratio: 165.80347 / 68.133575;
+        object-fit: contain;
+        margin: 0 auto 1.15rem;
       }
       .hero-title-compact {
-        font-size: 2rem;
+        font-size: clamp(2rem, 3.8vw, 3.4rem);
         color: var(--text-color);
       }
       .hero-title-compact {
-        margin: 1rem 0;
-        line-height: 1.2;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 1s ease-out 0.5s forwards;
+        margin: 0.35rem 0;
+        line-height: 1.08;
+        text-wrap: balance;
       }
       .hero-description {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 1.45vw, 1.16rem);
         color: var(--text-color);
-        margin: 1.5rem auto;
-        line-height: 1.6;
-        text-align: justify;
-        max-width: 1600px;
-        opacity: 0;
-        animation: fadeInUp 1s ease-out 0.7s forwards;
-      }
-      .button-width {
-        max-width: 200px;
-      }
-      .grid {
-        display: grid;
-        gap: 20px;
-        padding: 0 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        align-items: stretch;
-        justify-items: center;
-        grid-auto-rows: 1fr;
-      }
-      .card {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: cardSlideUp 0.8s ease-out forwards;
-      }
-      .card:first-child {
-        animation-delay: 0.2s;
-      }
-      .card:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .card:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-      .card:nth-child(4) {
-        animation-delay: 0.8s;
-      }
-      .card:nth-child(5) {
-        animation-delay: 1s;
+        margin: 1.6rem auto 0;
+        line-height: 1.85;
+        text-align: left;
+        max-width: 1180px;
       }
       @media (max-width: 1280px) {
         .button-simple {
@@ -148,37 +66,32 @@
         }
       }
       @media (max-width: 768px) {
-        .grid {
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
         .hero-title-compact {
-          font-size: 1.5rem;
+          font-size: clamp(1.75rem, 7.2vw, 2.4rem);
         }
         .logo-compact {
-          max-width: 400px;
+          max-width: 280px;
         }
         .hero-description {
-          font-size: 0.95rem;
-          margin: 1rem auto;
+          font-size: 0.98rem;
+          margin: 1.15rem auto 0;
         }
         .unified-section {
-          padding: 1.5rem 1rem;
-          margin-bottom: 2rem;
+          padding: 1.55rem 0.95rem 1.8rem;
         }
         .hero-compact {
-          margin-bottom: 2rem;
-          padding-bottom: 1.5rem;
+          max-width: none;
         }
       }
       @media (max-width: 480px) {
         .hero-title-compact {
-          font-size: 1.8rem;
-        }
-        .card {
-          padding: 1.25rem 0.8rem;
+          font-size: clamp(1.6rem, 8vw, 2.1rem);
         }
         .unified-section {
           border-radius: 10px;
+        }
+        .hero-description {
+          font-size: 0.94rem;
+          line-height: 1.7;
         }
       }

@@ -118,10 +118,29 @@
       display: grid;
       gap: 20px;
       padding: 0 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: minmax(280px, 420px);
       align-items: stretch;
-      justify-items: center;
+      justify-content: center;
+      justify-items: stretch;
       grid-auto-rows: 1fr;
+    }
+
+    .coming-soon-card {
+      max-width: 420px;
+    }
+
+    .coming-soon-card h4,
+    .coming-soon-card p {
+      text-align: left;
+    }
+
+    .coming-soon-card h4 {
+      font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+      line-height: 1.15;
+    }
+
+    .coming-soon-card p {
+      line-height: 1.65;
     }
 
     @media (max-width: 1280px) {
@@ -133,6 +152,7 @@
     @media (max-width: 768px) {
       .grid {
         grid-template-columns: 1fr;
+        padding: 0;
       }
 
       .hero-title {

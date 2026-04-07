@@ -81,6 +81,10 @@
     });
   }
 
+  function hasNavLinks(container) {
+    return !!container?.querySelector("a.nav-link");
+  }
+
   async function loadNav() {
     const placeholder = document.querySelector(config.placeholderSelector);
 
@@ -92,12 +96,12 @@
 
     if (placeholder.dataset.partialLoaded === "true" && !config.forceReload) {
       log("Placeholder gia' popolato; esco.");
+      markCurrent(placeholder);
       markReady();
       return;
     }
 
-    const currentHtml = (placeholder.innerHTML || "").trim();
-    if (currentHtml && currentHtml === NAV_MARKUP && !config.forceReload) {
+    if (hasNavLinks(placeholder) && !config.forceReload) {
       log("Contenuto nav gia' presente nel placeholder, skip iniezione.");
       placeholder.dataset.partialLoaded = "true";
       markCurrent(placeholder);

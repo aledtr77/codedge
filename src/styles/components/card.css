@@ -115,33 +115,45 @@
   transform: translateY(-2px);
 }
 
-/* Coming soon badge - mantenuto identico */
+/* Coming soon variant */
 .coming-soon {
-  opacity: 0.7;
-  position: relative;
+  border-color: rgba(255, 208, 82, 0.34);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 208, 82, 0.14) 0%,
+      rgba(255, 255, 255, 0.045) 18%,
+      rgba(8, 18, 30, 0.22) 100%
+    ),
+    var(--background-two);
 }
 
-.coming-soon::after {
-  content: "In arrivo";
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background-color: #ffd700;
-  color: black;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 1em;
-  font-weight: bold;
-  border: 2px solid black;
+.coming-soon .coming-soon-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background-color: rgba(255, 208, 82, 0.14);
+  color: #ffe18c;
+  border: 1px solid rgba(255, 208, 82, 0.38);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .coming-soon .button-simple {
   cursor: default;
-  background-color: #ccc;
   background-image: none;
-  color: black;
-  border-color: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  background-color: rgba(255, 208, 82, 0.14);
+  color: #ffe18c;
+  border-color: rgba(255, 208, 82, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.16);
 }
 
 /* Responsive adjustments */

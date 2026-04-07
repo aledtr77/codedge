@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <!-- Impostazioni responsive: la pagina si adatta alla larghezza del dispositivo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Titolo mostrato nella scheda del browser -->
+  <script>document.documentElement.dataset.pageReady="false";</script>
+      <link rel="stylesheet" href="/critical.css" />
+<!-- Titolo mostrato nella scheda del browser -->
     <title>Glossario JS - Codedge</title>
     <!-- Descrizione usata dai motori di ricerca -->
     <meta name="description"
@@ -37,7 +39,7 @@
         <nav class="navbar">
             <div class="navbar-container">
                 <!-- Logo: alt descrive l'immagine per chi usa screen reader -->
-                <img src="/icons/favicon-mask.svg" data-logo="full" alt="Logo codedge" class="logo" width="80" height="35" />
+                <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35" />
 
                 <!-- Titolo della sezione: include icona JS (decorativa) -->
                 <h1 class="resize-text"><i class="fab fa-js-square" aria-hidden="true"></i> Glossario JS</h1>
@@ -50,9 +52,28 @@
                 </div>
 
                 <!-- Punto in cui il menu viene popolato via JavaScript -->
-                <ul id="nav-menu" class="nav-menu"></ul>
-            </div>
-        </nav>
+<ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/progetti-pratici/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Progetti Pratici</a>
+          </li>
+          <li class="nav-item">
+            <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
+          </li>
+          <li class="nav-item">
+            <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
         <!-- Contenitore vuoto dove il breadcrumb runtime verrà inserito -->
 
@@ -251,7 +272,7 @@
                     </ul>
 
                 </ul>
-            </div>
+      </div>
         </aside>
 
         <main>

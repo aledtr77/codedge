@@ -6,7 +6,9 @@
   <meta charset="UTF-8">
   <!-- Imposta la pagina per dispositivi mobili (responsive) -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
+  <script>document.documentElement.dataset.pageReady="false";</script>
+    <link rel="stylesheet" href="/critical.css" />
+<!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
   <title>Snippet Library HTML/CSS/JS - Codedge</title>
   <!-- Descrizione usata nelle anteprime dei motori di ricerca -->
   <meta name="description"
@@ -58,7 +60,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <!-- Logo: alt descrive l'immagine per i lettori di schermo -->
-        <img src="/icons/favicon-mask.svg" data-logo="full" alt="Logo codedge" class="logo" width="80" height="35">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
         <!-- Titolo della pagina/area (qui "Snippet Library") -->
         <h1 class="resize-text">
           <!-- Icona decorativa; aria-hidden=true indica che gli screen reader la ignorano -->
@@ -71,7 +73,26 @@
           <span class="bar"></span>
         </div>
         <!-- Menu dinamico: vuoto qui perché viene popolato via JS -->
-        <ul id="nav-menu" class="nav-menu"></ul>
+<ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/progetti-pratici/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Progetti Pratici</a>
+          </li>
+          <li class="nav-item">
+            <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
+          </li>
+          <li class="nav-item">
+            <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
