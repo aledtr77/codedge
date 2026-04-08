@@ -81,14 +81,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  window.copyCode = function (btn) {
-    const codeEl = btn.closest(".code-container").querySelector("code");
-    const ta = document.createElement("textarea");
-    ta.value = codeEl.innerText;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    document.body.removeChild(ta);
+  async function copyCode(btn) {
+    const codeEl = btn.closest(".code-container")?.querySelector("code");
+    if (!codeEl) return;
+
+    const text = codeEl.innerText || codeEl.textContent || "";
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    } catch (err) {
+      console.warn("[glossario] copia fallita:", err);
+      return;
+    }
 
     const original = btn.innerHTML;
     const iconHTML = btn.querySelector("i") ? btn.querySelector("i").outerHTML : "";
@@ -96,7 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       btn.innerHTML = original;
     }, 2000);
-  };
+  }
+
+  window.copyCode = copyCode;
+
+  document.addEventListener("click", function (ev) {
+    const copyBtn = ev.target.closest(".copy-btn");
+    if (!copyBtn) return;
+    ev.preventDefault();
+    copyCode(copyBtn);
+  });
 
   // Sidebar
   if (s && c && r) {
