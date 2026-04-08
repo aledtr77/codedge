@@ -121,6 +121,13 @@ export function initSnippets(options = {}) {
   // expose for inline onclick usage
   window.copyCode = copyCode;
 
+  document.addEventListener('click', (ev) => {
+    const copyBtn = ev.target.closest('.copy-btn');
+    if (!copyBtn) return;
+    ev.preventDefault();
+    copyCode(copyBtn);
+  });
+
   /* ----------------------
      Sidebar handler (CLASS-ONLY, the version that worked in console)
      - clones the toggle button to remove existing listeners

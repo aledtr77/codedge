@@ -11,19 +11,21 @@ import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
 
 // import del modulo contact-form (metti il file in 
-import { initContactForm } from '@/scripts/pages/footer/contatti/contatti.js';
+import { initContactForm } from "@/scripts/pages/footer/contatti/contatti.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Inizializza il contact form SOLO se il form è presente
-  if (document.querySelector('#contact-form')) {
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector("#contact-form")) {
     initContactForm({
-      userId: '_jaOmpsmW4bnrY_bq',       // obbligatorio
-      serviceId: 'service_7629q4n',     // il tuo service
-      templateId: 'template_6gwohrk',   // il tuo template
-      formSelector: '#contact-form',    // id del form
-      feedbackSelector: '#feedback',    // id del box feedback
-      loadingMessage: 'Invio in corso...',
-      feedbackDuration: 4000
+      userId: "_jaOmpsmW4bnrY_bq",
+      serviceId: "service_7629q4n",
+      templateId: "template_6gwohrk",
+      formSelector: "#contact-form",
+      feedbackSelector: "#feedback",
+      honeypotFieldName: "website",
+      loadingMessage: "Invio in corso...",
+      minimumFillMs: 3000,
+      cooldownMs: 60000,
+      feedbackDuration: 4000,
     });
   }
 });

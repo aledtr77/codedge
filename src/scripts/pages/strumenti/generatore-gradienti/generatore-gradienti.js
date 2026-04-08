@@ -119,6 +119,14 @@ export default function initGeneratorGradienti() {
     }
   };
 
+  const copyButton = document.querySelector(".preview .button-simple.bg-align");
+  if (copyButton && !copyButton.hasAttribute("data-bound")) {
+    copyButton.setAttribute("data-bound", "true");
+    copyButton.addEventListener("click", () => {
+      window.copyToClipboard(copyButton);
+    });
+  }
+
   // ===== init UI =====
   presets.forEach(p => {
     const el = document.createElement("div");

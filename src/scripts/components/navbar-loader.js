@@ -1,5 +1,5 @@
 // src/scripts/components/navbar-loader.js
-// Inietta la nav da template inline e segnala quando la navbar e' pronta.
+// Segna la navbar statica come pronta e applica lo stato attivo del link corrente.
 
 !(function () {
   "use strict";
@@ -8,31 +8,9 @@
   window.__navLoaderActive = true;
 
   const READY_EVENT = "codedge:nav-ready";
-  const NAV_MARKUP = `
-    <li class="nav-item">
-      <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
-    </li>
-    <li class="nav-item">
-      <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
-    </li>
-    <li class="nav-item">
-      <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
-    </li>
-    <li class="nav-item">
-      <a href="/progetti-pratici/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Progetti Pratici</a>
-    </li>
-    <li class="nav-item">
-      <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
-    </li>
-    <li class="nav-item">
-      <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
-    </li>
-  `.trim();
-
   const config = {
     placeholderSelector: "#nav-menu",
     enableLog: false,
-    forceReload: false,
   };
 
   function log(...args) {
@@ -85,7 +63,7 @@
     return !!container?.querySelector("a.nav-link");
   }
 
-  async function loadNav() {
+  function loadNav() {
     const placeholder = document.querySelector(config.placeholderSelector);
 
     if (!placeholder) {
@@ -94,26 +72,15 @@
       return;
     }
 
-    if (placeholder.dataset.partialLoaded === "true" && !config.forceReload) {
-      log("Placeholder gia' popolato; esco.");
-      markCurrent(placeholder);
-      markReady();
-      return;
-    }
-
-    if (hasNavLinks(placeholder) && !config.forceReload) {
-      log("Contenuto nav gia' presente nel placeholder, skip iniezione.");
+    if (hasNavLinks(placeholder)) {
+      log("Navbar statica rilevata, skip iniezione.");
       placeholder.dataset.partialLoaded = "true";
       markCurrent(placeholder);
       markReady();
       return;
     }
 
-    placeholder.innerHTML = NAV_MARKUP;
-    placeholder.dataset.partialLoaded = "true";
-
-    markCurrent(placeholder);
-    log("Nav iniettata con successo.");
+    console.warn("[nav-loader] nav-menu presente ma senza link. Controlla il markup della pagina.");
     markReady();
   }
 
@@ -126,9 +93,7 @@
   window.addEventListener("pageshow", () => {
     const placeholder = document.querySelector(config.placeholderSelector);
     if (!placeholder) return;
-    if (placeholder.children.length === 0 || placeholder.dataset.partialLoaded !== "true") {
-      loadNav();
-    }
+    loadNav();
   });
 
   window.navLoader = { load: loadNav, config };

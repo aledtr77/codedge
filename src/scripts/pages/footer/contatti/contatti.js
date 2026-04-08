@@ -6,6 +6,7 @@ let _initialized = false;
 let _bound = false;
 let _submitHandler = null;
 let _emailjs = null;
+let _feedbackTimer = null;
 
 async function ensureEmailjs() {
   if (_emailjs) return _emailjs;
@@ -38,6 +39,10 @@ export async function initContactForm({
   formSelector = "#contact-form",
   feedbackSelector = "#feedback",
   submitBtnSelector = "button[type='submit']",
+  honeypotFieldName = "website",
+  minimumFillMs = 3000,
+  cooldownMs = 60000,
+  cooldownStorageKey = "codedge:contact-form:last-send",
   loadingMessage = "Invio in corso...",
   feedbackDuration = 4000,
 } = {}) {
@@ -68,6 +73,7 @@ export async function initContactForm({
 
   const form = document.querySelector(formSelector);
   const feedback = document.querySelector(feedbackSelector);
+  const initTime = typeof performance !== "undefined" ? performance.now() : Date.now();
 
   if (!form) {
     console.warn("[contatti] Form non trovato, skip init.");
@@ -76,12 +82,28 @@ export async function initContactForm({
 
   const button = form.querySelector(submitBtnSelector) || form.querySelector("button");
 
-  function showFeedback(message) {
+  function hideFeedback() {
     if (!feedback) return;
-    feedback.innerHTML = message;
+    feedback.classList.remove("show", "is-loading");
+    feedback.textContent = "";
+  }
+
+  function showFeedback(message, { isLoading = false } = {}) {
+    if (!feedback) return;
+    if (_feedbackTimer) {
+      clearTimeout(_feedbackTimer);
+      _feedbackTimer = null;
+    }
+
+    feedback.textContent = message;
     feedback.classList.add("show");
-    if (message.includes(loadingMessage)) return;
-    setTimeout(() => feedback.classList.remove("show"), feedbackDuration);
+    feedback.classList.toggle("is-loading", isLoading);
+
+    if (isLoading) return;
+
+    _feedbackTimer = window.setTimeout(() => {
+      hideFeedback();
+    }, feedbackDuration);
   }
 
   function resetForm() {
@@ -92,6 +114,24 @@ export async function initContactForm({
     }
   }
 
+  function getCooldownRemaining() {
+    try {
+      const lastSentAt = Number(localStorage.getItem(cooldownStorageKey) || 0);
+      if (!lastSentAt) return 0;
+      return Math.max(0, lastSentAt + cooldownMs - Date.now());
+    } catch {
+      return 0;
+    }
+  }
+
+  function setCooldown() {
+    try {
+      localStorage.setItem(cooldownStorageKey, String(Date.now()));
+    } catch {
+      // ignore localStorage failures
+    }
+  }
+
   function validateForm() {
     const required = Array.from(form.querySelectorAll("[required]"));
     for (const el of required) {
@@ -99,8 +139,35 @@ export async function initContactForm({
         el.focus();
         return false;
       }
+
+      if (typeof el.checkValidity === "function" && !el.checkValidity()) {
+        el.focus();
+        return false;
+      }
     }
     return true;
+  }
+
+  function getSubmissionGuardMessage(formData) {
+    const honeypotValue = String(formData.get(honeypotFieldName) || "").trim();
+    if (honeypotValue) {
+      console.warn("[contatti] submit bloccato dal campo honeypot.");
+      return "Invio non consentito.";
+    }
+
+    const elapsedMs =
+      (typeof performance !== "undefined" ? performance.now() : Date.now()) - initTime;
+
+    if (elapsedMs < minimumFillMs) {
+      return "Attendi qualche secondo prima di inviare il messaggio.";
+    }
+
+    const cooldownRemaining = getCooldownRemaining();
+    if (cooldownRemaining > 0) {
+      return `Attendi ${Math.ceil(cooldownRemaining / 1000)} secondi prima di inviare un altro messaggio.`;
+    }
+
+    return "";
   }
 
   _submitHandler = async function (ev) {
@@ -111,20 +178,33 @@ export async function initContactForm({
       return;
     }
 
-    if (button) button.disabled = true;
-    showFeedback(`${loadingMessage} <span class="spinner"></span>`);
-
     const data = new FormData(form);
+    const guardMessage = getSubmissionGuardMessage(data);
+    if (guardMessage) {
+      showFeedback(guardMessage);
+      return;
+    }
+
+    if (button) button.disabled = true;
+    if (button) button.setAttribute("aria-busy", "true");
+    showFeedback(loadingMessage, { isLoading: true });
+
+    const formEntries = Object.fromEntries(
+      Array.from(data.entries()).filter(([key]) => key !== honeypotFieldName)
+    );
     const templateParams = {
       contatto: data.get("nome") || data.get("name") || "",
       name: data.get("nome") || data.get("name") || "",
       email: data.get("email") || "",
+      oggetto: data.get("oggetto") || data.get("subject") || "",
+      subject: data.get("oggetto") || data.get("subject") || "",
       message: data.get("messaggio") || data.get("message") || "",
-      form: Object.fromEntries(data.entries()),
+      form: formEntries,
     };
 
     try {
       await emailjs.send(serviceId, templateId, templateParams);
+      setCooldown();
       showFeedback("Messaggio inviato con successo!");
       resetForm();
     } catch (err) {
@@ -132,6 +212,7 @@ export async function initContactForm({
       showFeedback("Errore durante l'invio. Riprova.");
     } finally {
       if (button) button.disabled = false;
+      if (button) button.removeAttribute("aria-busy");
     }
   };
 
@@ -148,6 +229,7 @@ export async function initContactForm({
         _bound = false;
         _submitHandler = null;
       }
+      hideFeedback();
       _initialized = false;
     },
   };

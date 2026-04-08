@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-page-ready="false">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <script>document.documentElement.dataset.pageReady="false";</script>
-    <link rel="stylesheet" href="/critical.css" />
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
 <title>Scroll Indicator - Codedge</title>
   <meta name="description"
     content="Indicatore circolare dello scroll con pulsante Torna su: compare dopo il 10% della pagina e mostra l’avanzamento in tempo reale. Esempio semplice con HTML, CSS e JavaScript, pronto da copiare.">
@@ -91,7 +91,7 @@
     Indicatore di scorrimento della pagina: descrizione e codice
   </h2>
   <main>
-    <div id="scrollIndicator" onclick="scrollToTop()">
+    <div id="scrollIndicator">
       <svg class="progress-ring" width="40" height="40">
         <circle class="progress-ring__circle" stroke="#00bfff" stroke-width="3" fill="transparent" r="18" cx="20"
           cy="20"></circle>
