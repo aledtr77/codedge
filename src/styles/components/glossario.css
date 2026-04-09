@@ -102,6 +102,15 @@ details[open] > :not(summary) { animation: slideDown 0.3s ease-out; }
 ol { margin-left: 20px; padding-right: 18px; line-height: 1.8; }
 ol li { margin-bottom: 15px; text-align: justify; margin: 25px; }
 
+.glossary-label {
+  display: inline-block;
+  margin-right: 0.3rem;
+  color: var(--color-three);
+  font-size: 1.02em;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
 /* CODE / SNIPPETS */
 .code-container {
   position: relative;
