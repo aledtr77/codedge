@@ -97,43 +97,59 @@
 
   <main id="main-content">
     <!-- Sezione principale con riferimento al titolo per accessibilità -->
-    <section class="unified-section" aria-labelledby="hero-title">
-      <div class="hero-compact">
-        <!-- Logo grande nel hero per branding -->
-        <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="166" height="68" />
-        <!-- Titoli del hero: struttura semantica della pagina -->
-        <h2 class="hero-title-compact">
-          Front-end, progetti personali e template digitali
-        </h2>
-        <h3 id="hero-title" class="hero-title-compact">CODEDGE</h3>
-        <figure class="hero-media">
-          <img
-            id="home-hero-image"
-            class="hero-media-image"
-            alt="Workspace creativo dedicato allo sviluppo front-end e ai progetti digitali"
-            width="1168"
-            height="784"
-            loading="eager"
-            decoding="async"
-          />
-        </figure>
+    <section class="unified-section home-shell" aria-labelledby="hero-title">
+      <div class="hero-compact home-hero-grid">
+        <div class="hero-copy">
+          <p class="hero-kicker">Front-end hub</p>
+          <!-- Logo grande nel hero per branding -->
+          <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="166" height="68" />
+          <!-- Titoli del hero: struttura semantica della pagina -->
+          <h2 class="hero-title-compact hero-title-lead">
+            Front-end, progetti personali e template digitali
+          </h2>
+          <h3 id="hero-title" class="hero-title-compact hero-title-brand">CODEDGE</h3>
 
-        <!-- Paragrafo introduttivo: testo visibile agli utenti e utile per SEO -->
-        <p class="hero-description">
-          Benvenuto su Codedge! <br>
+          <!-- Paragrafo introduttivo: testo visibile agli utenti e utile per SEO -->
+          <p class="hero-description">
+            CODEDGE raccoglie materiali front-end pensati per essere davvero usati: glossari rapidi, snippet copiabili,
+            piccoli tool per velocizzare il lavoro e progetti pratici da smontare per capire come sono costruiti.
 
-          Uno spazio dedicato allo sviluppo front-end in cui convivono didattica pratica, crescita personale e
-          presentazione dei progetti che realizzo. Ho scelto di renderlo pubblico perché credo nel valore della pratica
-          trasparente: qui trovi soluzioni, esperimenti e l'evoluzione concreta del mio codice.
+            Se stai studiando, puoi usarlo come base operativa: entri in <strong>Risorse</strong> per chiarirti concetti e
+            sintassi, passi in <strong>Strumenti</strong> per generare palette, gradienti, shadow o ottimizzare immagini,
+            e vai nei <strong>Progetti Pratici</strong> quando vuoi vedere il codice applicato in qualcosa di concreto.
 
-          Più che una semplice vetrina, Codedge è il mio laboratorio tecnico e il contenitore dei lavori pubblicati nel
-          tempo. Compatibilmente con il tempo a mia disposizione, cercherò di mantenerlo costantemente aggiornato, con
-          nuovi contenuti, miglioramenti e release.
+            La sezione <strong>Shop Template</strong> raccoglie invece i lavori più presentabili e riutilizzabili. In
+            breve: meno fuffa motivazionale, più materiale utile per studiare, testare idee e costruire pezzi di interfaccia
+            con un minimo di direzione.
+          </p>
 
-          Qui trovi risorse e strumenti gratuiti per studiare e sperimentare, insieme a una sezione dedicata ai
-          template con link di approfondimento verso shop e canali social. L'obiettivo è offrire un punto di riferimento
-          chiaro, utile e concreto.
-        </p>
+          <div class="hero-signals" aria-label="Punti chiave del progetto">
+            <span>Didattica concreta</span>
+            <span>Esperimenti reali</span>
+            <span>Risorse usabili</span>
+          </div>
+        </div>
+
+        <div class="hero-visual-column">
+          <div class="hero-visual-frame">
+            <figure class="hero-media">
+              <img
+                id="home-hero-image"
+                class="hero-media-image"
+                alt="Workspace creativo dedicato allo sviluppo front-end e ai progetti digitali"
+                width="1168"
+                height="784"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+            <div class="hero-media-overlay" aria-hidden="true">
+              <span class="hero-media-overlay__line hero-media-overlay__line--top"></span>
+              <span class="hero-media-overlay__line hero-media-overlay__line--side"></span>
+              <span class="hero-media-overlay__glow"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
