@@ -1,57 +1,15 @@
 // src/scripts/components/footer.js
-// Inietta il footer da template inline + piccolo adjust "sticky".
-// Modalità d'uso (semplice):
-//  - import '/src/scripts/components/footer.js' in main.js (o <script type="module" ...>)
-//  - opzionale: inserisci <div id="footer-placeholder"></div> prima di </body> per controllare la posizione
+// Inizializza il footer già presente nel markup statico e gestisce il piccolo
+// adjust "sticky" per le pagine con contenuto più corto della viewport.
 
 (function () {
   'use strict';
 
   const READY_EVENT = 'codedge:footer-ready';
-  const FOOTER_MARKUP = `
-<footer>
-  <div class="footer-content">
-    <div class="footer-links">
-      <div class="footer-copyright">
-        © 2025 Codedge. Tutti i diritti riservati.
-      </div>
-      <a href="/footer/privacy-policy/">Privacy Policy</a>
-      <a href="/footer/termini-servizio/">Termini di Servizio</a>
-      <a href="/footer/contatti/">Contatti</a>
-      <a href="/footer/chi-sono/">Chi Sono</a>
-      <a href="https://fontawesome.com/">Icone di Font Awesome</a>
-    </div>
-    <div class="footer-social">
-      <a
-        href="https://www.instagram.com/codedgestudio?igsh=MXJzcWxjNnpuNG5yZQ=="
-        class="footer-social-link footer-social-link-instagram"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram Codedge"
-        title="Instagram Codedge"
-      >
-        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-      </a>
-    </div>
-  </div>
-</footer>
-`.trim();
-
   function markReady() {
     if (window.__footerReady) return;
     window.__footerReady = true;
     window.dispatchEvent(new Event(READY_EVENT));
-  }
-
-  // Inserisce il markup HTML del footer: preferisce il placeholder se presente,
-  // altrimenti appende in fondo al body.
-  function insertFooterHtml(html) {
-    const placeholder = document.querySelector('#footer-placeholder');
-    if (placeholder) {
-      placeholder.innerHTML = html;
-    } else {
-      document.body.insertAdjacentHTML('beforeend', html);
-    }
   }
 
   // Semplice normalizzazione dei link: se link senza href ma con data-href -> trasforma in href
@@ -124,13 +82,8 @@
   }
 
   function loadFooter() {
-    if (!document.querySelector('footer')) {
-      insertFooterHtml(FOOTER_MARKUP);
-    }
-
     const footerEl = document.querySelector('footer');
     if (!footerEl) {
-      console.error('Footer: markup inserito ma <footer> non trovato');
       markReady();
       return;
     }

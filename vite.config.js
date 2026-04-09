@@ -53,6 +53,16 @@ const antiFoucCss = [
 ].join('');
 
 const antiFoucJsFlagScript = 'document.documentElement.classList.add("js");';
+const indexRedirectScript = [
+  '(function(){',
+  'var path=window.location.pathname;',
+  'if(!path||!path.endsWith("/index.html"))return;',
+  'var normalized=path.slice(0,-"index.html".length);',
+  'if(!normalized)normalized="/";',
+  'if(normalized!=="/"&&!normalized.endsWith("/"))normalized+="/";',
+  'window.location.replace(normalized+window.location.search+window.location.hash);',
+  '})();'
+].join('');
 
 const antiFoucRevealScript = [
   '(function(){',
@@ -98,6 +108,7 @@ function antiFoucHtmlPlugin() {
           headContent = headContent.replace(stylesheetRegex, '');
 
           const antiFoucTags = [
+            `<script data-index-redirect>${indexRedirectScript}</script>`,
             `<script data-critical-base>${antiFoucJsFlagScript}</script>`,
             `<style data-critical-base>${antiFoucCss}</style>`,
             '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1!important;visibility:visible!important}</style></noscript>',
@@ -119,6 +130,22 @@ function antiFoucHtmlPlugin() {
         );
 
         return updated;
+      }
+    }
+  };
+}
+
+function staticFooterHtmlPlugin() {
+  const footerTemplatePath = path.resolve(process.cwd(), 'src/partials/footer.html');
+  const footerMarkup = fs.readFileSync(footerTemplatePath, 'utf8').trim();
+
+  return {
+    name: 'static-footer-html',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        if (/<footer\b/i.test(html)) return html;
+        return html.replace(/<\/body>/i, `${footerMarkup}\n</body>`);
       }
     }
   };
@@ -220,6 +247,7 @@ export default defineConfig(({ command }) => {
   };
 
   const plugins = [];
+  plugins.push(staticFooterHtmlPlugin());
   plugins.push(antiFoucHtmlPlugin());
   if (command === 'serve') {
     plugins.push(devPagesRewrite());
