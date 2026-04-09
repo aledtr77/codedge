@@ -12,28 +12,73 @@ section h1 {
 }
 
 .section.shop-layout {
-  --shop-content-width: 1380px;
+  --shop-content-width: 1600px;
   --shop-section-gap: clamp(2.75rem, 5vw, 4.25rem);
+  --shop-accent: #86cfff;
+  --shop-accent-soft: rgba(134, 207, 255, 0.18);
+  --shop-panel:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.018) 100%),
+    rgba(25, 30, 39, 0.82);
   display: grid;
-  background: transparent;
-  padding: 0;
-  border: 0;
-  box-shadow: none;
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at top left, rgba(0, 123, 240, 0.14), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(129, 206, 255, 0.08), transparent 22%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    var(--background-three);
+  padding: clamp(1rem, 2vw, 1.2rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   min-height: auto;
+  overflow: hidden;
+}
+
+.section.shop-layout::before,
+.section.shop-layout::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(18px);
+  pointer-events: none;
+  opacity: 0.72;
+  z-index: 0;
+}
+
+.section.shop-layout::before {
+  width: 220px;
+  height: 220px;
+  top: -90px;
+  left: -78px;
+  background: rgba(0, 123, 240, 0.16);
+}
+
+.section.shop-layout::after {
+  width: 160px;
+  height: 160px;
+  bottom: -58px;
+  right: -46px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .shop-hero,
 .shop-section-heading,
 .shop-grid,
 .shop-callout-custom {
+  width: min(100%, var(--shop-content-width));
   max-width: var(--shop-content-width);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .shop-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
-  gap: clamp(1.4rem, 3vw, 2.2rem);
+  grid-template-columns: minmax(0, 0.96fr) minmax(420px, 1.04fr);
+  gap: clamp(3.2rem, 7vw, 5.6rem);
   align-items: stretch;
   margin-bottom: var(--shop-section-gap);
 }
@@ -41,16 +86,29 @@ section h1 {
 .intro {
   margin: 0;
   padding: clamp(1.85rem, 3.6vw, 2.6rem);
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    radial-gradient(circle at top left, rgba(0, 123, 240, 0.18) 0%, rgba(0, 123, 240, 0) 42%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.018) 100%),
-    rgba(28, 28, 28, 0.72);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   text-align: left;
+}
+
+.shop-hero-copy {
+  justify-self: start;
+  width: 100%;
+  max-width: 41rem;
+  padding-left: clamp(0rem, 0.4vw, 0.2rem);
+  padding-right: clamp(1.25rem, 2.8vw, 2.4rem);
+}
+
+.section-kicker,
+.shop-section-kicker {
+  margin: 0 0 0.7rem;
+  color: rgba(155, 211, 255, 0.9);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .intro h3,
@@ -58,12 +116,21 @@ section h1 {
   color: var(--text-color);
 }
 
+.shop-hero-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem 1.25rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
 .intro h3 {
-  max-width: 13ch;
-  margin: 0 0 1rem;
-  font-size: clamp(2.3rem, 3.8vw, 3.85rem);
-  line-height: 1.02;
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(1.86rem, 2.6vw, 2.7rem);
+  line-height: 1.08;
   text-wrap: balance;
+  color: rgba(255, 255, 255, 0.96);
 }
 
 .intro p {
@@ -84,15 +151,11 @@ section h1 {
 .shop-callout-etsy {
   grid-template-columns: 1fr;
   gap: 0.95rem;
-  padding: clamp(1rem, 2.4vw, 1.2rem);
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%),
-    rgba(28, 28, 28, 0.72);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .shop-callout-copy {
@@ -104,6 +167,12 @@ section h1 {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+.shop-hero-button {
+  align-self: end;
+  justify-self: end;
+  margin-bottom: 0.2rem;
 }
 
 .button-simple.shop-action-button {
@@ -123,11 +192,11 @@ section h1 {
   letter-spacing: 0.03rem;
   text-transform: none;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%),
-    linear-gradient(135deg, rgba(12, 31, 49, 0.98) 0%, rgba(15, 58, 96, 0.96) 100%);
-  border-color: rgba(166, 220, 255, 0.34);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%),
+    linear-gradient(135deg, rgba(12, 30, 47, 0.98) 0%, rgba(14, 67, 110, 0.96) 100%);
+  border-color: rgba(166, 220, 255, 0.42);
   box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.24),
+    0 16px 30px rgba(0, 0, 0, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
@@ -159,11 +228,15 @@ section h1 {
 }
 
 .shop-callout-media-etsy {
-  aspect-ratio: 16 / 11;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.035);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  aspect-ratio: 16 / 8.6;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    rgba(13, 18, 26, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
 .shop-callout-media-etsy picture,
@@ -177,39 +250,48 @@ section h1 {
   display: block;
   width: 100%;
   height: 100%;
-  padding: 0.25rem;
-  object-fit: contain;
+  padding: 0;
+  object-fit: cover;
   object-position: center;
   border-radius: inherit;
-  background-color: #f5f2ef;
+  background: transparent;
 }
 
 .shop-section-heading {
-  padding: 0 0 1.15rem;
+  padding: 1.3rem 0 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: left;
   margin-bottom: 1.15rem;
+  max-width: none;
+}
+
+.shop-section-kicker {
+  margin-bottom: 0.55rem;
 }
 
 .shop-section-heading h4 {
   margin: 0 0 0.45rem;
-  font-size: clamp(2.4rem, 3.6vw, 3.45rem);
-  line-height: 1.05;
+  max-width: 12ch;
+  font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+  line-height: 1.08;
   color: var(--text-color);
+  text-wrap: balance;
 }
 
 .shop-section-heading p {
   max-width: 44rem;
   margin: 0;
-  color: rgba(255, 255, 255, 0.76);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 1rem;
   line-height: 1.65;
 }
 
 .grid.shop-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.15rem, 2vw, 1.55rem);
+  grid-template-columns: repeat(3, minmax(268px, 308px));
+  gap: clamp(1.15rem, 2vw, 1.65rem);
   padding: 0;
+  justify-content: center;
   justify-items: stretch;
   align-items: stretch;
   grid-auto-rows: 1fr;
@@ -217,18 +299,28 @@ section h1 {
 }
 
 .shop-card {
-  max-width: none;
+  max-width: 308px;
   min-height: 100%;
-  padding: 0 1.1rem 1.1rem;
+  padding: 0 0.95rem 0.95rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(28, 33, 43, 0.88);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .shop-card-media {
-  width: calc(100% + 2.2rem);
-  margin: -1px -1.1rem 1rem;
+  width: calc(100% + 1.9rem);
+  margin: -1px -0.95rem 0.85rem;
   aspect-ratio: 16 / 11;
   overflow: hidden;
-  background-color: var(--background-four);
-  border-bottom: 1px solid rgba(0, 123, 240, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    rgba(15, 20, 28, 0.92);
+  border-bottom: 1px solid rgba(0, 123, 240, 0.2);
 }
 
 .shop-card-media img {
@@ -236,6 +328,7 @@ section h1 {
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: saturate(0.98) contrast(1.02);
 }
 
 .shop-card-media-fitness img {
@@ -249,14 +342,15 @@ section h1 {
 
 .shop-card h4 {
   margin-bottom: 0.5rem;
-  font-size: clamp(1.35rem, 1.55vw, 1.75rem);
-  line-height: 1.12;
+  font-size: clamp(1.16rem, 1.06vw, 1.34rem);
+  line-height: 1.14;
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .shop-card p {
-  margin: 0 0 1.1rem;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.52;
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -266,47 +360,52 @@ section h1 {
 }
 
 .shop-callout-custom {
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.8fr);
-  gap: clamp(1.25rem, 2.8vw, 2.2rem);
-  align-items: center;
-  padding: clamp(1.35rem, 2.8vw, 1.8rem);
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    radial-gradient(circle at top right, rgba(0, 123, 240, 0.15) 0%, rgba(0, 123, 240, 0) 42%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.018) 100%),
-    rgba(28, 28, 28, 0.72);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  grid-template-columns: minmax(0, 0.94fr) minmax(280px, 0.7fr);
+  gap: clamp(1.8rem, 4vw, 3.2rem);
+  align-items: start;
+  padding: clamp(1.35rem, 2.2vw, 1.7rem) 0 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  max-width: none;
 }
 
 .shop-callout-copy-custom {
-  max-width: 40rem;
+  max-width: 37rem;
   padding: 0;
 }
 
 .shop-callout-copy-custom h4 {
   margin: 0 0 0.85rem;
-  font-size: clamp(2rem, 2.6vw, 2.85rem);
-  line-height: 1.05;
+  font-size: clamp(1.6rem, 1.9vw, 1.95rem);
+  line-height: 1.08;
   color: var(--text-color);
+  text-wrap: balance;
 }
 
 .shop-callout-copy-custom p {
   margin: 0 0 1.25rem;
-  font-size: clamp(1rem, 1.1vw, 1.08rem);
-  line-height: 1.75;
+  font-size: clamp(0.96rem, 1vw, 1.02rem);
+  line-height: 1.68;
   color: rgba(255, 255, 255, 0.8);
 }
 
 .shop-callout-media-custom {
   min-height: 0;
-  aspect-ratio: 16 / 12;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.035);
+  width: min(100%, 400px);
+  justify-self: end;
+  aspect-ratio: 16 / 10.6;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    rgba(13, 18, 26, 0.92);
   overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 .shop-callout-frame,
@@ -321,6 +420,7 @@ section h1 {
   object-fit: cover;
   object-position: center;
   display: block;
+  filter: saturate(0.98) contrast(1.02);
 }
 
 @media (max-width: 1080px) {
@@ -330,13 +430,25 @@ section h1 {
   }
 
   .shop-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 308px));
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .section.shop-layout {
+  body > main .section.shop-layout {
     --shop-section-gap: 2.75rem;
+    background:
+      radial-gradient(circle at top left, rgba(0, 123, 240, 0.14), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(129, 206, 255, 0.08), transparent 22%),
+      linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+      var(--background-three);
+    padding: 1rem 0.95rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    box-shadow:
+      0 26px 70px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
   .shop-hero {
@@ -344,18 +456,25 @@ section h1 {
     margin-bottom: var(--shop-section-gap);
   }
 
+  .shop-hero-heading {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
   .intro {
     padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
   }
 
   .intro h3 {
-    max-width: 13ch;
-    margin-bottom: 0.8rem;
-    font-size: clamp(1.9rem, 8.4vw, 2.7rem);
+    max-width: 15ch;
+    font-size: clamp(1.72rem, 7vw, 2.15rem);
+  }
+
+  .shop-hero-button {
+    width: 100%;
+    justify-self: stretch;
+    margin-bottom: 0;
   }
 
   .intro p {
@@ -366,15 +485,11 @@ section h1 {
 
   .shop-callout-etsy {
     padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    gap: 0.8rem;
+    gap: 0;
   }
 
   .shop-callout-media-etsy {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9.2;
     border-radius: 14px;
   }
 
@@ -385,13 +500,13 @@ section h1 {
   }
 
   .shop-section-heading {
-    padding: 0;
+    padding: 1.1rem 0 0;
     margin-bottom: 1.2rem;
   }
 
   .shop-section-heading h4 {
     margin-bottom: 0.4rem;
-    font-size: clamp(2.3rem, 10vw, 3.05rem);
+    font-size: clamp(1.75rem, 7.2vw, 2.1rem);
   }
 
   .shop-section-heading p {
@@ -416,7 +531,7 @@ section h1 {
   }
 
   .shop-card h4 {
-    font-size: clamp(1.35rem, 5.2vw, 1.65rem);
+    font-size: clamp(1.25rem, 4.8vw, 1.48rem);
   }
 
   .shop-card p {
@@ -427,11 +542,6 @@ section h1 {
     gap: 0.9rem;
     margin-bottom: 0;
     padding: 1.3rem 0 0;
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
   }
 
   .shop-callout-media-custom {
@@ -440,7 +550,7 @@ section h1 {
 
   .shop-callout-copy-custom h4 {
     margin-bottom: 0.55rem;
-    font-size: clamp(1.85rem, 8.2vw, 2.35rem);
+    font-size: clamp(1.65rem, 6.8vw, 1.95rem);
   }
 
   .shop-callout-copy-custom p {
