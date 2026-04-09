@@ -122,7 +122,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Sidebar
   if (s && c && r) {
+    function syncMobileAsideState() {
+      if (window.innerWidth > 768) return;
+      s.classList.remove("active");
+      c.classList.remove("active");
+      r.classList.remove("aside-open");
+    }
+
     s.addEventListener("click", function () {
+      if (window.innerWidth <= 768) {
+        syncMobileAsideState();
+        return;
+      }
+
       this.classList.toggle("active");
       c.classList.toggle("active");
       r.classList.toggle("aside-open");
@@ -135,6 +147,9 @@ document.addEventListener("DOMContentLoaded", function () {
         r.classList.remove("aside-open");
       }
     });
+
+    window.addEventListener("resize", syncMobileAsideState);
+    syncMobileAsideState();
   }
 
   let u = [];
