@@ -38,31 +38,52 @@ h1 {
   list-style-type: none;
   align-items: center;
   justify-content: flex-end;
+  gap: 0.85rem;
   margin-left: auto;
   padding: 0;
 }
 
 .nav-item {
-  margin-left: 25px;
+  margin-left: 0;
 }
 
 .nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   color: var(--text-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
   cursor: pointer;
-  margin-right: 1rem;
-  font-size: 18px;
+  font-size: 0.96rem;
   font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
+  padding: 0.4rem 0.1rem 0.75rem;
 }
 
 .nav-link i {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25em;
-  min-width: 1.25em;
-  margin-right: 0.4rem;
+  display: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background-color: var(--color-three);
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  pointer-events: none;
 }
 
 .resize-text > i,
@@ -77,6 +98,27 @@ h1 {
 
 .nav-link:hover {
   color: var(--color-three);
+  opacity: 1;
+}
+
+.nav-link:focus-visible {
+  color: var(--color-three);
+  opacity: 1;
+  outline: none;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.is-active::after,
+.nav-link[aria-current="page"]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.nav-link.is-active,
+.nav-link[aria-current="page"] {
+  color: var(--color-three);
+  opacity: 1;
 }
 
 .menu-icon {
@@ -147,7 +189,8 @@ h1 {
     background-color: var(--background-one);
     border-radius: 8px;
     width: 200px;
-    padding: 10px;
+    gap: 0;
+    padding: 12px;
     border: 1px solid;
     border-color: var(--background-two) var(--background-four)
       var(--background-four) var(--background-two);
@@ -158,11 +201,24 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    padding: 16px;
   }
 
   .nav-item {
-    margin: 15px 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.85rem 0.1rem;
+    font-size: 1rem;
+  }
+
+  .nav-link::after {
+    bottom: 0.2rem;
+    transform-origin: left;
   }
 
   /* sezione menu toggle */
