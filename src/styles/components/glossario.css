@@ -320,6 +320,36 @@ aside { scrollbar-width: thin; scrollbar-color: var(--background-six) var(--back
   main {
     margin-left: 0;
   }
+
+  .main-content,
+  main,
+  main > section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  main {
+    box-sizing: border-box;
+    padding-inline: 0.4rem;
+  }
+
+  details {
+    margin-inline: 0;
+    margin-bottom: 0.6rem;
+  }
+
+  summary {
+    padding: 0.85rem 0.9rem 0.85rem 2.4rem;
+  }
+
+  ol {
+    margin-left: 0;
+    padding: 0 0.9rem 0 1.25rem;
+  }
+
+  ol li {
+    margin: 0.95rem 0;
+  }
 }
 
 /* glossari resize helper (visually-hidden on small screens) */
