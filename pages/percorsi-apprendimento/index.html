@@ -81,24 +81,53 @@
     </nav>
 
   </header>
-  <h2>Oltre il codice alcune basi spesso sottovalutate</h2>
   <main id="main-content">
-    <section id="percorsi-apprendimento" class="section" aria-labelledby="percorsi-title">
-      <div class="intro">
-        <h3 id="percorsi-title">Contenuti e Visione</h3>
-        <p>
-          Codedge non vuole essere l'ennesimo manuale di sintassi, ma una risorsa per chi cerca una comprensione più
-          profonda delle tecnologie front-end.
+    <section id="percorsi-apprendimento" class="section learning-shell" aria-labelledby="percorsi-title">
+      <div class="intro learning-intro">
+        <div class="learning-intro__copy">
+          <p class="section-kicker">Study tracks</p>
+          <h3 id="percorsi-title">Contenuti e Visione</h3>
+          <p>
+            Questa area serve a raccogliere percorsi più ragionati, non solo
+            esempi rapidi o reference isolate. L’idea è dare struttura a ciò
+            che spesso viene imparato in modo frammentario: contesto, logica e
+            collegamenti tra i pezzi.
+          </p>
+          <p>
+            Invece di ripetere lezioni generiche, qui l’obiettivo è mettere a
+            fuoco i fondamenti che aiutano davvero a leggere meglio il front-end
+            e a non trattare browser, rete e progetto come scatole nere.
+          </p>
+          <div class="learning-intro__signals" aria-label="Caratteristiche dei percorsi">
+            <span>Fondamenta</span>
+            <span>Contesto</span>
+            <span>Approccio guidato</span>
+          </div>
+        </div>
 
-          Più che ripetere lezioni su HTML o JavaScript già disponibili in rete, scelgo di dare spazio a una visione più
-          narrativa e teorica. Mi concentro sui dettagli meno discussi, sull'analisi degli errori e su quegli
-          approfondimenti che danno valore reale al percorso di uno sviluppatore. È un progetto mirato a chi, oltre al
-          "come", vuole capire il "perché" delle cose, risparmiando tempo attraverso l'esperienza condivisa.
-        </p>
+        <div class="learning-intro__visual">
+          <figure class="intro-media">
+            <img
+              id="percorsi-intro-image"
+              class="intro-media-image"
+              alt="Panoramica visuale di percorsi di apprendimento front-end e fondamenti del web"
+              width="1168"
+              height="784"
+              loading="eager"
+              decoding="async"
+            >
+          </figure>
+          <div class="learning-media-overlay" aria-hidden="true">
+            <span class="learning-media-overlay__line learning-media-overlay__line--top"></span>
+            <span class="learning-media-overlay__line learning-media-overlay__line--bottom"></span>
+            <span class="learning-media-overlay__glow"></span>
+          </div>
+        </div>
       </div>
-      <div class="grid">
-        <div class="card coming-soon coming-soon-card">
+      <div class="grid learning-grid">
+        <div class="card coming-soon coming-soon-card learning-card">
           <span class="coming-soon-badge">In arrivo</span>
+          <p class="learning-card__eyebrow">Core web concepts</p>
           <h4>Internet Fondamenti Essenziali</h4>
           <p>
             Un percorso dedicato ai fondamenti di Internet: browser, server,
@@ -106,6 +135,11 @@
             da zero e vuole capire davvero cosa c'e dietro a un progetto
             front-end.
           </p>
+          <div class="learning-card__meta" aria-hidden="true">
+            <span>Browser</span>
+            <span>DNS</span>
+            <span>Hosting</span>
+          </div>
           <span class="button-simple" aria-label="Corso in arrivo">Percorso in preparazione</span>
         </div>
       </div>

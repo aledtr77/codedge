@@ -77,51 +77,101 @@
     </nav>
     
     </header>
-    <h2>Codice semplice, spunti reali</h2>
     <main id="main-content">
-      <section id="progetti-pratici" class="section" aria-labelledby="progetti-title">
-        <div class="intro">
-          <h3 id="progetti-title">Panoramica rapida</h3>
-          <p>
-            Qui trovi piccoli componenti interattivi che puoi usare, smontare,
-            ricostruire o semplicemente studiare per consolidare le tue
-            conoscenze in HTML, CSS e JavaScript. Sono esempi semplici, concreti
-            e spero anche divertenti, nati più per passione che per perfezione.
-            L’idea è arricchire il tuo bagaglio, darti spunti, e magari
-            accendere una scintilla per i tuoi progetti.
-          </p>
+      <section id="progetti-pratici" class="section projects-shell" aria-labelledby="progetti-title">
+        <div class="intro projects-intro">
+          <div class="projects-intro__copy">
+            <p class="section-kicker">Build and inspect</p>
+            <h3 id="progetti-title">Panoramica rapida</h3>
+            <p>
+              Qui trovi mini progetti front-end pensati per farti vedere il
+              codice in azione, non solo in forma di snippet isolato. Ogni
+              esempio nasce per essere aperto, letto, modificato e riusato come
+              base per un pezzo reale di interfaccia.
+            </p>
+            <p>
+              L’idea non è mostrare effetti fini a se stessi, ma pattern piccoli
+              e leggibili: interazioni, componenti e micro-layout che puoi
+              smontare per capire struttura, stile e comportamento.
+            </p>
+            <div class="projects-intro__signals" aria-label="Tipi di progetto disponibili">
+              <span>Interazioni</span>
+              <span>Componenti</span>
+              <span>UI patterns</span>
+              <span>Codice leggibile</span>
+            </div>
+          </div>
+
+          <div class="projects-intro__visual">
+            <figure class="intro-media">
+              <img
+                id="progetti-intro-image"
+                class="intro-media-image"
+                alt="Panoramica visuale di mini progetti front-end e componenti interattivi"
+                width="1168"
+                height="784"
+                loading="eager"
+                decoding="async"
+              >
+            </figure>
+            <div class="projects-media-overlay" aria-hidden="true">
+              <span class="projects-media-overlay__line projects-media-overlay__line--top"></span>
+              <span class="projects-media-overlay__line projects-media-overlay__line--bottom"></span>
+              <span class="projects-media-overlay__glow"></span>
+            </div>
+          </div>
         </div>
-        <div class="grid">
-          <div class="card">
+        <div class="grid projects-grid">
+          <div class="card project-card project-card--scroll">
+            <p class="project-card__eyebrow">Navigation feedback</p>
             <h4><i class="fas fa-chevron-up arrow"></i> Scroll Indicator</h4>
             <p>
-              Pulsante di scroll-meter elegante con riempimento circolare e
-              funzione pulsante reset inizio pagina.
+              Indicatore di avanzamento con ritorno rapido all’inizio pagina,
+              utile per landing lunghe e contenuti articolati.
             </p>
+            <div class="project-card__meta" aria-hidden="true">
+              <span>Scroll</span>
+              <span>Progress</span>
+            </div>
             <a href="/progetti-pratici/scroll-indicator/" class="button-simple" aria-label="pulsante con meter di avanzamento dello scroll della pagina">Aggiungi funzionalità</a>
           </div>
-          <div class="card">
+          <div class="card project-card project-card--cards">
+            <p class="project-card__eyebrow">Reveal interaction</p>
             <h4><i class="fa-solid fa-layer-group"></i> Card Interattive</h4>
             <p>
-              Costruisci delle card con animazioni e interazioni avanzate usando
-              CSS e JavaScript.
+              Card animate da studiare per capire come combinare stato, motion
+              e trasformazioni CSS in modo più espressivo.
             </p>
+            <div class="project-card__meta" aria-hidden="true">
+              <span>Motion</span>
+              <span>Flip</span>
+            </div>
             <a href="/progetti-pratici/card-interattive/" class="button-simple" aria-label="Crea le tue card interattive">Ruota le Card</a>
           </div>
-          <div class="card">
+          <div class="card project-card project-card--navbar">
+            <p class="project-card__eyebrow">Responsive structure</p>
             <h4><i class="fas fa-grip-lines"></i> Minimal Navbar</h4>
             <p>
-              Una Navbar dallo stile minimal e pulito con effetto responsive che
-              trasforma i link nel classico menù hamburger.
+              Navbar minimale e responsive utile come base per header leggeri,
+              menu mobile e navigazione più pulita.
             </p>
+            <div class="project-card__meta" aria-hidden="true">
+              <span>Header</span>
+              <span>Mobile</span>
+            </div>
             <a href="/progetti-pratici/minimal-navbar/" class="button-simple" aria-label="Crea le tue card interattive">Prova la Navbar</a>
           </div>
-          <div class="card">
+          <div class="card project-card project-card--form">
+            <p class="project-card__eyebrow">Input experience</p>
             <h4><i class="fas fa-list-check"></i> Form Effetti Resize</h4>
             <p>
-              Un form con animazioni accattivanti per rendere meno noioso il
-              classico modulo da compilare
+              Un form con micro-effetti e variazioni di stato per rendere più
+              curato un pattern che di solito resta troppo anonimo.
             </p>
+            <div class="project-card__meta" aria-hidden="true">
+              <span>Fields</span>
+              <span>States</span>
+            </div>
             <a href="/progetti-pratici/form/" class="button-simple" aria-label="Esplora il progetto ToDo List">Compila il form</a>
           </div>
         </div>
