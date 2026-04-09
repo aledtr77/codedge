@@ -1,4 +1,4 @@
-const SW_VERSION = "v3";
+const SW_VERSION = "v4";
 const STATIC_CACHE = `codedge-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `codedge-runtime-${SW_VERSION}`;
 
@@ -47,8 +47,10 @@ function isSameOrigin(request) {
 async function networkFirst(request) {
   const cache = await caches.open(RUNTIME_CACHE);
   try {
-    const response = await fetch(request);
-    cache.put(request, response.clone());
+    const response = await fetch(new Request(request, { cache: "no-store" }));
+    if (response && response.ok) {
+      cache.put(request, response.clone());
+    }
     return response;
   } catch {
     return (await cache.match(request)) || (await caches.match(request));
@@ -58,9 +60,11 @@ async function networkFirst(request) {
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(RUNTIME_CACHE);
   const cached = await cache.match(request);
-  const fetchPromise = fetch(request)
+  const fetchPromise = fetch(new Request(request, { cache: "no-store" }))
     .then((response) => {
-      cache.put(request, response.clone());
+      if (response && response.ok) {
+        cache.put(request, response.clone());
+      }
       return response;
     })
     .catch(() => null);
@@ -82,10 +86,13 @@ self.addEventListener("fetch", (event) => {
   if (
     destination === "script" ||
     destination === "style" ||
-    destination === "image" ||
-    destination === "font" ||
     destination === "manifest"
   ) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  if (destination === "image" || destination === "font") {
     event.respondWith(staleWhileRevalidate(request));
   }
 });
