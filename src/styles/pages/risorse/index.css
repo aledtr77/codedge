@@ -54,6 +54,26 @@
         text-align: justify;
         margin-bottom: 35px;
       }
+      .intro-media {
+        width: min(100%, 980px);
+        margin: 1.35rem auto 1.6rem;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+          0 20px 55px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(0, 123, 240, 0.12);
+        background:
+          linear-gradient(135deg, rgba(0, 123, 240, 0.1), rgba(255, 255, 255, 0.02)),
+          #1f1f1f;
+      }
+      .intro-media-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1168 / 784;
+        object-fit: cover;
+      }
       .hero,
       .hero-content {
         display: flex;
@@ -120,5 +140,9 @@
         }
         .hero .cta-buttons {
           flex-direction: column;
+        }
+        .intro-media {
+          margin: 1.05rem auto 1.25rem;
+          border-radius: 14px;
         }
       }
