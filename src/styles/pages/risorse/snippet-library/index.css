@@ -52,6 +52,15 @@
         max-height: 100%;
         overflow-y: unset;
       }
+      .snippet-box pre,
+      .snippet-box pre[class*="language-"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .snippet-box code,
+      .snippet-box code[class*="language-"] {
+        display: block;
+      }
       .copy-btn {
         background-color: var(--color-four);
         background-image: linear-gradient(
@@ -224,9 +233,44 @@
         .snippet-main {
           margin-left: 0;
           width: 100%;
+          padding: 1rem 0.8rem 1.4rem;
+          overflow-x: visible;
         }
         .snippet-nav {
           margin-top: 0;
+        }
+        .snippet-box {
+          padding: 0.85rem;
+          border-radius: 12px;
+        }
+        .title-box {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+        .copy-btn {
+          align-self: flex-start;
+          min-height: 2.2rem;
+          padding: 0.5rem 0.8rem;
+          font-size: 0.82rem;
+        }
+        .snippet-box pre,
+        .snippet-box pre[class*="language-"] {
+          margin: 0;
+          padding: 1rem 0.9rem;
+          border-radius: 10px;
+          white-space: pre-wrap !important;
+          overflow: visible;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          font-size: 0.78rem;
+          line-height: 1.55;
+        }
+        .snippet-box code,
+        .snippet-box code[class*="language-"] {
+          white-space: inherit !important;
+          overflow-wrap: inherit;
+          word-break: inherit;
         }
       }
       .spacer {
