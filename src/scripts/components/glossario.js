@@ -10,6 +10,38 @@ document.addEventListener("DOMContentLoaded", function () {
     s = document.querySelector(".sidebar-toggle"),
     c = document.querySelector("aside"),
     r = document.querySelector(".main-content");
+
+  function enhanceGlossaryLabels() {
+    document.querySelectorAll("details > ol > li").forEach((item) => {
+      if (item.querySelector(".glossary-label")) return;
+
+      const textNode = Array.from(item.childNodes).find(
+        (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
+      );
+      if (!textNode) return;
+
+      const match = textNode.textContent.match(/^(\s*)([^:\n]{2,40}:)(\s*)/);
+      if (!match) return;
+
+      const [, leading, label, spacing] = match;
+      const remainder = textNode.textContent.slice(match[0].length);
+      const fragment = document.createDocumentFragment();
+      const labelEl = document.createElement("span");
+
+      labelEl.className = "glossary-label";
+      labelEl.textContent = label;
+
+      if (leading) fragment.appendChild(document.createTextNode(leading));
+      fragment.appendChild(labelEl);
+      fragment.appendChild(document.createTextNode(spacing || " "));
+      if (remainder) fragment.appendChild(document.createTextNode(remainder));
+
+      textNode.replaceWith(fragment);
+    });
+  }
+
+  enhanceGlossaryLabels();
+
   let d = o ? o.offsetHeight : 0;
   function updateHeaderHeight() {
     d = o ? o.offsetHeight : 0;
