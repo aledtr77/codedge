@@ -12,6 +12,14 @@
     placeholderSelector: "#nav-menu",
     enableLog: false,
   };
+  const navLabels = {
+    "/": { text: "Home", ariaLabel: "Home" },
+    "/risorse": { text: "Risorse", ariaLabel: "Risorse" },
+    "/strumenti": { text: "Strumenti", ariaLabel: "Strumenti" },
+    "/progetti-pratici": { text: "Progetti", ariaLabel: "Progetti pratici" },
+    "/percorsi-apprendimento": { text: "Percorsi", ariaLabel: "Percorsi di apprendimento" },
+    "/shop-template": { text: "Template", ariaLabel: "Shop template" },
+  };
 
   function log(...args) {
     if (config.enableLog) console.log("[nav-loader]", ...args);
@@ -59,6 +67,32 @@
     });
   }
 
+  function applyNavLabels(container) {
+    container.querySelectorAll("a.nav-link").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      if (/^(mailto:|tel:|javascript:|#)/i.test(href)) return;
+
+      let targetPath;
+      try {
+        targetPath = new URL(href, location.origin).pathname;
+      } catch {
+        targetPath = href;
+      }
+
+      targetPath = normalizePath(targetPath);
+
+      const navItem = navLabels[targetPath];
+      if (!navItem) return;
+
+      const icon = link.querySelector("i");
+      link.textContent = "";
+      if (icon) link.appendChild(icon);
+      link.append(navItem.text);
+      link.setAttribute("aria-label", navItem.ariaLabel);
+      link.setAttribute("title", navItem.ariaLabel);
+    });
+  }
+
   function hasNavLinks(container) {
     return !!container?.querySelector("a.nav-link");
   }
@@ -75,6 +109,7 @@
     if (hasNavLinks(placeholder)) {
       log("Navbar statica rilevata, skip iniezione.");
       placeholder.dataset.partialLoaded = "true";
+      applyNavLabels(placeholder);
       markCurrent(placeholder);
       markReady();
       return;
