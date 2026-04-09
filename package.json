@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-seo-assets.mjs",
     "build": "vite build",
     "preview": "vite preview --port 5000"
   },
