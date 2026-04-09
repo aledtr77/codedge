@@ -299,6 +299,20 @@ aside { scrollbar-width: thin; scrollbar-color: var(--background-six) var(--back
   .aside-content { max-height: none; }
 }
 
+@media screen and (max-width: 768px) {
+  .sidebar-toggle,
+  .sidebar-placeholder,
+  aside {
+    display: none !important;
+  }
+
+  .main-content,
+  .main-content.aside-open,
+  main {
+    margin-left: 0;
+  }
+}
+
 /* glossari resize helper (visually-hidden on small screens) */
 .glossari_resize { font-size: 1.5rem; margin-left: 200px; }
 @media (max-width: 1180px) {

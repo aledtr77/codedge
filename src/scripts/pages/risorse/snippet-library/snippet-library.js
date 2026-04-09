@@ -153,6 +153,7 @@ export function initSnippets(options = {}) {
     oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
     let savedScrollTop = 0;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
 
     function openSidebar() {
       newBtn.classList.add('active');
@@ -170,9 +171,18 @@ export function initSnippets(options = {}) {
       sidebar.classList.remove('active');
     }
 
+    function syncMobileSidebarState() {
+      if (!mobileQuery.matches) return;
+      closeSidebar();
+    }
+
     newBtn.addEventListener('click', function (ev) {
       ev.preventDefault();
       ev.stopPropagation();
+      if (mobileQuery.matches) {
+        syncMobileSidebarState();
+        return;
+      }
       if (newBtn.classList.contains('active')) closeSidebar();
       else openSidebar();
     }, { passive: false });
@@ -193,6 +203,13 @@ export function initSnippets(options = {}) {
 
     // ensure toggle above everything
     newBtn.style.zIndex = newBtn.style.zIndex || '2600';
+
+    if (typeof mobileQuery.addEventListener === 'function') {
+      mobileQuery.addEventListener('change', syncMobileSidebarState);
+    } else if (typeof mobileQuery.addListener === 'function') {
+      mobileQuery.addListener(syncMobileSidebarState);
+    }
+    syncMobileSidebarState();
 
     // debug handle
     window.__snippetSidebarHandler = {
