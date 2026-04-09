@@ -103,32 +103,50 @@
 
   <main id="main-content">
     <!-- Sezione risorse: aria-labelledby collega il contenuto al titolo per accessibilità -->
-    <section id="risorse" class="section" aria-labelledby="risorse-title">
-      <div class="intro">
-        <h3 id="risorse-title">Panoramica rapida</h3>
-        <figure class="intro-media">
-          <img
-            id="risorse-intro-image"
-            class="intro-media-image"
-            alt="Raccolta visuale di risorse front-end tra codice, snippet e studio"
-            width="1168"
-            height="784"
-            loading="eager"
-            decoding="async"
-          >
-        </figure>
-        <!-- Paragrafo introduttivo: spiega l'intento della pagina (rapida e pratica) -->
-        <p>
-          Qui trovi una raccolta snella ma potente di concetti chiave e pezzi
-          di codice pronti all'uso per HTML, CSS e JavaScript. L'idea? Darti
-          una mappa rapida per orientarti nel mare di termini e funzioni, con
-          codice che puoi copiare, smontare, remixare e far tuo senza troppi
-          sbattimenti.
-        </p>
+    <section id="risorse" class="section resources-shell" aria-labelledby="risorse-title">
+      <div class="intro resources-intro">
+        <div class="resources-intro__copy">
+          <p class="section-kicker">Reference library</p>
+          <h3 id="risorse-title">Panoramica rapida</h3>
+          <!-- Paragrafo introduttivo: spiega l'intento della pagina (rapida e pratica) -->
+          <p>
+            Qui trovi una raccolta snella ma potente di concetti chiave e pezzi
+            di codice pronti all'uso per HTML, CSS e JavaScript. L'idea? Darti
+            una mappa rapida per orientarti nel mare di termini e funzioni, con
+            codice che puoi copiare, smontare, remixare e far tuo senza troppi
+            sbattimenti.
+          </p>
+          <div class="resources-intro__signals" aria-label="Tipi di contenuti disponibili">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Snippet</span>
+          </div>
+        </div>
+
+        <div class="resources-intro__visual">
+          <figure class="intro-media">
+            <img
+              id="risorse-intro-image"
+              class="intro-media-image"
+              alt="Raccolta visuale di risorse front-end tra codice, snippet e studio"
+              width="1168"
+              height="784"
+              loading="eager"
+              decoding="async"
+            >
+          </figure>
+          <div class="resources-media-overlay" aria-hidden="true">
+            <span class="resources-media-overlay__line resources-media-overlay__line--top"></span>
+            <span class="resources-media-overlay__line resources-media-overlay__line--bottom"></span>
+            <span class="resources-media-overlay__glow"></span>
+          </div>
+        </div>
       </div>
-      <div class="grid">
+      <div class="grid resources-grid">
         <!-- Card: Glossario HTML -->
-        <div class="card">
+        <div class="card resource-card resource-card--html">
+          <p class="resource-card__eyebrow">Markup essentials</p>
           <!-- Icona con aria-hidden=true (decorativa) -->
           <h4>
             <i class="fab fa-html5" aria-hidden="true"></i> Glossario HTML
@@ -140,6 +158,10 @@
           <p class="resource-preview">
             &lt;div&gt;, &lt;p&gt;, &lt;a&gt;, &lt;img&gt;, &lt;form&gt;...
           </p>
+          <div class="resource-card__meta" aria-hidden="true">
+            <span>Tag</span>
+            <span>Semantica</span>
+          </div>
           <!-- Link alla pagina dettagliata; aria-label fornisce contesto agli screen reader -->
           <a href="/risorse/glossario-html/" class="button-simple"
             aria-label="Esplora i termini HTML">Esplora i
@@ -147,7 +169,8 @@
         </div>
 
         <!-- Card: Glossario CSS -->
-        <div class="card">
+        <div class="card resource-card resource-card--css">
+          <p class="resource-card__eyebrow">Layout and style</p>
           <h4>
             <i class="fab fa-css3" aria-hidden="true"></i> Glossario CSS
           </h4>
@@ -155,11 +178,16 @@
             Spiega proprietà, layout e regole CSS con esempi pratici.
           </p>
           <p class="resource-preview">flexbox, grid, @media, transform...</p>
+          <div class="resource-card__meta" aria-hidden="true">
+            <span>Layout</span>
+            <span>Responsive</span>
+          </div>
           <a href="/risorse/glossario-css/" class="button-simple" aria-label="Scopri gli stili CSS">Scopri gli stili</a>
         </div>
 
         <!-- Card: Glossario JS -->
-        <div class="card">
+        <div class="card resource-card resource-card--js">
+          <p class="resource-card__eyebrow">Logic and flow</p>
           <h4>
             <i class="fab fa-js-square" aria-hidden="true"></i> Glossario JS
           </h4>
@@ -167,12 +195,17 @@
             Concetti e costrutti JavaScript utili per rendere la pagina dinamica.
           </p>
           <p class="resource-preview">function, array, promise, async...</p>
+          <div class="resource-card__meta" aria-hidden="true">
+            <span>Flow</span>
+            <span>Interazione</span>
+          </div>
           <a href="/risorse/glossario-js/" class="button-simple" aria-label="Esplora le funzioni JavaScript">Esplora le
             funzioni</a>
         </div>
 
         <!-- Card: Snippet Library -->
-        <div class="card">
+        <div class="card resource-card resource-card--snippets">
+          <p class="resource-card__eyebrow">Copy, adapt, ship</p>
           <h4>
             <i class="fas fa-code" aria-hidden="true"></i> Snippet Library
           </h4>
@@ -180,6 +213,10 @@
             Soluzioni rapide (snippet) che puoi copiare e usare subito.
           </p>
           <p class="resource-preview">fetch(), modal, animation...</p>
+          <div class="resource-card__meta" aria-hidden="true">
+            <span>Utility</span>
+            <span>Pattern</span>
+          </div>
           <a href="/risorse/snippet-library/" class="button-simple" aria-label="Copia e incolla snippet di codice">Copia
             e incolla</a>
         </div>

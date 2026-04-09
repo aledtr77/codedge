@@ -79,65 +79,117 @@
 
      <h2>Palette colori, gradienti, ottimizzazione immagini e tool CSS</h2>
     <main id="main-content">
-      <section id="strumenti" class="section" aria-labelledby="strumenti-title">
-        <div class="intro">
-          <h3 id="strumenti-title">Panoramica rapida</h3>
-          <p>
-            Qui trovi una manciata di tool pensati per rendere più fluido il tuo
-            percorso di apprendimento e dare una spinta alla tua creatività da
-            sviluppatore frontend. Sono cose piccole ma concrete, fatte per
-            aiutarti a lavorare meglio, con meno frizioni e più voglia di
-            sperimentare. Perché se c'è una cosa che ho capito, è che a volte
-            basta l’attrezzo giusto al momento giusto per far girare tutto il
-            resto.
-          </p>
+      <section id="strumenti" class="section tools-shell" aria-labelledby="strumenti-title">
+        <div class="intro tools-intro">
+          <div class="tools-intro__copy">
+            <p class="section-kicker">Utility set</p>
+            <h3 id="strumenti-title">Panoramica rapida</h3>
+            <p>
+              Questa sezione raccoglie tool front-end pensati per togliere attrito
+              alle cose più ripetitive: generare palette e gradienti, costruire
+              box-shadow leggibili, comprimere immagini e ricavare colori utili
+              da un visual già esistente.
+            </p>
+            <p>
+              Non sono demo decorative: sono piccoli strumenti da usare mentre
+              lavori davvero. Apri quello che ti serve, fai una prova veloce,
+              copi il risultato e torni sul progetto senza perdere tempo in
+              passaggi inutili.
+            </p>
+            <div class="tools-intro__signals" aria-label="Tipi di strumenti disponibili">
+              <span>Colore</span>
+              <span>CSS</span>
+              <span>Immagini</span>
+              <span>Output pronto</span>
+            </div>
+          </div>
+
+          <div class="tools-intro__visual">
+            <figure class="intro-media">
+              <img
+                id="strumenti-intro-image"
+                class="intro-media-image"
+                alt="Panoramica visuale di strumenti front-end per colore, CSS e ottimizzazione immagini"
+                width="1168"
+                height="784"
+                loading="eager"
+                decoding="async"
+              >
+            </figure>
+            <div class="tools-media-overlay" aria-hidden="true">
+              <span class="tools-media-overlay__line tools-media-overlay__line--top"></span>
+              <span class="tools-media-overlay__line tools-media-overlay__line--bottom"></span>
+              <span class="tools-media-overlay__glow"></span>
+            </div>
+          </div>
         </div>
-        <div class="grid">
-          <div class="card">
+        <div class="grid tools-grid">
+          <div class="card tool-card tool-card--colors">
+            <p class="tool-card__eyebrow">Color system</p>
             <h4>
               <i class="fas fa-palette" aria-hidden="true"></i> Generatore
               Colori
             </h4>
             <p>
-              Crea le tue prime palette di colori per sperimentare i tuoi primi
-              progetti web con il generatore di colori.
+              Genera combinazioni cromatiche rapide per interfacce, landing e
+              prototipi senza partire ogni volta da zero.
             </p>
+            <div class="tool-card__meta" aria-hidden="true">
+              <span>Palette</span>
+              <span>Hex</span>
+            </div>
             <a href="/strumenti/generatore-colori/" class="button-simple" aria-label="Usa il generatore di colori">Usa lo strumento</a>
           </div>
-          <div class="card">
+          <div class="card tool-card tool-card--gradients">
+            <p class="tool-card__eyebrow">Backgrounds</p>
             <h4>
               <i class="fas fa-tint" aria-hidden="true"></i> Generatore
               Gradienti
             </h4>
             <p>
-              Strumento intuitivo per creare gradienti personalizzati
-              facilmente.
+              Costruisci gradienti più leggibili e regolati rapidamente finché
+              non trovi una direzione visiva convincente.
             </p>
+            <div class="tool-card__meta" aria-hidden="true">
+              <span>Linear</span>
+              <span>CSS</span>
+            </div>
             <a href="/strumenti/generatore-gradienti/" class="button-simple" aria-label="Crea gradienti personalizzati">Crea gradiente</a>
           </div>
-          <div class="card">
+          <div class="card tool-card tool-card--shadow">
+            <p class="tool-card__eyebrow">Depth and surface</p>
             <h4>
               <i class="fas fa-adjust" aria-hidden="true"></i> Generatore
               Box-Shadow
             </h4>
             <p>
-              Crea ombre per i tuoi elementi HTML con il generatore di ombre
-              CSS.
+              Regola ombre CSS con un feedback immediato invece di procedere a
+              tentativi ciechi direttamente nel foglio di stile.
             </p>
+            <div class="tool-card__meta" aria-hidden="true">
+              <span>Offset</span>
+              <span>Blur</span>
+            </div>
             <a href="/strumenti/generatore-box-shadow/" class="button-simple" aria-label="Genera ombre per i tuoi elementi HTML">Genera ombre</a>
           </div>
-          <div class="card">
+          <div class="card tool-card tool-card--compress">
+            <p class="tool-card__eyebrow">Image workflow</p>
             <h4>
               <i class="fas fa-compress-arrows-alt" aria-hidden="true"></i>
               Compressore Immagini
             </h4>
             <p>
-              Ottimizza le immagini per il web riducendone le dimensioni senza
-              compromettere la qualità.
+              Riduci peso e dimensioni dei file prima di pubblicare, così il
+              passaggio da asset grezzo a web è molto più rapido.
             </p>
+            <div class="tool-card__meta" aria-hidden="true">
+              <span>WebP</span>
+              <span>AVIF</span>
+            </div>
             <a href="/strumenti/compressore-immagini/" class="button-simple" aria-label="Ottimizza le dimensioni delle immagini per il web">Ottimizza immagini</a>
           </div>
-          <div class="card">
+          <div class="card tool-card tool-card--extract">
+            <p class="tool-card__eyebrow">From image to tokens</p>
             <h4>
               <i class="fas fa-eye-dropper" aria-hidden="true"></i> Estrattore
               Palette
@@ -146,6 +198,10 @@
               Carica un’immagine e ottieni 5 swatch, suggerimenti di contrasto,
               gradienti e variabili CSS pronti da copiare.
             </p>
+            <div class="tool-card__meta" aria-hidden="true">
+              <span>Swatch</span>
+              <span>Contrast</span>
+            </div>
             <a href="/strumenti/estrattore-palette/" class="button-simple" aria-label="Da immagine a palette: swatch, gradienti e JSON esportabili">Estrai palette</a>
           </div>
         </div>
