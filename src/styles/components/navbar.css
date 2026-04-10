@@ -1,3 +1,8 @@
+:root {
+  --nav-link-hover-color: var(--color-three);
+  --nav-link-active-color: #8fceff;
+}
+
 header {
   position: sticky;
   top: 0;
@@ -79,7 +84,7 @@ h1 {
   bottom: 0.15rem;
   height: 2px;
   border-radius: 999px;
-  background-color: var(--color-three);
+  background-color: currentColor;
   opacity: 0;
   transform: scaleX(0.45);
   transform-origin: center;
@@ -100,12 +105,12 @@ h1 {
 }
 
 .nav-link:hover {
-  color: var(--color-three);
+  color: var(--nav-link-hover-color);
   opacity: 1;
 }
 
 .nav-link:focus-visible {
-  color: var(--color-three);
+  color: var(--nav-link-hover-color);
   opacity: 1;
   outline: none;
 }
@@ -120,7 +125,7 @@ h1 {
 
 .nav-link.is-active,
 .nav-link[aria-current="page"] {
-  color: var(--color-three);
+  color: var(--nav-link-active-color);
   opacity: 1;
 }
 
@@ -220,11 +225,32 @@ h1 {
     font-size: 1rem;
     font-weight: 500;
     text-align: left;
+    text-decoration: none;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-link::after {
-    bottom: 0.2rem;
-    transform-origin: left;
+    display: none;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link:focus-visible,
+  .nav-link:active,
+  .nav-link.is-active,
+  .nav-link[aria-current="page"] {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    text-decoration: underline;
   }
 
   /* sezione menu toggle */

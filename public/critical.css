@@ -1,5 +1,7 @@
 html {
   background-color: #2a2a2a;
+  --nav-link-hover-color: #007bf0;
+  --nav-link-active-color: #8fceff;
 }
 
 body {
@@ -73,6 +75,16 @@ h1 {
   margin-right: 1rem;
   font-size: 18px;
   font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--nav-link-hover-color);
+}
+
+.nav-link.is-active,
+.nav-link[aria-current="page"] {
+  color: var(--nav-link-active-color);
 }
 
 .nav-link i,
@@ -165,6 +177,30 @@ img {
       inset 1px 1px 0 rgba(255, 255, 255, 0.1),
       inset -1px -1px 0 rgba(0, 0, 0, 0.3),
       0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-link {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link:focus-visible,
+  .nav-link:active,
+  .nav-link.is-active,
+  .nav-link[aria-current="page"] {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    text-decoration: underline;
   }
 
   main {
