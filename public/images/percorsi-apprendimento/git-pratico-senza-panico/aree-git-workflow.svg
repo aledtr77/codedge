@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Working tree, staging area, repository</title>
+  <desc id="desc">Flusso a tre colonne che mostra come passano le modifiche in Git.</desc>
+  <rect width="1200" height="500" fill="#0f2a45" rx="24"/>
+  <text x="56" y="68" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Le 3 aree di Git</text>
+  <text x="56" y="102" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Da dove modifichi a dove salvi davvero</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="144" width="330" height="286" rx="16" fill="#163a5d" stroke="#61afe7"/>
+    <text x="86" y="194" fill="#eff9ff" font-size="30" font-weight="700">Working tree</text>
+    <text x="86" y="234" fill="#b9d8ef" font-size="21">I file reali che stai</text>
+    <text x="86" y="264" fill="#b9d8ef" font-size="21">modificando adesso</text>
+    <text x="86" y="318" fill="#e7f7ff" font-size="22" font-weight="700">index.html  style.css  main.js</text>
+
+    <rect x="436" y="144" width="330" height="286" rx="16" fill="#194467" stroke="#73c0f7"/>
+    <text x="466" y="194" fill="#eff9ff" font-size="30" font-weight="700">Staging area</text>
+    <text x="466" y="234" fill="#b9d8ef" font-size="21">Selezioni solo quello</text>
+    <text x="466" y="264" fill="#b9d8ef" font-size="21">che vuoi committare</text>
+    <text x="466" y="318" fill="#e7f7ff" font-size="22" font-weight="700">git add file</text>
+
+    <rect x="816" y="144" width="330" height="286" rx="16" fill="#1d4e74" stroke="#82cbff"/>
+    <text x="846" y="194" fill="#eff9ff" font-size="30" font-weight="700">Repository</text>
+    <text x="846" y="234" fill="#b9d8ef" font-size="21">Cronologia dei</text>
+    <text x="846" y="264" fill="#b9d8ef" font-size="21">commit salvati</text>
+    <text x="846" y="318" fill="#e7f7ff" font-size="22" font-weight="700">git commit -m "..."</text>
+
+    <path d="M386 286h40" stroke="#9bd4ff" stroke-width="5"/>
+    <polygon points="435,286 421,276 421,296" fill="#9bd4ff"/>
+    <path d="M766 286h40" stroke="#9bd4ff" stroke-width="5"/>
+    <polygon points="815,286 801,276 801,296" fill="#9bd4ff"/>
+  </g>
+</svg>
