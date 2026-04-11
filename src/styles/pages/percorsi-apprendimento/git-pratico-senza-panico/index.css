@@ -55,17 +55,17 @@
 
 .guide-toc-list a {
   display: block;
-  padding: 0.56rem 0.22rem;
+  padding: 0.58rem 0.22rem;
   border-radius: 0;
   border: 0;
   background: transparent;
   color: rgba(222, 242, 255, 0.9);
   text-decoration: none;
-  font-size: 1.02rem;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -85,6 +85,27 @@
 .guide-content {
   display: grid;
   gap: 0.95rem;
+}
+
+.guide-chapter > h2 {
+  margin-bottom: 0.8rem;
+}
+
+.guide-subchapter + .guide-subchapter {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(132, 206, 255, 0.22);
+}
+
+.guide-subchapter > h3 {
+  margin-top: 0;
+  font-size: 1.12rem;
+}
+
+.guide-subchapter > h4 {
+  margin: 0.9rem 0 0.35rem;
+  font-size: 0.98rem;
+  color: rgba(178, 219, 248, 0.98);
 }
 
 .guide-block {
