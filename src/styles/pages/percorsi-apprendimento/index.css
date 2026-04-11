@@ -212,22 +212,6 @@ body > main .learning-shell {
   align-self: flex-start;
 }
 
-.learning-card__badge {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  margin-bottom: 1rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  background-color: rgba(244, 122, 32, 0.14);
-  color: #ffb885;
-  border: 1px solid rgba(244, 122, 32, 0.38);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .learning-card__icon {
   margin-right: 0.42rem;
   color: #f47a20;
@@ -250,10 +234,14 @@ body > main .learning-shell {
 .learning-card h4 {
   font-size: clamp(1.45rem, 2.1vw, 1.95rem);
   line-height: 1.12;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .learning-card p {
   line-height: 1.65;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 .learning-card__meta {
@@ -335,15 +323,71 @@ body > main .learning-shell {
     margin: 0 auto;
   }
 
+  .learning-grid {
+    gap: 14px;
+    justify-items: center;
+  }
+
+  .learning-card {
+    width: min(100%, 420px);
+    max-width: 420px;
+  }
+
   .learning-card .button-simple {
-    align-self: stretch;
+    align-self: flex-start;
+    width: auto;
   }
 }
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
     padding: 0;
+  }
+
+  .learning-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .learning-card {
+    width: min(100%, 420px);
+    max-width: 420px;
+    padding: 0.95rem 0.88rem;
+    border-radius: 14px;
+  }
+
+  .learning-card h4 {
+    font-size: clamp(1.22rem, 5.2vw, 1.45rem);
+    line-height: 1.18;
+    margin-bottom: 0.62rem;
+  }
+
+  .learning-card p {
+    font-size: 0.94rem;
+    line-height: 1.5;
+    margin-bottom: 0.74rem;
+    flex: 0 0 auto;
+  }
+
+  .learning-card__meta {
+    gap: 0.36rem 0.5rem;
+    margin-bottom: 0.72rem;
+  }
+
+  .learning-card__meta span {
+    font-size: 0.69rem;
+    letter-spacing: 0.08em;
+  }
+
+  .learning-card .button-simple,
+  .card .button-simple,
+  .card span.button-simple {
+    width: auto;
+    align-self: flex-start;
+    margin-top: 0.2rem;
+    padding: 0.46rem 0.72rem;
+    min-height: 0;
   }
 
   .intro-media {
@@ -375,8 +419,19 @@ body > main .learning-shell {
 }
 
 @media (max-width: 480px) {
-  .learning-card__meta span {
+  .learning-card {
     width: 100%;
+    max-width: none;
+    padding: 0.9rem 0.82rem;
+  }
+
+  .learning-card h4 {
+    font-size: 1.16rem;
+  }
+
+  .learning-card p {
+    font-size: 0.9rem;
+    line-height: 1.46;
   }
 
   body > main .learning-shell {
