@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Panoramica Git pratica</title>
+  <desc id="desc">Schema con i blocchi fondamentali della guida Git: modello mentale, workflow, branch e remoti.</desc>
+  <rect width="1200" height="520" fill="#102b47" rx="24"/>
+  <text x="56" y="72" fill="#e8f7ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Git pratico: mappa del percorso</text>
+  <text x="56" y="106" fill="#abcce6" font-family="Segoe UI, Arial, sans-serif" font-size="20">Capire la logica, poi applicarla con metodo</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="154" width="250" height="142" rx="14" fill="#163a5d" stroke="#62afe6"/>
+    <text x="84" y="206" fill="#eff9ff" font-size="24" font-weight="700">1. Modello mentale</text>
+    <text x="84" y="238" fill="#b8d7ee" font-size="18">snapshot, commit, HEAD</text>
+
+    <rect x="336" y="154" width="250" height="142" rx="14" fill="#194367" stroke="#72bff6"/>
+    <text x="364" y="206" fill="#eff9ff" font-size="24" font-weight="700">2. Workflow base</text>
+    <text x="364" y="238" fill="#b8d7ee" font-size="18">status, add, commit, log</text>
+
+    <rect x="616" y="154" width="250" height="142" rx="14" fill="#1d4d73" stroke="#80c8fc"/>
+    <text x="644" y="206" fill="#eff9ff" font-size="24" font-weight="700">3. Branch e merge</text>
+    <text x="644" y="238" fill="#b8d7ee" font-size="18">lavoro separato, poi unione</text>
+
+    <rect x="896" y="154" width="250" height="142" rx="14" fill="#20577f" stroke="#8dd1ff"/>
+    <text x="924" y="206" fill="#eff9ff" font-size="24" font-weight="700">4. Remoti</text>
+    <text x="924" y="238" fill="#b8d7ee" font-size="18">clone, fetch, pull, push</text>
+
+    <line x1="306" y1="224" x2="334" y2="224" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="336,224 324,216 324,232" fill="#9bd4ff"/>
+    <line x1="586" y1="224" x2="614" y2="224" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="616,224 604,216 604,232" fill="#9bd4ff"/>
+    <line x1="866" y1="224" x2="894" y2="224" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="896,224 884,216 884,232" fill="#9bd4ff"/>
+  </g>
+
+  <rect x="56" y="340" width="1090" height="126" rx="12" fill="#173a58" stroke="#67b1e6"/>
+  <text x="84" y="383" fill="#e5f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Obiettivo: lavorare con meno ansia e piu controllo</text>
+  <text x="84" y="420" fill="#bedcee" font-family="Segoe UI, Arial, sans-serif" font-size="21">Prima capisci dove sei, poi scegli il comando giusto, infine salvi tappe piccole e chiare.</text>
+</svg>
