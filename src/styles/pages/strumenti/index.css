@@ -123,31 +123,6 @@
         display: grid;
         gap: 1rem;
       }
-      .tools-intro__signals {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.85rem 1.1rem;
-        margin-top: 0.35rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .tools-intro__signals span {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: rgba(255, 255, 255, 0.76);
-        font-size: 0.84rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .tools-intro__signals span::before {
-        content: "";
-        width: 0.36rem;
-        height: 0.36rem;
-        border-radius: 50%;
-        background: rgba(110, 196, 255, 0.7);
-      }
       .intro-media {
         width: min(100%, 660px);
         margin: 0 0 0 auto;
@@ -304,9 +279,6 @@
           justify-self: stretch;
           max-width: none;
         }
-        .tools-intro__signals {
-          justify-content: center;
-        }
         .intro h3,
         .intro p,
         .tool-card h4,
@@ -352,9 +324,6 @@
         }
       }
       @media (max-width: 480px) {
-        .tools-intro__signals span {
-          width: 100%;
-        }
         .tool-card {
           padding: 1.05rem 0.95rem 1rem;
           border-radius: 16px;
