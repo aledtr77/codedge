@@ -39,14 +39,14 @@ function routeFromFile(filePath) {
 function priorityForRoute(route) {
   if (route === '/') return '1.0';
   if (/^\/footer\//.test(route)) return '0.3';
-  if (/^\/(risorse|strumenti|progetti-pratici)\/$/.test(route)) return '0.9';
+  if (/^\/(risorse|strumenti|componenti-ui)\/$/.test(route)) return '0.9';
   if (route === '/percorsi-apprendimento/' || route === '/shop-template/') return '0.8';
   return '0.7';
 }
 
 function sortWeight(route) {
   if (route === '/') return 0;
-  if (/^\/(risorse|strumenti|progetti-pratici|percorsi-apprendimento|shop-template)\//.test(route)) return 1;
+  if (/^\/(risorse|strumenti|componenti-ui|percorsi-apprendimento|shop-template)\//.test(route)) return 1;
   if (/^\/footer\//.test(route)) return 3;
   return 2;
 }

@@ -8,10 +8,10 @@ import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import progettiIntroImage from '@/assets/images/shop-template/progetti-pratici.webp';
+import progettiIntroImage from '@/assets/images/shop-template/componenti-ui.webp';
 
 // CSS specifico pagina
-import '@/styles/pages/progetti-pratici/index.css';
+import '@/styles/pages/componenti-ui/index.css';
 
 // side-effect modules (se li usano)
 import "@/scripts/components/navbar.js";
