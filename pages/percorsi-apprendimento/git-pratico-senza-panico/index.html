@@ -92,6 +92,7 @@
               <li><a href="#section-17">17. Mini laboratorio</a></li>
               <li><a href="#section-18">18. Checklist</a></li>
               <li><a href="#section-20">20. Nota finale</a></li>
+              <li><a href="#section-21">21. Git + AI</a></li>
           </ol>
         </aside>
 
@@ -101,6 +102,11 @@
             <h2 id="git-guide-title">Git pratico e senza panico</h2>
             <h3>Nota iniziale</h3>
             <p>Questa guida è pensata per chi parte da zero e vuole iniziare subito a usare Git in modo semplice, pratico e senza farsi schiacciare da spiegazioni troppo tecniche.</p>
+            <h3>Prima di tutto: che cos'è Git, chi lo ha creato e perché esiste</h3>
+            <p>Git è un sistema di controllo versione distribuito: serve a tracciare le modifiche nel tempo e a permetterti di tornare indietro quando serve.</p>
+            <p>Nasce nel 2005 durante lo sviluppo del kernel Linux. Lo progetta Linus Torvalds perché serviva uno strumento veloce, affidabile e adatto a un progetto enorme con tantissime modifiche continue.</p>
+            <p>Il problema che risolve è concreto: niente più caos di cartelle duplicate, cronologia confusa o modifiche non recuperabili. Con Git ogni passo importante diventa una tappa leggibile.</p>
+            <p>Oggi è usato ovunque perché funziona bene sia da solo sia in team: è diventato lo standard nel lavoro reale, dal freelance ai progetti enterprise e open source.</p>
             <figure class="guide-figure">
               <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/panoramica-git-pratica.svg" alt="Panoramica del percorso Git con i blocchi fondamentali: workflow, branch, remoti e recupero errori" loading="lazy" decoding="async" width="1200" height="520">
               <figcaption>Panoramica rapida del percorso: prima la logica, poi il flusso pratico.</figcaption>
@@ -579,6 +585,23 @@ git push -u origin main</code></pre>
             <p>Non serve sapere tutto subito. Serve iniziare bene. E iniziare bene, con Git, vuol dire meno confusione, meno panico e molto più controllo su quello che stai costruendo.</p>
             <p>Questa guida vuole fare esattamente questo: darti una base pratica, chiara e umana da cui partire.</p>
             <p>Adesso il passo successivo non è rileggere tutto dieci volte. È aprire un progetto, inizializzare Git e cominciare a usarlo davvero.</p>
+          </section>
+          <section id="section-21" class="guide-block">
+            <h2>21. Il modo ideale per usare Git con AI (senza perdere la logica)</h2>
+            <p>Esperienza pratica: il modo migliore per imparare Git resta partire manualmente da terminale, almeno all’inizio. Poi puoi delegare all’assistente in linguaggio naturale, ma con criterio.</p>
+            <h3>Fase 1: costruisci le basi a mano</h3>
+            <p>Per le prime settimane fai tu i passaggi principali: status, add, commit, branch, merge, pull e push.</p>
+            <p>Obiettivo: associare ogni comando a una zona reale di Git (working tree, staging, repository, remoto).</p>
+            <h3>Fase 2: delega all’AI le operazioni ripetitive</h3>
+            <p>Quando la logica è chiara, fai fare all’AI la parte meccanica e tieni tu il controllo decisionale.</p>
+            <p>In pratica: chiedi all’assistente cosa sta per fare, perché lo fa, e quali file tocca prima di eseguire.</p>
+            <h3>Fase 3: usa prompt operativi e verificabili</h3>
+            <pre><code class="language-text">Controlla lo stato Git del progetto e dimmi in 3 righe cosa è cambiato davvero.</code></pre>
+            <pre><code class="language-text">Prepara un commit solo dei file della guida Git, escludendo il resto, poi mostrami il diff sintetico.</code></pre>
+            <pre><code class="language-text">Ho un conflitto in merge: guidami passo passo senza fare comandi distruttivi.</code></pre>
+            <pre><code class="language-text">Prima di pushare, fammi una checklist rapida dei rischi e poi procedi.</code></pre>
+            <h3>Regola d’oro</h3>
+            <p>Delega la velocità, non la comprensione. Se capisci cosa sta succedendo, l’AI ti moltiplica la produttività. Se non capisci, rischi solo di fare errori più in fretta.</p>
           </section>
         </article>
       </div>
