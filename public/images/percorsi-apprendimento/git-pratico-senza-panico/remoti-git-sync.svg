@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
   <title id="title">Remoti Git: clone fetch pull push</title>
   <desc id="desc">Schema tra repository locale e origin su GitHub.</desc>
-  <rect width="1200" height="500" fill="#102843" rx="24"/>
+  <rect width="1200" height="500" fill="#102843" rx="0"/>
   <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Remoti Git in pratica</text>
   <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Cosa succede tra locale e origin</text>
 

@@ -104,10 +104,12 @@
               <p>Git nasce nel 2005 durante lo sviluppo del kernel Linux.</p>
               <p>Il progetto Linux era enorme, distribuito e con una quantità enorme di modifiche continue. Serviva un sistema veloce, affidabile e robusto per gestire il lavoro.</p>
               <p>Linus Torvalds, il creatore del kernel Linux, sviluppò Git con alcuni obiettivi molto chiari:</p>
-              <p>velocità;</p>
-              <p>integrità dei dati;</p>
-              <p>capacità di lavorare bene anche su progetti molto grandi;</p>
-              <p>affidabilità.</p>
+              <ul class="guide-list">
+                <li>velocità;</li>
+                <li>integrità dei dati;</li>
+                <li>capacità di lavorare bene anche su progetti molto grandi;</li>
+                <li>affidabilità.</li>
+              </ul>
               <p>Questa origine spiega una cosa importante: Git non nasce come strumento pensato per coccolare il principiante. Nasce per reggere lavoro serio.</p>
               <p>Ecco perché all’inizio può sembrare un po’ ruvido. Non perché sia fatto male, ma perché è stato progettato con priorità molto pratiche.</p>
               <p>La buona notizia è che tu non hai bisogno di conoscere ogni angolo di Git per usarlo bene. Ti basta costruire un buon modello mentale e imparare bene il nucleo essenziale.</p>
@@ -138,9 +140,11 @@
               <p>Con Git il progetto non è più una massa confusa di file. Diventa una storia fatta di tappe. Ogni tappa importante può essere salvata con un commit. Ogni commit ha un messaggio che spiega cosa hai fatto. In questo modo non stai più lavorando alla cieca: stai costruendo una cronologia leggibile.</p>
               <p>Git è utile anche se lavori da solo. Anzi, spesso all’inizio è utilissimo proprio per chi lavora da solo, perché mentre impari fai molte prove, sbagli, cambi idea, sistemi, rompi, ricostruisci. Avere uno strumento che ti permette di salvare tappe sensate e di recuperare una situazione stabile è una mano enorme.</p>
               <p>Git ti dà soprattutto tre cose:</p>
-              <p>sicurezza, perché puoi recuperare molto più spesso di quanto immagini;</p>
-              <p>ordine, perché le modifiche vengono registrate con senso;</p>
-              <p>libertà, perché puoi sperimentare senza la paura costante di distruggere tutto.</p>
+              <ul class="guide-list">
+                <li>sicurezza, perché puoi recuperare molto più spesso di quanto immagini;</li>
+                <li>ordine, perché le modifiche vengono registrate con senso;</li>
+                <li>libertà, perché puoi sperimentare senza la paura costante di distruggere tutto.</li>
+              </ul>
               <p>La cosa importante da capire fin da subito è questa: Git non è solo una collezione di comandi. È un modo di pensare il progetto nel tempo.</p>
             </section>
             <section class="guide-subchapter">
@@ -150,8 +154,16 @@
               <p>Git è il programma che lavora sul tuo computer e gestisce la cronologia del progetto.</p>
               <p>GitHub è una piattaforma online che ospita repository Git e aggiunge funzioni come condivisione, backup remoto, collaborazione, pull request e visibilità pubblica.</p>
               <p>Una metafora semplice può essere questa:</p>
-              <p>Git è il motore.</p>
-              <p>GitHub è il garage online.</p>
+              <div class="guide-compare-grid">
+                <article class="guide-compare-card">
+                  <h4>Git</h4>
+                  <p>Git è il motore.</p>
+                </article>
+                <article class="guide-compare-card">
+                  <h4>GitHub</h4>
+                  <p>GitHub è il garage online.</p>
+                </article>
+              </div>
               <p>Con Git puoi inizializzare un repository, creare commit, fare branch, fare merge e vedere la storia del progetto anche senza internet.</p>
               <p>Con GitHub puoi pubblicare quella storia online, avere una copia remota, collaborare con altre persone e usare il repository anche come portfolio.</p>
               <p>Questa distinzione è importante perché ti aiuta anche a capire meglio i problemi.</p>
@@ -177,9 +189,11 @@
               <p>Il commit è la tappa salvata.</p>
               <p>Un commit contiene lo stato del progetto in quel momento e un messaggio che descrive l’intenzione della modifica.</p>
               <p>Per esempio:</p>
-              <p>Aggiunge la sezione servizi nella home</p>
-              <p>Corregge il menu mobile</p>
-              <p>Migliora il layout della hero su mobile</p>
+              <ul class="guide-list">
+                <li>Aggiunge la sezione servizi nella home</li>
+                <li>Corregge il menu mobile</li>
+                <li>Migliora il layout della hero su mobile</li>
+              </ul>
               <p>Se fai commit piccoli e chiari, la storia diventa leggibile.</p>
               <h4>Hash</h4>
               <p>Ogni commit ha un identificatore univoco chiamato hash.</p>
@@ -190,10 +204,12 @@
               <p>Se fai un nuovo commit, HEAD si sposta avanti.</p>
               <p>Se cambi branch, HEAD segue il branch su cui ti trovi.</p>
               <h4>Riassunto semplice</h4>
-              <p>snapshot = fotografia;</p>
-              <p>commit = tappa salvata;</p>
-              <p>hash = identificatore del commit;</p>
-              <p>HEAD = punto in cui ti trovi adesso.</p>
+              <ul class="guide-list">
+                <li>snapshot = fotografia;</li>
+                <li>commit = tappa salvata;</li>
+                <li>hash = identificatore del commit;</li>
+                <li>HEAD = punto in cui ti trovi adesso.</li>
+              </ul>
               <p>Quando questi concetti iniziano a essere chiari, Git smette di sembrare magia nera.</p>
             </section>
             <section class="guide-subchapter">
@@ -206,9 +222,11 @@
               <h4>Working tree</h4>
               <p>Il working tree è la tua cartella di lavoro reale. È il posto dove modifichi i file.</p>
               <p>Per esempio:</p>
-              <p>index.html</p>
-              <p>style.css</p>
-              <p>main.js</p>
+              <ul class="guide-list">
+                <li>index.html</li>
+                <li>style.css</li>
+                <li>main.js</li>
+              </ul>
               <h4>Staging area</h4>
               <p>La staging area è una zona intermedia.</p>
               <p>Qui prepari le modifiche che vuoi inserire nel prossimo commit.</p>
@@ -224,9 +242,11 @@
               <p>Questo ti permette di fare commit più chiari e una cronologia molto più leggibile.</p>
               <h4>Immagine mentale utile</h4>
               <p>Pensa così:</p>
-              <p>working tree = scrivania;</p>
-              <p>staging area = vassoio prima della spedizione;</p>
-              <p>repository = archivio.</p>
+              <ul class="guide-list">
+                <li>working tree = scrivania;</li>
+                <li>staging area = vassoio prima della spedizione;</li>
+                <li>repository = archivio.</li>
+              </ul>
               <p>Se questa immagine ti entra bene in testa, metà della confusione iniziale sparisce.</p>
             </section>
           </section>
@@ -261,19 +281,23 @@ git init</code></pre>
               <p>Subito dopo conviene controllare lo stato:</p>
               <h4>git status</h4>
               <p>Questo comando è uno dei più importanti in assoluto. Ti dice:</p>
-              <p>su quale branch sei;</p>
-              <p>quali file sono nuovi;</p>
-              <p>quali sono modificati;</p>
-              <p>quali sono pronti per il commit.</p>
+              <ul class="guide-list">
+                <li>su quale branch sei;</li>
+                <li>quali file sono nuovi;</li>
+                <li>quali sono modificati;</li>
+                <li>quali sono pronti per il commit.</li>
+              </ul>
               <p>Poi puoi aggiungere i file e fare il primo commit:</p>
               <pre><code class="language-bash">git add .
 git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></pre>
               <h4>Cosa hai fatto davvero</h4>
               <p>Hai fatto quattro cose fondamentali:</p>
-              <p>hai creato un repository locale;</p>
-              <p>hai detto a Git di osservare i file del progetto;</p>
-              <p>hai preparato quei file per il commit;</p>
-              <p>hai salvato il primo snapshot nella cronologia.</p>
+              <ul class="guide-list">
+                <li>hai creato un repository locale;</li>
+                <li>hai detto a Git di osservare i file del progetto;</li>
+                <li>hai preparato quei file per il commit;</li>
+                <li>hai salvato il primo snapshot nella cronologia.</li>
+              </ul>
               <p>Questo passaggio va capito bene, perché lo ripeterai in ogni progetto futuro.</p>
             </section>
           </section>
@@ -283,7 +307,6 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <h3>Il ciclo base quotidiano: status, add, commit, log</h3>
               <p>La maggior parte del lavoro quotidiano con Git gira attorno a pochi comandi.</p>
               <p>Se impari bene questi, hai già il cuore dell’uso pratico.</p>
-              <h4>git status</h4>
               <h4>git status</h4>
               <p>Ti mostra la situazione attuale.</p>
               <p>È il comando che ti impedisce di lavorare bendato.</p>
@@ -301,10 +324,10 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
               <p>Mostra la storia del progetto in modo compatto e leggibile.</p>
               <h4>Il flusso mentale giusto</h4>
-              <p>Prima di fare add, chiediti:</p>
-              <p>Quali modifiche voglio davvero salvare in questo commit?</p>
-              <p>Prima di fare commit, chiediti:</p>
-              <p>Il messaggio racconta una cosa chiara?</p>
+              <div class="guide-qa-card">
+                <p class="guide-question">Prima di fare add, chiediti: Quali modifiche voglio davvero salvare in questo commit?</p>
+                <p class="guide-question">Prima di fare commit, chiediti: Il messaggio racconta una cosa chiara?</p>
+              </div>
               <p>Questa piccola abitudine cambia moltissimo la qualità del lavoro.</p>
             </section>
             <section class="guide-subchapter">
@@ -312,16 +335,20 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>Il messaggio di commit è l’etichetta della fotografia che stai salvando.</p>
               <p>Se il messaggio è chiaro, il futuro te capirà subito cosa hai fatto. Se è vago, la cronologia diventa un pantano.</p>
               <h4>Messaggi buoni</h4>
-              <p>Aggiunge la sezione servizi nella home</p>
-              <p>Corregge il bug del menu mobile</p>
-              <p>Migliora il contrasto dei pulsanti nel footer</p>
-              <p>Riorganizza i file della navbar</p>
+              <ul class="guide-list guide-list-good">
+                <li>Aggiunge la sezione servizi nella home</li>
+                <li>Corregge il bug del menu mobile</li>
+                <li>Migliora il contrasto dei pulsanti nel footer</li>
+                <li>Riorganizza i file della navbar</li>
+              </ul>
               <h4>Messaggi deboli</h4>
-              <p>update</p>
-              <p>fix</p>
-              <p>varie cose</p>
-              <p>tentativo</p>
-              <p>boh</p>
+              <ul class="guide-list guide-list-bad">
+                <li>update</li>
+                <li>fix</li>
+                <li>varie cose</li>
+                <li>tentativo</li>
+                <li>boh</li>
+              </ul>
               <h4>Regola pratica</h4>
               <p>Un commit dovrebbe raccontare una sola intenzione.</p>
               <p>Se per descriverlo ti viene da dire “ho fatto un po’ di tutto”, probabilmente hai accumulato troppe modifiche insieme.</p>
@@ -340,10 +367,12 @@ Thumbs.db
 .vscode/</code></pre>
               <h4>Perché è importante</h4>
               <p>Un buon .gitignore:</p>
-              <p>tiene pulita la cronologia;</p>
-              <p>evita rumore inutile;</p>
-              <p>riduce i rischi;</p>
-              <p>impedisce di versionare file sensibili per sbaglio.</p>
+              <ul class="guide-list">
+                <li>tiene pulita la cronologia;</li>
+                <li>evita rumore inutile;</li>
+                <li>riduce i rischi;</li>
+                <li>impedisce di versionare file sensibili per sbaglio.</li>
+              </ul>
               <h4>Attenzione importante</h4>
               <p>Se un file è già stato tracciato, aggiungerlo dopo a .gitignore non basta a farlo sparire dal repository.</p>
               <p>In quel caso devi prima rimuoverlo dall’indice:</p>
@@ -367,15 +396,19 @@ Thumbs.db
               <p>Da quel momento lavori lì dentro.</p>
               <h4>Perché servono</h4>
               <p>I branch ti permettono di:</p>
-              <p>sperimentare senza caos;</p>
-              <p>separare meglio il lavoro;</p>
-              <p>tenere main più pulito;</p>
-              <p>unire il risultato solo quando è pronto.</p>
+              <ul class="guide-list">
+                <li>sperimentare senza caos;</li>
+                <li>separare meglio il lavoro;</li>
+                <li>tenere main più pulito;</li>
+                <li>unire il risultato solo quando è pronto.</li>
+              </ul>
               <h4>Nomi utili per i branch</h4>
-              <p>feature/navbar-mobile</p>
-              <p>fix/footer-link</p>
-              <p>refactor/cards-layout</p>
-              <p>docs/setup-guide</p>
+              <ul class="guide-list">
+                <li><code>feature/navbar-mobile</code></li>
+                <li><code>fix/footer-link</code></li>
+                <li><code>refactor/cards-layout</code></li>
+                <li><code>docs/setup-guide</code></li>
+              </ul>
               <p>Evita nomi confusi tipo prova, test2, nuovo, boh.</p>
               <h4>Una cosa utile da sapere</h4>
               <p>I branch non sono copie pesanti del progetto. Sono puntatori intelligenti alla storia. Per questo crearli è leggero e normale.</p>
@@ -403,10 +436,12 @@ git merge feature/navbar-mobile</code></pre>
               <pre><code class="language-bash">git add index.html
 git commit</code></pre>
               <h4>Come ridurre i conflitti</h4>
-              <p>fai branch piccoli;</p>
-              <p>non lasciare i branch aperti per secoli;</p>
-              <p>integra spesso;</p>
-              <p>fai commit chiari.</p>
+              <ul class="guide-list">
+                <li>fai branch piccoli;</li>
+                <li>non lasciare i branch aperti per secoli;</li>
+                <li>integra spesso;</li>
+                <li>fai commit chiari.</li>
+              </ul>
               <p>Più il lavoro è ordinato, meno i conflitti fanno paura.</p>
             </section>
             <section class="guide-subchapter">
@@ -459,8 +494,10 @@ git push -u origin main</code></pre>
               <p>Può spostare il puntatore della cronologia e, a seconda dell’opzione usata, influenzare staging area e working tree.</p>
               <pre><code class="language-bash">git reset --soft HEAD~1
 git reset --hard HEAD~1</code></pre>
-              <p>--soft torna indietro ma mantiene il lavoro pronto;</p>
-              <p>--hard torna indietro in modo drastico e può eliminare modifiche non salvate.</p>
+              <ul class="guide-list">
+                <li><code>--soft</code> torna indietro ma mantiene il lavoro pronto;</li>
+                <li><code>--hard</code> torna indietro in modo drastico e può eliminare modifiche non salvate.</li>
+              </ul>
               <p>Quindi: utile, ma da usare con cervello.</p>
               <h4>revert</h4>
               <p>revert è diverso.</p>
@@ -468,9 +505,11 @@ git reset --hard HEAD~1</code></pre>
               <pre><code class="language-bash">git revert abc1234</code></pre>
               <p>Per questo è spesso la scelta più sicura quando la cronologia è già stata pubblicata.</p>
               <h4>Schema mentale rapido</h4>
-              <p>restore = scarto o ripristino file;</p>
-              <p>reset = riposiziono la cronologia;</p>
-              <p>revert = annullo un commit senza riscrivere il passato.</p>
+              <ul class="guide-list">
+                <li>restore = scarto o ripristino file;</li>
+                <li>reset = riposiziono la cronologia;</li>
+                <li>revert = annullo un commit senza riscrivere il passato.</li>
+              </ul>
             </section>
             <section class="guide-subchapter">
               <h3>Reflog: il paracadute nascosto</h3>
@@ -486,22 +525,16 @@ git reset --hard HEAD@{2}</code></pre>
             <section class="guide-subchapter">
               <h3>Errori classici dei principianti</h3>
               <p>Chi inizia con Git inciampa spesso negli stessi punti.</p>
-              <p>1. Fare commit giganteschi</p>
-              <p>Se in un solo commit metti HTML, CSS, JavaScript, immagini, prove e cambiamenti scollegati, poi capire o correggere diventa molto più difficile.</p>
-              <p>2. Usare messaggi vaghi</p>
-              <p>update non racconta niente.</p>
-              <p>3. Lavorare sempre su main</p>
-              <p>Per modifiche piccole può anche capitare, ma come regola generale è molto meglio usare branch sensati.</p>
-              <p>4. Dimenticare .gitignore</p>
-              <p>Poi ti ritrovi a tracciare roba inutile o sensibile.</p>
-              <p>5. Usare pull senza capire</p>
-              <p>Meglio sapere almeno mentalmente che cosa sta entrando nel tuo progetto.</p>
-              <p>6. Usare reset –hard con leggerezza</p>
-              <p>Quel comando non è una caramella.</p>
-              <p>7. Andare nel panico davanti a un conflitto</p>
-              <p>Il conflitto non è la fine del mondo. È una scelta manuale che Git ti chiede.</p>
-              <p>8. Non controllare status</p>
-              <p>git status è il tuo cruscotto. Se lo ignori, lavori mezzo bendato.</p>
+              <ol class="guide-number-list">
+                <li><strong>Fare commit giganteschi.</strong> Se in un solo commit metti HTML, CSS, JavaScript, immagini, prove e cambiamenti scollegati, poi capire o correggere diventa molto più difficile.</li>
+                <li><strong>Usare messaggi vaghi.</strong> update non racconta niente.</li>
+                <li><strong>Lavorare sempre su main.</strong> Per modifiche piccole può anche capitare, ma come regola generale è molto meglio usare branch sensati.</li>
+                <li><strong>Dimenticare .gitignore.</strong> Poi ti ritrovi a tracciare roba inutile o sensibile.</li>
+                <li><strong>Usare pull senza capire.</strong> Meglio sapere almeno mentalmente che cosa sta entrando nel tuo progetto.</li>
+                <li><strong>Usare reset –hard con leggerezza.</strong> Quel comando non è una caramella.</li>
+                <li><strong>Andare nel panico davanti a un conflitto.</strong> Il conflitto non è la fine del mondo. È una scelta manuale che Git ti chiede.</li>
+                <li><strong>Non controllare status.</strong> git status è il tuo cruscotto. Se lo ignori, lavori mezzo bendato.</li>
+              </ol>
             </section>
           </section>
           <section id="chapter-08" class="guide-block guide-chapter">
@@ -510,10 +543,12 @@ git reset --hard HEAD@{2}</code></pre>
               <h3>Mini laboratorio guidato</h3>
               <p>Facciamo un piccolo percorso realistico.</p>
               <p>Immagina di avere una cartella con questi file:</p>
-              <p>index.html</p>
-              <p>style.css</p>
-              <p>main.js</p>
-              <p>images/</p>
+              <ul class="guide-list">
+                <li>index.html</li>
+                <li>style.css</li>
+                <li>main.js</li>
+                <li>images/</li>
+              </ul>
               <h4>Passo 1: inizializza Git</h4>
               <pre><code class="language-bash">cd sito-vetrina
 git init
@@ -550,13 +585,15 @@ git merge feature/testimonials</code></pre>
 git push -u origin main</code></pre>
               <h4>Cosa hai fatto davvero</h4>
               <p>Hai già usato il cuore pratico di Git:</p>
-              <p>init;</p>
-              <p>status;</p>
-              <p>add;</p>
-              <p>commit;</p>
-              <p>branch;</p>
-              <p>merge;</p>
-              <p>push.</p>
+              <ul class="guide-list">
+                <li>init;</li>
+                <li>status;</li>
+                <li>add;</li>
+                <li>commit;</li>
+                <li>branch;</li>
+                <li>merge;</li>
+                <li>push.</li>
+              </ul>
               <p>Se rifai questo laboratorio due o tre volte su progetti piccoli, inizi davvero a sentirti meno spaesato.</p>
             </section>
           </section>
@@ -565,51 +602,107 @@ git push -u origin main</code></pre>
             <section class="guide-subchapter">
               <h3>Checklist di sopravvivenza</h3>
               <h4>Prima di fare commit</h4>
-              <p>Ho capito quali modifiche voglio davvero salvare.</p>
-              <p>Questo commit racconta una sola intenzione.</p>
-              <p>Il messaggio è chiaro.</p>
-              <p>Non sto includendo file inutili o sensibili.</p>
-              <p>Ho controllato git status o git diff.</p>
+              <ul class="guide-checklist">
+                <li>Ho capito quali modifiche voglio davvero salvare.</li>
+                <li>Questo commit racconta una sola intenzione.</li>
+                <li>Il messaggio è chiaro.</li>
+                <li>Non sto includendo file inutili o sensibili.</li>
+                <li>Ho controllato git status o git diff.</li>
+              </ul>
               <h4>Prima di fare push</h4>
-              <p>Sto lavorando sul branch giusto.</p>
-              <p>La cronologia è sensata.</p>
-              <p>Non sto pubblicando roba rotta per sbaglio.</p>
-              <p>So cosa sto mandando sul remoto.</p>
+              <ul class="guide-checklist">
+                <li>Sto lavorando sul branch giusto.</li>
+                <li>La cronologia è sensata.</li>
+                <li>Non sto pubblicando roba rotta per sbaglio.</li>
+                <li>So cosa sto mandando sul remoto.</li>
+              </ul>
               <h4>Quando qualcosa va storto</h4>
-              <p>Non panico.</p>
-              <p>Leggo git status.</p>
-              <p>Cerco di capire dove sono: working tree, staging, repository o remoto.</p>
-              <p>Se ho paura di perdere qualcosa, controllo reflog.</p>
-              <p>Se la cronologia è già pubblica, valuto revert prima di fare danni peggiori.</p>
+              <ul class="guide-checklist">
+                <li>Non panico.</li>
+                <li>Leggo git status.</li>
+                <li>Cerco di capire dove sono: working tree, staging, repository o remoto.</li>
+                <li>Se ho paura di perdere qualcosa, controllo reflog.</li>
+                <li>Se la cronologia è già pubblica, valuto revert prima di fare danni peggiori.</li>
+              </ul>
             </section>
             <section class="guide-subchapter">
               <h3>Glossario essenziale</h3>
-              <p>Repository: il progetto con la sua cronologia Git.</p>
-              <p>Commit: una tappa salvata nella storia.</p>
-              <p>Branch: una linea di sviluppo separata.</p>
-              <p>Merge: unione di due linee di lavoro.</p>
-              <p>Remote: copia del repository ospitata altrove.</p>
-              <p>Origin: nome convenzionale del remoto principale.</p>
-              <p>HEAD: puntatore alla posizione attuale nella cronologia.</p>
-              <p>Hash: identificatore univoco di un commit.</p>
-              <p>Staging area: zona intermedia tra modifiche locali e commit.</p>
-              <p>Working tree: i file reali su cui stai lavorando.</p>
+              <dl class="guide-glossary">
+                <div><dt>Repository</dt><dd>il progetto con la sua cronologia Git.</dd></div>
+                <div><dt>Commit</dt><dd>una tappa salvata nella storia.</dd></div>
+                <div><dt>Branch</dt><dd>una linea di sviluppo separata.</dd></div>
+                <div><dt>Merge</dt><dd>unione di due linee di lavoro.</dd></div>
+                <div><dt>Remote</dt><dd>copia del repository ospitata altrove.</dd></div>
+                <div><dt>Origin</dt><dd>nome convenzionale del remoto principale.</dd></div>
+                <div><dt>HEAD</dt><dd>puntatore alla posizione attuale nella cronologia.</dd></div>
+                <div><dt>Hash</dt><dd>identificatore univoco di un commit.</dd></div>
+                <div><dt>Staging area</dt><dd>zona intermedia tra modifiche locali e commit.</dd></div>
+                <div><dt>Working tree</dt><dd>i file reali su cui stai lavorando.</dd></div>
+              </dl>
             </section>
           </section>
           <section id="chapter-10" class="guide-block guide-chapter">
             <h2>10. Git + AI in assistenza</h2>
             <section class="guide-subchapter">
-              <h3>Metodo ideale da autodidatta</h3>
-              <p>Il metodo ideale è semplice: prima impari Git manualmente da terminale, poi deleghi all&#x27;AI la parte ripetitiva mantenendo tu la direzione.</p>
-              <p>Fase 1: per un periodo iniziale usa tu i comandi base (status, add, commit, branch, merge, pull, push) per capire davvero la logica.</p>
-              <p>Fase 2: quando la logica è chiara, usa l&#x27;AI per accelerare operazioni meccaniche e verifiche.</p>
-              <p>Fase 3: prima di ogni azione chiedi sempre cosa farà, perché, su quali file e con quale rischio.</p>
-              <p>Prompt pratici da usare subito:</p>
+              <h3>Metodo pratico: manuale con criterio + AI in assistenza</h3>
+              <p>Il punto non è lasciare tutto in mano all&#x27;AI. Il punto è usare l&#x27;AI come copilota operativo, mentre tu tieni la direzione: intenzione del commit, confini, rischi, ordine logico.</p>
+              <p>Regola semplice: prima chiedi analisi e proposta, poi approvi azione. Così eviti commit sporchi, push impulsivi e correzioni dolorose.</p>
+
+              <h4>Schema operativo: cosa fai tu e cosa delegi</h4>
+              <div class="guide-ai-grid">
+                <article class="guide-ai-card">
+                  <h5>Lo decidi tu</h5>
+                  <ul>
+                    <li>Obiettivo del lavoro (cosa vuoi davvero consegnare).</li>
+                    <li>Scope del commit (quali file dentro e quali fuori).</li>
+                    <li>Momento del push (solo dopo verifica rischi).</li>
+                  </ul>
+                </article>
+                <article class="guide-ai-card">
+                  <h5>Lo fa bene l&#x27;AI</h5>
+                  <ul>
+                    <li>Leggere lo stato e riassumere il contesto.</li>
+                    <li>Preparare staging selettivo e diff leggibile.</li>
+                    <li>Guidarti su conflitti e checklist pre-push.</li>
+                  </ul>
+                </article>
+              </div>
+
+              <h4>Workflow completo su progetto reale</h4>
+              <ol class="guide-ai-steps">
+                <li>
+                  <strong>Imposta il progetto:</strong> fai inizializzazione e verifica stato iniziale.
+                  <pre><code class="language-text">Inizializza il repository Git in questa cartella, configura main se necessario e spiegami in modo sintetico cosa hai fatto.</code></pre>
+                </li>
+                <li>
+                  <strong>Separa i lavori per argomento:</strong> prima capire, poi toccare staging.
+                  <pre><code class="language-text">Analizza le modifiche e dividile per blocchi: contenuti guida, stile, script, altro.</code></pre>
+                </li>
+                <li>
+                  <strong>Prepara commit pulito:</strong> un intento unico, niente rumore.
+                  <pre><code class="language-text">Prepara un commit solo dei file legati alla guida Git, escludi il resto, poi mostrami file staged, diff staged e messaggio commit proposto.</code></pre>
+                </li>
+                <li>
+                  <strong>Gestisci conflitti in sicurezza:</strong> mai scorciatoie distruttive.
+                  <pre><code class="language-text">Guidami nella risoluzione dei conflitti mantenendo le parti utili. Non usare reset --hard o comandi distruttivi.</code></pre>
+                </li>
+                <li>
+                  <strong>Fai quality gate prima del push:</strong> solo se tutto è coerente.
+                  <pre><code class="language-text">Prima del push fai checklist rischi: branch corretto, commit sensati, diff pulito, nessun file sensibile, working tree pulito. Poi procedi.</code></pre>
+                </li>
+              </ol>
+
+              <h4>Esempio concreto: dal manuale all&#x27;AI</h4>
+              <p>Manuale classico: <code>git status</code> -> <code>git add -p</code> -> <code>git diff --staged</code> -> <code>git commit</code> -> <code>git push</code>.</p>
+              <p>Versione assistita: chiedi lo stesso flusso in linguaggio naturale, ma imponi sempre vincoli chiari su scope e sicurezza.</p>
+
+              <h4>Prompt pratici da usare subito</h4>
               <pre><code class="language-text">Controlla lo stato Git del progetto e riassumilo in 3 righe.</code></pre>
               <pre><code class="language-text">Prepara un commit solo dei file della guida Git, escludi tutto il resto e mostrami il diff.</code></pre>
               <pre><code class="language-text">Guidami nella risoluzione di questo conflitto senza usare comandi distruttivi.</code></pre>
               <pre><code class="language-text">Prima di pushare fammi checklist rischi e poi procedi.</code></pre>
-              <p>Regola d&#x27;oro: delega la velocità, non la comprensione. L&#x27;AI è un acceleratore, non un sostituto della tua logica.</p>
+
+              <p>Regola d&#x27;oro finale: delega velocità e ripetizione, non la comprensione. Se resti tu a guidare la logica, l&#x27;AI ti fa lavorare meglio, non a caso.</p>
             </section>
           </section>
           <section id="chapter-11" class="guide-block guide-chapter">

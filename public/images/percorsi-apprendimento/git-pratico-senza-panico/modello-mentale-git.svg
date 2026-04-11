@@ -7,7 +7,7 @@
       <stop offset="1" stop-color="#102c49"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="520" fill="url(#bg)" rx="24"/>
+  <rect width="1200" height="520" fill="url(#bg)" rx="0"/>
   <text x="56" y="70" fill="#dff3ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Modello mentale di Git</text>
   <text x="56" y="106" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">I quattro concetti da tenere in testa mentre lavori</text>
 
