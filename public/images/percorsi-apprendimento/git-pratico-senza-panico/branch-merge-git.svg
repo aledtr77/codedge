@@ -1,43 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
-  <title id="title">Gitgraph branch e merge</title>
-  <desc id="desc">Visualizzazione gitgraph con branch feature che viene mergiato su main.</desc>
+  <title id="title">Branch e merge: universi paralleli</title>
+  <desc id="desc">Linea main con branch parallelo che rientra con merge quando la feature e pronta.</desc>
 
-  <rect width="1200" height="500" fill="#102b46" rx="0"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2b46"/>
+      <stop offset="1" stop-color="#163a59"/>
+    </linearGradient>
+    <marker id="arrow-main" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#75bff2"/>
+    </marker>
+    <marker id="arrow-feature" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#9fd5f5"/>
+    </marker>
+    <marker id="arrow-note" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#b6d9ef"/>
+    </marker>
+  </defs>
 
-  <text x="56" y="60" fill="#e9f7ff" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Branch e merge (gitgraph)</text>
-  <text x="56" y="88" fill="#a9cae5" font-family="Segoe UI, Arial, sans-serif" font-size="17">Linea principale + ramo feature con merge commit</text>
+  <rect width="1200" height="500" fill="url(#bg)" rx="0"/>
+
+  <text x="56" y="60" fill="#e9f7ff" font-family="Segoe UI, Arial, sans-serif" font-size="29" font-weight="700">Branch e merge senza panico</text>
+  <text x="56" y="90" fill="#a9cae5" font-family="Segoe UI, Arial, sans-serif" font-size="18">Lavora separato, integra quando pronto</text>
 
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M120 300 H1080" stroke="#79c0f2" stroke-width="6"/>
-    <path d="M330 300 C370 240, 455 210, 560 220 C590 225, 608 252, 620 300" stroke="#7de0af" stroke-width="6"/>
+    <path d="M90 290 H1110" stroke="#75bff2" stroke-width="7" marker-end="url(#arrow-main)"/>
+    <path d="M290 290 C340 290, 360 200, 450 200 H690 C775 200, 790 290, 885 290" stroke="#9fd5f5" stroke-width="6" marker-end="url(#arrow-feature)"/>
   </g>
 
   <g font-family="Segoe UI, Arial, sans-serif">
-    <text x="82" y="306" fill="#d8f1ff" font-size="20" font-weight="700">main</text>
-    <text x="418" y="184" fill="#c8f4de" font-size="18" font-weight="700">feature/navbar-mobile</text>
+    <text x="78" y="263" fill="#dff2ff" font-size="40" font-weight="700">main</text>
+    <text x="440" y="172" fill="#dff2ff" font-size="44" font-weight="700">feature/navbar-mobile</text>
 
-    <circle cx="200" cy="300" r="11" fill="#63b4ec"/>
-    <circle cx="330" cy="300" r="11" fill="#63b4ec"/>
-    <circle cx="780" cy="300" r="11" fill="#63b4ec"/>
-    <circle cx="930" cy="300" r="11" fill="#63b4ec"/>
+    <circle cx="200" cy="290" r="14" fill="#5fb0ea"/>
+    <circle cx="290" cy="290" r="14" fill="#5fb0ea"/>
+    <circle cx="620" cy="290" r="14" fill="#5fb0ea"/>
+    <circle cx="990" cy="290" r="14" fill="#5fb0ea"/>
 
-    <circle cx="420" cy="250" r="10" fill="#78e6b5"/>
-    <circle cx="500" cy="220" r="10" fill="#78e6b5"/>
-    <circle cx="560" cy="220" r="10" fill="#78e6b5"/>
-
-    <circle cx="620" cy="300" r="14" fill="#8ad0ff"/>
-    <circle cx="620" cy="300" r="7" fill="#102b46"/>
-
-    <text x="186" y="331" fill="#b9d9ef" font-size="14">A</text>
-    <text x="316" y="331" fill="#b9d9ef" font-size="14">B</text>
-    <text x="407" y="272" fill="#bdebd2" font-size="13">f1</text>
-    <text x="487" y="242" fill="#bdebd2" font-size="13">f2</text>
-    <text x="548" y="242" fill="#bdebd2" font-size="13">f3</text>
-    <text x="610" y="330" fill="#d5ecff" font-size="14">M</text>
-    <text x="767" y="331" fill="#b9d9ef" font-size="14">C</text>
-    <text x="918" y="331" fill="#b9d9ef" font-size="14">D</text>
+    <circle cx="500" cy="200" r="13" fill="#8cccf4"/>
+    <circle cx="700" cy="200" r="13" fill="#8cccf4"/>
   </g>
 
-  <rect x="74" y="370" width="1052" height="68" rx="0" fill="#153a59" stroke="#66b2e7"/>
-  <text x="94" y="411" fill="#def3ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">main: A -> B -> M -> C -> D   |   feature: B -> f1 -> f2 -> f3 -> M</text>
+  <circle cx="885" cy="290" r="30" fill="#9fd5f5" opacity="0.25"/>
+  <circle cx="885" cy="290" r="14" fill="#8cccf4"/>
+
+  <g fill="none" stroke="#b6d9ef" stroke-width="3" stroke-linecap="round">
+    <path d="M298 156 C308 184, 340 199, 382 207" marker-end="url(#arrow-note)"/>
+    <path d="M1060 132 C1060 176, 1030 210, 996 224" marker-end="url(#arrow-note)"/>
+    <path d="M924 430 C930 372, 918 336, 905 322" marker-end="url(#arrow-note)"/>
+    <path d="M544 430 C575 405, 584 372, 588 340" marker-end="url(#arrow-note)"/>
+  </g>
+
+  <g fill="#e8f5ff" font-family="Segoe UI, Arial, sans-serif">
+    <text x="128" y="146" font-size="20">Sviluppi separato</text>
+    <text x="998" y="126" font-size="20">merge</text>
+    <text x="778" y="452" font-size="20">Integri quando pronto</text>
+    <text x="505" y="452" font-size="20">parallel branch</text>
+  </g>
 </svg>
