@@ -1,4 +1,4 @@
-// src/scripts/pages/progetti-pratici/card-interattive/main.js
+// src/scripts/pages/componenti-ui/card-interattive/main.js
 // Entry per la pagina "Card Interattive"
 
 // CSS globali
@@ -9,7 +9,7 @@ import "@/styles/components/button.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // CSS specifico pagina
-import '@/styles/pages/progetti-pratici/card-interattive/index.css';
+import '@/styles/pages/componenti-ui/card-interattive/index.css';
 
 // JS side-effect comuni (se li usano)
 import "@/scripts/components/navbar.js";
@@ -18,7 +18,7 @@ import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
 // import statico del modulo delle card (verrà incluso nello stesso bundle dell'entry)
-import { initInteractiveCards } from "@/scripts/pages/progetti-pratici/card-interattive/card-interattive.js";
+import { initInteractiveCards } from "@/scripts/pages/componenti-ui/card-interattive/card-interattive.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Inizializza le card interattive solo se sono presenti elementi .card

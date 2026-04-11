@@ -16,7 +16,7 @@
     "/": { text: "Home", ariaLabel: "Home" },
     "/risorse": { text: "Risorse", ariaLabel: "Risorse" },
     "/strumenti": { text: "Strumenti", ariaLabel: "Strumenti" },
-    "/progetti-pratici": { text: "Progetti", ariaLabel: "Progetti pratici" },
+    "/componenti-ui": { text: "Componenti UI", ariaLabel: "Componenti UI" },
     "/percorsi-apprendimento": { text: "Percorsi", ariaLabel: "Percorsi di apprendimento" },
     "/shop-template": { text: "Template", ariaLabel: "Shop template" },
   };
