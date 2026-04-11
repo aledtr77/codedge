@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
   <title id="title">Working tree, staging area, repository</title>
   <desc id="desc">Flusso a tre colonne che mostra come passano le modifiche in Git.</desc>
-  <rect width="1200" height="500" fill="#0f2a45" rx="24"/>
+  <rect width="1200" height="500" fill="#0f2a45" rx="0"/>
   <text x="56" y="68" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Le 3 aree di Git</text>
   <text x="56" y="102" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Da dove modifichi a dove salvi davvero</text>
 

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
   <title id="title">Restore, reset, revert</title>
   <desc id="desc">Confronto tra i tre comandi per tornare indietro in Git.</desc>
-  <rect width="1200" height="520" fill="#102944" rx="24"/>
+  <rect width="1200" height="520" fill="#102944" rx="0"/>
   <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Quale comando usare quando sbagli</text>
   <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Restore, reset e revert non fanno la stessa cosa</text>
 
