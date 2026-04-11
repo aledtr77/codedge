@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Remoti Git: clone fetch pull push</title>
+  <desc id="desc">Schema tra repository locale e origin su GitHub.</desc>
+  <rect width="1200" height="500" fill="#102843" rx="24"/>
+  <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Remoti Git in pratica</text>
+  <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Cosa succede tra locale e origin</text>
+
+  <rect x="90" y="150" width="420" height="250" rx="16" fill="#173a5b" stroke="#65b2e8"/>
+  <text x="120" y="205" fill="#eef8ff" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Repo locale</text>
+  <text x="120" y="248" fill="#bddbf1" font-family="Segoe UI, Arial, sans-serif" font-size="22">working tree + staging + commit</text>
+
+  <rect x="690" y="150" width="420" height="250" rx="16" fill="#1c4a6f" stroke="#7bc4fa"/>
+  <text x="720" y="205" fill="#eef8ff" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">Origin (GitHub)</text>
+  <text x="720" y="248" fill="#bddbf1" font-family="Segoe UI, Arial, sans-serif" font-size="22">backup e collaborazione remota</text>
+
+  <line x1="520" y1="230" x2="680" y2="230" stroke="#9ed6ff" stroke-width="5"/>
+  <polygon points="688,230 672,220 672,240" fill="#9ed6ff"/>
+  <text x="550" y="214" fill="#dff4ff" font-family="Segoe UI, Arial, sans-serif" font-size="20">push</text>
+
+  <line x1="680" y1="310" x2="520" y2="310" stroke="#9ed6ff" stroke-width="5"/>
+  <polygon points="512,310 528,300 528,320" fill="#9ed6ff"/>
+  <text x="545" y="345" fill="#dff4ff" font-family="Segoe UI, Arial, sans-serif" font-size="20">fetch / pull</text>
+
+  <rect x="90" y="420" width="1020" height="50" rx="10" fill="#173957" stroke="#63afe5"/>
+  <text x="120" y="452" fill="#def2ff" font-family="Segoe UI, Arial, sans-serif" font-size="22">clone crea la copia locale, push pubblica, fetch aggiorna info, pull aggiorna e integra.</text>
+</svg>

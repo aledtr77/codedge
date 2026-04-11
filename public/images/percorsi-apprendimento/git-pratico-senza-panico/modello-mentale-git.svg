@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Modello mentale Git: snapshot, commit, hash, HEAD</title>
+  <desc id="desc">Diagramma con quattro blocchi collegati per spiegare i concetti base di Git.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1f35"/>
+      <stop offset="1" stop-color="#102c49"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#bg)" rx="24"/>
+  <text x="56" y="70" fill="#dff3ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Modello mentale di Git</text>
+  <text x="56" y="106" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">I quattro concetti da tenere in testa mentre lavori</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="150" width="250" height="280" rx="16" fill="#133454" stroke="#5ea8dd"/>
+    <text x="84" y="196" fill="#eaf7ff" font-size="28" font-weight="700">Snapshot</text>
+    <text x="84" y="238" fill="#b9d8ef" font-size="20">Foto dello stato</text>
+    <text x="84" y="266" fill="#b9d8ef" font-size="20">del progetto in</text>
+    <text x="84" y="294" fill="#b9d8ef" font-size="20">un momento preciso</text>
+
+    <rect x="338" y="150" width="250" height="280" rx="16" fill="#153b5d" stroke="#63b2ea"/>
+    <text x="366" y="196" fill="#eaf7ff" font-size="28" font-weight="700">Commit</text>
+    <text x="366" y="238" fill="#b9d8ef" font-size="20">Tappa salvata</text>
+    <text x="366" y="266" fill="#b9d8ef" font-size="20">con messaggio</text>
+    <text x="366" y="294" fill="#b9d8ef" font-size="20">di intenzione</text>
+
+    <rect x="620" y="150" width="250" height="280" rx="16" fill="#173f63" stroke="#6cbcf7"/>
+    <text x="648" y="196" fill="#eaf7ff" font-size="28" font-weight="700">Hash</text>
+    <text x="648" y="238" fill="#b9d8ef" font-size="20">Codice univoco</text>
+    <text x="648" y="266" fill="#b9d8ef" font-size="20">che identifica</text>
+    <text x="648" y="294" fill="#b9d8ef" font-size="20">quel commit</text>
+
+    <rect x="902" y="150" width="250" height="280" rx="16" fill="#1a456c" stroke="#79c4fa"/>
+    <text x="930" y="196" fill="#eaf7ff" font-size="28" font-weight="700">HEAD</text>
+    <text x="930" y="238" fill="#b9d8ef" font-size="20">Puntatore della</text>
+    <text x="930" y="266" fill="#b9d8ef" font-size="20">posizione attuale</text>
+    <text x="930" y="294" fill="#b9d8ef" font-size="20">nella cronologia</text>
+
+    <path d="M306 290h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="337,290 325,282 325,298" fill="#9bd4ff"/>
+    <path d="M588 290h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="619,290 607,282 607,298" fill="#9bd4ff"/>
+    <path d="M870 290h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="901,290 889,282 889,298" fill="#9bd4ff"/>
+  </g>
+</svg>

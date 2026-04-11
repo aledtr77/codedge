@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Restore, reset, revert</title>
+  <desc id="desc">Confronto tra i tre comandi per tornare indietro in Git.</desc>
+  <rect width="1200" height="520" fill="#102944" rx="24"/>
+  <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Quale comando usare quando sbagli</text>
+  <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Restore, reset e revert non fanno la stessa cosa</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="150" width="350" height="280" rx="16" fill="#153a5c" stroke="#65b3e8"/>
+    <text x="88" y="198" fill="#eef8ff" font-size="30" font-weight="700">restore</text>
+    <text x="88" y="238" fill="#b9d8ef" font-size="21">Scarta o ripristina</text>
+    <text x="88" y="268" fill="#b9d8ef" font-size="21">file locali</text>
+    <text x="88" y="320" fill="#def3ff" font-size="22" font-weight="700">git restore file</text>
+
+    <rect x="426" y="150" width="350" height="280" rx="16" fill="#1a4468" stroke="#74c1f7"/>
+    <text x="458" y="198" fill="#eef8ff" font-size="30" font-weight="700">reset</text>
+    <text x="458" y="238" fill="#b9d8ef" font-size="21">Sposta cronologia</text>
+    <text x="458" y="268" fill="#b9d8ef" font-size="21">(piu delicato)</text>
+    <text x="458" y="320" fill="#def3ff" font-size="22" font-weight="700">git reset --soft/--hard</text>
+
+    <rect x="796" y="150" width="350" height="280" rx="16" fill="#1f4f76" stroke="#83ccff"/>
+    <text x="828" y="198" fill="#eef8ff" font-size="30" font-weight="700">revert</text>
+    <text x="828" y="238" fill="#b9d8ef" font-size="21">Annulla con un nuovo</text>
+    <text x="828" y="268" fill="#b9d8ef" font-size="21">commit, senza riscrivere</text>
+    <text x="828" y="320" fill="#def3ff" font-size="22" font-weight="700">git revert hash</text>
+  </g>
+
+  <rect x="56" y="452" width="1090" height="44" rx="10" fill="#173957" stroke="#63afe5"/>
+  <text x="82" y="481" fill="#def2ff" font-family="Segoe UI, Arial, sans-serif" font-size="21">Se la cronologia e gia pubblica, di solito revert e la scelta piu sicura.</text>
+</svg>

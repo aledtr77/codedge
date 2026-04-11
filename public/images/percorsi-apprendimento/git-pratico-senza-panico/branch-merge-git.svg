@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Branch e merge</title>
+  <desc id="desc">Schema visivo di un branch feature che rientra in main.</desc>
+  <rect width="1200" height="500" fill="#0f2842" rx="24"/>
+  <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Branch e merge senza panico</text>
+  <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Lavora separato, poi integra quando pronto</text>
+
+  <line x1="110" y1="280" x2="1080" y2="280" stroke="#7dbff0" stroke-width="6"/>
+  <text x="70" y="286" fill="#d9f2ff" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">main</text>
+
+  <path d="M320 280 C390 190, 530 190, 640 280" fill="none" stroke="#8fd0ff" stroke-width="6"/>
+  <text x="430" y="188" fill="#dff4ff" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">feature/navbar-mobile</text>
+
+  <circle cx="220" cy="280" r="14" fill="#65b4ec"/>
+  <circle cx="320" cy="280" r="14" fill="#65b4ec"/>
+  <circle cx="640" cy="280" r="14" fill="#65b4ec"/>
+  <circle cx="780" cy="280" r="14" fill="#65b4ec"/>
+  <circle cx="940" cy="280" r="14" fill="#65b4ec"/>
+
+  <circle cx="420" cy="230" r="14" fill="#8fd0ff"/>
+  <circle cx="510" cy="215" r="14" fill="#8fd0ff"/>
+  <circle cx="585" cy="235" r="14" fill="#8fd0ff"/>
+
+  <rect x="70" y="356" width="1060" height="90" rx="12" fill="#173957" stroke="#63afe5"/>
+  <text x="95" y="408" fill="#dff4ff" font-family="Segoe UI, Arial, sans-serif" font-size="24">Crea branch, fai commit piccoli, poi unisci su main con merge quando la feature e pronta.</text>
+</svg>
