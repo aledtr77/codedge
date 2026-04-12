@@ -96,15 +96,14 @@
             <li><a href="#chapter-15">12. I branch: cosa sono e quando usarli</a></li>
             <li><a href="#chapter-17">13. Commit e cronologia su GitHub</a></li>
             <li><a href="#chapter-18">14. Modificare e caricare file dal browser</a></li>
-            <li><a href="#chapter-20">15. Clone: copiare un repository sul computer</a></li>
-            <li><a href="#chapter-21">16. Fork: cos’è e a cosa serve</a></li>
-            <li><a href="#chapter-22">17. Le issue: a cosa servono</a></li>
-            <li><a href="#chapter-23">18. GitHub come spazio per presentare i propri progetti</a></li>
-            <li><a href="#chapter-24">19. Errori comuni da evitare</a></li>
-            <li><a href="#chapter-25">20. Workflow base semplice e sano</a></li>
-            <li><a href="#chapter-26">21. Un esempio pratico completo</a></li>
-            <li><a href="#chapter-27">22. Cosa non serve sapere subito</a></li>
-            <li><a href="#chapter-28">23. GitHub e crescita personale nel proprio percorso</a></li>
+            <li><a href="#chapter-20">15. Clone e Fork: differenza e uso</a></li>
+            <li><a href="#chapter-22">16. Le issue: a cosa servono</a></li>
+            <li><a href="#chapter-23">17. GitHub come spazio per presentare i propri progetti</a></li>
+            <li><a href="#chapter-24">18. Errori comuni da evitare</a></li>
+            <li><a href="#chapter-25">19. Workflow base semplice e sano</a></li>
+            <li><a href="#chapter-26">20. Un esempio pratico completo</a></li>
+            <li><a href="#chapter-27">21. Cosa non serve sapere subito</a></li>
+            <li><a href="#chapter-28">22. GitHub e crescita personale nel proprio percorso</a></li>
             <li><a href="#chapter-29">Conclusione</a></li>
             <li><a href="#chapter-30">Nota finale</a></li>
             <li><a href="#chapter-31">Appendice: comandi utili citati nella guida</a></li>
@@ -496,8 +495,10 @@ git push</code></pre>
           </section>
 
           <section id="chapter-20" class="guide-block guide-chapter">
-            <h2>15. Clone: copiare un repository sul computer</h2>
+            <h2>15. Clone e Fork: differenza e uso</h2>
             <section class="guide-subchapter">
+              <p>Clone e fork sembrano simili, ma servono a cose diverse.</p>
+              <h4>Clone</h4>
               <p>Il comando clone serve a scaricare un repository esistente sul tuo computer.</p>
               <p>Esempio:</p>
               <pre><code class="language-text">git clone URL_DEL_REPOSITORY</code></pre>
@@ -508,42 +509,55 @@ git push</code></pre>
                 <li>vuoi scaricare un tuo progetto online</li>
               </ul>
               <p>Clone crea una copia locale completa del repository.</p>
-            </section>
-          </section>
-
-          <section id="chapter-21" class="guide-block guide-chapter">
-            <h2>16. Fork: cos’è e a cosa serve</h2>
-            <section class="guide-subchapter">
-              <p>Il fork è una copia di un repository dentro il tuo account GitHub.</p>
-              <p>È diverso da clone.</p>
-              <h4>Clone</h4>
-              <p>Copia il progetto sul tuo computer.</p>
               <h4>Fork</h4>
-              <p>Copia il progetto nel tuo account GitHub.</p>
+              <p>Il fork è una copia di un repository dentro il tuo account GitHub.</p>
+              <p>In breve:</p>
+              <ul class="guide-list">
+                <li>clone = copia sul tuo computer</li>
+                <li>fork = copia nel tuo account GitHub</li>
+              </ul>
               <p>Il fork è utile soprattutto quando vuoi partire da un progetto pubblico esistente o contribuire a un repository che non controlli direttamente.</p>
-              <p>Per chi è all’inizio non è una priorità assoluta, ma è bene sapere che esiste.</p>
+              <p><strong>Consiglio operativo:</strong> se il repository è tuo, nella maggior parte dei casi ti basta fare clone. Usa fork quando lavori su repository di altri.</p>
             </section>
           </section>
 
           <section id="chapter-22" class="guide-block guide-chapter">
-            <h2>17. Le issue: a cosa servono</h2>
+            <h2>16. Le issue: a cosa servono</h2>
             <section class="guide-subchapter">
-              <p>Le issue sono uno strumento per tracciare problemi, idee, attività e miglioramenti.</p>
-              <p>In team sono molto usate. Ma anche da soli possono tornare utili.</p>
-              <p>Puoi usare le issue come piccola lista di cose da fare:</p>
+              <p>Una issue è una scheda di lavoro: serve a descrivere una cosa da fare, un problema da risolvere o un miglioramento.</p>
+              <p>In pratica ti aiuta a non perdere pezzi e a capire cosa manca nel progetto.</p>
+              <p>Quando usarla:</p>
               <ul class="guide-list">
-                <li>aggiungere dark mode</li>
-                <li>sistemare responsive header</li>
-                <li>rifinire documentazione</li>
-                <li>correggere bug del form</li>
+                <li>hai trovato un bug</li>
+                <li>vuoi aggiungere una feature</li>
+                <li>devi fare un'attività tecnica (refactor, test, documentazione)</li>
+                <li>vuoi tenere traccia di una cosa da chiudere più avanti</li>
               </ul>
-              <p>Non sono obbligatorie, ma possono aiutarti a organizzare il lavoro.</p>
-              <p><strong>Consiglio operativo:</strong> una issue efficace include sempre: contesto, obiettivo e criterio di completamento (“quando questa issue si considera chiusa”).</p>
+              <p>Come scrivere una issue bene:</p>
+              <ol class="guide-list">
+                <li>titolo chiaro e specifico</li>
+                <li>contesto: qual è il problema</li>
+                <li>obiettivo: cosa deve essere sistemato</li>
+                <li>criterio di completamento: quando puoi considerarla chiusa</li>
+              </ol>
+              <p>Esempio semplice:</p>
+              <pre><code class="language-text">Titolo: Correggere validazione email nel form contatti
+
+Contesto:
+Nel form contatti vengono accettate email non valide.
+
+Obiettivo:
+Bloccare l'invio se il formato email non e corretto.
+
+Criterio di completamento:
+- email non valida -> messaggio di errore
+- email valida -> invio consentito</code></pre>
+              <p><strong>Consiglio operativo:</strong> una issue deve essere chiara abbastanza da poterla eseguire senza spiegazioni a voce.</p>
             </section>
           </section>
 
           <section id="chapter-23" class="guide-block guide-chapter">
-            <h2>18. GitHub come spazio per presentare i propri progetti</h2>
+            <h2>17. GitHub come spazio per presentare i propri progetti</h2>
             <section class="guide-subchapter">
               <p>Per chi sta imparando, GitHub non è solo un luogo tecnico. È anche una parte della propria presenza online.</p>
               <p>Questo significa che conviene curare alcune cose:</p>
@@ -561,7 +575,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-24" class="guide-block guide-chapter">
-            <h2>19. Errori comuni da evitare</h2>
+            <h2>18. Errori comuni da evitare</h2>
             <section class="guide-subchapter">
               <p>Quando si inizia con GitHub, ci sono alcuni errori molto frequenti.</p>
               <h4>Confondere Git con GitHub</h4>
@@ -582,7 +596,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-25" class="guide-block guide-chapter">
-            <h2>20. Workflow base semplice e sano</h2>
+            <h2>19. Workflow base semplice e sano</h2>
             <section class="guide-subchapter">
               <p>Per chi parte da zero, un workflow semplice può essere questo:</p>
               <ul class="guide-list">
@@ -600,7 +614,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-26" class="guide-block guide-chapter">
-            <h2>21. Un esempio pratico completo</h2>
+            <h2>20. Un esempio pratico completo</h2>
             <section class="guide-subchapter">
               <p>Immagina di avere un piccolo sito statico sul tuo computer. Hai modificato la homepage e la pagina contatti. Vuoi aggiornare GitHub.</p>
               <p>Il flusso potrebbe essere:</p>
@@ -615,7 +629,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-27" class="guide-block guide-chapter">
-            <h2>22. Cosa non serve sapere subito</h2>
+            <h2>21. Cosa non serve sapere subito</h2>
             <section class="guide-subchapter">
               <p>Quando si apre GitHub per la prima volta, si ha spesso la sensazione di dover imparare tutto insieme.</p>
               <p>In realtà non è così.</p>
@@ -633,7 +647,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-28" class="guide-block guide-chapter">
-            <h2>23. GitHub e crescita personale nel proprio percorso</h2>
+            <h2>22. GitHub e crescita personale nel proprio percorso</h2>
             <section class="guide-subchapter">
               <p>Usare GitHub bene ti aiuta non solo a gestire i progetti, ma anche a crescere come persona che costruisce cose sul web.</p>
               <p>Ti costringe a:</p>
