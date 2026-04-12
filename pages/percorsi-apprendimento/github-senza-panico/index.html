@@ -127,11 +127,6 @@
             <li><a href="#chapter-20">15. Clone e Fork: differenza e uso</a></li>
             <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
             <li><a href="#chapter-23">17. GitHub come spazio per presentare i propri progetti</a></li>
-            <li><a href="#chapter-24">Errori comuni da evitare</a></li>
-            <li><a href="#chapter-25">Workflow base semplice e sano</a></li>
-            <li><a href="#chapter-26">Un esempio pratico completo</a></li>
-            <li><a href="#chapter-27">Cosa non serve sapere subito</a></li>
-            <li><a href="#chapter-28">GitHub e crescita personale nel proprio percorso</a></li>
             <li><a href="#chapter-29">18. Conclusione</a></li>
           </ol>
         </aside>
@@ -593,105 +588,47 @@ git push</code></pre>
             </section>
           </section>
 
-          <section id="chapter-24" class="guide-block guide-chapter">
-            <h2>Errori comuni da evitare</h2>
+          <section id="chapter-29" class="guide-block guide-chapter">
+            <h2>18. Conclusione</h2>
             <section class="guide-subchapter">
-              <p>Quando si inizia con GitHub, ci sono alcuni errori molto frequenti.</p>
-              <h4>Confondere Git con GitHub</h4>
-              <p>È un errore molto comune all’inizio. Chiarirlo subito rende tutto il resto più semplice.</p>
-              <h4>Fare tutto dal browser</h4>
-              <p>GitHub via browser è utile, ma non dovrebbe diventare il centro di tutto il tuo lavoro.</p>
-              <h4>Usare messaggi di commit inutili</h4>
-              <p>Se scrivi sempre “update”, la cronologia diventa poco utile.</p>
-              <h4>Lasciare repository pubblici disordinati</h4>
-              <p>Meglio un repository privato e ordinato, che uno pubblico ma poco curato.</p>
-              <h4>Ignorare il README</h4>
-              <p>Un repository senza una minima spiegazione spesso sembra lasciato a metà.</p>
-              <h4>Pensare di dover capire subito tutto</h4>
-              <p>GitHub ha tante funzioni, ma all’inizio te ne servono poche e ben comprese.</p>
-              <h4>Versionare file sensibili per errore</h4>
-              <p>Controlla sempre cosa stai tracciando con Git e configura un <code>.gitignore</code> fin da subito.</p>
-            </section>
-          </section>
-
-          <section id="chapter-25" class="guide-block guide-chapter">
-            <h2>Workflow base semplice e sano</h2>
-            <section class="guide-subchapter">
-              <p>Per chi parte da zero, un workflow semplice può essere questo:</p>
+              <h3>Errori comuni da evitare</h3>
               <ul class="guide-list">
-                <li>all’inizio sessione sincronizzi con git pull</li>
-                <li>lavori al progetto in locale</li>
-                <li>controlli lo stato con git status</li>
-                <li>aggiungi i file con git add</li>
-                <li>crei un commit con messaggio chiaro</li>
-                <li>fai git push</li>
-                <li>controlli il repository su GitHub</li>
+                <li>confondere Git e GitHub</li>
+                <li>lavorare solo da browser</li>
+                <li>usare commit vaghi (<code>update</code>, <code>fix</code>)</li>
+                <li>ignorare README e ordine del repository</li>
+                <li>versionare file sensibili (usa <code>.gitignore</code>)</li>
               </ul>
-              <p>Questo è già un ottimo punto di partenza.</p>
-              <p>Non serve complicarsi la vita subito con mille automatismi o strategie avanzate.</p>
-            </section>
-          </section>
-
-          <section id="chapter-26" class="guide-block guide-chapter">
-            <h2>Un esempio pratico completo</h2>
-            <section class="guide-subchapter">
-              <p>Immagina di avere un piccolo sito statico sul tuo computer. Hai modificato la homepage e la pagina contatti. Vuoi aggiornare GitHub.</p>
-              <p>Il flusso potrebbe essere:</p>
+              <h3>Workflow base semplice e sano</h3>
+              <p><code>git pull</code> -> lavori in locale -> <code>git status</code> -> <code>git add</code> -> <code>git commit</code> -> <code>git push</code> -> controllo su GitHub.</p>
+              <h3>Un esempio pratico completo</h3>
               <pre><code class="language-text">git status
 git add .
 git commit -m &quot;Aggiorna homepage e pagina contatti&quot;
 git push</code></pre>
-              <p>Poi vai su GitHub e controlli che i file e la cronologia siano stati aggiornati.</p>
-              <p>Questo è il cuore del workflow quotidiano di molti progetti semplici.</p>
-              <p><strong>Consiglio operativo:</strong> se <code>git push</code> viene rifiutato perché il remoto è più avanti, esegui <code>git pull --rebase</code> e poi riprova il push.</p>
-            </section>
-          </section>
-
-          <section id="chapter-27" class="guide-block guide-chapter">
-            <h2>Cosa non serve sapere subito</h2>
-            <section class="guide-subchapter">
-              <p>Quando si apre GitHub per la prima volta, si ha spesso la sensazione di dover imparare tutto insieme.</p>
-              <p>In realtà non è così.</p>
-              <p>All’inizio puoi tranquillamente rimandare:</p>
+              <p>Se <code>git push</code> viene rifiutato: <code>git pull --rebase</code> e poi ripeti il push.</p>
+              <h3>Cosa non serve sapere subito</h3>
               <ul class="guide-list">
                 <li>Actions avanzate</li>
-                <li>gestione complessa dei permessi</li>
-                <li>automazioni sofisticate</li>
-                <li>pull request elaborate in team</li>
+                <li>permessi complessi</li>
                 <li>strategie avanzate di branching</li>
-                <li>integrazioni professionali più complesse</li>
               </ul>
-              <p>Prima serve dominare bene le basi. Le basi fatte bene valgono più di una conoscenza confusa di mille funzioni.</p>
-            </section>
-          </section>
-
-          <section id="chapter-28" class="guide-block guide-chapter">
-            <h2>GitHub e crescita personale nel proprio percorso</h2>
-            <section class="guide-subchapter">
-              <p>Usare GitHub bene ti aiuta non solo a gestire i progetti, ma anche a crescere come persona che costruisce cose sul web.</p>
-              <p>Ti costringe a:</p>
+              <p>Prima consolida le basi operative.</p>
+              <h3>GitHub e crescita personale nel proprio percorso</h3>
               <ul class="guide-list">
                 <li>essere più ordinato</li>
                 <li>documentare meglio</li>
                 <li>ragionare per versioni</li>
-                <li>dare un’identità ai progetti</li>
-                <li>creare uno storico del tuo percorso</li>
               </ul>
-              <p>Questo è il punto chiave: GitHub non è solo un archivio di file, ma anche un modo per rendere il tuo lavoro più tracciabile e ordinato.</p>
-            </section>
-          </section>
-
-          <section id="chapter-29" class="guide-block guide-chapter">
-            <h2>18. Conclusione</h2>
-            <section class="guide-subchapter">
+              <p>GitHub non è solo archivio: è metodo di lavoro.</p>
               <ul class="guide-list">
-                <li><strong>Errori comuni da evitare:</strong> non confondere Git con GitHub, non lavorare solo da browser, non fare commit vaghi.</li>
-                <li><strong>Workflow base semplice e sano:</strong> pull, lavoro locale, status, add, commit chiaro, push, verifica su GitHub.</li>
-                <li><strong>Un esempio pratico completo:</strong> modifica file, <code>git add</code>, <code>git commit</code>, <code>git push</code>, controllo finale online.</li>
-                <li><strong>Cosa non serve sapere subito:</strong> automazioni avanzate, permessi complessi e strategie sofisticate possono aspettare.</li>
-                <li><strong>GitHub e crescita personale nel proprio percorso:</strong> ti aiuta a lavorare con più ordine, tracciabilità e continuità.</li>
+                <li><strong>Errori:</strong> non confondere Git/GitHub, niente browser-only, niente commit vaghi.</li>
+                <li><strong>Workflow:</strong> pull -> status -> add -> commit -> push.</li>
+                <li><strong>Esempio:</strong> modifica, commit chiaro, push, verifica online.</li>
+                <li><strong>Non serve subito:</strong> parte avanzata (Actions/permessi/branching).</li>
+                <li><strong>Crescita:</strong> più ordine, più tracciabilità, più continuità.</li>
               </ul>
-              <p>Se applichi questi punti con costanza, GitHub diventa uno strumento operativo chiaro e affidabile.</p>
+              <p>Basta applicare queste basi con costanza.</p>
             </section>
           </section>
         </article>
