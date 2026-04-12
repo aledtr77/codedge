@@ -215,7 +215,7 @@ body > main .learning-shell {
 
 .learning-card__icon {
   margin-right: 0.42rem;
-  color: #f47a20;
+  color: #5fbfff;
 }
 
 .learning-card h4,
@@ -286,7 +286,7 @@ body > main .learning-shell {
 }
 
 .learning-card--github .learning-card__icon--github {
-  color: rgba(226, 235, 246, 0.95);
+  color: #5fbfff;
 }
 
 .learning-card--git .learning-card__tags span {
