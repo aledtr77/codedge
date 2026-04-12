@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it" data-page-ready="false">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>GitHub senza panico - Codedge</title>
+  <meta
+    name="description"
+    content="Guida pratica a GitHub davvero orientata alla piattaforma: repository, permessi, PR, review, Actions, Pages e sicurezza.">
+  <link rel="canonical" href="https://codedge.it/percorsi-apprendimento/github-senza-panico/">
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="GitHub senza panico - Codedge" />
+  <meta property="og:description" content="Guida pratica a GitHub: repository, Pull Request, Actions, Pages e sicurezza in modo semplice." />
+  <meta property="og:url" content="https://codedge.it/percorsi-apprendimento/github-senza-panico/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida GitHub senza panico" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GitHub senza panico - Codedge" />
+  <meta name="twitter:description" content="Guida base concreta per usare GitHub come piattaforma di lavoro." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        <h1 class="resize-text"><i class="fab fa-github" aria-hidden="true"></i>GitHub senza panico</h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
+          </li>
+          <li class="nav-item">
+            <a href="/percorsi-apprendimento/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Percorsi Apprendimento</a>
+          </li>
+          <li class="nav-item">
+            <a href="/shop-template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Shop Template</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="section git-guide-shell" aria-labelledby="github-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida GitHub">
+          <h3>Indice guida</h3>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">1. Cos'è GitHub in pratica</a></li>
+            <li><a href="#chapter-02">2. Account e sicurezza</a></li>
+            <li><a href="#chapter-03">3. Profilo GitHub e README profilo</a></li>
+            <li><a href="#chapter-04">4. Repository fatti bene</a></li>
+            <li><a href="#chapter-05">5. Collaboratori e permessi</a></li>
+            <li><a href="#chapter-06">6. Issues, Labels e Projects</a></li>
+            <li><a href="#chapter-07">7. Pull Request workflow</a></li>
+            <li><a href="#chapter-08">8. Code review utile</a></li>
+            <li><a href="#chapter-09">9. Branch protection e regole</a></li>
+            <li><a href="#chapter-10">10. GitHub Actions</a></li>
+            <li><a href="#chapter-11">11. GitHub Pages</a></li>
+            <li><a href="#chapter-12">12. Release e changelog</a></li>
+            <li><a href="#chapter-13">13. Sicurezza su GitHub</a></li>
+            <li><a href="#chapter-14">14. Workflow consigliato</a></li>
+            <li><a href="#chapter-15">15. Errori comuni su GitHub</a></li>
+            <li><a href="#chapter-16">16. Nota finale</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida GitHub">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <p class="guide-intro-kicker">Guida concreta orientata alla piattaforma</p>
+            <h2 id="github-guide-title">1. Cos'è GitHub in pratica</h2>
+            <section class="guide-subchapter">
+              <p>GitHub non è solo "dove fai push". È una piattaforma per gestire il ciclo completo del progetto: organizzazione del lavoro, collaborazione, review, automazioni e pubblicazione.</p>
+              <p>La differenza breve:</p>
+              <ul class="guide-list">
+                <li>Git: gestisce la cronologia del codice.</li>
+                <li>GitHub: gestisce il progetto attorno al codice.</li>
+              </ul>
+              <p>Questa guida è focalizzata proprio su questa seconda parte.</p>
+            </section>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>2. Account e sicurezza</h2>
+            <section class="guide-subchapter">
+              <p>Prima di tutto metti in sicurezza l'account, altrimenti rischi di perdere repository o esporre codice.</p>
+              <h3>Checklist minima</h3>
+              <ul class="guide-checklist">
+                <li>Attiva 2FA (app autenticatore o passkey).</li>
+                <li>Genera codici di recupero e salvali offline.</li>
+                <li>Rivedi sessioni attive e dispositivi autorizzati.</li>
+                <li>Rimuovi token vecchi o non usati.</li>
+              </ul>
+              <p>Se lavori da terminale usa token con permessi minimi, non più larghi del necessario.</p>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>3. Profilo GitHub e README profilo</h2>
+            <section class="guide-subchapter">
+              <p>Il profilo GitHub è la tua homepage tecnica. Curarlo bene aiuta molto più di avere tanti repo disordinati.</p>
+              <h3>Cosa ottimizzare</h3>
+              <ul class="guide-list">
+                <li>Bio chiara in una riga.</li>
+                <li>Pin di 4-6 repository davvero rappresentativi.</li>
+                <li>README profilo con stack, focus e progetti principali.</li>
+              </ul>
+              <p>Meglio pochi progetti ben spiegati che decine di repo vuoti.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>4. Repository fatti bene</h2>
+            <section class="guide-subchapter">
+              <p>Quando crei un repository, imposta bene la base subito.</p>
+              <h3>Struttura iniziale consigliata</h3>
+              <ul class="guide-list">
+                <li><code>README.md</code> con obiettivo e istruzioni.</li>
+                <li><code>LICENSE</code> se il progetto è pubblico.</li>
+                <li><code>.gitignore</code> corretto per il tuo stack.</li>
+                <li><code>CONTRIBUTING.md</code> se prevedi contributi esterni.</li>
+              </ul>
+              <h3>Pubblico o privato</h3>
+              <p>Pubblico per portfolio o open source. Privato per lavori interni, test o materiale non pronto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>5. Collaboratori e permessi</h2>
+            <section class="guide-subchapter">
+              <p>Su GitHub i permessi contano tantissimo. Dare accesso "admin" a tutti è un errore classico.</p>
+              <div class="guide-glossary">
+                <div><dt>Read</dt><dd>solo lettura.</dd></div>
+                <div><dt>Triage</dt><dd>gestione issue senza scrivere codice.</dd></div>
+                <div><dt>Write</dt><dd>push e gestione branch.</dd></div>
+                <div><dt>Maintain</dt><dd>gestione quasi completa del repo.</dd></div>
+                <div><dt>Admin</dt><dd>controllo totale, da limitare a pochi.</dd></div>
+              </div>
+              <p>Usa il principio del minimo privilegio: ogni persona solo con i permessi che le servono davvero.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>6. Issues, Labels e Projects</h2>
+            <section class="guide-subchapter">
+              <p>Le issue non sono solo bug list: sono il tuo sistema di lavoro.</p>
+              <h3>Flusso semplice</h3>
+              <ol class="guide-number-list">
+                <li>Crea issue piccole e chiare.</li>
+                <li>Aggiungi label coerenti (bug, feature, docs, priority).</li>
+                <li>Assegna owner e scadenza solo se utile.</li>
+                <li>Collega le issue a una board Projects.</li>
+              </ol>
+              <p>Con Projects puoi vedere subito cosa è backlog, in corso, in review e completato.</p>
+            </section>
+          </section>
+
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>7. Pull Request workflow</h2>
+            <section class="guide-subchapter">
+              <p>La Pull Request è il cuore della collaborazione su GitHub.</p>
+              <h3>Workflow consigliato</h3>
+              <ol class="guide-number-list">
+                <li>Apri branch dedicato alla task.</li>
+                <li>Push del branch e PR in stato Draft.</li>
+                <li>Descrizione PR con obiettivo, scope e test.</li>
+                <li>Richiedi review quando è pronta.</li>
+                <li>Merge solo dopo check verdi e review chiusa.</li>
+              </ol>
+              <p>Una PR piccola è più facile da capire, testare e approvare.</p>
+            </section>
+          </section>
+
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>8. Code review utile</h2>
+            <section class="guide-subchapter">
+              <p>Su GitHub la review efficace non è "mi piace" o "ok". Deve lasciare valore tecnico.</p>
+              <h3>Cosa controllare</h3>
+              <ul class="guide-checklist">
+                <li>Rischi di regressione.</li>
+                <li>Copertura test adeguata.</li>
+                <li>Naming e leggibilità.</li>
+                <li>Sicurezza base (input, secret, dipendenze).</li>
+                <li>Coerenza con architettura del progetto.</li>
+              </ul>
+              <p>Commenti brevi, specifici e con proposta concreta sono i più utili.</p>
+            </section>
+          </section>
+
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>9. Branch protection e regole</h2>
+            <section class="guide-subchapter">
+              <p>Se usi solo main senza protezioni, prima o poi qualcuno rompe la branch principale con un push diretto.</p>
+              <h3>Impostazioni consigliate su branch principale</h3>
+              <ul class="guide-list">
+                <li>Blocca push diretto su main.</li>
+                <li>Richiedi almeno 1 approvazione review.</li>
+                <li>Richiedi status check passati prima del merge.</li>
+                <li>Richiedi branch aggiornata rispetto a main.</li>
+              </ul>
+              <p>Con le rulesets centralizzi queste regole anche su più repository.</p>
+            </section>
+          </section>
+
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>10. GitHub Actions</h2>
+            <section class="guide-subchapter">
+              <p>GitHub Actions automatizza build, test, lint e deploy ad ogni push o PR.</p>
+              <h3>Pipeline minima utile</h3>
+              <ul class="guide-list">
+                <li>install dipendenze;</li>
+                <li>lint;</li>
+                <li>test;</li>
+                <li>build.</li>
+              </ul>
+              <p>Se questi check sono obbligatori prima del merge, la qualità media del progetto sale subito.</p>
+            </section>
+          </section>
+
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>11. GitHub Pages</h2>
+            <section class="guide-subchapter">
+              <p>Per siti statici, GitHub Pages è il modo più veloce per pubblicare una demo.</p>
+              <h3>Quando usarlo</h3>
+              <ul class="guide-list">
+                <li>portfolio personale;</li>
+                <li>landing page di progetto;</li>
+                <li>documentazione tecnica.</li>
+              </ul>
+              <p>Puoi pubblicare da branch dedicata o da pipeline Actions. Con dominio custom e HTTPS, hai setup completo senza infrastruttura complessa.</p>
+            </section>
+          </section>
+
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>12. Release e changelog</h2>
+            <section class="guide-subchapter">
+              <p>Tag e release servono per dare versioni stabili e tracciabili al progetto.</p>
+              <h3>Buona pratica</h3>
+              <ul class="guide-list">
+                <li>usa versionamento semantico (<code>v1.2.0</code>);</li>
+                <li>scrivi release notes chiare;</li>
+                <li>collega issue/PR principali della release.</li>
+              </ul>
+              <p>Questo aiuta chi usa il progetto e aiuta anche te a capire cosa è cambiato versione per versione.</p>
+            </section>
+          </section>
+
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>13. Sicurezza su GitHub</h2>
+            <section class="guide-subchapter">
+              <p>GitHub include strumenti molto utili che spesso vengono ignorati.</p>
+              <h3>Strumenti da attivare</h3>
+              <ul class="guide-checklist">
+                <li>Dependabot alerts per vulnerabilità dipendenze.</li>
+                <li>Dependabot updates per aggiornamenti automatici.</li>
+                <li>Secret scanning per evitare token accidentalmente committati.</li>
+                <li>Code scanning (es. CodeQL) per analisi statica.</li>
+              </ul>
+              <p>Se trovi un secret nel repository, ruotalo subito: non basta cancellarlo nel commit successivo.</p>
+            </section>
+          </section>
+
+          <section id="chapter-14" class="guide-block guide-chapter">
+            <h2>14. Workflow consigliato</h2>
+            <section class="guide-subchapter">
+              <h3>Da solo</h3>
+              <ol class="guide-number-list">
+                <li>Issue rapida per ogni task non banale.</li>
+                <li>Branch dedicato.</li>
+                <li>PR anche senza team (ti aiuta a rileggere).</li>
+                <li>Merge solo con check verdi.</li>
+              </ol>
+              <h3>In team</h3>
+              <ol class="guide-number-list">
+                <li>Definition of done chiara in PR template.</li>
+                <li>Review obbligatoria.</li>
+                <li>Branch protection sempre attiva.</li>
+                <li>Board Projects aggiornata in modo disciplinato.</li>
+              </ol>
+            </section>
+          </section>
+
+          <section id="chapter-15" class="guide-block guide-chapter">
+            <h2>15. Errori comuni su GitHub</h2>
+            <section class="guide-subchapter">
+              <ul class="guide-list guide-list-bad">
+                <li>usare main come sandbox senza branch;</li>
+                <li>aprire PR enormi con 50 cambi insieme;</li>
+                <li>lasciare repository pubblici senza README;</li>
+                <li>dare permessi admin a troppa gente;</li>
+                <li>ignorare alert di sicurezza;</li>
+                <li>usare Actions senza cache e senza controllo costi/tempi.</li>
+              </ul>
+              <p>Correggere questi 6 punti cambia radicalmente la qualità del lavoro su GitHub.</p>
+            </section>
+          </section>
+
+          <section id="chapter-16" class="guide-block guide-chapter">
+            <h2>16. Nota finale</h2>
+            <section class="guide-subchapter">
+              <p>Se vuoi usare GitHub bene, non basta "sapere fare push". Devi imparare a usare la piattaforma per organizzare, verificare e pubblicare in modo affidabile.</p>
+              <p>Parti da questi blocchi: repository puliti, PR disciplinate, review utili, Actions minime, regole di branch e sicurezza attiva.</p>
+              <p>Con questa base, GitHub smette di essere solo un archivio online e diventa davvero il tuo ambiente di sviluppo collaborativo.</p>
+            </section>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/github-senza-panico/main.js"></script>
+</body>
+
+</html>
