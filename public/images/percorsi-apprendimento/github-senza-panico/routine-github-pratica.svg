@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Routine pratica GitHub</title>
+  <desc id="desc">Routine giornaliera, pre-merge e settimanale per usare GitHub in modo costante.</desc>
+  <rect width="1200" height="540" fill="#102840"/>
+  <text x="55" y="65" fill="#edf7ff" font-size="33" font-family="Verdana, sans-serif" font-weight="700">Routine pratica GitHub</text>
+
+  <g font-family="Verdana, sans-serif">
+    <rect x="55" y="120" width="350" height="340" rx="14" fill="#1a466b" stroke="#89c0e8"/>
+    <text x="82" y="160" fill="#fff" font-size="24" font-weight="700">Ogni giorno</text>
+    <text x="82" y="195" fill="#d8ecfc" font-size="17">- notifiche e review</text>
+    <text x="82" y="225" fill="#d8ecfc" font-size="17">- stato PR aperte</text>
+    <text x="82" y="255" fill="#d8ecfc" font-size="17">- update issue attive</text>
+    <text x="82" y="285" fill="#d8ecfc" font-size="17">- check sicurezza</text>
+
+    <rect x="425" y="120" width="350" height="340" rx="14" fill="#1a466b" stroke="#89c0e8"/>
+    <text x="452" y="160" fill="#fff" font-size="24" font-weight="700">Prima del merge</text>
+    <text x="452" y="195" fill="#d8ecfc" font-size="17">- titolo PR chiaro</text>
+    <text x="452" y="225" fill="#d8ecfc" font-size="17">- CI: lint/test/build</text>
+    <text x="452" y="255" fill="#d8ecfc" font-size="17">- review risolta</text>
+    <text x="452" y="285" fill="#d8ecfc" font-size="17">- niente secret</text>
+
+    <rect x="795" y="120" width="350" height="340" rx="14" fill="#1a466b" stroke="#89c0e8"/>
+    <text x="822" y="160" fill="#fff" font-size="24" font-weight="700">Ogni settimana</text>
+    <text x="822" y="195" fill="#d8ecfc" font-size="17">- pulizia issue/branch</text>
+    <text x="822" y="225" fill="#d8ecfc" font-size="17">- update dipendenze</text>
+    <text x="822" y="255" fill="#d8ecfc" font-size="17">- release note breve</text>
+    <text x="822" y="285" fill="#d8ecfc" font-size="17">- verifica impostazioni</text>
+  </g>
+</svg>
