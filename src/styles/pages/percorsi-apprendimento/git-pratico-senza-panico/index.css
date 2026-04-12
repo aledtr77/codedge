@@ -152,6 +152,11 @@
   color: rgba(145, 207, 246, 0.93);
 }
 
+.resize-text .guide-title-icon {
+  font-size: 1.16em;
+  color: #5fbfff;
+}
+
 #intro > h2 {
   font-size: clamp(1.7rem, 3.2vw, 2.5rem);
   line-height: 1.08;
