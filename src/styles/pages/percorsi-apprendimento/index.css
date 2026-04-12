@@ -215,6 +215,8 @@ body > main .learning-shell {
 
 .learning-card__icon {
   margin-right: 0.42rem;
+  font-size: 1.16em;
+  vertical-align: -0.04em;
   color: #5fbfff;
 }
 
