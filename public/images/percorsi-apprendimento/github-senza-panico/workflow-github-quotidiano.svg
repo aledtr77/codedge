@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow quotidiano GitHub</title>
+  <desc id="desc">Flusso giornaliero: issue, sviluppo, pull request, review e merge.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d2237"/>
+      <stop offset="100%" stop-color="#13314d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg2)"/>
+  <text x="50" y="62" fill="#eef7ff" font-size="32" font-family="Verdana, sans-serif" font-weight="700">Workflow GitHub quotidiano</text>
+
+  <g font-family="Verdana, sans-serif" font-size="16" fill="#d8ebfb">
+    <rect x="50" y="130" width="190" height="90" rx="12" fill="#1d4d73" stroke="#86bde8"/>
+    <text x="72" y="165" fill="#fff" font-weight="700">1. Issue</text>
+    <text x="72" y="192">Task chiara</text>
+
+    <rect x="285" y="130" width="190" height="90" rx="12" fill="#1d4d73" stroke="#86bde8"/>
+    <text x="307" y="165" fill="#fff" font-weight="700">2. Branch</text>
+    <text x="307" y="192">Sviluppo locale</text>
+
+    <rect x="520" y="130" width="190" height="90" rx="12" fill="#1d4d73" stroke="#86bde8"/>
+    <text x="542" y="165" fill="#fff" font-weight="700">3. Pull Request</text>
+    <text x="542" y="192">Descrizione chiara</text>
+
+    <rect x="755" y="130" width="190" height="90" rx="12" fill="#1d4d73" stroke="#86bde8"/>
+    <text x="777" y="165" fill="#fff" font-weight="700">4. Review + CI</text>
+    <text x="777" y="192">Correzioni rapide</text>
+
+    <rect x="990" y="130" width="160" height="90" rx="12" fill="#1d4d73" stroke="#86bde8"/>
+    <text x="1010" y="165" fill="#fff" font-weight="700">5. Merge</text>
+    <text x="1010" y="192">main pulita</text>
+  </g>
+
+  <path d="M240 175 H285 M475 175 H520 M710 175 H755 M945 175 H990" stroke="#93c9ee" stroke-width="3"/>
+
+  <text x="50" y="300" fill="#c9e3f8" font-size="18" font-family="Verdana, sans-serif">Checklist prima del merge:</text>
+  <text x="50" y="332" fill="#e2f2ff" font-size="16" font-family="Verdana, sans-serif">- CI verde  - review chiusa  - scope coerente  - nessun file sensibile</text>
+</svg>
