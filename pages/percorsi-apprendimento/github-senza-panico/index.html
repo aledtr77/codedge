@@ -39,6 +39,34 @@
   <meta name="theme-color" content="#00A8FF" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p {
+      max-width: 72ch;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+    }
+
+    .guide-content .guide-subchapter ul,
+    .guide-content .guide-subchapter ol {
+      margin: 0 0 1rem 1.25rem;
+      line-height: 1.7;
+    }
+
+    .guide-content .guide-subchapter li + li {
+      margin-top: 0.35rem;
+    }
+
+    .guide-content .guide-subchapter h4 {
+      margin-top: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .guide-content .guide-subchapter pre {
+      margin: 0.9rem 0 1rem;
+      padding: 0.85rem 1rem;
+      overflow: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -97,18 +125,14 @@
             <li><a href="#chapter-17">13. Commit e cronologia su GitHub</a></li>
             <li><a href="#chapter-18">14. Modificare e caricare file dal browser</a></li>
             <li><a href="#chapter-20">15. Clone e Fork: differenza e uso</a></li>
-            <li><a href="#chapter-22">16. Le issue: a cosa servono</a></li>
+            <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
             <li><a href="#chapter-23">17. GitHub come spazio per presentare i propri progetti</a></li>
-            <li><a href="#chapter-24">18. Errori comuni da evitare</a></li>
-            <li><a href="#chapter-25">19. Workflow base semplice e sano</a></li>
-            <li><a href="#chapter-26">20. Un esempio pratico completo</a></li>
-            <li><a href="#chapter-27">21. Cosa non serve sapere subito</a></li>
-            <li><a href="#chapter-28">22. GitHub e crescita personale nel proprio percorso</a></li>
-            <li><a href="#chapter-29">Conclusione</a></li>
-            <li><a href="#chapter-30">Nota finale</a></li>
-            <li><a href="#chapter-31">Appendice: comandi utili citati nella guida</a></li>
-            <li><a href="#chapter-32">Come usare questa guida</a></li>
-            <li><a href="#chapter-33">Appendice operativa quotidiana GitHub (extra)</a></li>
+            <li><a href="#chapter-24">Errori comuni da evitare</a></li>
+            <li><a href="#chapter-25">Workflow base semplice e sano</a></li>
+            <li><a href="#chapter-26">Un esempio pratico completo</a></li>
+            <li><a href="#chapter-27">Cosa non serve sapere subito</a></li>
+            <li><a href="#chapter-28">GitHub e crescita personale nel proprio percorso</a></li>
+            <li><a href="#chapter-29">18. Conclusione</a></li>
           </ol>
         </aside>
 
@@ -171,6 +195,14 @@
               <p>Lavora sul tuo computer. Tiene traccia dei cambiamenti. Crea commit. Gestisce branch.</p>
               <h4>GitHub</h4>
               <p>Lavora online. Ospita repository remoti. Mostra file, commit, branch e cronologia. Permette condivisione e collaborazione.</p>
+              <p>GitHub non è solo “hosting del codice”: aggiunge anche strumenti operativi che userai nel lavoro quotidiano, tra cui:</p>
+              <ul class="guide-list">
+                <li>Issues</li>
+                <li>Pull Request</li>
+                <li>Actions</li>
+                <li>Wiki</li>
+                <li>Projects</li>
+              </ul>
               <p>Capire questa differenza all’inizio ti evita molti fraintendimenti nei passaggi successivi.</p>
             </section>
           </section>
@@ -522,37 +554,24 @@ git push</code></pre>
           </section>
 
           <section id="chapter-22" class="guide-block guide-chapter">
-            <h2>16. Le issue: a cosa servono</h2>
+            <h2>16. Funzioni extra di GitHub</h2>
             <section class="guide-subchapter">
+              <p>In questo punto vediamo meglio cosa sono le funzioni extra principali di GitHub, una per una.</p>
+              <h4>Issues</h4>
               <p>Una issue è una scheda di lavoro: serve a descrivere una cosa da fare, un problema da risolvere o un miglioramento.</p>
               <p>In pratica ti aiuta a non perdere pezzi e a capire cosa manca nel progetto.</p>
-              <p>Quando usarla:</p>
-              <ul class="guide-list">
-                <li>hai trovato un bug</li>
-                <li>vuoi aggiungere una feature</li>
-                <li>devi fare un'attività tecnica (refactor, test, documentazione)</li>
-                <li>vuoi tenere traccia di una cosa da chiudere più avanti</li>
-              </ul>
-              <p>Come scrivere una issue bene:</p>
-              <ol class="guide-list">
-                <li>titolo chiaro e specifico</li>
-                <li>contesto: qual è il problema</li>
-                <li>obiettivo: cosa deve essere sistemato</li>
-                <li>criterio di completamento: quando puoi considerarla chiusa</li>
-              </ol>
-              <p>Esempio semplice:</p>
-              <pre><code class="language-text">Titolo: Correggere validazione email nel form contatti
-
-Contesto:
-Nel form contatti vengono accettate email non valide.
-
-Obiettivo:
-Bloccare l'invio se il formato email non e corretto.
-
-Criterio di completamento:
-- email non valida -> messaggio di errore
-- email valida -> invio consentito</code></pre>
-              <p><strong>Consiglio operativo:</strong> una issue deve essere chiara abbastanza da poterla eseguire senza spiegazioni a voce.</p>
+              <h4>Pull Request</h4>
+              <p>È una richiesta di integrazione: proponi modifiche fatte in un branch e chiedi di unirle nel branch principale.</p>
+              <p>Serve per review, confronto e controllo qualità prima del merge.</p>
+              <h4>Actions</h4>
+              <p>Sono automazioni eseguite da GitHub: test automatici, build, deploy e controlli sul codice.</p>
+              <p>Ti aiutano a ridurre errori manuali e a standardizzare il flusso.</p>
+              <h4>Wiki</h4>
+              <p>È uno spazio di documentazione interna del repository.</p>
+              <p>Utile per guide, procedure e note tecniche più lunghe del README.</p>
+              <h4>Projects</h4>
+              <p>È una bacheca organizzativa (stile Kanban) per pianificare e tracciare attività.</p>
+              <p>Ti aiuta a vedere cosa è da fare, cosa è in corso e cosa è completato.</p>
             </section>
           </section>
 
@@ -575,7 +594,7 @@ Criterio di completamento:
           </section>
 
           <section id="chapter-24" class="guide-block guide-chapter">
-            <h2>18. Errori comuni da evitare</h2>
+            <h2>Errori comuni da evitare</h2>
             <section class="guide-subchapter">
               <p>Quando si inizia con GitHub, ci sono alcuni errori molto frequenti.</p>
               <h4>Confondere Git con GitHub</h4>
@@ -596,7 +615,7 @@ Criterio di completamento:
           </section>
 
           <section id="chapter-25" class="guide-block guide-chapter">
-            <h2>19. Workflow base semplice e sano</h2>
+            <h2>Workflow base semplice e sano</h2>
             <section class="guide-subchapter">
               <p>Per chi parte da zero, un workflow semplice può essere questo:</p>
               <ul class="guide-list">
@@ -614,7 +633,7 @@ Criterio di completamento:
           </section>
 
           <section id="chapter-26" class="guide-block guide-chapter">
-            <h2>20. Un esempio pratico completo</h2>
+            <h2>Un esempio pratico completo</h2>
             <section class="guide-subchapter">
               <p>Immagina di avere un piccolo sito statico sul tuo computer. Hai modificato la homepage e la pagina contatti. Vuoi aggiornare GitHub.</p>
               <p>Il flusso potrebbe essere:</p>
@@ -629,7 +648,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-27" class="guide-block guide-chapter">
-            <h2>21. Cosa non serve sapere subito</h2>
+            <h2>Cosa non serve sapere subito</h2>
             <section class="guide-subchapter">
               <p>Quando si apre GitHub per la prima volta, si ha spesso la sensazione di dover imparare tutto insieme.</p>
               <p>In realtà non è così.</p>
@@ -647,7 +666,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-28" class="guide-block guide-chapter">
-            <h2>22. GitHub e crescita personale nel proprio percorso</h2>
+            <h2>GitHub e crescita personale nel proprio percorso</h2>
             <section class="guide-subchapter">
               <p>Usare GitHub bene ti aiuta non solo a gestire i progetti, ma anche a crescere come persona che costruisce cose sul web.</p>
               <p>Ti costringe a:</p>
@@ -663,123 +682,16 @@ git push</code></pre>
           </section>
 
           <section id="chapter-29" class="guide-block guide-chapter">
-            <h2>Conclusione</h2>
+            <h2>18. Conclusione</h2>
             <section class="guide-subchapter">
-              <p>GitHub all’inizio può sembrare più complicato di quello che è davvero. Una parte della confusione nasce dal fatto che viene spesso spiegato male, con troppi tecnicismi messi tutti insieme.</p>
-              <p>In realtà, per iniziare, i concetti davvero importanti sono pochi:</p>
               <ul class="guide-list">
-                <li>capire la differenza tra Git e GitHub</li>
-                <li>sapere cos’è un repository</li>
-                <li>saper collegare un progetto locale a un repository remoto</li>
-                <li>usare push e pull nel modo corretto</li>
-                <li>curare un minimo il README</li>
-                <li>tenere una cronologia chiara con commit sensati</li>
+                <li><strong>Errori comuni da evitare:</strong> non confondere Git con GitHub, non lavorare solo da browser, non fare commit vaghi.</li>
+                <li><strong>Workflow base semplice e sano:</strong> pull, lavoro locale, status, add, commit chiaro, push, verifica su GitHub.</li>
+                <li><strong>Un esempio pratico completo:</strong> modifica file, <code>git add</code>, <code>git commit</code>, <code>git push</code>, controllo finale online.</li>
+                <li><strong>Cosa non serve sapere subito:</strong> automazioni avanzate, permessi complessi e strategie sofisticate possono aspettare.</li>
+                <li><strong>GitHub e crescita personale nel proprio percorso:</strong> ti aiuta a lavorare con più ordine, tracciabilità e continuità.</li>
               </ul>
-              <p>Già questo ti mette in una posizione molto migliore di quanto pensi.</p>
-              <p>Non serve essere esperti per iniziare a usare GitHub in modo utile. Serve capire il minimo indispensabile e cominciare a usarlo con continuità.</p>
-              <p>Il resto arriva con la pratica. Ed è quasi sempre la pratica, più che la teoria, a trasformare davvero uno strumento da “cosa astratta” a parte naturale del proprio workflow.</p>
-            </section>
-          </section>
-
-          <section id="chapter-30" class="guide-block guide-chapter">
-            <h2>Nota finale</h2>
-            <section class="guide-subchapter">
-              <p>Questa guida è pensata come materiale pratico introduttivo. Vuole aiutarti a partire, non dirti tutto.</p>
-              <p>Per approfondire GitHub esistono molte altre risorse, documentazioni e percorsi più completi. Ma se parti da zero, spesso la cosa più importante non è sapere tutto subito: è capire abbastanza da poter iniziare davvero.</p>
-              <p>Ed è proprio da lì che conviene partire.</p>
-              <h3>Guide correlate</h3>
-              <ul class="guide-list">
-                <li><a href="/percorsi-apprendimento/git-pratico-senza-panico/">Git pratico senza panico</a>: basi operative locali, commit, branch, merge e recupero errori.</li>
-                <li><a href="/percorsi-apprendimento/">Tutti i percorsi di apprendimento</a>: panoramica completa delle guide disponibili.</li>
-              </ul>
-            </section>
-          </section>
-
-          <section id="chapter-31" class="guide-block guide-chapter">
-            <h2>Appendice: comandi utili citati nella guida</h2>
-            <section class="guide-subchapter">
-              <pre><code class="language-text">git remote add origin URL_DEL_REPOSITORY
-git push -u origin main
-git add .
-git commit -m &quot;Messaggio chiaro&quot;
-git push
-git pull
-git clone URL_DEL_REPOSITORY</code></pre>
-            </section>
-          </section>
-
-          <section id="chapter-32" class="guide-block guide-chapter">
-            <h2>Come usare questa guida</h2>
-            <section class="guide-subchapter">
-              <p>Puoi usare questa guida come riferimento rapido: leggila una prima volta dall’inizio alla fine, poi torna ai capitoli operativi quando lavori davvero su un repository.</p>
-            </section>
-          </section>
-          <section id="chapter-33" class="guide-block guide-chapter">
-            <h2>Appendice operativa quotidiana GitHub (extra)</h2>
-            <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/github-senza-panico/routine-github-pratica.svg" alt="Schema visuale della routine pratica quotidiana su GitHub" loading="lazy" decoding="async" width="1200" height="540">
-              <figcaption>Routine operativa: azioni giornaliere, pre-merge e settimanali per usare GitHub in modo costante.</figcaption>
-            </figure>
-            <section class="guide-subchapter">
-              <p>Questa sezione aggiuntiva serve a trasformare i concetti della guida in una pratica quotidiana semplice.</p>
-
-              <h3>Routine giornaliera (10-15 minuti)</h3>
-              <ul class="guide-checklist">
-                <li>Controlla notifiche GitHub (mention, review request, CI fallite).</li>
-                <li>Verifica PR aperte: cosa è in review, cosa è bloccato.</li>
-                <li>Aggiorna almeno una issue con stato reale (in corso, bloccata, pronta).</li>
-                <li>Controlla alert di sicurezza nuovi nel repository.</li>
-              </ul>
-
-              <h3>Routine pre-merge</h3>
-              <ul class="guide-checklist">
-                <li>Titolo PR chiaro e descrizione con obiettivo e impatto.</li>
-                <li>Check CI verdi (lint, test, build).</li>
-                <li>Review completata o note risolte.</li>
-                <li>Nessun file sensibile o segreto incluso.</li>
-                <li>Scope della PR coerente (no modifiche non correlate).</li>
-              </ul>
-
-              <h3>Routine settimanale</h3>
-              <ul class="guide-list">
-                <li>chiudi issue obsolete o duplicate</li>
-                <li>rivedi branch vecchi e rimuovi quelli inutilizzati</li>
-                <li>controlla Dependabot e aggiorna dipendenze critiche</li>
-                <li>pubblica una piccola release note se hai cambi rilevanti.</li>
-              </ul>
-
-              <h3>Template rapido per issue</h3>
-              <pre><code class="language-text">Titolo: [Bug/Feature] descrizione breve
-Contesto: dove si verifica o a cosa serve
-Passi: come riprodurre (se bug)
-Risultato atteso: comportamento corretto
-Priorità: bassa/media/alta</code></pre>
-
-              <h3>Template rapido per Pull Request</h3>
-              <pre><code class="language-text">Obiettivo
-- cosa cambia e perché
-
-Scope
-- file/aree toccate
-- cosa è escluso
-
-Verifica
-- test eseguiti
-- risultato CI
-
-Note
-- rischi noti o follow-up</code></pre>
-
-              <h3>Impostazioni GitHub da tenere sempre attive</h3>
-              <ul class="guide-list">
-                <li>branch protection su main</li>
-                <li>review obbligatoria per PR</li>
-                <li>Actions con check minimi obbligatori</li>
-                <li>Dependabot alerts e secret scanning</li>
-                <li>2FA attivo per tutti i collaboratori.</li>
-              </ul>
-
-              <p>Con questa routine, GitHub smette di essere solo un archivio online e diventa un sistema quotidiano di lavoro ordinato e sicuro.</p>
+              <p>Se applichi questi punti con costanza, GitHub diventa uno strumento operativo chiaro e affidabile.</p>
             </section>
           </section>
         </article>
