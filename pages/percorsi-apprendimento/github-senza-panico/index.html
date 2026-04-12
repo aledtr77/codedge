@@ -118,16 +118,14 @@
             <li><a href="#chapter-08">6. La schermata principale di un repository</a></li>
             <li><a href="#chapter-09">7. Creare un repository da GitHub</a></li>
             <li><a href="#chapter-10">8. Collegare un progetto locale a GitHub</a></li>
-            <li><a href="#chapter-11">9. Push: mandare online i cambiamenti</a></li>
-            <li><a href="#chapter-12">10. Pull: portare in locale i cambiamenti online</a></li>
+            <li><a href="#chapter-11">9-10. Push e Pull: sincronizzare locale e remoto</a></li>
             <li><a href="#chapter-13">11. README e Markdown: base essenziale</a></li>
             <li><a href="#chapter-15">12. I branch: cosa sono e quando usarli</a></li>
             <li><a href="#chapter-17">13. Commit e cronologia su GitHub</a></li>
             <li><a href="#chapter-18">14. Modificare e caricare file dal browser</a></li>
             <li><a href="#chapter-20">15. Clone e Fork: differenza e uso</a></li>
             <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
-            <li><a href="#chapter-23">17. GitHub come spazio per presentare i propri progetti</a></li>
-            <li><a href="#chapter-29">18. Conclusione</a></li>
+            <li><a href="#chapter-23">17-18. GitHub come presentazione e metodo di lavoro</a></li>
           </ol>
         </aside>
 
@@ -355,8 +353,9 @@ gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>9. Push: mandare online i cambiamenti</h2>
+            <h2>9-10. Push e Pull: sincronizzare locale e remoto</h2>
             <section class="guide-subchapter">
+              <h3>Push: mandare online i cambiamenti</h3>
               <p>La parola push significa inviare i commit locali al repository remoto.</p>
               <p>Detto in modo semplice:</p>
               <ul class="guide-list">
@@ -372,12 +371,7 @@ gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre
 git commit -m &quot;Aggiorna sezione contatti&quot;
 git push</code></pre>
               <p><strong>Consiglio operativo:</strong> prima di fare push usa sempre <code>git status</code>. Ti aiuta a evitare file involontari nei commit.</p>
-            </section>
-          </section>
-
-          <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>10. Pull: portare in locale i cambiamenti online</h2>
-            <section class="guide-subchapter">
+              <h3>Pull: portare in locale i cambiamenti online</h3>
               <p>Il comando complementare a push è pull.</p>
               <p>Con pull scarichi in locale i cambiamenti presenti nel repository remoto.</p>
               <p>È utile quando:</p>
@@ -571,7 +565,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-23" class="guide-block guide-chapter">
-            <h2>17. GitHub come spazio per presentare i propri progetti</h2>
+            <h2>17-18. GitHub come presentazione e metodo di lavoro</h2>
             <section class="guide-subchapter">
               <p>Per chi sta imparando, GitHub non è solo un luogo tecnico. È anche una parte della propria presenza online.</p>
               <p>Questo significa che conviene curare alcune cose:</p>
@@ -585,48 +579,13 @@ git push</code></pre>
               <p>Non serve avere cento repository. Meglio pochi progetti, ma chiari.</p>
               <p>GitHub non deve mostrare perfezione. Deve mostrare un percorso credibile.</p>
               <p><strong>Consiglio operativo:</strong> usa i repository “pinned” nel profilo per mostrare subito 4-6 progetti rappresentativi.</p>
-            </section>
-          </section>
-
-          <section id="chapter-29" class="guide-block guide-chapter">
-            <h2>18. Conclusione</h2>
-            <section class="guide-subchapter">
-              <h3>Errori comuni da evitare</h3>
+              <h3>Sintesi operativa</h3>
               <ul class="guide-list">
-                <li>confondere Git e GitHub</li>
-                <li>lavorare solo da browser</li>
-                <li>usare commit vaghi (<code>update</code>, <code>fix</code>)</li>
-                <li>ignorare README e ordine del repository</li>
-                <li>versionare file sensibili (usa <code>.gitignore</code>)</li>
-              </ul>
-              <h3>Workflow base semplice e sano</h3>
-              <p><code>git pull</code> -> lavori in locale -> <code>git status</code> -> <code>git add</code> -> <code>git commit</code> -> <code>git push</code> -> controllo su GitHub.</p>
-              <h3>Un esempio pratico completo</h3>
-              <pre><code class="language-text">git status
-git add .
-git commit -m &quot;Aggiorna homepage e pagina contatti&quot;
-git push</code></pre>
-              <p>Se <code>git push</code> viene rifiutato: <code>git pull --rebase</code> e poi ripeti il push.</p>
-              <h3>Cosa non serve sapere subito</h3>
-              <ul class="guide-list">
-                <li>Actions avanzate</li>
-                <li>permessi complessi</li>
-                <li>strategie avanzate di branching</li>
-              </ul>
-              <p>Prima consolida le basi operative.</p>
-              <h3>GitHub e crescita personale nel proprio percorso</h3>
-              <ul class="guide-list">
-                <li>essere più ordinato</li>
-                <li>documentare meglio</li>
-                <li>ragionare per versioni</li>
-              </ul>
-              <p>GitHub non è solo archivio: è metodo di lavoro.</p>
-              <ul class="guide-list">
-                <li><strong>Errori:</strong> non confondere Git/GitHub, niente browser-only, niente commit vaghi.</li>
-                <li><strong>Workflow:</strong> pull -> status -> add -> commit -> push.</li>
-                <li><strong>Esempio:</strong> modifica, commit chiaro, push, verifica online.</li>
-                <li><strong>Non serve subito:</strong> parte avanzata (Actions/permessi/branching).</li>
-                <li><strong>Crescita:</strong> più ordine, più tracciabilità, più continuità.</li>
+                <li><strong>Errori da evitare:</strong> confondere Git/GitHub, lavorare solo da browser, commit vaghi.</li>
+                <li><strong>Workflow base:</strong> pull -> status -> add -> commit -> push.</li>
+                <li><strong>Esempio rapido:</strong> modifica, commit chiaro, push, verifica online.</li>
+                <li><strong>Cosa può aspettare:</strong> Actions avanzate, permessi complessi, branching avanzato.</li>
+                <li><strong>Crescita:</strong> più ordine, documentazione e tracciabilità nel tempo.</li>
               </ul>
               <p>Basta applicare queste basi con costanza.</p>
             </section>
