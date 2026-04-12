@@ -215,6 +215,7 @@
                 <li>località</li>
               </ul>
               <p>Non è obbligatorio riempire tutto subito, ma un profilo minimo ordinato fa già una buona impressione.</p>
+              <p><strong>Chicca pratica:</strong> attiva subito la verifica a due fattori (2FA). È una delle impostazioni più importanti per proteggere l’account.</p>
             </section>
           </section>
 
@@ -239,6 +240,7 @@
                 <li>privato, quindi visibile solo a te o a chi autorizzi</li>
               </ul>
               <p>Per iniziare, puoi usare entrambi. I progetti che vuoi mostrare possono essere pubblici. Quelli ancora in fase di test o più personali possono restare privati.</p>
+              <p><strong>Chicca pratica:</strong> mantieni una regola semplice: un repository = un obiettivo chiaro. Evita repository “miscellanea” con progetti diversi insieme.</p>
             </section>
           </section>
 
@@ -263,6 +265,7 @@
                 <li>contenuti che non vuoi rendere pubblici</li>
               </ul>
               <p>Essere pubblici non è obbligatorio. All’inizio è meglio un progetto privato ma ordinato, piuttosto che un progetto pubblico poco curato.</p>
+              <p><strong>Chicca pratica:</strong> non caricare mai segreti nel repository (token, password, file <code>.env</code>). Anche in repo privato è una buona abitudine trattarli come dati sensibili.</p>
             </section>
           </section>
 
@@ -282,6 +285,7 @@
               <p>Ti fanno vedere se stai guardando il ramo principale o un altro ramo del progetto.</p>
               <h4>Insights, settings e altre sezioni</h4>
               <p>Sono sezioni utili, ma all’inizio conviene concentrarsi prima sulle basi.</p>
+              <p><strong>Chicca pratica:</strong> quando apri un repository, controlla subito branch selezionato e ultimo commit visibile in alto: ti evita modifiche sul ramo sbagliato.</p>
             </section>
           </section>
 
@@ -297,8 +301,28 @@
                 <li>scegli se pubblico o privato</li>
                 <li>decidi se inizializzarlo con README</li>
               </ol>
-              <p>Se stai partendo da zero e vuoi un progetto semplice, inizializzarlo con README può essere comodo.</p>
-              <p>Se invece hai già il progetto sul tuo computer e vuoi collegarlo dopo, puoi anche creare il repository vuoto.</p>
+              <h3>8.1 Come scegliere il nome del repository</h3>
+              <p>Per chi inizia, il nome del repository conta molto perché aiuta a mantenere ordine nel tempo.</p>
+              <ul class="guide-list">
+                <li>se hai un solo progetto, un nome semplice e chiaro è sufficiente</li>
+                <li>se prevedi più progetti, conviene usare una convenzione coerente fin da subito</li>
+              </ul>
+              <p>Esempi semplici di convenzione:</p>
+              <ul class="guide-list">
+                <li><code>landing-page-studio</code>, <code>portfolio-frontend</code>, <code>api-prenotazioni</code></li>
+                <li><code>00-setup-ambiente</code>, <code>01-sito-vetrina</code>, <code>02-dashboard-admin</code></li>
+              </ul>
+              <p>La numerazione non è obbligatoria, ma può aiutare se stai costruendo un percorso progressivo o una serie di esercizi collegati.</p>
+              <h3>8.2 Struttura consigliata per un utente inesperto</h3>
+              <p>La regola pratica è: scegli una struttura e mantienila costante su tutti i repository.</p>
+              <ul class="guide-list">
+                <li>nomi brevi, leggibili e senza ambiguità</li>
+                <li>niente spazi, meglio trattini (<code>-</code>)</li>
+                <li>descrizione repository compilata con una frase utile</li>
+                <li>README iniziale quasi sempre attivo</li>
+              </ul>
+              <p>Se stai partendo da zero e vuoi un progetto semplice, inizializzarlo con README è spesso la scelta migliore.</p>
+              <p>Se invece hai già il progetto sul tuo computer e vuoi collegarlo dopo, puoi creare il repository vuoto e aggiungere i file dal locale.</p>
             </section>
           </section>
 
@@ -353,6 +377,7 @@
 git push -u origin main</code></pre>
               <p>Il primo collega il repository locale a quello remoto. Il secondo invia il branch principale online.</p>
               <p>Più che impararli a memoria, è importante capire cosa fanno.</p>
+              <p><strong>Chicca pratica:</strong> dopo aver collegato il remoto, esegui <code>git remote -v</code> per verificare che l’URL sia corretto prima del primo push.</p>
             </section>
           </section>
 
@@ -373,6 +398,7 @@ git push -u origin main</code></pre>
               <pre><code class="language-text">git add .
 git commit -m &quot;Aggiorna sezione contatti&quot;
 git push</code></pre>
+              <p><strong>Chicca pratica:</strong> prima di fare push usa sempre <code>git status</code>. Ti aiuta a evitare file involontari nei commit.</p>
             </section>
           </section>
 
@@ -390,6 +416,7 @@ git push</code></pre>
               <p>Comando base:</p>
               <pre><code class="language-text">git pull</code></pre>
               <p>Anche qui, più del comando, conta il concetto: sincronizzare il locale con il remoto.</p>
+              <p><strong>Chicca pratica:</strong> se lavori da solo e vuoi una cronologia più lineare, valuta <code>git pull --rebase</code> invece di <code>git pull</code>.</p>
             </section>
           </section>
 
@@ -416,6 +443,7 @@ git push</code></pre>
                 <li>istruzioni rapide</li>
                 <li>stato del progetto</li>
               </ul>
+              <p><strong>Chicca pratica:</strong> aggiungi sempre una sezione “Avvio rapido” con 2-3 comandi. È la parte che chi legge cerca per prima.</p>
             </section>
           </section>
 
@@ -475,6 +503,7 @@ git push</code></pre>
                 <li>vuoi fare modifiche grosse senza sporcare subito il main</li>
               </ul>
               <p>L’idea non è complicarti la vita, ma proteggere il progetto principale mentre lavori.</p>
+              <p><strong>Chicca pratica:</strong> usa nomi branch descrittivi, ad esempio <code>feature/navbar-mobile</code>, <code>fix/form-validation</code>, <code>docs/readme-update</code>.</p>
             </section>
           </section>
 
@@ -504,6 +533,7 @@ git push</code></pre>
                 <li>rimuove componenti non più usati</li>
                 <li>migliora struttura del footer</li>
               </ul>
+              <p><strong>Chicca pratica:</strong> inizia il messaggio con un verbo chiaro (aggiunge, aggiorna, rimuove, migliora): la cronologia sarà molto più leggibile.</p>
             </section>
           </section>
 
@@ -580,6 +610,7 @@ git push</code></pre>
                 <li>correggere bug del form</li>
               </ul>
               <p>Non sono obbligatorie, ma possono aiutarti a organizzare il lavoro.</p>
+              <p><strong>Chicca pratica:</strong> una issue efficace include sempre: contesto, obiettivo e criterio di completamento (“quando questa issue si considera chiusa”).</p>
             </section>
           </section>
 
@@ -597,6 +628,7 @@ git push</code></pre>
               </ul>
               <p>Non serve avere cento repository. Meglio pochi progetti, ma chiari.</p>
               <p>GitHub non deve mostrare perfezione. Deve mostrare un percorso credibile.</p>
+              <p><strong>Chicca pratica:</strong> usa i repository “pinned” nel profilo per mostrare subito 4-6 progetti rappresentativi.</p>
             </section>
           </section>
 
@@ -616,6 +648,8 @@ git push</code></pre>
               <p>Un repository senza una minima spiegazione spesso sembra lasciato a metà.</p>
               <h4>Pensare di dover capire subito tutto</h4>
               <p>GitHub ha tante funzioni, ma all’inizio te ne servono poche e ben comprese.</p>
+              <h4>Versionare file sensibili per errore</h4>
+              <p>Controlla sempre cosa stai tracciando con Git e configura un <code>.gitignore</code> fin da subito.</p>
             </section>
           </section>
 
@@ -624,6 +658,7 @@ git push</code></pre>
             <section class="guide-subchapter">
               <p>Per chi parte da zero, un workflow semplice può essere questo:</p>
               <ul class="guide-list">
+                <li>all’inizio sessione sincronizzi con git pull</li>
                 <li>lavori al progetto in locale</li>
                 <li>controlli lo stato con git status</li>
                 <li>aggiungi i file con git add</li>
@@ -647,6 +682,7 @@ git commit -m &quot;Aggiorna homepage e pagina contatti&quot;
 git push</code></pre>
               <p>Poi vai su GitHub e controlli che i file e la cronologia siano stati aggiornati.</p>
               <p>Questo è il cuore del workflow quotidiano di molti progetti semplici.</p>
+              <p><strong>Chicca pratica:</strong> se <code>git push</code> viene rifiutato perché il remoto è più avanti, esegui <code>git pull --rebase</code> e poi riprova il push.</p>
             </section>
           </section>
 
