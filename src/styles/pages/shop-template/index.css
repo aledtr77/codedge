@@ -288,7 +288,7 @@ section h1 {
 
 .grid.shop-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(268px, 308px));
+  grid-template-columns: repeat(auto-fit, minmax(268px, 308px));
   gap: clamp(1.15rem, 2vw, 1.65rem);
   padding: 0;
   justify-content: center;

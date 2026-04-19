@@ -17,6 +17,8 @@ import customWebsiteTemplateWebp from "@/assets/images/shop-template/custom-webs
 import customWebsiteTemplateJpg from "@/assets/images/shop-template/custom-website-template.jpg";
 import fitnessCoachTemplateWebp from "@/assets/images/shop-template/fitness-coach-template.webp";
 import fitnessCoachTemplateJpg from "@/assets/images/shop-template/fitness-coach-template.jpg";
+import giuliaCoachingWebp from "@/assets/images/shop-template/giulia-coaching.webp";
+import giuliaCoachingJpg from "@/assets/images/shop-template/giulia-coaching.jpg";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -32,7 +34,9 @@ const shopTemplateAssets = {
   customWebsiteTemplateWebp,
   customWebsiteTemplateJpg,
   fitnessCoachTemplateWebp,
-  fitnessCoachTemplateJpg
+  fitnessCoachTemplateJpg,
+  giuliaCoachingWebp,
+  giuliaCoachingJpg
 };
 
 document.querySelectorAll("[data-asset]").forEach((el) => {
