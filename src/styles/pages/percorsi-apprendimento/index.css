@@ -286,6 +286,26 @@ body > main .learning-shell {
   color: rgba(204, 229, 252, 0.94);
 }
 
+.learning-card--vscode {
+  border-color: rgba(74, 198, 255, 0.34);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(61, 171, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(8, 18, 30, 0.24) 100%
+    ),
+    var(--background-two);
+}
+
+.learning-card--vscode .learning-card__icon--vscode {
+  color: #7ad1ff;
+}
+
+.learning-card--vscode .learning-card__details {
+  color: rgba(173, 228, 255, 0.95);
+}
+
 @media (max-width: 1280px) {
   .button-simple {
     font-size: 0.9em;
