@@ -103,7 +103,7 @@
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Perché VS Code è utile davvero</a></li>
+            <li><a href="#chapter-02">1. Perché parlarne davvero</a></li>
             <li><a href="#chapter-03">2. Installazione e primo setup pulito</a></li>
             <li><a href="#chapter-04">3. Workspace e struttura ordinata</a></li>
             <li><a href="#chapter-05">4. Comandi che ti fanno risparmiare tempo</a></li>
@@ -121,36 +121,49 @@
             <p class="guide-intro-kicker">Guida pratica per partire bene</p>
             <h2 id="vscode-guide-title">Nota iniziale</h2>
             <section class="guide-subchapter">
-              <p>Questa mini-guida nasce per una ragione molto concreta: tante persone usano Visual Studio Code ogni giorno, ma lo usano male o in modo troppo casuale.</p>
-              <p>Aprono file a caso, installano venti estensioni inutili, non toccano mai le impostazioni, ignorano il terminale integrato e poi hanno la sensazione che l’editor sia confuso o lento. Il problema, nella maggior parte dei casi, non è VS Code. Il problema è che manca un piccolo metodo.</p>
-              <p>L’obiettivo qui non è spiegare ogni angolo dell’editor. L’obiettivo è costruire un setup credibile per studiare e lavorare meglio davvero: meno dispersione, meno clic inutili, più continuità nel flusso.</p>
-              <p>Nel contesto front-end, VS Code è spesso il punto da cui passa tutto: file, terminale, Git, debug, estensioni, snippet, ricerca e rifinitura finale. Se questa base è ordinata, anche il resto del workflow migliora.</p>
+              <p>Vale la pena parlare di Visual Studio Code perché, per moltissime persone che scrivono codice, è il luogo in cui il lavoro prende forma sul serio.</p>
+              <p>È dove apri il progetto, inizi a costruire, fai prove, sistemi errori, lanci comandi, controlli modifiche e tieni insieme i pezzi mentre il lavoro cresce. In questo senso è insieme banco di lavoro, officina e punto di controllo.</p>
+              <p>Per questo conviene capirlo bene presto. Non in modo scolastico, e neppure come se andasse studiato riga per riga. Basta imparare a usarlo in modo ordinato, pratico e coerente con quello che fai ogni giorno.</p>
+              <p>Questa guida parte proprio da qui: chiarire perché VS Code conta davvero, dare un minimo di contesto su come si è imposto e poi trasformarlo in uno strumento utile da tenere aperto tutti i giorni, non in una finestra piena di funzioni usate a metà.</p>
             </section>
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Perché VS Code è utile davvero</h2>
+            <h2>1. Perché parlarne davvero</h2>
             <figure class="guide-figure">
               <img src="/images/percorsi-apprendimento/visual-studio-code-senza-panico/panoramica-vscode-pratica.svg" alt="Panoramica visuale dei blocchi fondamentali per usare bene Visual Studio Code" loading="lazy" decoding="async" width="1200" height="520">
               <figcaption>Panoramica del percorso: setup, navigazione, terminale, debug, Git e routine quotidiana.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <p>VS Code piace perché è leggero rispetto a IDE più pesanti, ma abbastanza completo da coprire bene il lavoro quotidiano su progetti front-end, piccoli tool, guide e repository Git.</p>
-              <p>La cosa importante è capire che non è solo un posto dove scrivere codice. Se lo imposti bene, diventa una piccola cabina di regia del progetto.</p>
+              <p>VS Code è diventato centrale perché tiene insieme due qualità che, spesso, non stanno bene nello stesso strumento: rapidità e sostanza.</p>
+              <p>Si apre in fretta, non ti trascina subito dentro un ambiente pesante, ma allo stesso tempo ti dà abbastanza strumenti per coprire il lavoro vero: scrittura, ricerca, terminale, debug, Git, estensioni e rifinitura finale.</p>
+              <p>Questo equilibrio conta molto più di quanto sembri. Se un editor è troppo povero, devi uscire continuamente. Se è troppo ingombrante, ti rallenta. VS Code è diventato forte proprio perché sta bene in mezzo.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Un minimo di storia, giusto per capire da dove arriva</h3>
+              <p>Visual Studio Code viene pubblicato da Microsoft nel 2015. Nasce come editor moderno, multipiattaforma e relativamente leggero, distinto da Visual Studio, che invece è un IDE più grande, più strutturato e pensato per altri tipi di flusso.</p>
+              <p>L’idea alla base era abbastanza chiara: creare un editor rapido, estendibile e abbastanza solido da stare nel mezzo tra semplicità e lavoro reale.</p>
+              <p>Nel tempo ha preso piede soprattutto nel front-end e nel web development perché lì servono velocità, terminale, Git, buon supporto ai file di progetto e un ecosistema di estensioni credibile, senza entrare per forza in un ambiente monolitico.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Perché nel front-end conta così tanto</h3>
+              <p>Nel front-end spesso lavori saltando continuamente tra file, browser, terminale, repository e piccoli controlli rapidi. Se ogni passaggio è lento o scomodo, il flusso si spezza.</p>
+              <p>VS Code funziona bene proprio perché tiene insieme queste operazioni senza diventare una macchina troppo pesante da gestire.</p>
               <ul class="guide-list">
                 <li>scrivi e modifichi file con buoni strumenti di editing;</li>
                 <li>cerchi rapidamente dentro cartelle e progetto;</li>
                 <li>lanci server e comandi nel terminale integrato;</li>
                 <li>usi Git senza uscire continuamente dall’editor;</li>
                 <li>debbughi problemi senza andare alla cieca;</li>
-                <li>applichi un minimo di standard con formatter, lint e snippet.</li>
+                <li>applichi un minimo di standard con formatter, lint, snippet e supporti AI quando servono davvero.</li>
               </ul>
-              <p>La vera utilità non sta nell’avere cento funzioni. Sta nel ridurre attrito mentale. Meno cambi di contesto fai, più resti lucido mentre lavori.</p>
+              <p>Il punto non è avere cento funzioni. Il punto è avere un ambiente che ti accompagni mentre lavori, invece di costringerti a combattere con lo strumento ogni pochi minuti.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Quando basta VS Code e quando no</h3>
-              <p>Per HTML, CSS, JavaScript, TypeScript, Node, documentazione e piccoli progetti statici, VS Code è più che sufficiente nella maggior parte dei casi.</p>
-              <p>Non deve per forza sostituire ogni altro strumento. Se in futuro lavorerai su stack molto specifici o ambienti enterprise più pesanti, potresti usare anche altro. Ma per imparare bene e lavorare in modo concreto nel front-end, partire da qui è una scelta sensata.</p>
+              <p>VS Code non si limita affatto a HTML, CSS o a piccoli progetti statici. Viene usato tranquillamente anche con React, Vue, TypeScript, Node, Python, C#, C/C++ e molti altri linguaggi o framework.</p>
+              <p>Proprio perché è estendibile e abbastanza leggero, riesce a stare bene in contesti molto diversi: dal front-end puro alla documentazione tecnica, dai piccoli tool fino a progetti più strutturati.</p>
+              <p>Questo non significa che debba per forza sostituire ogni altro ambiente. In alcuni casi particolari, soprattutto su stack enterprise o workflow molto specifici, potresti preferire strumenti più verticali. Ma come ambiente di lavoro generale, flessibile e quotidiano, VS Code resta una base molto forte.</p>
             </section>
           </section>
 
@@ -274,6 +287,20 @@
               <p>Evita invece il pacchetto “effetto wow” fatto di dieci estensioni decorative, AI, snippet sovrapposti, live tools duplicati e helper che fanno la stessa cosa in modi diversi.</p>
             </section>
             <section class="guide-subchapter">
+              <h3>AI dentro VS Code: utile, ma con criterio</h3>
+              <p>Oggi l’integrazione AI fa parte del workflow reale di tantissime persone, quindi ignorarla non avrebbe senso. Il punto, però, è usarla come supporto e non come pilota automatico.</p>
+              <p>Dentro VS Code l’AI può aiutarti bene in alcuni casi molto concreti:</p>
+              <ul class="guide-list guide-list-good">
+                <li>spiegare rapidamente un blocco di codice che non hai scritto tu;</li>
+                <li>proporre una prima bozza di funzione o refactor da rifinire;</li>
+                <li>suggerire test, edge case e possibili punti deboli;</li>
+                <li>riassumere errori o log troppo rumorosi per essere letti a freddo;</li>
+                <li>velocizzare documentazione, commenti utili o piccoli snippet ripetitivi.</li>
+              </ul>
+              <p>Ci sono però anche i casi in cui l’AI peggiora il lavoro invece di migliorarlo: quando incolli codice che non hai capito, quando accetti patch troppo grandi senza rileggerle, o quando usi il suggerimento automatico come sostituto del ragionamento.</p>
+              <p>La regola più sana è questa: fai usare all’AI il ruolo di assistente operativo, non di autore incontrollato. Se ti aiuta a vedere più in fretta, bene. Se ti fa perdere il controllo di quello che stai costruendo, allora sta lavorando contro di te.</p>
+            </section>
+            <section class="guide-subchapter">
               <h3>Formatter e lint: non sovrapporre ruoli</h3>
               <p>Un errore frequente è avere più strumenti che provano a sistemare gli stessi file in modi diversi. Se il formatter cambia spaziatura, virgolette e wrapping, lascia fare a lui. Se il lint controlla errori logici o convenzioni, lascia fare a lui.</p>
               <p>Quando i ruoli sono chiari, salvataggi e commit diventano molto più prevedibili.</p>
@@ -374,6 +401,7 @@
                 <li>Controlla Explorer, terminale e stato Git.</li>
                 <li>Lancia il dev server o il task principale.</li>
                 <li>Lavora con Quick Open, ricerca globale e multi-cursor invece di navigare sempre a mano.</li>
+                <li>Usa eventuali strumenti AI per sbloccare punti precisi, non per delegare l’intera sessione.</li>
                 <li>Controlla Problems quando compaiono warning o errori.</li>
                 <li>Rileggi i file toccati prima del commit.</li>
                 <li>Chiudi la sessione lasciando il progetto in uno stato leggibile.</li>
