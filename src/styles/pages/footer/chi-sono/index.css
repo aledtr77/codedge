@@ -50,16 +50,22 @@
 .about-visual-kicker {
   display: inline-flex;
   align-items: center;
+  gap: 0.7rem;
   margin-bottom: 1rem;
-  padding: 0.42rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(145, 201, 255, 0.22);
-  background: rgba(0, 123, 240, 0.14);
-  color: #c4e6ff;
-  font-size: 0.78rem;
+  color: #9ad7ff;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.about-eyebrow::before,
+.section-kicker::before,
+.about-visual-kicker::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(154, 215, 255, 0.95), rgba(154, 215, 255, 0.18));
 }
 
 .about-title {
@@ -82,7 +88,7 @@
 .about-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.85rem 1.25rem;
   margin-top: 1.5rem;
 }
 
@@ -90,12 +96,19 @@
 .about-pill {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.72rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(180, 220, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f4f8ff;
+  gap: 0.55rem;
+  color: rgba(244, 248, 255, 0.92);
+  font-weight: 600;
+}
+
+.about-tag::before,
+.about-pill::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(120, 205, 255, 0.9);
+  box-shadow: 0 0 0 4px rgba(120, 205, 255, 0.12);
 }
 
 .about-visual-card {
@@ -187,12 +200,78 @@
 .about-pill-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.85rem 1.2rem;
 }
 
 .about-principles-header {
   max-width: 760px;
   margin-bottom: 1.3rem;
+}
+
+.about-links {
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.5rem;
+  padding: 1.8rem;
+  border-radius: 28px;
+  border: 1px solid rgba(130, 188, 255, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(0, 123, 240, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(67, 67, 67, 0.96) 0%, rgba(40, 40, 40, 0.98) 100%);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.about-links::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 48%);
+  pointer-events: none;
+}
+
+.about-links h3 {
+  margin-bottom: 1.1rem;
+  font-family: var(--heading-font);
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.about-links-intro {
+  max-width: 62ch;
+  margin-bottom: 0.95rem;
+  color: rgba(242, 242, 242, 0.9);
+  font-size: 1.02rem;
+}
+
+.about-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.4rem;
+}
+
+.about-inline-link {
+  color: #6ec6ff;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  font-size: 1.02rem;
+  font-weight: 700;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.about-inline-link:hover {
+  color: #ffffff;
+  text-decoration-color: rgba(255, 255, 255, 0.92);
+}
+
+.about-inline-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .about-principles-grid {
@@ -247,6 +326,7 @@
   .about-visual-card,
   .about-story-card,
   .about-info-card,
+  .about-links,
   .about-principles {
     padding: 1.35rem;
     border-radius: 22px;
@@ -266,15 +346,20 @@
     padding: 1rem;
   }
 
-  .about-tag,
-  .about-pill {
-    width: 100%;
+  .about-tags,
+  .about-pill-grid {
+    gap: 0.7rem;
   }
 
   .about-story-card h3,
   .about-info-card h3,
+  .about-links h3,
   .about-principles-header h3 {
     font-size: 1.4rem;
+  }
+
+  .about-links-list {
+    gap: 0.7rem 1rem;
   }
 }
 
