@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
-  <title id="title">Panoramica guida GitHub senza panico</title>
+  <title id="title">Panoramica guida GitHub operativo</title>
   <desc id="desc">Schema con i blocchi principali della guida: basi, repository, collaborazione e workflow.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -12,7 +12,7 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="520" fill="url(#bg)"/>
-  <text x="60" y="70" fill="#e9f4ff" font-size="34" font-family="Verdana, sans-serif" font-weight="700">GitHub senza panico</text>
+  <text x="60" y="70" fill="#e9f4ff" font-size="34" font-family="Verdana, sans-serif" font-weight="700">GitHub operativo</text>
   <text x="60" y="105" fill="#a9c8e6" font-size="20" font-family="Verdana, sans-serif">Mappa rapida dei contenuti operativi</text>
 
   <g transform="translate(60 150)">
