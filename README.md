@@ -2,7 +2,7 @@
 
 Sito: [https://codedge.it](https://codedge.it)
 
-![Anteprima Shop Template](src/assets/images/shop-template/index.png)
+![Anteprima Template](src/assets/images/shop-template/index.png)
 
 ## Cos'e questo sito
 Codedge e il mio spazio personale dove studio, provo e pubblico front-end.
@@ -18,8 +18,8 @@ Questo progetto nasce per mettere in pratica quello che studio e per tracciare i
 - `Risorse`: glossari HTML/CSS/JS e snippet pronti da usare.
 - `Strumenti`: generatori colori, gradienti, box-shadow, compressore immagini, estrattore palette.
 - `Progetti pratici`: mini progetti ed esempi interattivi (scroll indicator, card, navbar, form, ecc.).
-- `Shop Template`: demo live, collegamento allo shop Etsy e pagina per richieste di personalizzazione.
-- `Percorsi apprendimento`: contenuti piu teorici e roadmap (sezione in crescita).
+- `Template`: demo live, collegamento allo shop Etsy e pagina per richieste di personalizzazione.
+- `Tutorial`: guide pratiche su Git, GitHub e Visual Studio Code, con altre basi operative in arrivo.
 - Pagine utili: contatti, chi sono, privacy policy, termini di servizio.
 
 ## Stato del progetto
