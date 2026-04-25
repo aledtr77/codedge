@@ -81,25 +81,107 @@
     </nav>
 
   </header>
-  <h2 class="h2_resize">Percorso, competenze e obiettivi</h2>
-  <main>
-    <section class="content-section">
-      <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo-chi-sono" width="80" height="35">
-      <p>
-        Ciao, mi presento brevemente: mi chiamo Alessandro e sono l’autore di
-        questo sito. Il mondo dell’IT mi ha sempre affascinato e incuriosito,
-        tanto da diventare col tempo una vera passione. Quindi dopo anni
-        passati a curiosare e a "smanettare" un po' ovunque, ho deciso di fare
-        un passo in più nel mondo del software, ovviamente da completo
-        autodidatta. Il passo successivo è stato scegliere tra i tanti
-        percorsi possibili, e la mia scelta è caduta sul front-end, quello che
-        fin da subito mi è sembrato più in linea con i miei gusti. Ed eccomi
-        qui: immerso nello studio e nella sperimentazione con HTML, CSS,
-        JavaScript e tutto ciò che ne consegue… tra tentativi, errori e
-        piccoli progressi. Questo sito rappresenta una tappa naturale di
-        questo percorso, ma anche un modo per mettere in pratica quello che
-        sto imparando e continuare a crescere.
-      </p>
+  <main class="about-page">
+    <section class="about-hero">
+      <div class="about-copy">
+        <p class="about-eyebrow">Percorso autodidatta, pratica continua</p>
+        <h2 class="about-title">Codedge nasce mentre imparo, provo e costruisco davvero</h2>
+        <p class="about-lead">
+          Mi chiamo Alessandro e questo sito e il punto in cui raccolgo studio, sperimentazione e
+          pratica nel front-end. Non nasce da una posizione da esperto, ma da un percorso reale fatto
+          di tentativi, errori, correzioni e piccoli progressi concreti.
+        </p>
+        <p class="about-lead">
+          Dopo anni passati a curiosare e a smanettare nel mondo IT, ho scelto di approfondire il software
+          in modo piu serio da autodidatta. Tra i tanti percorsi possibili, il front-end e stato quello
+          che fin da subito mi e sembrato piu vicino ai miei gusti.
+        </p>
+        <div class="about-tags" aria-label="Temi principali">
+          <span class="about-tag">HTML</span>
+          <span class="about-tag">CSS</span>
+          <span class="about-tag">JavaScript</span>
+          <span class="about-tag">UI pratica</span>
+        </div>
+      </div>
+
+      <aside class="about-visual-card" aria-label="Identita del progetto Codedge">
+        <div class="about-visual-frame">
+          <img src="/icons/codedge-logo-minimal.svg" alt="Identita visiva Codedge" class="about-visual-image" width="320" height="320">
+        </div>
+        <div class="about-visual-meta">
+          <p class="about-visual-kicker">Il progetto</p>
+          <p class="about-visual-text">
+            Uno spazio personale dove metto ordine a quello che sto imparando e lo trasformo in risorse,
+            strumenti e pagine utili.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="about-grid">
+      <article class="about-story-card">
+        <p class="section-kicker">Il percorso</p>
+        <h3>Dal curiosare al costruire con intenzione</h3>
+        <p>
+          Il mondo dell’IT mi ha sempre affascinato e incuriosito, tanto da diventare col tempo una vera
+          passione. A un certo punto ho sentito il bisogno di fare un passo in piu e scegliere una direzione
+          precisa, invece di restare solo nella fase della curiosita sparsa.
+        </p>
+        <p>
+          Da li e iniziato un percorso piu strutturato: studio, esercizi, prove, errori, revisioni e tanta
+          sperimentazione. Codedge rappresenta una tappa naturale di questo cammino, ma anche un modo concreto
+          per mettere in pratica quello che sto imparando.
+        </p>
+      </article>
+
+      <div class="about-side-stack">
+        <article class="about-info-card">
+          <p class="section-kicker">Come lavoro</p>
+          <h3>Un approccio semplice e operativo</h3>
+          <ul class="about-list">
+            <li>Studio partendo dalle basi e provo subito a trasformarle in qualcosa di concreto.</li>
+            <li>Preferisco esempi pratici, componenti utili e spiegazioni che restano vicine all'uso reale.</li>
+            <li>Ogni pagina del sito e anche un esercizio di ordine, chiarezza e miglioramento progressivo.</li>
+          </ul>
+        </article>
+
+        <article class="about-info-card about-info-card-accent">
+          <p class="section-kicker">Cosa trovi qui</p>
+          <h3>Un sito che cresce insieme al percorso</h3>
+          <div class="about-pill-grid">
+            <span class="about-pill">Risorse da consultare</span>
+            <span class="about-pill">Strumenti front-end</span>
+            <span class="about-pill">Componenti UI</span>
+            <span class="about-pill">Tutorial pratici</span>
+            <span class="about-pill">Template e demo</span>
+            <span class="about-pill">Esperimenti e iterazioni</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-principles" aria-labelledby="about-principles-title">
+      <div class="about-principles-header">
+        <p class="section-kicker">Perche esiste questa pagina</p>
+        <h3 id="about-principles-title">Per dare contesto al progetto, non solo al portfolio</h3>
+      </div>
+      <div class="about-principles-grid">
+        <article class="about-principle">
+          <i class="fas fa-seedling" aria-hidden="true"></i>
+          <h4>Crescita reale</h4>
+          <p>Il sito non racconta un punto di arrivo perfetto, ma un lavoro in corso costruito con costanza.</p>
+        </article>
+        <article class="about-principle">
+          <i class="fas fa-code" aria-hidden="true"></i>
+          <h4>Pratica prima di tutto</h4>
+          <p>Ogni sezione nasce per essere utile davvero: da consultare, provare, riusare o migliorare.</p>
+        </article>
+        <article class="about-principle">
+          <i class="fas fa-layer-group" aria-hidden="true"></i>
+          <h4>Ordine nel percorso</h4>
+          <p>Codedge e anche un modo per dare una forma chiara a quello che sto imparando nel tempo.</p>
+        </article>
+      </div>
     </section>
   </main>
 
