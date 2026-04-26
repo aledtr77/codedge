@@ -1,21 +1,30 @@
 .about-page {
   max-width: 1200px;
   margin: 0 auto 4rem;
-  padding: 1.5rem 2rem 0;
+  padding: 2rem 2rem 0;
 }
 
 .about-hero {
   display: grid;
-  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.4fr);
-  gap: 2.5rem;
-  align-items: start;
+  gap: 2rem;
   margin-bottom: 2.5rem;
   padding-bottom: 2.1rem;
   border-bottom: 1px solid rgba(130, 188, 255, 0.14);
 }
 
+.about-hero-intro {
+  max-width: 940px;
+}
+
+.about-hero-body {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.4fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
 .about-copy {
-  padding-left: 1.5rem;
+  padding-top: 0.25rem;
 }
 
 .about-eyebrow,
@@ -42,8 +51,8 @@
 }
 
 .about-title {
-  max-width: 12ch;
-  margin-bottom: 1rem;
+  max-width: 14ch;
+  margin-bottom: 0;
   font-family: var(--heading-font);
   font-size: clamp(2.4rem, 4.1vw, 4.2rem);
   line-height: 0.95;
@@ -89,7 +98,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-self: start;
-  margin-top: 0.75rem;
   padding-right: 1.6rem;
   border-right: 1px solid rgba(130, 188, 255, 0.18);
 }
@@ -248,7 +256,7 @@
     padding-right: 1rem;
   }
 
-  .about-hero,
+  .about-hero-body,
   .about-grid,
   .about-principles-grid {
     grid-template-columns: 1fr;
@@ -259,13 +267,10 @@
   }
 
   .about-copy {
-    order: 2;
-    padding-left: 0;
+    padding-top: 0;
   }
 
   .about-visual-card {
-    margin-top: 0;
-    order: 1;
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 1.3rem;
@@ -281,13 +286,18 @@
 
 @media (max-width: 768px) {
   .about-page {
-    padding: 1rem var(--mobile-page-gutter) 0;
+    padding: 1.35rem var(--mobile-page-gutter) 0;
     margin-bottom: 2.5rem;
   }
 
   .about-hero {
+    gap: 1.25rem;
     margin-bottom: 2rem;
     padding-bottom: 1.6rem;
+  }
+
+  .about-hero-body {
+    gap: 1.2rem;
   }
 
   .about-visual-card {
