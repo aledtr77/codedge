@@ -7,42 +7,15 @@
 .about-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.9fr);
-  gap: 1.5rem;
-  align-items: stretch;
-  margin-bottom: 1.75rem;
-}
-
-.about-copy,
-.about-visual-card,
-.about-story-card,
-.about-info-card,
-.about-principles {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-  border: 1px solid rgba(130, 188, 255, 0.14);
-  background:
-    radial-gradient(circle at top right, rgba(0, 123, 240, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(70, 70, 70, 0.96) 0%, rgba(42, 42, 42, 0.98) 100%);
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.about-copy::after,
-.about-visual-card::after,
-.about-story-card::after,
-.about-info-card::after,
-.about-principles::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 48%);
-  pointer-events: none;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.1rem;
+  border-bottom: 1px solid rgba(130, 188, 255, 0.14);
 }
 
 .about-copy {
-  padding: 2.4rem;
+  padding-right: 1.5rem;
 }
 
 .about-eyebrow,
@@ -114,8 +87,10 @@
 .about-visual-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.7rem;
+  justify-content: flex-end;
+  align-self: end;
+  padding-left: 1.6rem;
+  border-left: 1px solid rgba(130, 188, 255, 0.18);
 }
 
 .about-visual-frame {
@@ -147,14 +122,16 @@
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  gap: 3rem;
+  margin-bottom: 2rem;
 }
 
 .about-story-card,
 .about-info-card,
-.about-principles {
-  padding: 1.8rem;
+.about-principles,
+.about-links {
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(130, 188, 255, 0.16);
 }
 
 .about-story-card h3,
@@ -180,7 +157,7 @@
 
 .about-side-stack {
   display: grid;
-  gap: 1rem;
+  gap: 1.6rem;
 }
 
 .about-list {
@@ -189,12 +166,6 @@
 
 .about-list li + li {
   margin-top: 0.75rem;
-}
-
-.about-info-card-accent {
-  background:
-    radial-gradient(circle at bottom left, rgba(0, 123, 240, 0.2), transparent 36%),
-    linear-gradient(180deg, rgba(65, 65, 65, 0.96) 0%, rgba(39, 39, 39, 0.98) 100%);
 }
 
 .about-pill-grid {
@@ -209,26 +180,7 @@
 }
 
 .about-links {
-  position: relative;
-  overflow: hidden;
-  margin-top: 1.5rem;
-  padding: 1.8rem;
-  border-radius: 28px;
-  border: 1px solid rgba(130, 188, 255, 0.14);
-  background:
-    radial-gradient(circle at top right, rgba(0, 123, 240, 0.16), transparent 32%),
-    linear-gradient(180deg, rgba(67, 67, 67, 0.96) 0%, rgba(40, 40, 40, 0.98) 100%);
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.about-links::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 48%);
-  pointer-events: none;
+  margin-top: 2rem;
 }
 
 .about-links h3 {
@@ -312,6 +264,21 @@
     grid-template-columns: 1fr;
   }
 
+  .about-hero {
+    gap: 1.6rem;
+  }
+
+  .about-copy {
+    padding-right: 0;
+  }
+
+  .about-visual-card {
+    padding-left: 0;
+    padding-top: 1.3rem;
+    border-left: 0;
+    border-top: 1px solid rgba(130, 188, 255, 0.18);
+  }
+
   .about-title {
     max-width: 13ch;
   }
@@ -323,14 +290,20 @@
     margin-bottom: 2.5rem;
   }
 
-  .about-copy,
-  .about-visual-card,
+  .about-hero {
+    margin-bottom: 2rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .about-visual-card {
+    padding-top: 1.1rem;
+  }
+
   .about-story-card,
   .about-info-card,
   .about-links,
   .about-principles {
-    padding: 1.35rem;
-    border-radius: 22px;
+    padding-top: 1.1rem;
   }
 
   .about-title {

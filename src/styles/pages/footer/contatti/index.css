@@ -13,17 +13,20 @@
 .contact-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
-  gap: 1.5rem;
-  align-items: stretch;
-  margin-bottom: 1.75rem;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.1rem;
+  border-bottom: 1px solid rgba(131, 190, 255, 0.14);
 }
 
-.contact-hero-copy,
-.contact-hero-card,
-.contact-panel,
-.contact-form-shell {
+.contact-form-shell,
+.feedback-message {
   position: relative;
   overflow: hidden;
+}
+
+.contact-form-shell {
   border: 1px solid rgba(131, 190, 255, 0.14);
   border-radius: 28px;
   background:
@@ -35,18 +38,7 @@
 }
 
 .contact-hero-copy {
-  padding: 2.4rem;
-}
-
-.contact-hero-copy::after,
-.contact-hero-card::after,
-.contact-panel::after,
-.contact-form-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 45%);
-  pointer-events: none;
+  padding-right: 1.5rem;
 }
 
 .contact-card-kicker {
@@ -107,7 +99,7 @@
 }
 
 .contact-title {
-  max-width: 12ch;
+  max-width: 17ch;
   margin-bottom: 1rem;
   font-family: var(--heading-font);
   font-size: clamp(2.2rem, 4vw, 4rem);
@@ -150,10 +142,9 @@
 }
 
 .contact-hero-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
+  align-self: end;
+  padding: 0 0 0 1.6rem;
+  border-left: 1px solid rgba(131, 190, 255, 0.18);
 }
 
 .contact-checklist {
@@ -177,18 +168,18 @@
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 1.5rem;
+  gap: 3rem;
   align-items: start;
 }
 
 .contact-panels {
   display: grid;
-  gap: 1rem;
+  gap: 1.6rem;
 }
 
-.contact-panel,
-.contact-form-shell {
-  padding: 1.7rem;
+.contact-panel {
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(131, 190, 255, 0.16);
 }
 
 .contact-panel h3,
@@ -219,12 +210,6 @@
 
 .contact-panel a {
   color: #8ed6ff;
-}
-
-.contact-panel-soft {
-  background:
-    radial-gradient(circle at bottom left, rgba(0, 123, 240, 0.18), transparent 34%),
-    linear-gradient(180deg, rgba(61, 61, 61, 0.96) 0%, rgba(41, 41, 41, 0.98) 100%);
 }
 
 .contact-form-shell {
@@ -371,6 +356,15 @@
   z-index: 9999;
 }
 
+.contact-form-shell::after,
+.feedback-message::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
 .feedback-message.show {
   opacity: 1;
   visibility: visible;
@@ -412,8 +406,22 @@
     grid-template-columns: 1fr;
   }
 
+  .contact-hero {
+    gap: 1.6rem;
+  }
+
+  .contact-hero-copy {
+    padding-right: 0;
+  }
+
+  .contact-hero-card {
+    padding: 1.3rem 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(131, 190, 255, 0.18);
+  }
+
   .contact-title {
-    max-width: 14ch;
+    max-width: 18ch;
   }
 }
 
@@ -423,12 +431,23 @@
     margin-bottom: 2.5rem;
   }
 
-  .contact-hero-copy,
-  .contact-hero-card,
-  .contact-panel,
   .contact-form-shell {
     padding: 1.3rem;
     border-radius: 22px;
+  }
+
+  .contact-hero {
+    margin-bottom: 2rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .contact-hero-card {
+    padding: 1.1rem 0 0;
+    border-radius: 0;
+  }
+
+  .contact-panel {
+    padding-top: 1.1rem;
   }
 
   .contact-title {
