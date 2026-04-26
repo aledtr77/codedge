@@ -81,7 +81,7 @@
         <aside class="guide-toc" aria-label="Indice navigabile guida Git">
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
-              <li><a href="#chapter-01">1. Storia di Git</a></li>
+              <li><a href="#chapter-01">1. Prima di iniziare e storia di Git</a></li>
               <li><a href="#chapter-02">2. Perché Git e GitHub</a></li>
               <li><a href="#chapter-03">3. Modello mentale e aree di lavoro</a></li>
               <li><a href="#chapter-04">4. Setup iniziale e primo repository</a></li>
@@ -98,8 +98,21 @@
         <article class="guide-content" aria-label="Contenuto guida Git">
           <section id="chapter-01" class="guide-block guide-chapter">
             <p class="guide-intro-kicker">Guida essenziale per iniziare da zero</p>
-            <h2 id="git-guide-title">1. Storia di Git</h2>
+            <h2 id="git-guide-title">1. Prima di iniziare e storia di Git</h2>
             <section class="guide-subchapter">
+              <h3>Prima di iniziare davvero</h3>
+              <p>Questa guida è pensata per chi parte da zero e vuole iniziare subito a usare Git in modo semplice, pratico e senza farsi schiacciare da spiegazioni troppo tecniche.</p>
+              <p>L’obiettivo non è trasformarti in un esperto in pochi giorni. L’obiettivo è molto più concreto: capire come funziona Git, iniziare a usarlo davvero in un progetto, evitare gli errori più comuni e costruire da subito un metodo di lavoro più ordinato.</p>
+              <p>Qui troverai i concetti fondamentali, i comandi davvero utili all’inizio e un piccolo percorso pratico per prendere confidenza con Git senza panico.</p>
+              <p>Per comprendere Git più a fondo esistono testi più completi, documentazioni ufficiali e molti altri strumenti validi. Ma soprattutto serve una cosa: pratica sul campo. Git si capisce davvero quando lo usi, sbagli, controlli, correggi e riprovi.</p>
+              <p>Se questa guida riuscirà a farti passare dal caos dei file sparsi a un modo di lavorare più chiaro e consapevole, allora avrà fatto il suo lavoro.</p>
+              <figure class="guide-figure">
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/panoramica-git-pratica.svg" alt="Panoramica del percorso Git con i blocchi fondamentali" loading="lazy" decoding="async" width="1200" height="520">
+<figcaption>Panoramica rapida del percorso: dalla storia fino all'uso con AI in assistenza.</figcaption>
+</figure>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Da dove arriva Git</h3>
               <p>Git nasce nel 2005 durante lo sviluppo del kernel Linux.</p>
               <p>Il progetto Linux era enorme, distribuito e con una quantità enorme di modifiche continue. Serviva un sistema veloce, affidabile e robusto per gestire il lavoro.</p>
               <p>Linus Torvalds, il creatore del kernel Linux, sviluppò Git con alcuni obiettivi molto chiari:</p>
@@ -118,18 +131,6 @@
           </section>
           <section id="chapter-02" class="guide-block guide-chapter">
             <h2>2. Perché Git e GitHub</h2>
-            <section class="guide-subchapter">
-              <h3>Nota iniziale</h3>
-              <p>Questa guida è pensata per chi parte da zero e vuole iniziare subito a usare Git in modo semplice, pratico e senza farsi schiacciare da spiegazioni troppo tecniche.</p>
-              <p>L’obiettivo non è trasformarti in un esperto in pochi giorni. L’obiettivo è molto più concreto: capire come funziona Git, iniziare a usarlo davvero in un progetto, evitare gli errori più comuni e costruire da subito un metodo di lavoro più ordinato.</p>
-              <p>Qui troverai i concetti fondamentali, i comandi davvero utili all’inizio e un piccolo percorso pratico per prendere confidenza con Git senza panico.</p>
-              <p>Per comprendere Git più a fondo esistono testi più completi, documentazioni ufficiali e molti altri strumenti validi. Ma soprattutto serve una cosa: pratica sul campo. Git si capisce davvero quando lo usi, sbagli, controlli, correggi e riprovi.</p>
-              <p>Se questa guida riuscirà a farti passare dal caos dei file sparsi a un modo di lavorare più chiaro e consapevole, allora avrà fatto il suo lavoro.</p>
-              <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/panoramica-git-pratica.svg" alt="Panoramica del percorso Git con i blocchi fondamentali" loading="lazy" decoding="async" width="1200" height="520">
-<figcaption>Panoramica rapida del percorso: dalla storia fino all'uso con AI in assistenza.</figcaption>
-</figure>
-            </section>
             <section class="guide-subchapter">
               <h3>Perché Git ti cambia il modo di lavorare</h3>
               <p>Git è un sistema che tiene traccia delle modifiche fatte ai file di un progetto nel tempo.</p>
@@ -293,8 +294,8 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>Hai fatto quattro cose fondamentali:</p>
               <ul class="guide-list">
                 <li>hai creato un repository locale;</li>
-                <li>hai detto a Git di osservare i file del progetto;</li>
-                <li>hai preparato quei file per il commit;</li>
+                <li>hai controllato lo stato iniziale del progetto;</li>
+                <li>hai messo nello staging la versione attuale dei file che vuoi salvare;</li>
                 <li>hai salvato il primo snapshot nella cronologia.</li>
               </ul>
               <p>Questo passaggio va capito bene, perché lo ripeterai in ogni progetto futuro.</p>
@@ -312,7 +313,7 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>Usalo spesso.</p>
               <h4>git add</h4>
               <pre><code class="language-bash">git add style.css</code></pre>
-              <p>Serve a preparare le modifiche per il prossimo commit.</p>
+              <p>Serve a mettere nello staging la versione attuale dei file che vuoi includere nel prossimo commit.</p>
               <p>Puoi usarlo su file specifici oppure, se ha senso, su tutto il progetto.</p>
               <pre><code class="language-bash">git add .</code></pre>
               <p>Ma attenzione: git add . non è il male assoluto, però usato sempre senza pensare può mischiare modifiche che sarebbe meglio tenere separate.</p>
@@ -466,7 +467,7 @@ git push -u origin main</code></pre>
               <h4>pull</h4>
               <pre><code class="language-bash">git pull origin main</code></pre>
               <p>Scarica e integra nel branch corrente.</p>
-              <p>In pratica è fetch più integrazione.</p>
+              <p>Nella configurazione più comune equivale a fetch più merge. In alcuni workflow può integrare usando rebase, quindi è bene sapere come è configurato il tuo ambiente.</p>
               <h4>push</h4>
               <pre><code class="language-bash">git push origin main</code></pre>
               <p>Pubblica sul remoto i commit che hai fatto in locale.</p>
@@ -487,15 +488,17 @@ git push -u origin main</code></pre>
               <h4>restore</h4>
               <p>Serve soprattutto a scartare modifiche locali o a ripristinare un file.</p>
               <pre><code class="language-bash">git restore style.css</code></pre>
-              <p>Se hai pasticciato un file e vuoi tornare alla versione precedente, restore è spesso la scelta più semplice.</p>
+              <p>Se hai pasticciato un file e vuoi annullare le modifiche locali non ancora committate, restore è spesso la scelta più semplice.</p>
+              <p>Di default <code>git restore style.css</code> riporta il file allo stato attualmente registrato nell'index. Se non hai nulla in staging, per un principiante questo di solito coincide con l'ultimo commit. Se vuoi essere esplicito puoi anche indicare la sorgente:</p>
+              <pre><code class="language-bash">git restore --source=HEAD -- style.css</code></pre>
               <h4>reset</h4>
               <p>reset è più potente e più delicato.</p>
               <p>Può spostare il puntatore della cronologia e, a seconda dell’opzione usata, influenzare staging area e working tree.</p>
               <pre><code class="language-bash">git reset --soft HEAD~1
 git reset --hard HEAD~1</code></pre>
               <ul class="guide-list">
-                <li><code>--soft</code> torna indietro ma mantiene il lavoro pronto;</li>
-                <li><code>--hard</code> torna indietro in modo drastico e può eliminare modifiche non salvate.</li>
+                <li><code>--soft</code> torna indietro nella cronologia ma mantiene le modifiche nello staging;</li>
+                <li><code>--hard</code> riallinea cronologia, staging e working tree in modo drastico e può eliminare modifiche non salvate.</li>
               </ul>
               <p>Quindi: utile, ma da usare con cervello.</p>
               <h4>revert</h4>
@@ -530,7 +533,7 @@ git reset --hard HEAD@{2}</code></pre>
                 <li><strong>Lavorare sempre su main.</strong> Per modifiche piccole può anche capitare, ma come regola generale è molto meglio usare branch sensati.</li>
                 <li><strong>Dimenticare .gitignore.</strong> Poi ti ritrovi a tracciare roba inutile o sensibile.</li>
                 <li><strong>Usare pull senza capire.</strong> Meglio sapere almeno mentalmente che cosa sta entrando nel tuo progetto.</li>
-                <li><strong>Usare reset –hard con leggerezza.</strong> Quel comando non è una caramella.</li>
+                <li><strong>Usare reset --hard con leggerezza.</strong> Quel comando non è una caramella.</li>
                 <li><strong>Andare nel panico davanti a un conflitto.</strong> Il conflitto non è la fine del mondo. È una scelta manuale che Git ti chiede.</li>
                 <li><strong>Non controllare status.</strong> git status è il tuo cruscotto. Se lo ignori, lavori mezzo bendato.</li>
               </ol>
@@ -687,7 +690,7 @@ git push -u origin main</code></pre>
                 </li>
                 <li>
                   <strong>Fai quality gate prima del push:</strong> solo se tutto è coerente.
-                  <pre><code class="language-text">Prima del push fai checklist rischi: branch corretto, commit sensati, diff pulito, nessun file sensibile, working tree pulito. Poi procedi.</code></pre>
+                  <pre><code class="language-text">Prima del push fai checklist rischi: branch corretto, commit sensati, diff pulito, nessun file sensibile, working tree pulito. Mostrami il riepilogo e aspetta conferma prima di procedere.</code></pre>
                 </li>
               </ol>
 
@@ -699,7 +702,7 @@ git push -u origin main</code></pre>
               <pre><code class="language-text">Controlla lo stato Git del progetto e riassumilo in 3 righe.</code></pre>
               <pre><code class="language-text">Prepara un commit solo dei file della guida Git, escludi tutto il resto e mostrami il diff.</code></pre>
               <pre><code class="language-text">Guidami nella risoluzione di questo conflitto senza usare comandi distruttivi.</code></pre>
-              <pre><code class="language-text">Prima di pushare fammi checklist rischi e poi procedi.</code></pre>
+              <pre><code class="language-text">Prima di pushare fammi checklist rischi, mostrami cosa stai per inviare e aspetta la mia conferma.</code></pre>
 
               <p>Regola d&#x27;oro finale: delega velocità e ripetizione, non la comprensione. Se resti tu a guidare la logica, l&#x27;AI ti fa lavorare meglio, non a caso.</p>
             </section>
