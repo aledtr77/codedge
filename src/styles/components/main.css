@@ -16,6 +16,10 @@
   --heading-font: "Arial", "Helvetica", sans-serif;
   --mobile-page-gutter: 0.875rem;
   --mobile-page-gutter-tight: 0.75rem;
+  --site-link-color: #8fceff;
+  --site-link-hover-color: var(--color-three);
+  --site-link-underline-thickness: 0.08em;
+  --site-link-underline-offset: 0.18em;
   --box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.1),
     inset -1px -1px 0 rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -79,6 +83,87 @@ main {
 a {
   user-select: none;
   -webkit-user-drag: none;
+}
+
+body main .hero-inline-link,
+body main .about-inline-link,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link),
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link),
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link),
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link) {
+  position: relative;
+  color: var(--site-link-color);
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+body main .hero-inline-link::after,
+body main .about-inline-link::after,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link)::after,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link)::after,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link)::after,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: -0.08em;
+  height: 2px;
+  border-radius: 999px;
+  background-color: currentColor;
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  pointer-events: none;
+}
+
+body main .hero-inline-link:hover,
+body main .hero-inline-link:focus-visible,
+body main .about-inline-link:hover,
+body main .about-inline-link:focus-visible,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible {
+  color: var(--site-link-hover-color);
+}
+
+body main .hero-inline-link:hover::after,
+body main .hero-inline-link:focus-visible::after,
+body main .about-inline-link:hover::after,
+body main .about-inline-link:focus-visible::after,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover::after,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible::after,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover::after,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible::after,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover::after,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible::after,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):hover::after,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+body main .hero-inline-link:focus-visible,
+body main .about-inline-link:focus-visible,
+body main .content-section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main .guide-content a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main .contact-panel a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible,
+body main > section a:not(.button-simple):not(.clickable-item):not(.minimal-navbar__link):focus-visible {
+  outline: 2px solid rgba(143, 211, 255, 0.95);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 img {

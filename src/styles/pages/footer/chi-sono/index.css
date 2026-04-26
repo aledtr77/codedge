@@ -204,25 +204,14 @@
 }
 
 .about-inline-link {
-  color: #6ec6ff;
-  text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 0.22em;
+  color: var(--site-link-color);
   font-size: 1.02rem;
   font-weight: 700;
-  transition:
-    color 0.2s ease,
-    text-decoration-color 0.2s ease;
-}
-
-.about-inline-link:hover {
-  color: #ffffff;
-  text-decoration-color: rgba(255, 255, 255, 0.92);
 }
 
 .about-inline-link:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 2px;
+  outline: 2px solid rgba(143, 211, 255, 0.95);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 

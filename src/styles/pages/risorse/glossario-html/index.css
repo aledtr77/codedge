@@ -292,16 +292,44 @@ aside::-webkit-scrollbar-track {
 }
 
 .clickable-item {
+  position: relative;
+  display: inline-block;
   color: var(--text-color);
-  transition: color 0.3s ease;
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease;
   cursor: pointer;
   padding: 2px 0;
   margin-left: 35px;
+  text-decoration: none;
+}
+.clickable-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: -0.08em;
+  height: 2px;
+  border-radius: 999px;
+  background-color: currentColor;
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  pointer-events: none;
 }
 
-.clickable-item:hover {
-  color: var(--color-three);
-  text-decoration: underline;
+.clickable-item:hover,
+.clickable-item:focus-visible {
+  color: var(--site-link-hover-color);
+}
+
+.clickable-item:hover::after,
+.clickable-item:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 @media (max-height: 650px) {
