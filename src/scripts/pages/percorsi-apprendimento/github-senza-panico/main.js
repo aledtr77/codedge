@@ -24,6 +24,7 @@ function initGuideToc() {
   if (!tocLinks.length || !sections.length) return;
 
   const headerOffset = 120;
+  let scrollTicking = false;
 
   const setActiveState = (id) => {
     tocLinks.forEach((link) => {
@@ -39,6 +40,31 @@ function initGuideToc() {
     sections.forEach((section) => {
       section.classList.toggle("is-active", section.id === id);
     });
+  };
+
+  const getCurrentSection = () => {
+    const activationLine = headerOffset + Math.min(window.innerHeight * 0.18, 140);
+    let current = sections[0];
+
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= activationLine) {
+        current = section;
+      }
+    });
+
+    return current;
+  };
+
+  const updateOnScroll = () => {
+    scrollTicking = false;
+    const current = getCurrentSection();
+    if (current) setActiveState(current.id);
+  };
+
+  const queueScrollUpdate = () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(updateOnScroll);
   };
 
   tocLinks.forEach((link) => {
@@ -59,44 +85,8 @@ function initGuideToc() {
       setActiveState(target.id);
     });
   });
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let best = null;
-
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          if (!best || entry.intersectionRatio > best.intersectionRatio) {
-            best = entry;
-          }
-        });
-
-        if (best?.target?.id) {
-          setActiveState(best.target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-32% 0px -58% 0px",
-        threshold: [0.1, 0.25, 0.45, 0.7],
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-  } else {
-    const updateOnScroll = () => {
-      const current = sections
-        .slice()
-        .reverse()
-        .find((section) => section.getBoundingClientRect().top <= headerOffset + 8);
-
-      if (current) setActiveState(current.id);
-    };
-
-    window.addEventListener("scroll", updateOnScroll, { passive: true });
-    updateOnScroll();
-  }
+  window.addEventListener("scroll", queueScrollUpdate, { passive: true });
+  window.addEventListener("resize", queueScrollUpdate, { passive: true });
 
   const hash = window.location.hash;
   if (hash) {
@@ -112,7 +102,7 @@ function initGuideToc() {
     }
   }
 
-  setActiveState(sections[0].id);
+  queueScrollUpdate();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
