@@ -25,7 +25,7 @@ function initGuideToc() {
 
   const headerOffset = 120;
 
-  const setActiveLink = (id) => {
+  const setActiveState = (id) => {
     tocLinks.forEach((link) => {
       const isActive = link.getAttribute("href") === `#${id}`;
       link.classList.toggle("is-active", isActive);
@@ -34,6 +34,10 @@ function initGuideToc() {
       } else {
         link.removeAttribute("aria-current");
       }
+    });
+
+    sections.forEach((section) => {
+      section.classList.toggle("is-active", section.id === id);
     });
   };
 
@@ -52,7 +56,7 @@ function initGuideToc() {
 
       history.replaceState(null, "", href);
       window.scrollTo({ top, behavior: "smooth" });
-      setActiveLink(target.id);
+      setActiveState(target.id);
     });
   });
 
@@ -69,7 +73,7 @@ function initGuideToc() {
         });
 
         if (best?.target?.id) {
-          setActiveLink(best.target.id);
+          setActiveState(best.target.id);
         }
       },
       {
@@ -87,7 +91,7 @@ function initGuideToc() {
         .reverse()
         .find((section) => section.getBoundingClientRect().top <= headerOffset + 8);
 
-      if (current) setActiveLink(current.id);
+      if (current) setActiveState(current.id);
     };
 
     window.addEventListener("scroll", updateOnScroll, { passive: true });
@@ -102,13 +106,13 @@ function initGuideToc() {
         const top =
           target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
         window.scrollTo({ top, behavior: "smooth" });
-        setActiveLink(target.id);
+        setActiveState(target.id);
       }, 30);
       return;
     }
   }
 
-  setActiveLink(sections[0].id);
+  setActiveState(sections[0].id);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
