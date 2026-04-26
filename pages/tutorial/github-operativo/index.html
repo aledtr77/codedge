@@ -111,21 +111,22 @@
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
             <li><a href="#chapter-02">1. Cos’è GitHub</a></li>
-            <li><a href="#chapter-03">2. Git e GitHub: differenza chiara una volta per tutte</a></li>
-            <li><a href="#chapter-04">3. Perché GitHub è utile anche se lavori da solo</a></li>
+            <li><a href="#chapter-03">2. Git vs GitHub</a></li>
+            <li><a href="#chapter-04">3. Perché usarlo anche da solo</a></li>
             <li><a href="#chapter-05">4. Creare un account GitHub</a></li>
             <li><a href="#chapter-06">5. Cos’è un repository</a></li>
-            <li><a href="#chapter-08">6. La schermata principale di un repository</a></li>
+            <li><a href="#chapter-08">6. Schermata del repository</a></li>
             <li><a href="#chapter-09">7. Creare un repository da GitHub</a></li>
-            <li><a href="#chapter-10">8. Collegare un progetto locale a GitHub</a></li>
-            <li><a href="#chapter-11">9. Push e Pull: sincronizzare locale e remoto</a></li>
-            <li><a href="#chapter-13">10. README e Markdown: base essenziale</a></li>
-            <li><a href="#chapter-15">11. I branch: cosa sono e quando usarli</a></li>
-            <li><a href="#chapter-17">12. Commit e cronologia su GitHub</a></li>
-            <li><a href="#chapter-18">13. Modificare e caricare file dal browser</a></li>
-            <li><a href="#chapter-20">14. Clone e Fork: differenza e uso</a></li>
-            <li><a href="#chapter-22">15. Funzioni extra di GitHub</a></li>
-            <li><a href="#chapter-23">16. Conclusioni</a></li>
+            <li><a href="#chapter-10">8. Collegare il progetto locale</a></li>
+            <li><a href="#chapter-11">9. Push e Pull</a></li>
+            <li><a href="#chapter-12">10. Pull Request</a></li>
+            <li><a href="#chapter-13">11. README e Markdown</a></li>
+            <li><a href="#chapter-15">12. Branch</a></li>
+            <li><a href="#chapter-17">13. Commit e cronologia</a></li>
+            <li><a href="#chapter-18">14. Modificare dal browser</a></li>
+            <li><a href="#chapter-20">15. Clone e Fork</a></li>
+            <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
+            <li><a href="#chapter-23">18. Conclusioni</a></li>
           </ol>
         </aside>
 
@@ -208,6 +209,7 @@
               <p>Perché?</p>
               <h3>3.1 Ti dà una copia online del progetto</h3>
               <p>Se il computer ha problemi, avere il repository online può salvarti il lavoro.</p>
+              <p>Non è una magia automatica: funziona bene se fai push con regolarità e non lasci tutto solo in locale per giorni.</p>
               <h3>3.2 Ti aiuta a presentarti meglio</h3>
               <p>Se un giorno vuoi mostrare i tuoi progetti, GitHub è uno dei primi posti dove molte persone guardano.</p>
               <h3>3.3 Ti abitua a un workflow reale</h3>
@@ -265,7 +267,8 @@
                 <li>esercizi che vuoi rendere visibili</li>
               </ul>
               <h4>Repository privato</h4>
-              <p>Solo tu e le persone invitate potete vederlo. È utile per:</p>
+              <p>In generale è visibile solo a te e alle persone che hanno accesso. Nei repository di organizzazione i permessi possono dipendere anche da team, ruoli e impostazioni interne.</p>
+              <p>È utile per:</p>
               <ul class="guide-list">
                 <li>progetti in lavorazione</li>
                 <li>esperimenti ancora disordinati</li>
@@ -348,6 +351,7 @@ git push -u origin main</code></pre>
               <pre><code class="language-text">gh auth login
 gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre>
               <p>Se vuoi un repository pubblico, usa <code>--public</code> al posto di <code>--private</code>.</p>
+              <p>Questo comando presuppone che la cartella corrente sia già un repository Git locale o che tu voglia inizializzarlo nel flusso guidato della CLI. Se non hai ancora preparato il progetto in locale, conviene prima sistemare repository, commit iniziale e file da pubblicare.</p>
               <p><strong>Consiglio operativo:</strong> pensa così: <code>git</code> gestisce il progetto locale, <code>gh</code> crea il repository su GitHub da terminale.</p>
             </section>
           </section>
@@ -382,13 +386,54 @@ git push</code></pre>
               </ul>
               <p>Comando base:</p>
               <pre><code class="language-text">git pull</code></pre>
-              <p>Anche qui, più del comando, conta il concetto: sincronizzare il locale con il remoto.</p>
+              <p>Attenzione a una cosa: <code>pull</code> non si limita a scaricare. Oltre a recuperare i cambiamenti dal remoto, prova anche a integrarli nel branch corrente.</p>
+              <p>Nella configurazione più comune equivale a <code>fetch</code> + <code>merge</code>. In alcuni workflow può usare <code>rebase</code>. Per questo non va trattato come un pulsante innocuo da premere a caso.</p>
               <p><strong>Consiglio operativo:</strong> se lavori da solo e vuoi una cronologia più lineare, valuta <code>git pull --rebase</code> invece di <code>git pull</code>.</p>
             </section>
           </section>
 
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>10. Pull Request: il flusso pratico da capire davvero</h2>
+            <section class="guide-subchapter">
+              <p>La Pull Request, spesso abbreviata in PR, è uno dei punti centrali di GitHub.</p>
+              <p>In parole semplici, una PR è una proposta di integrazione: dici a GitHub “ho preparato queste modifiche in un branch, ora voglio confrontarle con il branch di destinazione e valutarne il merge”.</p>
+              <p>Non è utile solo nei grandi team. Serve anche da solo, perché ti costringe a separare meglio il lavoro, rileggere il diff e fare un minimo di controllo qualità prima di unire tutto nel branch principale.</p>
+              <h3>Il flusso base più comune</h3>
+              <ol class="guide-list">
+                <li>crei un branch per una modifica specifica</li>
+                <li>fai commit locali</li>
+                <li>pushi il branch su GitHub</li>
+                <li>apri una Pull Request</li>
+                <li>rivedi differenze, commenti e stato dei controlli</li>
+                <li>fai merge quando è tutto a posto</li>
+              </ol>
+              <h3>Esempio semplice</h3>
+              <pre><code class="language-text">git switch -c feature/faq-home
+git add .
+git commit -m "aggiunge sezione FAQ in home"
+git push -u origin feature/faq-home</code></pre>
+              <p>A quel punto su GitHub puoi aprire una PR da <code>feature/faq-home</code> verso <code>main</code>.</p>
+              <h3>Cosa guardare dentro una PR</h3>
+              <ul class="guide-list">
+                <li>titolo chiaro</li>
+                <li>descrizione sintetica di cosa cambia</li>
+                <li>diff dei file modificati</li>
+                <li>eventuali commenti o review</li>
+                <li>stato dei controlli automatici, se presenti</li>
+              </ul>
+              <p>La PR non è solo un pulsante per fare merge. È un momento di controllo: guardi se le modifiche hanno senso, se il branch è quello giusto e se stai unendo davvero quello che volevi unire.</p>
+              <h3>Una distinzione utile</h3>
+              <p>Branch e Pull Request non sono la stessa cosa.</p>
+              <ul class="guide-list">
+                <li>il branch è la linea di lavoro separata</li>
+                <li>la Pull Request è la proposta di unire quella linea in un altro branch</li>
+              </ul>
+              <p><strong>Consiglio operativo:</strong> anche se lavori da solo, aprire una PR per modifiche medio-grandi ti aiuta a ragionare meglio prima del merge.</p>
+            </section>
+          </section>
+
           <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>10. README e Markdown: base essenziale</h2>
+            <h2>11. README e Markdown: base essenziale</h2>
             <section class="guide-subchapter">
               <p>Il file README.md è uno degli elementi più importanti di un repository.</p>
               <p>Molti lo ignorano all’inizio, ma è un errore. Un buon README rende il progetto più chiaro, più presentabile e più utile anche a te stesso.</p>
@@ -422,7 +467,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-15" class="guide-block guide-chapter">
-            <h2>11. I branch: cosa sono e quando usarli</h2>
+            <h2>12. I branch: cosa sono e quando usarli</h2>
             <section class="guide-subchapter">
               <p>Un branch è un ramo del progetto.</p>
               <p>Il branch principale oggi si chiama spesso main.</p>
@@ -431,7 +476,8 @@ git push</code></pre>
                 <li>il branch principale è la versione principale del progetto</li>
                 <li>un branch secondario è uno spazio dove puoi fare prove o sviluppare una modifica senza toccare subito la versione principale</li>
               </ul>
-              <p>All’inizio puoi anche lavorare quasi sempre su main, soprattutto se sei da solo e il progetto è piccolo.</p>
+              <p>Su micro-progetti personali può capitare di lavorare direttamente su main, soprattutto all’inizio.</p>
+              <p>Però appena il lavoro cresce un po’, o vuoi fare modifiche più rischiose, conviene passare a branch dedicati.</p>
               <p>Però capire che i branch esistono è importante.</p>
               <p>Sono utili, ad esempio, quando vuoi:</p>
               <ul class="guide-list">
@@ -454,7 +500,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-17" class="guide-block guide-chapter">
-            <h2>12. Commit e cronologia su GitHub</h2>
+            <h2>13. Commit e cronologia su GitHub</h2>
             <section class="guide-subchapter">
               <p>Un commit è un salvataggio tracciato del progetto: una fotografia dei file in un momento preciso.</p>
               <p>Quando fai push, quei commit arrivano su GitHub e diventano visibili nella cronologia del repository.</p>
@@ -492,7 +538,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-18" class="guide-block guide-chapter">
-            <h2>13. Modificare e caricare file dal browser</h2>
+            <h2>14. Modificare e caricare file dal browser</h2>
             <section class="guide-subchapter">
               <p>GitHub permette anche di modificare piccoli file direttamente dal browser.</p>
               <p>Questa funzione può essere utile per:</p>
@@ -502,6 +548,11 @@ git push</code></pre>
                 <li>sistemare piccoli dettagli testuali</li>
               </ul>
               <p>Puoi anche caricare file direttamente da GitHub tramite interfaccia web.</p>
+              <p>Ci sono però due limiti pratici da sapere subito:</p>
+              <ul class="guide-list">
+                <li>se il branch è protetto, GitHub può impedirti di modificare o caricare file direttamente lì dal browser;</li>
+                <li>l’upload via web non è pensato per file grandi o per flussi strutturati di sviluppo.</li>
+              </ul>
               <p>Modificare e caricare dal browser è utile per interventi rapidi, ma non dovrebbe diventare il flusso principale.</p>
               <p>Per un workflow ordinato è meglio:</p>
               <ul class="guide-list">
@@ -516,7 +567,7 @@ git push</code></pre>
           </section>
 
           <section id="chapter-20" class="guide-block guide-chapter">
-            <h2>14. Clone e Fork: differenza e uso</h2>
+            <h2>15. Clone e Fork: differenza e uso</h2>
             <section class="guide-subchapter">
               <p>Clone e fork sembrano simili, ma servono a cose diverse.</p>
               <h4>Clone</h4>
@@ -538,12 +589,13 @@ git push</code></pre>
                 <li>fork = copia nel tuo account GitHub</li>
               </ul>
               <p>Il fork è utile soprattutto quando vuoi partire da un progetto pubblico esistente o contribuire a un repository che non controlli direttamente.</p>
+              <p>In molti casi il fork è associato al flusso “fork -> clone -> branch -> commit -> push -> pull request” usato quando non hai permessi diretti di scrittura sul repository originale.</p>
               <p><strong>Consiglio operativo:</strong> se il repository è tuo, nella maggior parte dei casi ti basta fare clone. Usa fork quando lavori su repository di altri.</p>
             </section>
           </section>
 
           <section id="chapter-22" class="guide-block guide-chapter">
-            <h2>15. Funzioni extra di GitHub</h2>
+            <h2>16. Funzioni extra di GitHub</h2>
             <section class="guide-subchapter">
               <p>In questo punto vediamo meglio cosa sono le funzioni extra principali di GitHub, una per una.</p>
               <h4>Issues</h4>
@@ -565,11 +617,11 @@ git push</code></pre>
           </section>
 
           <section id="chapter-23" class="guide-block guide-chapter">
-            <h2>16. Conclusioni</h2>
+            <h2>18. Conclusioni</h2>
             <section class="guide-subchapter">
               <ul class="guide-list">
-                <li><strong>Errori comuni da evitare:</strong> non confondere Git con GitHub, non lavorare solo da browser, non fare commit vaghi.</li>
-                <li><strong>Workflow base semplice e sano:</strong> pull, lavoro locale, status, add, commit chiaro, push, verifica su GitHub.</li>
+                <li><strong>Errori comuni da evitare:</strong> non confondere Git con GitHub, non lavorare solo da browser, non fare commit vaghi, non trattare pull e PR come passaggi automatici da fare senza controllo.</li>
+                <li><strong>Workflow base semplice e sano:</strong> aggiorni il contesto, lavori in locale o in branch, fai commit chiari, pushi, controlli su GitHub e usi PR quando serve.</li>
                 <li><strong>Un esempio pratico completo:</strong> modifica file, <code>git add</code>, <code>git commit</code>, <code>git push</code>, controllo finale online.</li>
                 <li><strong>Cosa non serve sapere subito:</strong> automazioni avanzate, permessi complessi e strategie sofisticate possono aspettare.</li>
                 <li><strong>GitHub e crescita personale nel proprio percorso:</strong> ti aiuta a lavorare con più ordine, tracciabilità e continuità.</li>
