@@ -183,17 +183,34 @@
               <p>Per capire Git bene, devi prima capire quattro parole chiave.</p>
               <h4>Snapshot</h4>
               <p>Git ragiona per snapshot.</p>
-              <p>Uno snapshot è una fotografia dello stato del progetto in un certo momento.</p>
-              <p>Quando fai un commit, Git non sta semplicemente salvando un file come se fosse un classico “salva” di un editor. Sta registrando una tappa della storia del progetto.</p>
+              <p>Detto nel modo piu semplice possibile: lo snapshot è il contenuto dei file in un certo momento.</p>
+              <p>In pratica risponde a una domanda sola: adesso, in questo istante, com&#x27;è fatto il progetto?</p>
+              <p>Se in quel momento <code>index.html</code> contiene una hero nuova, <code>style.css</code> ha padding diversi e <code>main.js</code> non è cambiato, lo snapshot è esattamente quello stato dei file.</p>
               <h4>Commit</h4>
-              <p>Il commit è la tappa salvata.</p>
-              <p>Un commit contiene lo stato del progetto in quel momento e un messaggio che descrive l’intenzione della modifica.</p>
+              <p>Il commit è l&#x27;evento storico che salva quello snapshot nella cronologia di Git.</p>
+              <p>Quindi snapshot e commit sono collegati, ma non sono la stessa cosa.</p>
+              <p>Lo snapshot è il contenuto. Il commit è il salvataggio ufficiale di quel contenuto nella storia del progetto, con messaggio, autore, data e hash.</p>
+              <p>Quando fai un commit, Git prende lo stato che hai preparato nello staging e lo registra come nuova tappa della cronologia.</p>
               <p>Per esempio:</p>
               <ul class="guide-list">
                 <li>Aggiunge la sezione servizi nella home</li>
                 <li>Corregge il menu mobile</li>
                 <li>Migliora il layout della hero su mobile</li>
               </ul>
+              <p>La distinzione pratica è questa:</p>
+              <ul class="guide-list">
+                <li>snapshot = il contenuto dei file;</li>
+                <li>commit = l&#x27;evento storico che salva quel contenuto.</li>
+              </ul>
+              <p>Ed ecco il punto che all&#x27;inizio confonde quasi tutti: uno snapshot non lo tocchi quasi mai come oggetto separato.</p>
+              <p>Tu, nella pratica, tocchi i file, lo staging e i commit.</p>
+              <p>Per esempio:</p>
+              <ul class="guide-list">
+                <li>modifichi i file nel working tree;</li>
+                <li>metti nello staging quello che vuoi salvare;</li>
+                <li>fai un commit per registrare quello stato nella cronologia.</li>
+              </ul>
+              <p>In strumenti come VS Code, le righe colorate e le lettere sui file non sono lo snapshot: sono il modo con cui l&#x27;editor ti mostra le differenze e lo stato delle modifiche.</p>
               <p>Se fai commit piccoli e chiari, la storia diventa leggibile.</p>
               <h4>Hash</h4>
               <p>Ogni commit ha un identificatore univoco chiamato hash.</p>
@@ -205,8 +222,8 @@
               <p>Se cambi branch, HEAD segue il branch su cui ti trovi.</p>
               <h4>Riassunto semplice</h4>
               <ul class="guide-list">
-                <li>snapshot = fotografia;</li>
-                <li>commit = tappa salvata;</li>
+                <li>snapshot = contenuto dei file fotografato in quel momento;</li>
+                <li>commit = salvataggio storico che registra quello snapshot;</li>
                 <li>hash = identificatore del commit;</li>
                 <li>HEAD = punto in cui ti trovi adesso.</li>
               </ul>
@@ -296,7 +313,7 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
                 <li>hai creato un repository locale;</li>
                 <li>hai controllato lo stato iniziale del progetto;</li>
                 <li>hai messo nello staging la versione attuale dei file che vuoi salvare;</li>
-                <li>hai salvato il primo snapshot nella cronologia.</li>
+                <li>hai creato il primo commit, che registra il primo snapshot del progetto nella cronologia.</li>
               </ul>
               <p>Questo passaggio va capito bene, perché lo ripeterai in ogni progetto futuro.</p>
             </section>
@@ -319,7 +336,8 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>Ma attenzione: git add . non è il male assoluto, però usato sempre senza pensare può mischiare modifiche che sarebbe meglio tenere separate.</p>
               <h4>git commit</h4>
               <pre><code class="language-bash">git commit -m &quot;Migliora il layout mobile della hero&quot;</code></pre>
-              <p>Salva nella cronologia le modifiche che hai preparato in staging.</p>
+              <p>Crea un commit nella cronologia usando quello che hai preparato in staging.</p>
+              <p>In altre parole: prende lo stato staged dei file, ne registra uno snapshot e lo salva come nuova tappa della storia.</p>
               <h4>git log</h4>
               <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
               <p>Mostra la storia del progetto in modo compatto e leggibile.</p>
@@ -332,7 +350,7 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
             </section>
             <section class="guide-subchapter">
               <h3>Come scrivere messaggi di commit che abbiano senso</h3>
-              <p>Il messaggio di commit è l’etichetta della fotografia che stai salvando.</p>
+              <p>Il messaggio di commit è l’etichetta della tappa che stai aggiungendo alla cronologia.</p>
               <p>Se il messaggio è chiaro, il futuro te capirà subito cosa hai fatto. Se è vago, la cronologia diventa un pantano.</p>
               <h4>Messaggi buoni</h4>
               <ul class="guide-list guide-list-good">
