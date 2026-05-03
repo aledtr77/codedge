@@ -184,11 +184,16 @@
                 <li>pubblicare il lavoro</li>
                 <li>collaborare</li>
               </ul>
-              <p>Una distinzione utile è questa:</p>
+              <p>Il modo piu semplice per non confonderti è questo: Git lavora prima di tutto sul tuo computer. GitHub lavora prima di tutto online.</p>
               <h4>Git</h4>
-              <p>Lavora sul tuo computer. Tiene traccia dei cambiamenti. Crea commit. Gestisce branch.</p>
+              <p>Lavora sul tuo computer. Qui modifichi i file, fai commit, cambi branch e controlli la cronologia locale.</p>
               <h4>GitHub</h4>
-              <p>Lavora online. Ospita repository remoti. Mostra file, commit, branch e cronologia. Permette condivisione e collaborazione.</p>
+              <p>Lavora online. Qui pubblichi il repository remoto, vedi branch e commit su web, apri Pull Request, leggi issue e collabori.</p>
+              <p>Detto ancora piu terra-terra:</p>
+              <ul class="guide-list">
+                <li>se stai modificando file, facendo commit o usando <code>git status</code>, stai lavorando con Git;</li>
+                <li>se stai guardando il repository nel browser, aprendo una PR o gestendo issue, stai lavorando con GitHub.</li>
+              </ul>
               <p>GitHub non è solo “hosting del codice”: aggiunge anche strumenti operativi che userai nel lavoro quotidiano, tra cui:</p>
               <ul class="guide-list">
                 <li>Issues</li>
@@ -353,6 +358,12 @@ gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre
               <p>Se vuoi un repository pubblico, usa <code>--public</code> al posto di <code>--private</code>.</p>
               <p>Questo comando presuppone che la cartella corrente sia già un repository Git locale o che tu voglia inizializzarlo nel flusso guidato della CLI. Se non hai ancora preparato il progetto in locale, conviene prima sistemare repository, commit iniziale e file da pubblicare.</p>
               <p><strong>Consiglio operativo:</strong> pensa così: <code>git</code> gestisce il progetto locale, <code>gh</code> crea il repository su GitHub da terminale.</p>
+              <p>La sequenza mentale giusta è questa:</p>
+              <ul class="guide-list">
+                <li>prima esiste il progetto locale;</li>
+                <li>poi lo colleghi a un repository remoto su GitHub;</li>
+                <li>poi fai <code>push</code> per mandare online i commit.</li>
+              </ul>
             </section>
           </section>
 
@@ -361,7 +372,7 @@ gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre
             <section class="guide-subchapter">
               <h3>Push: mandare online i cambiamenti</h3>
               <p>La parola push significa inviare i commit locali al repository remoto.</p>
-              <p>Detto in modo semplice:</p>
+              <p>Detto nel modo piu semplice possibile: hai gia salvato il lavoro in locale con un commit, e con <code>push</code> lo mandi anche su GitHub.</p>
               <ul class="guide-list">
                 <li>fai modifiche sul computer</li>
                 <li>le salvi con un commit</li>
@@ -369,7 +380,7 @@ gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre
                 <li>i cambiamenti arrivano su GitHub</li>
               </ul>
               <p>Molti principianti credono che salvare un file o fare commit significhi già aver aggiornato GitHub. Non è così.</p>
-              <p>Il commit salva la fotografia nella cronologia locale. Il push manda quella fotografia anche online.</p>
+              <p>Il commit salva il lavoro nella cronologia locale. Il push manda quei commit anche online.</p>
               <p>Esempio tipico:</p>
               <pre><code class="language-text">git add .
 git commit -m &quot;Aggiorna sezione contatti&quot;
@@ -377,7 +388,7 @@ git push</code></pre>
               <p><strong>Consiglio operativo:</strong> prima di fare push usa sempre <code>git status</code>. Ti aiuta a evitare file involontari nei commit.</p>
               <h3>Pull: portare in locale i cambiamenti online</h3>
               <p>Il comando complementare a push è pull.</p>
-              <p>Con pull scarichi in locale i cambiamenti presenti nel repository remoto.</p>
+              <p>Con pull porti sul tuo computer i cambiamenti che nel frattempo sono arrivati su GitHub.</p>
               <p>È utile quando:</p>
               <ul class="guide-list">
                 <li>lavori da due computer diversi</li>
@@ -386,9 +397,15 @@ git push</code></pre>
               </ul>
               <p>Comando base:</p>
               <pre><code class="language-text">git pull</code></pre>
-              <p>Attenzione a una cosa: <code>pull</code> non si limita a scaricare. Oltre a recuperare i cambiamenti dal remoto, prova anche a integrarli nel branch corrente.</p>
+              <p>Qui c&#x27;è il punto che spesso frega chi inizia: <code>pull</code> non vuol dire solo “scarica”.</p>
+              <p><code>pull</code> scarica e prova anche a integrare quei cambiamenti nel branch su cui sei adesso.</p>
               <p>Nella configurazione più comune equivale a <code>fetch</code> + <code>merge</code>. In alcuni workflow può usare <code>rebase</code>. Per questo non va trattato come un pulsante innocuo da premere a caso.</p>
               <p><strong>Consiglio operativo:</strong> se lavori da solo e vuoi una cronologia più lineare, valuta <code>git pull --rebase</code> invece di <code>git pull</code>.</p>
+              <p>Riassunto secco:</p>
+              <ul class="guide-list">
+                <li><code>push</code> = dal tuo computer a GitHub;</li>
+                <li><code>pull</code> = da GitHub al tuo computer.</li>
+              </ul>
             </section>
           </section>
 
@@ -396,7 +413,7 @@ git push</code></pre>
             <h2>10. Pull Request: il flusso pratico da capire davvero</h2>
             <section class="guide-subchapter">
               <p>La Pull Request, spesso abbreviata in PR, è uno dei punti centrali di GitHub.</p>
-              <p>In parole semplici, una PR è una proposta di integrazione: dici a GitHub “ho preparato queste modifiche in un branch, ora voglio confrontarle con il branch di destinazione e valutarne il merge”.</p>
+              <p>In parole semplici, una PR è una richiesta per dire: ho finito questa modifica in un branch, adesso voglio confrontarla con un altro branch e decidere se unirla.</p>
               <p>Non è utile solo nei grandi team. Serve anche da solo, perché ti costringe a separare meglio il lavoro, rileggere il diff e fare un minimo di controllo qualità prima di unire tutto nel branch principale.</p>
               <h3>Il flusso base più comune</h3>
               <ol class="guide-list">
@@ -413,6 +430,7 @@ git add .
 git commit -m "aggiunge sezione FAQ in home"
 git push -u origin feature/faq-home</code></pre>
               <p>A quel punto su GitHub puoi aprire una PR da <code>feature/faq-home</code> verso <code>main</code>.</p>
+              <p>La cosa pratica da capire è questa: la PR non modifica da sola il codice del branch principale. La PR apre un confronto e una proposta di merge.</p>
               <h3>Cosa guardare dentro una PR</h3>
               <ul class="guide-list">
                 <li>titolo chiaro</li>
@@ -427,6 +445,11 @@ git push -u origin feature/faq-home</code></pre>
               <ul class="guide-list">
                 <li>il branch è la linea di lavoro separata</li>
                 <li>la Pull Request è la proposta di unire quella linea in un altro branch</li>
+              </ul>
+              <p>Detto ancora piu secco:</p>
+              <ul class="guide-list">
+                <li>il branch è dove lavori;</li>
+                <li>la PR è dove controlli e proponi l&#x27;unione.</li>
               </ul>
               <p><strong>Consiglio operativo:</strong> anche se lavori da solo, aprire una PR per modifiche medio-grandi ti aiuta a ragionare meglio prima del merge.</p>
             </section>
@@ -471,14 +494,14 @@ git push -u origin feature/faq-home</code></pre>
             <section class="guide-subchapter">
               <p>Un branch è un ramo del progetto.</p>
               <p>Il branch principale oggi si chiama spesso main.</p>
-              <p>Per capire il concetto senza tecnicismi, pensa così:</p>
+              <p>Per capire il concetto senza tecnicismi, pensa così: un branch è una linea di lavoro separata.</p>
               <ul class="guide-list">
                 <li>il branch principale è la versione principale del progetto</li>
                 <li>un branch secondario è uno spazio dove puoi fare prove o sviluppare una modifica senza toccare subito la versione principale</li>
               </ul>
               <p>Su micro-progetti personali può capitare di lavorare direttamente su main, soprattutto all’inizio.</p>
               <p>Però appena il lavoro cresce un po’, o vuoi fare modifiche più rischiose, conviene passare a branch dedicati.</p>
-              <p>Però capire che i branch esistono è importante.</p>
+              <p>Il vantaggio pratico è questo: puoi lavorare a una modifica senza sporcare subito <code>main</code>.</p>
               <p>Sono utili, ad esempio, quando vuoi:</p>
               <ul class="guide-list">
                 <li>rifare una sezione del sito</li>
@@ -502,8 +525,8 @@ git push -u origin feature/faq-home</code></pre>
           <section id="chapter-17" class="guide-block guide-chapter">
             <h2>13. Commit e cronologia su GitHub</h2>
             <section class="guide-subchapter">
-              <p>Un commit è un salvataggio tracciato del progetto: una fotografia dei file in un momento preciso.</p>
-              <p>Quando fai push, quei commit arrivano su GitHub e diventano visibili nella cronologia del repository.</p>
+              <p>Un commit è un salvataggio tracciato del progetto nella cronologia Git.</p>
+              <p>Finché resta solo in locale, lo vedi sul tuo computer. Quando fai push, quel commit arriva anche su GitHub e diventa visibile nella cronologia del repository.</p>
               <p>La cronologia serve perché ti fa capire con chiarezza:</p>
               <ul class="guide-list">
                 <li>cosa è cambiato</li>
@@ -588,6 +611,7 @@ git push</code></pre>
                 <li>clone = copia sul tuo computer</li>
                 <li>fork = copia nel tuo account GitHub</li>
               </ul>
+              <p>Questa è la differenza che conta davvero: il clone lavora sul piano locale, il fork lavora sul piano online.</p>
               <p>Il fork è utile soprattutto quando vuoi partire da un progetto pubblico esistente o contribuire a un repository che non controlli direttamente.</p>
               <p>In molti casi il fork è associato al flusso “fork -> clone -> branch -> commit -> push -> pull request” usato quando non hai permessi diretti di scrittura sul repository originale.</p>
               <p><strong>Consiglio operativo:</strong> se il repository è tuo, nella maggior parte dei casi ti basta fare clone. Usa fork quando lavori su repository di altri.</p>
@@ -606,6 +630,7 @@ git push</code></pre>
               <p>Serve per review, confronto e controllo qualità prima del merge.</p>
               <h4>Actions</h4>
               <p>Sono automazioni eseguite da GitHub: test automatici, build, deploy e controlli sul codice.</p>
+              <p>Detto semplice: sono lavori che GitHub esegue da solo quando succede qualcosa, per esempio un push o una Pull Request.</p>
               <p>Ti aiutano a ridurre errori manuali e a standardizzare il flusso.</p>
               <h4>Wiki</h4>
               <p>È uno spazio di documentazione interna del repository.</p>
