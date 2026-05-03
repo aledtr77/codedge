@@ -195,6 +195,7 @@
             <section class="guide-subchapter">
               <h3>Settings Sync: utile, ma con criterio</h3>
               <p>La sincronizzazione delle impostazioni è utile se lavori su più macchine, ma non conviene usarla in modo cieco.</p>
+              <p>Detto semplice: Settings Sync copia su un altro computer temi, preferenze, scorciatoie e spesso anche estensioni.</p>
               <p>Se stai ancora sperimentando, rischi di portarti dietro anche scelte sbagliate o estensioni inutili. Prima costruisci un setup decente, poi sincronizzalo.</p>
             </section>
           </section>
@@ -219,6 +220,11 @@
             </section>
             <section class="guide-subchapter">
               <h3>Usa il file di workspace quando serve davvero</h3>
+              <p>Qui la distinzione importante è questa:</p>
+              <ul class="guide-list">
+                <li>cartella progetto = un singolo progetto aperto normalmente;</li>
+                <li>workspace = una configurazione che può tenere insieme più cartelle e alcune impostazioni di lavoro.</li>
+              </ul>
               <p>Il file <code>.code-workspace</code> è utile quando devi lavorare su più cartelle insieme, per esempio progetto principale, documentazione e snippet di supporto. Può essere utile anche quando vuoi salvare impostazioni di workspace, task o configurazioni locali senza spargerle a caso.</p>
               <p>Se hai un solo progetto semplice e non ti serve nulla di questo, non conviene complicarti la vita.</p>
               <p>Regola pratica: usa più workspace solo quando aggiungono chiarezza, non perché sembrano più professionali.</p>
@@ -234,6 +240,7 @@
             <section class="guide-subchapter">
               <h3>Command Palette: il punto di accesso più sottovalutato</h3>
               <p>Se vuoi usare meglio VS Code, devi prendere confidenza con la Command Palette.</p>
+              <p>Detto nel modo più pratico possibile: la Command Palette è la barra dove scrivi il nome di un comando e lo lanci senza cercarlo nei menu.</p>
               <p>È uno di quegli strumenti che all’inizio sembrano opzionali, ma poi accorciano tantissimo il tempo perso nei menu. Aprila con la scorciatoia principale del tuo sistema e impara a richiamare da lì le azioni più frequenti.</p>
               <ul class="guide-list">
                 <li>aprire settings JSON;</li>
@@ -246,11 +253,12 @@
             </section>
             <section class="guide-subchapter">
               <h3>Ricerca globale, quick open e multi-cursor</h3>
+              <p>Questi tre strumenti sembrano simili perché tutti ti fanno andare più veloce, ma fanno cose diverse.</p>
               <p>Tre strumenti ti cambiano davvero il ritmo:</p>
               <ul class="guide-list">
-                <li><strong>Quick Open</strong> per saltare rapidamente a un file senza scavare nell’Explorer.</li>
-                <li><strong>Global Search</strong> per trovare stringhe, classi, selettori e nomi funzione in tutto il progetto.</li>
-                <li><strong>Multi-cursor</strong> per correzioni ripetitive senza editing meccanico riga per riga.</li>
+                <li><strong>Quick Open</strong> = aprire al volo un file per nome.</li>
+                <li><strong>Global Search</strong> = cercare testo o riferimenti dentro tutto il progetto.</li>
+                <li><strong>Multi-cursor</strong> = scrivere o correggere in più punti insieme.</li>
               </ul>
               <p>Quando questi tre cominciano a diventare naturali, il lavoro nell’editor si velocizza in modo molto visibile.</p>
             </section>
@@ -319,6 +327,7 @@
             <section class="guide-subchapter">
               <h3>Task semplici per le azioni ripetitive</h3>
               <p>Se lanci spesso gli stessi comandi, i task possono togliere attrito. Non servono per tutto, ma per le azioni ripetitive sono utili.</p>
+              <p>Detto semplice: un task è un comando salvato dentro VS Code, così non devi riscriverlo o andarlo a cercare ogni volta.</p>
               <pre><code>{
   "version": "2.0.0",
   "tasks": [
@@ -343,11 +352,12 @@
             <section class="guide-subchapter">
               <h3>Usa Problems e DevTools, non intuizioni vaghe</h3>
               <p>Quando qualcosa non funziona, è facile andare in modalità “tentativi a caso”. VS Code ti aiuta a essere più ordinato, ma devi guardare i segnali giusti.</p>
+              <p>La distinzione pratica è questa:</p>
               <ul class="guide-list">
-                <li>pannello Problems per errori e warning che il tooling rileva subito;</li>
-                <li>terminale per capire se il problema viene da build, dipendenze o script;</li>
-                <li>browser DevTools, come strumento complementare a VS Code, per problemi runtime e layout;</li>
-                <li>debugger per ispezionare valori, flusso e breakpoint.</li>
+                <li>pannello Problems = errori e warning che l’editor o il tooling hanno già rilevato;</li>
+                <li>terminale = problemi di comando, dipendenze, build o script;</li>
+                <li>browser DevTools = problemi di runtime, DOM, rete e layout;</li>
+                <li>debugger = valori, flusso e breakpoint mentre il codice gira.</li>
               </ul>
               <p>Il punto non è usare sempre tutto. Il punto è smettere di correggere errori “a sensazione”.</p>
             </section>
@@ -371,6 +381,7 @@
             <h2>8. Git dentro VS Code senza confusione</h2>
             <section class="guide-subchapter">
               <p>VS Code integra Git in modo comodo, ma è importante non confondere l’interfaccia con il concetto.</p>
+              <p>Detto terra-terra: Source Control è il pannello con cui VS Code ti mostra Git. Non è Git in sé.</p>
               <p>Se hai già chiaro il modello mentale base, la sezione Source Control è utile. Se Git ti è ancora poco chiaro, conviene prima consolidare i fondamentali con la guida <a href="/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>.</p>
             </section>
             <section class="guide-subchapter">
@@ -380,6 +391,7 @@
                 <li>da UI: vedere file cambiati, leggere diff veloci, stage mirato, commit semplici;</li>
                 <li>da terminale: comandi che vuoi capire bene, operazioni più delicate, controlli di stato e recupero errori.</li>
               </ul>
+              <p>In pratica: se vuoi vedere bene cosa hai toccato, la UI aiuta. Se vuoi capire davvero un comando o fare operazioni più sensibili, meglio il terminale.</p>
               <p>Non è una regola rigida. È solo un modo equilibrato per evitare di usare pulsanti senza sapere davvero cosa stanno facendo.</p>
             </section>
             <section class="guide-subchapter">
@@ -399,6 +411,7 @@
             <h2>9. Routine quotidiana consigliata</h2>
             <section class="guide-subchapter">
               <h3>Una sequenza semplice che regge bene nel tempo</h3>
+              <p>Questa routine funziona perché separa le fasi: apri, controlli, lavori, verifichi, poi chiudi pulito.</p>
               <ol class="guide-number-list">
                 <li>Apri la cartella progetto con <code>code .</code> o da recenti.</li>
                 <li>Controlla Explorer, terminale e stato Git.</li>
