@@ -1,0 +1,52 @@
+<svg width="1200" height="500" viewBox="0 0 1200 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow deploy statico</title>
+  <desc id="desc">Flusso base tra GitHub, build automatica e sito online pubblicato.</desc>
+  <rect width="1200" height="500" rx="28" fill="#0A1320"/>
+  <rect x="24" y="24" width="1152" height="452" rx="24" fill="url(#bg2)"/>
+  <text x="56" y="72" fill="#ECF8FF" font-family="Arial, sans-serif" font-size="34" font-weight="700">Workflow pratico di deploy statico</text>
+
+  <g>
+    <rect x="84" y="152" width="248" height="164" rx="22" fill="#132637" stroke="#74C6FF" stroke-opacity=".42"/>
+    <text x="112" y="186" fill="#F3FAFF" font-family="Arial, sans-serif" font-size="25" font-weight="700">
+      <tspan x="112" dy="0">1. Push su</tspan>
+      <tspan x="112" dy="26">GitHub</tspan>
+    </text>
+    <text x="112" y="242" fill="#D0E8F8" font-family="Arial, sans-serif" font-size="18">Repository aggiornato</text>
+    <text x="112" y="270" fill="#D0E8F8" font-family="Arial, sans-serif" font-size="18">Branch scelto</text>
+    <text x="112" y="298" fill="#D0E8F8" font-family="Arial, sans-serif" font-size="18">Cronologia leggibile</text>
+  </g>
+
+  <g>
+    <rect x="476" y="152" width="248" height="164" rx="22" fill="#122C36" stroke="#63D7BE" stroke-opacity=".42"/>
+    <text x="504" y="192" fill="#F3FAFF" font-family="Arial, sans-serif" font-size="26" font-weight="700">
+      <tspan x="504" dy="0">2. Build</tspan>
+      <tspan x="504" dy="28">automatica</tspan>
+    </text>
+    <text x="504" y="236" fill="#D1F3EE" font-family="Arial, sans-serif" font-size="18">Install dipendenze</text>
+    <text x="504" y="266" fill="#D1F3EE" font-family="Arial, sans-serif" font-size="18">Comando di build</text>
+    <text x="504" y="296" fill="#D1F3EE" font-family="Arial, sans-serif" font-size="18">Output finale</text>
+  </g>
+
+  <g>
+    <rect x="868" y="152" width="248" height="164" rx="22" fill="#232840" stroke="#FFB556" stroke-opacity=".42"/>
+    <text x="896" y="198" fill="#FFF8EF" font-family="Arial, sans-serif" font-size="28" font-weight="700">3. Sito online</text>
+    <text x="896" y="236" fill="#FDE6C1" font-family="Arial, sans-serif" font-size="18">URL pubblico</text>
+    <text x="896" y="266" fill="#FDE6C1" font-family="Arial, sans-serif" font-size="18">HTTPS attivo</text>
+    <text x="896" y="296" fill="#FDE6C1" font-family="Arial, sans-serif" font-size="18">Verifica finale</text>
+  </g>
+
+  <path d="M332 234H444" stroke="#74C6FF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M724 234H836" stroke="#63D7BE" stroke-width="5" stroke-linecap="round"/>
+
+  <g>
+    <rect x="114" y="364" width="972" height="78" rx="20" fill="rgba(7,14,24,.52)" stroke="rgba(255,255,255,.12)"/>
+    <text x="144" y="410" fill="#D6EAFB" font-family="Arial, sans-serif" font-size="20">La versione online non nasce dal nulla: dipende dalla build giusta, dalla configurazione giusta e da un repository tenuto in ordine.</text>
+  </g>
+
+  <defs>
+    <linearGradient id="bg2" x1="52" y1="36" x2="1138" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12273A"/>
+      <stop offset="1" stop-color="#101725"/>
+    </linearGradient>
+  </defs>
+</svg>

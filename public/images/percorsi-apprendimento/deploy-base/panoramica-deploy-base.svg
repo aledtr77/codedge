@@ -1,0 +1,65 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Panoramica deploy base</title>
+  <desc id="desc">Schema del percorso di deploy: locale, build, hosting, dominio e monitoraggio.</desc>
+  <rect width="1200" height="520" rx="28" fill="#0B1420"/>
+  <rect x="24" y="24" width="1152" height="472" rx="24" fill="url(#bg)"/>
+  <text x="56" y="70" fill="#EEF8FF" font-family="Verdana, Arial, sans-serif" font-size="34" font-weight="700">Deploy base: mappa del percorso</text>
+  <text x="56" y="104" fill="#B7D9F6" font-family="Verdana, Arial, sans-serif" font-size="17">Dalla macchina locale a un URL pubblico con passaggi chiari e controllabili.</text>
+
+  <g>
+    <rect x="54" y="146" width="212" height="138" rx="20" fill="#122334" stroke="#56B4FF" stroke-opacity=".45"/>
+    <text x="76" y="182" fill="#F3FAFF" font-family="Verdana, Arial, sans-serif" font-size="20" font-weight="700">
+      <tspan x="76" dy="0">1. Progetto</tspan>
+      <tspan x="76" dy="22">locale</tspan>
+    </text>
+    <text x="76" y="228" fill="#C9E4F8" font-family="Verdana, Arial, sans-serif" font-size="16">File sorgente</text>
+    <text x="76" y="253" fill="#C9E4F8" font-family="Verdana, Arial, sans-serif" font-size="16">Test e verifiche</text>
+    <text x="76" y="278" fill="#C9E4F8" font-family="Verdana, Arial, sans-serif" font-size="16">Commit puliti</text>
+  </g>
+
+  <g>
+    <rect x="330" y="146" width="212" height="138" rx="20" fill="#10283A" stroke="#5FD0C6" stroke-opacity=".45"/>
+    <text x="352" y="188" fill="#F3FAFF" font-family="Verdana, Arial, sans-serif" font-size="24" font-weight="700">2. Build</text>
+    <text x="352" y="220" fill="#CFF5F1" font-family="Verdana, Arial, sans-serif" font-size="16">Comando build</text>
+    <text x="352" y="245" fill="#CFF5F1" font-family="Verdana, Arial, sans-serif" font-size="16">Asset finali</text>
+    <text x="352" y="270" fill="#CFF5F1" font-family="Verdana, Arial, sans-serif" font-size="16">Cartella dist/build</text>
+  </g>
+
+  <g>
+    <rect x="606" y="146" width="212" height="138" rx="20" fill="#17273D" stroke="#F5B24F" stroke-opacity=".45"/>
+    <text x="628" y="188" fill="#FFF8EF" font-family="Verdana, Arial, sans-serif" font-size="24" font-weight="700">3. Hosting</text>
+    <text x="628" y="220" fill="#FCE5BD" font-family="Verdana, Arial, sans-serif" font-size="16">Build automatica</text>
+    <text x="628" y="245" fill="#FCE5BD" font-family="Verdana, Arial, sans-serif" font-size="16">HTTPS</text>
+    <text x="628" y="270" fill="#FCE5BD" font-family="Verdana, Arial, sans-serif" font-size="16">URL online</text>
+  </g>
+
+  <g>
+    <rect x="882" y="146" width="264" height="138" rx="20" fill="#241B36" stroke="#D08CFF" stroke-opacity=".4"/>
+    <text x="904" y="180" fill="#F8F0FF" font-family="Verdana, Arial, sans-serif" font-size="20" font-weight="700">
+      <tspan x="904" dy="0">4. Dominio e</tspan>
+      <tspan x="904" dy="22">controllo</tspan>
+    </text>
+    <text x="904" y="226" fill="#E5D2F6" font-family="Verdana, Arial, sans-serif" font-size="15">DNS e SSL</text>
+    <text x="904" y="250" fill="#E5D2F6" font-family="Verdana, Arial, sans-serif" font-size="15">Check finale</text>
+    <text x="904" y="274" fill="#E5D2F6" font-family="Verdana, Arial, sans-serif" font-size="15">Errori e log</text>
+  </g>
+
+  <g opacity=".8" stroke-width="4" stroke-linecap="round">
+    <path d="M266 215H316" stroke="#56B4FF"/>
+    <path d="M542 215H592" stroke="#5FD0C6"/>
+    <path d="M818 215H868" stroke="#F5B24F"/>
+  </g>
+
+  <g>
+    <rect x="82" y="338" width="1036" height="106" rx="22" fill="rgba(8,15,24,.55)" stroke="rgba(255,255,255,.12)"/>
+    <text x="108" y="380" fill="#EEF8FF" font-family="Verdana, Arial, sans-serif" font-size="24" font-weight="700">Idea chiave</text>
+    <text x="108" y="414" fill="#CBE0F2" font-family="Verdana, Arial, sans-serif" font-size="18">Pubblicare bene non significa improvvisare l’upload: significa capire input, build, destinazione e verifica finale.</text>
+  </g>
+
+  <defs>
+    <linearGradient id="bg" x1="62" y1="44" x2="1120" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12263A"/>
+      <stop offset="1" stop-color="#0E1827"/>
+    </linearGradient>
+  </defs>
+</svg>
