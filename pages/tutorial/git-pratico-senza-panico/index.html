@@ -164,6 +164,10 @@
                   <p>GitHub è il garage online.</p>
                 </article>
               </div>
+              <figure class="guide-figure guide-figure--teaching">
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/git-vs-github-chiaro.svg" alt="Confronto semplice tra Git locale e GitHub remoto" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>Visuale rapida: Git gestisce la storia sul tuo computer, GitHub la ospita e la sincronizza online.</figcaption>
+              </figure>
               <p>Con Git puoi inizializzare un repository, creare commit, fare branch, fare merge e vedere la storia del progetto anche senza internet.</p>
               <p>Con GitHub puoi pubblicare quella storia online, avere una copia remota, collaborare con altre persone e usare il repository anche come portfolio.</p>
               <p>Questa distinzione è importante perché ti aiuta anche a capire meglio i problemi.</p>
@@ -315,19 +319,26 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
                 <li>hai messo nello staging la versione attuale dei file che vuoi salvare;</li>
                 <li>hai creato il primo commit, che registra il primo snapshot del progetto nella cronologia.</li>
               </ul>
+              <figure class="guide-figure guide-figure--teaching">
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/primo-repository-passi.svg" alt="Sequenza dei passaggi per creare il primo repository Git" loading="lazy" decoding="async" width="1200" height="480">
+                <figcaption>Sequenza minima da memorizzare: repository, controllo stato, staging, primo commit.</figcaption>
+              </figure>
               <p>Questo passaggio va capito bene, perché lo ripeterai in ogni progetto futuro.</p>
             </section>
           </section>
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>5. Workflow quotidiano e commit puliti</h2>
             <section class="guide-subchapter">
-              <h3>Il ciclo base quotidiano: status, add, commit, log</h3>
+              <h3>Il flusso pratico per fare un commit pulito</h3>
               <p>La maggior parte del lavoro quotidiano con Git gira attorno a pochi comandi.</p>
               <p>Se impari bene questi, hai già il cuore dell’uso pratico.</p>
               <h4>git status</h4>
               <p>Ti mostra la situazione attuale.</p>
               <p>È il comando che ti impedisce di lavorare bendato.</p>
               <p>Usalo spesso.</p>
+              <h4>git diff</h4>
+              <pre><code class="language-bash">git diff</code></pre>
+              <p>Ti mostra le righe cambiate nei file non ancora staged. È il controllo più pratico prima di decidere cosa mettere nel commit.</p>
               <h4>git add</h4>
               <pre><code class="language-bash">git add style.css</code></pre>
               <p>Serve a mettere nello staging la versione attuale dei file che vuoi includere nel prossimo commit.</p>
@@ -338,14 +349,18 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <pre><code class="language-bash">git commit -m &quot;Migliora il layout mobile della hero&quot;</code></pre>
               <p>Crea un commit nella cronologia usando quello che hai preparato in staging.</p>
               <p>In altre parole: prende lo stato staged dei file, ne registra uno snapshot e lo salva come nuova tappa della storia.</p>
-              <h4>git log</h4>
+              <h4>git log quando devi ricostruire la storia</h4>
               <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
-              <p>Mostra la storia del progetto in modo compatto e leggibile.</p>
+              <p>Non è un passaggio obbligatorio dopo ogni commit. È utile quando vuoi capire come si è evoluto il progetto o ritrovare una tappa precisa.</p>
               <h4>Il flusso mentale giusto</h4>
               <div class="guide-qa-card">
                 <p class="guide-question">Prima di fare add, chiediti: Quali modifiche voglio davvero salvare in questo commit?</p>
                 <p class="guide-question">Prima di fare commit, chiediti: Il messaggio racconta una cosa chiara?</p>
               </div>
+              <figure class="guide-figure guide-figure--teaching">
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/workflow-quotidiano-git.svg" alt="Checklist visuale per preparare un commit Git pulito" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>Mini procedura pratica: controlla lo stato, guarda il diff, aggiungi solo i file pronti e salva una tappa chiara.</figcaption>
+              </figure>
               <p>Questa piccola abitudine cambia moltissimo la qualità del lavoro.</p>
             </section>
             <section class="guide-subchapter">
@@ -453,21 +468,13 @@ git merge feature/navbar-mobile</code></pre>
               <p>Poi salvi il file, lo aggiungi di nuovo e completi il processo:</p>
               <pre><code class="language-bash">git add index.html
 git commit</code></pre>
-              <h4>Come ridurre i conflitti</h4>
-              <ul class="guide-list">
-                <li>fai branch piccoli;</li>
-                <li>non lasciare i branch aperti per secoli;</li>
-                <li>integra spesso;</li>
-                <li>fai commit chiari.</li>
-              </ul>
-              <p>Più il lavoro è ordinato, meno i conflitti fanno paura.</p>
+              <figure class="guide-figure guide-figure--teaching">
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/conflitto-merge-risoluzione.svg" alt="Conflitto Git tra branch main e branch alternativo sulla stessa riga" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>Idea semplice: branch main e branch alternativo hanno cambiato la stessa riga; scegli una versione finale pulita e completi il commit.</figcaption>
+              </figure>
             </section>
             <section class="guide-subchapter">
               <h3>Remoti: clone, fetch, pull e push</h3>
-              <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Schema repository locale e remoto" loading="lazy" decoding="async" width="1200" height="500">
-<figcaption>Clone, fetch, pull, push: direzioni reali del flusso.</figcaption>
-</figure>
               <p>Un remoto è una copia del repository ospitata altrove, per esempio su GitHub.</p>
               <p>Il nome convenzionale del remoto principale è spesso origin.</p>
               <h4>Collegare un repository locale a GitHub</h4>
@@ -489,6 +496,10 @@ git push -u origin main</code></pre>
               <h4>push</h4>
               <pre><code class="language-bash">git push origin main</code></pre>
               <p>Pubblica sul remoto i commit che hai fatto in locale.</p>
+              <figure class="guide-figure">
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Schema repository locale e remoto" loading="lazy" decoding="async" width="1200" height="500">
+<figcaption>Schema riassuntivo dopo i verbi: push manda online, fetch controlla il remoto, pull scarica e integra.</figcaption>
+</figure>
               <h4>Consiglio pratico</h4>
               <p>All’inizio non usare pull come un pulsante automatico premuto a occhi chiusi. Meglio capire cosa stai facendo. A volte fetch prima di integrare ti dà più controllo e meno ansia.</p>
             </section>
@@ -497,10 +508,6 @@ git push -u origin main</code></pre>
             <h2>7. Recupero errori e reflog</h2>
             <section class="guide-subchapter">
               <h3>Tornare indietro: restore, reset e revert</h3>
-              <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/recupero-errori-git.svg" alt="Confronto restore reset revert" loading="lazy" decoding="async" width="1200" height="520">
-<figcaption>Quando usare restore, reset o revert.</figcaption>
-</figure>
               <p>Questa è una delle zone che spaventa di più i principianti.</p>
               <p>In realtà basta capire che questi tre comandi non fanno la stessa cosa.</p>
               <h4>restore</h4>
@@ -530,6 +537,10 @@ git reset --hard HEAD~1</code></pre>
                 <li>reset = riposiziono la cronologia;</li>
                 <li>revert = annullo un commit senza riscrivere il passato.</li>
               </ul>
+              <figure class="guide-figure">
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/recupero-errori-git.svg" alt="Confronto restore reset revert" loading="lazy" decoding="async" width="1200" height="520">
+<figcaption>Riassunto dopo la spiegazione: restore lavora sui file, reset sposta la cronologia, revert crea un commit di annullamento.</figcaption>
+</figure>
             </section>
             <section class="guide-subchapter">
               <h3>Reflog: il paracadute nascosto</h3>

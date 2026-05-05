@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">Primo repository Git da zero</title>
+  <desc id="desc">Sequenza visuale dei primi passaggi: cartella progetto, git init, git status, add e primo commit.</desc>
+  <rect width="1200" height="480" fill="#102843"/>
+  <text x="56" y="70" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Il primo repository, senza salti mentali</text>
+  <text x="56" y="104" fill="#a7c8e2" font-family="Segoe UI, Arial, sans-serif" font-size="20">Da cartella normale a progetto con cronologia Git.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="156" width="240" height="220" rx="16" fill="#173a5b" stroke="#65b2e8"/>
+    <text x="84" y="196" fill="#eef8ff" font-size="25" font-weight="700">1. Cartella</text>
+    <text x="84" y="226" fill="#eef8ff" font-size="25" font-weight="700">progetto</text>
+    <text x="84" y="272" fill="#bddbf1" font-size="20">HTML, CSS, JS</text>
+    <text x="84" y="302" fill="#bddbf1" font-size="20">ancora senza storia</text>
+
+    <rect x="334" y="156" width="240" height="220" rx="16" fill="#183e61" stroke="#6cbcf7"/>
+    <text x="362" y="202" fill="#eef8ff" font-size="27" font-weight="700">2. git init</text>
+    <text x="362" y="248" fill="#bddbf1" font-size="20">La cartella diventa</text>
+    <text x="362" y="278" fill="#bddbf1" font-size="20">un repository Git</text>
+
+    <rect x="612" y="156" width="240" height="220" rx="16" fill="#1a456b" stroke="#79c4fa"/>
+    <text x="640" y="202" fill="#eef8ff" font-size="27" font-weight="700">3. git status</text>
+    <text x="640" y="248" fill="#bddbf1" font-size="20">Guardi cosa c'è</text>
+    <text x="640" y="278" fill="#bddbf1" font-size="20">prima di salvare</text>
+
+    <rect x="890" y="156" width="254" height="220" rx="16" fill="#1d4a72" stroke="#8bd0ff"/>
+    <text x="918" y="202" fill="#eef8ff" font-size="27" font-weight="700">4. add + commit</text>
+    <text x="918" y="248" fill="#bddbf1" font-size="20">Prepari i file</text>
+    <text x="918" y="278" fill="#bddbf1" font-size="20">e salvi il primo</text>
+    <text x="918" y="308" fill="#bddbf1" font-size="20">snapshot</text>
+
+    <path d="M296 266h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="333,266 319,257 319,275" fill="#9bd4ff"/>
+    <path d="M574 266h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="611,266 597,257 597,275" fill="#9bd4ff"/>
+    <path d="M852 266h24" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="889,266 875,257 875,275" fill="#9bd4ff"/>
+
+    <rect x="56" y="404" width="1088" height="42" rx="10" fill="#163957" stroke="#63afe5"/>
+    <text x="84" y="432" fill="#def2ff" font-size="20">La routine base è sempre questa: inizializzi, controlli lo stato, scegli cosa includere e poi registri una tappa pulita.</text>
+  </g>
+</svg>

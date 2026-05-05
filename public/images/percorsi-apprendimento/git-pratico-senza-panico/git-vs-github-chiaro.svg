@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Git e GitHub spiegati in modo semplice</title>
+  <desc id="desc">Schema con computer locale, repository Git, repository GitHub online e frecce push, fetch e pull.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2941"/>
+      <stop offset="1" stop-color="#113755"/>
+    </linearGradient>
+    <linearGradient id="panelLocal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#153a5a"/>
+      <stop offset="1" stop-color="#1a4d72"/>
+    </linearGradient>
+    <linearGradient id="panelRemote" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173b5d"/>
+      <stop offset="1" stop-color="#215a82"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="560" fill="url(#bg)"/>
+  <text x="56" y="62" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Git e GitHub: chi fa cosa</text>
+  <text x="56" y="96" fill="#b7d5ea" font-family="Segoe UI, Arial, sans-serif" font-size="20">Git salva la storia sul tuo computer. GitHub conserva una copia online da condividere.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="124" width="430" height="292" rx="18" fill="url(#panelLocal)" stroke="#71c5fb" stroke-width="2"/>
+    <text x="90" y="172" fill="#eef8ff" font-size="30" font-weight="700">Git</text>
+    <text x="90" y="203" fill="#c6e1f5" font-size="20">Programma locale</text>
+    <text x="90" y="232" fill="#c6e1f5" font-size="20">commit, branch e cronologia</text>
+
+    <rect x="106" y="262" width="274" height="106" rx="12" fill="#0d2236" stroke="#9ed6ff" stroke-width="2"/>
+    <rect x="126" y="282" width="234" height="62" rx="8" fill="#12314d" stroke="#3d8ec0"/>
+    <rect x="126" y="344" width="234" height="12" rx="6" fill="#71c5fb"/>
+    <text x="146" y="311" fill="#eaf7ff" font-size="20" font-weight="700">Il tuo computer</text>
+    <rect x="146" y="326" width="70" height="14" rx="4" fill="#67bdf2"/>
+    <rect x="228" y="326" width="48" height="14" rx="4" fill="#9ed6ff"/>
+    <rect x="288" y="326" width="52" height="14" rx="4" fill="#5fbfff"/>
+    <text x="132" y="394" fill="#dff4ff" font-size="18">repository locale</text>
+
+    <rect x="696" y="124" width="448" height="292" rx="18" fill="url(#panelRemote)" stroke="#8bd0ff" stroke-width="2"/>
+    <text x="730" y="172" fill="#eef8ff" font-size="30" font-weight="700">GitHub</text>
+    <text x="730" y="203" fill="#c6e1f5" font-size="20">Piattaforma online</text>
+    <text x="730" y="232" fill="#c6e1f5" font-size="20">repository remoto e condivisione</text>
+
+    <rect x="780" y="264" width="280" height="120" rx="14" fill="#0d2236" stroke="#9ed6ff" stroke-width="2"/>
+    <rect x="780" y="264" width="280" height="32" rx="14" fill="#71c5fb"/>
+    <circle cx="804" cy="280" r="5" fill="#0d2941"/>
+    <circle cx="824" cy="280" r="5" fill="#0d2941"/>
+    <circle cx="844" cy="280" r="5" fill="#0d2941"/>
+    <text x="812" y="337" fill="#eaf7ff" font-size="22" font-weight="700">github.com / progetto</text>
+    <rect x="812" y="354" width="116" height="14" rx="4" fill="#67bdf2"/>
+    <rect x="940" y="354" width="70" height="14" rx="4" fill="#9ed6ff"/>
+    <text x="818" y="404" fill="#dff4ff" font-size="18">repository remoto</text>
+
+    <line x1="506" y1="190" x2="684" y2="190" stroke="#a9ddff" stroke-width="5"/>
+    <polygon points="696,190 676,178 676,202" fill="#a9ddff"/>
+    <rect x="558" y="148" width="86" height="34" rx="8" fill="#12314d" stroke="#71c5fb"/>
+    <text x="575" y="171" fill="#eaf7ff" font-size="20" font-weight="700">push</text>
+
+    <line x1="684" y1="270" x2="506" y2="270" stroke="#a9ddff" stroke-width="5"/>
+    <polygon points="494,270 514,258 514,282" fill="#a9ddff"/>
+    <rect x="548" y="224" width="104" height="34" rx="8" fill="#12314d" stroke="#71c5fb"/>
+    <text x="570" y="247" fill="#eaf7ff" font-size="20" font-weight="700">fetch</text>
+
+    <path d="M684 350H506" stroke="#a9ddff" stroke-width="5"/>
+    <polygon points="494,350 514,338 514,362" fill="#a9ddff"/>
+    <rect x="558" y="362" width="86" height="34" rx="8" fill="#12314d" stroke="#71c5fb"/>
+    <text x="578" y="385" fill="#eaf7ff" font-size="20" font-weight="700">pull</text>
+
+    <rect x="56" y="448" width="330" height="72" rx="12" fill="#0d2236" stroke="#4da7df"/>
+    <text x="82" y="480" fill="#eaf7ff" font-size="20" font-weight="700">push</text>
+    <text x="82" y="506" fill="#c6e1f5" font-size="18">invii su GitHub i commit locali</text>
+
+    <rect x="434" y="448" width="330" height="72" rx="12" fill="#0d2236" stroke="#4da7df"/>
+    <text x="460" y="480" fill="#eaf7ff" font-size="20" font-weight="700">fetch</text>
+    <text x="460" y="506" fill="#c6e1f5" font-size="18">controlli le novita online</text>
+
+    <rect x="814" y="448" width="330" height="72" rx="12" fill="#0d2236" stroke="#4da7df"/>
+    <text x="840" y="480" fill="#eaf7ff" font-size="20" font-weight="700">pull</text>
+    <text x="840" y="506" fill="#c6e1f5" font-size="18">scarichi e integri nel progetto</text>
+  </g>
+</svg>
