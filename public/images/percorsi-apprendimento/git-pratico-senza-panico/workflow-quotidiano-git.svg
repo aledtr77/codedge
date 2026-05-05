@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow quotidiano Git</title>
+  <desc id="desc">Checklist visuale per preparare un commit pulito con status, diff, add mirato e commit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2941"/>
+      <stop offset="1" stop-color="#113755"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173a5b"/>
+      <stop offset="1" stop-color="#1e5279"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="560" fill="url(#bg)"/>
+  <text x="56" y="62" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Commit pulito: routine pratica</text>
+  <text x="56" y="96" fill="#b7d5ea" font-family="Segoe UI, Arial, sans-serif" font-size="20">Usala quando hai modificato dei file e vuoi salvare una tappa chiara.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="140" width="246" height="260" rx="16" fill="url(#card)" stroke="#65b2e8" stroke-width="2"/>
+    <rect x="84" y="166" width="48" height="34" rx="8" fill="#71c5fb"/>
+    <text x="101" y="190" fill="#0d2941" font-size="22" font-weight="700">1</text>
+    <text x="84" y="228" fill="#eef8ff" font-size="25" font-weight="700">Guarda lo stato</text>
+    <rect x="84" y="252" width="150" height="38" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="102" y="277" fill="#eaf7ff" font-size="20" font-family="Courier New, monospace">git status</text>
+    <text x="84" y="324" fill="#c6e1f5" font-size="20">Capisci quali file</text>
+    <text x="84" y="353" fill="#c6e1f5" font-size="20">sono cambiati.</text>
+
+    <rect x="336" y="140" width="246" height="260" rx="16" fill="url(#card)" stroke="#6cbcf7" stroke-width="2"/>
+    <rect x="364" y="166" width="48" height="34" rx="8" fill="#71c5fb"/>
+    <text x="381" y="190" fill="#0d2941" font-size="22" font-weight="700">2</text>
+    <text x="360" y="228" fill="#eef8ff" font-size="24" font-weight="700">Leggi il diff</text>
+    <rect x="360" y="252" width="124" height="38" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="378" y="277" fill="#eaf7ff" font-size="20" font-family="Courier New, monospace">git diff</text>
+    <text x="360" y="324" fill="#c6e1f5" font-size="20">Vedi le righe</text>
+    <text x="360" y="353" fill="#c6e1f5" font-size="20">cambiate.</text>
+
+    <rect x="616" y="140" width="246" height="260" rx="16" fill="url(#card)" stroke="#79c4fa" stroke-width="2"/>
+    <rect x="644" y="166" width="48" height="34" rx="8" fill="#71c5fb"/>
+    <text x="661" y="190" fill="#0d2941" font-size="22" font-weight="700">3</text>
+    <text x="644" y="228" fill="#eef8ff" font-size="25" font-weight="700">Aggiungi mirato</text>
+    <rect x="644" y="246" width="150" height="66" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="662" y="271" fill="#eaf7ff" font-size="18" font-family="Courier New, monospace">git add</text>
+    <text x="662" y="297" fill="#eaf7ff" font-size="18" font-family="Courier New, monospace">style.css</text>
+    <text x="644" y="348" fill="#c6e1f5" font-size="20">Solo i file pronti.</text>
+    <text x="644" y="377" fill="#c6e1f5" font-size="20">Niente prove sparse.</text>
+
+    <rect x="896" y="140" width="246" height="260" rx="16" fill="url(#card)" stroke="#8bd0ff" stroke-width="2"/>
+    <rect x="924" y="166" width="48" height="34" rx="8" fill="#71c5fb"/>
+    <text x="941" y="190" fill="#0d2941" font-size="22" font-weight="700">4</text>
+    <text x="924" y="228" fill="#eef8ff" font-size="25" font-weight="700">Salva la tappa</text>
+    <rect x="924" y="252" width="178" height="38" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="942" y="277" fill="#eaf7ff" font-size="20" font-family="Courier New, monospace">git commit -m</text>
+    <text x="924" y="324" fill="#c6e1f5" font-size="20">Messaggio breve:</text>
+    <text x="924" y="353" fill="#c6e1f5" font-size="20">cosa hai fatto,</text>
+    <text x="924" y="382" fill="#c6e1f5" font-size="20">non "update".</text>
+
+    <path d="M302 270h28" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="336,270 324,262 324,278" fill="#9bd4ff"/>
+    <path d="M582 270h28" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="616,270 604,262 604,278" fill="#9bd4ff"/>
+    <path d="M862 270h28" stroke="#9bd4ff" stroke-width="4"/>
+    <polygon points="896,270 884,262 884,278" fill="#9bd4ff"/>
+
+    <rect x="56" y="438" width="1086" height="64" rx="12" fill="#0d2236" stroke="#63afe5"/>
+    <text x="84" y="478" fill="#def2ff" font-size="22" font-weight="700">Routine pronta:</text>
+    <text x="264" y="478" fill="#def2ff" font-size="22">status -> diff -> add mirato -> commit</text>
+  </g>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Conflitto di merge e risoluzione</title>
+  <desc id="desc">Visuale semplice: branch main e branch alternativo modificano la stessa riga, poi resta una versione finale pulita.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2941"/>
+      <stop offset="1" stop-color="#113755"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173a5b"/>
+      <stop offset="1" stop-color="#1e5279"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="560" fill="url(#bg)"/>
+  <text x="56" y="62" fill="#e6f6ff" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Conflitto = stessa riga modificata in due branch</text>
+  <text x="56" y="96" fill="#b7d5ea" font-family="Segoe UI, Arial, sans-serif" font-size="20">Git si ferma quando main e un branch alternativo cambiano lo stesso punto in modi diversi.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="56" y="136" width="310" height="210" rx="16" fill="url(#card)" stroke="#65b2e8" stroke-width="2"/>
+    <text x="86" y="182" fill="#eef8ff" font-size="26" font-weight="700">Branch main</text>
+    <rect x="80" y="218" width="260" height="46" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="128" y="248" fill="#eaf7ff" font-size="19" font-family="Courier New, monospace">class=&quot;dark&quot;</text>
+    <text x="86" y="304" fill="#c6e1f5" font-size="20">Qui la navbar e' dark.</text>
+
+    <rect x="834" y="136" width="310" height="210" rx="16" fill="url(#card)" stroke="#8bd0ff" stroke-width="2"/>
+    <text x="864" y="182" fill="#eef8ff" font-size="26" font-weight="700">Branch alternativo</text>
+    <rect x="858" y="218" width="260" height="46" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="900" y="248" fill="#eaf7ff" font-size="19" font-family="Courier New, monospace">class=&quot;glass&quot;</text>
+    <text x="864" y="304" fill="#c6e1f5" font-size="20">Qui la navbar e' glass.</text>
+
+    <line x1="374" y1="241" x2="456" y2="241" stroke="#9bd4ff" stroke-width="5"/>
+    <polygon points="470,241 450,229 450,253" fill="#9bd4ff"/>
+    <line x1="826" y1="241" x2="744" y2="241" stroke="#9bd4ff" stroke-width="5"/>
+    <polygon points="730,241 750,229 750,253" fill="#9bd4ff"/>
+
+    <rect x="450" y="150" width="300" height="182" rx="18" fill="#0d2236" stroke="#9ed6ff" stroke-width="2"/>
+    <text x="492" y="204" fill="#eef8ff" font-size="30" font-weight="700">Git si ferma</text>
+    <text x="492" y="244" fill="#c6e1f5" font-size="22">main dice: dark</text>
+    <text x="492" y="278" fill="#c6e1f5" font-size="22">alternativo dice: glass</text>
+    <text x="492" y="306" fill="#c6e1f5" font-size="22">scegli la riga finale</text>
+
+    <rect x="180" y="382" width="840" height="108" rx="16" fill="#163957" stroke="#63afe5" stroke-width="2"/>
+    <text x="220" y="424" fill="#eaf7ff" font-size="24" font-weight="700">Scelta finale: tieni la versione glass</text>
+    <rect x="220" y="444" width="300" height="42" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="270" y="472" fill="#eaf7ff" font-size="19" font-family="Courier New, monospace">class=&quot;glass&quot;</text>
+    <text x="552" y="472" fill="#c6e1f5" font-size="20">Poi salvi il file, fai add e completi il commit.</text>
+
+    <rect x="56" y="512" width="1088" height="34" rx="8" fill="#0d2236" stroke="#4da7df"/>
+    <text x="84" y="535" fill="#def2ff" font-size="19" font-weight="700">Idea chiave:</text>
+    <text x="198" y="535" fill="#def2ff" font-size="19">scegli una sola versione, cancelli i marcatori del conflitto e poi fai add + commit.</text>
+  </g>
+</svg>
