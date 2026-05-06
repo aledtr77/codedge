@@ -23,6 +23,11 @@ const excludedRoutes = new Set([
   '/footer/termini-servizio/'
 ]);
 
+function hasNoindexMeta(filePath) {
+  const html = fs.readFileSync(filePath, 'utf8');
+  return /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html);
+}
+
 function walkIndexFiles(dir) {
   const files = [];
 
@@ -91,11 +96,12 @@ const entries = walkIndexFiles(pagesRoot)
     return {
       filePath,
       route,
+      noindex: hasNoindexMeta(filePath),
       priority: priorityForRoute(route),
       lastmod: new Date(stats.mtimeMs).toISOString()
     };
   })
-  .filter(({ route }) => !excludedRoutes.has(route))
+  .filter(({ route, noindex }) => !excludedRoutes.has(route) && !noindex)
   .sort((a, b) => {
     const weightDiff = sortWeight(a.route) - sortWeight(b.route);
     if (weightDiff !== 0) return weightDiff;

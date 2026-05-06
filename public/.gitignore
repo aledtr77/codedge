@@ -9,6 +9,9 @@ package-lock.json     # se vuoi committarlo (consigliato per stabilità), rimuov
 # build output
 dist/
 html/
+!html/
+!html/footer/
+!html/footer/*.html
 public/build/
 .vite/
 
