@@ -18,7 +18,7 @@ import "@/scripts/components/footer.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Carico il componente solo se trovo elementi chiave
-  if (document.getElementById("analyze") || document.getElementById("palette")) {
+  if (document.getElementById("analyzeBtn") || document.getElementById("paletteGrid")) {
     const { initPaletteExtractor } = await import("@/scripts/pages/strumenti/estrattore-palette/estrattore-palette.js");
     initPaletteExtractor();
   }

@@ -131,190 +131,147 @@
     </nav>
 
   </header>
-  <h2>Estrai palette colori dalla tua foto — CSS, gradienti e JSON</h2>
-  <div class="wrap">
-    <div class="card">
-      <p class="tiny">
-        Carica una <strong>foto</strong> o trascinala qui: ottieni
-        <strong>palette dominanti</strong>, suggerimenti di
-        <strong>contrasto</strong>, <strong>gradienti</strong>, ruoli
-        <strong>UI</strong> (bg/primary/accent), e
-        <strong>CSS variables</strong> + <strong>JSON</strong> esportabili.
-        Tutto <em>client-side</em>.
-      </p>
-      <div class="grid">
-        <div class="panel">
-          <h3>Input immagine</h3>
-          <div class="upload" id="drop" role="button" aria-label="Carica immagine: clicca o trascina e rilascia"
-            aria-describedby="drop-hint">
-            <div class="left">
-              <div class="thumb" id="thumb">
-                <span class="tiny">anteprima</span>
-              </div>
-              <div>
-                <div class="tiny" id="drop-hint">
-                  Consiglio: immagini &lt; 4MB • verranno ridotte per
-                  l'analisi (max 500px)
-                </div>
-                <div class="foot">
-                  <label class="ghost" for="file">Scegli file…</label>
-                  <input id="file" type="file" accept="image/*" hidden="">
-                  <button id="demo" class="ghost">Usa demo</button>
-                  <button id="reset" class="ghost">Reset</button>
-                </div>
-              </div>
-            </div>
-            <div class="actions">
-              <button id="analyze" class="primary">Estrai palette</button>
-            </div>
-          </div>
-          <div class="two mt12">
-            <div class="block">
-              <div class="tiny">Dimensioni immagine</div>
-              <div id="info-dim" class="mono">—</div>
-            </div>
-            <div class="block">
-              <div class="tiny">Luminosità media</div>
-              <div class="bar" id="avg-bar-outer" role="progressbar" aria-valuemin="0" aria-valuemax="255"
-                aria-valuenow="0" aria-label="Luminosità media">
-                <div id="avg-bar" style="
-                      width: 0;
-                      background: linear-gradient(90deg, #4a4a4a, #9a9a9a);
-                    "></div>
-              </div>
-              <div id="avg-val" class="mono tiny">—</div>
-            </div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Palette dominante</h3>
-          <div id="palette" class="palette">
-            <div class="hint">
-              Carica un'immagine e premi “Estrai palette”.
-            </div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Ruoli UI suggeriti</h3>
-          <p class="roles-desc tiny">
-            Significato pratico: <strong>Background</strong> = colore di fondo
-            della pagina; <strong>Primary</strong> = colore principale (brand,
-            titoli, bottoni); <strong>Accent</strong> = tocchi di
-            evidenza/CTA/link; <strong>Text</strong> = colore del testo che
-            massimizza il contrasto su Background.
-          </p>
-          <div id="roles" class="two">
-            <div class="role-row" id="role-bg">
-              <div class="chip-role"></div>
-              <div class="role-meta">
-                <div class="role-name">Background</div>
-                <div class="role-hex mono tiny">—</div>
-              </div>
-            </div>
-            <div class="role-row" id="role-primary">
-              <div class="chip-role"></div>
-              <div class="role-meta">
-                <div class="role-name">Primary</div>
-                <div class="role-hex mono tiny">—</div>
-              </div>
-            </div>
-            <div class="role-row" id="role-accent">
-              <div class="chip-role"></div>
-              <div class="role-meta">
-                <div class="role-name">Accent</div>
-                <div class="role-hex mono tiny">—</div>
-              </div>
-            </div>
-            <div class="role-row" id="role-text">
-              <div class="chip-role"></div>
-              <div class="role-meta">
-                <div class="role-name">Text</div>
-                <div class="role-hex mono tiny">—</div>
-              </div>
-            </div>
-          </div>
-          <div class="mt12">
-            <div class="tiny">
-              Gradienti (sfumature)
-              <span style="opacity: 0.85">— clicca per copiare il CSS</span>
-            </div>
-            <ul id="grads-help" class="tiny grad-explain">
-              <li>
-                <strong>Contrasto forte</strong>: sfumatura tra i
-                <em>due colori più diversi</em> della foto. Per hero/sfondi
-                che devono spiccare.
-              </li>
-              <li>
-                <strong>Evidenza → Principale</strong>: dal colore di
-                <em>evidenza</em> (accent) al colore <em>principale</em> del
-                tema. Per bottoni/CTA o badge.
-              </li>
-            </ul>
-            <div id="grads" class="row mt8"></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Cos’è e come usarlo</h3>
-          <p class="tiny">
-            Carica una foto, estrai la palette, poi usa i ruoli UI per
-            costruire rapidamente un tema. Mantieni il
-            <strong>contrasto</strong> almeno AA per testi e bottoni. Esporta
-            le variabili CSS o il JSON e incollale nel tuo progetto.
-          </p>
-          <ol class="tiny" style="margin: 0; padding-left: 18px; line-height: 1.6">
-            <li>
-              <strong>Carica</strong> immagine e premi “Estrai palette”.
-            </li>
-            <li>
-              <strong>Seleziona</strong> i colori proposti come
-              Background/Primary/Accent/Text.
-            </li>
-            <li>
-              <strong>Verifica</strong> i rapporti (pallini e numeri) e scegli
-              combinazioni leggibili.
-            </li>
-            <li>
-              <strong>Esporta</strong> CSS/JSON e usali nel tuo progetto.
-            </li>
-          </ol>
-        </div>
-        <div class="panel">
-          <h3>Esporta</h3>
-          <div class="row">
-            <button id="copy-css">Copia CSS variables</button>
-            <button id="copy-json">Copia JSON</button>
-            <button id="dl-css">Download .css</button>
-            <button id="dl-json">Download .json</button>
-          </div>
-          <div class="mt8 tiny" id="export-info" role="status" aria-live="polite">
-            —
-          </div>
-          <details class="mt12">
-            <summary class="tiny">Diagnostica</summary>
-            <div class="tiny mono" id="diag">Pronto.</div>
-          </details>
-        </div>
+  <main class="palette-tool-shell">
+    <section class="palette-tool-hero">
+      <div>
+        <p class="tool-eyebrow">Codedge Palette Extractor</p>
+        <h2>Da foto a palette UI, con colori puliti e riutilizzabili.</h2>
+        <p>
+          Carica una foto, estrai i colori dominanti e genera ruoli UI, contrasti,
+          CSS variables e JSON. L'analisi avviene localmente nel browser.
+        </p>
       </div>
-    </div>
-    <p class="tiny center mt12">
-      MVP client-side. K-Means su campionamento — 6 cluster. WCAG contrast.
-    </p>
-    <section class="panel mt12" aria-labelledby="faq-estrattore-title">
+      <div class="hero-actions">
+        <button class="tool-button secondary" id="demoBtn" type="button">Demo</button>
+        <button class="tool-button secondary" id="resetBtn" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="input-panel">
+        <label class="dropzone" id="dropzone" for="fileInput" role="button" tabindex="0">
+          <input
+            class="file-input"
+            id="fileInput"
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif,image/bmp"
+            aria-describedby="dropMeta"
+          />
+          <span class="drop-icon" aria-hidden="true"><i class="fas fa-upload"></i></span>
+          <span class="drop-title">Carica o trascina una foto</span>
+          <span class="drop-meta" id="dropMeta">Analisi locale nel browser. Nessun upload.</span>
+        </label>
+
+        <div class="source-actions">
+          <button class="tool-button secondary" id="cameraBtn" type="button">
+            <i class="fas fa-camera" aria-hidden="true"></i>
+            <span>Fotocamera</span>
+          </button>
+        </div>
+
+        <div class="preview-frame" id="previewFrame">
+          <div class="empty-preview" aria-hidden="true"><i class="fas fa-image"></i></div>
+        </div>
+
+        <div class="camera-actions" id="cameraActions" hidden>
+          <button class="tool-button primary" id="captureBtn" type="button">
+            <i class="fas fa-camera" aria-hidden="true"></i>
+            <span>Scatta</span>
+          </button>
+          <button class="tool-button secondary" id="closeCameraBtn" type="button">
+            <i class="fas fa-times" aria-hidden="true"></i>
+            <span>Chiudi</span>
+          </button>
+        </div>
+
+        <div class="control-row">
+          <label for="paletteSize">Colori</label>
+          <output id="paletteSizeValue">8</output>
+        </div>
+        <input class="range" id="paletteSize" type="range" min="4" max="10" value="8" />
+
+        <button class="tool-button primary analyze-button" id="analyzeBtn" type="button">
+          <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+          <span>Estrai palette</span>
+        </button>
+
+        <div class="metrics">
+          <div>
+            <span>Immagine</span>
+            <strong id="imageSize">-</strong>
+          </div>
+          <div>
+            <span>Media</span>
+            <strong id="averageColor">-</strong>
+          </div>
+          <div>
+            <span>Pixel letti</span>
+            <strong id="pixelCount">-</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="results">
+        <div class="section-head">
+          <div>
+            <h3>Palette dominante</h3>
+            <p>Ordinata per rilevanza percettiva, non solo per numero grezzo di pixel.</p>
+          </div>
+          <div class="sr-only" id="status" role="status" aria-live="polite">Pronto</div>
+        </div>
+
+        <div class="palette-grid" id="paletteGrid">
+          <div class="empty-state">Carica un'immagine o avvia la demo.</div>
+        </div>
+
+        <div class="detail-grid">
+          <section class="tool-panel roles-panel">
+            <div class="section-head compact">
+              <div>
+                <h3>Ruoli UI</h3>
+                <p>Colori pronti per tema, testi e CTA.</p>
+              </div>
+            </div>
+            <div class="roles-list" id="rolesList"></div>
+            <div class="contrast-card" id="contrastCard"></div>
+          </section>
+
+          <section class="tool-panel export-panel">
+            <div class="section-head compact">
+              <div>
+                <h3>Export</h3>
+                <p>CSS variables e JSON generati dalla palette corrente.</p>
+              </div>
+            </div>
+            <div class="export-actions">
+              <button class="tool-button secondary" id="copyCssBtn" type="button">CSS</button>
+              <button class="tool-button secondary" id="copyJsonBtn" type="button">JSON</button>
+              <button class="tool-button secondary" id="downloadCssBtn" type="button">.css</button>
+              <button class="tool-button secondary" id="downloadJsonBtn" type="button">.json</button>
+            </div>
+            <pre id="codePreview">:root {
+  --color-1: ...
+}</pre>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section class="faq-panel" aria-labelledby="faq-estrattore-title">
       <h3 id="faq-estrattore-title">FAQ rapide su estrattore palette</h3>
-      <p class="tiny">
-        <strong>Come si usa?</strong> Carica una foto, avvia l analisi e scegli i ruoli UI suggeriti.
+      <p>
+        <strong>Come si usa?</strong> Carica una foto, avvia l'analisi e copia CSS o JSON.
       </p>
-      <p class="tiny">
-        <strong>I file restano privati?</strong> Si, l elaborazione avviene nel browser senza upload su server esterni.
+      <p>
+        <strong>I file restano privati?</strong> Si, l'elaborazione avviene nel browser senza upload su server esterni.
       </p>
-      <p class="tiny">
+      <p>
         <strong>Tool collegati:</strong> puoi combinare i risultati con
         <a href="/strumenti/generatore-colori/">Generatore Colori</a> e
         <a href="/strumenti/generatore-gradienti/">Generatore Gradienti</a>.
       </p>
     </section>
-  </div>
-  <canvas id="canvas" style="display: none"></canvas>
+  </main>
 
   <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
        type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
