@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="it" data-page-ready="false">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>NPM, Vite e struttura progetto | Guida pratica | Codedge</title>
+  <meta
+    name="description"
+    content="Guida pratica a NPM, Vite, working tree e struttura progetto: package manager, script, dipendenze, cartelle, build locale e routine base.">
+  <link rel="canonical" href="https://codedge.it/tutorial/npm-vite-struttura-progetto/">
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="NPM, Vite e struttura progetto | Guida pratica | Codedge" />
+  <meta property="og:description" content="Guida pratica a NPM, Vite, working tree e struttura progetto: package manager, script, dipendenze, cartelle, build locale e routine base." />
+  <meta property="og:url" content="https://codedge.it/tutorial/npm-vite-struttura-progetto/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida NPM, Vite e struttura progetto" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NPM, Vite e struttura progetto | Guida pratica | Codedge" />
+  <meta name="twitter:description" content="Guida pratica a NPM, Vite, working tree e struttura progetto: package manager, script, dipendenze, cartelle, build locale e routine base." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 74ch;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        <h1 class="resize-text"><i class="fab fa-npm guide-title-icon" aria-hidden="true"></i>NPM, Vite e struttura progetto</h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
+          </li>
+          <li class="nav-item">
+            <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="section git-guide-shell" aria-labelledby="npm-vite-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida NPM, Vite e struttura progetto">
+          <h3>Indice guida</h3>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Nota iniziale</a></li>
+            <li><a href="#chapter-02">1. Perché esistono NPM e Vite</a></li>
+            <li><a href="#chapter-03">2. Package manager e package.json</a></li>
+            <li><a href="#chapter-04">3. Script: comandi del progetto</a></li>
+            <li><a href="#chapter-05">4. Dipendenze, node_modules e lockfile</a></li>
+            <li><a href="#chapter-06">5. Working tree e struttura progetto</a></li>
+            <li><a href="#chapter-07">6. Build locale con Vite</a></li>
+            <li><a href="#chapter-08">7. Routine minima di lavoro</a></li>
+            <li><a href="#chapter-09">8. Errori comuni</a></li>
+            <li><a href="#chapter-10">9. Da qui in poi</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida NPM, Vite e struttura progetto">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <p class="guide-intro-kicker">Guida pratica per capire come vive un progetto moderno</p>
+            <h2 id="npm-vite-guide-title">Nota iniziale</h2>
+            <section class="guide-subchapter">
+              <p>Quando un progetto front-end cresce oltre pochi file HTML, CSS e JavaScript, iniziano a comparire strumenti come NPM, Vite, dipendenze, script e cartelle di build.</p>
+              <p>All'inizio possono sembrare pezzi separati. In realtà servono a rendere il progetto più ripetibile: installi le dipendenze, avvii un server locale, lavori sui sorgenti e generi una versione finale pronta da pubblicare.</p>
+              <p>Questa guida resta volutamente pratica: non prova a spiegare tutto l'ecosistema JavaScript, ma ti dà il modello mentale minimo per non perderti davanti a working tree, <code>package.json</code>, <code>node_modules</code>, <code>src</code> e <code>dist</code>.</p>
+            </section>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. Perché esistono NPM e Vite</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/npm-vite-struttura-progetto/panoramica-npm-vite-progetto.svg" alt="Panoramica di NPM Vite script dipendenze e build di progetto" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>NPM gestisce pacchetti e comandi, Vite gestisce sviluppo locale e build finale.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>NPM è un package manager: ti aiuta a installare, aggiornare e registrare le librerie usate dal progetto.</p>
+              <p>Vite invece è un build tool e dev server: durante lo sviluppo serve i file in locale, aggiorna velocemente la pagina e, quando serve, genera la cartella finale per la pubblicazione.</p>
+              <p>In pratica lavorano insieme:</p>
+              <ul class="guide-list">
+                <li>NPM legge <code>package.json</code> e installa quello che serve;</li>
+                <li>gli script NPM ti danno comandi brevi e condivisi;</li>
+                <li>Vite avvia il server locale o crea la build finale;</li>
+                <li>la cartella di output, spesso <code>dist</code>, è quella che poi finisce online.</li>
+              </ul>
+              <p>Il vantaggio non è avere più strumenti per complicarsi la vita. È avere un modo prevedibile per far girare lo stesso progetto su più computer e in deploy.</p>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Package manager e package.json</h2>
+            <section class="guide-subchapter">
+              <p>Il file <code>package.json</code> è una specie di carta d'identità tecnica del progetto.</p>
+              <p>Dentro trovi informazioni come nome, versione, script e dipendenze. Non devi ricordare tutto a memoria, ma devi sapere dove guardare quando vuoi capire come si avvia o si costruisce il progetto.</p>
+              <pre><code>{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^8.0.7"
+  }
+}</code></pre>
+              <p>La parte più utile all'inizio è <code>scripts</code>: contiene i comandi ufficiali del progetto. Se lavori in team o riprendi un progetto dopo mesi, è il primo posto da controllare.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Script: comandi del progetto</h2>
+            <section class="guide-subchapter">
+              <p>Gli script sono scorciatoie condivise. Invece di ricordare ogni comando interno, usi comandi stabili come questi:</p>
+              <pre><code>npm install
+npm run dev
+npm run build
+npm run preview</code></pre>
+              <ul class="guide-list">
+                <li><code>npm install</code> installa le dipendenze dichiarate nel progetto;</li>
+                <li><code>npm run dev</code> avvia il server locale di sviluppo;</li>
+                <li><code>npm run build</code> genera la versione finale;</li>
+                <li><code>npm run preview</code> prova localmente la build prodotta.</li>
+              </ul>
+              <p>Questa distinzione è importante: <code>dev</code> serve mentre lavori, <code>build</code> serve per preparare l'output, <code>preview</code> serve per controllare l'output finale prima del deploy.</p>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Dipendenze, node_modules e lockfile</h2>
+            <section class="guide-subchapter">
+              <p>Una dipendenza è un pacchetto esterno usato dal progetto: una libreria, un tool, un plugin o un framework.</p>
+              <p>Quando esegui <code>npm install</code>, NPM scarica i pacchetti dentro <code>node_modules</code>. Quella cartella può diventare enorme e normalmente non va committata su Git.</p>
+              <p>I file importanti da tenere nel repository sono invece:</p>
+              <ul class="guide-checklist">
+                <li><code>package.json</code>, perché dichiara cosa serve al progetto;</li>
+                <li><code>package-lock.json</code>, perché blocca versioni precise e rende le installazioni più ripetibili;</li>
+                <li><code>.gitignore</code>, perché evita di tracciare cartelle generate come <code>node_modules</code> e <code>dist</code>.</li>
+              </ul>
+              <p>Se cloni un progetto da zero, non copi <code>node_modules</code>: installi di nuovo le dipendenze con <code>npm install</code>.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Working tree e struttura progetto</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/npm-vite-struttura-progetto/working-tree-progetto.svg" alt="Esempio visuale di working tree con file sorgente file tracciati cartelle ignorate e output generato" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>Il working tree è la cartella reale del progetto: qui lavori, installi dipendenze e generi output.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>Il working tree è la cartella di lavoro del progetto sul tuo computer. È il posto concreto in cui vedi file, cartelle, modifiche locali, dipendenze installate e output generati.</p>
+              <p>Quando apri un progetto in VSCode, quello che stai guardando è il working tree. Quando Git ti dice che hai file modificati, non tracciati o puliti, sta leggendo lo stato di questa cartella rispetto all'ultimo commit.</p>
+              <p>Dentro al working tree convivono cose diverse:</p>
+              <ul class="guide-list">
+                <li>file tracciati da Git, come <code>package.json</code>, <code>src</code>, <code>pages</code> e configurazioni;</li>
+                <li>file modificati ma non ancora committati;</li>
+                <li>file non tracciati, appena creati e non ancora aggiunti a Git;</li>
+                <li>cartelle ignorate, come <code>node_modules</code>, che servono localmente ma non vanno nel repository;</li>
+                <li>output generati, come <code>dist</code>, che arrivano dalla build e non dovrebbero essere modificati a mano.</li>
+              </ul>
+              <p>Capire questa distinzione evita molta confusione: non tutto quello che vedi nella cartella ha lo stesso ruolo, e non tutto deve essere committato.</p>
+            </section>
+            <section class="guide-subchapter">
+              <p>Ogni progetto può organizzarsi in modo diverso, ma alcune cartelle ricorrono spesso.</p>
+              <dl class="guide-glossary">
+                <div>
+                  <dt><code>src</code></dt>
+                  <dd>contiene sorgenti: CSS, JS, componenti, immagini importate dal codice e logica dell'app.</dd>
+                </div>
+                <div>
+                  <dt><code>public</code></dt>
+                  <dd>contiene file serviti così come sono: favicon, manifest, immagini statiche o asset che non passano dal bundler.</dd>
+                </div>
+                <div>
+                  <dt><code>pages</code></dt>
+                  <dd>in questo progetto raccoglie le pagine HTML sorgente usate da Vite come entry.</dd>
+                </div>
+                <div>
+                  <dt><code>dist</code></dt>
+                  <dd>è l'output generato dalla build. Si controlla, ma normalmente non si modifica a mano.</dd>
+                </div>
+              </dl>
+              <p>La regola mentale è semplice: lavori sui sorgenti, lasci che gli strumenti generino l'output e pubblichi ciò che la build produce.</p>
+            </section>
+          </section>
+
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Build locale con Vite</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/npm-vite-struttura-progetto/workflow-build-vite.svg" alt="Workflow locale con NPM Vite build dist e preview" loading="lazy" decoding="async" width="1200" height="500">
+              <figcaption>Il ciclo base: installi, sviluppi, costruisci, controlli la build e poi pubblichi.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>Durante lo sviluppo usi il server locale. È veloce, comodo e pensato per lavorare.</p>
+              <p>La build invece è un passaggio diverso: Vite prende i sorgenti, risolve import, ottimizza asset e genera file finali. In molti progetti questi file finiscono in <code>dist</code>.</p>
+              <p>Per questo è utile fare almeno una build locale prima di pubblicare:</p>
+              <pre><code>npm run build
+npm run preview</code></pre>
+              <p>Se la build fallisce in locale, fallirà molto probabilmente anche sul servizio di hosting. Meglio scoprirlo prima, quando puoi leggere l'errore con calma e sistemarlo.</p>
+            </section>
+          </section>
+
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. Routine minima di lavoro</h2>
+            <section class="guide-subchapter">
+              <p>Quando apri o riprendi un progetto NPM/Vite, puoi seguire questa routine:</p>
+              <ol class="guide-number-list">
+                <li>controlla <code>package.json</code> per capire gli script disponibili;</li>
+                <li>esegui <code>npm install</code> se le dipendenze non sono installate;</li>
+                <li>avvia <code>npm run dev</code> per lavorare in locale;</li>
+                <li>modifica i sorgenti, non l'output generato;</li>
+                <li>prima del deploy esegui <code>npm run build</code>;</li>
+                <li>se disponibile, usa <code>npm run preview</code> per controllare la build finale.</li>
+              </ol>
+              <p>Questa routine ti evita molti falsi problemi: dipendenze mancanti, script sbagliato, output vecchio o cartelle generate modificate a mano.</p>
+            </section>
+          </section>
+
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Errori comuni</h2>
+            <section class="guide-subchapter">
+              <p>Quando qualcosa si rompe, spesso il problema rientra in pochi casi ricorrenti.</p>
+              <ul class="guide-list">
+                <li><code>npm install</code> non è stato eseguito dopo clone, pull o cambio branch.</li>
+                <li>Stai usando uno script che non esiste in <code>package.json</code>.</li>
+                <li>Una dipendenza è in <code>devDependencies</code> ma viene usata come se fosse runtime.</li>
+                <li>Hai modificato <code>dist</code> invece dei file sorgente.</li>
+                <li>La build funziona in dev ma fallisce perché c'è un path, import o asset non corretto.</li>
+                <li>Il provider di deploy usa una versione Node diversa da quella locale.</li>
+              </ul>
+              <p>Il primo passo non è cambiare tutto. Leggi il messaggio di errore, guarda quale comando stava girando e torna al file che definisce quel comando.</p>
+            </section>
+          </section>
+
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. Da qui in poi</h2>
+            <section class="guide-subchapter">
+              <p>Quando capisci NPM, Vite e struttura progetto, molte parti del workflow diventano meno misteriose: perché esistono le dipendenze, cosa fa una build, cosa va online e cosa resta solo in sviluppo.</p>
+              <p>Da qui puoi collegare meglio le altre guide:</p>
+              <ul class="guide-list">
+                <li><a href="/tutorial/vscode-essenziale/">VSCode essenziale</a>: per usare terminale integrato, task e debug con più ordine.</li>
+                <li><a href="/tutorial/browser-devtools/">Browser e DevTools</a>: per controllare cosa arriva davvero nel browser.</li>
+                <li><a href="/tutorial/deploy-base/">Deploy base</a>: per capire come la build viene pubblicata online.</li>
+                <li><a href="/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>: per salvare modifiche e tornare indietro senza ansia.</li>
+              </ul>
+            </section>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/npm-vite-struttura-progetto/main.js"></script>
+</body>
+
+</html>
