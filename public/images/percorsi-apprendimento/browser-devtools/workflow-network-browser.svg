@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow Network nel browser</title>
+  <desc id="desc">Schema di una richiesta che parte dal browser, arriva a un server o API e torna come risposta.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1a2c"/>
+      <stop offset="0.58" stop-color="#152f49"/>
+      <stop offset="1" stop-color="#08111f"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d4668"/>
+      <stop offset="1" stop-color="#0c1b2e"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M2 2L10 6L2 10Z" fill="#8bd8ff"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000814" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="500" rx="28" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="150" fill="#00a8ff" opacity="0.09"/>
+  <circle cx="130" cy="430" r="120" fill="#7bd7ff" opacity="0.08"/>
+
+  <text x="56" y="72" fill="#eef8ff" font-family="Verdana, Arial, sans-serif" font-size="34" font-weight="700">Leggere una richiesta Network</text>
+  <text x="58" y="110" fill="#b9dcf4" font-family="Verdana, Arial, sans-serif" font-size="17">Se una risorsa non arriva, Network ti dice dove il percorso si interrompe.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="86" y="190" width="220" height="138" rx="20" fill="url(#card)" stroke="#80d4ff" stroke-opacity="0.35"/>
+    <text x="126" y="245" fill="#eef8ff" font-family="Verdana, Arial, sans-serif" font-size="26" font-weight="700">Browser</text>
+    <text x="126" y="282" fill="#c4e5fa" font-family="Verdana, Arial, sans-serif" font-size="16">pagina, JS, CSS</text>
+
+    <rect x="382" y="190" width="220" height="138" rx="20" fill="url(#card)" stroke="#80d4ff" stroke-opacity="0.35"/>
+    <text x="420" y="245" fill="#eef8ff" font-family="Verdana, Arial, sans-serif" font-size="26" font-weight="700">Request</text>
+    <text x="420" y="282" fill="#c4e5fa" font-family="Verdana, Arial, sans-serif" font-size="16">URL, metodo, headers</text>
+
+    <rect x="678" y="190" width="220" height="138" rx="20" fill="url(#card)" stroke="#80d4ff" stroke-opacity="0.35"/>
+    <text x="716" y="245" fill="#eef8ff" font-family="Verdana, Arial, sans-serif" font-size="26" font-weight="700">Server/API</text>
+    <text x="716" y="282" fill="#c4e5fa" font-family="Verdana, Arial, sans-serif" font-size="16">file, dati, logica</text>
+
+    <rect x="974" y="190" width="140" height="138" rx="20" fill="url(#card)" stroke="#80d4ff" stroke-opacity="0.35"/>
+    <text x="1000" y="245" fill="#eef8ff" font-family="Verdana, Arial, sans-serif" font-size="24" font-weight="700">Response</text>
+    <text x="1000" y="282" fill="#c4e5fa" font-family="Verdana, Arial, sans-serif" font-size="16">status</text>
+  </g>
+
+  <path d="M320 258H365" stroke="#8bd8ff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M616 258H661" stroke="#8bd8ff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M912 258H957" stroke="#8bd8ff" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <g font-family="Verdana, Arial, sans-serif" font-size="15" fill="#d8efff">
+    <rect x="130" y="374" width="940" height="56" rx="18" fill="#071321" stroke="#5fbfff" stroke-opacity="0.24"/>
+    <text x="164" y="408">Controlla in ordine: URL corretto -> status code -> risposta ricevuta -> codice che usa quella risposta.</text>
+  </g>
+</svg>

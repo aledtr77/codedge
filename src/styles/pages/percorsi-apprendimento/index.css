@@ -258,6 +258,22 @@ body > main .learning-shell {
   color: rgba(239, 247, 255, 0.9);
 }
 
+.learning-card--browser {
+  border-color: rgba(120, 215, 255, 0.34);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(70, 190, 245, 0.15) 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(8, 18, 30, 0.24) 100%
+    ),
+    var(--background-two);
+}
+
+.learning-card--browser .learning-card__details {
+  color: rgba(184, 235, 255, 0.96);
+}
+
 .learning-card--git {
   border-color: rgba(244, 122, 32, 0.34);
   background:
