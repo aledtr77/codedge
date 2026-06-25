@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Workflow SEO dopo il deploy</title>
+  <desc id="desc">Schema operativo dei controlli SEO da eseguire dopo la pubblicazione di una pagina.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081a2b"/>
+      <stop offset="1" stop-color="#0c2639"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#123b5a"/>
+      <stop offset="1" stop-color="#0a1d30"/>
+    </linearGradient>
+    <linearGradient id="ok" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#74d4ff"/>
+      <stop offset="1" stop-color="#7df2bf"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#020812" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="500" rx="28" fill="url(#bg)"/>
+  <path d="M74 82h1052M74 416h1052" stroke="#91dfff" stroke-opacity="0.13"/>
+  <text x="600" y="64" text-anchor="middle" fill="#f5fbff" font-family="Verdana, Arial, sans-serif" font-size="32" font-weight="700">Routine SEO dopo la pubblicazione</text>
+
+  <g filter="url(#shadow)">
+    <rect x="82" y="140" width="188" height="190" rx="18" fill="url(#panel)" stroke="#7fd9ff" stroke-opacity="0.32"/>
+    <rect x="310" y="140" width="188" height="190" rx="18" fill="url(#panel)" stroke="#7fd9ff" stroke-opacity="0.32"/>
+    <rect x="538" y="140" width="188" height="190" rx="18" fill="url(#panel)" stroke="#7fd9ff" stroke-opacity="0.32"/>
+    <rect x="766" y="140" width="188" height="190" rx="18" fill="url(#panel)" stroke="#7fd9ff" stroke-opacity="0.32"/>
+    <rect x="994" y="140" width="124" height="190" rx="18" fill="#0a1d30" stroke="#7df2bf" stroke-opacity="0.45"/>
+  </g>
+
+  <g fill="none" stroke="#9fe7ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M140 206h70M140 232h86M140 258h54"/>
+    <path d="M368 206h72M368 232h72M368 258h72M356 206l-12 12-7-7M356 232l-12 12-7-7M356 258l-12 12-7-7"/>
+    <path d="M606 206h54M606 232h82M606 258h64"/>
+    <path d="M834 206h64M834 232h74M834 258h48"/>
+    <circle cx="1056" cy="234" r="36"/>
+    <path d="M1038 234l12 12 26-30"/>
+  </g>
+
+  <g font-family="Verdana, Arial, sans-serif">
+    <text x="176" y="180" text-anchor="middle" fill="#f4fbff" font-size="22" font-weight="700">Build</text>
+    <text x="176" y="362" text-anchor="middle" fill="#bfeaff" font-size="16">la pagina esiste</text>
+    <text x="176" y="385" text-anchor="middle" fill="#bfeaff" font-size="16">e risponde 200</text>
+
+    <text x="404" y="180" text-anchor="middle" fill="#f4fbff" font-size="22" font-weight="700">Head</text>
+    <text x="404" y="362" text-anchor="middle" fill="#bfeaff" font-size="16">title, canonical</text>
+    <text x="404" y="385" text-anchor="middle" fill="#bfeaff" font-size="16">meta description</text>
+
+    <text x="632" y="180" text-anchor="middle" fill="#f4fbff" font-size="22" font-weight="700">Sitemap</text>
+    <text x="632" y="362" text-anchor="middle" fill="#bfeaff" font-size="16">URL canonici</text>
+    <text x="632" y="385" text-anchor="middle" fill="#bfeaff" font-size="16">lastmod credibile</text>
+
+    <text x="860" y="180" text-anchor="middle" fill="#f4fbff" font-size="22" font-weight="700">GSC</text>
+    <text x="860" y="362" text-anchor="middle" fill="#bfeaff" font-size="16">ispeziona URL</text>
+    <text x="860" y="385" text-anchor="middle" fill="#bfeaff" font-size="16">controlla errori</text>
+
+    <text x="1056" y="362" text-anchor="middle" fill="#d8fff0" font-size="17" font-weight="700">Itera</text>
+    <text x="1056" y="385" text-anchor="middle" fill="#d8fff0" font-size="15">migliora</text>
+  </g>
+
+  <g fill="none" stroke="url(#ok)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M280 235h20"/>
+    <path d="M292 227l9 8-9 8"/>
+    <path d="M508 235h20"/>
+    <path d="M520 227l9 8-9 8"/>
+    <path d="M736 235h20"/>
+    <path d="M748 227l9 8-9 8"/>
+    <path d="M964 235h20"/>
+    <path d="M976 227l9 8-9 8"/>
+  </g>
+
+  <text x="600" y="448" text-anchor="middle" fill="#b8ddf4" font-family="Verdana, Arial, sans-serif" font-size="18">Ogni deploy importante merita un controllo rapido: non per inseguire ranking, ma per evitare ostacoli tecnici banali.</text>
+</svg>
