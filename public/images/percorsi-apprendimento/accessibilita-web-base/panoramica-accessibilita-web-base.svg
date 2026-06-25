@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Panoramica accessibilita web base</title>
+  <desc id="desc">Schema dei quattro principi base: percepibile, utilizzabile, comprensibile e robusto.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07192b"/>
+      <stop offset="0.55" stop-color="#0d2840"/>
+      <stop offset="1" stop-color="#102033"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#153e5f"/>
+      <stop offset="1" stop-color="#0a2035"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#73d8ff"/>
+      <stop offset="1" stop-color="#8af0c8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020812" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="520" rx="28" fill="url(#bg)"/>
+  <path d="M92 110h1016M92 410h1016" stroke="#8fddff" stroke-opacity="0.12"/>
+  <circle cx="600" cy="262" r="154" fill="none" stroke="url(#accent)" stroke-width="5" stroke-opacity="0.28"/>
+  <circle cx="600" cy="262" r="90" fill="none" stroke="#8af0c8" stroke-width="3" stroke-opacity="0.35"/>
+
+  <g filter="url(#shadow)">
+    <rect x="94" y="142" width="226" height="218" rx="18" fill="url(#panel)" stroke="#85dfff" stroke-opacity="0.34"/>
+    <rect x="354" y="142" width="226" height="218" rx="18" fill="url(#panel)" stroke="#85dfff" stroke-opacity="0.34"/>
+    <rect x="620" y="142" width="226" height="218" rx="18" fill="url(#panel)" stroke="#85dfff" stroke-opacity="0.34"/>
+    <rect x="880" y="142" width="226" height="218" rx="18" fill="url(#panel)" stroke="#85dfff" stroke-opacity="0.34"/>
+  </g>
+
+  <g fill="none" stroke="#a8ecff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="207" cy="224" r="38"/>
+    <path d="M169 224c26-38 50-38 76 0-26 38-50 38-76 0z"/>
+    <path d="M426 210h82M426 238h82M438 266h58"/>
+    <path d="M438 210l-18 18-10-10M438 238l-18 18-10-10M438 266l-18 18-10-10"/>
+    <path d="M694 208h82M694 236h58M694 264h72"/>
+    <path d="M664 208v56M654 218h20M654 254h20"/>
+    <rect x="951" y="199" width="84" height="64" rx="10"/>
+    <path d="M952 284h84M974 263v21M1014 263v21"/>
+  </g>
+
+  <g font-family="Verdana, Arial, sans-serif">
+    <text x="600" y="70" text-anchor="middle" fill="#f5fbff" font-size="34" font-weight="700">Accessibilita web base</text>
+
+    <text x="207" y="178" text-anchor="middle" fill="#f4fbff" font-size="23" font-weight="700">Percepibile</text>
+    <text x="207" y="392" text-anchor="middle" fill="#c5ecff" font-size="16">testo leggibile</text>
+    <text x="207" y="416" text-anchor="middle" fill="#c5ecff" font-size="16">alt e contrasto</text>
+
+    <text x="467" y="178" text-anchor="middle" fill="#f4fbff" font-size="23" font-weight="700">Utilizzabile</text>
+    <text x="467" y="392" text-anchor="middle" fill="#c5ecff" font-size="16">tastiera, focus</text>
+    <text x="467" y="416" text-anchor="middle" fill="#c5ecff" font-size="16">link e controlli</text>
+
+    <text x="733" y="178" text-anchor="middle" fill="#f4fbff" font-size="23" font-weight="700">Comprensibile</text>
+    <text x="733" y="392" text-anchor="middle" fill="#c5ecff" font-size="16">etichette chiare</text>
+    <text x="733" y="416" text-anchor="middle" fill="#c5ecff" font-size="16">errori spiegati</text>
+
+    <text x="993" y="178" text-anchor="middle" fill="#f4fbff" font-size="23" font-weight="700">Robusto</text>
+    <text x="993" y="392" text-anchor="middle" fill="#c5ecff" font-size="16">HTML valido</text>
+    <text x="993" y="416" text-anchor="middle" fill="#c5ecff" font-size="16">semantica solida</text>
+
+    <text x="600" y="260" text-anchor="middle" fill="#f7fcff" font-size="28" font-weight="700">POUR</text>
+    <text x="600" y="292" text-anchor="middle" fill="#d7fff0" font-size="16">una bussola pratica</text>
+    <text x="600" y="464" text-anchor="middle" fill="#b8ddf4" font-size="18">Una pagina accessibile non e solo piu inclusiva: spesso e anche piu chiara, stabile e facile da usare per tutti.</text>
+  </g>
+</svg>
