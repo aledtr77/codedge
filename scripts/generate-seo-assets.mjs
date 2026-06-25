@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -52,6 +53,31 @@ function routeFromFile(filePath) {
   return `/${relativeDir}/`;
 }
 
+function gitRelativePath(filePath) {
+  return path.relative(projectRoot, filePath).split(path.sep).join('/');
+}
+
+function lastModifiedForFile(filePath) {
+  const fallback = () => fs.statSync(filePath).mtime.toISOString();
+
+  try {
+    const lastCommitDate = execFileSync(
+      'git',
+      ['log', '-1', '--format=%cI', '--', gitRelativePath(filePath)],
+      {
+        cwd: projectRoot,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore']
+      }
+    ).trim();
+
+    if (!lastCommitDate) return fallback();
+    return new Date(lastCommitDate).toISOString();
+  } catch {
+    return fallback();
+  }
+}
+
 function priorityForRoute(route) {
   if (route === '/') return '1.0';
   if (/^\/(risorse|strumenti|componenti-ui)\/$/.test(route)) return '0.9';
@@ -91,14 +117,13 @@ function buildSitemapXml(entries) {
 
 const entries = walkIndexFiles(pagesRoot)
   .map((filePath) => {
-    const stats = fs.statSync(filePath);
     const route = routeFromFile(filePath);
     return {
       filePath,
       route,
       noindex: hasNoindexMeta(filePath),
       priority: priorityForRoute(route),
-      lastmod: new Date(stats.mtimeMs).toISOString()
+      lastmod: lastModifiedForFile(filePath)
     };
   })
   .filter(({ route, noindex }) => !excludedRoutes.has(route) && !noindex)
