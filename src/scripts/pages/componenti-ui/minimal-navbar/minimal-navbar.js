@@ -1,32 +1,37 @@
-// src/scripts/components/minimal-navbar.js
-export function initMinimalNavbar(containerSelector = ".minimal-navbar__container") {
-  const container = document.querySelector(containerSelector);
-  if (!container) return;
-  const menu = container.querySelector(".minimal-navbar__menu");
-  const burger = container.querySelector(".minimal-navbar__burger");
-  const links = container.querySelectorAll(".minimal-navbar__link");
-  if (!menu || !burger) return;
+export function initAccessibleHeader(rootSelector = "[data-accessible-header]") {
+  const header = document.querySelector(rootSelector);
+  if (!header) return;
 
-  const closeMenu = () => {
-    menu.classList.remove("minimal-active");
-    burger.classList.remove("minimal-active");
+  const toggle = header.querySelector("[data-header-toggle]");
+  const menu = header.querySelector("[data-header-menu]");
+  const links = Array.from(header.querySelectorAll("[data-header-link]"));
+  if (!toggle || !menu) return;
+
+  const setOpen = (isOpen) => {
+    header.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
   };
 
-  burger.addEventListener("click", (ev) => {
-    ev.stopPropagation();
-    menu.classList.toggle("minimal-active");
-    burger.classList.toggle("minimal-active");
+  const close = () => setOpen(false);
+
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
 
-  links.forEach((lnk) => lnk.addEventListener("click", closeMenu));
-
-  document.addEventListener("click", (ev) => {
-    if (!container.contains(ev.target) && menu.classList.contains("minimal-active")) {
-      closeMenu();
-    }
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      links.forEach((item) => item.removeAttribute("aria-current"));
+      link.setAttribute("aria-current", "page");
+      close();
+    });
   });
 
-  document.addEventListener("keydown", (ev) => {
-    if (ev.key === "Escape" && menu.classList.contains("minimal-active")) closeMenu();
+  document.addEventListener("click", (event) => {
+    if (!header.contains(event.target)) close();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") close();
   });
 }

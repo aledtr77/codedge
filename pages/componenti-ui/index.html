@@ -4,13 +4,13 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="stylesheet" href="/critical.css" />
 <title>Componenti UI in HTML, CSS e JavaScript | Codedge</title>
-    <meta name="description" content="Componenti UI da studiare, testare e riusare con codice pronto: scroll indicator, card interattive, navbar responsive e form in HTML, CSS e JavaScript.">
+    <meta name="description" content="Componenti UI semplici e riusabili in HTML, CSS e JavaScript: header accessibile, form validato, card contenuto e indice di lettura con progress bar.">
     <link rel="canonical" href="https://codedge.it/componenti-ui/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
   <meta property="og:title" content="Componenti UI in HTML, CSS e JavaScript | Codedge" />
-  <meta property="og:description" content="Componenti UI da studiare, testare e riusare con codice pronto: scroll indicator, card interattive, navbar responsive e form in HTML, CSS e JavaScript." />
+  <meta property="og:description" content="Componenti UI semplici e riusabili in HTML, CSS e JavaScript: header accessibile, form validato, card contenuto e indice di lettura con progress bar." />
   <meta property="og:url" content="https://codedge.it/componenti-ui/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -19,7 +19,7 @@
   <meta property="og:image:alt" content="Anteprima CODEDGE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Componenti UI in HTML, CSS e JavaScript | Codedge" />
-  <meta name="twitter:description" content="Componenti UI da studiare, testare e riusare con codice pronto: scroll indicator, card interattive, navbar responsive e form in HTML, CSS e JavaScript." />
+  <meta name="twitter:description" content="Componenti UI semplici e riusabili in HTML, CSS e JavaScript: header accessibile, form validato, card contenuto e indice di lettura con progress bar." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
 
@@ -81,18 +81,17 @@
       <section id="componenti-ui" class="section projects-shell" aria-labelledby="progetti-title">
         <div class="intro projects-intro">
           <div class="projects-intro__copy">
-            <p class="section-kicker">Build and inspect</p>
-            <h3 id="progetti-title">Componenti interattivi</h3>
+            <p class="section-kicker">Pattern library</p>
+            <h3 id="progetti-title">Componenti semplici, ma davvero usabili</h3>
             <p>
-              Qui trovi componenti front-end pensati per farti vedere il
-              codice in azione, non solo in forma di snippet isolato. Ogni
-              blocco nasce per essere aperto, letto, modificato e riusato come
-              base reale di interfaccia.
+              Qui trovi pattern front-end piccoli e pratici, pensati per essere
+              letti, copiati e adattati dentro pagine reali. Niente effetti
+              decorativi fini a se stessi: ogni componente risolve un problema
+              comune di interfaccia.
             </p>
             <p>
-              L’idea non è mostrare effetti fini a se stessi, ma pattern piccoli
-              e leggibili: interazioni, componenti e micro-layout che puoi
-              smontare per capire struttura, stile e comportamento.
+              Ogni pagina include una demo funzionante, note d'uso e il link
+              allo snippet HTML/CSS/JS aggiornato nella libreria risorse.
             </p>
           </div>
 
@@ -117,56 +116,56 @@
         </div>
         <div class="grid projects-grid">
           <div class="card project-card project-card--scroll">
-            <p class="project-card__eyebrow">Navigation feedback</p>
-            <h4><i class="fas fa-chevron-up arrow"></i> Scroll Indicator</h4>
+            <p class="project-card__eyebrow">Long-form reading</p>
+            <h4><i class="fas fa-list-ul arrow"></i> Indice di lettura</h4>
             <p>
-              Indicatore di avanzamento con ritorno rapido all’inizio pagina,
-              utile per landing lunghe e contenuti articolati.
+              Indice con progress bar, sezione attiva e ritorno rapido
+              all'inizio, pensato per guide e documentazione lunga.
             </p>
             <div class="project-card__meta" aria-hidden="true">
-              <span>Scroll</span>
+              <span>TOC</span>
               <span>Progress</span>
             </div>
-            <a href="/componenti-ui/scroll-indicator/" class="button-simple" aria-label="Apri componente scroll indicator">Apri componente</a>
+            <a href="/componenti-ui/scroll-indicator/" class="button-simple" aria-label="Apri componente indice di lettura">Apri componente</a>
           </div>
           <div class="card project-card project-card--cards">
-            <p class="project-card__eyebrow">Reveal interaction</p>
-            <h4><i class="fa-solid fa-layer-group"></i> Card Interattive</h4>
+            <p class="project-card__eyebrow">Content preview</p>
+            <h4><i class="fa-solid fa-layer-group"></i> Card contenuto</h4>
             <p>
-              Card animate da studiare per capire come combinare stato, motion
-              e trasformazioni CSS in modo più espressivo.
+              Card per risorse, strumenti, articoli o template con badge,
+              meta, CTA e stato salva accessibile.
             </p>
             <div class="project-card__meta" aria-hidden="true">
-              <span>Motion</span>
-              <span>Flip</span>
+              <span>Meta</span>
+              <span>CTA</span>
             </div>
-            <a href="/componenti-ui/card-interattive/" class="button-simple" aria-label="Apri componente card interattive">Apri componente</a>
+            <a href="/componenti-ui/card-interattive/" class="button-simple" aria-label="Apri componente card contenuto">Apri componente</a>
           </div>
           <div class="card project-card project-card--navbar">
-            <p class="project-card__eyebrow">Responsive structure</p>
-            <h4><i class="fas fa-grip-lines"></i> Minimal Navbar</h4>
+            <p class="project-card__eyebrow">Responsive navigation</p>
+            <h4><i class="fas fa-bars-staggered"></i> Header accessibile</h4>
             <p>
-              Navbar minimale e responsive utile come base per header leggeri,
-              menu mobile e navigazione più pulita.
+              Header responsive con menu mobile, stato corrente,
+              <code>aria-expanded</code>, focus visibile e chiusura con Escape.
             </p>
             <div class="project-card__meta" aria-hidden="true">
               <span>Header</span>
-              <span>Mobile</span>
+              <span>ARIA</span>
             </div>
-            <a href="/componenti-ui/minimal-navbar/" class="button-simple" aria-label="Apri componente minimal navbar">Apri componente</a>
+            <a href="/componenti-ui/minimal-navbar/" class="button-simple" aria-label="Apri componente header accessibile">Apri componente</a>
           </div>
           <div class="card project-card project-card--form">
             <p class="project-card__eyebrow">Input experience</p>
-            <h4><i class="fas fa-list-check"></i> Form Effetti Resize</h4>
+            <h4><i class="fas fa-list-check"></i> Form validato</h4>
             <p>
-              Un form con micro-effetti e variazioni di stato per rendere più
-              curato un pattern che di solito resta troppo anonimo.
+              Form contatto con label, errori collegati ai campi, stato
+              loading e feedback finale annunciabile.
             </p>
             <div class="project-card__meta" aria-hidden="true">
-              <span>Fields</span>
-              <span>States</span>
+              <span>Errors</span>
+              <span>Status</span>
             </div>
-            <a href="/componenti-ui/form/" class="button-simple" aria-label="Apri componente form effetti resize">Apri componente</a>
+            <a href="/componenti-ui/form/" class="button-simple" aria-label="Apri componente form validato">Apri componente</a>
           </div>
         </div>
       </section>

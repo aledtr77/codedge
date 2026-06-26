@@ -1,93 +1,59 @@
-// src/scripts/components/scroll-indicator.js
-// Modulo pulito per lo Scroll Indicator
-let _scrollIndicatorInitialized = false;
+export function initReadingProgress(rootSelector = "[data-reading-progress]") {
+  const root = document.querySelector(rootSelector);
+  if (!root) return;
 
-export function initScrollIndicator({
-  indicatorSelector = "#scrollIndicator",
-  circleSelector = ".progress-ring__circle",
-  visibleThresholdPercent = 10,
-} = {}) {
-  if (_scrollIndicatorInitialized) return;
-  _scrollIndicatorInitialized = true;
+  const scroller = root.querySelector("[data-reading-scroller]");
+  const progressBar = root.querySelector("[data-reading-bar]");
+  const topButton = root.querySelector("[data-reading-top]");
+  const links = Array.from(root.querySelectorAll("[data-reading-link]"));
+  const sections = Array.from(root.querySelectorAll("[data-reading-section]"));
+  if (!scroller || !progressBar || !sections.length) return;
 
-  const indicator = document.querySelector(indicatorSelector);
-  const circle = document.querySelector(circleSelector);
+  const getSectionTop = (section) =>
+    section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
 
-  if (!indicator || !circle) {
-    // elementi mancanti: non inizializziamo nulla
-    console.warn("[scroll-indicator] Elementi mancanti, skip init.");
-    return;
-  }
+  const update = () => {
+    const maxScroll = Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+    const progress = Math.min(1, Math.max(0, scroller.scrollTop / maxScroll));
+    progressBar.style.transform = `scaleX(${progress})`;
 
-  // Ottieni raggio: try attribute -> fallback baseVal -> fallback numero
-  const radiusAttr = circle.getAttribute("r");
-  const radius =
-    (typeof radiusAttr === "string" && Number(radiusAttr)) ||
-    (circle.r && circle.r.baseVal && circle.r.baseVal.value) ||
-    18;
+    let activeSection = sections[0];
+    const readingLine = scroller.scrollTop + scroller.clientHeight * 0.45;
 
-  const circumference = 2 * Math.PI * radius;
+    sections.forEach((section) => {
+      if (getSectionTop(section) <= readingLine) {
+        activeSection = section;
+      }
+    });
 
-  // imposta stroke per l'animazione
-  circle.style.strokeDasharray = `${circumference} ${circumference}`;
-  circle.style.strokeDashoffset = `${circumference}`;
+    if (scroller.scrollTop >= maxScroll - 2) {
+      activeSection = sections[sections.length - 1];
+    }
 
-  const setProgress = (percent) => {
-    const clamped = Math.max(0, Math.min(100, percent));
-    const offset = circumference - (clamped / 100) * circumference;
-    circle.style.strokeDashoffset = String(offset);
-  };
-
-  // rAF throttle per evitare spam di eventi scroll
-  let ticking = false;
-  const updateFromScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const doc = document.documentElement;
-      const scrollTop = doc.scrollTop || window.pageYOffset || 0;
-      const max = Math.max(1, doc.scrollHeight - doc.clientHeight); // evita divisione per 0
-      const percent = (scrollTop / max) * 100;
-      setProgress(percent);
-
-      if (percent > visibleThresholdPercent) indicator.classList.add("is-visible");
-      else indicator.classList.remove("is-visible");
-
-      ticking = false;
+    links.forEach((link) => {
+      const target = link.getAttribute("href")?.replace("#", "");
+      link.classList.toggle("is-active", target === activeSection.id);
     });
   };
 
-  // listener scroll
-  window.addEventListener("scroll", updateFromScroll, { passive: true });
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href")?.replace("#", "");
+      const target = targetId ? root.querySelector(`#${CSS.escape(targetId)}`) : null;
+      if (!target) return;
 
-  // init subito (stato iniziale della pagina)
-  updateFromScroll();
-
-  // esponi funzione globale per compatibility con inline onclick="scrollToTop()"
-  // (se vuoi evitare l'inline, puoi rimuoverlo e usare il listener sotto)
-  window.scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  // click sul contenitore -> scroll to top
-  indicator.addEventListener("click", (ev) => {
-    ev.preventDefault();
-    window.scrollToTop();
+      event.preventDefault();
+      scroller.scrollTo({
+        top: getSectionTop(target) - 16,
+        behavior: "smooth",
+      });
+    });
   });
 
-  // Optional: chiudi/ritorna stato quando la pagina viene navigata via history (SPA simple)
-  window.addEventListener("popstate", updateFromScroll);
+  topButton?.addEventListener("click", () => {
+    scroller.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
-  // Pulizia (utile se vuoi distruggere il widget manualmente - non usata ora)
-  // ritorniamo un oggetto con destroy() per eventuale uso futuro
-  return {
-    destroy() {
-      window.removeEventListener("scroll", updateFromScroll);
-      window.removeEventListener("popstate", updateFromScroll);
-      indicator.removeEventListener("click", window.scrollToTop);
-      // Non cancelliamo window.scrollToTop per evitare collisioni con altri script,
-      // ma puoi farlo qui se sei sicuro che nessun altro lo usa.
-      _scrollIndicatorInitialized = false;
-    },
-  };
+  scroller.addEventListener("scroll", update, { passive: true });
+  update();
 }

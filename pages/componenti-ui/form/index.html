@@ -5,16 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="stylesheet" href="/critical.css" />
-<title>Form con resize automatico | Codedge</title>
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Form contatto con validazione accessibile | Codedge</title>
   <meta name="description"
-    content="Form con input e textarea a resize automatico, micro-effetti e stati curati: esempio pratico in HTML, CSS e JavaScript pronto da studiare e adattare.">
+    content="Form contatto con validazione accessibile, messaggi di errore, stato loading, feedback di successo e markup HTML/CSS/JS pronto da adattare.">
   <link rel="canonical" href="https://codedge.it/componenti-ui/form/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Form con resize automatico | HTML, CSS e JavaScript | Codedge" />
-  <meta property="og:description" content="Form con input e textarea a resize automatico, micro-effetti e stati curati: esempio pratico in HTML, CSS e JavaScript pronto da studiare e adattare." />
+  <meta property="og:title" content="Form contatto con validazione accessibile | Codedge" />
+  <meta property="og:description"
+    content="Form contatto con validazione accessibile, messaggi di errore, stato loading, feedback di successo e markup HTML/CSS/JS pronto da adattare." />
   <meta property="og:url" content="https://codedge.it/componenti-ui/form/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -22,45 +23,38 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Anteprima CODEDGE" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Form con resize automatico | HTML, CSS e JavaScript | Codedge" />
-  <meta name="twitter:description" content="Form con input e textarea a resize automatico, micro-effetti e stati curati: esempio pratico in HTML, CSS e JavaScript pronto da studiare e adattare." />
+  <meta name="twitter:title" content="Form contatto con validazione accessibile | Codedge" />
+  <meta name="twitter:description"
+    content="Form contatto con validazione accessibile, messaggi di errore, stato loading, feedback di successo e markup HTML/CSS/JS pronto da adattare." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
-  <!-- ICONS (in public/icons/) -->
-  <!-- Favicon / icone in formati diversi per browser e dispositivi -->
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
   <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <!-- Icona per quando l'utente aggiunge il sito alla Home su iOS -->
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-  <!-- Manifest PWA: definisce risorse e impostazioni per l'installazione come app -->
   <link rel="manifest" href="/site.webmanifest" />
-  <!-- Mask icon per Safari pinned tabs (colore specificato) -->
   <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
-  <!-- Colore dell'interfaccia del browser su dispositivi compatibili -->
   <meta name="theme-color" content="#00A8FF" />
-  <!-- Abilita comportamento da web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
 <body>
   <header>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navigazione principale">
       <div class="navbar-container">
         <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
         <h1 class="resize-text">
-          <i class="fas fa-list-check" aria-hidden="true"></i> Form Effetti
-          Resize
+          <i class="fas fa-list-check" aria-hidden="true"></i> Form validato
         </h1>
         <div class="menu-icon">
           <span class="bar"></span> <span class="bar"></span>
           <span class="bar"></span>
         </div>
-<ul id="nav-menu" class="nav-menu">
+        <ul id="nav-menu" class="nav-menu">
           <li class="nav-item">
             <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
           </li>
@@ -82,140 +76,104 @@
         </ul>
       </div>
     </nav>
-
   </header>
-  <h2 class="h2_resize">Form con effetti di resize: descrizione e codice</h2>
-  <main>
-    <div class="container">
-      <h3>Invia un messaggio</h3>
-      <form>
-        <div class="form-group">
-          <input id="nome" required="" placeholder=" ">
-          <label for="nome">Nome</label>
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" required="" placeholder=" ">
-          <label for="email">Email</label>
-        </div>
-        <div class="form-group">
-          <input id="oggetto" required="" placeholder=" ">
-          <label for="oggetto">Oggetto</label>
-        </div>
-        <div class="form-group">
-          <textarea id="messaggio" required="" placeholder=" "></textarea>
-          <label for="messaggio">Messaggio</label>
-        </div>
-        <button type="submit" class="button-simple">
-          Invia messaggio <i class="fa-solid fa-share"></i>
-        </button>
-      </form>
-    </div>
-    <section class="content-section">
-      <h3>Descrizione generale</h3>
-      <p>
-        Questo codice crea un modulo di contatto interattivo con effetti di
-        animazione e resize sugli input. Il modulo contiene campi per nome,
-        email, oggetto e messaggio, ed è progettato per essere visivamente
-        accattivante grazie all'utilizzo di animazioni che migliorano
-        l'esperienza utente. I campi di input e textarea cambiano stile quando
-        vengono selezionati, e sono presenti controlli di validazione che
-        offrono feedback visivo in caso di errore.
+
+  <main id="main-content" class="ui-detail">
+    <section class="ui-hero" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Form contatto con validazione accessibile</h2>
+      <p class="ui-hero__lead">
+        Un form compatto per contatti o richieste: label esplicite, errori collegati ai campi, validazione lato client,
+        stato di invio e messaggio finale dentro una regione annunciabile.
       </p>
-      <h3>Come funziona il codice</h3>
-      <h4>1. HTML: Struttura del contenuto</h4>
-      <p>Il codice HTML definisce la struttura base del modulo:</p>
-      <ul class="feature-list">
-        <li>
-          <strong>Form:</strong> Ogni campo del modulo è racchiuso in un
-          elemento <code>&lt;div&gt;</code> con classe
-          <code>form-group</code>, che contiene un campo di input o textarea e
-          un'etichetta <code>&lt;label&gt;</code>.
-        </li>
-        <li>
-          <strong>Placeholder:</strong> Il testo di placeholder è stilizzato
-          tramite il posizionamento dell'etichetta, che si sposta sopra il
-          campo di input quando quest'ultimo è attivo o compilato.
-        </li>
-        <li>
-          <strong>Bottone di invio:</strong> Un pulsante
-          <code>&lt;button&gt;</code> viene utilizzato per inviare il
-          messaggio, corredato di un'icona per una maggiore chiarezza visiva.
-        </li>
-      </ul>
-      <h4>2. CSS: Stile visivo</h4>
-      <p>Il CSS gestisce lo stile del modulo e dei suoi elementi:</p>
-      <ul class="feature-list">
-        <li>
-          <strong>Form responsive:</strong> Il modulo ha una larghezza massima
-          impostata e utilizza Flexbox per il layout, garantendo una buona
-          resa visiva su diverse dimensioni di schermo.
-        </li>
-        <li>
-          <strong>Animazioni sugli input:</strong> Le etichette dei campi si
-          riducono e si spostano in alto quando il campo è attivo o compilato,
-          creando un effetto di animazione fluido.
-        </li>
-        <li>
-          <strong>Validazione visiva:</strong> Se un campo non è valido, il
-          bordo cambia colore in rosso e viene applicata un'animazione di
-          shake per indicare l'errore.
-        </li>
-      </ul>
-      <h4>3. Possibili estensioni con JavaScript</h4>
-      <p>
-        Attualmente, il modulo non include JavaScript per l'interattività, ma
-        può essere facilmente esteso per aggiungere funzioni avanzate, come:
-      </p>
-      <ul class="feature-list">
-        <li>
-          <strong>Validazione lato client:</strong> Può essere aggiunto
-          JavaScript per eseguire controlli di validazione sui campi prima
-          dell'invio. Ad esempio, verificare che l'email sia formattata
-          correttamente o che tutti i campi richiesti siano compilati.
-        </li>
-        <li>
-          <strong>Messaggi di errore personalizzati:</strong> In caso di
-          errore nella compilazione, JavaScript può visualizzare messaggi di
-          errore specifici per ogni campo, migliorando la comunicazione con
-          l'utente.
-        </li>
-        <li>
-          <strong>Integrazione con servizi di backend:</strong> Il modulo può
-          essere connesso a un'API backend per inviare i dati tramite AJAX
-          senza ricaricare la pagina, migliorando l'efficienza e l'esperienza
-          utente.
-        </li>
-      </ul>
-      <h4>Funzionalità principali</h4>
-      <ul class="feature-list">
-        <li>
-          <strong>Effetti di animazione:</strong> Il modulo include animazioni
-          fluide per migliorare l'usabilità, come la riduzione delle etichette
-          durante l'inserimento dei dati nei campi di input.
-        </li>
-        <li>
-          <strong>Feedback visivo in caso di errore:</strong> Se un campo non
-          è valido, viene mostrato un feedback visivo con un'animazione di
-          "shake" per attirare l'attenzione dell'utente.
-        </li>
-        <li>
-          <strong>Resize textarea:</strong> Il campo di testo per il messaggio
-          può essere ridimensionato verticalmente, per adattarsi alla
-          lunghezza del contenuto inserito.
-        </li>
-      </ul>
-      <h4><i class="fas fa-download"></i> Download codice</h4>
-      <p>
-        Trovate il link con il codice completo della descrizione dettagliata
-        riga per riga nella sezione dedicata
-        <a href="/risorse/snippet-library/#form-effetti-resize">UI Components.</a>
-      </p>
+      <div class="ui-hero__actions">
+        <a href="/risorse/snippet-library/#validated-contact-form" class="button-simple">
+          <i class="fas fa-code" aria-hidden="true"></i> Codice nella Snippet Library
+        </a>
+        <a href="/componenti-ui/" class="ui-secondary-link">Tutti i componenti</a>
+      </div>
     </section>
+
+    <section class="ui-demo-panel" aria-labelledby="form-demo-title">
+      <div class="ui-demo-panel__header">
+        <div>
+          <h3 id="form-demo-title">Demo form</h3>
+          <p>Invio simulato: prova campi vuoti, email non valida e messaggio troppo breve.</p>
+        </div>
+        <div class="contact-demo-meta" aria-label="Caratteristiche">
+          <span>Validation</span>
+          <span>Errors</span>
+          <span>Status</span>
+        </div>
+      </div>
+
+      <div class="ui-demo-panel__body">
+        <div class="contact-demo">
+          <div class="contact-demo__intro">
+            <p class="contact-demo__eyebrow">Richiesta progetto</p>
+            <h4>Raccogli dati utili senza lasciare l'utente nel dubbio.</h4>
+            <p>Ogni errore ha un testo dedicato e resta associato al campo tramite <code>aria-describedby</code>.</p>
+          </div>
+
+          <form class="contact-form" data-contact-form novalidate>
+            <div class="contact-field">
+              <label for="contact-name">Nome</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required minlength="2"
+                data-validate="name" aria-describedby="contact-name-error" aria-invalid="false">
+              <p class="contact-field__error" id="contact-name-error"></p>
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required data-validate="email"
+                aria-describedby="contact-email-error" aria-invalid="false">
+              <p class="contact-field__error" id="contact-email-error"></p>
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-topic">Argomento</label>
+              <select id="contact-topic" name="topic" required data-validate="topic"
+                aria-describedby="contact-topic-error" aria-invalid="false">
+                <option value="">Seleziona</option>
+                <option>Nuovo sito</option>
+                <option>Template</option>
+                <option>Consulenza front-end</option>
+              </select>
+              <p class="contact-field__error" id="contact-topic-error"></p>
+            </div>
+
+            <div class="contact-field contact-field--full">
+              <label for="contact-message">Messaggio</label>
+              <textarea id="contact-message" name="message" rows="5" required minlength="12" data-validate="message"
+                aria-describedby="contact-message-error" aria-invalid="false"></textarea>
+              <p class="contact-field__error" id="contact-message-error"></p>
+            </div>
+
+            <button class="contact-form__submit button-simple" type="submit" data-submit-button>
+              Invia richiesta
+            </button>
+            <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui-notes-grid" aria-label="Note sul componente">
+      <article class="ui-note">
+        <h3>Quando usarlo</h3>
+        <p>Per contatti, preventivi, iscrizioni brevi o qualunque flusso dove il feedback sui campi conta davvero.</p>
+      </article>
+      <article class="ui-note">
+        <h3>Cosa risolve</h3>
+        <p>Evita errori generici e stati invisibili: ogni campo comunica chiaramente cosa manca e cosa è valido.</p>
+      </article>
+      <article class="ui-note">
+        <h3>Come adattarlo</h3>
+        <p>Collega il submit alla tua API o a un servizio form. La demo mantiene separati markup, stile e validazione.</p>
+      </article>
+    </section>
+
   </main>
 
-  <!-- ENTRY MODULE (unico)
-       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
-       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
   <script type="module" src="/src/scripts/pages/componenti-ui/form/main.js"></script>
 </body>
 

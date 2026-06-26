@@ -1,223 +1,192 @@
-#scrollIndicator {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+.reading-progress {
+  background: #171d22;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.reading-progress__meta {
+  color: rgba(242, 242, 242, 0.64);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
-.arrow {
-  font-size: 16px;
-  color: #000;
-  position: absolute;
-  z-index: 1;
+
+.reading-progress__meta span + span::before {
+  content: "/";
+  color: rgba(242, 242, 242, 0.32);
+  margin-right: 0.85rem;
 }
-.progress-ring {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
+
+.reading-progress__toc {
+  background: #20272d;
+  border-right: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
 }
-.progress-ring__circle {
-  transition: stroke-dashoffset 0.1s;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
+
+.reading-progress__toc p {
+  color: #ffcf7a;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
 }
-.content,
-.content-section {
-  padding: 20px;
-  font-size: 20px;
-}
-.content {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  color: var(--text-color);
-}
-.content-section {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #fff;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: justify;
-}
-.content-section a {
+
+.reading-progress__toc a,
+.reading-progress__toc button {
+  border-radius: 6px;
+  color: rgba(242, 242, 242, 0.76);
+  font: inherit;
+  font-weight: 800;
+  min-height: 2.5rem;
+  padding: 0.6rem 0.7rem;
+  text-align: left;
   text-decoration: none;
-  color: #fff;
-}
-.content-section a:hover {
-  text-decoration: underline;
-}
-.h2_resize {
-  font-size: 1.5rem;
-  text-align: center;
-  padding-top: 50px;
-}
-h3,
-h4 {
-  color: #1976d2;
-}
-h3 {
-  font-size: 1.8em;
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-h4 {
-  font-size: 1.4em;
-  margin-top: 25px;
-}
-.code-block {
-  background: #333131;
-  padding: 15px;
-  border-radius: 5px;
-  margin: 15px 0;
-  font-family: monospace;
-  white-space: pre-wrap;
-}
-.feature-list {
-  padding-left: 20px;
-}
-.feature-list li,
-h4 {
-  margin-bottom: 10px;
-}
-@media (max-width: 768px) {
-  #scrollIndicator {
-    bottom: 120px;
-    right: 6px;
-    bottom: calc(120px + env(safe-area-inset-bottom, 0));
-    right: calc(6px + env(safe-area-inset-right, 0));
-  }
-}
-/* stato base: nascosto */
-#scrollIndicator {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
 }
 
-/* quando JS aggiunge la classe */
-#scrollIndicator.is-visible {
-  opacity: 1;
-  pointer-events: auto;
+.reading-progress__toc a {
+  border: 1px solid transparent;
 }
-/* ==========================
-   FIX RESPONSIVE: navbar / header / main per mobile
-   Aggiungi alla fine di index.css
-   ========================== */
 
-/* Assicuriamoci che il container della navbar sia flessibile e wrappi */
-.navbar-container {
-  display: flex;
+.reading-progress__toc a:hover,
+.reading-progress__toc a:focus-visible,
+.reading-progress__toc a.is-active {
+  background: rgba(139, 217, 199, 0.12);
+  border-color: rgba(139, 217, 199, 0.28);
+  color: #a8f0df;
+}
+
+.reading-progress__toc button {
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 16px;
-  box-sizing: border-box;
-  flex-wrap: wrap; /* permette il wrap su mobile */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+    #123743;
+  border: 1px solid rgba(168, 240, 223, 0.5);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #f8fbff;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-top: auto;
+  text-align: center;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
 }
 
-/* Logo più piccolo su schermi piccoli (non altera desktop) */
-.logo {
-  max-width: 80px; /* desktop */
-  height: auto;
+.reading-progress__toc button:hover,
+.reading-progress__toc button:focus-visible {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)),
+    #a8f0df;
+  border-color: #d6fff4;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(168, 240, 223, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46);
+  color: #10201f;
+  transform: translateY(-1px);
 }
 
-/* Titolo grande: nascondilo su mobile (se occupa troppo) */
-@media (max-width: 768px) {
-  .resize-text,
-  .h2_resize {
-    display: none; /* evita overflow del titolo nella navbar */
-  }
-
-  .navbar-container .logo {
-    max-width: 48px; /* compatto */
-  }
-
-  /* rendiamo il menu icon sempre visibile e sopra gli altri elementi */
-  .menu-icon {
-    cursor: pointer;
-    z-index: 2600;
-  }
-
-  /* Nav menu: di base nascosto su mobile, mostrato quando ha classe .active
-     (manteniamo display:block only when active per non interferire col desktop) */
-  #nav-menu,
-  .nav-menu {
-    box-sizing: border-box;
-  }
-
-  /* Stile del menu aperto (posizionato sotto la navbar) */
-  nav.navbar .nav-menu.active,
-  .nav-menu.active {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background: var(--background-one);
-    z-index: 2200;
-    padding: 8px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-  }
-
-  /* voce del menu in colonna per mobile */
-  .nav-menu li {
-    list-style: none;
-    padding: 8px 16px;
-  }
-  .nav-menu li a {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Main content padding e wrapping per evitare overflow */
-  main,
-  .content-section {
-    padding-left: 12px;
-    padding-right: 12px;
-    box-sizing: border-box;
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* Spazio per il scroll indicator (evitiamo collisioni con menu/aside) */
-  #scrollIndicator {
-    right: calc(6px + env(safe-area-inset-right, 0));
-    bottom: calc(120px + env(safe-area-inset-bottom, 0));
-  }
-
-  /* Evita che elementi con larghezze fisse rompano il layout */
-  img,
-  svg,
-  pre,
-  code {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* Piccole ottimizzazioni: testo leggibile e line-height su mobile */
-  .content-section {
-    font-size: 16px;
-    line-height: 1.6;
-  }
+.reading-progress__toc button:active {
+  transform: translateY(0);
 }
 
-/* Ulteriore fallback per schermi molto stretti */
-@media (max-width: 420px) {
-  .navbar-container {
-    padding-left: 10px;
-    padding-right: 10px;
+.reading-progress__content {
+  max-height: 520px;
+  overflow: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.reading-progress__bar {
+  background: rgba(255, 255, 255, 0.08);
+  height: 0.35rem;
+  left: 0;
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.reading-progress__bar span {
+  background: linear-gradient(90deg, #8bd9c7, #7ec8ff, #ffcf7a);
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.12s ease;
+}
+
+.reading-progress__content section {
+  display: grid;
+  gap: 0.7rem;
+  min-height: 360px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.reading-progress__content section + section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reading-progress__eyebrow {
+  color: #8bd9c7;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.reading-progress__content h4 {
+  color: var(--text-color);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.reading-progress__content p {
+  color: rgba(242, 242, 242, 0.74);
+  line-height: 1.72;
+  margin: 0;
+  max-width: 68ch;
+}
+
+.reading-progress__toc a:focus-visible,
+.reading-progress__toc button:focus-visible,
+.reading-progress__content:focus-visible {
+  outline: 2px solid #8bd9c7;
+  outline-offset: 3px;
+}
+
+@media (max-width: 820px) {
+  .reading-progress {
+    grid-template-columns: 1fr;
   }
-  .logo {
-    max-width: 40px;
+
+  .reading-progress__toc {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .reading-progress__toc button {
+    margin-top: 0.5rem;
   }
 }

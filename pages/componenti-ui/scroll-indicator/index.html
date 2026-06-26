@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="stylesheet" href="/critical.css" />
-<title>Scroll indicator con progresso pagina e torna su | Codedge</title>
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Indice di lettura con progress bar | Codedge</title>
   <meta name="description"
-    content="Indicatore circolare dello scroll con pulsante Torna su: compare dopo il 10% della pagina e mostra l’avanzamento in tempo reale, pronto da copiare.">
-
+    content="Indice di lettura con progress bar, sezione attiva e pulsante torna su: componente utile per guide lunghe, articoli e documentazione.">
   <link rel="canonical" href="https://codedge.it/componenti-ui/scroll-indicator/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Scroll indicator con progresso pagina e torna su | Codedge" />
-  <meta property="og:description" content="Indicatore circolare dello scroll con pulsante Torna su: compare dopo il 10% della pagina e mostra l’avanzamento in tempo reale, pronto da copiare." />
+  <meta property="og:title" content="Indice di lettura con progress bar | Codedge" />
+  <meta property="og:description"
+    content="Indice di lettura con progress bar, sezione attiva e pulsante torna su: componente utile per guide lunghe, articoli e documentazione." />
   <meta property="og:url" content="https://codedge.it/componenti-ui/scroll-indicator/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -23,47 +23,38 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Anteprima CODEDGE" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Scroll indicator con progresso pagina e torna su | Codedge" />
-  <meta name="twitter:description" content="Indicatore circolare dello scroll con pulsante Torna su: compare dopo il 10% della pagina e mostra l’avanzamento in tempo reale, pronto da copiare." />
+  <meta name="twitter:title" content="Indice di lettura con progress bar | Codedge" />
+  <meta name="twitter:description"
+    content="Indice di lettura con progress bar, sezione attiva e pulsante torna su: componente utile per guide lunghe, articoli e documentazione." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
-  <!-- ICONS (in public/icons/) -->
-  <!-- Favicon / icone in formati diversi per browser e dispositivi -->
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
   <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <!-- Icona per quando l'utente aggiunge il sito alla Home su iOS -->
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-  <!-- Manifest PWA: definisce risorse e impostazioni per l'installazione come app -->
   <link rel="manifest" href="/site.webmanifest" />
-  <!-- Mask icon per Safari pinned tabs (colore specificato) -->
   <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
-  <!-- Colore dell'interfaccia del browser su dispositivi compatibili -->
   <meta name="theme-color" content="#00A8FF" />
-  <!-- Abilita comportamento da web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-
-
 </head>
 
 <body>
   <header>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navigazione principale">
       <div class="navbar-container">
         <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
         <h1 class="resize-text">
-          <i class="fas fa-chevron-up" aria-hidden="true"></i> Scroll
-          Indicator
+          <i class="fas fa-list-ul" aria-hidden="true"></i> Indice lettura
         </h1>
         <div class="menu-icon">
           <span class="bar"></span> <span class="bar"></span>
           <span class="bar"></span>
         </div>
-<ul id="nav-menu" class="nav-menu">
+        <ul id="nav-menu" class="nav-menu">
           <li class="nav-item">
             <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
           </li>
@@ -85,187 +76,105 @@
         </ul>
       </div>
     </nav>
-
   </header>
-  <h2 class="h2_resize">
-    Indicatore di scorrimento della pagina: descrizione e codice
-  </h2>
-  <main>
-    <div id="scrollIndicator">
-      <svg class="progress-ring" width="40" height="40">
-        <circle class="progress-ring__circle" stroke="#00bfff" stroke-width="3" fill="transparent" r="18" cx="20"
-          cy="20"></circle>
-      </svg>
-      <i class="fas fa-chevron-up arrow"></i>
-    </div>
-    <section class="content-section">
-      <h3>Descrizione generale</h3>
-      <p>
-        Questa pagina mostra un indicatore circolare dello scroll con un pulsante “Torna su”.
-        Il cerchio si riempie in base alla percentuale di pagina scorsa; il pulsante
-        resta nascosto quando sei all’inizio e <strong>compare dopo il 10% di scroll</strong>.
-        Un clic ti riporta in cima con uno scorrimento fluido.
+
+  <main id="main-content" class="ui-detail">
+    <section class="ui-hero" aria-labelledby="reading-progress-title">
+      <h2 id="reading-progress-title">Indice di lettura con progress bar</h2>
+      <p class="ui-hero__lead">
+        Un pattern pensato per guide e documentazione: mostra quanto manca alla fine, evidenzia la sezione corrente e
+        offre un ritorno rapido all'inizio del contenuto.
       </p>
-      <h3>Come funziona il codice</h3>
-      <h4>1. HTML: Struttura del contenuto</h4>
-      <p>Il codice HTML definisce la struttura di base della pagina:</p>
-      <ul class="feature-list">
-        <li>
-          <strong>Header:</strong> Include le meta informazioni per la pagina
-          (codifica caratteri e responsività), oltre a un link per caricare la
-          libreria Font Awesome, necessaria per visualizzare le icone delle
-          frecce.
-        </li>
-        <li>
-          <strong>Main Content:</strong>
-          <ul>
-            <li>
-              Un <code>&lt;div&gt;</code> con
-              <code>id="scrollIndicator"</code> rappresenta il pulsante che
-              appare in basso a destra della finestra quando si scorre la
-              pagina. Dentro questo <code>&lt;div&gt;</code> ci sono:
-            </li>
-            <li>
-              Un elemento SVG che rappresenta il cerchio che agisce come
-              indicatore di scroll.
-            </li>
-            <li>
-              Un'icona freccia (presa da Font Awesome) che punta verso l'alto,
-              indicando che il pulsante permette di tornare in cima.
-            </li>
-          </ul>
-        </li>
-        <li>
-          <strong>Script JavaScript:</strong> Nella parte finale del corpo
-          della pagina troviamo un blocco <code>&lt;script&gt;</code> che
-          controlla la logica di interazione e il comportamento dello scroll
-          indicator.
-        </li>
-      </ul>
-      <h4>2. CSS: Stile visivo</h4>
-      <p>
-        Il CSS gestisce la formattazione e lo stile visivo del pulsante e del
-        contenuto:
-      </p>
-      <ul class="feature-list">
-        <li>
-          Il pulsante (<code>#scrollIndicator</code>) è un cerchio di 40px con sfondo e ombra, posizionato in basso a
-          destra via <code>position: fixed</code>.
-        </li>
-        <li>
-          Stato base nascosto: il CSS imposta <code>opacity: 0</code> e <code>pointer-events: none</code> su
-          <code>#scrollIndicator</code>. Quando il JavaScript aggiunge la classe <code>.is-visible</code> (dopo il 10%
-          di scroll), il bottone diventa visibile.
-        </li>
-        <li>
-          L’icona freccia (classe <code>.arrow</code>) è centrata tramite flexbox.
-        </li>
-        <li>
-          Il cerchio SVG (<code>.progress-ring__circle</code>) usa
-          <code>stroke-dasharray</code>/<code>stroke-dashoffset</code> per mostrare l’avanzamento in modo fluido.
-        </li>
-      </ul>
-
-      <h4>3. JavaScript: Logica di funzionamento</h4>
-      <p>
-        La logica principale per il funzionamento del pulsante di ritorno e
-        del cerchio di avanzamento è scritta in JavaScript:
-      </p>
-      <ul class="feature-list">
-        <li>
-          <strong>Calcolo della circonferenza:</strong> dal raggio (<code>r=18</code>) del cerchio SVG si ottiene
-          <code>circumference = 2 * Math.PI * r</code>. Questo valore è usato per impostare
-          <code>stroke-dasharray</code> e per aggiornare <code>stroke-dashoffset</code>.
-        </li>
-        <li>
-          <strong>Percentuale di scroll:</strong> ad ogni scroll (ottimizzato con <code>requestAnimationFrame</code>) si
-          calcola la percentuale come
-          <code>(scrollTop / (scrollHeight - clientHeight)) * 100</code>.
-        </li>
-        <li>
-          <strong>Avanzamento cerchio:</strong> dato <em>percent</em>, l’offset viene aggiornato a
-          <code>circumference - (percent / 100) * circumference</code>.
-        </li>
-        <li>
-          <strong>Visibilità dinamica del pulsante:</strong> il bottone compare solo quando la percentuale supera il
-          <strong>10%</strong> (soglia configurabile). In pratica:
-          <code>indicator.classList.toggle('is-visible', percent &gt; 10);</code>
-        </li>
-        <li>
-          <strong>Ritorno in cima:</strong> il click esegue uno scroll fluido con
-          <code>window.scrollTo({ top: 0, behavior: 'smooth' })</code>.
-        </li>
-      </ul>
-
-      <h4>Funzionalità principali</h4>
-      <ul class="feature-list">
-        <li>
-          <strong>Indicatore di progresso:</strong> il cerchio mostra in tempo reale la percentuale di pagina scorsa.
-        </li>
-        <li>
-          <strong>Pulsante di ritorno in cima (non invasivo):</strong> resta nascosto all’inizio e <strong>appare dopo
-            il 10% di scroll</strong>, per non distrarre nelle prime righe della pagina.
-        </li>
-        <li>
-          <strong>Design responsivo e animazioni fluide:</strong> transizioni morbide e comportamento coerente su
-          diverse altezze di viewport.
-        </li>
-      </ul>
-
-      <h4>Possibili varianti</h4>
-      <ul class="feature-list">
-        <li>
-          <strong>Personalizzazione del pulsante:</strong>
-          puoi aggiungere effetti hover (colore di sfondo/ombra/icone), cambiare dimensioni o il colore della traccia
-          dell’SVG per adattarlo al tuo tema.
-        </li>
-        <li>
-          <strong>Visibilità dinamica (soglia personalizzabile):</strong>
-          il pulsante può diventare visibile solo dopo una certa quantità di scroll, così non distrae in cima alla
-          pagina. Alcune idee:
-          <ol>
-            <li>
-              <strong>Valore fisso (px)</strong>
-              <p>Usa una soglia fissa in pixel (es. 120px). Quando l'utente scorre oltre quel valore il pulsante viene
-                mostrato. Metodo semplice, prevedibile e adatto a layout che non cambiano molto fra device.</p>
-            </li>
-
-            <li>
-              <strong>In base all'altezza della viewport</strong>
-              <p>Calcola la soglia come percentuale dell'altezza della finestra (es. 25% di window.innerHeight). Utile
-                quando vuoi che il comportamento sia proporzionale alla dimensione dello schermo.</p>
-            </li>
-
-            <li>
-              <strong>In base alla percentuale di pagina scrollata</strong>
-              <p>Mostra il pulsante quando l'utente ha scrollato una certa percentuale della pagina (es. dopo il 10% del
-                documento). Funziona bene su pagine molto lunghe o con contenuti dinamici.</p>
-            </li>
-
-          </ol>
-        </li>
-      </ul>
-
-      <h4>Conclusioni</h4>
-      <p>
-        Questa soluzione è semplice ma efficace e offre all'utente
-        un'esperienza più interattiva e visivamente piacevole quando naviga in
-        pagine con molto contenuto.
-      </p>
-      <h4><i class="fas fa-download"></i> Download codice</h4>
-      <p>
-        Trovate il link con il codice completo della descrizione dettagliata
-        riga per riga nella sezione dedicata
-        <a href="/risorse/snippet-library/#scroll-indicator">UI Components.</a>
-      </p>
+      <div class="ui-hero__actions">
+        <a href="/risorse/snippet-library/#reading-progress-nav" class="button-simple">
+          <i class="fas fa-code" aria-hidden="true"></i> Codice nella Snippet Library
+        </a>
+        <a href="/componenti-ui/" class="ui-secondary-link">Tutti i componenti</a>
+      </div>
     </section>
+
+    <section class="ui-demo-panel" aria-labelledby="reading-demo-title">
+      <div class="ui-demo-panel__header">
+        <div>
+          <h3 id="reading-demo-title">Demo guida lunga</h3>
+          <p>Scorri il contenuto interno: la barra avanza e l'indice aggiorna la sezione attiva.</p>
+        </div>
+        <div class="reading-progress__meta" aria-label="Caratteristiche">
+          <span>Progress</span>
+          <span>TOC</span>
+          <span>Active</span>
+        </div>
+      </div>
+
+      <div class="ui-demo-panel__body">
+        <div class="reading-progress" data-reading-progress>
+          <aside class="reading-progress__toc" aria-label="Indice demo">
+            <p>Indice</p>
+            <a href="#reading-intro" data-reading-link class="is-active">Contesto</a>
+            <a href="#reading-setup" data-reading-link>Setup</a>
+            <a href="#reading-checks" data-reading-link>Controlli</a>
+            <a href="#reading-next" data-reading-link>Prossimi passi</a>
+            <button type="button" data-reading-top>
+              <i class="fas fa-arrow-up" aria-hidden="true"></i>
+              Torna su
+            </button>
+          </aside>
+
+          <article class="reading-progress__content" data-reading-scroller tabindex="0" aria-label="Contenuto demo">
+            <div class="reading-progress__bar" aria-hidden="true">
+              <span data-reading-bar></span>
+            </div>
+
+            <section id="reading-intro" data-reading-section>
+              <p class="reading-progress__eyebrow">Capitolo 1</p>
+              <h4>Contesto</h4>
+              <p>In una guida lunga l'utente deve capire dove si trova senza perdere il filo. Un indice laterale aiuta a orientarsi e riduce il bisogno di tornare continuamente in cima.</p>
+              <p>La barra di avanzamento non sostituisce i titoli, ma aggiunge un feedback immediato sulla distanza dalla fine.</p>
+            </section>
+
+            <section id="reading-setup" data-reading-section>
+              <p class="reading-progress__eyebrow">Capitolo 2</p>
+              <h4>Setup</h4>
+              <p>Il markup separa indice, contenuto e progress bar. Il JavaScript legge le sezioni disponibili e mantiene sincronizzati link attivo e percentuale di scroll.</p>
+              <p>Su pagine reali puoi collegarlo al documento intero oppure a un contenitore scrollabile, come in questa demo.</p>
+            </section>
+
+            <section id="reading-checks" data-reading-section>
+              <p class="reading-progress__eyebrow">Capitolo 3</p>
+              <h4>Controlli</h4>
+              <p>Il componente deve restare leggibile, non coprire contenuti e funzionare anche senza animazioni complesse. I link dell'indice usano anchor normali e restano comprensibili.</p>
+              <p>Il pulsante torna su e utile quando il contenuto e molto lungo o quando l'indice diventa sticky nella pagina finale.</p>
+            </section>
+
+            <section id="reading-next" data-reading-section>
+              <p class="reading-progress__eyebrow">Capitolo 4</p>
+              <h4>Prossimi passi</h4>
+              <p>Puoi aggiungere sottosezioni, contatori, stato completato o integrazione con il layout delle guide Codedge. La base rimane piccola e facile da mantenere.</p>
+              <p>Il punto non e decorare lo scroll: e dare orientamento a chi legge.</p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui-notes-grid" aria-label="Note sul componente">
+      <article class="ui-note">
+        <h3>Quando usarlo</h3>
+        <p>Per guide lunghe, documentazione, changelog articolati e pagine tutorial con molte sezioni.</p>
+      </article>
+      <article class="ui-note">
+        <h3>Cosa risolve</h3>
+        <p>Rende visibili posizione, avanzamento e ritorno rapido senza affidarsi a un semplice bottone fisso.</p>
+      </article>
+      <article class="ui-note">
+        <h3>Come adattarlo</h3>
+        <p>Usalo con il documento intero o con un contenitore scrollabile. Puoi rendere sticky l'indice su desktop.</p>
+      </article>
+    </section>
+
   </main>
 
-  <!-- ENTRY MODULE (unico)
-       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
-       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
   <script type="module" src="/src/scripts/pages/componenti-ui/scroll-indicator/main.js"></script>
-
 </body>
 
 </html>

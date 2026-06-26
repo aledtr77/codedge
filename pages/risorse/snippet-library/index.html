@@ -264,16 +264,16 @@
           </summary>
           <ul class="tune-list">
             <li>
-              <a href="#scroll-indicator" class="clickable-item">1. Scroll Indicator</a>
+              <a href="#reading-progress-nav" class="clickable-item">1. Indice lettura + progress</a>
             </li>
             <li>
-              <a href="#card--interattive" class="clickable-item">2. Card Interattive</a>
+              <a href="#content-card-pattern" class="clickable-item">2. Card contenuto</a>
             </li>
             <li>
-              <a href="#minimal-navbar" class="clickable-item">3. Minimal Navbar</a>
+              <a href="#accessible-header" class="clickable-item">3. Header accessibile</a>
             </li>
             <li>
-              <a href="#form-effetti-resize" class="clickable-item">4. Form Effetti Resize</a>
+              <a href="#validated-contact-form" class="clickable-item">4. Form validato</a>
             </li>
           </ul>
         </details>
@@ -1149,705 +1149,512 @@
         </div>
       </section>
       <section id="ui-snippets" class="snippet-section">
-        <div id="scroll-indicator" class="spacer"></div>
+        <div id="reading-progress-nav" class="spacer"></div>
         <div class="snippet-box">
           <div class="title-box">
-            <h3 id="scroll-indicator">1. Scroll Indicator</h3>
+            <h3>1. Indice lettura con progress bar</h3>
             <button class="copy-btn">
               <i class="fas fa-copy"></i> Copia
             </button>
           </div>
           <pre><code class="language-html">
-    &lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;it&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot; /&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
-  &lt;title&gt;Scroll Indicator&lt;/title&gt;
+&lt;div class="reading-progress" data-reading-progress&gt;
+  &lt;aside class="reading-progress__toc" aria-label="Indice contenuto"&gt;
+    &lt;a href="#intro" data-reading-link class="is-active"&gt;Introduzione&lt;/a&gt;
+    &lt;a href="#setup" data-reading-link&gt;Setup&lt;/a&gt;
+    &lt;a href="#checks" data-reading-link&gt;Controlli&lt;/a&gt;
+    &lt;button type="button" data-reading-top&gt;Torna su&lt;/button&gt;
+  &lt;/aside&gt;
 
-  &lt;!-- Icone (Font Awesome) --&gt;
-  &lt;link rel=&quot;stylesheet&quot;
-        href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css&quot;/&gt;
-
-  &lt;style&gt;
-    /* Pulsante &quot;torna su&quot; (stato base: nascosto) */
-    #scrollIndicator{
-      position: fixed;
-      bottom: 20px; right: 20px;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,.2);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      opacity: 0; pointer-events: none;
-      transform: scale(.9);
-      transition: opacity .2s ease, transform .2s ease, background .2s ease;
-    }
-    /* Stato visibile dopo la soglia */
-    #scrollIndicator.is-visible{
-      opacity: 1; pointer-events: auto;
-      transform: scale(1);
-    }
-    /* Icona freccia al centro */
-    .arrow{
-      font-size: 16px; color: #000;
-      position: absolute; z-index: 1;
-    }
-    /* Cerchio SVG sotto l’icona */
-    .progress-ring{
-      position: absolute; top: 0; left: 0; z-index: 0;
-    }
-    .progress-ring__circle{
-      transition: stroke-dashoffset .1s;
-      transform: rotate(-90deg);
-      transform-origin: 50% 50%;
-    }
-
-    /* Solo per demo: pagina alta per scroll */
-    .content{
-      height: 2000px;
-      padding: 20px;
-      font: 20px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: #333;
-      text-align: center;
-    }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-  &lt;main&gt;
-    &lt;!-- Pulsante + indicatore --&gt;
-    &lt;div id=&quot;scrollIndicator&quot; onclick=&quot;scrollToTop()&quot;&gt;
-      &lt;svg class=&quot;progress-ring&quot; width=&quot;40&quot; height=&quot;40&quot; aria-hidden=&quot;true&quot;&gt;
-        &lt;circle class=&quot;progress-ring__circle&quot;
-                stroke=&quot;#00bfff&quot; stroke-width=&quot;3&quot; fill=&quot;transparent&quot;
-                r=&quot;18&quot; cx=&quot;20&quot; cy=&quot;20&quot;&gt;&lt;/circle&gt;
-      &lt;/svg&gt;
-      &lt;i class=&quot;fas fa-chevron-up arrow&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;span class=&quot;sr-only&quot; style=&quot;position:absolute;left:-9999px&quot;&gt;Torna all’inizio&lt;/span&gt;
+  &lt;article class="reading-progress__content" data-reading-scroller tabindex="0"&gt;
+    &lt;div class="reading-progress__bar" aria-hidden="true"&gt;
+      &lt;span data-reading-bar&gt;&lt;/span&gt;
     &lt;/div&gt;
+    &lt;section id="intro" data-reading-section&gt;&lt;h2&gt;Introduzione&lt;/h2&gt;&lt;p&gt;Primo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="setup" data-reading-section&gt;&lt;h2&gt;Setup&lt;/h2&gt;&lt;p&gt;Secondo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="checks" data-reading-section&gt;&lt;h2&gt;Controlli&lt;/h2&gt;&lt;p&gt;Terzo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+  &lt;/article&gt;
+&lt;/div&gt;
 
-    &lt;!-- Contenuto di prova --&gt;
-    &lt;div class=&quot;content&quot;&gt;
-      &lt;h2&gt;Scorri la pagina&lt;/h2&gt;
-      &lt;p&gt;&lt;i class=&quot;fas fa-chevron-down&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/main&gt;
+&lt;style&gt;
+.reading-progress {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reading-progress__toc {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1rem;
+  background: #f7f9fc;
+}
+.reading-progress__toc a,
+.reading-progress__toc button {
+  border-radius: 6px;
+  padding: .6rem .7rem;
+  text-align: left;
+}
+.reading-progress__toc a.is-active {
+  background: #e8f3ff;
+  color: #075985;
+  font-weight: 700;
+}
+.reading-progress__toc button {
+  border: 1px solid #0f766e;
+  background: #123743;
+  color: #f8fbff;
+  cursor: pointer;
+  font-weight: 800;
+  margin-top: auto;
+}
+.reading-progress__toc button:hover,
+.reading-progress__toc button:focus-visible {
+  background: #a8f0df;
+  border-color: #0f766e;
+  color: #10201f;
+}
+.reading-progress__content {
+  max-height: 480px;
+  overflow: auto;
+  position: relative;
+}
+.reading-progress__bar {
+  position: sticky;
+  top: 0;
+  height: 6px;
+  background: #e5e7eb;
+}
+.reading-progress__bar span {
+  display: block;
+  height: 100%;
+  background: #0ea5e9;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.reading-progress__content section {
+  min-height: 340px;
+  padding: 1.5rem;
+}
+@media (max-width: 760px) {
+  .reading-progress { grid-template-columns: 1fr; }
+}
+&lt;/style&gt;
 
-  &lt;script&gt;
-    // === Setup cerchio SVG ===
-    const indicator = document.getElementById('scrollIndicator');
-    const circle = document.querySelector('.progress-ring__circle');
-    const radius = Number(circle.getAttribute('r')) || 18;
-    const circumference = 2 * Math.PI * radius;
+&lt;script&gt;
+function initReadingProgress(rootSelector = '[data-reading-progress]') {
+  const root = document.querySelector(rootSelector);
+  if (!root) return;
 
-    circle.style.strokeDasharray = `${circumference} ${circumference}`;
-    circle.style.strokeDashoffset = `${circumference}`;
+  const scroller = root.querySelector('[data-reading-scroller]');
+  const bar = root.querySelector('[data-reading-bar]');
+  const links = [...root.querySelectorAll('[data-reading-link]')];
+  const sections = [...root.querySelectorAll('[data-reading-section]')];
 
-    function setProgress(percent){
-      const offset = circumference - (percent / 100) * circumference;
-      circle.style.strokeDashoffset = offset;
-    }
+  function sectionTop(section) {
+    return section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+  }
 
-    // === Mostra/Nascondi dopo soglia percentuale ===
-    const SHOW_THRESHOLD_PERCENT = 10; // &lt;&lt; cambia qui la soglia (es. 5, 10, 25...)
+  function update() {
+    const max = Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+    bar.style.transform = 'scaleX(' + scroller.scrollTop / max + ')';
 
-    let ticking = false;
-    function onScroll(){
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() =&gt; {
-        const doc = document.documentElement;
-        const scrollTop = doc.scrollTop || window.pageYOffset || 0;
-        const max = Math.max(1, doc.scrollHeight - doc.clientHeight); // evita /0
-        const percent = (scrollTop / max) * 100;
+    let active = sections[0];
+    const readingLine = scroller.scrollTop + scroller.clientHeight * 0.45;
 
-        setProgress(percent);
-        indicator.classList.toggle('is-visible', percent &gt; SHOW_THRESHOLD_PERCENT);
+    sections.forEach((section) =&gt; {
+      if (sectionTop(section) &lt;= readingLine) active = section;
+    });
 
-        ticking = false;
-      });
-    }
+    if (scroller.scrollTop &gt;= max - 2) active = sections[sections.length - 1];
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // stato corretto al primo paint
+    links.forEach((link) =&gt; {
+      link.classList.toggle('is-active', link.getAttribute('href') === '#' + active.id);
+    });
+  }
 
-    // === Torna su ===
-    function scrollToTop(){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    window.scrollToTop = scrollToTop;
-  &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+  links.forEach((link) =&gt; {
+    link.addEventListener('click', (event) =&gt; {
+      const target = root.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      scroller.scrollTo({ top: sectionTop(target) - 12, behavior: 'smooth' });
+    });
+  });
 
+  root.querySelector('[data-reading-top]')?.addEventListener('click', () =&gt; {
+    scroller.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  scroller.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+initReadingProgress();
+&lt;/script&gt;
                     </code></pre>
         </div>
-        <div id="card--interattive" class="spacer"></div>
-        <div class="snippet-box">
-          <div class="title-box">
-            <h3>2. Card Interattive</h3>
-            <button class="copy-btn">
-              <i class="fas fa-copy"></i> Copia
-            </button>
-          </div>
-          <pre><code class="language-html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="it"&gt;
-    
-    &lt;head&gt;
-        &lt;meta charset="UTF-8"&gt; &lt;!-- Definisce la codifica dei caratteri --&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;!-- Imposta la finestra di visualizzazione per i dispositivi mobili --&gt;
-        &lt;title&gt;Card Interattive&lt;/title&gt; &lt;!-- Titolo della pagina visualizzato nella scheda del browser --&gt;
-    
-        &lt;style&gt;
-            /* Reset CSS di base per garantire la coerenza tra i browser */
-            * {
-                box-sizing: border-box; /* Include padding e bordi nella larghezza/altezza totale */
-                margin: 0; /* Rimuove il margine predefinito */
-                padding: 0; /* Rimuove il padding predefinito */
-            }
-    
-            /* Stile del body: centralizza il contenuto verticalmente e orizzontalmente */
-            body {
-                font-family: Arial, sans-serif; /* Font utilizzato nel body */
-                background-color: #f0f2f5; /* Colore di sfondo */
-                min-height: 100vh; /* Altezza minima pari all'altezza della viewport */
-                display: flex; /* Utilizza flexbox per il layout */
-                justify-content: center; /* Centra orizzontalmente */
-                align-items: center; /* Centra verticalmente */
-            }
-    
-            /* Container principale: gestisce il layout delle card */
-            .container {
-                display: flex; /* Layout flexbox */
-                justify-content: center; /* Centra le card orizzontalmente */
-                flex-wrap: wrap; /* Permette alle card di andare a capo su schermi piccoli */
-                gap: 2rem; /* Spazio tra le card */
-                padding: 2rem; /* Spaziatura interna */
-                max-width: 1200px; /* Larghezza massima del contenitore */
-                margin: 0 auto; /* Centra il contenitore nella pagina */
-            }
-    
-            /* Stile base della card */
-            .card {
-                width: 200px; /* Larghezza fissa della card */
-                height: 300px; /* Altezza fissa della card */
-                perspective: 1000px; /* Crea l'effetto 3D per la rotazione */
-                cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-                transition: transform 0.3s ease; /* Animazione fluida per l'hover */
-            }
-    
-            /* Effetto hover sulla card */
-            .card:hover {
-                transform: scale(1.05); /* Ingrandisce leggermente la card al passaggio del mouse */
-            }
-    
-            /* Contenitore interno della card che gestisce la rotazione */
-            .card-inner {
-                position: relative; /* Posizione relativa per contenere elementi posizionati assolutamente */
-                width: 100%; /* Larghezza completa */
-                height: 100%; /* Altezza completa */
-                text-align: center; /* Allinea il testo al centro */
-                transition: transform 0.3s; /* Animazione fluida per la rotazione */
-                transform-style: preserve-3d; /* Mantiene l'effetto 3D durante la rotazione */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile per effetto di profondità */
-            }
-    
-            /* Classe che viene aggiunta/rimossa per girare la card */
-            .card.flipped .card-inner {
-                transform: rotateY(180deg); /* Ruota la card di 180 gradi sull'asse Y */
-            }
-    
-            /* Stili comuni per il fronte e il retro della card */
-            .card-front, 
-            .card-back {
-                position: absolute; /* Posiziona gli elementi in modo assoluto */
-                width: 100%; /* Larghezza completa */
-                height: 100%; /* Altezza completa */
-                backface-visibility: hidden; /* Nasconde il lato posteriore durante la rotazione */
-                border-radius: 10px; /* Angoli arrotondati */
-                overflow: hidden; /* Nasconde contenuti in eccesso */
-            }
-    
-            /* Stile specifico per il fronte della card */
-            .card-front {
-                background-color: #bbb; /* Colore di fallback */
-                color: black; /* Colore del testo */
-            }
-    
-            /* Stile dell'immagine nel fronte della card */
-            .card-front img {
-                width: 100%; /* Larghezza completa */
-                height: 100%; /* Altezza completa */
-                object-fit: cover; /* Adatta l'immagine alla card mantenendo le proporzioni */
-            }
-    
-            /* Stile specifico per il retro della card */
-            .card-back {
-                background-color: #2c3e50; /* Colore di sfondo */
-                color: white; /* Colore del testo */
-                transform: rotateY(180deg); /* Inizialmente ruotato di 180 gradi */
-                display: flex; /* Layout flessibile per centrare i contenuti */
-                flex-direction: column; /* Dispone gli elementi in colonna */
-                justify-content: center; /* Allinea verticalmente i contenuti */
-                align-items: center; /* Allinea orizzontalmente i contenuti */
-                padding: 20px; /* Spaziatura interna */
-            }
-    
-            /* Stile del titolo nel retro della card */
-            .card-back h3 {
-                font-size: 24px; /* Dimensione del font */
-                margin-bottom: 10px; /* Margine inferiore */
-            }
-    
-            /* Stile del paragrafo nel retro della card */
-            .card-back p {
-                font-size: 16px; /* Dimensione del font */
-                line-height: 1.5; /* Altezza della linea */
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    
-    &lt;body&gt;
-        &lt;main&gt;
-            &lt;!-- Container principale che contiene tutte le card --&gt;
-            &lt;div class="container"&gt;
-                &lt;!-- Prima card --&gt;
-                &lt;div class="card"&gt;
-                    &lt;div class="card-inner"&gt;
-                        &lt;div class="card-front"&gt;
-                            &lt;img src="montagna.jpg" alt="Montagna"&gt; &lt;!-- Immagine per il fronte della card --&gt;
-                        &lt;/div&gt;
-                        &lt;div class="card-back"&gt;
-                            &lt;h3&gt;Montagna&lt;/h3&gt; &lt;!-- Titolo sul retro della card --&gt;
-                            &lt;p&gt;Esplora le maestose vette e i panorami mozzafiato.&lt;/p&gt; &lt;!-- Descrizione sul retro della card --&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-    
-                &lt;!-- Seconda card --&gt;
-                &lt;div class="card"&gt;
-                    &lt;div class="card-inner"&gt;
-                        &lt;div class="card-front"&gt;
-                            &lt;img src="spiaggia.jpg" alt="Spiaggia"&gt; &lt;!-- Immagine per il fronte della card --&gt;
-                        &lt;/div&gt;
-                        &lt;div class="card-back"&gt;
-                            &lt;h3&gt;Spiaggia&lt;/h3&gt; &lt;!-- Titolo sul retro della card --&gt;
-                            &lt;p&gt;Rilassati sulla sabbia dorata e ascolta il suono delle onde.&lt;/p&gt; &lt;!-- Descrizione sul retro della card --&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-    
-                &lt;!-- Terza card --&gt;
-                &lt;div class="card"&gt;
-                    &lt;div class="card-inner"&gt;
-                        &lt;div class="card-front"&gt;
-                            &lt;img src="citta.jpg" alt="Città"&gt; &lt;!-- Immagine per il fronte della card --&gt;
-                        &lt;/div&gt;
-                        &lt;div class="card-back"&gt;
-                            &lt;h3&gt;Città&lt;/h3&gt; &lt;!-- Titolo sul retro della card --&gt;
-                            &lt;p&gt;Scopri l'energia e la cultura delle metropoli moderne.&lt;/p&gt; &lt;!-- Descrizione sul retro della card --&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/main&gt;
-    
-        &lt;script&gt;
-            // Seleziona tutte le card e applica gli event listener a ciascuna
-            document.querySelectorAll('.card').forEach(card =&gt; {
-                // Variabile per tenere traccia dello stato del mouse sulla card
-                let isMouseOver = false;
-    
-                // Event listener per il click sulla card
-                card.addEventListener('click', () =&gt; {
-                    // Aggiunge o rimuove la classe 'flipped' per girare la card
-                    card.classList.toggle('flipped');
-                });
-    
-                // Event listener per quando il mouse entra nell'area della card
-                card.addEventListener('mouseenter', () =&gt; {
-                    isMouseOver = true;
-                });
-    
-                // Event listener per quando il mouse esce completamente dall'area della card
-                card.addEventListener('mouseleave', () =&gt; {
-                    isMouseOver = false;
-                    // Se la card è girata, impostiamo un timeout per riportarla indietro
-                    if (card.classList.contains('flipped')) {
-                        rotationTimeout = setTimeout(() =&gt; {
-                            card.classList.remove('flipped');
-                        }, 1000); // 1000 millisecondi = 1 secondo
-                    }
-                });
-            });
-        &lt;/script&gt;
-    &lt;/body&gt;
-    
-    &lt;/html&gt;    
-                    </code></pre>
-        </div>
-        <div id="minimal-navbar" class="spacer"></div>
-        <div class="snippet-box">
-          <div class="title-box">
-            <h3>3. Minimal Navbar</h3>
-            <button class="copy-btn">
-              <i class="fas fa-copy"></i> Copia
-            </button>
-          </div>
-          <pre><code class="language-html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="it"&gt;
-    
-    &lt;head&gt;
-        &lt;!-- Dichiarazione del charset per definire la codifica del testo --&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;!-- Impostazione del viewport per garantire che la pagina sia responsiva su dispositivi mobili --&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-        &lt;!-- Titolo della pagina --&gt;
-        &lt;title&gt;Minimal Navbar&lt;/title&gt;
-    &lt;/head&gt;
-    
-    &lt;style&gt;
-        /* Stile per il contenitore principale della navbar */
-        .minimal-navbar__container {
-            display: flex; /* Disposizione degli elementi della navbar in riga */
-            justify-content: space-between; /* Spaziatura tra gli elementi */
-            align-items: center; /* Allineamento verticale al centro */
-            padding: 1rem 2rem; /* Spaziatura interna: 1rem in alto/basso e 2rem ai lati */
-            background-color: #333; /* Sfondo della navbar di colore grigio scuro */
-            color: white; /* Colore del testo bianco */
-        }
-    
-        /* Stile per il logo della navbar */
-        .minimal-navbar__logo {
-            font-size: 1.5rem; /* Dimensione del testo per il logo */
-            font-weight: bold; /* Logo in grassetto */
-        }
-    
-        /* Stile per il menu della navbar */
-        .minimal-navbar__menu {
-            display: flex; /* Disposizione degli elementi del menu in riga */
-            list-style-type: none; /* Rimozione dei puntini dei list item */
-        }
-    
-        /* Cambia il colore del testo al passaggio del mouse sul menu */
-        .minimal-navbar__menu:hover {
-            color: #007bf0; /* Colore blu al passaggio del mouse */
-        }
-    
-        /* Stile per i link all'interno della navbar */
-        .minimal-navbar__link {
-            color: white; /* Colore dei link bianco */
-            text-decoration: none; /* Rimozione della sottolineatura */
-            padding: 0.5rem 1rem; /* Spaziatura interna per i link */
-        }
-    
-        /* Colore e cursore al passaggio del mouse sui link */
-        .minimal-navbar__link:hover {
-            color: blue; /* Cambia colore in blu */
-            cursor: pointer; /* Mostra il cursore puntatore */
-        }
-    
-        /* Stile per l'hamburger menu (in versione desktop non visibile) */
-        .minimal-navbar__burger {
-            display: none; /* Nasconde il burger menu su schermi larghi */
-            flex-direction: column; /* Disposizione delle linee del burger in colonna */
-            cursor: pointer; /* Cambia il cursore a puntatore */
-        }
-    
-        /* Stile per le linee che compongono il burger menu */
-        .minimal-navbar__burger-line {
-            width: 30px; /* Larghezza delle linee */
-            height: 3.2px; /* Altezza delle linee */
-            background-color: white; /* Colore bianco per le linee */
-            margin: 3px 0; /* Margine verticale tra le linee */
-            transition: 0.4s; /* Transizione morbida per le animazioni */
-            padding: 0.4px; /* Padding leggero per le linee */
-        }
-    
-        /* Effetto di scaling sul burger menu al passaggio del mouse */
-        .minimal-navbar__burger:hover {
-            scale: 1.1; /* Aumenta la dimensione del burger menu */
-            transition: 0.2s; /* Durata della transizione */
-        }
-    
-        /* Media query per dispositivi con larghezza massima di 768px (tablet e smartphone) */
-        @media (max-width: 768px) {
-            /* Nasconde il menu e lo riposiziona verticalmente per mobile */
-            .minimal-navbar__menu {
-                display: none; /* Nasconde il menu */
-                flex-direction: column; /* Dispone gli elementi del menu in colonna */
-                position: absolute; /* Menu posizionato in modo assoluto */
-                top: 180px; /* Posiziona il menu a 180px dal top */
-                left: 60%; /* Posiziona il menu a sinistra del 60% */
-                width: 35%; /* Larghezza del menu al 35% della pagina */
-                background-color: #333; /* Sfondo del menu uguale alla navbar */
-                padding: 1rem 0; /* Padding interno verticale */
-            }
-    
-            /* Quando il menu è attivo, mostralo */
-            .minimal-navbar__menu.minimal-active {
-                display: flex; /* Mostra il menu */
-            }
-    
-            /* Mostra l'hamburger menu su mobile */
-            .minimal-navbar__burger {
-                display: flex; /* Visualizza il burger menu */
-            }
-    
-            /* Anima la prima linea del burger quando attivo (ruotandola) */
-            .minimal-navbar__burger.minimal-active .minimal-navbar__burger-line:nth-child(1) {
-                transform: rotate(-45deg) translate(-7.2px, 6px); /* Rotazione e traslazione */
-            }
-    
-            /* Nasconde la seconda linea del burger menu quando attivo */
-            .minimal-navbar__burger.minimal-active .minimal-navbar__burger-line:nth-child(2) {
-                opacity: 0; /* Rende la seconda linea invisibile */
-            }
-    
-            /* Anima la terza linea del burger quando attivo (ruotandola) */
-            .minimal-navbar__burger.minimal-active .minimal-navbar__burger-line:nth-child(3) {
-                transform: rotate(45deg) translate(-7.2px, -6px); /* Rotazione e traslazione */
-            }
-        }
-    &lt;/style&gt;
-    
-    &lt;body&gt;
-        &lt;!-- Inizio del componente navbar --&gt;
-        &lt;nav class="minimal-navbar__container"&gt;
-            &lt;!-- Logo della navbar --&gt;
-            &lt;div class="minimal-navbar__logo"&gt;
-                Logo
-            &lt;/div&gt;
-            &lt;!-- Menu di navigazione --&gt;
-            &lt;ul class="minimal-navbar__menu"&gt;
-                &lt;li&gt;&lt;a href="#" class="minimal-navbar__link"&gt;Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#" class="minimal-navbar__link"&gt;Chi siamo&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#" class="minimal-navbar__link"&gt;Servizi&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href="#" class="minimal-navbar__link"&gt;Contatti&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;!-- Hamburger menu per dispositivi mobili --&gt;
-            &lt;div class="minimal-navbar__burger"&gt;
-                &lt;!-- Le tre linee che compongono il burger menu --&gt;
-                &lt;div class="minimal-navbar__burger-line"&gt;&lt;/div&gt;
-                &lt;div class="minimal-navbar__burger-line"&gt;&lt;/div&gt;
-                &lt;div class="minimal-navbar__burger-line"&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/nav&gt;
-    
-        &lt;script&gt;
-            // Attende che l'intera pagina sia stata caricata prima di eseguire il codice
-            document.addEventListener('DOMContentLoaded', function () {
-                // Seleziona gli elementi della navbar
-                const minimalNavContainer = document.querySelector('.minimal-navbar__container');
-                const minimalNavMenu = minimalNavContainer.querySelector('.minimal-navbar__menu');
-                const minimalBurger = minimalNavContainer.querySelector('.minimal-navbar__burger');
-    
-                // Aggiunge un event listener al clic sull'hamburger menu
-                minimalBurger.addEventListener('click', () =&gt; {
-                    minimalNavMenu.classList.toggle('minimal-active'); // Mostra/nasconde il menu
-                    minimalBurger.classList.toggle('minimal-active'); // Attiva l'animazione del burger
-                });
-    
-                // Chiude il menu quando si clicca su un link all'interno del menu
-                const minimalNavLinks = minimalNavContainer.querySelectorAll('.minimal-navbar__link');
-                minimalNavLinks.forEach(link =&gt; {
-                    link.addEventListener('click', () =&gt; {
-                        minimalNavMenu.classList.remove('minimal-active'); // Chiude il menu
-                        minimalBurger.classList.remove('minimal-active'); // Ripristina l'hamburger
-                    });
-                });
-    
-                // Chiude il menu se si clicca fuori dalla navbar
-                document.addEventListener('click', (event) =&gt; {
-                    if (!minimalNavContainer.contains(event.target) &amp;&amp; minimalNavMenu.classList.contains('minimal-active')) {
-                        minimalNavMenu.classList.remove('minimal-active'); // Chiude il menu
-                        minimalBurger.classList.remove('minimal-active'); // Ripristina l'hamburger
-                    }
-                });
-            });
-        &lt;/script&gt;
-&lt;/body&gt;
 
-&lt;/html&gt; 
-                    </code></pre>
-        </div>
-        <div id="form-effetti-resize" class="spacer"></div>
+        <div id="content-card-pattern" class="spacer"></div>
         <div class="snippet-box">
           <div class="title-box">
-            <h3>4. Form Effetti Resize</h3>
+            <h3>2. Card contenuto riusabile</h3>
             <button class="copy-btn">
               <i class="fas fa-copy"></i> Copia
             </button>
           </div>
           <pre><code class="language-html">
-                    &lt;!DOCTYPE html&gt;
-&lt;html lang="it"&gt;
-&lt;head&gt;
-    &lt;!-- Metadati di base --&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Form Effetti Resize&lt;/title&gt;
-    &lt;style&gt;
-        /* Stile generale del body */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        
-        /* Stile del contenitore principale */
-        .container {
-            background: #3a3a3a;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        /* Stile del titolo */
-        h1 {
-            text-align: center;
-            color: #007bf0;
-            margin-bottom: 2rem;
-        }
-        
-        /* Stile dei gruppi di form */
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        /* Stile delle etichette */
-        .form-group label {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #3a3a3a;
-            padding: 0 5px;
-            color: white;
-            transition: 0.2s ease all;
-            pointer-events: none;
-        }
-        
-        /* Posizionamento dell'etichetta per l'area di testo */
-        .form-group textarea + label {
-            top: 25px;
-        }
-        
-        /* Stile degli input e delle aree di testo */
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #007bf0;
-            border-radius: 5px;
-            font-size: 16px;
-            outline: none;
-            transition: 0.2s ease all;
-            box-sizing: border-box;
-            background-color: #3a3a3a;
-            color: white;
-        }
-        
-        /* Stile specifico per l'area di testo */
-        .form-group textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        
-        /* Effetto focus sugli input e le aree di testo */
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #007bf0;
-        }
-        
-        /* Effetto di spostamento dell'etichetta quando l'input è in focus o non vuoto */
-        .form-group input:focus + label,
-        .form-group textarea:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group textarea:not(:placeholder-shown) + label {
-            top: 0;
-            font-size: 12px;
-            color: white;
-        }
-        
-        /* Stile del pulsante di invio */
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s ease background;
-        }
-        
-        /* Effetto hover sul pulsante */
-        button:hover {
-            background: #45a049;
-        }
-        
-        /* Animazione di scuotimento */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        /* Applicazione dell'animazione e cambio colore per input invalidi */
-        .form-group input:invalid:not(:placeholder-shown),
-        .form-group textarea:invalid:not(:placeholder-shown) {
-            border-color: #ff6b6b;
-            animation: shake 0.3s;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- Contenitore principale del form --&gt;
-    &lt;div class="container"&gt;
-        &lt;!-- Titolo del form --&gt;
-        &lt;h1&gt;Invia un messaggio&lt;/h1&gt;
-        &lt;!-- Inizio del form --&gt;
-        &lt;form&gt;
-            &lt;!-- Campo Nome --&gt;
-            &lt;div class="form-group"&gt;
-                &lt;input type="text" id="nome" required placeholder=" "&gt;
-                &lt;label for="nome"&gt;Nome&lt;/label&gt;
-            &lt;/div&gt;
-            &lt;!-- Campo Email --&gt;
-            &lt;div class="form-group"&gt;
-                &lt;input type="email" id="email" required placeholder=" "&gt;
-                &lt;label for="email"&gt;Email&lt;/label&gt;
-            &lt;/div&gt;
-            &lt;!-- Campo Oggetto --&gt;
-            &lt;div class="form-group"&gt;
-                &lt;input type="text" id="oggetto" required placeholder=" "&gt;
-                &lt;label for="oggetto"&gt;Oggetto&lt;/label&gt;
-            &lt;/div&gt;
-            &lt;!-- Campo Messaggio --&gt;
-            &lt;div class="form-group"&gt;
-                &lt;textarea id="messaggio" required placeholder=" "&gt;&lt;/textarea&gt;
-                &lt;label for="messaggio"&gt;Messaggio&lt;/label&gt;
-            &lt;/div&gt;
-            &lt;!-- Pulsante di invio --&gt;
-            &lt;button type="submit"&gt;Invia messaggio &lt;i class="fa-solid fa-share"&gt;&lt;/i&gt;&lt;/button&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;       
-        </code></pre>
+&lt;article class="content-card" data-content-card&gt;
+  &lt;div class="content-card__topline"&gt;
+    &lt;span class="content-card__badge"&gt;Guida&lt;/span&gt;
+    &lt;button class="content-card__save" type="button" data-card-save aria-pressed="false"&gt;
+      Salva
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;h2&gt;Accessibilita web base&lt;/h2&gt;
+  &lt;p&gt;Checklist essenziale per focus, testi alternativi, contrasto e navigazione da tastiera.&lt;/p&gt;
+
+  &lt;dl class="content-card__meta"&gt;
+    &lt;div&gt;&lt;dt&gt;Tempo&lt;/dt&gt;&lt;dd&gt;18 min&lt;/dd&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;dt&gt;Livello&lt;/dt&gt;&lt;dd&gt;Base&lt;/dd&gt;&lt;/div&gt;
+  &lt;/dl&gt;
+
+  &lt;a class="content-card__link" href="#"&gt;Apri risorsa&lt;/a&gt;
+&lt;/article&gt;
+
+&lt;style&gt;
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 360px;
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  border-top: 4px solid #14b8a6;
+  border-radius: 8px;
+  background: #fff;
+  color: #172033;
+}
+.content-card__topline {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  align-items: center;
+}
+.content-card__badge {
+  color: #64748b;
+  font-size: .75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.content-card__save {
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  padding: .45rem .7rem;
+}
+.content-card__save[aria-pressed="true"] {
+  background: #fff7ed;
+  border-color: #fb923c;
+  color: #c2410c;
+}
+.content-card h2 { margin: 0; font-size: 1.35rem; line-height: 1.2; }
+.content-card p { margin: 0; color: #475569; line-height: 1.6; }
+.content-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
+  margin: auto 0 0;
+}
+.content-card__meta div { background: #f8fafc; border-radius: 6px; padding: .7rem; }
+.content-card__meta dt { color: #64748b; font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+.content-card__meta dd { margin: .2rem 0 0; font-weight: 800; }
+.content-card__link {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #0f766e;
+  background: #123743;
+  color: #f8fbff;
+  font-weight: 800;
+  padding: .75rem .9rem;
+  text-decoration: none;
+}
+.content-card__link:hover,
+.content-card__link:focus-visible {
+  background: #a8f0df;
+  border-color: #0f766e;
+  color: #10201f;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+document.querySelectorAll('[data-card-save]').forEach((button) =&gt; {
+  button.addEventListener('click', () =&gt; {
+    const active = button.getAttribute('aria-pressed') === 'true';
+    button.setAttribute('aria-pressed', String(!active));
+  });
+});
+&lt;/script&gt;
+                    </code></pre>
+        </div>
+
+        <div id="accessible-header" class="spacer"></div>
+        <div class="snippet-box">
+          <div class="title-box">
+            <h3>3. Header responsive accessibile</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;nav class="site-header" data-accessible-header aria-label="Navigazione principale"&gt;
+  &lt;a class="site-header__brand" href="/"&gt;Brand&lt;/a&gt;
+
+  &lt;button class="site-header__toggle" type="button" data-header-toggle
+    aria-controls="site-header-menu" aria-expanded="false"&gt;
+    Menu
+  &lt;/button&gt;
+
+  &lt;ul class="site-header__menu" id="site-header-menu" data-header-menu&gt;
+    &lt;li&gt;&lt;a href="/" data-header-link aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/risorse/" data-header-link&gt;Risorse&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/progetti/" data-header-link&gt;Progetti&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/contatti/" data-header-link&gt;Contatti&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+  padding: .85rem 1rem;
+  background: #172033;
+  color: #fff;
+}
+.site-header__brand,
+.site-header__menu a {
+  color: inherit;
+  text-decoration: none;
+}
+.site-header__brand { font-weight: 900; }
+.site-header__menu {
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-header__menu a {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: .55rem .75rem;
+  font-weight: 700;
+}
+.site-header__menu a:hover,
+.site-header__menu a:focus-visible,
+.site-header__menu a[aria-current="page"] {
+  background: rgba(255, 255, 255, .12);
+}
+.site-header__toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: .55rem .75rem;
+}
+.site-header a:focus-visible,
+.site-header button:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .site-header { flex-wrap: wrap; }
+  .site-header__toggle { display: inline-flex; }
+  .site-header__menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: .75rem;
+  }
+  .site-header.is-open .site-header__menu { display: flex; }
+  .site-header__menu a { border-radius: 6px; width: 100%; }
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+function initAccessibleHeader(selector = '[data-accessible-header]') {
+  const header = document.querySelector(selector);
+  if (!header) return;
+
+  const toggle = header.querySelector('[data-header-toggle]');
+  const links = [...header.querySelectorAll('[data-header-link]')];
+
+  function setOpen(open) {
+    header.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  toggle.addEventListener('click', (event) =&gt; {
+    event.stopPropagation();
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  links.forEach((link) =&gt; link.addEventListener('click', () =&gt; setOpen(false)));
+  document.addEventListener('click', (event) =&gt; {
+    if (!header.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) =&gt; {
+    if (event.key === 'Escape') setOpen(false);
+  });
+}
+
+initAccessibleHeader();
+&lt;/script&gt;
+                    </code></pre>
+        </div>
+
+        <div id="validated-contact-form" class="spacer"></div>
+        <div class="snippet-box">
+          <div class="title-box">
+            <h3>4. Form contatto con validazione</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;form class="contact-form" data-contact-form novalidate&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="name"&gt;Nome&lt;/label&gt;
+    &lt;input id="name" name="name" required minlength="2" data-validate="name"
+      aria-describedby="name-error" aria-invalid="false"&gt;
+    &lt;p class="error" id="name-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required data-validate="email"
+      aria-describedby="email-error" aria-invalid="false"&gt;
+    &lt;p class="error" id="email-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="message"&gt;Messaggio&lt;/label&gt;
+    &lt;textarea id="message" name="message" required minlength="12" data-validate="message"
+      aria-describedby="message-error" aria-invalid="false"&gt;&lt;/textarea&gt;
+    &lt;p class="error" id="message-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit" data-submit-button&gt;Invia richiesta&lt;/button&gt;
+  &lt;p class="status" data-form-status role="status" aria-live="polite"&gt;&lt;/p&gt;
+&lt;/form&gt;
+
+&lt;style&gt;
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+}
+.field { display: grid; gap: .4rem; }
+.field label { font-weight: 800; }
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  padding: .75rem .8rem;
+}
+.field textarea { min-height: 8rem; resize: vertical; }
+.field input:focus,
+.field textarea:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, .18);
+  outline: 0;
+}
+.field [aria-invalid="true"] { border-color: #ef4444; }
+.error { min-height: 1.2rem; margin: 0; color: #b91c1c; font-size: .9rem; }
+.status { margin: 0; color: #047857; font-weight: 700; }
+button[type="submit"] {
+  border: 0;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: .8rem 1rem;
+}
+button[disabled] { cursor: wait; opacity: .7; }
+&lt;/style&gt;
+
+&lt;script&gt;
+function initValidatedContactForm(selector = '[data-contact-form]') {
+  const form = document.querySelector(selector);
+  if (!form) return;
+
+  const fields = [...form.querySelectorAll('[data-validate]')];
+  const status = form.querySelector('[data-form-status]');
+  const submit = form.querySelector('[data-submit-button]');
+
+  function getMessage(field) {
+    const value = field.value.trim();
+    if (field.required &amp;&amp; !value) return 'Campo obbligatorio.';
+    if (field.type === 'email' &amp;&amp; !field.validity.valid) return 'Inserisci una email valida.';
+    if (field.minLength &gt; 0 &amp;&amp; value.length &lt; field.minLength) {
+      return 'Inserisci almeno ' + field.minLength + ' caratteri.';
+    }
+    return '';
+  }
+
+  function validate(field) {
+    const error = document.getElementById(field.id + '-error');
+    const message = getMessage(field);
+    field.setAttribute('aria-invalid', message ? 'true' : 'false');
+    if (error) error.textContent = message;
+    return !message;
+  }
+
+  fields.forEach((field) =&gt; {
+    field.addEventListener('input', () =&gt; validate(field));
+    field.addEventListener('blur', () =&gt; validate(field));
+  });
+
+  form.addEventListener('submit', (event) =&gt; {
+    event.preventDefault();
+    const valid = fields.map(validate).every(Boolean);
+    if (!valid) {
+      fields.find((field) =&gt; field.getAttribute('aria-invalid') === 'true')?.focus();
+      status.textContent = 'Controlla i campi evidenziati.';
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Invio in corso';
+    status.textContent = "Messaggio pronto per l'invio.";
+  });
+}
+
+initValidatedContactForm();
+&lt;/script&gt;
+                    </code></pre>
         </div>
       </section>
     </main>
