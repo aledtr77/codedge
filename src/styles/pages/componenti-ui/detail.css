@@ -153,8 +153,12 @@
     width: 100%;
   }
 
-  .ui-hero__actions .button-simple,
-  .ui-hero__actions .ui-secondary-link {
+  .ui-hero__actions .button-simple {
     width: 100%;
+  }
+
+  .ui-hero__actions .ui-secondary-link {
+    width: auto;
+    align-self: flex-start;
   }
 }
