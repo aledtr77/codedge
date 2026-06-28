@@ -236,6 +236,7 @@
 
 .shop-card {
   display: flex;
+  position: relative;
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.09);
@@ -249,12 +250,30 @@
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.shop-card::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-three), rgba(255, 255, 255, 0.92));
+  transform: scaleX(0.42);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
 .shop-card:hover {
   transform: translateY(-3px);
   border-color: rgba(143, 206, 255, 0.28);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.shop-card:hover::before {
+  transform: scaleX(1);
 }
 
 .shop-card-media {
@@ -512,6 +531,12 @@
 @media (hover: none), (pointer: coarse) {
   .shop-card:hover {
     transform: none;
+  }
+
+  .shop-card::before,
+  .shop-card:hover::before {
+    height: 5px;
+    transform: scaleX(1);
   }
 
   .shop-layout .button-simple,
