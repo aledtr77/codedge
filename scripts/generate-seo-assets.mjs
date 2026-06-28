@@ -14,6 +14,7 @@ const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const baseUrl = String(packageJson.homepage || 'https://codedge.it/').replace(/\/+$/, '');
 const excludedRoutes = new Set([
   '/percorsi-apprendimento/',
+  '/percorsi-apprendimento/github-senza-panico/',
   '/percorsi-apprendimento/git-pratico-senza-panico/',
   '/percorsi-apprendimento/visual-studio-code-senza-panico/',
   '/tutorial/visual-studio-code-senza-panico/',

@@ -14,11 +14,12 @@ body {
   transition: opacity 0.2s ease;
 }
 
-html[data-page-ready="false"] body {
-  opacity: 0;
-}
-
-html[data-page-ready="true"] body {
+/*
+ * Il contenuto deve restare visibile anche se il bundle JavaScript non viene
+ * eseguito. Nascondere l'intero body fino a `data-page-ready="true"` rendeva
+ * la pagina vuota in caso di errore o rendering JS incompleto.
+ */
+html[data-page-ready] body {
   opacity: 1;
 }
 
