@@ -1,444 +1,287 @@
-// glossario.js (updated) - includes single authoritative hamburger handler
+document.addEventListener("DOMContentLoaded", () => {
+  const search = document.getElementById("search");
+  const entries = Array.from(document.querySelectorAll(".main-content details"));
+  const clickableItems = Array.from(document.querySelectorAll(".concept-list .clickable-item"));
+  const header = document.querySelector("header");
+  const mainContent = document.querySelector(".main-content");
+  let openAsideGroupForItem = () => {};
 
-document.addEventListener("DOMContentLoaded", function () {
-  const e = document.getElementById("search"),
-    t = document.querySelectorAll(".clickable-item"),
-    n = document.getElementsByTagName("details"),
-    o = document.querySelector("header"),
-    i = document.querySelector(".menu-icon"),
-    a = document.querySelector(".nav-menu"),
-    s = document.querySelector(".sidebar-toggle"),
-    c = document.querySelector("aside"),
-    r = document.querySelector(".main-content");
+  if (!entries.length) return;
+
+  function syncHeaderOffset() {
+    if (!header) return;
+    document.body.style.setProperty("--glossary-header-offset", `${Math.ceil(header.getBoundingClientRect().height)}px`);
+  }
+
+  function normalize(value) {
+    return (value || "")
+      .toString()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
 
   function enhanceGlossaryLabels() {
-    document.querySelectorAll("details > ol > li").forEach((item) => {
-      if (item.querySelector(".glossary-label")) return;
+    entries.forEach((entry) => {
+      entry.querySelectorAll("ol > li").forEach((item) => {
+        item.innerHTML = item.innerHTML
+          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/`([^`]+)`/g, "<code>$1</code>");
 
-      const textNode = Array.from(item.childNodes).find(
-        (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
-      );
-      if (!textNode) return;
+        if (item.querySelector(".glossary-label")) return;
 
-      const match = textNode.textContent.match(/^(\s*)([^:\n]{2,40}:)(\s*)/);
-      if (!match) return;
+        const textNode = Array.from(item.childNodes).find(
+          (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
+        );
+        if (!textNode) return;
 
-      const [, leading, label, spacing] = match;
-      const remainder = textNode.textContent.slice(match[0].length);
-      const fragment = document.createDocumentFragment();
-      const labelEl = document.createElement("span");
+        const match = textNode.textContent.match(/^(\s*)([^:\n]{2,40}:)(\s*)/);
+        if (!match) return;
 
-      labelEl.className = "glossary-label";
-      labelEl.textContent = label;
+        const [, leading, label, spacing] = match;
+        const remainder = textNode.textContent.slice(match[0].length);
+        const fragment = document.createDocumentFragment();
+        const labelEl = document.createElement("span");
 
-      if (leading) fragment.appendChild(document.createTextNode(leading));
-      fragment.appendChild(labelEl);
-      fragment.appendChild(document.createTextNode(spacing || " "));
-      if (remainder) fragment.appendChild(document.createTextNode(remainder));
+        labelEl.className = "glossary-label";
+        labelEl.textContent = label;
 
-      textNode.replaceWith(fragment);
-    });
-  }
+        if (leading) fragment.appendChild(document.createTextNode(leading));
+        fragment.appendChild(labelEl);
+        fragment.appendChild(document.createTextNode(spacing || " "));
+        if (remainder) fragment.appendChild(document.createTextNode(remainder));
 
-  enhanceGlossaryLabels();
-
-  let d = o ? o.offsetHeight : 0;
-  function updateHeaderHeight() {
-    d = o ? o.offsetHeight : 0;
-  }
-  window.addEventListener("resize", updateHeaderHeight);
-  const l = new IntersectionObserver(
-    (e) => {
-      e.forEach((e) => {
-        if (e.isIntersecting) {
-          const t = e.target;
-          t.hasAttribute("data-loaded") ||
-            (t.setAttribute("data-loaded", "true"), l.unobserve(t));
-        }
-      });
-    },
-    { rootMargin: "200px" },
-  );
-  function handleSearch() {
-    const t = e.value.toLowerCase().trim();
-    let o = null,
-      i = null;
-    Array.from(n).forEach((e) => {
-      const n = e.querySelector("summary"),
-        a = n.textContent || n.innerText;
-      ("" === t
-        ? (e.open = !1)
-        : e.hasAttribute("data-priority") && a.toLowerCase().startsWith(t)
-          ? ((e.open = !0), i || (i = e))
-          : a.toLowerCase().startsWith(t)
-            ? ((e.open = !0), o || (o = e))
-            : (e.open = !1),
-        e.open &&
-          !e.hasAttribute("data-loaded") &&
-          e.setAttribute("data-loaded", "true"));
-    });
-    const a = i || o;
-    a &&
-      setTimeout(() => {
-        updateHeaderHeight();
-        const e = -d - 0,
-          t = a.getBoundingClientRect().top + window.pageYOffset + e;
-        window.scrollTo({ top: t, behavior: "smooth" });
-      }, 100);
-  }
-  function closeMenu() {
-    i && i.classList.remove("active");
-    a && a.classList.remove("active");
-    document.body.classList.remove("menu-open");
-  }
-  Array.from(n).forEach((e) => l.observe(e));
-  if (e) e.addEventListener("input", handleSearch);
-  if (t && t.forEach) {
-    t.forEach((item) => {
-      item.addEventListener("click", function () {
-        const text = this.textContent.trim();
-        if (e) {
-          e.value = text;
-          setTimeout(() => {
-            handleSearch();
-            const ev = new Event("input", { bubbles: true, cancelable: true });
-            e.dispatchEvent(ev);
-          }, 0);
-        }
-        if (window.innerWidth <= 768 && c && s) {
-          c.classList.remove("active");
-          s.classList.remove("active");
-        }
+        textNode.replaceWith(fragment);
       });
     });
   }
 
-  async function copyCode(btn) {
-    const codeEl = btn.closest(".code-container")?.querySelector("code");
+  function getEntryTitle(entry) {
+    const summary = entry.querySelector("summary");
+    if (!summary) return "";
+
+    const titleNode = Array.from(summary.childNodes).find(
+      (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
+    );
+
+    return (titleNode?.textContent || summary.textContent || "").trim();
+  }
+
+  function prepareSearchData() {
+    entries.forEach((entry) => {
+      const title = getEntryTitle(entry);
+      const description = entry.querySelector(".tag-description")?.textContent || "";
+      const group = entry.querySelector(".tag-group")?.textContent || "";
+
+      entry.dataset.glossaryTitleRaw = title;
+      entry.dataset.glossaryTitle = normalize(title);
+      entry.dataset.glossarySummary = normalize(`${title} ${description} ${group}`);
+      entry.dataset.glossarySearch = normalize(entry.textContent);
+    });
+  }
+
+  function setActiveItem(query) {
+    const normalizedQuery = normalize(query);
+    let activeItem = null;
+
+    clickableItems.forEach((item) => {
+      const active = normalize(item.textContent.trim()) === normalizedQuery;
+      item.classList.toggle("is-active", active);
+      if (active) activeItem = item;
+    });
+
+    if (activeItem) openAsideGroupForItem(activeItem);
+  }
+
+  function getContentScrollOffset() {
+    const headerHeight = header?.offsetHeight || 0;
+    const layoutGap = parseFloat(getComputedStyle(mainContent || document.body).marginTop) || 0;
+    return headerHeight + layoutGap;
+  }
+
+  function getMatchScore(entry, query) {
+    const title = entry.dataset.glossaryTitle || "";
+    const summary = entry.dataset.glossarySummary || "";
+    const titleWords = title.split(/[\s().,_-]+/).filter(Boolean);
+
+    if (!query) return 0;
+    if (title === query) return 10000;
+    if (title.startsWith(query)) return 9000 - Math.max(0, title.length - query.length);
+    if (titleWords.some((word) => word.startsWith(query))) return 8000 - Math.max(0, title.length - query.length);
+    if (title.includes(query)) return 7000 - title.indexOf(query) - Math.max(0, title.length - query.length);
+    if (summary.includes(query)) return 5000 - summary.indexOf(query);
+
+    return -1;
+  }
+
+  function findBestEntry(query) {
+    return entries
+      .map((entry, index) => ({ entry, index, score: getMatchScore(entry, query) }))
+      .filter((candidate) => candidate.score >= 0)
+      .sort((a, b) => b.score - a.score || a.index - b.index)[0]?.entry || null;
+  }
+
+  function setupAsideGroups() {
+    const groups = Array.from(document.querySelectorAll(".concept-list li:not(.clickable-item)"))
+      .map((heading) => {
+        const list = heading.nextElementSibling?.tagName === "UL" ? heading.nextElementSibling : null;
+        if (!list) return null;
+
+        heading.classList.add("concept-group");
+        heading.setAttribute("role", "button");
+        heading.setAttribute("tabindex", "0");
+        heading.setAttribute("aria-expanded", "false");
+        list.classList.add("concept-group-list");
+        list.hidden = true;
+
+        return { heading, list };
+      })
+      .filter(Boolean);
+
+    function setGroupOpen(group, isOpen) {
+      group.list.hidden = !isOpen;
+      group.heading.classList.toggle("is-open", isOpen);
+      group.heading.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    function toggleGroup(group) {
+      setGroupOpen(group, group.list.hidden);
+    }
+
+    function openGroup(group) {
+      setGroupOpen(group, true);
+    }
+
+    openAsideGroupForItem = (item) => {
+      const groupList = item.closest(".concept-group-list");
+      const group = groups.find((candidate) => candidate.list === groupList);
+      if (group) openGroup(group);
+    };
+
+    groups.forEach((group) => {
+      group.heading.addEventListener("click", () => toggleGroup(group));
+      group.heading.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        toggleGroup(group);
+      });
+    });
+
+    clickableItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        openAsideGroupForItem(item);
+      });
+    });
+  }
+
+  function lockAsideScroll() {
+    const aside = document.querySelector("aside");
+    if (!aside) return;
+
+    aside.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+        event.preventDefault();
+        aside.scrollTop += event.deltaY;
+      },
+      { passive: false },
+    );
+  }
+
+  function filterEntries(scrollToFirst = false) {
+    const query = normalize(search?.value.trim() || "");
+    const bestMatch = query ? findBestEntry(query) : null;
+
+    entries.forEach((entry) => {
+      if (!query) {
+        entry.hidden = false;
+        entry.open = false;
+        return;
+      }
+
+      const isBestMatch = entry === bestMatch;
+      entry.hidden = !isBestMatch;
+      entry.open = isBestMatch;
+    });
+
+    setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
+
+    if (scrollToFirst && bestMatch) {
+      const offset = getContentScrollOffset();
+      window.scrollTo({
+        top: bestMatch.getBoundingClientRect().top + window.pageYOffset - offset,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  async function copyCode(button) {
+    const codeEl = button.closest(".code-container")?.querySelector("code");
     if (!codeEl) return;
 
     const text = codeEl.innerText || codeEl.textContent || "";
+    const original = button.innerHTML;
 
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(text);
       } else {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
         document.execCommand("copy");
-        document.body.removeChild(ta);
+        textarea.remove();
       }
-    } catch (err) {
-      console.warn("[glossario] copia fallita:", err);
-      return;
+
+      button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copiato';
+    } catch (error) {
+      console.warn("[glossario] copia fallita:", error);
+      button.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Errore';
     }
 
-    const original = btn.innerHTML;
-    const iconHTML = btn.querySelector("i") ? btn.querySelector("i").outerHTML : "";
-    btn.innerHTML = iconHTML + " Copiato!";
     setTimeout(() => {
-      btn.innerHTML = original;
-    }, 2000);
+      button.innerHTML = original;
+    }, 1600);
   }
 
-  window.copyCode = copyCode;
+  enhanceGlossaryLabels();
+  prepareSearchData();
+  syncHeaderOffset();
+  setupAsideGroups();
+  lockAsideScroll();
 
-  document.addEventListener("click", function (ev) {
-    const copyBtn = ev.target.closest(".copy-btn");
+  if ("ResizeObserver" in window && header) {
+    new ResizeObserver(syncHeaderOffset).observe(header);
+  }
+
+  window.addEventListener("resize", syncHeaderOffset);
+
+  search?.addEventListener("input", () => filterEntries(true));
+
+  clickableItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (!search) return;
+      search.value = item.textContent.trim();
+      filterEntries(true);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const copyBtn = event.target.closest(".copy-btn");
     if (!copyBtn) return;
-    ev.preventDefault();
+
+    event.preventDefault();
     copyCode(copyBtn);
   });
 
-  // Sidebar
-  if (s && c && r) {
-    function syncMobileAsideState() {
-      if (window.innerWidth > 768) return;
-      s.classList.remove("active");
-      c.classList.remove("active");
-      r.classList.remove("aside-open");
-    }
-
-    s.addEventListener("click", function () {
-      if (window.innerWidth <= 768) {
-        syncMobileAsideState();
-        return;
-      }
-
-      this.classList.toggle("active");
-      c.classList.toggle("active");
-      r.classList.toggle("aside-open");
-    });
-
-    document.addEventListener("click", function (ev) {
-      if (!c.contains(ev.target) && !s.contains(ev.target) && c.classList.contains("active") && window.innerWidth <= 768) {
-        s.classList.remove("active");
-        c.classList.remove("active");
-        r.classList.remove("aside-open");
-      }
-    });
-
-    window.addEventListener("resize", syncMobileAsideState);
-    syncMobileAsideState();
-  }
-
-  let u = [];
-  window.addEventListener("blur", function () {
-    u = Array.from(n).map((e) => e.open);
+  window.addEventListener("beforeunload", () => {
+    if (search) search.value = "";
   });
-  window.addEventListener("focus", function () {
-    updateHeaderHeight();
-    Array.from(n).forEach((e, t) => {
-      e.open = u[t] || false;
-    });
-  });
-  window.addEventListener("beforeunload", function () {
-    if (e) e.value = "";
-  });
-  setTimeout(handleSearch, 300);
+
+  filterEntries(false);
 });
-
-const headings = document.querySelectorAll(".invisible-text, .resize-text");
-function handleResize() {
-  if (window.innerWidth < 1200) {
-    headings.forEach((e) => (e.style.display = "none"));
-  } else {
-    headings.forEach((e) => (e.style.display = ""));
-  }
-}
-window.addEventListener("resize", handleResize);
-handleResize();
-
-/* --------------------------
-   Replace hamburger handler - VERSIONE COMPLETAMENTE RIVISTA
-   (risolve problemi di sincronizzazione e conflitti)
-   -------------------------- */
-(function replaceHamburgerHandler() {
-  const toggleSelectors = ['.menu-icon', '.menu-toggle', '.menu-btn', '.nav-toggle', '.hamburger', '.menu-button', '#menuBtn'];
-  const navSelectors = ['.nav-menu', '.navbar .nav-menu', '.navbar', 'nav', '#mainNav', '.main-nav'];
-
-  const qFirst = (list) => list.map(s => document.querySelector(s)).find(Boolean) || null;
-  const oldBtn = qFirst(toggleSelectors);
-  const nav = qFirst(navSelectors);
-  const header = document.querySelector('header');
-
-  if (!oldBtn || !nav) {
-    console.warn('replaceHamburgerHandler: bottone o nav non trovati', oldBtn, nav);
-    return;
-  }
-
-  // CLONE per rimuovere tutti i listener esistenti sul bottone
-  const newBtn = oldBtn.cloneNode(true);
-  oldBtn.parentNode.replaceChild(newBtn, oldBtn);
-  console.log('replaceHamburgerHandler: bottone clonato – listeners precedenti rimossi.');
-
-  // helper visibility - versione più accurata
-  function isNavVisible(el) {
-    if (!el) return false;
-    const cs = getComputedStyle(el);
-    const rect = el.getBoundingClientRect();
-    
-    // Controlla se è effettivamente visibile (non solo display/visibility)
-    const isDisplayed = cs.display !== 'none' && cs.visibility !== 'hidden';
-    const hasOpacity = parseFloat(cs.opacity || '1') > 0;
-    const hasSize = rect.height > 2 && rect.width > 2;
-    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-    
-    return isDisplayed && hasOpacity && hasSize && isInViewport;
-  }
-
-  // store/restore inline
-  function storeInline(el){
-    if(!el) return {};
-    const props = ['position','top','left','right','zIndex','display','maxHeight','overflowY','background','visibility','opacity','transform'];
-    const out = {};
-    props.forEach(p => out[p] = el.style[p] || '');
-    return out;
-  }
-  function restoreInline(el, stored){
-    if(!el || !stored) return;
-    Object.keys(stored).forEach(k => el.style[k] = stored[k] || '');
-  }
-
-  const headerHeight = (header && header.offsetHeight) ? header.offsetHeight : 56;
-  const mobileQuery = window.matchMedia('(max-width: 1180px)');
-  let savedInline = null;
-
-  function applyInlineFallbackShow() {
-    if (!mobileQuery.matches) return;
-    if (!savedInline) savedInline = storeInline(nav);
-    nav.style.display = 'flex';
-    nav.style.position = 'fixed';
-    nav.style.top = headerHeight + 'px';
-    nav.style.left = '0';
-    nav.style.right = '0';
-    nav.style.zIndex = '2200';
-    nav.style.background = getComputedStyle(nav).backgroundColor || 'white';
-    nav.style.maxHeight = 'calc(100vh - ' + headerHeight + 'px)';
-    nav.style.overflowY = 'auto';
-  }
-  function clearInlineFallback() {
-    if (savedInline) {
-      restoreInline(nav, savedInline);
-      savedInline = null;
-    }
-  }
-
-  // Funzione per verificare lo stato REALE del menu (basata su visibilità, non solo classi)
-  function getMenuRealState() {
-    const hasActiveClass = nav.classList.contains('active') || nav.classList.contains('open') || nav.classList.contains('show');
-    const isActuallyVisible = isNavVisible(nav);
-    const btnActive = newBtn.classList.contains('active');
-    
-    console.log('Stato menu - Classi attive:', hasActiveClass, 'Visivamente visibile:', isActuallyVisible, 'Bottone attivo:', btnActive);
-    
-    return {
-      hasActiveClass,
-      isActuallyVisible,
-      btnActive,
-      shouldBeOpen: hasActiveClass && isActuallyVisible
-    };
-  }
-
-  // Funzione di sincronizzazione completa
-  function syncMenuState() {
-    const state = getMenuRealState();
-    
-    // Se c'è una discrepanza, forza la sincronizzazione
-    if (state.hasActiveClass !== state.btnActive || state.hasActiveClass !== state.isActuallyVisible) {
-      console.warn('Discrepanza negli stati del menu - forzando sincronizzazione');
-      
-      // Determina lo stato corretto basandosi sulla visibilità effettiva
-      const shouldBeOpen = state.isActuallyVisible;
-      
-      if (shouldBeOpen) {
-        newBtn.classList.add('active');
-        nav.classList.add('active','open','show');
-        document.body.classList.add('menu-open');
-        newBtn.setAttribute('aria-expanded','true');
-      } else {
-        newBtn.classList.remove('active');
-        nav.classList.remove('active','open','show');
-        document.body.classList.remove('menu-open');
-        newBtn.setAttribute('aria-expanded','false');
-        clearInlineFallback();
-      }
-      
-      console.log('Stati sincronizzati - Menu:', shouldBeOpen ? 'aperto' : 'chiuso');
-    }
-  }
-
-  // funzione di toggle unificata con controllo di sincronizzazione
-  function doToggle(forceClose = false) {
-    // Prima sincronizza lo stato attuale
-    syncMenuState();
-    
-    const currentState = getMenuRealState();
-    const willBeActive = forceClose ? false : !currentState.shouldBeOpen;
-    
-    console.log('doToggle chiamato - forceClose:', forceClose, 'stato attuale:', currentState.shouldBeOpen, 'sarà attivo:', willBeActive);
-    
-    // Applica lo stato una sola volta a TUTTI gli elementi
-    if (willBeActive) {
-      newBtn.classList.add('active');
-      nav.classList.add('active','open','show');
-      document.body.classList.add('menu-open');
-      newBtn.setAttribute('aria-expanded','true');
-      console.log('Menu aperto tramite doToggle');
-    } else {
-      newBtn.classList.remove('active');
-      nav.classList.remove('active','open','show');
-      document.body.classList.remove('menu-open');
-      newBtn.setAttribute('aria-expanded','false');
-      console.log('Menu chiuso tramite doToggle');
-    }
-
-    // Delay per lasciare finire eventuali transition
-    setTimeout(() => {
-      syncMenuState(); // Ri-sincronizza dopo le transizioni
-      
-      const finalState = getMenuRealState();
-      if (finalState.shouldBeOpen) {
-        if (!finalState.isActuallyVisible) {
-          applyInlineFallbackShow();
-          console.info('Fallback inline applicato (mobile).');
-        } else {
-          clearInlineFallback();
-        }
-      } else {
-        clearInlineFallback();
-        if (mobileQuery.matches && finalState.isActuallyVisible) {
-          nav.style.display = 'none';
-        }
-      }
-    }, 100);
-  }
-
-  // Attach single, authoritative handler
-  newBtn.addEventListener('click', function(ev){
-    ev.preventDefault();
-    ev.stopPropagation();
-    console.log('Click su hamburger - chiamando doToggle');
-    doToggle();
-  }, { passive: false });
-
-  // chiudi nav se clicchi su un link dentro
-  nav.addEventListener('click', function(ev){
-    const a = ev.target.closest('a');
-    if (a) {
-      console.log('Click su link nel menu - chiudendo');
-      doToggle(true);
-    }
-  });
-
-  // Click fuori per chiudere - con controllo più robusto
-  document.addEventListener('click', function(ev){
-    // Aspetta un frame per permettere ad altri handler di eseguire
-    setTimeout(() => {
-      const state = getMenuRealState();
-      
-      if (state.hasActiveClass || state.isActuallyVisible) {
-        // Verifica se il click è effettivamente fuori da menu e bottone
-        if (!nav.contains(ev.target) && !newBtn.contains(ev.target)) {
-          console.log('Click esterno rilevato - chiudendo menu');
-          doToggle(true);
-        }
-      }
-    }, 10);
-  });
-
-  // Observer per monitorare cambiamenti di visibilità del nav (per intercettare modifiche CSS esterne)
-  const navObserver = new MutationObserver(function(mutations) {
-    let shouldCheck = false;
-    mutations.forEach(function(mutation) {
-      if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'style')) {
-        shouldCheck = true;
-      }
-    });
-    
-    if (shouldCheck) {
-      setTimeout(syncMenuState, 50); // Delay per permettere alle transizioni CSS di completarsi
-    }
-  });
-  
-  // Osserva cambiamenti di classe e stile sul nav
-  navObserver.observe(nav, {
-    attributes: true,
-    attributeFilter: ['class', 'style']
-  });
-
-  // Controllo periodico per sicurezza (ogni 2 secondi) - solo in development
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    setInterval(syncMenuState, 2000);
-  }
-
-  // garantiamo che l'hamburger resti visibile sopra il nav
-  newBtn.style.zIndex = newBtn.style.zIndex || '2600';
-  
-  // Sincronizzazione iniziale
-  setTimeout(syncMenuState, 100);
-  
-  console.log('replaceHamburgerHandler: nuovo handler con sincronizzazione avanzata installato.');
-})();
