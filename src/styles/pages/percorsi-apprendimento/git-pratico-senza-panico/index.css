@@ -238,6 +238,10 @@
   font-size: 1.06rem;
   line-height: 1.76;
   color: var(--guide-text);
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
   text-wrap: pretty;
 }
 
@@ -498,13 +502,6 @@
 
 .guide-intro-copy > .guide-subchapter {
   min-width: 0;
-}
-
-.guide-intro-copy > .guide-subchapter p {
-  text-align: justify;
-  text-align-last: left;
-  text-justify: inter-word;
-  hyphens: auto;
 }
 
 .guide-intro-copy > .guide-subchapter > :last-child {
