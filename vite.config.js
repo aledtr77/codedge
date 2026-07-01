@@ -137,7 +137,6 @@ function antiFoucHtmlPlugin() {
 
 function staticFooterHtmlPlugin() {
   const footerTemplatePath = path.resolve(process.cwd(), 'src/partials/footer.html');
-  const footerMarkup = fs.readFileSync(footerTemplatePath, 'utf8').trim();
 
   return {
     name: 'static-footer-html',
@@ -145,6 +144,7 @@ function staticFooterHtmlPlugin() {
       order: 'pre',
       handler(html) {
         if (/<footer\b/i.test(html)) return html;
+        const footerMarkup = fs.readFileSync(footerTemplatePath, 'utf8').trim();
         return html.replace(/<\/body>/i, `${footerMarkup}\n</body>`);
       }
     }

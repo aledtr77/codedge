@@ -29,6 +29,7 @@ footer {
 .footer-social {
   width: auto;
   display: flex;
+  gap: 0.75rem;
   justify-content: flex-end;
   position: absolute;
   right: 1rem;
@@ -105,6 +106,30 @@ footer {
   transform: scale(1.06);
   box-shadow: 0 8px 16px -8px rgba(221, 42, 123, 0.9);
 }
+.footer-social-link-youtube {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.footer-youtube-mark {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0 4px 5px rgba(255, 0, 51, 0.24));
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease;
+}
+.footer-social-link-youtube:hover {
+  filter: none;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.footer-social-link-youtube:hover .footer-youtube-mark {
+  transform: scale(1.06);
+  filter: drop-shadow(0 6px 7px rgba(255, 0, 51, 0.38));
+}
 .footer-social-link:focus-visible {
   outline: 2px solid var(--color-three);
   outline-offset: 4px;
@@ -112,6 +137,11 @@ footer {
 }
 .footer-social-link-instagram:focus-visible {
   outline-color: rgba(204, 151, 250, 0.95);
+  border-color: transparent;
+  background: transparent;
+}
+.footer-social-link-youtube:focus-visible {
+  outline-color: rgba(255, 76, 107, 0.95);
   border-color: transparent;
   background: transparent;
 }
