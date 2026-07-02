@@ -329,8 +329,11 @@ export function initColorGenerator() {
             <input type="color" class="color-picker-input" value="${color.hex}">
           </div>
         </div>
-        <span class="color-card-name">${getColorName(color.hex)}</span>
-        <span class="color-card-hex">${color.hex.toUpperCase()}</span>
+        
+        <div class="color-card-info">
+          <span class="color-card-name">${getColorName(color.hex)}</span>
+          <span class="color-card-hex">${color.hex.toUpperCase()}</span>
+        </div>
 
         <!-- Shades Dropdown Panel -->
         <div class="shades-panel">
