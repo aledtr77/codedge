@@ -1,10 +1,10 @@
 /* Rebuilt CSS Gradient Generator Styles (Spacious & Responsive Rebuild) */
 
 .gradient-page {
-  max-width: 1400px;
+  width: 95%;
+  max-width: 1750px;
   margin: 1.5rem auto 3rem auto;
-  padding: 0 4%;
-  width: 100%;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -559,7 +559,7 @@
 }
 
 .preview-box {
-  height: 240px;
+  height: 290px;
   position: relative;
   display: flex;
   align-items: center;
