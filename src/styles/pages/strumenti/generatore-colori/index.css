@@ -741,3 +741,32 @@ h3 {
     width: 100%;
   }
 }
+
+/* Typography styles for SEO text and FAQ blocks */
+.seo-text-content p,
+.faq-content p {
+  text-align: justify;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.seo-faq-divider {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+}
+
+#faq-colori-title {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.faq-content h4 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color: var(--hover-color);
+  font-size: 1.05rem;
+}
