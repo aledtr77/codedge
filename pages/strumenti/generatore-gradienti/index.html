@@ -141,125 +141,100 @@
         <p class="gradient-shell__note">Sfumature lineari e radiali pronte da copiare per fogli di stile e Tailwind.</p>
       </div>
 
-      <div class="gradient-workspace-wide">
-        <!-- 1. Anteprima Live (Grande, in alto a tutta larghezza) -->
-        <div class="workspace-row preview-row">
-          <div class="preview-card">
-            <div class="preview-box" id="previewBox">
-              <!-- Mockup Card dell'interfaccia, mostrato per dare contesto visivo -->
-              <div class="mockup-ui-card">
-                <span class="mockup-tag">Interfaccia</span>
-                <h4>Anteprima Interfaccia</h4>
-                <p>Questo mockup simula l'impatto visivo reale del tuo gradiente applicato ad una card web.</p>
-                <button class="mockup-btn" type="button">Bottone Esempio</button>
+      <div class="gradient-workspace">
+        <!-- Colonna Controlli (Sinistra - 60%) -->
+        <div class="controls-panel">
+          <!-- Blocco 1: Tipo & Orientamento -->
+          <div class="control-block">
+            <h3>Tipo & Orientamento</h3>
+            
+            <div class="type-angle-row">
+              <!-- Scelta Lineare / Radiale -->
+              <div class="type-group">
+                <span class="label-heading">Stile Sfumatura</span>
+                <div class="gradient-type-buttons">
+                  <button type="button" class="btn-type-toggle active" data-type="linear" id="btn-linear">Lineare</button>
+                  <button type="button" class="btn-type-toggle" data-type="radial" id="btn-radial">Radiale</button>
+                </div>
+              </div>
+
+              <!-- Bussola e Slider Angolo (Disattivato per Radial) -->
+              <div class="angle-group active" id="angleGroupContainer">
+                <span class="label-heading">Angolo di Inclinazione</span>
+                <div class="angle-slider-control">
+                  <div class="angle-compass" id="angleCompass" title="Trascina la lancetta per ruotare">
+                    <div class="angle-compass-dial">
+                      <div class="angle-compass-hand" id="angleCompassHand"></div>
+                    </div>
+                  </div>
+                  <div class="angle-inputs-details">
+                    <input type="range" id="angleRange" min="0" max="360" value="90" class="angle-slider-range">
+                    <div class="angle-numeric-box">
+                      <label for="angleNum" class="sr-only">Valore angolo</label>
+                      <input type="number" id="angleNum" min="0" max="360" value="90" class="angle-num-field">
+                      <span class="deg-symbol">°</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="preview-card-footer">
-              <button type="button" id="btn-toggle-mockup" class="btn-toggle-mockup">
-                <i class="fas fa-eye" aria-hidden="true"></i> Mostra/Nascondi Mockup UI
-              </button>
-            </div>
           </div>
-        </div>
 
-        <!-- 2. Timeline Sfumatura (In mezzo a tutta larghezza) -->
-        <div class="workspace-row timeline-row">
-          <div class="control-block timeline-full-block">
-            <div class="timeline-block-header">
-              <h3>Tracciato Sfumatura (Timeline)</h3>
-              <p class="timeline-hint"><strong>Clicca in qualsiasi punto sulla barra</strong> per aggiungere un colore, <strong>trascina i cursori</strong> per spostarli.</p>
-            </div>
+          <!-- Blocco 2: Timeline e Lista Colori -->
+          <div class="control-block">
+            <h3>I Tuoi Colori</h3>
             
+            <!-- Timeline Track per visualizzare e trascinare handles -->
             <div class="gradient-timeline-wrapper">
-              <div id="gradient-timeline-track" class="gradient-timeline-track" title="Clicca per aggiungere un colore">
-                <div class="timeline-track-overlay-label"><i class="fas fa-plus"></i> Clicca per aggiungere un colore</div>
+              <div id="gradient-timeline-track" class="gradient-timeline-track" title="Clicca sulla barra per aggiungere un colore">
+                <div class="timeline-track-overlay-label"><i class="fas fa-plus"></i> Clicca per aggiungere</div>
               </div>
               <div id="gradient-handles-container" class="gradient-handles-container">
-                <!-- I cursori verranno creati dinamicamente in JS -->
+                <!-- Handles iniettati da JS -->
               </div>
             </div>
+
+            <!-- Lista verticale degli stop colore -->
+            <div id="stops-list" class="stops-list">
+              <!-- Righe colore iniettate da JS -->
+            </div>
+
+            <button type="button" id="btn-add-stop" class="btn-add-stop-main">
+              <i class="fas fa-plus"></i> Aggiungi un altro colore
+            </button>
           </div>
         </div>
 
-        <!-- 3. Controlli e Palette (In basso divisi in 3 colonne) -->
-        <div class="controls-grid-bottom">
-          <!-- Colonna 1: Tipo & Orientamento -->
+        <!-- Colonna Anteprima & Esportazione (Destra - 40%) -->
+        <div class="preview-panel">
+          <!-- Blocco 3: Anteprima Live -->
           <div class="control-block">
-            <h3>1. Tipo & Orientamento</h3>
-            
-            <div class="sub-control-section">
-              <span class="sub-control-label">Tipo di Sfondo:</span>
-              <div class="gradient-type">
-                <button class="button-simple" data-type="linear" id="btn-linear">Lineare</button>
-                <button class="button-simple button-outline" data-type="radial" id="btn-radial">Radiale</button>
+            <h3>Anteprima Live</h3>
+            <div class="preview-card">
+              <div class="preview-box" id="previewBox">
+                <!-- Mockup Card interfaccia -->
+                <div class="mockup-ui-card">
+                  <span class="mockup-tag">Interfaccia</span>
+                  <h4>Anteprima Box</h4>
+                  <p>Questo mockup simula l'impatto visivo reale del tuo gradiente di sfondo su componenti web.</p>
+                  <button class="mockup-btn" type="button">Bottone Test</button>
+                </div>
               </div>
-            </div>
-
-            <div class="sub-control-section angle-control-block active" id="angleControlBlock">
-              <span class="sub-control-label">Angolo Direzione:</span>
-              <div class="angle-control-row">
-                <div id="angle-dial-container" class="angle-dial-container" title="Trascina la lancetta per ruotare">
-                  <div id="angle-dial" class="angle-dial">
-                    <div id="angle-dial-hand" class="angle-dial-hand"></div>
-                  </div>
-                </div>
-                <div class="angle-input-details">
-                  <div class="angle-numeric-row">
-                    <input type="number" id="angle-input-num" class="angle-num-input" value="90" min="0" max="360">
-                    <span class="deg-label">°</span>
-                  </div>
-                  <div class="quick-angles-grid">
-                    <button type="button" class="quick-angle-btn" data-angle="0">0° (Su)</button>
-                    <button type="button" class="quick-angle-btn" data-angle="90">90° (Dx)</button>
-                    <button type="button" class="quick-angle-btn" data-angle="180">180° (Giù)</button>
-                    <button type="button" class="quick-angle-btn" data-angle="270">270° (Sx)</button>
-                  </div>
-                </div>
+              <div class="preview-card-footer">
+                <button type="button" id="btn-toggle-mockup" class="btn-toggle-mockup">
+                  <i class="fas fa-eye" aria-hidden="true"></i> Mostra/Nascondi Mockup UI
+                </button>
               </div>
             </div>
           </div>
 
-          <!-- Colonna 2: Dettaglio Colore Attivo -->
+          <!-- Blocco 4: Copia Codice -->
           <div class="control-block">
-            <h3>2. Colore Selezionato</h3>
-            <p class="timeline-hint">Seleziona una maniglia sulla barra sopra per modificarne i valori:</p>
-            
-            <div id="active-stop-controls" class="active-stop-controls">
-              <div class="stop-control-item">
-                <label for="stop-color-input">Tinta:</label>
-                <div class="stop-color-picker-wrapper">
-                  <input type="color" id="stop-color-input" class="stop-color-input" value="#3b82f6">
-                  <span id="stop-color-hex" class="stop-color-hex">#3B82F6</span>
-                </div>
-              </div>
-              <div class="stop-control-item">
-                <label for="stop-position-input">Posizione:</label>
-                <div class="stop-position-row">
-                  <input type="number" id="stop-position-input" class="stop-position-input" value="0" min="0" max="100">
-                  <span class="pct-label">%</span>
-                </div>
-              </div>
-              <button type="button" id="btn-delete-stop" class="btn-delete-stop" title="Elimina questo colore">
-                <i class="fas fa-trash-alt" aria-hidden="true"></i>
-              </button>
-            </div>
-
-            <!-- Bottone alternativo super intuitivo per aggiungere colori -->
-            <div class="timeline-action-row">
-              <button type="button" id="btn-add-stop-fallback" class="btn-add-stop-fallback">
-                <i class="fas fa-plus-circle" aria-hidden="true"></i> Aggiungi colore alla barra
-              </button>
-            </div>
-          </div>
-
-          <!-- Colonna 3: Copia Codice & Palette -->
-          <div class="control-block export-code-block">
-            <h3>3. Copia Codice & Palette</h3>
-            
+            <h3>Esporta Codice</h3>
             <div class="code-export-block">
               <div class="export-tabs">
-                <button type="button" class="export-tab-btn active" data-format="css">CSS</button>
-                <button type="button" class="export-tab-btn" data-format="tailwind">Tailwind</button>
+                <button type="button" class="export-tab-btn active" data-format="css">CSS Standard</button>
+                <button type="button" class="export-tab-btn" data-format="tailwind">Tailwind CSS</button>
               </div>
               <div class="code-output-container">
                 <pre><code id="cssCode">background: linear-gradient(90deg, #3b82f6 0%, #ef4444 100%);</code></pre>
@@ -268,11 +243,13 @@
                 </button>
               </div>
             </div>
+          </div>
 
-            <!-- Presets consigliati sotto il codice -->
-            <div class="presets-section">
-              <span class="presets-title">Combinazioni Rapide:</span>
-              <div class="preset-gradients" id="preset-gradients-grid"></div>
+          <!-- Blocco 5: Combinazioni Consigliate -->
+          <div class="control-block">
+            <h3>Combinazioni Consigliate</h3>
+            <div class="preset-gradients" id="preset-gradients-grid">
+              <!-- Presets iniettati da JS -->
             </div>
           </div>
         </div>

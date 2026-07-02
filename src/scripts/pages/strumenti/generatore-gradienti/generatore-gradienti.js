@@ -11,24 +11,21 @@ export default function initGeneratorGradienti() {
     cssCode: document.getElementById("cssCode"),
     timelineTrack: document.getElementById("gradient-timeline-track"),
     handlesContainer: document.getElementById("gradient-handles-container"),
-    angleControlBlock: document.getElementById("angleControlBlock"),
-    angleDialContainer: document.getElementById("angle-dial-container"),
-    angleDialHand: document.getElementById("angle-dial-hand"),
-    angleInputNum: document.getElementById("angle-input-num"),
-    stopColorInput: document.getElementById("stop-color-input"),
-    stopColorHex: document.getElementById("stop-color-hex"),
-    stopPositionInput: document.getElementById("stop-position-input"),
-    btnDeleteStop: document.getElementById("btn-delete-stop"),
-    btnAddStopFallback: document.getElementById("btn-add-stop-fallback"),
+    stopsList: document.getElementById("stops-list"),
+    btnAddStop: document.getElementById("btn-add-stop"),
+    angleGroupContainer: document.getElementById("angleGroupContainer"),
+    angleCompass: document.getElementById("angleCompass"),
+    angleCompassHand: document.getElementById("angleCompassHand"),
+    angleRange: document.getElementById("angleRange"),
+    angleNum: document.getElementById("angleNum"),
     btnLinear: document.getElementById("btn-linear"),
     btnRadial: document.getElementById("btn-radial"),
     btnToggleMockup: document.getElementById("btn-toggle-mockup"),
     btnCopyCode: document.getElementById("btn-copy-code"),
-    presetContainer: document.getElementById("preset-gradients-grid"),
-    activeStopControls: document.getElementById("active-stop-controls")
+    presetContainer: document.getElementById("preset-gradients-grid")
   };
 
-  if (!elements.previewBox || !elements.timelineTrack || !elements.handlesContainer) {
+  if (!elements.previewBox || !elements.timelineTrack || !elements.handlesContainer || !elements.stopsList) {
     console.error("[generatore-gradienti] Elementi fondamentali non trovati.");
     return;
   }
@@ -49,11 +46,11 @@ export default function initGeneratorGradienti() {
     angle: 90,
     activeStopIndex: 0,
     stops: [
-      { color: "#3b82f6", position: 0 },
-      { color: "#ef4444", position: 100 }
+      { color: "#00c6ff", position: 0 },
+      { color: "#0072ff", position: 100 }
     ],
     exportFormat: "css", // "css" or "tailwind"
-    isDraggingDial: false,
+    isDraggingCompass: false,
     draggedStopIndex: null,
     showMockup: true
   };
@@ -85,12 +82,17 @@ export default function initGeneratorGradienti() {
   }
 
   function bindEvents() {
-    // Tipo gradiente
+    // Toggles Linear/Radial
     elements.btnLinear.addEventListener("click", () => setGradientType("linear"));
     elements.btnRadial.addEventListener("click", () => setGradientType("radial"));
 
-    // Angle Inputs
-    elements.angleInputNum.addEventListener("input", (e) => {
+    // Sync Angle Inputs (Range slider & Number field)
+    elements.angleRange.addEventListener("input", (e) => {
+      state.angle = parseInt(e.target.value, 10);
+      updateUI();
+    });
+
+    elements.angleNum.addEventListener("input", (e) => {
       let val = parseInt(e.target.value, 10);
       if (isNaN(val)) val = 0;
       val = Math.max(0, Math.min(360, val));
@@ -106,102 +108,48 @@ export default function initGeneratorGradienti() {
       });
     });
 
-    // Active stop color picker
-    elements.stopColorInput.addEventListener("input", (e) => {
-      if (state.activeStopIndex === null) return;
-      const color = e.target.value;
-      state.stops[state.activeStopIndex].color = color;
-      elements.stopColorHex.textContent = color.toUpperCase();
-      updateUI();
+    // Compass drag listener
+    elements.angleCompass.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      state.isDraggingCompass = true;
+      rotateCompassToClientCoords(e.clientX, e.clientY);
     });
 
-    // Active stop position input
-    elements.stopPositionInput.addEventListener("input", (e) => {
-      if (state.activeStopIndex === null) return;
-      let pos = parseInt(e.target.value, 10);
-      if (isNaN(pos)) pos = 0;
-      pos = Math.max(0, Math.min(100, pos));
-      
-      state.stops[state.activeStopIndex].position = pos;
-
-      // Mantieni attivo lo stop ordinandolo
-      const activeStop = state.stops[state.activeStopIndex];
-      state.stops.sort((a, b) => a.position - b.position);
-      state.activeStopIndex = state.stops.indexOf(activeStop);
-
-      updateUI();
+    elements.angleCompass.addEventListener("touchstart", (e) => {
+      state.isDraggingCompass = true;
+      if (e.touches[0]) rotateCompassToClientCoords(e.touches[0].clientX, e.touches[0].clientY);
     });
 
-    // Delete Stop Button
-    elements.btnDeleteStop.addEventListener("click", () => {
-      if (state.stops.length <= 2) {
-        alert("Devono esserci almeno due colori nel gradiente.");
-        return;
-      }
-      state.stops.splice(state.activeStopIndex, 1);
-      state.activeStopIndex = 0;
-      updateUI();
-    });
-
-    // Fallback button to add color
-    if (elements.btnAddStopFallback) {
-      elements.btnAddStopFallback.addEventListener("click", () => {
-        let position = 50;
-        while (state.stops.some(s => s.position === position) && position < 100) {
-          position += 5;
-        }
-        if (position > 100) position = 50;
-
-        const color = getColorAtPercentage(position);
-        const newStop = { color, position };
-        state.stops.push(newStop);
-        state.stops.sort((a, b) => a.position - b.position);
-        state.activeStopIndex = state.stops.indexOf(newStop);
-        updateUI();
-      });
-    }
-
-    // Click on timeline track to ADD a stop
+    // Click track to add stop
     elements.timelineTrack.addEventListener("click", (e) => {
-      // Se clicchiamo direttamente su un handle o stiamo trascinando, non aggiungere
       if (e.target.classList.contains("gradient-handle")) return;
-      
       const rect = elements.timelineTrack.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const pct = Math.round((x / rect.width) * 100);
       const clampedPct = Math.max(0, Math.min(100, pct));
 
-      // Calcola colore interpolato nella posizione cliccata per UX premium
-      const color = getColorAtPercentage(clampedPct);
-
-      // Inserisci e seleziona il nuovo stop
-      const newStop = { color, position: clampedPct };
-      state.stops.push(newStop);
-      state.stops.sort((a, b) => a.position - b.position);
-      state.activeStopIndex = state.stops.indexOf(newStop);
-
-      updateUI();
+      addStopAtPosition(clampedPct);
     });
 
-    // Setup global mouse/touch movement handlers for Drag & Drop handles and Angle Dial
+    // Add Stop Button Click
+    elements.btnAddStop.addEventListener("click", () => {
+      // Trova una posizione vuota intorno al 50%
+      let position = 50;
+      while (state.stops.some(s => s.position === position) && position < 100) {
+        position += 5;
+      }
+      if (position > 100) position = 50;
+
+      addStopAtPosition(position);
+    });
+
+    // Global drag handlers
     window.addEventListener("mousemove", onGlobalMove);
     window.addEventListener("touchmove", onGlobalMove, { passive: false });
     window.addEventListener("mouseup", onGlobalEnd);
     window.addEventListener("touchend", onGlobalEnd);
 
-    // Angle dial drag start
-    elements.angleDialContainer.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      state.isDraggingDial = true;
-      rotateDialToClientCoords(e.clientX, e.clientY);
-    });
-
-    elements.angleDialContainer.addEventListener("touchstart", (e) => {
-      state.isDraggingDial = true;
-      if (e.touches[0]) rotateDialToClientCoords(e.touches[0].clientX, e.touches[0].clientY);
-    });
-
-    // Mockup card visible toggle
+    // Mockup card show/hide toggle
     elements.btnToggleMockup.addEventListener("click", () => {
       state.showMockup = !state.showMockup;
       const card = document.querySelector(".mockup-ui-card");
@@ -220,15 +168,23 @@ export default function initGeneratorGradienti() {
       });
     });
 
-    // Copy to clipboard
     elements.btnCopyCode.addEventListener("click", copyOutputToClipboard);
   }
 
   function setGradientType(type) {
     state.gradientType = type;
-    elements.btnLinear.classList.toggle("button-outline", type !== "linear");
-    elements.btnRadial.classList.toggle("button-outline", type !== "radial");
-    elements.angleControlBlock.classList.toggle("active", type === "linear");
+    elements.btnLinear.classList.toggle("active", type === "linear");
+    elements.btnRadial.classList.toggle("active", type === "radial");
+    elements.angleGroupContainer.classList.toggle("active", type === "linear");
+    updateUI();
+  }
+
+  function addStopAtPosition(pct) {
+    const color = getColorAtPercentage(pct);
+    const newStop = { color, position: pct };
+    state.stops.push(newStop);
+    state.stops.sort((a, b) => a.position - b.position);
+    state.activeStopIndex = state.stops.indexOf(newStop);
     updateUI();
   }
 
@@ -245,32 +201,31 @@ export default function initGeneratorGradienti() {
 
       state.stops[state.draggedStopIndex].position = pct;
 
-      // ordina dinamicamente mantenendo il puntatore corretto
+      // ordina dinamicamente mantenendo l'indice selezionato corretto
       const draggedStop = state.stops[state.draggedStopIndex];
       state.stops.sort((a, b) => a.position - b.position);
       state.draggedStopIndex = state.stops.indexOf(draggedStop);
       state.activeStopIndex = state.draggedStopIndex;
 
       updateUI();
-    } else if (state.isDraggingDial) {
+    } else if (state.isDraggingCompass) {
       if (e.touches) e.preventDefault();
-      rotateDialToClientCoords(clientX, clientY);
+      rotateCompassToClientCoords(clientX, clientY);
     }
   }
 
   function onGlobalEnd() {
     state.draggedStopIndex = null;
-    state.isDraggingDial = false;
+    state.isDraggingCompass = false;
   }
 
-  function rotateDialToClientCoords(clientX, clientY) {
-    const rect = elements.angleDialContainer.getBoundingClientRect();
+  function rotateCompassToClientCoords(clientX, clientY) {
+    const rect = elements.angleCompass.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     const dx = clientX - centerX;
     const dy = clientY - centerY;
 
-    // Converte radianti in gradi adattati per gradiente lineare CSS (90deg è a destra)
     let angleDeg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI) + 90;
     if (angleDeg < 0) angleDeg += 360;
     
@@ -279,37 +234,25 @@ export default function initGeneratorGradienti() {
   }
 
   function updateUI() {
-    // 1. Rendering visual timeline & preview background
+    // 1. Anteprima visiva & traccia timeline
     const cssGradient = buildGradientCSSString(state.gradientType, state.angle, state.stops);
     elements.previewBox.style.background = cssGradient;
 
-    // Timeline horizontal bar background (always linear to right)
+    // Timeline track (sempre lineare da sinistra a destra)
     elements.timelineTrack.style.background = buildGradientCSSString("linear", 90, state.stops);
 
-    // 2. Rendering handles
+    // 2. Rendering degli handles sulla timeline
     renderHandles();
 
-    // 3. Sync Angle inputs
-    elements.angleInputNum.value = state.angle;
-    elements.angleDialHand.style.transform = `rotate(${state.angle}deg)`;
+    // 3. Sync controlli Angolo (Compass, Range Slider e Numero)
+    elements.angleRange.value = state.angle;
+    elements.angleNum.value = state.angle;
+    elements.angleCompassHand.style.transform = `rotate(${state.angle}deg)`;
 
-    // 4. Sync Active stop details panel
-    if (state.activeStopIndex !== null && state.stops[state.activeStopIndex]) {
-      elements.activeStopControls.style.opacity = "1";
-      elements.activeStopControls.style.pointerEvents = "auto";
-      const stop = state.stops[state.activeStopIndex];
-      elements.stopColorInput.value = stop.color;
-      elements.stopColorHex.textContent = stop.color.toUpperCase();
-      elements.stopPositionInput.value = stop.position;
-      
-      // disabilita delete se rimangono solo 2 stop
-      elements.btnDeleteStop.disabled = state.stops.length <= 2;
-    } else {
-      elements.activeStopControls.style.opacity = "0.3";
-      elements.activeStopControls.style.pointerEvents = "none";
-    }
+    // 4. Rendering dell'elenco verticale di stop colore
+    renderStopsList();
 
-    // 5. Update Code Output
+    // 5. Update codice box
     updateCodeOutput();
   }
 
@@ -324,7 +267,7 @@ export default function initGeneratorGradienti() {
       handle.style.left = `${stop.position}%`;
       handle.style.backgroundColor = stop.color;
 
-      // Eventi di selezione e drag
+      // Click / Drag
       handle.addEventListener("mousedown", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -347,6 +290,75 @@ export default function initGeneratorGradienti() {
       });
 
       elements.handlesContainer.appendChild(handle);
+    });
+  }
+
+  function renderStopsList() {
+    elements.stopsList.innerHTML = "";
+    state.stops.forEach((stop, index) => {
+      const row = document.createElement("div");
+      row.className = `stop-row ${index === state.activeStopIndex ? "is-active" : ""}`;
+
+      row.innerHTML = `
+        <div class="stop-row-left">
+          <div class="color-picker-wrapper">
+            <input type="color" class="row-color-input" value="${stop.color}">
+            <span class="row-color-hex">${stop.color.toUpperCase()}</span>
+          </div>
+        </div>
+        <div class="stop-row-middle">
+          <input type="range" class="row-position-slider" min="0" max="100" value="${stop.position}">
+          <span class="row-position-val">${stop.position}%</span>
+        </div>
+        <div class="stop-row-right">
+          <button type="button" class="btn-delete-row-stop" title="Elimina questo colore">
+            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+          </button>
+        </div>
+      `;
+
+      // Selezione della riga
+      row.addEventListener("click", () => {
+        if (state.activeStopIndex !== index) {
+          state.activeStopIndex = index;
+          updateUI();
+        }
+      });
+
+      // Modifica Colore Picker
+      const picker = row.querySelector(".row-color-input");
+      picker.addEventListener("input", (e) => {
+        state.stops[index].color = e.target.value;
+        updateUI();
+      });
+
+      // Modifica Posizione Slider
+      const slider = row.querySelector(".row-position-slider");
+      slider.addEventListener("input", (e) => {
+        const pct = parseInt(e.target.value, 10);
+        state.stops[index].position = pct;
+
+        // Ordina e mantieni selezionato il medesimo oggetto
+        const activeStop = state.stops[state.activeStopIndex];
+        state.stops.sort((a, b) => a.position - b.position);
+        state.activeStopIndex = state.stops.indexOf(activeStop);
+
+        updateUI();
+      });
+
+      // Elimina stop
+      const delBtn = row.querySelector(".btn-delete-row-stop");
+      if (state.stops.length <= 2) {
+        delBtn.disabled = true;
+      }
+      delBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Evita di selezionare la riga eliminata
+        state.stops.splice(index, 1);
+        state.activeStopIndex = 0;
+        updateUI();
+      });
+
+      elements.stopsList.appendChild(row);
     });
   }
 
@@ -373,13 +385,12 @@ export default function initGeneratorGradienti() {
     return `radial-gradient(circle, ${stopsStr})`;
   }
 
-  // UX Premium: Interpolazione cromatiche lineare al clic del mouse
+  // Interpolazione cromatica lineare (RGB)
   function getColorAtPercentage(pct) {
     if (state.stops.length === 0) return "#3b82f6";
     if (pct <= state.stops[0].position) return state.stops[0].color;
     if (pct >= state.stops[state.stops.length - 1].position) return state.stops[state.stops.length - 1].color;
 
-    // Trova gli stop contigui sinistro e destro
     let leftStop = state.stops[0];
     let rightStop = state.stops[state.stops.length - 1];
 
@@ -436,7 +447,6 @@ export default function initGeneratorGradienti() {
   }
 
   function showCopyTooltip() {
-    // Crea tooltip temporaneo se non esiste
     let tooltip = document.querySelector(".tooltip");
     if (!tooltip) {
       const container = document.createElement("div");
