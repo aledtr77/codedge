@@ -19,6 +19,7 @@ export default function initGeneratorGradienti() {
     stopColorHex: document.getElementById("stop-color-hex"),
     stopPositionInput: document.getElementById("stop-position-input"),
     btnDeleteStop: document.getElementById("btn-delete-stop"),
+    btnAddStopFallback: document.getElementById("btn-add-stop-fallback"),
     btnLinear: document.getElementById("btn-linear"),
     btnRadial: document.getElementById("btn-radial"),
     btnToggleMockup: document.getElementById("btn-toggle-mockup"),
@@ -141,6 +142,24 @@ export default function initGeneratorGradienti() {
       state.activeStopIndex = 0;
       updateUI();
     });
+
+    // Fallback button to add color
+    if (elements.btnAddStopFallback) {
+      elements.btnAddStopFallback.addEventListener("click", () => {
+        let position = 50;
+        while (state.stops.some(s => s.position === position) && position < 100) {
+          position += 5;
+        }
+        if (position > 100) position = 50;
+
+        const color = getColorAtPercentage(position);
+        const newStop = { color, position };
+        state.stops.push(newStop);
+        state.stops.sort((a, b) => a.position - b.position);
+        state.activeStopIndex = state.stops.indexOf(newStop);
+        updateUI();
+      });
+    }
 
     // Click on timeline track to ADD a stop
     elements.timelineTrack.addEventListener("click", (e) => {
