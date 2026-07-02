@@ -34,7 +34,6 @@ export function initImageCompressor() {
   const elements = {
     fileInput: document.getElementById("fileInput"),
     uploadArea: document.getElementById("uploadArea"),
-    btnToggleSettings: document.getElementById("btn-toggle-settings"),
     advancedSettingsPanel: document.getElementById("advanced-settings-panel"),
     outputFormat: document.getElementById("outputFormat"),
     qualitySlider: document.getElementById("quality"),
@@ -56,8 +55,7 @@ export function initImageCompressor() {
   }
 
   const state = {
-    activePreset: "balanced",
-    settingsExpanded: false
+    activePreset: "balanced"
   };
 
   setupInitialState();
@@ -94,12 +92,7 @@ export function initImageCompressor() {
       if (file) await handleSelectedFile(file);
     });
 
-    // Expand / collapse advanced settings
-    elements.btnToggleSettings.addEventListener("click", () => {
-      state.settingsExpanded = !state.settingsExpanded;
-      elements.btnToggleSettings.classList.toggle("is-active", state.settingsExpanded);
-      elements.advancedSettingsPanel.classList.toggle("is-expanded", state.settingsExpanded);
-    });
+
 
     setupSlider(elements.qualitySlider, elements.qualityFill, elements.qualityValueInput, "%");
     setupSlider(elements.maxWidthSlider, elements.maxWidthFill, elements.maxWidthValueInput, "px");

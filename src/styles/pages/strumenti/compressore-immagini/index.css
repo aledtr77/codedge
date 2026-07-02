@@ -114,59 +114,13 @@ body > main .section {
   display: none;
 }
 
-/* Advanced Settings Toggle Button */
-.settings-toggle-container {
-  display: flex;
-  justify-content: center;
-}
-
-.settings-toggle-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--text-color);
-  padding: 0.6rem 1.3rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 750;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-  outline: none;
-}
-
-.settings-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--color-three);
-  color: var(--hover-color);
-}
-
-.toggle-arrow {
-  font-size: 0.75rem;
-  transition: transform 0.25s ease;
-}
-
-.settings-toggle-btn.is-active .toggle-arrow {
-  transform: rotate(180deg);
-}
-
-/* Collapsible Settings Panel */
+/* Settings Panel (Always Visible) */
 .advanced-settings-panel {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, padding 0.35s ease;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  padding: 0;
-}
-
-.advanced-settings-panel.is-expanded {
-  max-height: 550px;
-  opacity: 1;
   padding: 0.5rem 0;
+  opacity: 1;
 }
 
 /* Control Blocks inside Settings */
