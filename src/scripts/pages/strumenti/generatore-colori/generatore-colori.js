@@ -1,22 +1,49 @@
-// src/scripts/components/generatore-colori.js
-import iro from "@jaames/iro"; // <-- se usi il CDN, commenta questa riga
+// src/scripts/pages/strumenti/generatore-colori/generatore-colori.js
 
-let colorPicker;
-let lastCopiedColor = "";
+let palette = [
+  { hex: "#264653", locked: false },
+  { hex: "#2A9D8F", locked: false },
+  { hex: "#E9C46A", locked: false },
+  { hex: "#F4A261", locked: false },
+  { hex: "#E76F51", locked: false }
+];
+
+const PRESETS = [
+  { name: "Sogno Pastello", colors: ["#FFB7B2", "#FFDAC1", "#E2F0CB", "#B5EAD7", "#C7CEEA"] },
+  { name: "Tramonto Caldo", colors: ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51"] },
+  { name: "Ardesia Nordica", colors: ["#2E3440", "#3B4252", "#434C5E", "#4C566A", "#D8DEE9"] },
+  { name: "Cyberpunk Neon", colors: ["#0B0C10", "#1F2833", "#C5C6C7", "#66FCF1", "#45A29E"] },
+  { name: "Brezza Marina", colors: ["#003F5C", "#2F5C73", "#587A8C", "#8099A6", "#A8B9C2"] },
+  { name: "Sabbie Calde", colors: ["#EAE2B7", "#FCBF49", "#F77F00", "#D62828", "#003049"] },
+  { name: "Foresta Profonda", colors: ["#14362E", "#335C4E", "#608066", "#8EB295", "#CFE0C3"] },
+  { name: "Dolce Lavanda", colors: ["#3D348B", "#7678ED", "#F7B801", "#F18701", "#F35B04"] }
+];
+
 let _initialized = false;
 
 export function initColorGenerator() {
-  if (_initialized) return; // anti-doppia init
+  if (_initialized) return;
   _initialized = true;
 
-  // --- guard minimo: serve #picker in pagina
-  if (!document.getElementById("picker")) {
-    console.error("Elemento #picker non trovato: inizializzazione abortita.");
+  const cardsContainer = document.getElementById("palette-cards-container");
+  const btnGenerate = document.getElementById("btn-generate");
+  const modeSelect = document.getElementById("generation-mode");
+  const btnCopyCss = document.getElementById("btn-copy-css");
+  const btnCopyJson = document.getElementById("btn-copy-json");
+  const btnCopyLink = document.getElementById("btn-copy-link");
+  const presetsContainer = document.getElementById("presets-container");
+  const bgSelect = document.getElementById("contrast-bg-select");
+  const textSelect = document.getElementById("contrast-text-select");
+  const previewBox = document.getElementById("contrast-preview-box");
+  const scoreDetails = document.getElementById("contrast-score-details");
+
+  if (!cardsContainer || !btnGenerate) {
+    console.error("Elementi necessari del generatore non trovati in pagina.");
     return;
   }
 
-  // ============ Tooltip minimal (integrato) ============
-  function showTooltip(el, msg, duration = 2000) {
+  // ============ Tooltip Helper ============
+  function showTooltip(el, msg, duration = 1500) {
     if (!el) return;
     let tip = el.querySelector(".tooltiptext");
     if (!tip) {
@@ -30,393 +57,467 @@ export function initColorGenerator() {
     tip.style.opacity = "1";
     if (el.__tooltipTimer) clearTimeout(el.__tooltipTimer);
     el.__tooltipTimer = setTimeout(() => {
-      hideTooltip(el);
+      tip.style.visibility = "hidden";
+      tip.style.opacity = "0";
     }, duration);
   }
-  function hideTooltip(el) {
-    if (!el) return;
-    const tip = el.querySelector(".tooltiptext");
-    if (!tip) return;
-    tip.style.visibility = "hidden";
-    tip.style.opacity = "0";
-    if (el.__tooltipTimer) {
-      clearTimeout(el.__tooltipTimer);
-      el.__tooltipTimer = null;
-    }
-  }
-  // =====================================================
 
-  // -------- helpers UI --------
-  function initializeSliders() {
-    const t = document.getElementById("lightenDarken");
-    const o = document.getElementById("saturate");
-    if (!t || !o) return;
-    t.value = 0;
-    o.value = 50;
-  }
-
-  function manipulateColor(hex) {
-    const t = parseInt(document.getElementById("lightenDarken")?.value ?? "0");
-    const o = parseInt(document.getElementById("saturate")?.value ?? "50");
-    const n = hexToRgb(hex);
-    if (!n) return;
-    let r = rgbToHsl(n.r, n.g, n.b);
-    r.l = 100 - (t + 100) / 2;
-    r.s = o;
-
-    const l = hslToHex(r.h, r.s, r.l);
-    const a = hexToRgb(l);
-    const c = document.getElementById("manipulatedColor");
-    const i = document.getElementById("manipulatedColorText");
-    if (c) c.style.backgroundColor = l;
-    if (i && a) {
-      i.innerHTML = `
-        Colore manipolato:<br>
-        HEX: ${l}<br>
-        RGB: ${a.r}, ${a.g}, ${a.b}<br>
-        HSL: ${Math.round(r.h)}°, ${Math.round(r.s)}%, ${Math.round(r.l)}%
-      `;
-    }
-  }
-
-  function setupManipulatedColorCopy() {
-    const e = document.getElementById("manipulatedColor");
-    if (!e) return;
-    e.style.cursor = "pointer";
-    e.addEventListener("mouseover", () => { e.style.opacity = "0.8"; });
-    e.addEventListener("mouseout", () => { e.style.opacity = "1"; });
-    e.addEventListener("click", () => {
-      const bg = e.style.backgroundColor;
-      const asHex = rgbToHex(bg);
-      navigator.clipboard.writeText(asHex)
-        .then(() => {
-          lastCopiedColor = asHex;
-          showTooltip(e, "Copiato!", 1500);
-        })
-        .catch((err) => {
-          console.error("Errore nel copiare il colore:", err);
-          showTooltip(e, "Errore!", 1500);
-        });
-    });
-  }
-
-  function generatePalette(hex) {
-    const t = document.getElementById("harmonies")?.value ?? "monochromatic";
-    const o = document.getElementById("paletteContainer");
-    if (!o) return;
-
-    let n;
-    o.innerHTML = "";
-    switch (t) {
-      case "monochromatic": n = generateMonochromaticPalette(hex); break;
-      case "analogous": n = generateAnalogousPalette(hex); break;
-      case "complementary": n = generateComplementaryPalette(hex); break;
-      case "triadic": n = generateTriadicPalette(hex); break;
-      case "tetradic": n = generateTetradicPalette(hex); break;
-      default: n = [hex];
-    }
-    n.forEach((c) => o.appendChild(createColorSwatch(c)));
-  }
-
-  function createColorSwatch(col) {
-    const t = document.createElement("div");
-    t.className = "color-swatch";
-    t.style.backgroundColor = col;
-
-    const o = col.startsWith("#") ? col : rgbToHex(col);
-    const n = document.createElement("span");
-    n.className = "hex-value";
-    n.textContent = o.toUpperCase();
-
-    t.appendChild(n);
-    t.addEventListener("click", () => {
-      navigator.clipboard.writeText(o)
-        .then(() => { lastCopiedColor = o; showTooltip(t, "Copiato!", 1200); })
-        .catch((err) => { console.error("Errore nel copiare il testo: ", err); showTooltip(t, "Errore!", 1200); });
-    });
-    return t;
-  }
-
-  function analyzeColor(hex) {
-    updateColorInfo(hex);
-  }
-
-  function updateColorInfo(hex) {
-    const t = document.getElementById("colorPreview");
-    const o = document.getElementById("colorDetails");
-    if (!t || !o) return;
-
-    t.style.backgroundColor = hex;
-    const n = hexToRgb(hex);
-    if (!n) return;
-    const r = rgbToHsl(n.r, n.g, n.b);
-    const l = calculateLuminance(n);
-    const a = getDominantShade(n);
-    o.innerHTML = `
-      HEX: ${hex}<br>
-      RGB: ${n.r}, ${n.g}, ${n.b}<br>
-      HSL: ${r.h}°, ${r.s}%, ${r.l}%<br>
-      Luminosità: ${l.toFixed(2)}<br>
-      Tinta dominante: ${a}
-    `;
-  }
-
-  function checkContrast(fg, bg) {
-    const o = calculateContrast(fg, (bg = parseColor(bg) || "#FFFFFF"));
-    const n = document.getElementById("contrastResult");
-    if (!n) return;
-    const r = getWCAGLevel(o);
-    n.innerHTML = `
-      <div class="contrast-preview" style="background-color: ${fg}; color: ${getContrastingTextColor(fg)};">
-        Testo di esempio
-      </div>
-      Rapporto di contrasto: ${o.toFixed(2)}:1<br>
-      WCAG 2.1: ${r}
-    `;
-  }
-
-  // -------- helpers colore --------
-  function parseColor(val) {
-    if (!val) return null;
-    if (val.startsWith("#")) {
-      if (val.length === 4) return "#" + val[1] + val[1] + val[2] + val[2] + val[3] + val[3];
-      if (val.length === 7) return val;
-    }
-    const t = val.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
-    if (t) return rgbToHex(`rgb(${t[1]}, ${t[2]}, ${t[3]})`);
-    const probe = document.createElement("div");
-    probe.style.color = val;
-    document.body.appendChild(probe);
-    const n = getComputedStyle(probe).color;
-    document.body.removeChild(probe);
-    return n !== val ? rgbToHex(n) : null;
-  }
-
-  function getContrastingTextColor(hex) {
-    const t = parseColor(hex) || "#FFFFFF";
-    return calculateContrast(t, "#000000") >= calculateContrast(t, "#FFFFFF") ? "#000000" : "#FFFFFF";
-  }
-
-  function generateMonochromaticPalette(hex) {
-    const t = rgbToHsl(...Object.values(hexToRgb(hex)));
-    return [
-      hex,
-      hslToHex(t.h, t.s, Math.max(0, t.l - 20)),
-      hslToHex(t.h, t.s, Math.min(100, t.l + 20)),
-      hslToHex(t.h, Math.max(0, t.s - 20), t.l),
-      hslToHex(t.h, Math.min(100, t.s + 20), t.l),
-    ];
-  }
-  function generateAnalogousPalette(hex) {
-    const t = rgbToHsl(...Object.values(hexToRgb(hex)));
-    return [
-      hex,
-      hslToHex((t.h + 30) % 360, t.s, t.l),
-      hslToHex((t.h + 60) % 360, t.s, t.l),
-      hslToHex((t.h - 30 + 360) % 360, t.s, t.l),
-      hslToHex((t.h - 60 + 360) % 360, t.s, t.l),
-    ];
-  }
-  function generateComplementaryPalette(hex) {
-    const t = rgbToHsl(...Object.values(hexToRgb(hex)));
-    const o = (t.h + 180) % 360;
-    return [
-      hex,
-      hslToHex(o, t.s, t.l),
-      hslToHex(t.h, Math.max(0, t.s - 20), t.l),
-      hslToHex(t.h, Math.min(100, t.s + 20), t.l),
-      hslToHex(o, Math.min(100, t.s + 20), t.l),
-    ];
-  }
-  function generateTriadicPalette(hex) {
-    const t = rgbToHsl(...Object.values(hexToRgb(hex)));
-    return [
-      hex,
-      hslToHex((t.h + 120) % 360, t.s, t.l),
-      hslToHex((t.h + 240) % 360, t.s, t.l),
-      hslToHex(t.h, Math.max(0, t.s - 20), t.l),
-      hslToHex(t.h, Math.min(100, t.s + 20), t.l),
-    ];
-  }
-  function generateTetradicPalette(hex) {
-    const t = rgbToHsl(...Object.values(hexToRgb(hex)));
-    return [
-      hex,
-      hslToHex((t.h + 90) % 360, t.s, t.l),
-      hslToHex((t.h + 180) % 360, t.s, t.l),
-      hslToHex((t.h + 270) % 360, t.s, t.l),
-      hslToHex(t.h, Math.min(100, t.s + 20), t.l),
-    ];
-  }
-
-  function rgbToHex(val) {
-    if (typeof val === "string") {
-      const m = val.match(/\d+/g);
-      if (!m) return val;
-      const [t, o, n] = m;
-      return (
-        "#" +
-        ((1 << 24) + (+t << 16) + (+o << 8) + +n)
-          .toString(16)
-          .slice(1)
-      );
-    }
-    return val;
-  }
-
+  // ============ Color Converter Helpers ============
   function hexToRgb(hex) {
-    const t = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return t ? { r: parseInt(t[1], 16), g: parseInt(t[2], 16), b: parseInt(t[3], 16) } : null;
+    const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return r ? {
+      r: parseInt(r[1], 16),
+      g: parseInt(r[2], 16),
+      b: parseInt(r[3], 16)
+    } : null;
   }
 
-  function rgbToHsl(e, t, o) {
-    e /= 255; t /= 255; o /= 255;
-    const n = Math.max(e, t, o);
-    const r = Math.min(e, t, o);
-    let l, a, c = (n + r) / 2;
-    if (n === r) { l = a = 0; }
-    else {
-      const i = n - r;
-      a = c > 0.5 ? i / (2 - n - r) : i / (n + r);
-      switch (n) {
-        case e: l = (t - o) / i + (t < o ? 6 : 0); break;
-        case t: l = (o - e) / i + 2; break;
-        case o: l = (e - t) / i + 4; break;
+  function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  }
+
+  function hexToHsl(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return { h: 0, s: 0, l: 0 };
+    let r = rgb.r / 255;
+    let g = rgb.g / 255;
+    let b = rgb.b / 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max === min) {
+      h = s = 0; // achromatic
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
       }
-      l /= 6;
+      h /= 6;
     }
-    return { h: Math.round(360 * l), s: Math.round(100 * a), l: Math.round(100 * c) };
+    return {
+      h: Math.round(h * 360),
+      s: Math.round(s * 100),
+      l: Math.round(l * 100)
+    };
   }
 
   function hslToHex(h, s, l) {
+    s /= 100;
     l /= 100;
-    const n = (s * Math.min(l, 1 - l)) / 100;
-    const f = (t) => {
-      const r = (t + h / 30) % 12;
-      const v = l - n * Math.max(Math.min(r - 3, 9 - r, 1), -1);
-      return Math.round(255 * v).toString(16).padStart(2, "0");
+    const k = n => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = n => {
+      const r = l - a * Math.max(Math.min(k(n) - 3, 9 - k(n), 1), -1);
+      return Math.round(255 * r).toString(16).padStart(2, "0");
     };
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
-  function calculateLuminance(e) {
-    const t = [e.r, e.g, e.b].map((v) =>
-      (v /= 255) <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)
-    );
-    return 0.2126 * t[0] + 0.7152 * t[1] + 0.0722 * t[2];
+  function calculateLuminance(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return 0;
+    const a = [rgb.r, rgb.g, rgb.b].map(v => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
   }
 
-  function calculateContrast(aHex, bHex) {
-    const o = calculateLuminance(hexToRgb(aHex));
-    const n = calculateLuminance(hexToRgb(bHex));
-    return (Math.max(o, n) + 0.05) / (Math.min(o, n) + 0.05);
+  function calculateContrast(hex1, hex2) {
+    const lum1 = calculateLuminance(hex1);
+    const lum2 = calculateLuminance(hex2);
+    return (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
   }
 
-  function getWCAGLevel(ratio) {
-    return ratio >= 7 ? "AAA" : ratio >= 4.5 ? "AA" : ratio >= 3 ? "AA (Large Text)" : "Fail";
+  function isLightColor(hex) {
+    return calculateLuminance(hex) > 0.45;
   }
 
-  function getDominantShade(rgb) {
-    const t = Math.max(rgb.r, rgb.g, rgb.b);
-    return rgb.r === t ? "Rosso" : rgb.g === t ? "Verde" : rgb.b === t ? "Blu" : "Neutro";
-  }
+  // ============ Core Logic ============
 
-  // -------- bootstrap --------
-  const e = document.getElementById("selectedColorValue");
-  const t = document.getElementById("contrastColorInput");
-  const o = document.getElementById("colorPreviewReal");
-  const n = document.getElementById("colorPreview");
-  const r = document.getElementById("manipulatedColor");
-  const l = document.getElementById("colorPreviewContainer");
-
-  try {
-    colorPicker = new iro.ColorPicker("#picker", { width: 200, color: "#007bff" });
-    console.log("Color picker inizializzato");
-  } catch (err) {
-    console.error("Errore nell'inizializzazione del color picker:", err);
-    return;
-  }
-
-  function updateHexValue(col) {
-    const hex = col.hexString || col;
-    if (e) e.textContent = hex;
-    colorPicker.color.set(hex);
-    if (o) o.style.backgroundColor = hex;
-    if (n) n.style.backgroundColor = hex;
-    if (r) r.style.backgroundColor = hex;
-    analyzeColor(hex);
-    if (t) checkContrast(hex, t.value);
-  }
-
-  colorPicker.on("color:change", (c) => {
-    updateHexValue(c);
-    manipulateColor(c.hexString);
-  });
-
-  t?.addEventListener("input", (ev) => {
-    const parsed = parseColor(ev.target.value);
-    if (parsed) {
-      t.style.backgroundColor = parsed;
-      t.style.color = getContrastingTextColor(parsed);
-      checkContrast(colorPicker.color.hexString, parsed);
+  // Carica i colori dall'URL se presenti, altrimenti genera a caso
+  function loadPaletteFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const colorsParam = urlParams.get("colors");
+    if (colorsParam) {
+      const parsedColors = colorsParam.split("-").map(c => "#" + c);
+      if (parsedColors.length === 5) {
+        palette = parsedColors.map(hex => ({ hex, locked: false }));
+        return;
+      }
     }
-  });
+    // Se non ci sono colori nell'URL, generiamo una palette di partenza casuale ma bilanciata
+    generateRandomPalette(true);
+  }
 
-  l?.addEventListener("click", () => {
-    const hex = colorPicker.color.hexString;
-    navigator.clipboard.writeText(hex)
-      .then(() => { lastCopiedColor = hex; showTooltip(l, "Copiato!", 1200); })
-      .catch((err) => { console.error("Errore nel copiare il testo: ", err); showTooltip(l, "Errore!", 1200); });
-  });
+  function updateUrl() {
+    const colorsString = palette.map(c => c.hex.replace("#", "")).join("-");
+    const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?colors=" + colorsString;
+    window.history.replaceState({ path: newurl }, "", newurl);
+  }
 
-  document.getElementById("generatePalette")?.addEventListener("click", () =>
-    generatePalette(colorPicker.color.hexString)
-  );
-  document.getElementById("lightenDarken")?.addEventListener("input", () =>
-    manipulateColor(colorPicker.color.hexString)
-  );
-  document.getElementById("saturate")?.addEventListener("input", () =>
-    manipulateColor(colorPicker.color.hexString)
-  );
+  // Genera palette in base alle impostazioni
+  function generateRandomPalette(forceAll = false) {
+    const mode = modeSelect?.value ?? "random";
+    
+    // Trova i colori bloccati per mantenere armonia (se presenti)
+    const lockedColors = forceAll ? [] : palette.filter(c => c.locked);
+    let seedHsl;
 
-  document.querySelectorAll(".color-note").forEach((note, idx) => {
-    const pv = note.querySelector(".color-preview");
-    const hv = note.querySelector(".color-hex");
-    const pin = note.querySelector(".pin-color");
-    if (!pv || !hv || !pin) return;
-
-    function updateColorNote(hex) {
-      pv.style.backgroundColor = hex;
-      hv.textContent = hex.toUpperCase();
-      pin.textContent = "Cambia";
-      localStorage.setItem(`pinnedColor${idx}`, hex);
+    if (lockedColors.length > 0) {
+      // Usa uno dei colori bloccati a caso come seme di partenza
+      const randomSeed = lockedColors[Math.floor(Math.random() * lockedColors.length)].hex;
+      seedHsl = hexToHsl(randomSeed);
+    } else {
+      // Crea un seme casuale ma con saturazione e luminosità bilanciate per un look professionale
+      seedHsl = {
+        h: Math.floor(Math.random() * 360),
+        s: 55 + Math.floor(Math.random() * 25), // 55% - 80%
+        l: 45 + Math.floor(Math.random() * 15)  // 45% - 60%
+      };
     }
 
-    pin.addEventListener("click", () => {
-      updateColorNote(lastCopiedColor || colorPicker.color.hexString);
-      showTooltip(pv, "Colore appuntato!", 1200);
+    palette.forEach((color, index) => {
+      if (color.locked && !forceAll) return;
+
+      let nextHex;
+
+      switch (mode) {
+        case "pastel":
+          nextHex = hslToHex(
+            Math.floor(Math.random() * 360),
+            25 + Math.floor(Math.random() * 15), // 25% - 40%
+            78 + Math.floor(Math.random() * 12)  // 78% - 90%
+          );
+          break;
+
+        case "neon":
+          nextHex = hslToHex(
+            Math.floor(Math.random() * 360),
+            88 + Math.floor(Math.random() * 12), // 88% - 100%
+            50 + Math.floor(Math.random() * 10)  // 50% - 60%
+          );
+          break;
+
+        case "monochromatic":
+          // Stesso hue, variazione di saturazione e luminosità
+          nextHex = hslToHex(
+            seedHsl.h,
+            Math.max(10, Math.min(100, seedHsl.s + (index - 2) * 15 + (Math.random() * 10 - 5))),
+            Math.max(15, Math.min(85, seedHsl.l + (index - 2) * 12 + (Math.random() * 10 - 5)))
+          );
+          break;
+
+        case "analogous":
+          // Hue sfalsati di 15-30 gradi
+          nextHex = hslToHex(
+            (seedHsl.h + (index - 2) * 20 + 360) % 360,
+            seedHsl.s,
+            seedHsl.l + (Math.random() * 10 - 5)
+          );
+          break;
+
+        case "complementary":
+          // Alternanza tra il seme e il suo complementare (+180 deg)
+          const baseHue = (index % 2 === 0) ? seedHsl.h : (seedHsl.h + 180) % 360;
+          nextHex = hslToHex(
+            baseHue,
+            seedHsl.s - (index * 5),
+            Math.max(20, Math.min(80, seedHsl.l + (index - 2) * 10))
+          );
+          break;
+
+        case "triadic":
+          // Colori posizionati a 120 gradi l'uno dall'altro
+          const triadicHue = (seedHsl.h + (index % 3) * 120) % 360;
+          nextHex = hslToHex(
+            triadicHue,
+            seedHsl.s,
+            seedHsl.l + (index - 2) * 8
+          );
+          break;
+
+        case "random":
+        default:
+          // Generazione bilanciata ma casuale: manteniamo la saturazione/luminosità simile al seme per coerenza
+          nextHex = hslToHex(
+            Math.floor(Math.random() * 360),
+            seedHsl.s + (Math.random() * 12 - 6),
+            seedHsl.l + (Math.random() * 12 - 6)
+          );
+          break;
+      }
+
+      color.hex = nextHex;
     });
 
-    pv.addEventListener("click", () => {
-      const hex = hv.textContent;
-      navigator.clipboard.writeText(hex)
-        .then(() => { lastCopiedColor = hex; showTooltip(pv, "Copiato!", 1200); })
-        .catch((err) => { console.error("Errore nel copiare il colore:", err); showTooltip(pv, "Errore!", 1200); });
+    renderPalette();
+    updateUrl();
+  }
+
+  // Disegna le schede colore
+  function renderPalette() {
+    cardsContainer.innerHTML = "";
+
+    palette.forEach((color, index) => {
+      const isLight = isLightColor(color.hex);
+      const card = document.createElement("div");
+      card.className = `color-card ${isLight ? "light-color" : ""}`;
+      card.style.backgroundColor = color.hex;
+
+      // HTML della scheda colore con i bottoni azioni (Lock, Copy, Adjust)
+      card.innerHTML = `
+        <div class="color-card-actions">
+          <button class="card-action-btn lock-btn ${color.locked ? "is-locked" : ""}" title="${color.locked ? "Sblocca colore" : "Blocca colore"}">
+            <i class="fas ${color.locked ? "fa-lock" : "fa-lock-open"}" aria-hidden="true"></i>
+          </button>
+          
+          <button class="card-action-btn copy-btn" title="Copia HEX">
+            <i class="far fa-copy" aria-hidden="true"></i>
+          </button>
+          
+          <div class="color-picker-wrapper card-action-btn" title="Regola colore">
+            <i class="fas fa-sliders-h" aria-hidden="true"></i>
+            <input type="color" class="color-picker-input" value="${color.hex}">
+          </div>
+        </div>
+        <span class="color-card-hex">${color.hex.toUpperCase()}</span>
+      `;
+
+      // Event Listeners sui bottoni interni
+      const lockBtn = card.querySelector(".lock-btn");
+      const copyBtn = card.querySelector(".copy-btn");
+      const hexText = card.querySelector(".color-card-hex");
+      const pickerInput = card.querySelector(".color-picker-input");
+
+      lockBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        color.locked = !color.locked;
+        const icon = lockBtn.querySelector("i");
+        if (color.locked) {
+          lockBtn.classList.add("is-locked");
+          icon.className = "fas fa-lock";
+          lockBtn.title = "Sblocca colore";
+        } else {
+          lockBtn.classList.remove("is-locked");
+          icon.className = "fas fa-lock-open";
+          lockBtn.title = "Blocca colore";
+        }
+      });
+
+      function copyHexAction(e) {
+        e.stopPropagation();
+        navigator.clipboard.writeText(color.hex)
+          .then(() => {
+            showTooltip(card, "Copiato!", 1200);
+          })
+          .catch(err => {
+            console.error("Copia fallita", err);
+          });
+      }
+
+      copyBtn.addEventListener("click", copyHexAction);
+      hexText.addEventListener("click", copyHexAction);
+
+      // Picker manuale di regolazione
+      pickerInput.addEventListener("input", (e) => {
+        color.hex = e.target.value;
+        card.style.backgroundColor = color.hex;
+        hexText.textContent = color.hex.toUpperCase();
+        
+        // Regola la classe light/dark della card al volo
+        if (isLightColor(color.hex)) {
+          card.classList.add("light-color");
+        } else {
+          card.classList.remove("light-color");
+        }
+        
+        updateUrl();
+        updateContrastChecker();
+      });
+
+      pickerInput.addEventListener("change", () => {
+        updateContrastCheckerOptions();
+        updateContrastChecker();
+      });
+
+      cardsContainer.appendChild(card);
     });
 
-    const saved = localStorage.getItem(`pinnedColor${idx}`);
-    if (saved) updateColorNote(saved);
+    updateContrastCheckerOptions();
+    updateContrastChecker();
+  }
+
+  // ============ recommended Presets ============
+  function renderPresets() {
+    if (!presetsContainer) return;
+    presetsContainer.innerHTML = "";
+
+    PRESETS.forEach(preset => {
+      const presetCard = document.createElement("div");
+      presetCard.className = "preset-card";
+      
+      const barsHtml = preset.colors.map(col => `
+        <div class="preset-color-bar" style="background-color: ${col};"></div>
+      `).join("");
+
+      presetCard.innerHTML = `
+        <span class="preset-name">${preset.name}</span>
+        <div class="preset-colors-row">
+          ${barsHtml}
+        </div>
+      `;
+
+      presetCard.addEventListener("click", () => {
+        // Applica i colori escludendo i lock temporaneamente (un preset ha priorità)
+        preset.colors.forEach((col, idx) => {
+          palette[idx].hex = col;
+          palette[idx].locked = false; // reset lock
+        });
+        renderPalette();
+        updateUrl();
+      });
+
+      presetsContainer.appendChild(presetCard);
+    });
+  }
+
+  // ============ Contrast Checker Section ============
+  function updateContrastCheckerOptions() {
+    if (!bgSelect || !textSelect) return;
+    
+    const bgVal = bgSelect.value;
+    const textVal = textSelect.value;
+
+    bgSelect.innerHTML = "";
+    textSelect.innerHTML = "";
+
+    palette.forEach((color, idx) => {
+      const optBg = document.createElement("option");
+      optBg.value = color.hex;
+      optBg.textContent = `Colore ${idx + 1} (${color.hex.toUpperCase()})`;
+      bgSelect.appendChild(optBg);
+
+      const optText = document.createElement("option");
+      optText.value = color.hex;
+      optText.textContent = `Colore ${idx + 1} (${color.hex.toUpperCase()})`;
+      textSelect.appendChild(optText);
+    });
+
+    // Mantieni le selezioni precedenti se ancora valide
+    if (palette.some(c => c.hex === bgVal)) bgSelect.value = bgVal;
+    else bgSelect.selectedIndex = 0; // Colore 1 di default
+
+    if (palette.some(c => c.hex === textVal)) textSelect.value = textVal;
+    else textSelect.selectedIndex = 4; // Colore 5 di default
+  }
+
+  function updateContrastChecker() {
+    if (!bgSelect || !textSelect || !previewBox || !scoreDetails) return;
+
+    const bgHex = bgSelect.value;
+    const textHex = textSelect.value;
+
+    previewBox.style.backgroundColor = bgHex;
+    previewBox.style.color = textHex;
+
+    const ratio = calculateContrast(bgHex, textHex);
+
+    // WCAG 2.1 Pass/Fail checks
+    // Normal Text: AA >= 4.5, AAA >= 7.0
+    // Large Text: AA >= 3.0, AAA >= 4.5
+    const aaNormal = ratio >= 4.5;
+    const aaaNormal = ratio >= 7.0;
+    const aaLarge = ratio >= 3.0;
+    const aaaLarge = ratio >= 4.5;
+
+    scoreDetails.innerHTML = `
+      <span class="contrast-ratio-badge">${ratio.toFixed(2)}:1</span>
+      <div class="contrast-level-badge">
+        <div class="level-item">
+          Testo Normale (AA): 
+          <span class="${aaNormal ? "level-pass" : "level-fail"}">
+            <i class="fas ${aaNormal ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaNormal ? "Passa" : "Fallisce"}
+          </span>
+        </div>
+        <div class="level-item">
+          Testo Normale (AAA): 
+          <span class="${aaaNormal ? "level-pass" : "level-fail"}">
+            <i class="fas ${aaaNormal ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaaNormal ? "Passa" : "Fallisce"}
+          </span>
+        </div>
+        <div class="level-item">
+          Testo Grande (AA): 
+          <span class="${aaLarge ? "level-pass" : "level-fail"}">
+            <i class="fas ${aaLarge ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaLarge ? "Passa" : "Fallisce"}
+          </span>
+        </div>
+        <div class="level-item">
+          Testo Grande (AAA): 
+          <span class="${aaaLarge ? "level-pass" : "level-fail"}">
+            <i class="fas ${aaaLarge ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaaLarge ? "Passa" : "Fallisce"}
+          </span>
+        </div>
+      </div>
+    `;
+  }
+
+  // ============ Export Helpers ============
+  function copyTextToClipboard(text, button, successMsg) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        showTooltip(button, successMsg, 1500);
+      })
+      .catch(err => {
+        console.error("Copia fallita", err);
+        showTooltip(button, "Errore!", 1500);
+      });
+  }
+
+  // Bind Events
+  btnGenerate.addEventListener("click", () => generateRandomPalette());
+
+  bgSelect.addEventListener("change", updateContrastChecker);
+  textSelect.addEventListener("change", updateContrastChecker);
+
+  // Esporta come variabili CSS
+  btnCopyCss.addEventListener("click", () => {
+    const cssVars = palette.map((col, idx) => `  --color-${idx + 1}: ${col.hex};`).join("\n");
+    const output = `:root {\n${cssVars}\n}`;
+    copyTextToClipboard(output, btnCopyCss, "CSS Copiato!");
   });
 
-  initializeSliders();
-  updateHexValue(colorPicker.color);
-  manipulateColor(colorPicker.color.hexString);
-  setupManipulatedColorCopy();
-  document.getElementById("manualColorInput")?.addEventListener("input", (ev) => {
-    const parsed = parseColor(ev.target.value);
-    if (parsed) {
-      colorPicker.color.set(parsed);
-      updateHexValue(colorPicker.color);
+  // Esporta come array JSON
+  btnCopyJson.addEventListener("click", () => {
+    const jsonOutput = JSON.stringify(palette.map(c => c.hex), null, 2);
+    copyTextToClipboard(jsonOutput, btnCopyJson, "JSON Copiato!");
+  });
+
+  // Condividi link
+  btnCopyLink.addEventListener("click", () => {
+    copyTextToClipboard(window.location.href, btnCopyLink, "Link Copiato!");
+  });
+
+  // Tasto Spazio per generare al volo
+  document.addEventListener("keydown", (e) => {
+    // Genera solo se l'utente non sta digitando in un input o select
+    const targetTag = e.target.tagName.toLowerCase();
+    if (targetTag === "input" || targetTag === "select" || targetTag === "textarea") {
+      return;
+    }
+
+    if (e.code === "Space" || e.keyCode === 32) {
+      e.preventDefault(); // evita lo scroll della pagina
+      generateRandomPalette();
     }
   });
+
+  // Bootstrapping
+  loadPaletteFromUrl();
+  renderPalette();
+  renderPresets();
 }

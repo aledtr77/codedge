@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="stylesheet" href="/critical.css" />
-<title>Generatore colori online HEX, RGB e HSL | Codedge</title>
+<title>Generatore Palette Colori Online - Crea combinazioni | Codedge</title>
   <meta name="description"
-    content="Crea palette e colori singoli, copia i codici HEX/RGB/HSL e salva le combinazioni. Strumento gratuito e veloce per designer e sviluppatori.">
+    content="Generatore di palette di colori online. Crea combinazioni cromatiche armoniche (pastello, neon, analoghe, complementari), blocca le tinte e copia i codici HEX/RGB/HSL.">
   <link rel="canonical" href="https://codedge.it/strumenti/generatore-colori/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Generatore colori online HEX, RGB e HSL | Codedge" />
-  <meta property="og:description" content="Crea palette e colori singoli, copia i codici HEX/RGB/HSL e salva le combinazioni. Strumento gratuito e veloce per designer e sviluppatori." />
+  <meta property="og:title" content="Generatore Palette Colori Online - Crea combinazioni | Codedge" />
+  <meta property="og:description" content="Generatore di palette di colori online. Crea combinazioni cromatiche armoniche (pastello, neon, analoghe, complementari), blocca le tinte e copia i codici HEX/RGB/HSL." />
   <meta property="og:url" content="https://codedge.it/strumenti/generatore-colori/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -133,115 +133,110 @@
   </header>
   <main>
     <h2 class="sub-title">Generatore di Palette di Colori</h2>
+    
+    <!-- Workspace del generatore -->
     <section class="section">
-      <div class="main-content">
-        <div class="color-generator-main">
-          <input id="manualColorInput" placeholder="#FF0000">
-          <div class="color-picker-container">
-            <div id="picker"></div>
-            <div class="color-preview-container" id="colorPreviewContainer">
-              <div class="color-preview" id="colorPreviewReal"></div>
-              <span id="selectedColorValue">#007bff</span>
-            </div>
+      <div class="palette-generator-app">
+        <!-- Barra di controllo superiore -->
+        <div class="control-bar">
+          <div class="control-group">
+            <label for="generation-mode">Stile di armonia:</label>
+            <select id="generation-mode">
+              <option value="random">Casuale Bilanciata</option>
+              <option value="pastel">Pastello Soft</option>
+              <option value="neon">Neon / Vibrante</option>
+              <option value="monochromatic">Monocromatica</option>
+              <option value="analogous">Colori Analoghi</option>
+              <option value="complementary">Complementare</option>
+              <option value="triadic">Triadica</option>
+            </select>
           </div>
-          <select id="harmonies">
-            <option value="monochromatic">Monocromatica</option>
-            <option value="analogous">Analoga</option>
-            <option value="complementary">Complementare</option>
-            <option value="triadic">Triadica</option>
-            <option value="tetradic">Tetradica</option>
-          </select>
-          <button id="generatePalette" class="button-simple">
-            Genera Palette
+          
+          <button id="btn-generate" class="button-simple main-gen-btn">
+            <i class="fas fa-sync-alt" aria-hidden="true"></i> Genera Nuova <kbd class="spacebar-kbd">Spazio</kbd>
           </button>
-          <div class="palette-container tooltip-bottom" id="paletteContainer"></div>
-        </div>
-        <div class="color-notes">
-          <h3>Tavolozza di Appunti</h3>
-          <div class="color-notes-grid">
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
-            <div class="color-note">
-              <div class="color-preview"></div>
-              <span class="color-hex"></span>
-              <button class="button-simple pin-color tooltip">Appunta</button>
-            </div>
+          
+          <div class="export-group">
+            <button id="btn-copy-css" class="button-simple" title="Copia variabili CSS">
+              <i class="fab fa-css3-alt" aria-hidden="true"></i> CSS
+            </button>
+            <button id="btn-copy-json" class="button-simple" title="Copia come array JSON">
+              <i class="fas fa-code" aria-hidden="true"></i> JSON
+            </button>
+            <button id="btn-copy-link" class="button-simple" title="Copia link della palette attuale">
+              <i class="fas fa-link" aria-hidden="true"></i> Condividi
+            </button>
           </div>
+        </div>
+
+        <!-- Griglia delle 5 schede colore -->
+        <div id="palette-cards-container" class="palette-cards">
+          <!-- Le schede verranno inserite dinamicamente da JavaScript -->
         </div>
       </div>
     </section>
+
+    <!-- Tavolozze consigliate / Presets -->
     <section class="section">
-      <h2>Analizzatore e Manipolatore di Colori</h2>
-      <div class="color-analysis">
-        <div class="color-info-column">
-          <div class="color-info">
-            <h3>Informazioni sul Colore</h3>
-            <div id="colorPreview" class="color-preview"></div>
-            <div id="colorDetails"></div>
+      <h2>Tavolozze Consigliate</h2>
+      <div id="presets-container" class="presets-grid">
+        <!-- Verranno caricate dinamicamente da JavaScript -->
+      </div>
+    </section>
+
+    <!-- Verifica del contrasto (WCAG 2.1) -->
+    <section class="section">
+      <h2>Verifica Contrasto (WCAG)</h2>
+      <div class="contrast-checker-container">
+        <div class="contrast-selectors">
+          <div class="selector-item">
+            <label for="contrast-bg-select">Sfondo:</label>
+            <select id="contrast-bg-select">
+              <!-- Riempito dinamicamente -->
+            </select>
           </div>
-          <div class="contrast-check">
-            <input id="contrastColorInput" placeholder="#FF0000">
-            <div id="contrastResult"></div>
+          <div class="selector-item">
+            <label for="contrast-text-select">Testo:</label>
+            <select id="contrast-text-select">
+              <!-- Riempito dinamicamente -->
+            </select>
           </div>
         </div>
-        <div class="color-manipulation-column">
-          <div class="color-manipulation">
-            <h3>Manipolazione del Colore</h3>
-            <label for="lightenDarken">Schiarisci/Scurisci:</label>
-            <input type="range" id="lightenDarken" min="-100" max="100" value="0">
-            <label for="saturate">Saturazione:</label>
-            <input type="range" id="saturate" min="0" max="100" value="50">
-            <div class="tooltip-bottom" id="manipulatedColorContainer">
-              <div id="manipulatedColor"></div>
-            </div>
-            <div id="manipulatedColorText"></div>
-          </div>
+        
+        <div id="contrast-preview-box" class="contrast-preview-box">
+          <span class="preview-text">Testo di esempio per testare la leggibilità in tempo reale.</span>
+        </div>
+        
+        <div id="contrast-score-details" class="contrast-score-details">
+          <!-- Riempito dinamicamente con i risultati del calcolo del contrasto -->
         </div>
       </div>
     </section>
+
+    <!-- FAQ e Copy descrittivo per SEO -->
     <section class="section" aria-labelledby="faq-colori-title">
-      <h2 id="faq-colori-title">FAQ rapide sul generatore colori</h2>
+      <h2 id="faq-colori-title">FAQ rapide sul generatore palette colori</h2>
       <div>
-        <h3>Come si usa in modo veloce?</h3>
+        <h3>Come funziona la generazione automatica?</h3>
         <p>
-          Inserisci un colore (o scegli dal picker), genera la palette e copia il formato che ti serve in CSS.
+          Puoi generare una nuova combinazione di colori cliccando sul pulsante <strong>Genera Nuova</strong> o premendo la barra <strong>Spazio</strong> sulla tastiera. Il tool sceglie tonalità armoniche basandosi sullo stile impostato (ad esempio, colori analoghi, complementari o tinte pastello).
         </p>
-        <h3>Quali formati supporta?</h3>
+        <h3>Come posso bloccare un colore che mi piace?</h3>
         <p>
-          Puoi lavorare con HEX, RGB e HSL per passare rapidamente da concept a codice.
+          Passa il cursore su uno dei blocchi colorati della palette e clicca sul pulsante con il <strong>lucchetto</strong>. Una volta bloccato, quel colore rimarrà fisso e non cambierà alle successive generazioni, permettendoti di trovare i colori di contorno ideali per la tua tavolozza.
         </p>
-        <h3>Altri strumenti collegati</h3>
+        <h3>Come posso modificare o inserire un colore manualmente?</h3>
         <p>
-          Se vuoi completare il flusso colore, prova anche
-          <a href="/strumenti/generatore-gradienti/">Generatore Gradienti</a> e
-          <a href="/strumenti/estrattore-palette/">Estrattore Palette</a>.
+          Ogni scheda colore ha un pulsante di regolazione (icona dei controlli/tavolozza) che apre il selettore colore nativo del tuo sistema operativo. Puoi anche cliccare direttamente sul codice HEX sotto la scheda per copiarlo negli appunti.
+        </p>
+        <h3>Altri strumenti per web design</h3>
+        <p>
+          Se vuoi completare la gestione dei colori del tuo brand, prova anche l'
+          <a href="/strumenti/estrattore-palette/">Estrattore Palette da Immagine</a> per ricavare i colori da una foto, oppure il 
+          <a href="/strumenti/generatore-gradienti/">Generatore Gradienti CSS</a> per creare transizioni sfumate pronte all'uso.
         </p>
         <p>
-          Per un uso quotidiano, crea una palette base per brand, salva i colori principali e verifica subito contrasto e varianti:
-          in questo modo passi da idea a interfaccia con meno tentativi e con una struttura piu ordinata.
+          Questo strumento è perfetto per definire il design system di un sito web o di un'applicazione: ti consente di testare il contrasto tra sfondo e testo per soddisfare le linee guida di accessibilità WCAG, evitando problemi di lettura agli utenti.
         </p>
       </div>
     </section>
