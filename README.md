@@ -16,7 +16,7 @@ Questo progetto nasce per mettere in pratica quello che studio e per tracciare i
 
 ## Cosa trovi dentro
 - `Risorse`: glossari HTML/CSS/JS e snippet pronti da usare.
-- `Strumenti`: generatori colori, gradienti, box-shadow, compressore immagini, estrattore palette.
+- `Strumenti`: generatori colori e gradienti, compressore immagini, estrattore palette.
 - `Progetti pratici`: mini progetti ed esempi interattivi (scroll indicator, card, navbar, form, ecc.).
 - `Template`: demo live, collegamento allo shop Etsy e pagina per richieste di personalizzazione.
 - `Tutorial`: guide pratiche su Git, GitHub e Visual Studio Code, con altre basi operative in arrivo.
