@@ -257,19 +257,37 @@
       </section>
     </section>
 
-    <section class="faq-panel" aria-labelledby="faq-estrattore-title">
-      <h3 id="faq-estrattore-title">FAQ rapide su estrattore palette</h3>
-      <p>
-        <strong>Come si usa?</strong> Carica una foto, avvia l'analisi e copia CSS o JSON.
-      </p>
-      <p>
-        <strong>I file restano privati?</strong> Si, l'elaborazione avviene nel browser senza upload su server esterni.
-      </p>
-      <p>
-        <strong>Tool collegati:</strong> puoi combinare i risultati con
-        <a href="/strumenti/generatore-colori/">Generatore Colori</a> e
-        <a href="/strumenti/generatore-gradienti/">Generatore Gradienti</a>.
-      </p>
+    <section class="faq-panel" aria-labelledby="seo-title-palette">
+      <h2 id="seo-title-palette" class="faq-section-title">Estrattore Palette Colore da Immagine</h2>
+      <div class="seo-text-content">
+        <p>
+          L'estrazione dei colori da un'immagine rappresenta un passaggio fondamentale nella definizione della visual identity di un progetto web. Questo <strong>estrattore di palette colore online</strong> ti consente di caricare qualsiasi fotografia o screenshot ed elaborarla localmente nel browser, identificando i toni dominanti in modo scientifico. Attraverso algoritmi di quantizzazione cromatica nello spazio colore CIE L*a*b*, il tool non si limita a contare i pixel simili, ma calcola la rilevanza percettiva di ogni tinta per assicurarti una palette bilanciata e coerente.
+        </p>
+        <p>
+          Una volta estratti i colori, lo strumento li organizza per te assegnando ruoli UI strategici: avrai a disposizione un colore di sfondo (background), una tonalità principale (primary) per elementi dominanti, un colore di accento (accent) per le chiamate all'azione e una tinta per il testo, calcolando in tempo reale il rapporto di contrasto WCAG. Questo ti garantisce di progettare interfacce inclusive e accessibili fin dal primo istante.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <div class="faq-content">
+        <h3 id="faq-estrattore-title">Domande Frequenti (FAQ)</h3>
+        
+        <h4>Come funziona il calcolo dei colori dominanti?</h4>
+        <p>
+          L'immagine viene analizzata pixel per pixel riducendone la palette tramite quantizzazione (Median Cut). I colori ottenuti vengono convertiti e ordinati in base alla loro copertura percentuale e al contrasto rispetto alle tinte circostanti per garantire l'armonia.
+        </p>
+
+        <h4>Posso scaricare i colori estratti?</h4>
+        <p>
+          Sì. Puoi copiare le variabili CSS pronte per il tuo foglio di stile, esportare l'intera palette in formato JSON, oppure scaricare direttamente i file di configurazione (.css e .json) per integrarli nel tuo design system o in Tailwind.
+        </p>
+
+        <h4>La privacy delle mie immagini è garantita?</h4>
+        <p>
+          Assolutamente sì. L'intero processo di elaborazione delle immagini avviene al 100% all'interno del tuo browser web (lato client) tramite Canvas API. Nessuna foto viene caricata su server esterni o memorizzata in database di terze parti.
+        </p>
+      </div>
     </section>
   </main>
 

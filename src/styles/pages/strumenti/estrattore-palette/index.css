@@ -18,10 +18,12 @@ body {
 }
 
 .palette-tool-shell {
-  width: min(1800px, 100%);
-  margin: 2rem auto;
-  padding: 0 2rem;
+  width: 95%;
+  max-width: 1750px;
+  margin: 1.5rem auto 3rem auto;
+  padding: 0;
   color: var(--tool-ink);
+  box-sizing: border-box;
 }
 
 .palette-tool-shell button,
@@ -88,7 +90,7 @@ body {
 .workspace {
   display: grid;
   grid-template-columns: minmax(320px, 410px) minmax(0, 1fr);
-  gap: 18px;
+  gap: 2.5rem;
   align-items: start;
 }
 
@@ -96,10 +98,10 @@ body {
 .results,
 .tool-panel,
 .faq-panel {
-  background: linear-gradient(180deg, var(--tool-panel), var(--tool-panel-soft));
-  border: 1px solid var(--tool-line);
-  border-radius: 8px;
-  box-shadow: var(--tool-shadow);
+  background: radial-gradient(circle at top left, rgba(0, 168, 255, 0.08), transparent 35%), linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)), var(--background-two);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
 .input-panel {
@@ -528,18 +530,48 @@ pre {
 }
 
 .faq-panel {
-  margin-top: 18px;
-  padding: 16px;
-  box-shadow: none;
+  margin-top: 2rem;
+  padding: 2.2rem;
 }
 
-.faq-panel p {
-  margin: 0.7rem 0 0;
+.seo-text-content p,
+.faq-content p {
+  text-align: justify;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.2rem;
+}
+
+.seo-text-content p:last-child,
+.faq-content p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-faq-divider {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+}
+
+.faq-content h4 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color: var(--tool-link);
+  font-size: 1.05rem;
+}
+
+.faq-section-title {
+  font-size: 1.3rem !important;
+  color: var(--tool-link);
+  font-weight: 750;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 980px) {
   .palette-tool-shell {
-    padding: 0 1.125rem;
+    width: 95%;
+    padding: 0;
   }
 
   .palette-tool-hero {
@@ -563,7 +595,8 @@ pre {
 @media (max-width: 620px) {
   .palette-tool-shell {
     margin: 1rem auto 1.5rem;
-    padding: 0 0.75rem;
+    width: 95%;
+    padding: 0;
   }
 
   .palette-tool-hero {
