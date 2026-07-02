@@ -92,9 +92,19 @@
       <div class="compressor-grid">
         <aside class="compressor-panel compressor-panel--controls">
           <button class="upload-area" id="uploadArea" type="button" aria-controls="fileInput">
-            <span class="upload-area__icon"><i class="fas fa-cloud-arrow-up" aria-hidden="true"></i></span>
-            <span class="upload-area__title">Trascina qui la tua immagine</span>
-            <span class="upload-area__subtitle">oppure clicca per selezionare JPG, PNG, WebP o AVIF</span>
+            <div class="upload-area__empty" id="uploadAreaEmpty">
+              <span class="upload-area__icon"><i class="fas fa-cloud-arrow-up" aria-hidden="true"></i></span>
+              <span class="upload-area__title">Trascina qui la tua immagine</span>
+              <span class="upload-area__subtitle">oppure clicca per selezionare JPG, PNG, WebP o AVIF</span>
+            </div>
+            <div class="upload-area__active" id="uploadAreaActive" style="display: none;">
+              <img id="uploadThumbnail" class="upload-thumbnail" src="" alt="Anteprima File">
+              <div class="upload-active-info">
+                <span id="uploadFileName" class="upload-file-name">nome_file.jpg</span>
+                <span id="uploadFileMeta" class="upload-file-meta">1.4 MB</span>
+              </div>
+              <span class="upload-change-btn"><i class="fas fa-sync-alt"></i> Cambia file</span>
+            </div>
           </button>
           <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif">
 
@@ -206,26 +216,44 @@
             <p class="comparison-head__hint">Confronta peso, formato e risoluzione senza perdere il contesto.</p>
           </div>
 
-          <div class="preview-grid">
-            <article class="preview-card">
-              <div class="preview-card__head">
-                <h4>Originale</h4>
-                <p id="originalCaption">In attesa di un file</p>
+          <div class="comparison-stage-container">
+            <div id="comparison-slider" class="comparison-slider is-empty">
+              <!-- Placeholder in attesa del file -->
+              <div id="slider-placeholder" class="slider-placeholder">
+                <span class="placeholder-icon"><i class="fas fa-images" aria-hidden="true"></i></span>
+                <p>Trascina o seleziona un'immagine per avviare il confronto interattivo.</p>
               </div>
-              <div id="originalImageContainer" class="preview-stage preview-stage--empty">
-                <p>La tua immagine apparira qui.</p>
-              </div>
-            </article>
 
-            <article class="preview-card">
-              <div class="preview-card__head">
-                <h4>Output compresso</h4>
-                <p id="compressedCaption">Nessuna elaborazione eseguita</p>
+              <!-- Immagine compressa (sfondo a destra) -->
+              <img id="img-compressed" class="slider-image compressed-image" src="" alt="Output Compresso" style="display: none;">
+
+              <!-- Immagine originale (sinistra ritagliata) -->
+              <div id="original-image-clip" class="original-image-clip" style="display: none;">
+                <img id="img-original" class="slider-image original-image" src="" alt="Immagine Originale">
               </div>
-              <div id="compressedImageContainer" class="preview-stage preview-stage--empty">
-                <p>Dopo la compressione vedrai qui il risultato finale.</p>
+
+              <!-- Maniglia e divisore verticale -->
+              <div id="slider-divider" class="slider-divider" style="display: none;">
+                <div class="slider-handle-button">
+                  <i class="fas fa-arrows-alt-h" aria-hidden="true"></i>
+                </div>
               </div>
-            </article>
+              
+              <!-- Etichette statiche ad angolo -->
+              <span class="slider-label slider-label--original" style="display: none;">Originale</span>
+              <span class="slider-label slider-label--compressed" style="display: none;">Compresso</span>
+            </div>
+            
+            <div class="comparison-meta-row" id="comparisonMetaRow" style="display: none;">
+              <div class="meta-column text-left">
+                <span class="meta-label">Originale:</span>
+                <span id="originalCaption" class="meta-value">-</span>
+              </div>
+              <div class="meta-column text-right">
+                <span class="meta-label">Compresso:</span>
+                <span id="compressedCaption" class="meta-value">-</span>
+              </div>
+            </div>
           </div>
         </section>
       </div>

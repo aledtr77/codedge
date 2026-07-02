@@ -1,3 +1,4 @@
+// src/scripts/pages/strumenti/compressore-immagini/compressore-immagini.js
 import Compressor from "compressorjs";
 
 let initialized = false;
@@ -33,6 +34,11 @@ export function initImageCompressor() {
   const elements = {
     fileInput: document.getElementById("fileInput"),
     uploadArea: document.getElementById("uploadArea"),
+    uploadAreaEmpty: document.getElementById("uploadAreaEmpty"),
+    uploadAreaActive: document.getElementById("uploadAreaActive"),
+    uploadThumbnail: document.getElementById("uploadThumbnail"),
+    uploadFileName: document.getElementById("uploadFileName"),
+    uploadFileMeta: document.getElementById("uploadFileMeta"),
     compressBtn: document.getElementById("compressBtn"),
     saveToButton: document.getElementById("saveToButton"),
     outputFormat: document.getElementById("outputFormat"),
@@ -44,10 +50,19 @@ export function initImageCompressor() {
     maxWidthValueInput: document.getElementById("maxWidthValue"),
     strategySummary: document.getElementById("strategySummary"),
     resultBanner: document.getElementById("result"),
-    originalImageContainer: document.getElementById("originalImageContainer"),
-    compressedImageContainer: document.getElementById("compressedImageContainer"),
+    
+    // Comparison Slider Elements
+    comparisonSlider: document.getElementById("comparison-slider"),
+    sliderPlaceholder: document.getElementById("slider-placeholder"),
+    imgCompressed: document.getElementById("img-compressed"),
+    imgOriginal: document.getElementById("img-original"),
+    originalImageClip: document.getElementById("original-image-clip"),
+    sliderDivider: document.getElementById("slider-divider"),
+    comparisonMetaRow: document.getElementById("comparisonMetaRow"),
+
     originalCaption: document.getElementById("originalCaption"),
     compressedCaption: document.getElementById("compressedCaption"),
+    
     statOriginalSize: document.getElementById("statOriginalSize"),
     statOriginalMeta: document.getElementById("statOriginalMeta"),
     statCompressedSize: document.getElementById("statCompressedSize"),
@@ -57,7 +72,7 @@ export function initImageCompressor() {
     presetButtons: Array.from(document.querySelectorAll("[data-preset]"))
   };
 
-  if (!elements.fileInput || !elements.compressBtn || !elements.resultBanner) {
+  if (!elements.fileInput || !elements.compressBtn || !elements.resultBanner || !elements.comparisonSlider) {
     console.error("[compressore-immagini] Elementi fondamentali mancanti.");
     return;
   }
@@ -69,11 +84,13 @@ export function initImageCompressor() {
     compressedBlob: null,
     originalMeta: null,
     compressedMeta: null,
-    activePreset: "balanced"
+    activePreset: "balanced",
+    isDraggingSlider: false
   };
 
   setupInitialState();
   bindEvents();
+  setupSliderRevealLogic();
 
   function setupInitialState() {
     applyPreset(state.activePreset);
@@ -86,13 +103,16 @@ export function initImageCompressor() {
 
   function bindEvents() {
     elements.uploadArea.addEventListener("click", () => elements.fileInput.click());
+    
     elements.uploadArea.addEventListener("dragover", (event) => {
       event.preventDefault();
       elements.uploadArea.classList.add("is-dragover");
     });
+    
     elements.uploadArea.addEventListener("dragleave", () => {
       elements.uploadArea.classList.remove("is-dragover");
     });
+    
     elements.uploadArea.addEventListener("drop", async (event) => {
       event.preventDefault();
       elements.uploadArea.classList.remove("is-dragover");
@@ -125,6 +145,56 @@ export function initImageCompressor() {
     });
   }
 
+  // ============ Before-After Slider Reveal Drag Logic ============
+  function setupSliderRevealLogic() {
+    const slider = elements.comparisonSlider;
+    const divider = elements.sliderDivider;
+    const clip = elements.originalImageClip;
+
+    function moveSlider(clientX) {
+      if (!state.selectedFile) return;
+      const rect = slider.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let percentage = (x / rect.width) * 100;
+      if (percentage < 0) percentage = 0;
+      if (percentage > 100) percentage = 100;
+
+      divider.style.left = `${percentage}%`;
+      clip.style.width = `${percentage}%`;
+    }
+
+    slider.addEventListener("mousedown", (e) => {
+      if (!state.selectedFile) return;
+      state.isDraggingSlider = true;
+      moveSlider(e.clientX);
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!state.isDraggingSlider) return;
+      moveSlider(e.clientX);
+    });
+
+    window.addEventListener("mouseup", () => {
+      state.isDraggingSlider = false;
+    });
+
+    // Touch support for mobile
+    slider.addEventListener("touchstart", (e) => {
+      if (!state.selectedFile) return;
+      state.isDraggingSlider = true;
+      if (e.touches[0]) moveSlider(e.touches[0].clientX);
+    });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!state.isDraggingSlider) return;
+      if (e.touches[0]) moveSlider(e.touches[0].clientX);
+    });
+
+    window.addEventListener("touchend", () => {
+      state.isDraggingSlider = false;
+    });
+  }
+
   async function handleSelectedFile(file) {
     if (!file.type.startsWith("image/")) {
       setStatus("Seleziona un file immagine valido.", "error");
@@ -143,14 +213,35 @@ export function initImageCompressor() {
     elements.compressBtn.disabled = false;
     elements.saveToButton.disabled = true;
 
-    renderPreview(
-      elements.originalImageContainer,
-      state.originalUrl,
-      buildMetaLines(file, state.originalMeta),
-      false
-    );
-    elements.originalCaption.textContent = `${friendlyFormat(file.type)} · ${formatBytes(file.size)}`;
+    // Transition upload area state (show Thumbnail)
+    elements.uploadAreaEmpty.style.display = "none";
+    elements.uploadAreaActive.style.display = "flex";
+    elements.uploadThumbnail.src = state.originalUrl;
+    elements.uploadFileName.textContent = file.name;
+    elements.uploadFileMeta.textContent = `${state.originalMeta.width} x ${state.originalMeta.height} px · ${formatBytes(file.size)}`;
 
+    // Prepare Slider with original image on both sides initially
+    elements.sliderPlaceholder.style.display = "none";
+    elements.comparisonSlider.classList.remove("is-empty");
+    
+    elements.imgOriginal.src = state.originalUrl;
+    elements.imgCompressed.src = state.originalUrl; // same as original until compressed
+    
+    elements.imgOriginal.style.display = "block";
+    elements.imgCompressed.style.display = "block";
+    elements.originalImageClip.style.display = "block";
+    elements.sliderDivider.style.display = "block";
+    
+    // Show labels
+    elements.comparisonSlider.querySelectorAll(".slider-label").forEach(l => l.style.display = "block");
+    elements.comparisonMetaRow.style.display = "flex";
+
+    // Reset divider to middle
+    elements.sliderDivider.style.left = "50%";
+    elements.originalImageClip.style.width = "50%";
+
+    // Set stats
+    elements.originalCaption.textContent = `${friendlyFormat(file.type)} · ${formatBytes(file.size)}`;
     elements.statOriginalSize.textContent = formatBytes(file.size);
     elements.statOriginalMeta.textContent = `${state.originalMeta.width} x ${state.originalMeta.height} px · ${friendlyFormat(file.type)}`;
 
@@ -252,15 +343,13 @@ export function initImageCompressor() {
       state.compressedMeta = await loadImageMeta(blob);
       state.compressedUrl = URL.createObjectURL(blob);
 
-      renderPreview(
-        elements.compressedImageContainer,
-        state.compressedUrl,
-        buildMetaLines(blob, state.compressedMeta),
-        false
-      );
+      // Render compressed image into slider background
+      elements.imgCompressed.src = state.compressedUrl;
+      elements.imgCompressed.style.display = "block";
 
       const outputFormat = friendlyFormat(blob.type || mimeType);
       elements.compressedCaption.textContent = `${outputFormat} · ${formatBytes(blob.size)}`;
+      
       elements.statCompressedSize.textContent = formatBytes(blob.size);
       elements.statCompressedMeta.textContent = `${state.compressedMeta.width} x ${state.compressedMeta.height} px · ${outputFormat}`;
       renderSavings(file.size, blob.size);
@@ -279,7 +368,7 @@ export function initImageCompressor() {
 
   function buildCompletionMessage(originalFile, compressedBlob) {
     if (compressedBlob.size >= originalFile.size) {
-      return "Compressione completata, ma il file finale non e piu leggero dell'originale. Prova un formato diverso o riduci anche la larghezza massima.";
+      return "Compressione completata, ma il file finale non e piu leggero dell'originale. Prova un formato diverso o riduci la larghezza massima.";
     }
 
     const savedBytes = originalFile.size - compressedBlob.size;
@@ -292,7 +381,7 @@ export function initImageCompressor() {
 
     if (savedBytes <= 0) {
       elements.statSavings.textContent = "0%";
-      elements.statSavingsMeta.textContent = "Nessun vantaggio netto: prova un preset piu deciso o un altro formato.";
+      elements.statSavingsMeta.textContent = "Nessun vantaggio netto: prova un preset piu deciso.";
       return;
     }
 
@@ -306,8 +395,11 @@ export function initImageCompressor() {
     state.compressedBlob = null;
     state.compressedMeta = null;
 
-    elements.compressedImageContainer.innerHTML = "<p>Dopo la compressione vedrai qui il risultato finale.</p>";
-    elements.compressedImageContainer.classList.add("preview-stage--empty");
+    // Reset slider background to original image until compressed
+    if (state.originalUrl) {
+      elements.imgCompressed.src = state.originalUrl;
+    }
+
     elements.compressedCaption.textContent = "Nessuna elaborazione eseguita";
     elements.statCompressedSize.textContent = "-";
     elements.statCompressedMeta.textContent = "Ancora da generare";
@@ -315,34 +407,6 @@ export function initImageCompressor() {
     elements.statSavingsMeta.textContent = "Valutazione disponibile dopo la compressione";
     elements.saveToButton.disabled = true;
     setStatus(message, "neutral");
-  }
-
-  function renderPreview(container, url, metaLines, isEmpty) {
-    if (!container) return;
-
-    if (isEmpty) {
-      container.classList.add("preview-stage--empty");
-      container.innerHTML = "<p>Anteprima non disponibile.</p>";
-      return;
-    }
-
-    container.classList.remove("preview-stage--empty");
-    container.innerHTML = `
-      <figure class="preview-figure">
-        <img src="${url}" alt="Anteprima immagine elaborata">
-        <figcaption class="preview-meta">
-          ${metaLines.map((line) => `<span>${line}</span>`).join("")}
-        </figcaption>
-      </figure>
-    `;
-  }
-
-  function buildMetaLines(fileOrBlob, meta) {
-    return [
-      `Formato: ${friendlyFormat(fileOrBlob.type)}`,
-      `Peso: ${formatBytes(fileOrBlob.size)}`,
-      `Dimensioni: ${meta.width} x ${meta.height} px`
-    ];
   }
 
   async function loadImageMeta(fileOrBlob) {
