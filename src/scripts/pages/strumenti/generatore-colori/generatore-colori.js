@@ -8,6 +8,39 @@ let palette = [
   { hex: "#E76F51", locked: false }
 ];
 
+// Dictionary of colors for human-readable name matching
+const COLOR_NAMES = [
+  { name: "Rosso Fuoco", r: 231, g: 76, b: 60 },
+  { name: "Rosso Corallo", r: 230, g: 126, b: 34 },
+  { name: "Arancio Sole", r: 243, g: 156, b: 18 },
+  { name: "Pesca Calda", r: 244, g: 162, b: 97 },
+  { name: "Rosso Terracotta", r: 231, g: 111, b: 81 },
+  { name: "Giallo Zafferano", r: 233, g: 196, b: 106 },
+  { name: "Giallo Miele", r: 241, g: 196, b: 15 },
+  { name: "Verde Smeraldo", r: 46, g: 204, b: 113 },
+  { name: "Verde Menta", r: 46, g: 204, b: 113 },
+  { name: "Verde Caraibi", r: 42, g: 157, b: 143 },
+  { name: "Verde Petrolio", r: 38, g: 70, b: 83 },
+  { name: "Turchese Vivace", r: 26, g: 188, b: 156 },
+  { name: "Blu Oceano", r: 0, g: 63, b: 92 },
+  { name: "Blu Oltremare", r: 41, g: 128, b: 185 },
+  { name: "Blu Notte", r: 15, g: 23, b: 42 },
+  { name: "Viola Ametista", r: 155, g: 89, b: 182 },
+  { name: "Malva", r: 142, g: 68, b: 173 },
+  { name: "Rosa Pastello", r: 255, g: 183, b: 178 },
+  { name: "Rosa Salmone", r: 255, g: 204, b: 188 },
+  { name: "Verde Erba Pastello", r: 181, g: 234, b: 215 },
+  { name: "Celeste Polvere", r: 199, g: 206, b: 234 },
+  { name: "Nero Carbone", r: 24, g: 23, b: 23 },
+  { name: "Grigio Ardesia", r: 46, g: 52, b: 64 },
+  { name: "Grigio Chiaro", r: 216, g: 222, b: 233 },
+  { name: "Bianco Ghiaccio", r: 248, g: 249, b: 250 },
+  { name: "Lavanda Dolce", r: 118, g: 120, b: 237 },
+  { name: "Blu Elettrico", r: 33, g: 118, b: 255 },
+  { name: "Giallo Ocra", r: 253, g: 202, b: 64 },
+  { name: "Arancio Zucca", r: 247, g: 152, b: 36 }
+];
+
 const PRESETS = [
   { name: "Sogno Pastello", colors: ["#FFB7B2", "#FFDAC1", "#E2F0CB", "#B5EAD7", "#C7CEEA"] },
   { name: "Tramonto Caldo", colors: ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51"] },
@@ -137,9 +170,28 @@ export function initColorGenerator() {
     return calculateLuminance(hex) > 0.45;
   }
 
+  // Find the closest descriptive name for a color
+  function getColorName(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return "Sconosciuto";
+    let minDistance = Infinity;
+    let closestName = "Colore";
+    for (const item of COLOR_NAMES) {
+      const d = Math.sqrt(
+        Math.pow(rgb.r - item.r, 2) +
+        Math.pow(rgb.g - item.g, 2) +
+        Math.pow(rgb.b - item.b, 2)
+      );
+      if (d < minDistance) {
+        minDistance = d;
+        closestName = item.name;
+      }
+    }
+    return closestName;
+  }
+
   // ============ Core Logic ============
 
-  // Carica i colori dall'URL se presenti, altrimenti genera a caso
   function loadPaletteFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const colorsParam = urlParams.get("colors");
@@ -150,7 +202,6 @@ export function initColorGenerator() {
         return;
       }
     }
-    // Se non ci sono colori nell'URL, generiamo una palette di partenza casuale ma bilanciata
     generateRandomPalette(true);
   }
 
@@ -160,23 +211,18 @@ export function initColorGenerator() {
     window.history.replaceState({ path: newurl }, "", newurl);
   }
 
-  // Genera palette in base alle impostazioni
   function generateRandomPalette(forceAll = false) {
     const mode = modeSelect?.value ?? "random";
-    
-    // Trova i colori bloccati per mantenere armonia (se presenti)
     const lockedColors = forceAll ? [] : palette.filter(c => c.locked);
     let seedHsl;
 
     if (lockedColors.length > 0) {
-      // Usa uno dei colori bloccati a caso come seme di partenza
       const randomSeed = lockedColors[Math.floor(Math.random() * lockedColors.length)].hex;
       seedHsl = hexToHsl(randomSeed);
     } else {
-      // Crea un seme casuale ma con saturazione e luminosità bilanciate per un look professionale
       seedHsl = {
         h: Math.floor(Math.random() * 360),
-        s: 55 + Math.floor(Math.random() * 25), // 55% - 80%
+        s: 50 + Math.floor(Math.random() * 30), // 50% - 80%
         l: 45 + Math.floor(Math.random() * 15)  // 45% - 60%
       };
     }
@@ -190,21 +236,20 @@ export function initColorGenerator() {
         case "pastel":
           nextHex = hslToHex(
             Math.floor(Math.random() * 360),
-            25 + Math.floor(Math.random() * 15), // 25% - 40%
-            78 + Math.floor(Math.random() * 12)  // 78% - 90%
+            25 + Math.floor(Math.random() * 15),
+            75 + Math.floor(Math.random() * 12)
           );
           break;
 
         case "neon":
           nextHex = hslToHex(
             Math.floor(Math.random() * 360),
-            88 + Math.floor(Math.random() * 12), // 88% - 100%
-            50 + Math.floor(Math.random() * 10)  // 50% - 60%
+            88 + Math.floor(Math.random() * 12),
+            50 + Math.floor(Math.random() * 8)
           );
           break;
 
         case "monochromatic":
-          // Stesso hue, variazione di saturazione e luminosità
           nextHex = hslToHex(
             seedHsl.h,
             Math.max(10, Math.min(100, seedHsl.s + (index - 2) * 15 + (Math.random() * 10 - 5))),
@@ -213,7 +258,6 @@ export function initColorGenerator() {
           break;
 
         case "analogous":
-          // Hue sfalsati di 15-30 gradi
           nextHex = hslToHex(
             (seedHsl.h + (index - 2) * 20 + 360) % 360,
             seedHsl.s,
@@ -222,17 +266,15 @@ export function initColorGenerator() {
           break;
 
         case "complementary":
-          // Alternanza tra il seme e il suo complementare (+180 deg)
           const baseHue = (index % 2 === 0) ? seedHsl.h : (seedHsl.h + 180) % 360;
           nextHex = hslToHex(
             baseHue,
             seedHsl.s - (index * 5),
-            Math.max(20, Math.min(80, seedHsl.l + (index - 2) * 10))
+            Math.max(25, Math.min(75, seedHsl.l + (index - 2) * 10))
           );
           break;
 
         case "triadic":
-          // Colori posizionati a 120 gradi l'uno dall'altro
           const triadicHue = (seedHsl.h + (index % 3) * 120) % 360;
           nextHex = hslToHex(
             triadicHue,
@@ -243,7 +285,6 @@ export function initColorGenerator() {
 
         case "random":
         default:
-          // Generazione bilanciata ma casuale: manteniamo la saturazione/luminosità simile al seme per coerenza
           nextHex = hslToHex(
             Math.floor(Math.random() * 360),
             seedHsl.s + (Math.random() * 12 - 6),
@@ -259,7 +300,6 @@ export function initColorGenerator() {
     updateUrl();
   }
 
-  // Disegna le schede colore
   function renderPalette() {
     cardsContainer.innerHTML = "";
 
@@ -269,7 +309,7 @@ export function initColorGenerator() {
       card.className = `color-card ${isLight ? "light-color" : ""}`;
       card.style.backgroundColor = color.hex;
 
-      // HTML della scheda colore con i bottoni azioni (Lock, Copy, Adjust)
+      // Card inner HTML with lock, copy, picker and shades overlay
       card.innerHTML = `
         <div class="color-card-actions">
           <button class="card-action-btn lock-btn ${color.locked ? "is-locked" : ""}" title="${color.locked ? "Sblocca colore" : "Blocca colore"}">
@@ -279,21 +319,39 @@ export function initColorGenerator() {
           <button class="card-action-btn copy-btn" title="Copia HEX">
             <i class="far fa-copy" aria-hidden="true"></i>
           </button>
+
+          <button class="card-action-btn shades-btn" title="Vedi sfumature">
+            <i class="fas fa-th" aria-hidden="true"></i>
+          </button>
           
           <div class="color-picker-wrapper card-action-btn" title="Regola colore">
             <i class="fas fa-sliders-h" aria-hidden="true"></i>
             <input type="color" class="color-picker-input" value="${color.hex}">
           </div>
         </div>
+        <span class="color-card-name">${getColorName(color.hex)}</span>
         <span class="color-card-hex">${color.hex.toUpperCase()}</span>
+
+        <!-- Shades Dropdown Panel -->
+        <div class="shades-panel">
+          <div class="shades-header">
+            <span>Sfumature Tonalità</span>
+            <button class="close-shades-btn"><i class="fas fa-times" aria-hidden="true"></i></button>
+          </div>
+          <div class="shades-list"></div>
+        </div>
       `;
 
-      // Event Listeners sui bottoni interni
+      // Event listeners
       const lockBtn = card.querySelector(".lock-btn");
       const copyBtn = card.querySelector(".copy-btn");
+      const shadesBtn = card.querySelector(".shades-btn");
       const hexText = card.querySelector(".color-card-hex");
       const pickerInput = card.querySelector(".color-picker-input");
+      const shadesPanel = card.querySelector(".shades-panel");
+      const closeShadesBtn = card.querySelector(".close-shades-btn");
 
+      // Lock action
       lockBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         color.locked = !color.locked;
@@ -309,27 +367,23 @@ export function initColorGenerator() {
         }
       });
 
+      // Copy Action
       function copyHexAction(e) {
         e.stopPropagation();
         navigator.clipboard.writeText(color.hex)
-          .then(() => {
-            showTooltip(card, "Copiato!", 1200);
-          })
-          .catch(err => {
-            console.error("Copia fallita", err);
-          });
+          .then(() => showTooltip(card, "Copiato!", 1200))
+          .catch(err => console.error(err));
       }
-
       copyBtn.addEventListener("click", copyHexAction);
       hexText.addEventListener("click", copyHexAction);
 
-      // Picker manuale di regolazione
+      // Picker manual adjustment
       pickerInput.addEventListener("input", (e) => {
         color.hex = e.target.value;
         card.style.backgroundColor = color.hex;
         hexText.textContent = color.hex.toUpperCase();
+        card.querySelector(".color-card-name").textContent = getColorName(color.hex);
         
-        // Regola la classe light/dark della card al volo
         if (isLightColor(color.hex)) {
           card.classList.add("light-color");
         } else {
@@ -337,6 +391,7 @@ export function initColorGenerator() {
         }
         
         updateUrl();
+        updateLiveMockup();
         updateContrastChecker();
       });
 
@@ -345,14 +400,54 @@ export function initColorGenerator() {
         updateContrastChecker();
       });
 
+      // Open shades panel
+      shadesBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const hsl = hexToHsl(color.hex);
+        const shadesList = shadesPanel.querySelector(".shades-list");
+        shadesList.innerHTML = "";
+
+        // Generate 9 steps of lightness from 10% to 90%
+        for (let i = 1; i <= 9; i++) {
+          const l = i * 10;
+          const shadeHex = hslToHex(hsl.h, hsl.s, l);
+          const bar = document.createElement("div");
+          bar.className = "shade-bar";
+          bar.style.backgroundColor = shadeHex;
+          bar.style.color = l > 45 ? "#1e293b" : "#ffffff";
+          bar.innerHTML = `
+            <span>${l}%</span>
+            <span>${shadeHex.toUpperCase()}</span>
+          `;
+
+          bar.addEventListener("click", (e) => {
+            e.stopPropagation();
+            color.hex = shadeHex;
+            shadesPanel.classList.remove("show-shades");
+            renderPalette();
+            updateUrl();
+          });
+
+          shadesList.appendChild(bar);
+        }
+
+        shadesPanel.classList.add("show-shades");
+      });
+
+      closeShadesBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        shadesPanel.classList.remove("show-shades");
+      });
+
       cardsContainer.appendChild(card);
     });
 
+    updateLiveMockup();
     updateContrastCheckerOptions();
     updateContrastChecker();
   }
 
-  // ============ recommended Presets ============
+  // ============ Recommended Presets ============
   function renderPresets() {
     if (!presetsContainer) return;
     presetsContainer.innerHTML = "";
@@ -373,10 +468,9 @@ export function initColorGenerator() {
       `;
 
       presetCard.addEventListener("click", () => {
-        // Applica i colori escludendo i lock temporaneamente (un preset ha priorità)
         preset.colors.forEach((col, idx) => {
           palette[idx].hex = col;
-          palette[idx].locked = false; // reset lock
+          palette[idx].locked = false;
         });
         renderPalette();
         updateUrl();
@@ -384,6 +478,56 @@ export function initColorGenerator() {
 
       presetsContainer.appendChild(presetCard);
     });
+  }
+
+  // ============ Live UI Mockup Updater ============
+  function updateLiveMockup() {
+    const mockupBody = document.getElementById("live-mockup-body");
+    const mockupNav = document.getElementById("mockup-nav");
+    const heroTitle = document.getElementById("mockup-hero-title");
+    const heroText = document.getElementById("mockup-hero-text");
+    const heroBtn = document.getElementById("mockup-hero-btn");
+    const cardBody = document.getElementById("mockup-card-body");
+    const cardBadge = document.getElementById("mockup-card-badge");
+
+    if (!mockupBody || !mockupNav || !heroTitle || !heroBtn || !cardBody) return;
+
+    const c1 = palette[0].hex; // Background navbar
+    const c2 = palette[1].hex; // Logos, badge and hero text
+    const c3 = palette[2].hex; // CTA Button
+    const c4 = palette[3].hex; // Card background
+    const c5 = palette[4].hex; // Main body background
+
+    // 1. Mockup background
+    mockupBody.style.backgroundColor = c5;
+    mockupBody.style.color = isLightColor(c5) ? "#1e293b" : "#f8fafc";
+    heroText.style.color = isLightColor(c5) ? "rgba(30, 41, 59, 0.7)" : "rgba(248, 250, 252, 0.7)";
+
+    // 2. Navbar
+    mockupNav.style.backgroundColor = c1;
+    mockupNav.style.color = isLightColor(c1) ? "#1e293b" : "#ffffff";
+    mockupNav.querySelectorAll(".mockup-link").forEach(l => {
+      l.style.color = isLightColor(c1) ? "rgba(30, 41, 59, 0.8)" : "rgba(255, 255, 255, 0.8)";
+    });
+
+    // 3. Hero Text
+    heroTitle.style.color = c2;
+
+    // 4. CTA Button
+    heroBtn.style.backgroundColor = c3;
+    heroBtn.style.color = isLightColor(c3) ? "#1e293b" : "#ffffff";
+
+    // 5. Card Component
+    cardBody.style.backgroundColor = c4;
+    cardBody.style.color = isLightColor(c4) ? "#1e293b" : "#ffffff";
+    const cardP = cardBody.querySelector("p");
+    if (cardP) {
+      cardP.style.color = isLightColor(c4) ? "rgba(30, 41, 59, 0.7)" : "rgba(255, 255, 255, 0.6)";
+    }
+
+    // 6. Card Badge
+    cardBadge.style.backgroundColor = c2;
+    cardBadge.style.color = isLightColor(c2) ? "#1e293b" : "#ffffff";
   }
 
   // ============ Contrast Checker Section ============
@@ -408,12 +552,11 @@ export function initColorGenerator() {
       textSelect.appendChild(optText);
     });
 
-    // Mantieni le selezioni precedenti se ancora valide
     if (palette.some(c => c.hex === bgVal)) bgSelect.value = bgVal;
-    else bgSelect.selectedIndex = 0; // Colore 1 di default
+    else bgSelect.selectedIndex = 0;
 
     if (palette.some(c => c.hex === textVal)) textSelect.value = textVal;
-    else textSelect.selectedIndex = 4; // Colore 5 di default
+    else textSelect.selectedIndex = 4;
   }
 
   function updateContrastChecker() {
@@ -427,9 +570,6 @@ export function initColorGenerator() {
 
     const ratio = calculateContrast(bgHex, textHex);
 
-    // WCAG 2.1 Pass/Fail checks
-    // Normal Text: AA >= 4.5, AAA >= 7.0
-    // Large Text: AA >= 3.0, AAA >= 4.5
     const aaNormal = ratio >= 4.5;
     const aaaNormal = ratio >= 7.0;
     const aaLarge = ratio >= 3.0;
@@ -441,25 +581,25 @@ export function initColorGenerator() {
         <div class="level-item">
           Testo Normale (AA): 
           <span class="${aaNormal ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaNormal ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaNormal ? "Passa" : "Fallisce"}
+            <i class="fas ${aaNormal ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaNormal ? "Passa" : "Fallisce"}
           </span>
         </div>
         <div class="level-item">
           Testo Normale (AAA): 
           <span class="${aaaNormal ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaaNormal ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaaNormal ? "Passa" : "Fallisce"}
+            <i class="fas ${aaaNormal ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaaNormal ? "Passa" : "Fallisce"}
           </span>
         </div>
         <div class="level-item">
           Testo Grande (AA): 
           <span class="${aaLarge ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaLarge ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaLarge ? "Passa" : "Fallisce"}
+            <i class="fas ${aaLarge ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaLarge ? "Passa" : "Fallisce"}
           </span>
         </div>
         <div class="level-item">
           Testo Grande (AAA): 
           <span class="${aaaLarge ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaaLarge ? "fa-check-circle" : "fa-times-circle"}"></i> ${aaaLarge ? "Passa" : "Fallisce"}
+            <i class="fas ${aaaLarge ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaaLarge ? "Passa" : "Fallisce"}
           </span>
         </div>
       </div>
@@ -473,7 +613,7 @@ export function initColorGenerator() {
         showTooltip(button, successMsg, 1500);
       })
       .catch(err => {
-        console.error("Copia fallita", err);
+        console.error(err);
         showTooltip(button, "Errore!", 1500);
       });
   }
@@ -484,34 +624,30 @@ export function initColorGenerator() {
   bgSelect.addEventListener("change", updateContrastChecker);
   textSelect.addEventListener("change", updateContrastChecker);
 
-  // Esporta come variabili CSS
   btnCopyCss.addEventListener("click", () => {
     const cssVars = palette.map((col, idx) => `  --color-${idx + 1}: ${col.hex};`).join("\n");
     const output = `:root {\n${cssVars}\n}`;
     copyTextToClipboard(output, btnCopyCss, "CSS Copiato!");
   });
 
-  // Esporta come array JSON
   btnCopyJson.addEventListener("click", () => {
     const jsonOutput = JSON.stringify(palette.map(c => c.hex), null, 2);
     copyTextToClipboard(jsonOutput, btnCopyJson, "JSON Copiato!");
   });
 
-  // Condividi link
   btnCopyLink.addEventListener("click", () => {
     copyTextToClipboard(window.location.href, btnCopyLink, "Link Copiato!");
   });
 
-  // Tasto Spazio per generare al volo
+  // Spacebar to trigger random generation
   document.addEventListener("keydown", (e) => {
-    // Genera solo se l'utente non sta digitando in un input o select
     const targetTag = e.target.tagName.toLowerCase();
     if (targetTag === "input" || targetTag === "select" || targetTag === "textarea") {
       return;
     }
 
     if (e.code === "Space" || e.keyCode === 32) {
-      e.preventDefault(); // evita lo scroll della pagina
+      e.preventDefault();
       generateRandomPalette();
     }
   });

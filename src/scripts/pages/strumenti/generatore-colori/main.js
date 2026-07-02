@@ -20,7 +20,7 @@ import "@/scripts/components/footer.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Carica il generatore solo se la pagina lo usa
-  if (document.getElementById("picker")) {
+  if (document.getElementById("palette-cards-container")) {
     const { initColorGenerator } = await import("@/scripts/pages/strumenti/generatore-colori/generatore-colori.js");
     initColorGenerator();
   }
