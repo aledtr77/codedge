@@ -31,6 +31,7 @@ footer {
   display: flex;
   gap: 0.75rem;
   justify-content: flex-end;
+  align-items: center;
   position: absolute;
   right: 1rem;
   bottom: 0;
@@ -47,6 +48,7 @@ footer {
   line-height: 0;
   padding: 0;
   text-decoration: none;
+  vertical-align: middle;
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease,
@@ -90,7 +92,13 @@ footer {
   font-size: 1.45rem;
   background:
     radial-gradient(circle at 31% 107%, #fdf497 0 7%, #fd5949 38%, #d6249f 62%, #285aeb 100%);
-  box-shadow: 0 4px 10px -6px rgba(221, 42, 123, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.45);
+  border-bottom-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35),
+    0 4px 10px -6px rgba(221, 42, 123, 0.75);
   -webkit-text-fill-color: #ffffff;
   transition:
     transform 0.22s ease,
@@ -104,7 +112,10 @@ footer {
 }
 .footer-social-link-instagram:hover i {
   transform: scale(1.06);
-  box-shadow: 0 8px 16px -8px rgba(221, 42, 123, 0.9);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+    0 8px 16px -8px rgba(221, 42, 123, 0.9);
 }
 .footer-social-link-youtube {
   border-color: transparent;
@@ -115,10 +126,18 @@ footer {
   display: block;
   width: 2rem;
   height: 2rem;
-  filter: drop-shadow(0 4px 5px rgba(255, 0, 51, 0.24));
+  border-radius: 0.56rem;
+  background: #ff0000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.45);
+  border-bottom-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35),
+    0 4px 10px -6px rgba(255, 0, 0, 0.75);
   transition:
     transform 0.22s ease,
-    filter 0.22s ease;
+    box-shadow 0.22s ease;
 }
 .footer-social-link-youtube:hover {
   filter: none;
@@ -128,7 +147,10 @@ footer {
 }
 .footer-social-link-youtube:hover .footer-youtube-mark {
   transform: scale(1.06);
-  filter: drop-shadow(0 6px 7px rgba(255, 0, 51, 0.38));
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+    0 8px 16px -8px rgba(255, 0, 0, 0.9);
 }
 .footer-social-link:focus-visible {
   outline: 2px solid var(--color-three);
