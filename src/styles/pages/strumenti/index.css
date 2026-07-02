@@ -187,16 +187,13 @@
         grid-auto-rows: 1fr;
       }
       .tools-grid {
-        width: 100%;
-        max-width: 1140px;
-        margin: 2.25rem auto 0;
-        grid-template-columns: repeat(4, minmax(0, 270px));
-        justify-content: center;
+        margin-top: 2.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
       .tool-card {
-        max-width: 270px;
+        max-width: none;
         width: 100%;
-        height: 100%;
+        min-height: 100%;
         padding: 1.3rem 1.15rem 1.15rem;
         border-radius: 22px;
         background:
@@ -266,13 +263,6 @@
         --tool-accent: #8ef2c9;
       }
       @media (max-width: 1280px) {
-        .tools-grid {
-          max-width: 580px;
-          grid-template-columns: repeat(2, minmax(0, 280px));
-        }
-        .tool-card {
-          max-width: 280px;
-        }
         .button-simple {
           font-size: 0.9em;
         }
@@ -299,14 +289,6 @@
       @media (max-width: 768px) {
         .grid {
           grid-template-columns: 1fr;
-        }
-        .tools-grid {
-          max-width: 320px;
-          grid-template-columns: minmax(0, 1fr);
-          justify-items: stretch;
-        }
-        .tool-card {
-          max-width: 320px;
         }
         .intro-media {
           margin: 0 auto;
