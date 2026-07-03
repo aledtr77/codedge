@@ -895,6 +895,14 @@ body > main .section {
 }
 
 @media (max-width: 768px) {
+  .gradient-page {
+    width: 100%;
+    margin: 1rem auto 1.5rem auto;
+    padding: 0 var(--mobile-page-gutter);
+  }
+  .gradient-shell {
+    padding: 1.25rem;
+  }
   body > main .section {
     padding: 1.25rem;
   }
