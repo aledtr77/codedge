@@ -756,9 +756,26 @@ body > main .section h2 {
     flex-direction: column;
     align-items: stretch;
   }
-  .control-group, .export-group {
+  .control-group {
     justify-content: space-between;
     width: 100%;
+  }
+  .export-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .export-group button {
+    max-width: none !important;
+    width: 100% !important;
+    justify-content: center;
+  }
+  .export-group button#btn-copy-link {
+    grid-column: 1 / -1;
+  }
+  .spacebar-kbd {
+    display: none;
   }
   .main-gen-btn {
     width: 100% !important;
