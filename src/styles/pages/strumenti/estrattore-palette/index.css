@@ -634,9 +634,12 @@ pre {
 
   .results,
   .input-panel,
-  .tool-panel,
-  .faq-panel {
+  .tool-panel {
     padding: 12px;
+  }
+
+  .faq-panel {
+    padding: 1.25rem;
   }
 
   .workspace {
