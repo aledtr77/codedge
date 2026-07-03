@@ -721,17 +721,32 @@ body > main .section h2 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.75rem;
     flex: 1;
   }
   .color-card-info {
     align-items: flex-end;
+    gap: 0.2rem;
+  }
+  .color-card-name {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+  }
+  .color-card-hex {
+    font-size: 1.05rem;
+    padding: 3px 8px;
+  }
+  .card-action-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.85rem;
   }
   .color-card:hover {
     flex-grow: 1.15;
   }
   .color-card-actions {
     flex-direction: row;
+    gap: 0.5rem !important;
     margin-bottom: 0;
     opacity: 1;
     transform: translateY(0);
