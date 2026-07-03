@@ -21,12 +21,15 @@ h3 {
 }
 
 .section {
-  background-color: var(--background-two);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background:
+    radial-gradient(circle at top left, rgba(0, 168, 255, 0.1), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--background-two);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 2.2rem;
+  margin-bottom: 2.5rem;
 }
 
 .palette-generator-app {
@@ -697,6 +700,9 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 1.25rem;
+  }
   .palette-cards {
     flex-direction: column;
     height: 620px;

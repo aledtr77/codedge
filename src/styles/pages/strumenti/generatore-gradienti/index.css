@@ -788,6 +788,19 @@
   transition: opacity 0.2s, visibility 0.2s;
 }
 
+body > main .section {
+  background:
+    radial-gradient(circle at top left, rgba(0, 168, 255, 0.1), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--background-two);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 2.2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 /* SEO Description Article & FAQs */
 .seo-text-content p,
 .faq-content p {
@@ -878,5 +891,11 @@
 
   .btn-delete-row-stop {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body > main .section {
+    padding: 1.25rem;
   }
 }
