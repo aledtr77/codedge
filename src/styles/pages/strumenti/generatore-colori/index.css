@@ -761,18 +761,20 @@ body > main .section h2 {
     width: 100%;
   }
   .export-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
     width: 100%;
+    justify-content: space-between;
   }
   .export-group button {
     max-width: none !important;
-    width: 100% !important;
+    font-size: 0.72rem !important;
+    padding: 0.5rem 0.35rem !important;
+    gap: 0.25rem !important;
     justify-content: center;
-  }
-  .export-group button#btn-copy-link {
-    grid-column: 1 / -1;
+    flex: 1 1 auto;
+    min-width: 0;
   }
   .spacebar-kbd {
     display: none;
