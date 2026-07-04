@@ -246,6 +246,53 @@ export function initSnippets(options = {}) {
     });
   })();
 
+  /* ----------------------
+     Dynamic alignment for fixed sidebar and breadcrumb to first snippet box
+     ---------------------- */
+  (function setupDynamicAlignment() {
+    function alignSidebarAndBreadcrumb() {
+      const container = document.querySelector('.snippet-container');
+      const sidebar = document.querySelector('.snippet-sidebar');
+      const breadcrumb = document.querySelector('.breadcrumb-container');
+      const firstBox = document.querySelector('.snippet-main .snippet-box:first-of-type');
+      
+      if (!container || !sidebar || !breadcrumb || !firstBox) return;
+      
+      const mobileQuery = window.matchMedia('(max-width: 980px)');
+      if (mobileQuery.matches) {
+        sidebar.style.top = '';
+        breadcrumb.style.top = '';
+        return;
+      }
+      
+      // Measure the exact top of the first box relative to the viewport at scroll = 0
+      const currentScroll = window.scrollY;
+      let firstBoxTop = 0;
+      
+      if (currentScroll === 0) {
+        firstBoxTop = firstBox.getBoundingClientRect().top;
+      } else {
+        // Calculate the static position relative to viewport by adding current scroll position
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.getBoundingClientRect().height : 50;
+        firstBoxTop = headerHeight + 58; // 58px is the calculated padding-top offset from navbar bottom
+      }
+      
+      // Align sidebar and breadcrumb using the exact top position
+      sidebar.style.top = `${firstBoxTop}px`;
+      breadcrumb.style.top = `${firstBoxTop - 44}px`;
+    }
+
+    // Run on load and resize
+    window.addEventListener('load', alignSidebarAndBreadcrumb);
+    window.addEventListener('resize', alignSidebarAndBreadcrumb);
+    // Also run immediately
+    alignSidebarAndBreadcrumb();
+    // Run after a short timeout to handle lazy image loading or layout shifts
+    setTimeout(alignSidebarAndBreadcrumb, 100);
+    setTimeout(alignSidebarAndBreadcrumb, 500);
+  })();
+
   console.log('initSnippets: initialized');
 }
 
