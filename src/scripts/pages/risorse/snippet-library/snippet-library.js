@@ -187,11 +187,13 @@ export function initSnippets(options = {}) {
       else openSidebar();
     }, { passive: false });
 
-    // close when clicking a link or button inside sidebar
+    // close when clicking a link or button inside sidebar (only on mobile)
     sidebar.addEventListener('click', function (ev) {
       const t = ev.target.closest('a, button, .clickable-item');
       if (!t) return;
-      closeSidebar();
+      if (mobileQuery.matches) {
+        closeSidebar();
+      }
     });
 
     // click outside closes
@@ -237,8 +239,7 @@ export function initSnippets(options = {}) {
           ev.preventDefault();
           const el = document.querySelector(href);
           if (el) {
-            const top = el.getBoundingClientRect().top + window.pageYOffset - (scrollOffset || 110);
-            window.scrollTo({ top, behavior: 'smooth' });
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
       });
