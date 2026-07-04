@@ -7,6 +7,7 @@
 
 .snippet-container {
   display: flex;
+  align-items: flex-start; /* Crucial: align sticky sidebar and main column strictly to the top of the container */
   gap: 2rem;
   max-width: 1440px;
   width: 100%;
@@ -25,6 +26,7 @@
   isolation: isolate;
   position: sticky;
   top: 120px; /* Rimane fisso sotto la navbar quando si scorre la pagina */
+  margin-top: 0; /* Forza l'inizio esattamente al top del flex container */
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -139,6 +141,7 @@
 .snippet-main {
   flex: 1;
   padding: 0;
+  margin-top: 0; /* Forza l'inizio esattamente al top del flex container */
   min-width: 0;
 }
 
