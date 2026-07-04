@@ -220,7 +220,8 @@ img {
 }
 
 /* Tool page back link breadcrumb */
-.tool-back-link {
+.tool-back-link,
+.back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -232,12 +233,15 @@ img {
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.tool-back-link:hover {
+.tool-back-link:hover,
+.back-link:hover {
   color: var(--site-link-hover-color);
   transform: translateX(-3px);
 }
 
-.tool-back-link i {
+.tool-back-link i,
+.back-link i {
   font-size: 0.8rem;
 }
+
 
