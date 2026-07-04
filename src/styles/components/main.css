@@ -224,24 +224,48 @@ img {
 .back-link {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start; /* Evita lo stretch in flexbox columns */
   gap: 0.5rem;
-  color: var(--site-link-color);
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   margin-bottom: 1.25rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tool-back-link:hover,
 .back-link:hover {
-  color: var(--site-link-hover-color);
+  color: #ffffff;
+  background: rgba(0, 123, 240, 0.18);
+  border-color: rgba(0, 123, 240, 0.4);
   transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(0, 123, 240, 0.25);
+}
+
+.tool-back-link:active,
+.back-link:active {
+  transform: scale(0.96) translateX(-3px);
 }
 
 .tool-back-link i,
 .back-link i {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--site-link-color);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.tool-back-link:hover i,
+.back-link:hover i {
+  color: #ffffff;
+  transform: translateX(-2px);
 }
 
 
