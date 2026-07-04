@@ -1,6 +1,6 @@
 .breadcrumb-container {
   position: fixed;
-  top: 106px; /* Offset iniziale su desktop, calcolato sotto la navbar */
+  top: 78px; /* Esattamente 30px sotto il bordo inferiore della navbar fissa (48px + 30px) */
   left: 30px;
   z-index: 100;
   margin: 0;
@@ -21,7 +21,7 @@
   box-sizing: border-box;
   padding: 0 30px;
   margin-top: 0;
-  padding-top: 58px; /* Offset per spingere il contenuto principale sotto il livello della navbar */
+  padding-top: 60px; /* Offset calcolato per allineare il primo snippet box a top: 108px (48px navbar + 60px) */
   background-color: transparent;
   overflow: visible;
 }
@@ -34,8 +34,8 @@
   isolation: isolate;
   position: fixed;
   left: 30px;
-  top: 150px; /* Offset iniziale su desktop prima del calcolo JS */
-  bottom: 30px; /* Margine di 30px dal bordo inferiore dello schermo */
+  top: 108px; /* Inizia esattamente a 108px, allineato al millesimo con il primo snippet box */
+  bottom: 30px; /* Margine di esattamente 30px dal bordo inferiore dello schermo */
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain; /* Previene lo scorrimento del body sottostante */
@@ -171,7 +171,7 @@
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  scroll-margin-top: 150px; /* Distanza superiore durante la navigazione tramite i link della sidebar */
+  scroll-margin-top: 108px; /* Allineato all'inizio dell'aside quando si naviga */
 }
 
 .title-box {
