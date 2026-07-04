@@ -1,21 +1,29 @@
 .breadcrumb-container {
-  max-width: 1440px;
-  margin: 1.5rem auto 0 auto;
-  padding: 0 30px;
-  box-sizing: border-box;
+  position: fixed;
+  top: 106px; /* Sotto la navbar */
+  left: 30px;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
+  pointer-events: none; /* Consente ai click di passare oltre se necessario, tranne che sul link */
+}
+
+.breadcrumb-container .back-link {
+  margin-bottom: 0;
+  pointer-events: auto; /* Rende il link cliccabile */
 }
 
 .snippet-container {
-  display: flex;
-  align-items: flex-start; /* Crucial: align sticky sidebar and main column strictly to the top of the container */
-  gap: 2rem;
-  max-width: 1440px;
+  display: block; /* La sidebar è fixed, quindi il contenuto fluisce a destra con margin-left */
   width: 100%;
-  margin: 1.5rem auto 3rem auto;
-  padding: 0 30px;
   box-sizing: border-box;
+  padding: 0 30px;
+  margin-top: 0;
+  padding-top: 105px; /* Distanza calcolata per allineare il primo snippet box a top: 150px (45px navbar + 105px) */
   background-color: transparent;
-  overflow: visible; /* Consente al posizionamento sticky di funzionare */
+  overflow: visible;
 }
 
 .snippet-sidebar {
@@ -24,10 +32,10 @@
   width: 280px;
   z-index: 10;
   isolation: isolate;
-  position: sticky;
-  top: 120px; /* Rimane fisso sotto la navbar quando si scorre la pagina */
-  margin-top: 0; /* Forza l'inizio esattamente al top del flex container */
-  max-height: calc(100vh - 150px);
+  position: fixed;
+  left: 30px;
+  top: 150px; /* Margine di 30px sotto il link breadcrumb, allineato al primo snippet box */
+  bottom: 30px; /* Margine di 30px dal bordo inferiore dello schermo */
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain; /* Previene lo scorrimento del body sottostante */
@@ -139,14 +147,13 @@
 }
 
 .snippet-main {
-  flex: 1;
+  margin-left: 345px; /* Lascia spazio a sinistra per il margine desktop (30px) + sidebar (280px) + gap (35px) */
   padding: 0;
-  margin-top: 0; /* Forza l'inizio esattamente al top del flex container */
   min-width: 0;
 }
 
 .snippet-main .snippet-box:first-of-type {
-  margin-top: 0; /* Allineamento perfetto con la sidebar a inizio pagina */
+  margin-top: 0;
 }
 
 .snippet-section {
@@ -163,7 +170,7 @@
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  scroll-margin-top: 120px; /* Distanza superiore quando si naviga tramite i link */
+  scroll-margin-top: 150px; /* Distanza superiore durante la navigazione tramite i link della sidebar */
 }
 
 .title-box {
@@ -237,28 +244,34 @@
 /* Responsive adjustments */
 @media (max-width: 980px) {
   .breadcrumb-container {
+    position: relative;
+    top: 0;
+    left: 0;
     padding: 1.5rem 20px 0 20px;
+    background-color: transparent;
+    border-bottom: none;
   }
 
   .snippet-container {
-    flex-direction: column;
     padding: 0 20px;
+    padding-top: 0;
     margin-top: 20px;
-    gap: 1.5rem;
   }
   
   .snippet-sidebar {
     position: relative;
     top: 0;
+    left: 0;
     width: 100%;
     max-width: none;
     max-height: none;
-    margin-bottom: 0;
+    margin-bottom: 1.5rem;
     box-shadow: none;
     border-radius: 6px;
   }
   
   .snippet-main {
+    margin-left: 0;
     padding: 0;
   }
 }
