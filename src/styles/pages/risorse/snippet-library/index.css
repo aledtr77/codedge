@@ -1,27 +1,20 @@
 .breadcrumb-container {
-  position: fixed;
-  top: 92px; /* Sotto la navbar fissa */
-  left: 30px;
-  right: 30px;
-  z-index: 9;
-  background-color: #232730; /* Colore di sfondo scuro della pagina */
-  padding: 1.5rem 0 0.5rem 0;
-  margin: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.breadcrumb-container .back-link {
-  margin-bottom: 0; /* Rimuove il margine inferiore per lasciare la gestione al padding del contenitore */
+  max-width: 1440px;
+  margin: 1.5rem auto 0 auto;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 .snippet-container {
-  display: block; /* La sidebar è fixed, quindi il contenuto fluisce naturalmente accanto ad essa */
+  display: flex;
+  gap: 2rem;
+  max-width: 1440px;
   width: 100%;
-  box-sizing: border-box;
+  margin: 1.5rem auto 3rem auto;
   padding: 0 30px;
-  margin: 160px 0 3rem 0; /* Spazio sufficiente per navbar (92px) + breadcrumb fisso (50px) + gap */
+  box-sizing: border-box;
   background-color: transparent;
-  overflow: visible;
+  overflow: visible; /* Consente al posizionamento sticky di funzionare */
 }
 
 .snippet-sidebar {
@@ -30,10 +23,9 @@
   width: 280px;
   z-index: 10;
   isolation: isolate;
-  position: fixed;
-  left: 30px;
-  top: 160px; /* Allineamento verticale perfetto con il primo snippet box a inizio pagina */
-  bottom: 30px;
+  position: sticky;
+  top: 120px; /* Rimane fisso sotto la navbar quando si scorre la pagina */
+  max-height: calc(100vh - 150px);
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain; /* Previene lo scorrimento del body sottostante */
@@ -145,13 +137,13 @@
 }
 
 .snippet-main {
-  margin-left: 345px; /* Spazio per margine sinistro (30px) + larghezza sidebar (280px) + gap (35px) */
-  padding: 0 0 2rem 0;
+  flex: 1;
+  padding: 0;
   min-width: 0;
 }
 
 .snippet-main .snippet-box:first-of-type {
-  margin-top: 0; /* Allineamento pixel-perfect con la sidebar a inizio pagina */
+  margin-top: 0; /* Allineamento perfetto con la sidebar a inizio pagina */
 }
 
 .snippet-section {
@@ -168,7 +160,7 @@
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  scroll-margin-top: 160px; /* Stesso allineamento verticale durante lo scorrimento dei link */
+  scroll-margin-top: 120px; /* Distanza superiore quando si naviga tramite i link */
 }
 
 .title-box {
@@ -242,34 +234,28 @@
 /* Responsive adjustments */
 @media (max-width: 980px) {
   .breadcrumb-container {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
     padding: 1.5rem 20px 0 20px;
-    background-color: transparent;
-    border-bottom: none;
   }
 
   .snippet-container {
+    flex-direction: column;
     padding: 0 20px;
     margin-top: 20px;
+    gap: 1.5rem;
   }
   
   .snippet-sidebar {
     position: relative;
     top: 0;
-    left: 0;
     width: 100%;
     max-width: none;
     max-height: none;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     box-shadow: none;
     border-radius: 6px;
   }
   
   .snippet-main {
-    margin-left: 0;
     padding: 0;
   }
 }
