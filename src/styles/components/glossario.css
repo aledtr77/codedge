@@ -445,6 +445,17 @@ pre::-webkit-scrollbar-thumb {
   }
 }
 
+/* Evita che il pulsante di ritorno venga tagliato dal gradiente sfumato dell'header sticky */
+.breadcrumb-container {
+  margin-top: 3.25rem !important;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-container {
+    margin-top: 2.75rem !important;
+  }
+}
+
 @media (max-width: 1180px) {
   .search-container,
   .main-content {
