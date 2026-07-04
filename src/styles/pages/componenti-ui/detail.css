@@ -162,3 +162,64 @@
     align-self: flex-start;
   }
 }
+
+/* --- SEO & FAQ Shared Styles --- */
+.seo-section {
+  background:
+    radial-gradient(circle at top left, rgba(0, 168, 255, 0.05), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    var(--background-three);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 2.2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.seo-text-content p,
+.faq-content p {
+  text-align: justify;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.2rem;
+}
+
+.seo-text-content p:last-child,
+.faq-content p:last-child {
+  margin-bottom: 0;
+}
+
+.seo-faq-divider {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+}
+
+.seo-section h2,
+.seo-section h3 {
+  color: var(--text-color);
+  font-family: var(--heading-font);
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.seo-section h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+.seo-section h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+.faq-content h4 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color: var(--hover-color);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+

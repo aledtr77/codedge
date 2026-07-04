@@ -160,6 +160,40 @@
       </article>
     </section>
 
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-navbar">
+      <h2 id="seo-title-navbar">Come realizzare un Header Responsive e Accessibile in HTML purissimo e JS</h2>
+      <div class="seo-text-content">
+        <p>
+          La barra di navigazione, o header, è l'elemento più importante per l'orientamento all'interno di un sito web. Progettare un menu di navigazione che sia reattivo sui dispositivi mobili e allo stesso tempo completamente usabile tramite tastiera o tecnologie assistive richiede l'applicazione di precisi pattern di accessibilità. Molti menu mobile comuni commettono l'errore di nascondere visivamente i link senza rimuoverli dall'ordine di tabulazione, costringendo gli utenti da tastiera a navigare tra elementi invisibili.
+        </p>
+        <p>
+          Questo componente risolve questo problema strutturale combinando classi CSS per il posizionamento e JavaScript per il controllo degli attributi di accessibilità. Il pulsante di attivazione del menu mobile (l'icona hamburger) include l'attributo <code>aria-expanded</code> (impostato su <code>true</code> o <code>false</code> a seconda dello stato) e fa riferimento tramite <code>aria-controls</code> all'ID del menu di navigazione. Quando il menu è chiuso sui dispositivi mobili, viene impostato su <code>display: none</code> o rimosso dal flusso tramite visibilità, assicurando che non riceva il focus in modo errato.
+        </p>
+        <p>
+          Per migliorare ulteriormente l'esperienza utente, viene implementata la gestione degli eventi da tastiera: in particolare, la pressione del tasto <code>Escape</code> chiude automaticamente il menu aperto, ripristinando il focus sul pulsante che lo ha attivato. Inoltre, il link corrispondente alla pagina corrente è contrassegnato con <code>aria-current="page"</code>, fornendo un'indicazione semantica chiara del posizionamento dell'utente, sia a livello visivo (tramite fogli di stile dedicati) sia per i sintetizzatori vocali.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-navbar-title">FAQ rapide sull'header accessibile</h3>
+      <div class="faq-content">
+        <h4>A cosa serve l'attributo aria-expanded nel menu mobile?</h4>
+        <p>
+          Comunica alle tecnologie assistive (come gli screen reader) se il sottomenu o la navigazione mobile ad esso collegata è aperta o chiusa. Cambia dinamicamente tramite JavaScript da <code>false</code> a <code>true</code> all'apertura del menu.
+        </p>
+        <h4>Perché il menu si deve chiudere con il tasto Escape?</h4>
+        <p>
+          La chiusura tramite tasto <code>Escape</code> è uno standard di usabilità e accessibilità per i componenti a comparsa (dropdown, modali, menu), permettendo agli utenti che navigano solo da tastiera di uscire rapidamente da un menu senza dover scorrere manualmente tutti i link.
+        </p>
+        <h4>Come viene indicato visivamente e semanticamente il link attivo?</h4>
+        <p>
+          Il link attivo utilizza l'attributo HTML5 <code>aria-current="page"</code>. Questo attributo viene riconosciuto dagli screen reader per indicare la pagina corrente ed è utilizzato nel CSS come selettore specifico (es. <code>[aria-current="page"]</code>) per applicare stili distintivi come colori diversi o sottolineature.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <script type="module" src="/src/scripts/pages/componenti-ui/minimal-navbar/main.js"></script>

@@ -172,6 +172,40 @@
       </article>
     </section>
 
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-scroll">
+      <h2 id="seo-title-scroll">Migliorare l'UX di guide e articoli lunghi con Indice di Lettura e Progress Bar</h2>
+      <div class="seo-text-content">
+        <p>
+          Quando gli utenti leggono articoli lunghi, documentazioni tecniche o guide dettagliate, possono facilmente perdere l'orientamento o sottostimare lo sforzo richiesto per completare la lettura. Un indice di lettura interattivo (Table of Contents o TOC) abbinato a una barra di avanzamento visiva (scroll progress bar) migliora sensibilmente l'esperienza utente (UX), incentivando il completamento della lettura e offrendo punti di ancoraggio rapidi per saltare da una sezione all'altra.
+        </p>
+        <p>
+          Questo componente propone un layout diviso: un pannello laterale che funge da indice e un contenitore principale per il testo. Tramite l'uso di JavaScript e dell'API Intersection Observer (o del monitoraggio dell'evento scroll), lo script rileva quale sezione è visibile nello schermo e applica una classe di stato (come <code>is-active</code>) al link corrispondente nell'indice. Contemporaneamente, la barra di progresso orizzontale in alto si riempie in base alla percentuale di scorrimento del testo all'interno del contenitore.
+        </p>
+        <p>
+          Dal punto di vista dell'accessibilità, l'indice laterale è racchiuso all'interno di un tag <code>&lt;aside&gt;</code> con una label descrittiva <code>aria-label="Indice della guida"</code>, permettendo agli screen reader di identificarlo come area di navigazione rapida. I link dell'indice puntano alle ancore interne dei titoli delle sezioni tramite ID univoci. Viene inoltre incluso un pulsante "Torna su" accessibile, che permette di riposizionare rapidamente la visualizzazione all'inizio del documento, ideale per evitare lunghi scorrimenti manuali specialmente su dispositivi mobili.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-scroll-title">FAQ rapide sull'indice di lettura</h3>
+      <div class="faq-content">
+        <h4>Come viene calcolata la percentuale della barra di scorrimento?</h4>
+        <p>
+          JavaScript calcola il rapporto tra lo spazio di scorrimento già effettuato (<code>scrollTop</code>) e lo spazio totale scollabile (<code>scrollHeight - clientHeight</code>) del contenitore di scorrimento, convertendolo in una percentuale che aggiorna dinamicamente la larghezza inline della barra di progresso.
+        </p>
+        <h4>Intersection Observer è migliore rispetto all'evento scroll per rilevare la sezione attiva?</h4>
+        <p>
+          Sì, Intersection Observer è molto più performante poiché non sovraccarica il thread principale con continui calcoli matematici ad ogni singolo pixel di scorrimento. Lo script si attiva solo quando le sezioni predefinite entrano o escono dalla viewport secondo soglie stabilite.
+        </p>
+        <h4>Come funziona il pulsante 'Torna su' per l'accessibilità?</h4>
+        <p>
+          Il pulsante effettua uno scroll fluido verso l'alto tramite JavaScript e, molto importante, ripristina il focus logico all'inizio del documento o sul contenitore principale per consentire all'utente da tastiera o screen reader di riprendere immediatamente la navigazione.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <script type="module" src="/src/scripts/pages/componenti-ui/scroll-indicator/main.js"></script>

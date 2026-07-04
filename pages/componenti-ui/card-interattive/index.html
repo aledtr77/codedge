@@ -177,6 +177,40 @@
       </article>
     </section>
 
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-card">
+      <h2 id="seo-title-card">Come progettare Card UI accessibili e interattive per il web</h2>
+      <div class="seo-text-content">
+        <p>
+          Le card sono elementi fondamentali nel web design contemporaneo, utilizzate per presentare informazioni in blocchi autonomi e facilmente scansionabili. Tuttavia, la creazione di card che siano sia visivamente accattivanti sia accessibili per utenti che utilizzano tecnologie assistive (come gli screen reader) richiede particolare attenzione. Una card ben progettata deve stabilire una chiara gerarchia visiva ed essere strutturata in modo che il focus da tastiera segua un ordine logico, evitando il problema comune delle card interamente cliccabili che creano ostacoli alla navigazione.
+        </p>
+        <p>
+          In questa implementazione proponiamo una struttura semantica basata sul tag <code>&lt;article&gt;</code> per denotare l'indipendenza del contenuto. Il titolo principale utilizza un livello di intestazione coerente con la pagina, mentre le informazioni meta (come tempo di lettura o livello di difficoltà) sono formattate tramite una lista di descrizione (<code>&lt;dl&gt;</code>), ideale per associare coppie di chiavi e valori in modo semantico. La chiamata all'azione (CTA) è un link esplicito, che funge da destinazione primaria della card.
+        </p>
+        <p>
+          L'interattività secondaria, come il pulsante per salvare o preferire l'elemento, è gestita in modo accessibile tramite un elemento <code>&lt;button&gt;</code> con l'attributo <code>aria-pressed</code> per comunicare lo stato di attivazione o salvataggio (vero o falso). Questo assicura che gli screen reader annuncino correttamente lo stato del pulsante senza affidarsi esclusivamente a cambiamenti visivi di colore o icona, garantendo un'esperienza inclusiva per chiunque.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-card-title">FAQ rapide sulle card interattive</h3>
+      <div class="faq-content">
+        <h4>Come funziona il pulsante di salvataggio nella demo?</h4>
+        <p>
+          Usa JavaScript per intercettare il click e alternare il valore dell'attributo <code>aria-pressed</code> tra <code>true</code> e <code>false</code>. Lo stato viene aggiornato dinamicamente nel DOM e memorizzato nello stato del componente.
+        </p>
+        <h4>Perché non rendere l'intera card cliccabile direttamente?</h4>
+        <p>
+          Rendere l'intera card un unico grande link compromette l'accessibilità: rende difficile selezionare il testo interno e confonde gli utenti di screen reader, che si vedono leggere l'intero contenuto della card come testo del link. È preferibile inserire un link focalizzabile specifico o usare pattern JavaScript avanzati per gestire il click mantenendo la semantica.
+        </p>
+        <h4>Posso aggiungere immagini a questo layout di card?</h4>
+        <p>
+          Sì, puoi aggiungere un tag <code>&lt;img&gt;</code> o un elemento figure nella parte superiore del tag <code>&lt;article&gt;</code>, avendo cura di impostare un attributo <code>alt</code> descrittivo o lasciarlo vuoto se l'immagine ha uno scopo puramente decorativo.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <script type="module" src="/src/scripts/pages/componenti-ui/card-interattive/main.js"></script>

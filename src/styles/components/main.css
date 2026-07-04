@@ -218,3 +218,26 @@ img {
     padding: 0 var(--mobile-page-gutter-tight);
   }
 }
+
+/* Tool page back link breadcrumb */
+.tool-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--site-link-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tool-back-link:hover {
+  color: var(--site-link-hover-color);
+  transform: translateX(-3px);
+}
+
+.tool-back-link i {
+  font-size: 0.8rem;
+}
+

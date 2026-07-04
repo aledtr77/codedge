@@ -172,6 +172,40 @@
       </article>
     </section>
 
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-form">
+      <h2 id="seo-title-form">Guida alla creazione di Form di Contatto accessibili con validazione real-time</h2>
+      <div class="seo-text-content">
+        <p>
+          I form di contatto rappresentano il canale di comunicazione principale tra gli utenti e un'applicazione web. Una validazione dei dati mal progettata o inaccessibile è una delle cause primarie di frustrazione per l'utente, portando spesso all'abbandono della compilazione. Per questo motivo, una corretta implementazione deve combinare la validazione lato client (per un feedback immediato) con una struttura HTML robusta che rispetti le linee guida sull'accessibilità (WCAG).
+        </p>
+        <p>
+          Il nostro form utilizza etichette esplicite tramite il tag <code>&lt;label&gt;</code> collegate direttamente ai rispettivi campi di input tramite l'attributo <code>for</code>. Questo garantisce che, cliccando sull'etichetta, il focus venga trasferito al campo di testo e che gli screen reader leggano correttamente il nome del campo quando l'utente vi naviga. La validazione in tempo reale controlla la correttezza del formato (ad esempio per l'email) o la lunghezza minima dei testi al momento della digitazione o della perdita del focus (evento blur).
+        </p>
+        <p>
+          La gestione degli errori è l'aspetto più critico: quando un campo non è valido, l'attributo <code>aria-invalid</code> viene impostato su <code>true</code> e l'ID del messaggio di errore specifico viene associato al campo tramite <code>aria-describedby</code>. In questo modo, l'utente che utilizza uno screen reader riceve immediatamente la lettura dell'errore non appena si sposta sul campo interessato. Infine, lo stato di invio e il messaggio di successo finale vengono inseriti in un contenitore con l'attributo <code>role="status"</code> o <code>aria-live="polite"</code>, garantendo che l'esito dell'operazione venga annunciato all'utente senza bisogno di ricaricare la pagina o spostare forzatamente il focus.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-form-title">FAQ rapide sui form validati</h3>
+      <div class="faq-content">
+        <h4>Come funziona il collegamento tra messaggi di errore e campi di input?</h4>
+        <p>
+          Viene utilizzato l'attributo <code>aria-describedby</code> sull'input, il cui valore corrisponde all'ID del paragrafo contenente l'errore. Questo crea un legame semantico che i software di lettura vocale leggono automaticamente quando l'input riceve il focus.
+        </p>
+        <h4>È necessaria la validazione lato server se è già presente quella client?</h4>
+        <p>
+          Sì, la validazione lato client serve a migliorare l'esperienza utente offrendo feedback immediato, ma può essere facilmente aggirata (ad esempio disattivando JavaScript o inviando richieste HTTP dirette). La validazione lato server è sempre obbligatoria per ragioni di sicurezza e integrità dei dati.
+        </p>
+        <h4>Posso personalizzare i messaggi d'errore nativi del browser?</h4>
+        <p>
+          Sì, disattivando la validazione nativa tramite l'attributo <code>novalidate</code> sul tag <code>&lt;form&gt;</code> e gestendo i messaggi personalizzati tramite JavaScript, come mostrato in questo componente. Ciò consente di mantenere il controllo completo sul design visivo e sul tono di voce degli errori.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <script type="module" src="/src/scripts/pages/componenti-ui/form/main.js"></script>
