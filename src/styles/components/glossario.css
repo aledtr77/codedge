@@ -447,12 +447,14 @@ pre::-webkit-scrollbar-thumb {
 
 /* Evita che il pulsante di ritorno venga tagliato dal gradiente sfumato dell'header sticky */
 .breadcrumb-container {
-  margin-top: 3.25rem !important;
+  max-width: 1900px;
+  margin: 3.25rem auto 0 auto;
+  padding: 0 2rem;
 }
 
 @media (max-width: 768px) {
   .breadcrumb-container {
-    margin-top: 2.75rem !important;
+    margin-top: 2.75rem;
   }
 }
 

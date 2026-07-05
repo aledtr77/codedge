@@ -156,10 +156,11 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
-.btn-type-toggle.active {
-  background: var(--color-three) !important;
-  border-color: var(--color-three) !important;
-  color: #ffffff !important;
+.btn-type-toggle.active,
+.btn-type-toggle.active:hover {
+  background: var(--color-three);
+  border-color: var(--color-three);
+  color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.25);
 }
 

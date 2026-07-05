@@ -221,7 +221,7 @@
 
 .snippet-box pre {
   margin: 1.25rem 0 0 0;
-  background: rgba(18, 22, 30, 0.85) !important;
+  background: rgba(18, 22, 30, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 1.15rem;
@@ -299,13 +299,13 @@
   .snippet-box pre {
     padding: 0.95rem;
     font-size: 0.8rem;
-    white-space: pre-wrap !important;
+    white-space: pre-wrap;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
   
   .snippet-box code {
-    white-space: inherit !important;
+    white-space: inherit;
     overflow-wrap: inherit;
     word-break: inherit;
   }

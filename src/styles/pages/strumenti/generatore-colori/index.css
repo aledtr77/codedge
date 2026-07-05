@@ -83,7 +83,7 @@ body > main .section h2 {
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s;
-  margin-left: 0 !important;
+  margin-left: 0;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -94,25 +94,25 @@ body > main .section h2 {
   border-color: var(--color-three);
 }
 
-.main-gen-btn {
-  background: var(--color-three) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3) !important;
+.button-simple.main-gen-btn {
+  background: var(--color-three);
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.5rem !important;
-  max-width: 250px !important;
-  transition: transform 0.2s, box-shadow 0.2s !important;
+  padding: 0.6rem 1.5rem;
+  max-width: 250px;
+  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
-.main-gen-btn:hover {
+.button-simple.main-gen-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 168, 255, 0.45) !important;
+  box-shadow: 0 6px 16px rgba(0, 168, 255, 0.45);
 }
 
 .spacebar-kbd {
@@ -127,22 +127,22 @@ body > main .section h2 {
 }
 
 .export-group button {
-  padding: 0.5rem 1rem !important;
-  font-size: 0.9rem !important;
-  max-width: 120px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: var(--text-color) !important;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  max-width: 120px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-color);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-left: 0 !important;
+  margin-left: 0;
   cursor: pointer;
 }
 
 .export-group button:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: var(--color-three) !important;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-three);
 }
 
 /* Layout Workspace */
@@ -221,10 +221,11 @@ body > main .section h2 {
   transform: scale(1.1);
 }
 
-.card-action-btn.is-locked {
-  background: var(--color-three) !important;
-  border-color: var(--color-three) !important;
-  color: #ffffff !important;
+.card-action-btn.is-locked,
+.card-action-btn.is-locked:hover {
+  background: var(--color-three);
+  border-color: var(--color-three);
+  color: #ffffff;
 }
 
 /* Color input wrapper */
@@ -371,10 +372,11 @@ body > main .section h2 {
   background: rgba(0, 0, 0, 0.16);
 }
 
-.color-card.light-color .card-action-btn.is-locked {
-  background: var(--color-three) !important;
-  border-color: var(--color-three) !important;
-  color: #ffffff !important;
+.color-card.light-color .card-action-btn.is-locked,
+.color-card.light-color .card-action-btn.is-locked:hover {
+  background: var(--color-three);
+  border-color: var(--color-three);
+  color: #ffffff;
 }
 
 .color-card.light-color .color-card-hex {
@@ -737,8 +739,8 @@ body > main .section h2 {
     padding: 3px 8px;
   }
   .card-action-btn {
-    width: 34px !important;
-    height: 34px !important;
+    width: 34px;
+    height: 34px;
     font-size: 0.85rem;
   }
   .color-card:hover {
@@ -746,7 +748,7 @@ body > main .section h2 {
   }
   .color-card-actions {
     flex-direction: row;
-    gap: 0.5rem !important;
+    gap: 0.5rem;
     margin-bottom: 0;
     opacity: 1;
     transform: translateY(0);
@@ -768,10 +770,10 @@ body > main .section h2 {
     justify-content: space-between;
   }
   .export-group button {
-    max-width: none !important;
-    font-size: 0.72rem !important;
-    padding: 0.5rem 0.35rem !important;
-    gap: 0.25rem !important;
+    max-width: none;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.35rem;
+    gap: 0.25rem;
     justify-content: center;
     flex: 1 1 auto;
     min-width: 0;
@@ -779,9 +781,9 @@ body > main .section h2 {
   .spacebar-kbd {
     display: none;
   }
-  .main-gen-btn {
-    width: 100% !important;
-    max-width: 100% !important;
+  .button-simple.main-gen-btn {
+    width: 100%;
+    max-width: 100%;
   }
   .contrast-checker-container {
     flex-direction: column;
