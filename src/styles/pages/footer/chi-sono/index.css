@@ -16,30 +16,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.about-header {
-  margin-bottom: 2.5rem;
-  text-align: center;
-}
-
-.about-kicker {
-  display: inline-block;
-  color: #9ad7ff;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.about-title {
-  font-family: var(--heading-font);
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  line-height: 1.1;
-  color: #fff;
-  margin: 0;
-  font-weight: 700;
-}
-
 .about-body p {
   font-size: clamp(1rem, 1.25vw, 1.12rem);
   color: rgba(242, 242, 242, 0.9);
@@ -138,10 +114,6 @@
   .about-content {
     border-radius: 18px;
     padding: 1.8rem 1.3rem;
-  }
-  
-  .about-header {
-    margin-bottom: 1.8rem;
   }
 }
 
