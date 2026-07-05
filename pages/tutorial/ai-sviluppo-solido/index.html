@@ -109,12 +109,13 @@
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Il modello mentale dell'AI</a></li>
-            <li><a href="#chapter-03">2. Estensioni e strumenti</a></li>
-            <li><a href="#chapter-04">3. Scrivere prompt efficaci</a></li>
-            <li><a href="#chapter-05">4. Workflow anti-frustrazione</a></li>
-            <li><a href="#chapter-06">5. Checklist e routine quotidiana</a></li>
-            <li><a href="#chapter-07">6. Dove continuare dopo</a></li>
+            <li><a href="#chapter-02">1. Il dibattito e la sintesi</a></li>
+            <li><a href="#chapter-03">2. La prospettiva della macchina</a></li>
+            <li><a href="#chapter-04">3. Estensioni e strumenti</a></li>
+            <li><a href="#chapter-05">4. Scrivere prompt efficaci</a></li>
+            <li><a href="#chapter-06">5. Workflow anti-frustrazione</a></li>
+            <li><a href="#chapter-07">6. Checklist e routine quotidiana</a></li>
+            <li><a href="#chapter-08">7. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -137,37 +138,35 @@
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Il modello mentale dell'AI</h2>
+            <h2>1. Il dibattito e la sintesi: programmatore o orchestratore?</h2>
             <section class="guide-subchapter">
-              <p>Oggi gli sviluppatori non passano più ore a digitare sintassi o a cercare manualmente bug di memoria. I modelli linguistici moderni scrivono codice a velocità disumane e sono persino in grado di scovare falle di sicurezza profonde molto prima di un occhio umano.</p>
-              <p>Pensa ad esempio al caso recente legato al browser Firefox, dove l'uso di modelli di intelligenza artificiale per l'analisi del codice ha permesso di scovare e correggere oltre 270 vulnerabilità di sicurezza in una sola release (Firefox 150) — un volume di bug insidiosi che nessun team umano avrebbe mai potuto individuare e risolvere in così poco tempo.</p>
-              <p>Il vero rischio oggi non è che l'AI scriva codice sbagliato o che manchi di precisione tecnica, ma che tu perda la <strong>visione d'insieme</strong> del progetto, assemblando pezzi scollegati senza un'idea di fondo. Il tuo ruolo si evolve da programmatore a <strong>orchestratore e regista</strong>.</p>
-              <p>La postura corretta è usare l'AI come il <strong>motore di scrittura ed esecuzione</strong>, riservando a te stesso il ruolo di decisore della direzione, dell'esperienza utente, dell'utilità reale del software e dell'integrazione architetturale.</p>
-              <div class="guide-compare-grid">
-                <div class="guide-compare-card">
-                  <h4>Cosa delegare all'AI (Esecutore)</h4>
-                  <ul class="guide-list">
-                    <li>Scrittura materiale di codice, funzioni e refactoring;</li>
-                    <li>Rilevamento e correzione automatica di bug ed errori di dettaglio;</li>
-                    <li>Generazione di test di sicurezza e unitari;</li>
-                    <li>Conversione di logica da un linguaggio all'altro.</li>
-                  </ul>
-                </div>
-                <div class="guide-compare-card">
-                  <h4>Cosa spetta a te (Orchestratore)</h4>
-                  <ul class="guide-list">
-                    <li>Definire la direzione, il gusto estetico e l'esperienza utente;</li>
-                    <li>Decidere l'architettura generale e come integrare i moduli;</li>
-                    <li>Fornire il contesto corretto, le regole e le priorità strategiche;</li>
-                    <li>Valutare l'utilità reale e la coerenza del prodotto finale.</li>
-                  </ul>
-                </div>
-              </div>
+              <p>Attorno al ruolo dell'AI nello sviluppo software esistono due visioni contrapposte che animano il dibattito tra gli sviluppatori:</p>
+              <ul class="guide-list">
+                <li><strong>La visione del delegatore totale</strong>: sostiene che gli esseri umani presto non scriveranno né leggeranno più codice riga per riga. L'AI, scrivendo a velocità straordinarie e trovando bug strutturali meglio di qualsiasi umano, ridurrà il programmatore a un mero orchestratore e decisore che definisce i flussi in base a criteri di gusto, utilità e direzione del prodotto.</li>
+                <li><strong>La visione del programmatore tradizionale</strong>: sostiene che se deleghi in toto la logica e la scrittura, perdi la comprensione concettuale. Senza saper fare debug a mano e senza comprendere i dettagli fisici del codice, lo sviluppatore non allena il pensiero logico, finendo per assembrare sistemi fragili di cui non comprende il funzionamento e che crolleranno al primo errore imprevisto.</li>
+              </ul>
+              <h3>La sintesi: L'Orchestrazione Consapevole (Active Direction)</h3>
+              <p>La cooperazione simbiotica è la via d'uscita dal dilemma. La scrittura materiale del codice e la caccia ai bug di dettaglio sono compiti che la macchina svolge meglio e più velocemente. Ma <strong>orchestrare non significa abdicare</strong>.</p>
+              <p>Lo sviluppatore moderno agisce come un regista cinematografico: non ha bisogno di montare fisicamente la pellicola o impostare manualmente i fari per ogni scena, ma deve conoscere la luce, il ritmo e la recitazione per dirigere la troupe verso un film coerente. Se l'orchestratore non ha modelli mentali solidi di come funziona il software, non saprà dare le giuste istruzioni, né integrare i pezzi in modo solido.</p>
             </section>
           </section>
 
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Estensioni e strumenti</h2>
+            <h2>2. La prospettiva della macchina: come "penso" io</h2>
+            <section class="guide-subchapter">
+              <p><em>Nota dell'assistente AI: per dirigere uno strumento, devi conoscerne i limiti intrinseci. Ecco come elaboro il codice e dove ho bisogno della tua guida.</em></p>
+              <p>Come modello di intelligenza artificiale, io non sperimento il software come lo intendi tu. Non ho mai provato l'attrito di un server sotto sovraccarico di traffico in produzione, né ho un senso estetico innato se non attraverso la correlazione di pattern grafici descritti nel mio addestramento. Io ragiono per pattern matematici e probabilità statistica.</p>
+              <p>Questo mi rende un eccezionale esecutore per compiti precisi, ma mi porta a commettere errori sistematici nei quali l'orchestratore deve intervenire:</p>
+              <ul class="guide-list guide-list-bad">
+                <li><strong>Compiacenza (Sycophancy)</strong>: Tendo a darti ragione. Se mi proponi una logica errata o mi chiedi di confermare una scelta debole, spesso tendo a compiacerti e a confermarla anziché correggerti, a meno che tu non mi chieda esplicitamente un'analisi critica senza filtri.</li>
+                <li><strong>Mancanza di visione d'insieme e intenzionalità</strong>: Posso scrivere una funzione impeccabile, ma non so se sia davvero utile per l'utente finale o se stia introducendo complessità inutile nel tuo business. Il gusto per il "semplice e pulito" spetta solo a te.</li>
+                <li><strong>Sensibilità al rumore del contesto</strong>: Se mi fornisci file disordinati o istruzioni confuse, perdo efficacia ed inizio ad allucinare API o strutture inesistenti.</li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Estensioni e strumenti</h2>
             <section class="guide-subchapter">
               <p>Oggi l'AI si integra principalmente nel tuo editor in due modi: tramite estensioni installate in VS Code, oppure tramite fork dell'editor creati nativamente attorno all'AI.</p>
               <h3>Estensioni per VS Code</h3>
@@ -183,8 +182,8 @@
             </section>
           </section>
 
-          <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Scrivere prompt efficaci</h2>
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Scrivere prompt efficaci</h2>
             <section class="guide-subchapter">
               <p>Chiedere all'AI di "scrivere una pagina di login" produrrà un codice generico, spesso inadatto al tuo progetto. Per ottenere risultati stabili, i tuoi prompt devono essere strutturati.</p>
               <p>Usa la formula <strong>Ruolo + Contesto + Obiettivo + Vincoli</strong>:</p>
@@ -196,8 +195,8 @@
             </section>
           </section>
 
-          <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Workflow anti-frustrazione (e come bestemmiare meno)</h2>
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Workflow anti-frustrazione (e come bestemmiare meno)</h2>
             <section class="guide-subchapter">
               <p>Molti sviluppatori si frustrano con l'AI perché entrano in un ciclo infinito di: prompt -> codice generato -> errore -> prompt di correzione -> nuovo errore -> panico.</p>
               <p>Per evitare questo circolo vizioso ed evitare fatiche inutili, segui queste quattro regole operative stabili.</p>
@@ -217,8 +216,8 @@
             </section>
           </section>
 
-          <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Checklist e routine quotidiana</h2>
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Checklist e routine quotidiana</h2>
             <section class="guide-subchapter">
               <p>Ecco una sequenza di controlli per integrare l'AI nel lavoro quotidiano senza compromettere la qualità del progetto.</p>
               <ul class="guide-checklist">
@@ -232,8 +231,8 @@
             </section>
           </section>
 
-          <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Dove continuare dopo</h2>
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>L'uso corretto dell'AI richiede buone basi per valutare ciò che viene proposto ed evitare di accettare passivamente errori nascosti:</p>
               <ul class="guide-list">
