@@ -97,57 +97,63 @@
   <main id="main-content">
     <!-- Sezione principale con riferimento al titolo per accessibilità -->
     <section class="unified-section home-shell" aria-labelledby="hero-title">
-      <div class="hero-compact home-hero-grid">
-        <div class="hero-copy">
-          <p class="hero-kicker">Front-end hub</p>
-          <!-- Logo grande nel hero per branding -->
-          <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="166" height="68" />
-          <!-- Titoli del hero: struttura semantica della pagina -->
-          <h2 class="hero-title-compact hero-title-lead">
-            Front-end, componenti interattivi e template digitali
-          </h2>
-          <h3 id="hero-title" class="hero-title-compact hero-title-brand">CODEDGE</h3>
+      <div class="hero-compact">
+        <div class="home-hero-grid">
+          <div class="hero-copy">
+            <p class="hero-kicker">Front-end hub</p>
+            <!-- Logo grande nel hero per branding -->
+            <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="166" height="68" />
+            <!-- Titoli del hero: struttura semantica della pagina -->
+            <h2 class="hero-title-compact hero-title-lead">
+              Front-end, componenti interattivi e template digitali
+            </h2>
+            <h3 id="hero-title" class="hero-title-compact hero-title-brand">CODEDGE</h3>
+          </div>
 
-          <!-- Paragrafo introduttivo: testo visibile agli utenti e utile per SEO -->
-          <p class="hero-description">
-            CODEDGE è il progetto di <strong>Alessandro DTR</strong> nato per offrire risorse front-end immediatamente applicabili: guide e documentazione rapide da consultare, piccoli tool per velocizzare il flusso di lavoro, componenti interattivi pronti all'uso e approfondimenti pratici per trasformare lo studio in competenze reali.
-          </p>
-          <p class="hero-description">
-            Il sito si affianca a <strong><a href="https://www.youtube.com/@tastodestro" target="_blank" rel="noopener noreferrer" class="hero-inline-link">Tasto Destro</a></strong>, il canale YouTube che offre un primo assaggio delle tecnologie digitali e dello sviluppo front-end. Qui sul sito l'esperienza continua con guide e soluzioni condensate più dettagliate: un formato leggero strutturato per accompagnare i neofiti senza sovraccarichi teorici, offrendo al contempo un ripasso rapido a chi ha già qualche base.
-          </p>
-          <p class="hero-description">
-            Se stai costruendo le basi, puoi partire da <strong>Risorse</strong> per chiarire concetti e sintassi,
-            passare a <strong>Strumenti</strong> per generare palette, gradienti, shadow o ottimizzare immagini, e
-            andare in <strong>Componenti UI</strong> quando vuoi vedere il codice applicato a elementi reali.
-          </p>
-          <p class="hero-description">
-            Se invece cerchi un supporto piu guidato, la sezione
-            <a href="/tutorial/" class="hero-inline-link">Tutorial</a> raccoglie percorsi pratici su strumenti e
-            workflow utili da portare subito nel lavoro quotidiano. <strong>Template</strong> completa il quadro con
-            lavori piu presentabili e riutilizzabili. In breve: meno teoria slegata, piu materiale utile per capire,
-            provare e costruire con un minimo di direzione.
-          </p>
-
+          <div class="hero-visual-column">
+            <div class="hero-visual-frame">
+              <figure class="hero-media">
+                <img
+                  id="home-hero-image"
+                  class="hero-media-image"
+                  alt="Workspace creativo dedicato allo sviluppo front-end e ai progetti digitali"
+                  width="1168"
+                  height="784"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+              <div class="hero-media-overlay" aria-hidden="true">
+                <span class="hero-media-overlay__line hero-media-overlay__line--top"></span>
+                <span class="hero-media-overlay__line hero-media-overlay__line--side"></span>
+                <span class="hero-media-overlay__glow"></span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-visual-column">
-          <div class="hero-visual-frame">
-            <figure class="hero-media">
-              <img
-                id="home-hero-image"
-                class="hero-media-image"
-                alt="Workspace creativo dedicato allo sviluppo front-end e ai progetti digitali"
-                width="1168"
-                height="784"
-                loading="eager"
-                decoding="async"
-              />
-            </figure>
-            <div class="hero-media-overlay" aria-hidden="true">
-              <span class="hero-media-overlay__line hero-media-overlay__line--top"></span>
-              <span class="hero-media-overlay__line hero-media-overlay__line--side"></span>
-              <span class="hero-media-overlay__glow"></span>
-            </div>
+        <div class="home-hero-description-row">
+          <div class="description-column">
+            <p class="hero-description">
+              CODEDGE è il progetto di <strong>Alessandro DTR</strong> nato per offrire risorse front-end immediatamente applicabili: guide e documentazione rapide da consultare, piccoli tool per velocizzare il flusso di lavoro, componenti interattivi pronti all'uso e approfondimenti pratici per trasformare lo studio in competenze reali.
+            </p>
+            <p class="hero-description">
+              Il sito si affianca a <strong><a href="https://www.youtube.com/@tastodestro" target="_blank" rel="noopener noreferrer" class="hero-inline-link">Tasto Destro</a></strong>, il canale YouTube che offre un primo assaggio delle tecnologie digitali e dello sviluppo front-end. Qui sul sito l'esperienza continua con guide e soluzioni condensate più dettagliate: un formato leggero strutturato per accompagnare i neofiti senza sovraccarichi teorici, offrendo al contempo un ripasso rapido a chi ha già qualche base.
+            </p>
+          </div>
+          <div class="description-column">
+            <p class="hero-description">
+              Se stai costruendo le basi, puoi partire da <strong>Risorse</strong> per chiarire concetti e sintassi,
+              passare a <strong>Strumenti</strong> per generare palette, gradienti, shadow o ottimizzare immagini, e
+              andare in <strong>Componenti UI</strong> quando vuoi vedere il codice applicato a elementi reali.
+            </p>
+            <p class="hero-description">
+              Se invece cerchi un supporto piu guidato, la sezione
+              <a href="/tutorial/" class="hero-inline-link">Tutorial</a> raccoglie percorsi pratici su strumenti e
+              workflow utili da portare subito nel lavoro quotidiano. <strong>Template</strong> completa il quadro con
+              lavori piu presentabili e riutilizzabili. In breve: meno teoria slegata, piu materiale utile per capire,
+              provare e costruire con un minimo di direzione.
+            </p>
           </div>
         </div>
       </div>

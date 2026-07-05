@@ -111,7 +111,7 @@
         text-wrap: balance;
       }
       .hero-title-lead {
-        max-width: 11ch;
+        max-width: 22ch;
       }
       .hero-title-brand {
         font-size: clamp(2.4rem, 4.8vw, 4.8rem);
@@ -127,6 +127,21 @@
         text-justify: inter-word;
         text-align-last: left;
         max-width: 62ch;
+      }
+      .home-hero-description-row {
+        margin-top: clamp(2rem, 4vw, 3.5rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.8rem, 3.5vw, 3.5rem);
+      }
+      .description-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .description-column .hero-description {
+        margin-top: 0;
+        max-width: none;
       }
       .hero-inline-link {
         color: inherit;
@@ -227,6 +242,11 @@
         }
         .hero-media {
           margin: 0 auto;
+        }
+        .home-hero-description-row {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          margin-top: 2rem;
         }
       }
       @media (max-width: 768px) {
