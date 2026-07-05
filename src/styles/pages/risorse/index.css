@@ -116,7 +116,9 @@
       .intro p {
         font-size: clamp(1rem, 1.35vw, 1.12rem);
         line-height: 1.78;
-        text-align: left;
+        text-align: justify;
+        text-justify: inter-word;
+        text-align-last: left;
         margin-bottom: 0;
       }
       .intro-media {
@@ -320,10 +322,14 @@
           text-align: center;
         }
         .intro h3,
-        .intro p,
         .resource-card h4,
         .resource-card p {
           text-align: left;
+        }
+        .intro p {
+          text-align: justify;
+          text-justify: inter-word;
+          text-align-last: left;
         }
         .intro-media {
           margin: 0 auto;

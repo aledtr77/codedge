@@ -118,7 +118,9 @@ body > main .projects-shell {
 .intro p {
   font-size: clamp(1rem, 1.35vw, 1.12rem);
   line-height: 1.78;
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
   margin-bottom: 0;
 }
 
@@ -306,10 +308,15 @@ body > main .projects-shell {
   }
 
   .intro h3,
-  .intro p,
   .project-card h4,
   .project-card p {
     text-align: left;
+  }
+
+  .intro p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 
   .intro-media {

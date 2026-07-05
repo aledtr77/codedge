@@ -68,6 +68,13 @@ body {
   line-height: 1.6;
 }
 
+/* ✅ Giustificazione testo di lettura per tutto il sito */
+main p:not(.card p):not(.tool-card p):not(.resource-card p):not(.project-card p):not(.learning-card p):not(.glossario-term-def p):not(.tooltip p) {
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+}
+
 @supports not (scrollbar-gutter: stable) {
   html {
     overflow-y: scroll;
@@ -197,11 +204,17 @@ img {
     padding-right: 0;
   }
 
-  body > main .intro h3,
+  body > main .intro h3 {
+    max-width: none;
+    text-align: left;
+  }
+
   body > main .intro p,
   body > main .hero-description {
     max-width: none;
-    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
   }
 
   body > main .grid {

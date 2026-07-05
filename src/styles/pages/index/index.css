@@ -123,7 +123,9 @@
         color: var(--text-color);
         margin: 1.5rem 0 0;
         line-height: 1.82;
-        text-align: left;
+        text-align: justify;
+        text-justify: inter-word;
+        text-align-last: left;
         max-width: 62ch;
       }
       .hero-inline-link {
