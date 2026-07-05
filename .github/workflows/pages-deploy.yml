@@ -13,21 +13,21 @@ permissions:
 # evita deploy concorrenti
 concurrency:
   group: pages-deploy-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.4.0
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -42,8 +42,7 @@ jobs:
           if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
 
       - name: Upload artifact for GitHub Pages
-        # usa versione aggiornata per evitare dipendenze a upload-artifact@v3
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ./dist
 
@@ -59,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
