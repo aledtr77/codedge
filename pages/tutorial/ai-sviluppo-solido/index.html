@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it" data-page-ready="false">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>AI e sviluppo solido | Estensioni e workflow | Codedge</title>
+  <meta
+    name="description"
+    content="Come integrare l'AI nel tuo editor senza perdere il controllo del codice: Copilot, assistenti, prompt efficaci e come evitare errori frequenti.">
+  <link rel="canonical" href="https://codedge.it/tutorial/ai-sviluppo-solido/">
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="AI e sviluppo solido | Estensioni e workflow | Codedge" />
+  <meta property="og:description" content="Come integrare l'AI nel tuo editor senza perdere il controllo del codice: Copilot, assistenti, prompt efficaci e come evitare errori frequenti." />
+  <meta property="og:url" content="https://codedge.it/tutorial/ai-sviluppo-solido/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida AI e sviluppo solido" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI e sviluppo solido | Estensioni e workflow | Codedge" />
+  <meta name="twitter:description" content="Come integrare l'AI nel tuo editor senza perdere il controllo del codice: Copilot, assistenti, prompt efficaci e come evitare errori frequenti." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 74ch;
+    }
+
+    .guide-content .guide-subchapter pre {
+      margin: 0.9rem 0 1rem;
+      padding: 0.95rem 1rem;
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(168, 85, 247, 0.18);
+      background: rgba(7, 14, 25, 0.7);
+      color: rgba(232, 244, 255, 0.96);
+    }
+
+    .guide-content code {
+      font-family: Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <a href="/" class="logo-link">
+          <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        </a>
+        <h1 class="resize-text">
+          <i class="fas fa-robot guide-title-icon" aria-hidden="true" style="color: #c084fc;"></i>
+          AI e sviluppo solido
+        </h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
+          </li>
+          <li class="nav-item">
+            <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <a href="/tutorial/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti i tutorial</a>
+    <section class="section git-guide-shell" aria-labelledby="ai-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida AI e sviluppo solido">
+          <h3>Indice guida</h3>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Nota iniziale</a></li>
+            <li><a href="#chapter-02">1. Il modello mentale dell'AI</a></li>
+            <li><a href="#chapter-03">2. Estensioni e strumenti</a></li>
+            <li><a href="#chapter-04">3. Scrivere prompt efficaci</a></li>
+            <li><a href="#chapter-05">4. Workflow anti-frustrazione</a></li>
+            <li><a href="#chapter-06">5. Checklist e routine quotidiana</a></li>
+            <li><a href="#chapter-07">6. Dove continuare dopo</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida AI e sviluppo solido">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">Uso consapevole dell'AI per dev</p>
+                <h2 id="ai-guide-title">Nota iniziale</h2>
+                <section class="guide-subchapter">
+                  <p>L'intelligenza artificiale applicata allo sviluppo software evolve a una velocità impressionante. Nuovi modelli, estensioni ed editor integrati escono sul mercato quasi ogni settimana, rendendo obsoleti i dettagli tecnici specifici nel giro di pochi mesi.</p>
+                  <p>Tuttavia, c'è un nucleo di concetti stabili che non cambia: <strong>il metodo di lavoro del programmatore</strong>. L'AI non sostituisce la logica, l'architettura o la necessità di verificare la correttezza del codice.</p>
+                  <p>Questa guida non si concentra sulle ultime feature effimere del momento, ma sui <strong>fondamentali solidi</strong> per integrare gli assistenti AI nel tuo editor in modo da velocizzare il lavoro, evitare errori banali ed evitare i mal di testa classici del codice "generato e non compreso".</p>
+                </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/ai-sviluppo-solido/copertina-editoriale.webp" alt="Illustrazione di apertura della guida AI e sviluppo solido" decoding="async" width="864" height="1080">
+              </figure>
+            </div>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. Il modello mentale dell'AI</h2>
+            <section class="guide-subchapter">
+              <p>Per lavorare bene con gli assistenti AI, il primo passo è definire chiaramente qual è il loro ruolo e qual è il tuo.</p>
+              <p>Se consideri l'AI come un "pilota automatico" a cui delegare interamente la scrittura del codice, finirai inevitabilmente per perdere il controllo del progetto. Il codice rischia di diventare fragile, pieno di bug difficili da scovare e incoerente.</p>
+              <p>La postura corretta è considerare l'AI come un <strong>assistente operativo o un junior developer estremamente veloce</strong>. Tu sei il progettista e il revisore capo: spetta a te decidere l'architettura, comprendere i dettagli e validare ogni riga prima che finisca nel repository.</p>
+              <div class="guide-compare-grid">
+                <div class="guide-compare-card">
+                  <h4>Cosa fa bene l'AI</h4>
+                  <ul class="guide-list">
+                    <li>Generare boilerplate e scheletri di funzioni standard;</li>
+                    <li>Suggerire configurazioni ripetitive;</li>
+                    <li>Spiegare errori oscuri del compilatore o del browser;</li>
+                    <li>Scrivere test unitari basati su pattern esistenti.</li>
+                  </ul>
+                </div>
+                <div class="guide-compare-card">
+                  <h4>Cosa devi fare tu</h4>
+                  <ul class="guide-list">
+                    <li>Definire la struttura e le dipendenze;</li>
+                    <li>Capire esattamente come funziona il codice generato;</li>
+                    <li>Risolvere bug logici complessi o specifici del contesto;</li>
+                    <li>Garantire che le performance e la sicurezza siano rispettate.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Estensioni e strumenti</h2>
+            <section class="guide-subchapter">
+              <p>Oggi l'AI si integra principalmente nel tuo editor in due modi: tramite estensioni installate in VS Code, oppure tramite fork dell'editor creati nativamente attorno all'AI.</p>
+              <h3>Estensioni per VS Code</h3>
+              <p>Se utilizzi VS Code classico, non hai bisogno di installare dieci estensioni diverse. Un set solido ne include una sola configurata bene:</p>
+              <ul class="guide-list">
+                <li><strong>GitHub Copilot</strong>: Lo standard industriale. Offre completamento inline basato sul contesto delle schede aperte e una chat integrata per domande strutturate.</li>
+                <li><strong>Gemini Code Assist</strong>: L'assistente di Google, ottimo per l'integrazione con servizi cloud e con eccellenti capacità di comprensione del codice in tempo reale.</li>
+                <li><strong>Cody / Continue</strong>: Alternative open-source o flessibili che consentono di connettere modelli diversi e personalizzare le sorgenti di contesto.</li>
+              </ul>
+              <h3>Editor nativi AI (Cursor, Windsurf)</h3>
+              <p>Sono editor derivati da VS Code che integrano l'AI direttamente nel core dell'interfaccia. Gestiscono meglio il contesto multi-file e possono eseguire comandi o modifiche su più file contemporaneamente sotto la tua supervisione.</p>
+              <p><strong>Un consiglio pratico:</strong> Se stai iniziando, usa le estensioni su VS Code classico. Ti costringono a mantenere un controllo più attivo sul codice rispetto a editor che applicano modifiche in blocco senza farti riflettere.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Scrivere prompt efficaci</h2>
+            <section class="guide-subchapter">
+              <p>Chiedere all'AI di "scrivere una pagina di login" produrrà un codice generico, spesso inadatto al tuo progetto. Per ottenere risultati stabili, i tuoi prompt devono essere strutturati.</p>
+              <p>Usa la formula <strong>Ruolo + Contesto + Obiettivo + Vincoli</strong>:</p>
+              <pre><code>[Ruolo] Agisci come sviluppatore esperto di front-end.
+[Contesto] Sto usando Vite con Javascript vanilla e CSS puro, senza framework esterni.
+[Obiettivo] Scrivi una funzione JS per validare un form email e password.
+[Vincoli] Non usare librerie esterne. La password deve contenere almeno 8 caratteri ed una cifra. Ritorna un oggetto con { isValid: boolean, error: string }.</code></pre>
+              <p>Questo approccio riduce drasticamente le allucinazioni del modello e costringe l'AI a produrre codice coerente con le scelte tecniche che hai già preso per il tuo progetto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Workflow anti-frustrazione (e come bestemmiare meno)</h2>
+            <section class="guide-subchapter">
+              <p>Molti sviluppatori si frustrano con l'AI perché entrano in un ciclo infinito di: prompt -> codice generato -> errore -> prompt di correzione -> nuovo errore -> panico.</p>
+              <p>Per evitare questo circolo vizioso ed evitare fatiche inutili, segui queste quattro regole operative stabili.</p>
+              
+              <h4>Regola 1: Fai piccoli passi isolati</h4>
+              <p>Non chiedere mai all'AI di scrivere 200 righe di codice o un'intera funzionalità complessa in una sola volta. Chiedi piccoli blocchi logici che puoi comprendere, testare e validare in pochi secondi prima di procedere al blocco successivo.</p>
+
+              <h4>Regola 2: Git è il tuo paracadute</h4>
+              <p>Prima di far generare codice all'AI, <strong>effettua un commit pulito o crea un branch temporaneo</strong>. Se il codice inserito rompe il progetto o ti porta su una strada sbagliata, puoi tornare indietro istantaneamente con un semplice <code>git checkout</code> o <code>git reset</code>. Non rischiare mai di inquinare uno stato di lavoro funzionante.</p>
+
+              <h4>Regola 3: Leggi e comprendi PRIMA di salvare</h4>
+              <p>Non accettare passivamente i suggerimenti inline (Tab) o i blocchi copiati dalla chat. Rileggi il codice riga per riga. Se c'è una funzione che non conosci, chiedi all'assistente di spiegartela:</p>
+              <pre><code>"Spiegami cosa fa esattamente questo regex in questa riga."</code></pre>
+
+              <h4>Regola 4: Separa i canali di debug</h4>
+              <p>Se un codice non funziona, non limitarti a copiare l'errore in chat chiedendo "perché non va?". Controlla prima la console dei DevTools o i log del terminale. Cerca di capire tu l'origine del problema, poi usa l'AI in modo mirato per correggere quel punto specifico.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Checklist e routine quotidiana</h2>
+            <section class="guide-subchapter">
+              <p>Ecco una sequenza di controlli per integrare l'AI nel lavoro quotidiano senza compromettere la qualità del progetto.</p>
+              <ul class="guide-checklist">
+                <li>Effettua un commit dello stato corrente prima di chiedere codice strutturato all'AI;</li>
+                <li>Fornisci sempre le tecnologie specifiche che stai usando per evitare codice in formati sbagliati;</li>
+                <li>Rileggi attentamente il codice generato prima di integrarlo e rimuovi eventuali commenti inutili o placeholder;</li>
+                <li>Verifica il funzionamento del blocco di codice localmente (test manuale o unitario);</li>
+                <li>Pulisci e formatta il file con il tuo formatter locale prima di fare commit delle novità.</li>
+              </ul>
+              <p>L'AI deve farti risparmiare tempo sulle operazioni a basso valore cognitivo, lasciandoti le energie mentali per concentrarti sull'architettura e sulla logica del tuo prodotto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Dove continuare dopo</h2>
+            <section class="guide-subchapter">
+              <p>L'uso corretto dell'AI richiede buone basi per valutare ciò che viene proposto ed evitare di accettare passivamente errori nascosti:</p>
+              <ul class="guide-list">
+                <li><a href="/tutorial/vscode-essenziale/">VSCode essenziale</a>: Torna alla guida del tuo editor per consolidare scorciatoie, configurazioni e layout puliti.</li>
+                <li><a href="/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>: Fondamentale per imparare a fare commit frequenti e proteggere il tuo workflow prima di fare esperimenti con l'AI.</li>
+                <li><a href="/tutorial/">Tutti i tutorial</a>: Esplora gli altri contenuti pratici disponibili su Codedge.</li>
+              </ul>
+            </section>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/ai-sviluppo-solido/main.js"></script>
+</body>
+
+</html>
