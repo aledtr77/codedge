@@ -77,7 +77,7 @@
         display: grid;
         grid-template-columns: minmax(0, 1.02fr) minmax(300px, 0.98fr);
         gap: clamp(1.6rem, 3vw, 3rem);
-        align-items: center;
+        align-items: start;
       }
       .hero-copy {
         text-align: left;
@@ -129,7 +129,9 @@
         max-width: 62ch;
       }
       .home-hero-description-row {
-        margin-top: clamp(2rem, 4vw, 3.5rem);
+        margin-top: clamp(2.5rem, 5vw, 4rem);
+        padding-top: clamp(2rem, 4vw, 3rem);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: clamp(1.8rem, 3.5vw, 3.5rem);
@@ -157,7 +159,7 @@
       }
       .hero-visual-frame {
         position: relative;
-        padding: clamp(1rem, 2vw, 1.5rem) 0 1.2rem clamp(0.35rem, 0.8vw, 0.65rem);
+        padding: 0 0 1.2rem clamp(0.35rem, 0.8vw, 0.65rem);
       }
       .hero-media {
         width: min(100%, 640px);
@@ -247,6 +249,7 @@
           grid-template-columns: 1fr;
           gap: 1.5rem;
           margin-top: 2rem;
+          padding-top: 2rem;
         }
       }
       @media (max-width: 768px) {
