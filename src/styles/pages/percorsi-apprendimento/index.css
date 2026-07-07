@@ -392,6 +392,26 @@ body > main .learning-shell {
   color: rgba(255, 220, 170, 0.95);
 }
 
+.learning-card--css {
+  border-color: rgba(0, 168, 255, 0.34);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 168, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(8, 18, 30, 0.24) 100%
+    ),
+    var(--background-two);
+}
+
+.learning-card--css .learning-card__icon {
+  color: #00a8ff;
+}
+
+.learning-card--css .learning-card__details {
+  color: rgba(170, 220, 255, 0.95);
+}
+
 @media (max-width: 1280px) {
   .button-simple {
     font-size: 0.9em;

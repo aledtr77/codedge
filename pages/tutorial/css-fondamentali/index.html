@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="it" data-page-ready="false">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>CSS: stile e layout | Fondamentali pratici per iniziare | Codedge</title>
+  <meta
+    name="description"
+    content="Una panoramica pratica su CSS: regole, selettori, specificità, Box Model, Flexbox, Grid, posizionamento e media query. La base essenziale per dare stile alle tue pagine web senza mal di testa.">
+  <link rel="canonical" href="https://codedge.it/tutorial/css-fondamentali/">
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="CSS: stile e layout | Fondamentali pratici per iniziare | Codedge" />
+  <meta property="og:description" content="Una panoramica pratica su CSS: regole, selettori, specificità, Box Model, Flexbox, Grid, posizionamento e media query. La base essenziale per dare stile alle tue pagine web senza mal di testa." />
+  <meta property="og:url" content="https://codedge.it/tutorial/css-fondamentali/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida CSS fondamentali" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CSS: stile e layout | Fondamentali pratici per iniziare | Codedge" />
+  <meta name="twitter:description" content="Una panoramica pratica su CSS: regole, selettori, specificità, Box Model, Flexbox, Grid, posizionamento e media query. La base essenziale per dare stile alle tue pagine web senza mal di testa." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 74ch;
+    }
+
+    .guide-content .guide-subchapter pre {
+      margin: 0.9rem 0 1rem;
+      padding: 0.95rem 1rem;
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(250, 196, 100, 0.18);
+      background: rgba(7, 14, 25, 0.7);
+      color: rgba(232, 244, 255, 0.96);
+    }
+
+    .guide-content code {
+      font-family: Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <div class="navbar-container">
+        <a href="/" class="logo-link">
+          <img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35">
+        </a>
+        <h1 class="resize-text">
+          <i class="fab fa-css3-alt guide-title-icon" aria-hidden="true" style="color: #00A8FF;"></i>
+          CSS: stile e layout
+        </h1>
+        <div class="menu-icon">
+          <span class="bar"></span> <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li class="nav-item">
+            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+          </li>
+          <li class="nav-item">
+            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+          </li>
+          <li class="nav-item">
+            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
+          </li>
+          <li class="nav-item">
+            <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <a href="/tutorial/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti i tutorial</a>
+    <section class="section git-guide-shell" aria-labelledby="css-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida CSS: stile e layout">
+          <h3>Indice guida</h3>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Nota iniziale</a></li>
+            <li><a href="#chapter-02">1. Cos'è e come funziona il CSS</a></li>
+            <li><a href="#chapter-03">2. Collegare il CSS all'HTML</a></li>
+            <li><a href="#chapter-04">3. I Selettori Fondamentali</a></li>
+            <li><a href="#chapter-05">4. La Cascata e la Specificità</a></li>
+            <li><a href="#chapter-06">5. Il Box Model e box-sizing</a></li>
+            <li><a href="#chapter-07">6. Colori e Tipografia</a></li>
+            <li><a href="#chapter-08">7. Layout Moderno: Flexbox</a></li>
+            <li><a href="#chapter-09">8. Layout Moderno: Grid</a></li>
+            <li><a href="#chapter-10">9. Posizionamento (Position)</a></li>
+            <li><a href="#chapter-11">10. Responsive Design</a></li>
+            <li><a href="#chapter-12">11. Variabili CSS</a></li>
+            <li><a href="#chapter-13">12. Dove continuare dopo</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida CSS: stile e layout">
+
+          <!-- CAPITOLO 01 — NOTA INIZIALE -->
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">Stile e Layout per chi inizia</p>
+                <h2 id="css-guide-title">Nota iniziale</h2>
+                <section class="guide-subchapter">
+                  <p>Questa guida non descrive ogni singola proprietà o valore CSS. Sarebbe impossibile e controproducente. CSS è un linguaggio sterminato, con centinaia di regole che si scoprono man mano che si presenta la necessità di risolvere un problema visivo.</p>
+                  <p>In questo tutorial troverai i pilastri concettuali: quei principi invisibili che, se capiti subito, ti risparmieranno ore di frustrazione e comportamenti apparentemente "inspiegabili" del browser. Parliamo di come si propagano le regole, di Box Model e dei metodi di layout moderni.</p>
+                  <p>L'obiettivo è darti un modello mentale solido. Una volta che avrai capito <em>come pensa</em> il CSS, cercare la singola proprietà di cui hai bisogno su una documentazione diventerà naturale e immediato. Niente panico, andiamo per gradi.</p>
+                </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/css-fondamentali/copertina-editoriale.webp" alt="Illustrazione di apertura della guida CSS stili e layout" decoding="async" width="864" height="1080">
+              </figure>
+            </div>
+          </section>
+
+          <!-- CAPITOLO 02 — COS'È E COME FUNZIONA IL CSS -->
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. Cos'è e come funziona il CSS</h2>
+            <section class="guide-subchapter">
+              <p>CSS sta per <em>Cascading Style Sheets</em> (Fogli di Stile a Cascata). Se HTML rappresenta lo scheletro e il contenuto di una pagina web, il CSS ne definisce la presentazione visiva: colori, font, dimensioni, spaziature e layout.</p>
+              <p>Il browser applica il CSS combinando il DOM (la struttura HTML) con il <strong>CSSOM</strong> (la struttura degli stili) per generare il "Render Tree", ovvero il disegno finale che vedi sullo schermo.</p>
+              <h3>Anatomia di una regola CSS</h3>
+              <p>Il CSS è composto da un insieme di regole. Ognuna segue una sintassi ben precisa:</p>
+              <pre><code>selettore {
+  proprietà: valore;
+  altra-proprietà: altro-valore;
+}</code></pre>
+              <p>Ad esempio, per fare in modo che tutti i paragrafi abbiano il testo di colore blu e una dimensione maggiore:</p>
+              <pre><code>p {
+  color: blue;
+  font-size: 18px;
+}</code></pre>
+              <ul class="guide-list">
+                <li><strong>Selettore</strong> (<code>p</code>): indica al browser <em>quale</em> elemento HTML deve essere stilizzato.</li>
+                <li><strong>Blocco di dichiarazione</strong> (tra parentesi graffe): contiene una o più dichiarazioni separate da un punto e virgola.</li>
+                <li><strong>Proprietà</strong> (<code>color</code>, <code>font-size</code>): l'aspetto che desideri modificare.</li>
+                <li><strong>Valore</strong> (<code>blue</code>, <code>18px</code>): la specifica impostazione data alla proprietà.</li>
+              </ul>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 03 — COLLEGARE IL CSS ALL'HTML -->
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Collegare il CSS all'HTML</h2>
+            <section class="guide-subchapter">
+              <p>Ci sono tre modi per applicare codice CSS a una pagina HTML. Ognuno ha scopi diversi, ma uno solo è considerato lo standard per la produzione.</p>
+              <h3>1. Foglio di stile esterno (Raccomandato)</h3>
+              <p>Si scrive il codice CSS in un file separato (ad esempio <code>style.css</code>) e lo si collega nell'<code>&lt;head&gt;</code> dell'HTML usando il tag <code>&lt;link&gt;</code>. È il metodo migliore perché separa completamente il contenuto dalla presentazione.</p>
+              <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+              <h3>2. Stile interno (Tag style)</h3>
+              <p>Le regole vengono inserite direttamente nell'<code>&lt;head&gt;</code> del documento HTML all'interno del tag <code>&lt;style&gt;</code>. È utile per test rapidi o per stili specifici di una singola pagina.</p>
+              <pre><code>&lt;style&gt;
+  body {
+    background-color: #fafafa;
+  }
+&lt;/style&gt;</code></pre>
+              <h3>3. Stile inline (Attributo style)</h3>
+              <p>Si applicano le regole direttamente sul tag HTML desiderato tramite l'attributo <code>style</code>. Rende il codice HTML disordinato e difficile da mantenere, quindi va evitato quasi sempre (tranne per stili calcolati al volo con JavaScript).</p>
+              <pre><code>&lt;p style="color: red; font-weight: bold;"&gt;Testo rosso&lt;/p&gt;</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 04 — I SELETTORI FONDAMENTALI -->
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. I Selettori Fondamentali</h2>
+            <section class="guide-subchapter">
+              <p>Per applicare uno stile, devi prima selezionare l'elemento corretto. Il CSS offre diversi tipi di selettori, a partire da quelli più semplici.</p>
+              <h3>Selettore di tipo (o tag)</h3>
+              <p>Seleziona tutti gli elementi che corrispondono a quel tag HTML specifico. Ad esempio, per stilizzare tutti i titoli di secondo livello:</p>
+              <pre><code>h2 {
+  color: #333;
+}</code></pre>
+              <h3>Selettore di classe</h3>
+              <p>Seleziona gli elementi che hanno un attributo <code>class</code> corrispondente. Si indica con un punto (<code>.</code>) seguito dal nome della classe. È il selettore più usato in assoluto perché è riutilizzabile.</p>
+              <pre><code>/* Nel CSS */
+.highlight {
+  background-color: yellow;
+}
+
+<!-- Nell'HTML -->
+&lt;p class="highlight"&gt;Questo testo avrà lo sfondo giallo.&lt;/p&gt;</code></pre>
+              <h3>Selettore di ID</h3>
+              <p>Seleziona un elemento univoco con un determinato attributo <code>id</code>. Si indica con il cancelletto (<code>#</code>). Poiché l'ID deve essere unico nella pagina, questo selettore va usato con parsimonia per lo stile.</p>
+              <pre><code>/* Nel CSS */
+#main-navigation {
+  background-color: #222;
+}
+
+<!-- Nell'HTML -->
+&lt;nav id="main-navigation"&gt;...&lt;/nav&gt;</code></pre>
+              <h3>Selettori combinati e gruppi</h3>
+              <p>Puoi applicare lo stesso stile a più selettori separandoli con una virgola:</p>
+              <pre><code>h1, h2, h3 {
+  font-family: sans-serif;
+}</code></pre>
+              <p>Oppure puoi selezionare elementi figli (selettore discendente) lasciando uno spazio tra i selettori. Ad esempio, per selezionare solo i link che si trovano dentro un menu:</p>
+              <pre><code>.menu a {
+  text-decoration: none;
+}</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 05 — LA CASCATA E LA SPECIFICITÀ -->
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. La Cascata e la Specificità</h2>
+            <section class="guide-subchapter">
+              <p>Cosa succede se due regole diverse provano a colorare lo stesso paragrafo, una di rosso e una di verde? Chi vince? Qui entrano in gioco i due concetti chiave che danno il nome al CSS.</p>
+              <h3>La Cascata</h3>
+              <p>Il CSS legge il codice dall'alto verso il basso. A parità di importanza del selettore, l'ultima regola scritta sovrascrive quelle precedenti. Ad esempio, qui il testo sarà verde:</p>
+              <pre><code>p { color: red; }
+p { color: green; } /* Vince questa perché è scritta dopo */</code></pre>
+              <h3>La Specificità</h3>
+              <p>Se i selettori sono diversi, il browser assegna ad ognuno un "punteggio" di importanza. I selettori più specifici battono quelli più generici, a prescindere dall'ordine in cui sono scritti.</p>
+              <p>Il calcolo semplificato della specificità segue una gerarchia:</p>
+              <ol class="guide-list">
+                <li><strong>Stile Inline</strong>: ha il peso massimo (modifiche dirette sull'elemento).</li>
+                <li><strong>ID</strong> (es. <code>#menu</code>): molto specifico.</li>
+                <li><strong>Classi, attributi e pseudo-classi</strong> (es. <code>.card</code>, <code>:hover</code>): specificità media.</li>
+                <li><strong>Elementi e pseudo-elementi</strong> (es. <code>div</code>, <code>p</code>): specificità minima.</li>
+              </ol>
+              <p>Considera questo esempio:</p>
+              <pre><code>body p { color: blue; }    /* Specificità bassa: 2 tag */
+.text-danger { color: red; } /* Specificità media: 1 classe. Vince questa! */</code></pre>
+              <h3>Il pericolo di !important</h3>
+              <p>Aggiungere <code>!important</code> a un valore forza l'applicazione di quella regola, scavalcando qualsiasi specificità. È una cattiva pratica che rende il codice difficile da gestire. Usalo solo in casi estremi (es. per sovrascrivere stili provenienti da librerie esterne che non puoi modificare).</p>
+              <pre><code>p { color: red !important; } /* Da usare con estrema cautela */</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 06 — IL BOX MODEL E BOX-SIZING -->
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Il Box Model e box-sizing</h2>
+            <section class="guide-subchapter">
+              <p>Per il CSS, qualsiasi cosa presente sulla pagina è racchiusa dentro una scatola rettangolare. Capire come questa scatola calcola le sue dimensioni è fondamentale per non impazzire con i pixel.</p>
+              <h3>Le 4 parti del Box Model</h3>
+              <ul class="guide-list">
+                <li><strong>Content</strong>: l'area interna dove risiede il testo, l'immagine o altri elementi.</li>
+                <li><strong>Padding</strong>: lo spazio vuoto intorno al contenuto, dentro il bordo. Eredita lo sfondo dell'elemento.</li>
+                <li><strong>Border</strong>: il bordo che circonda il padding e il contenuto.</li>
+                <li><strong>Margin</strong>: lo spazio vuoto esterno al bordo, usato per distanziare l'elemento dagli altri elementi adiacenti.</li>
+              </ul>
+              <figure class="guide-figure">
+                <div style="border: 2px dashed #00A8FF; padding: 20px; background: rgba(0, 168, 255, 0.05); text-align: center; border-radius: 8px;">
+                  <div style="border: 2px solid #f59e42; padding: 15px; background: rgba(245, 158, 66, 0.05);">
+                    <div style="border: 1px solid #333; padding: 10px; background: rgba(255,255,255,0.05); font-family: monospace;">
+                      [ CONTENUTO / CONTENT ]
+                    </div>
+                    <span style="font-size: 0.8rem; color: #f59e42; font-weight: bold;">PADDING (Spazio interno)</span>
+                  </div>
+                  <span style="font-size: 0.8rem; color: #00A8FF; font-weight: bold;">BORDER &amp; MARGIN (Bordo e Spazio esterno)</span>
+                </div>
+              </figure>
+              <h3>Il problema del dimensionamento predefinito</h3>
+              <p>Di default, se assegni a un box una larghezza di <code>300px</code>, un padding di <code>20px</code> e un bordo di <code>2px</code>, la larghezza totale visibile sarà di <code>344px</code> (300 + 20 + 20 + 2 + 2). Questo rende i calcoli del layout frustranti.</p>
+              <h3>La soluzione: box-sizing: border-box</h3>
+              <p>Impostando <code>box-sizing: border-box</code>, dici al browser di includere padding e bordo all'interno della larghezza definita. Se chiedi <code>300px</code>, l'elemento sarà largo esattamente <code>300px</code>, riducendo lo spazio del contenuto se necessario.</p>
+              <p>È una pratica così comune che quasi tutti i progetti iniziano con questo "reset globale" inserito all'inizio del file CSS:</p>
+              <pre><code>*, *::before, *::after {
+  box-sizing: border-box;
+}</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 07 — COLORI E TIPOGRAFIA -->
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Colori e Tipografia</h2>
+            <section class="guide-subchapter">
+              <p>Gran parte del lavoro di design si concentra sulla resa del testo e sulla scelta dei colori.</p>
+              <h3>Definire i colori</h3>
+              <p>Il CSS offre diversi formati per definire i colori:</p>
+              <ul class="guide-list">
+                <li><strong>Nomi letterali</strong>: <code>red</code>, <code>blue</code>, <code>transparent</code> (poco flessibili).</li>
+                <li><strong>Esadecimale (HEX)</strong>: es. <code>#00a8ff</code>. È il formato più diffuso nel web design.</li>
+                <li><strong>RGB / RGBA</strong>: es. <code>rgba(0, 168, 255, 0.5)</code>. La 'a' definisce l'opacità (da 0 completamente trasparente a 1 opaco).</li>
+                <li><strong>HSL / HSLA</strong>: es. <code>hsl(200, 100%, 50%)</code> (Hue, Saturation, Lightness). Molto intuitivo per creare varianti dello stesso colore.</li>
+              </ul>
+              <h3>Tipografia essenziale</h3>
+              <p>Le proprietà fondamentali per gestire il testo:</p>
+              <pre><code>p {
+  font-family: 'Inter', sans-serif; /* Sceglie il font */
+  font-size: 1rem;                  /* Dimensione del testo */
+  line-height: 1.6;                 /* Altezza della riga (leggibilità) */
+  font-weight: 500;                 /* Peso del font (es. 400 normal, 700 bold) */
+  color: #2c3e50;                   /* Colore del testo */
+  text-align: justify;              /* Allineamento (left, center, right, justify) */
+}</code></pre>
+              <h3>Unità di misura: px vs rem</h3>
+              <p>Mentre i pixel (<code>px</code>) hanno una dimensione fissa e assoluta, l'unità <code>rem</code> è relativa alla dimensione del font radice del browser (solitamente <code>16px</code>). Usare <code>rem</code> (es. <code>1.5rem</code> = 24px) è fondamentale per l'accessibilità, poiché consente al testo di ingrandirsi se l'utente cambia le impostazioni del browser.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 08 — LAYOUT MODERNO: FLEXBOX -->
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. Layout Moderno: Flexbox</h2>
+            <section class="guide-subchapter">
+              <p>Flexbox è lo strumento ideale per allineare elementi lungo una singola dimensione (una riga o una colonna). È perfetto per menu, barre di navigazione, allineamenti di card e distribuzioni di spazi.</p>
+              <p>Flexbox funziona definendo un <strong>contenitore</strong> (flex container) e i suoi <strong>figli diretti</strong> (flex items).</p>
+              <pre><code>.container {
+  display: flex; /* Attiva Flexbox */
+}</code></pre>
+              <h3>Le proprietà del contenitore più utilizzate</h3>
+              <ul class="guide-list">
+                <li><strong><code>flex-direction</code></strong>: decide la direzione del flusso. Di default è <code>row</code> (orizzontale), ma può essere impostata a <code>column</code> (verticale).</li>
+                <li><strong><code>justify-content</code></strong>: allinea gli elementi lungo l'asse principale (orizzontale se row). Valori comuni: <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code> (distribuisce gli elementi alle estremità), <code>space-around</code>.</li>
+                <li><strong><code>align-items</code></strong>: allinea gli elementi sull'asse secondario (verticale se row). Valori comuni: <code>stretch</code> (default, allunga gli elementi), <code>center</code>, <code>flex-start</code>, <code>flex-end</code>.</li>
+                <li><strong><code>gap</code></strong>: definisce lo spazio minimo tra gli elementi figli, senza usare margini.</li>
+              </ul>
+              <pre><code>/* Esempio: una navbar con logo a sinistra e link a destra, centrati verticalmente */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 09 — LAYOUT MODERNO: GRID -->
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Layout Moderno: Grid</h2>
+            <section class="guide-subchapter">
+              <p>Mentre Flexbox gestisce i layout unidimensionali, CSS Grid è progettato per layout bidimensionali (righe e colonne contemporaneamente). È perfetto per griglie di card, gallerie di immagini o strutture di intere pagine.</p>
+              <p>Anche qui definiamo un contenitore grid:</p>
+              <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonne di uguale larghezza */
+  gap: 20px;                             /* Spazio tra righe e colonne */
+}</code></pre>
+              <h3>Cosa significa 1fr?</h3>
+              <p>L'unità <code>fr</code> (fractional unit) rappresenta una frazione dello spazio disponibile nel contenitore. Nel codice sopra, <code>repeat(3, 1fr)</code> crea tre colonne che si spartiscono lo spazio in parti esattamente uguali.</p>
+              <h3>Griglie responsive senza media query</h3>
+              <p>Uno dei superpoteri di Grid è la capacità di creare griglie che si adattano allo schermo automaticamente, spostando gli elementi a capo quando lo spazio diminuisce:</p>
+              <pre><code>.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}</code></pre>
+              <p>Questa singola riga dice al browser: "crea colonne larghe almeno 250px; se avanza spazio allungale equamente (1fr), se lo schermo si restringe e non c'è spazio per un'altra colonna da 250px, mandala a capo".</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 10 — POSIZIONAMENTO (POSITION) -->
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. Posizionamento (Position)</h2>
+            <section class="guide-subchapter">
+              <p>Di default, gli elementi HTML seguono il flusso naturale del documento (vengono posizionati uno dopo l'altro nell'ordine in cui compaiono nel codice). La proprietà <code>position</code> permette di alterare questo flusso.</p>
+              <h3>I 5 valori di position</h3>
+              <ul class="guide-list">
+                <li><strong><code>static</code></strong>: il comportamento standard. L'elemento segue il flusso normale. Le proprietà top, right, bottom e left non hanno effetto.</li>
+                <li><strong><code>relative</code></strong>: l'elemento viene posizionato relativamente alla sua posizione normale. Modificando <code>top: 10px</code> si sposterà verso il basso, ma lo spazio che occupava originariamente rimarrà vuoto.</li>
+                <li><strong><code>absolute</code></strong>: l'elemento viene rimosso dal flusso naturale della pagina e posizionato in relazione al suo **primo antenato non statico** (solitamente impostato a <code>position: relative</code>). Gli altri elementi si comportano come se l'elemento absolute non esistesse.</li>
+                <li><strong><code>fixed</code></strong>: l'elemento viene posizionato rispetto alla finestra del browser. Rimane bloccato nello stesso punto anche quando l'utente scorre la pagina (es. una navbar o un tasto "torna su").</li>
+                <li><strong><code>sticky</code></strong>: un ibrido tra relative e fixed. L'elemento si comporta come relative finché non raggiunge una determinata soglia di scorrimento (es. <code>top: 0</code>), momento in cui "si incolla" diventando fisso.</li>
+              </ul>
+              <pre><code>/* Esempio classico: posizionare un badge sopra una card */
+.card {
+  position: relative; /* Contenitore di riferimento */
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Posizionato nell'angolo in alto a destra della card */
+}</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 11 — RESPONSIVE DESIGN -->
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>10. Responsive Design</h2>
+            <section class="guide-subchapter">
+              <p>Oggi la maggior parte degli utenti naviga da dispositivi mobili. Il responsive design è la tecnica che consente a una pagina di adattarsi in modo fluido a schermi di qualsiasi dimensione.</p>
+              <h3>Il tag viewport</h3>
+              <p>Perché il responsive design funzioni, l'HTML deve includere il meta tag viewport (che abbiamo visto nella guida HTML) nell'<code>&lt;head&gt;</code>. Senza questo tag, i dispositivi mobili proveranno a simulare uno schermo desktop, rimpicciolendo tutto.</p>
+              <h3>Le Media Queries</h3>
+              <p>Le media query ti permettono di applicare blocchi di codice CSS solo se lo schermo soddisfa determinate condizioni, ad esempio se è più stretto di una certa misura (breakpoint).</p>
+              <pre><code>/* Stili predefiniti (approccio Mobile-First: per schermi piccoli) */
+.sidebar {
+  width: 100%;
+}
+
+/* Stili applicati solo su schermi larghi almeno 768px (Tablet / Desktop) */
+@media (min-width: 768px) {
+  .sidebar {
+    width: 25%;
+  }
+}</code></pre>
+              <p>L'approccio **Mobile-First** consiste nel progettare prima l'interfaccia per gli schermi piccoli (scrivendo le regole base fuori dalle media query) e poi aggiungere stili e colonne per schermi più grandi tramite `@media (min-width: ...)`. È lo standard moderno consigliato.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 12 — VARIABILI CSS -->
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>11. Variabili CSS</h2>
+            <section class="guide-subchapter">
+              <p>Le variabili CSS (chiamate ufficialmente <em>Custom Properties</em>) permettono di memorizzare valori (colori, spaziature, font) in un unico posto e riutilizzarli in tutto il foglio di stile. Questo migliora incredibilmente la manutenibilità.</p>
+              <h3>Dichiarare e usare le variabili</h3>
+              <p>Solitamente si dichiarano le variabili all'interno della pseudo-classe <code>:root</code>, in modo che siano accessibili in tutta la pagina. I nomi delle variabili devono iniziare con due trattini (<code>--</code>).</p>
+              <pre><code>:root {
+  --primary-color: #00a8ff;
+  --secondary-color: #2f3640;
+  --main-padding: 1rem;
+}
+
+/* Come usarle */
+.button {
+  background-color: var(--primary-color);
+  padding: var(--main-padding);
+}
+
+.footer {
+  background-color: var(--secondary-color);
+  color: white;
+}</code></pre>
+              <p>Se in futuro deciderai di cambiare il colore primario del sito, ti basterà modificare una sola riga dentro <code>:root</code> e il cambiamento si propagherà ovunque.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 13 — DOVE CONTINUARE -->
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>12. Dove continuare dopo</h2>
+            <section class="guide-subchapter">
+              <p>Il CSS si impara provando, sbagliando e analizzando il comportamento del browser. Ora che hai acquisito i concetti fondamentali, ecco i passi successivi consigliati per migliorare:</p>
+              <ul class="guide-list">
+                <li><a href="/tutorial/browser-devtools/">DevTools del browser</a>: impara a ispezionare gli stili in tempo reale, a modificare le regole al volo e a fare il debug dei layout Flexbox e Grid usando l'ispezione visiva del browser.</li>
+                <li><a href="/tutorial/html-fondamentali/">HTML Fondamentali</a>: se non l'hai ancora fatto, assicurati di padroneggiare la struttura semantica degli elementi a cui applichi lo stile.</li>
+                <li><a href="/tutorial/accessibilita-web-base/">Accessibilità web di base</a>: scopri come utilizzare i colori in modo da garantire un contrasto sufficiente e come preservare l'indicatore di focus per la navigazione da tastiera.</li>
+                <li><a href="/tutorial/">Tutti i tutorial</a>: torna all'indice per esplorare altre guide pratiche e ampliare le tue competenze front-end.</li>
+              </ul>
+            </section>
+          </section>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/css-fondamentali/main.js"></script>
+</body>
+
+</html>
