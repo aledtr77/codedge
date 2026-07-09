@@ -120,7 +120,8 @@
             <li><a href="#chapter-10">9. Posizionamento (Position)</a></li>
             <li><a href="#chapter-11">10. Responsive Design</a></li>
             <li><a href="#chapter-12">11. Variabili CSS</a></li>
-            <li><a href="#chapter-13">12. Dove continuare dopo</a></li>
+            <li><a href="#chapter-13">12. Transizioni e Animazioni: movimento e micro-interazioni</a></li>
+            <li><a href="#chapter-14">13. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -133,9 +134,9 @@
                 <p class="guide-intro-kicker">Stile e Layout per chi inizia</p>
                 <h2 id="css-guide-title">Nota iniziale</h2>
                 <section class="guide-subchapter">
-                  <p>Questa guida non descrive ogni singola proprietà o valore CSS. Sarebbe impossibile e controproducente. CSS è un linguaggio sterminato, con centinaia di regole che si scoprono man mano che si presenta la necessità di risolvere un problema visivo.</p>
-                  <p>In questo tutorial troverai i pilastri concettuali: quei principi invisibili che, se capiti subito, ti risparmieranno ore di frustrazione e comportamenti apparentemente "inspiegabili" del browser. Parliamo di come si propagano le regole, di Box Model e dei metodi di layout moderni.</p>
-                  <p>L'obiettivo è darti un modello mentale solido. Una volta che avrai capito <em>come pensa</em> il CSS, cercare la singola proprietà di cui hai bisogno su una documentazione diventerà naturale e immediato. Niente panico, andiamo per gradi.</p>
+                  <p>Se l'HTML rappresenta le pareti portanti e la suddivisione delle stanze di una casa, il CSS è tutto ciò che la rende accogliente, riconoscibile e funzionale: i colori, le proporzioni degli spazi, la disposizione degli arredi e l'armonia complessiva del design. È la grammatica visiva del web.</p>
+                  <p>Questa guida non è una lista noiosa di regole e proprietà da imparare a memoria. È invece un viaggio dietro le quinte del rendering: esploreremo i meccanismi invisibili (come il Box Model, la cascata degli stili e le griglie di layout moderne) che dicono al browser come posizionare e disegnare ogni singolo pixel sullo schermo.</p>
+                  <p>L'obiettivo è aiutarti a sviluppare un modello mentale chiaro di <em>come pensa</em> il CSS. Una volta padroneggiati questi pilastri, sarai in grado di tradurre in codice qualsiasi interfaccia grafica senza procedere a tentativi e senza frustrazioni. Iniziamo a dare forma allo spazio.</p>
                 </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -174,20 +175,20 @@
           <section id="chapter-03" class="guide-block guide-chapter">
             <h2>2. Collegare il CSS all'HTML</h2>
             <section class="guide-subchapter">
-              <p>Ci sono tre modi per applicare codice CSS a una pagina HTML. Ognuno ha scopi diversi, ma uno solo è considerato lo standard per la produzione.</p>
+              <p>Il principio cardine del web design moderno è la <strong>separazione delle responsabilità</strong> (Separation of Concerns): l'HTML gestisce cosa viene mostrato, mentre il CSS stabilisce come deve apparire. Per applicare il CSS all'HTML esistono tre approcci di base.</p>
               <h3>1. Foglio di stile esterno (Raccomandato)</h3>
-              <p>Si scrive il codice CSS in un file separato (ad esempio <code>style.css</code>) e lo si collega nell'<code>&lt;head&gt;</code> dell'HTML usando il tag <code>&lt;link&gt;</code>. È il metodo migliore perché separa completamente il contenuto dalla presentazione.</p>
+              <p>Scriviamo tutte le regole di stile in un file separato con estensione <code>.css</code> (es. <code>style.css</code>) e lo colleghiamo nell'<code>&lt;head&gt;</code> dell'HTML. Per farlo, usiamo il tag nativo <code>&lt;link&gt;</code> (che abbiamo analizzato nel <a href="/tutorial/html-fondamentali/#chapter-13">tutorial HTML</a>). Questo metodo è lo standard industriale perché mantiene il codice ordinato e permette di riutilizzare lo stesso stile su centinaia di pagine diverse.</p>
               <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
               <h3>2. Stile interno (Tag style)</h3>
-              <p>Le regole vengono inserite direttamente nell'<code>&lt;head&gt;</code> del documento HTML all'interno del tag <code>&lt;style&gt;</code>. È utile per test rapidi o per stili specifici di una singola pagina.</p>
+              <p>Le regole vengono scritte all'interno del tag <code>&lt;style&gt;</code> inserito direttamente nell'<code>&lt;head&gt;</code> dell'HTML. È comodo per esperimenti rapidi o per stili unici e specifici di una singola pagina, ma rende il file HTML pesante se lo stile cresce.</p>
               <pre><code>&lt;style&gt;
   body {
     background-color: #fafafa;
   }
 &lt;/style&gt;</code></pre>
               <h3>3. Stile inline (Attributo style)</h3>
-              <p>Si applicano le regole direttamente sul tag HTML desiderato tramite l'attributo <code>style</code>. Rende il codice HTML disordinato e difficile da mantenere, quindi va evitato quasi sempre (tranne per stili calcolati al volo con JavaScript).</p>
-              <pre><code>&lt;p style="color: red; font-weight: bold;"&gt;Testo rosso&lt;/p&gt;</code></pre>
+              <p>Applichiamo le regole direttamente sull'elemento HTML usando l'attributo globale <code>style</code>. È considerato una cattiva pratica per il design statico perché mescola contenuto e stile, rendendo le modifiche future difficilissime. Ha senso usarlo quasi solo per stili calcolati dinamicamente tramite JavaScript.</p>
+              <pre><code>&lt;p style="color: red; font-weight: bold;"&gt;Questo testo ha uno stile inline.&lt;/p&gt;</code></pre>
             </section>
           </section>
 
@@ -447,9 +448,58 @@ p { color: green; } /* Vince questa perché è scritta dopo */</code></pre>
             </section>
           </section>
 
-          <!-- CAPITOLO 13 — DOVE CONTINUARE -->
+          <!-- CAPITOLO 13 — TRANSIZIONI E ANIMAZIONI -->
           <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. Dove continuare dopo</h2>
+            <h2>12. Transizioni e Animazioni: movimento e micro-interazioni</h2>
+            <section class="guide-subchapter">
+              <p>Un'interfaccia statica può sembrare rigida e poco reattiva. Il CSS moderno permette di aggiungere fluidità e movimento tramite transizioni e animazioni. Quando usati con parsimonia, questi elementi migliorano l'esperienza d'uso (user experience) guidando l'attenzione dell'utente.</p>
+              <h3>Le Transizioni (Transitions)</h3>
+              <p>Una transizione permette di cambiare il valore di una proprietà CSS in modo graduale (invece di un cambio istantaneo). Si attiva solitamente al verificarsi di uno stato, ad esempio al passaggio del mouse (<code>:hover</code>).</p>
+              <pre><code>.button {
+  background-color: #00a8ff;
+  /* Transizione: proprietà, durata, curva di velocità */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #007cc0;
+}</code></pre>
+              <p>Se desideri animare più proprietà contemporaneamente, puoi specificare <code>all</code> o separarle con una virgola:</p>
+              <pre><code>transition: background-color 0.3s ease, transform 0.2s ease;</code></pre>
+              <h3>Le Trasformazioni (Transforms)</h3>
+              <p>La proprietà <code>transform</code> permette di alterare la forma, la dimensione o la posizione di un elemento senza intaccare il flusso della pagina (il browser la renderizza in modo ultra-veloce sfruttando la scheda video GPU). Le funzioni più comuni:</p>
+              <ul class="guide-list">
+                <li><code>translate(x, y)</code>: sposta l'elemento nello spazio.</li>
+                <li><code>scale(fattore)</code>: ingrandisce o rimpicciolisce l'elemento (es. <code>scale(1.05)</code>).</li>
+                <li><code>rotate(gradi)</code>: ruota l'elemento (es. <code>rotate(45deg)</code>).</li>
+              </ul>
+              <pre><code>.card {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02); /* Sposta in alto ed ingrandisce */
+}</code></pre>
+              <h3>Le Animazioni con Keyframes</h3>
+              <p>Per movimenti complessi che non dipendono solo da un hover, o che devono ripetersi all'infinito, usiamo le animazioni basate sui fotogrammi chiave (<code>@keyframes</code>).</p>
+              <pre><code>/* 1. Definiamo i fotogrammi dell'animazione */
+@keyframes pulsazione {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* 2. Applichiamo l'animazione all'elemento */
+.badge-live {
+  animation: pulsazione 2s infinite ease-in-out;
+}</code></pre>
+              <p><strong>Regola d'oro</strong>: la moderazione. Le micro-animazioni (0.2s - 0.4s) rendono il sito premium e responsivo. Animazioni troppo lunghe o continue stancano l'utente, creano problemi di accessibilità e rallentano i dispositivi meno performanti.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 14 — DOVE CONTINUARE -->
+          <section id="chapter-14" class="guide-block guide-chapter">
+            <h2>13. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>Il CSS si impara provando, sbagliando e analizzando il comportamento del browser. Ora che hai acquisito i concetti fondamentali, ecco i passi successivi consigliati per migliorare:</p>
               <ul class="guide-list">

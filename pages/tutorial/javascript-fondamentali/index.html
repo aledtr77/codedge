@@ -119,8 +119,9 @@
             <li><a href="#chapter-09">8. Gestire gli Eventi in modo corretto</a></li>
             <li><a href="#chapter-10">9. L'Asincronia per umani: async/await</a></li>
             <li><a href="#chapter-11">10. Prevenire i Crash: try/catch</a></li>
-            <li><a href="#chapter-12">11. Debugging reale: oltre il console.log</a></li>
-            <li><a href="#chapter-13">12. Dove continuare dopo</a></li>
+            <li><a href="#chapter-12">11. Web Storage: salvare dati nel browser</a></li>
+            <li><a href="#chapter-13">12. Debugging reale: oltre il console.log</a></li>
+            <li><a href="#chapter-14">13. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -133,9 +134,9 @@
                 <p class="guide-intro-kicker">Programmazione dinamica per il web</p>
                 <h2 id="js-guide-title">Nota iniziale</h2>
                 <section class="guide-subchapter">
-                  <p>Inutile girarci intorno: JavaScript è il linguaggio più frainteso e, al tempo stesso, più importante del web moderno. Moltissimi tutorial iniziano propinandoti definizioni algoritmiche noiose, per poi lasciarti a piedi quando si tratta di capire perché un click su un bottone restituisce <code>undefined</code> o blocca l'intera pagina.</p>
-                  <p>Questa guida non descrive ogni singola API o metodo nativo. Si concentra invece sui <strong>modelli mentali e sui concetti chiave</strong> che fanno muovere gli ingranaggi reali del browser. Capirai come lavora l'interprete sotto il cofano, come evitare i classici errori di scoping o asincronia che bloccano anche chi ha già qualche anno di esperienza, e come interagire in modo pulito e performante con la pagina HTML.</p>
-                  <p>Mettiti comodo: parleremo di codice reale, con un approccio pragmatico, da sviluppatore a sviluppatore. Benvenuto nel motore del web.</p>
+                  <p>Se l'HTML rappresenta lo scheletro strutturale e il CSS l'estetica visiva, JavaScript è la mente e i muscoli della pagina web. È ciò che trasforma un documento statico in un'applicazione viva, in grado di reagire ai click dell'utente, scambiare dati con un server in tempo reale e adattare il proprio comportamento ad ogni situazione.</p>
+                  <p>Questa guida è pensata per farti comprendere il <em>motore logico</em> del browser. Invece di sommergerti con la sintassi accademica di funzioni e algoritmi, ci concentreremo sui modelli mentali fondamentali: come ragiona l'interprete JavaScript, come gestire gli eventi dell'interfaccia in modo performante e come governare la complessità delle operazioni asincrone.</p>
+                  <p>Preparati a sporcarti le mani con codice concreto. Al termine del tutorial, avrai una comprensione chiara del perché JavaScript si comporta in determinati modi e sarai in grado di scrivere script interattivi robusti ed evitare i bug più comuni che affliggono i principianti. Benvenuto nella logica del web.</p>
                 </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -162,20 +163,18 @@
           <section id="chapter-03" class="guide-block guide-chapter">
             <h2>2. Collegare JS all'HTML: async vs defer</h2>
             <section class="guide-subchapter">
-              <p>Se colleghi lo script in modo errato, rischi che la pagina si blocchi durante il caricamento o che il codice restituisca l'odioso errore <code>TypeError: Cannot read properties of null (reading 'addEventListener')</code>.</p>
-              <p>Di default, quando il browser incontra un tag <code>&lt;script src="main.js"&gt;&lt;/script&gt;</code>, interrompe la lettura dell'HTML, scarica lo script, lo esegue e solo dopo riprende a costruire la pagina. Questo rallenta vistosamente il sito.</p>
-              <p>Per risolvere questo problema, abbiamo due attributi booleani fondamentali da inserire nel tag script:</p>
-              <pre><code>&lt;!-- Metodo 1: Async --&gt;
-&lt;script src="app.js" async&gt;&lt;/script&gt;
+              <p>Come abbiamo visto nella <a href="/tutorial/html-fondamentali/#chapter-13">guida HTML</a>, colleghiamo i nostri file JavaScript alla struttura tramite il tag <code>&lt;script&gt;</code>. Il <em>modo</em> in cui il browser scarica ed esegue questo tag, tuttavia, determina le prestazioni del sito e può persino causare errori critici se non gestito correttamente.</p>
+              <p>Di default, quando l'analizzatore (parser) dell'HTML incontra un tag script, interrompe la costruzione del DOM per scaricare ed eseguire il file. Questo blocco rallenta la pagina. Per ottimizzare questo comportamento, abbiamo due strategie fondamentali:</p>
+              <pre><code>&lt;!-- Scarica in parallelo, esegue appena pronto (può bloccare il parsing dell'HTML) --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
 
-&lt;!-- Metodo 2: Defer (Raccomandato per script correlati al DOM) --&gt;
-&lt;script src="main.js" defer&gt;&lt;/script&gt;</code></pre>
-              <h3>Qual è la differenza reale?</h3>
+&lt;!-- Scarica in parallelo, esegue solo a DOM completato (non blocca mai il parsing) --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
+              <h3>Differenza nell'esecuzione e nel flusso</h3>
               <ul class="guide-list">
-                <li><strong><code>async</code></strong>: lo script viene scaricato in parallelo all'HTML. Non appena il download è completato, il browser mette in pausa la lettura dell'HTML per eseguire lo script. L'ordine di esecuzione non è garantito (il file più leggero viene eseguito prima). Ottimo per script terzi indipendenti (es. analytics).</li>
-                <li><strong><code>defer</code></strong>: lo script viene scaricato in parallelo all'HTML, ma viene eseguito <strong>solo dopo che l'HTML è stato interamente analizzato e il DOM è pronto</strong>. Gli script mantengono l'ordine esatto in cui sono scritti nel file HTML. È la scelta di default per la logica dell'applicazione.</li>
+                <li><strong><code>async</code></strong>: il download avviene in background. Non appena lo script è pronto, il browser congela la lettura dell'HTML per eseguirlo. Poiché i file si eseguono appena pronti, l'ordine non è garantito (uno script piccolo scaricato dopo può eseguirsi prima). È perfetto per risorse esterne indipendenti, come tracciamenti o pixel pubblicitari.</li>
+                <li><strong><code>defer</code></strong>: il download avviene in background, ma l'esecuzione viene ritardata finché l'intero DOM non è pronto. Inoltre, gli script con <code>defer</code> mantengono rigorosamente l'ordine in cui sono scritti nell'HTML. È lo standard per i tuoi file di logica applicativa, in quanto assicura che il codice non tenti di accedere a nodi HTML che il browser deve ancora creare.</li>
               </ul>
-              <p>Utilizzando <code>defer</code>, puoi inserire i tag script nell'<code>&lt;head&gt;</code> del documento senza temere che cerchino di accedere a elementi HTML non ancora creati dal browser.</p>
             </section>
           </section>
 
@@ -434,9 +433,51 @@ analizzaJSON(datiCorrotti); // Non crasha! Gestisce l'errore in modo controllato
             </section>
           </section>
 
-          <!-- CAPITOLO 12 — DEBUGGING REALE: OLTRE IL CONSOLE.LOG -->
+          <!-- CAPITOLO 12 — WEB STORAGE -->
           <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Debugging reale: oltre il console.log</h2>
+            <h2>11. Web Storage: salvare dati nel browser</h2>
+            <section class="guide-subchapter">
+              <p>Per rendere un'applicazione davvero utile, spesso abbiamo bisogno di salvare alcune informazioni (come le preferenze dell'utente, uno stato di accesso o i prodotti in un carrello) in modo che rimangano salvate anche se l'utente ricarica la pagina o chiude il browser. Le Web Storage API offrono una soluzione semplice e nativa per farlo.</p>
+              <h3>localStorage vs sessionStorage</h3>
+              <p>Il browser ci mette a disposizione due contenitori principali che salvano i dati sotto forma di coppie <strong>chiave-valore</strong> (entrambe devono essere stringhe):</p>
+              <ul class="guide-list">
+                <li><strong><code>localStorage</code></strong>: i dati salvati qui <strong>non hanno scadenza</strong>. Rimangono memorizzati nel browser finché non vengono cancellati esplicitamente via codice o dall'utente pulendo la cronologia.</li>
+                <li><strong><code>sessionStorage</code></strong>: i dati rimangono salvati solo per la durata della <strong>sessione della tab</strong>. Se l'utente chiude la scheda del browser, i dati vengono persi immediatamente.</li>
+              </ul>
+              <h3>Metodi fondamentali: setItem, getItem e removeItem</h3>
+              <p>Le API per interagire con lo storage sono semplicissime e identiche per entrambi i contenitori:</p>
+              <pre><code>// 1. Salvare un dato (setItem)
+localStorage.setItem("temaScuro", "true");
+
+// 2. Leggere un dato (getItem)
+const temaAttivo = localStorage.getItem("temaScuro");
+console.log(temaAttivo); // "true"
+
+// 3. Rimuovere un dato specifico (removeItem)
+localStorage.removeItem("temaScuro");
+
+// 4. Svuotare tutto lo storage (clear)
+localStorage.clear();</code></pre>
+              <h3>Salvare oggetti e array: l'uso di JSON</h3>
+              <p>Poiché localStorage può salvare <strong>solo stringhe</strong>, se provi a salvare un oggetto direttamente, il browser lo convertirà nell'inutile testo <code>"[object Object]"</code>. Per salvare strutture complesse (oggetti o array) dobbiamo convertirli in stringhe JSON prima di salvarli, e riconvertirli in oggetti quando li leggiamo:</p>
+              <pre><code>const utente = { nome: "Valerio", livello: 3 };
+
+// Salvataggio: convertiamo l'oggetto in stringa JSON
+localStorage.setItem("dati_utente", JSON.stringify(utente));
+
+// Lettura: analizziamo la stringa JSON per ricreare l'oggetto
+const datiSalvati = localStorage.getItem("dati_utente");
+if (datiSalvati) {
+  const utenteOggetto = JSON.parse(datiSalvati);
+  console.log(utenteOggetto.nome); // "Valerio"
+}</code></pre>
+              <p><strong>Nota sulla sicurezza</strong>: non salvare mai informazioni sensibili (come password, token di autenticazione personali o dati bancari) in <code>localStorage</code>. Qualsiasi script JavaScript in esecuzione sulla pagina ha accesso a questi dati, esponendoli a potenziali attacchi XSS.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 13 — DEBUGGING REALE: OLTRE IL CONSOLE.LOG -->
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>12. Debugging reale: oltre il console.log</h2>
             <section class="guide-subchapter">
               <p>Scrivere <code>console.log()</code> ovunque per ispezionare il valore delle variabili è la prassi di molti sviluppatori, ma è un metodo inefficiente e disordinato. JavaScript e i DevTools offrono strumenti decisamente più professionali.</p>
               <h3>Funzionalità avanzate della Console</h3>
@@ -457,9 +498,9 @@ analizzaJSON(datiCorrotti); // Non crasha! Gestisce l'errore in modo controllato
             </section>
           </section>
 
-          <!-- CAPITOLO 13 — DOVE CONTINUARE DOPO -->
-          <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. Dove continuare dopo</h2>
+          <!-- CAPITOLO 14 — DOVE CONTINUARE DOPO -->
+          <section id="chapter-14" class="guide-block guide-chapter">
+            <h2>13. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>Capire JavaScript è un percorso continuo. Una volta acquisiti questi concetti e prassi, puoi collegare i pezzi restanti del tuo ambiente di sviluppo e del workflow moderno. Ecco le letture ideali per fare il passo successivo:</p>
               <ul class="guide-list">

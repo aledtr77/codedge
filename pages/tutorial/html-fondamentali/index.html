@@ -115,12 +115,13 @@
             <li><a href="#chapter-05">4. Link e navigazione</a></li>
             <li><a href="#chapter-06">5. Immagini</a></li>
             <li><a href="#chapter-07">6. Liste</a></li>
-            <li><a href="#chapter-08">7. Semantica: i tag che danno senso</a></li>
-            <li><a href="#chapter-09">8. Div e span: i contenitori neutri</a></li>
-            <li><a href="#chapter-10">9. Attributi fondamentali</a></li>
-            <li><a href="#chapter-11">10. Form e input essenziali</a></li>
-            <li><a href="#chapter-12">11. Head: quello che non si vede</a></li>
-            <li><a href="#chapter-13">12. Dove continuare dopo</a></li>
+            <li><a href="#chapter-08">7. Tabelle: organizzare dati strutturati</a></li>
+            <li><a href="#chapter-09">8. Semantica: i tag che danno senso</a></li>
+            <li><a href="#chapter-10">9. Div e span: i contenitori neutri</a></li>
+            <li><a href="#chapter-11">10. Attributi fondamentali</a></li>
+            <li><a href="#chapter-12">11. Form e input essenziali</a></li>
+            <li><a href="#chapter-13">12. Head: quello che non si vede</a></li>
+            <li><a href="#chapter-14">13. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -133,9 +134,9 @@
                 <p class="guide-intro-kicker">Struttura HTML per chi inizia</p>
                 <h2 id="html-guide-title">Nota iniziale</h2>
                 <section class="guide-subchapter">
-                  <p>Questa guida non copre tutto l'HTML. Non potrebbe farlo — e sarebbe inutile provarci in un singolo tutorial. HTML è un linguaggio vasto, con centinaia di tag, attributi e sfumature che si imparano nel tempo, con la pratica e con il bisogno.</p>
-                  <p>Quello che trovi qui è una panoramica ragionata: i concetti e i tag che compaiono in ogni progetto reale, quelli che è essenziale conoscere prima di toccare CSS o JavaScript, e soprattutto quelli che fanno la differenza tra una pagina scritta bene e una scritta a caso.</p>
-                  <p>L'obiettivo non è finire questo tutorial e sapere HTML. L'obiettivo è avere fondamenta abbastanza solide da capire cosa stai guardando, da dove iniziare a cercare quando qualcosa non funziona, e perché certe scelte strutturali esistono. Il resto lo costruisci col tempo.</p>
+                  <p>Ogni grande opera ha bisogno di un progetto solido e di fondamenta stabili. Nel web design, HTML rappresenta proprio questo: l'intelaiatura strutturale, lo scheletro su cui poggia l'intera pagina. Prima ancora di decidere un colore o programmare un'animazione, devi definire <em>cosa</em> contiene la tua pagina e <em>che senso</em> ha ciascun elemento.</p>
+                  <p>Questa guida è pensata per fornirti le chiavi di lettura di questa architettura. Invece di memorizzare una lista infinita di tag, ci concentreremo sui blocchi costruttivi fondamentali che incontrerai in ogni progetto reale: la semantica, i collegamenti, i form e la corretta gerarchia delle informazioni.</p>
+                  <p>Non considerarla un manuale enciclopedico, ma una mappa per orientarti. Al termine di questo percorso, saprai leggere la struttura di qualsiasi sito web, capirai l'importanza di scrivere codice ordinato e avrai basi abbastanza forti per iniziare ad aggiungere stili e dinamismo con fiducia.</p>
                 </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -311,9 +312,71 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 08 — SEMANTICA -->
+          <!-- CAPITOLO 08 — TABELLE -->
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. Semantica: i tag che danno senso</h2>
+            <h2>7. Tabelle: organizzare dati strutturati</h2>
+            <section class="guide-subchapter">
+              <p>Le tabelle servono per disporre dati in righe e colonne. In passato venivano usate abusivamente per creare l'intera impaginazione delle pagine web (una pessima pratica ormai superata da decenni). Oggi il loro ruolo è puramente semantico: strutturare informazioni tabulari (statistiche, orari, listini prezzi, confronti).</p>
+              <h3>I tag fondamentali</h3>
+              <p>Una tabella si costruisce con diversi elementi annidati:</p>
+              <ul class="guide-list">
+                <li><strong><code>&lt;table&gt;</code></strong>: il contenitore principale.</li>
+                <li><strong><code>&lt;tr&gt;</code></strong> (table row): definisce una riga.</li>
+                <li><strong><code>&lt;th&gt;</code></strong> (table header): cella di intestazione (solitamente resa in grassetto e centrata).</li>
+                <li><strong><code>&lt;td&gt;</code></strong> (table data): cella standard contenente il dato reale.</li>
+              </ul>
+              <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Tecnologia&lt;/th&gt;
+    &lt;th&gt;Ruolo principale&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;HTML&lt;/td&gt;
+    &lt;td&gt;Struttura e Semantica&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;CSS&lt;/td&gt;
+    &lt;td&gt;Presentazione e Stile&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+              <h3>Struttura avanzata: thead, tbody e tfoot</h3>
+              <p>Per tabelle complesse e per migliorare l'accessibilità da screen reader, è consigliabile suddividere la tabella in tre parti logiche:</p>
+              <ul class="guide-list">
+                <li><strong><code>&lt;thead&gt;</code></strong>: raccoglie le righe di intestazione.</li>
+                <li><strong><code>&lt;tbody&gt;</code></strong>: contiene il corpo principale dei dati.</li>
+                <li><strong><code>&lt;tfoot&gt;</code></strong>: contiene il piè di pagina della tabella (es. totali, medie o note finali).</li>
+              </ul>
+              <pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Servizio&lt;/th&gt;
+      &lt;th&gt;Costo mensile&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Hosting Basic&lt;/td&gt;
+      &lt;td&gt;€5.00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Hosting Cloud&lt;/td&gt;
+      &lt;td&gt;€25.00&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Totale&lt;/td&gt;
+      &lt;td&gt;€30.00&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+              <p>Oggi le tabelle vengono stilizzate interamente con il CSS (ad esempio usando la proprietà <code>border-collapse: collapse</code> per unire i bordi doppi). Ricorda di usarle esclusivamente per dati strutturati, mai per disporre elementi grafici sulla pagina.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 09 — SEMANTICA -->
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Semantica: i tag che danno senso</h2>
             <section class="guide-subchapter">
               <p>HTML semantico significa usare il tag giusto per il contenuto giusto. Non si tratta solo di stile visivo — si tratta di comunicare la struttura e il ruolo del contenuto al browser, ai motori di ricerca e agli strumenti di accessibilità.</p>
               <p>Prima di HTML5, quasi tutto veniva racchiuso in <code>&lt;div&gt;</code>. HTML5 ha introdotto tag con significato specifico che descrivono esattamente cosa contengono.</p>
@@ -352,9 +415,9 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 09 — DIV E SPAN -->
-          <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Div e span: i contenitori neutri</h2>
+          <!-- CAPITOLO 10 — DIV E SPAN -->
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. Div e span: i contenitori neutri</h2>
             <section class="guide-subchapter">
               <p><code>&lt;div&gt;</code> e <code>&lt;span&gt;</code> non hanno significato semantico. Sono contenitori trasparenti, usati quando nessun altro tag descrive meglio il contenuto e si ha bisogno di un aggancio per il CSS o per JavaScript.</p>
               <h3>div: contenitore a blocco</h3>
@@ -371,9 +434,9 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 10 — ATTRIBUTI FONDAMENTALI -->
-          <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. Attributi fondamentali</h2>
+          <!-- CAPITOLO 11 — ATTRIBUTI FONDAMENTALI -->
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>10. Attributi fondamentali</h2>
             <section class="guide-subchapter">
               <p>Alcuni attributi non sono specifici di un solo tag: si chiamano <strong>attributi globali</strong> e possono essere usati su qualsiasi elemento HTML. Sono pochi, ma comprendono buona parte di ciò che serve davvero.</p>
               <ul class="guide-list">
@@ -399,9 +462,9 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 11 — FORM E INPUT -->
-          <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Form e input essenziali</h2>
+          <!-- CAPITOLO 12 — FORM E INPUT -->
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>11. Form e input essenziali</h2>
             <section class="guide-subchapter">
               <p>I form sono il meccanismo con cui HTML raccoglie dati dall'utente: campi di testo, selezioni, checkbox, bottoni di invio. È un capitolo vasto, ma ci sono alcune basi senza le quali non si va da nessuna parte.</p>
               <h3>La struttura di un form</h3>
@@ -438,9 +501,9 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 12 — HEAD -->
-          <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Head: quello che non si vede</h2>
+          <!-- CAPITOLO 13 — HEAD -->
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>12. Head: quello che non si vede</h2>
             <section class="guide-subchapter">
               <p>Il tag <code>&lt;head&gt;</code> è la parte della pagina che l'utente non vede direttamente, ma che determina gran parte di come la pagina viene interpretata, indicizzata e visualizzata. Capirlo è indispensabile.</p>
               <h3>I meta tag più importanti</h3>
@@ -450,13 +513,14 @@
                 <li><strong><code>&lt;meta property="og:*"&gt;</code></strong>: tag Open Graph. Controllano come la pagina appare quando condivisa su social come Facebook o LinkedIn: titolo, descrizione, immagine.</li>
                 <li><strong><code>&lt;link rel="canonical"&gt;</code></strong>: indica ai motori di ricerca l'URL preferito della pagina, evitando problemi di contenuto duplicato.</li>
               </ul>
-              <h3>Caricare CSS e JavaScript</h3>
-              <pre><code>&lt;!-- CSS: va nel head, prima del body --&gt;
+              <h3>Collegare CSS e JavaScript</h3>
+              <p>Un file HTML non vive quasi mai isolato. Per collegarlo ad altre risorse esterne che ne gestiscono lo stile e la logica, si usano appositi tag nel <code>&lt;head&gt;</code>:</p>
+              <pre><code>&lt;!-- Per caricare un foglio di stile esterno --&gt;
 &lt;link rel="stylesheet" href="/styles/main.css"&gt;
 
-&lt;!-- JS: meglio a fine body o con defer/async nel head --&gt;
+&lt;!-- Per includere un file JavaScript --&gt;
 &lt;script src="/scripts/main.js" defer&gt;&lt;/script&gt;</code></pre>
-              <p>L'attributo <code>defer</code> dice al browser di scaricare lo script in parallelo ma di eseguirlo solo dopo che il DOM è completamente caricato. È la scelta migliore nella maggior parte dei casi per script che interagiscono con la pagina.</p>
+              <p>Il tag <code>&lt;link&gt;</code> definisce la relazione tra il documento e una risorsa esterna (tramite gli attributi <code>rel</code> e <code>href</code>). Il tag <code>&lt;script&gt;</code> include invece codice eseguibile (tramite l'attributo <code>src</code>). Le regole su dove posizionare questi file e come ottimizzarne il caricamento sono spiegate in dettaglio nelle rispettive guide dedicate a <a href="/tutorial/css-fondamentali/">CSS</a> e <a href="/tutorial/javascript-fondamentali/">JavaScript</a>.</p>
               <h3>Favicon e icone</h3>
               <p>La favicon è l'icona nella tab del browser. Il modo moderno per definirla usa un file SVG come principale, con fallback PNG per i browser più vecchi:</p>
               <pre><code>&lt;link rel="icon" href="/favicon.svg" type="image/svg+xml"&gt;
@@ -464,9 +528,9 @@
             </section>
           </section>
 
-          <!-- CAPITOLO 13 — DOVE CONTINUARE -->
-          <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. Dove continuare dopo</h2>
+          <!-- CAPITOLO 14 — DOVE CONTINUARE -->
+          <section id="chapter-14" class="guide-block guide-chapter">
+            <h2>13. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>HTML da solo non fa molto — diventa potente quando lavora con CSS per lo stile e JavaScript per l'interattività. Ma prima di addentrarsi in queste direzioni, ha senso avere il resto dell'ambiente di lavoro sotto controllo. Alcuni passi naturali dopo questa guida:</p>
               <ul class="guide-list">
