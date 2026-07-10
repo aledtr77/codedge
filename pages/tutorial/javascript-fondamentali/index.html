@@ -109,19 +109,20 @@
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Cos'è JS e come ragiona il browser</a></li>
-            <li><a href="#chapter-03">2. Collegare JS all'HTML: async vs defer</a></li>
-            <li><a href="#chapter-04">3. Variabili e Scope: var, let e const</a></li>
-            <li><a href="#chapter-05">4. Tipi di Dati e Uguaglianza</a></li>
-            <li><a href="#chapter-06">5. Funzioni: Regular vs Arrow</a></li>
-            <li><a href="#chapter-07">6. Oggetti e Array Moderni</a></li>
-            <li><a href="#chapter-08">7. DOM Manipulation: Selezionare e Modificare</a></li>
-            <li><a href="#chapter-09">8. Gestire gli Eventi in modo corretto</a></li>
-            <li><a href="#chapter-10">9. L'Asincronia per umani: async/await</a></li>
-            <li><a href="#chapter-11">10. Prevenire i Crash: try/catch</a></li>
-            <li><a href="#chapter-12">11. Web Storage: salvare dati nel browser</a></li>
-            <li><a href="#chapter-13">12. Debugging reale: oltre il console.log</a></li>
-            <li><a href="#chapter-14">13. Dove continuare dopo</a></li>
+            <li><a href="#chapter-02">1. La mente del Browser: cos'è JS e come funziona</a></li>
+            <li><a href="#chapter-03">2. Il tag Script: la battaglia di async vs defer</a></li>
+            <li><a href="#chapter-04">3. Variabili, Scope e addio definitivo a var</a></li>
+            <li><a href="#chapter-05">4. Tipi di dati, Referenze e l'uguaglianza dei cloni</a></li>
+            <li><a href="#chapter-06">5. Funzioni: Classic vs Arrow (e il mistero di this)</a></li>
+            <li><a href="#chapter-07">6. Oggetti, Array ed operatori moderni</a></li>
+            <li><a href="#chapter-08">7. DOM Manipulation: l'interfaccia si risveglia</a></li>
+            <li><a href="#chapter-09">8. Catturare i click: la gestione degli Eventi</a></li>
+            <li><a href="#chapter-10">9. L'Asincronia spiegata agli umani: async/await</a></li>
+            <li><a href="#chapter-11">10. Evitare l'autodistruzione: try/catch</a></li>
+            <li><a href="#chapter-12">11. Web Storage: salvare le preferenze dell'utente</a></li>
+            <li><a href="#chapter-13">12. I comportamenti più folli di JavaScript (e come sopravvivere)</a></li>
+            <li><a href="#chapter-14">13. Debugging professionale: oltre il console.log</a></li>
+            <li><a href="#chapter-15">14. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -134,9 +135,9 @@
                 <p class="guide-intro-kicker">Programmazione dinamica per il web</p>
                 <h2 id="js-guide-title">Nota iniziale</h2>
                 <section class="guide-subchapter">
-                  <p>Se l'HTML rappresenta lo scheletro strutturale e il CSS l'estetica visiva, JavaScript è la mente e i muscoli della pagina web. È ciò che trasforma un documento statico in un'applicazione viva, in grado di reagire ai click dell'utente, scambiare dati con un server in tempo reale e adattare il proprio comportamento ad ogni situazione.</p>
-                  <p>Questa guida è pensata per farti comprendere il <em>motore logico</em> del browser. Invece di sommergerti con la sintassi accademica di funzioni e algoritmi, ci concentreremo sui modelli mentali fondamentali: come ragiona l'interprete JavaScript, come gestire gli eventi dell'interfaccia in modo performante e come governare la complessità delle operazioni asincrone.</p>
-                  <p>Preparati a sporcarti le mani con codice concreto. Al termine del tutorial, avrai una comprensione chiara del perché JavaScript si comporta in determinati modi e sarai in grado di scrivere script interattivi robusti ed evitare i bug più comuni che affliggono i principianti. Benvenuto nella logica del web.</p>
+                  <p>Se l'HTML rappresenta lo scheletro e il CSS l'estetica visiva, JavaScript è la mente logica e i muscoli della pagina web. È lo strumento che trasforma un documento di testo statico in un'applicazione vivente, capace di reagire al passaggio del mouse, inviare e ricevere informazioni dal server in background e mutare aspetto dinamicamente.</p>
+                  <p>In questa guida non ti sommergerò di sintassi astratta ed esercizi puramente accademici. Lavoreremo invece sulla costruzione di solidi modelli mentali: capiremo come ragiona il motore del browser, come domare l'asincronia delle chiamate web e come gestire l'interfaccia utente in modo pulito e sicuro.</p>
+                  <p>Apri la console degli strumenti sviluppatori e iniziamo a scrivere la logica del nostro codice.</p>
                 </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -145,369 +146,325 @@
             </div>
           </section>
 
-          <!-- CAPITOLO 02 — COS'È JS E COME RAGIONA IL BROWSER -->
+          <!-- CAPITOLO 02 — COS'È JS E COME FUNZIONA -->
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Cos'è JS e come ragiona il browser</h2>
+            <h2>1. La mente del Browser: cos'è JS e come funziona</h2>
             <section class="guide-subchapter">
-              <p>JavaScript (JS) è un linguaggio di programmazione ad alto livello, multiparadigma e dinamico. Nota a margine fondamentale: <strong>non c'entra nulla con Java</strong>. Condividono solo le prime quattro lettere per ragioni commerciali risalenti agli anni '90.</p>
-              <p>Mentre HTML e CSS sono linguaggi dichiarativi strutturali, JavaScript introduce la <strong>logica di esecuzione</strong>. Permette di rispondere alle azioni dell'utente, modificare la struttura a runtime, effettuare richieste di rete in background e salvare dati localmente.</p>
-              <h3>Il motore JS e la compilazione JIT</h3>
-              <p>I browser moderni non leggono semplicemente JavaScript riga per riga rallentando l'esecuzione. Usano motori incredibilmente complessi (come <strong>V8</strong> in Chrome, Edge e Node.js, o <strong>SpiderMonkey</strong> in Firefox) che eseguono una compilazione chiamata <strong>JIT (Just-In-Time)</strong>: convertono il codice sorgente in codice macchina super-ottimizzato pochi millisecondi prima dell'esecuzione.</p>
-              <h3>Single Thread e l'Event Loop in soldoni</h3>
-              <p>Questo è il concetto più importante da stampare in testa: JavaScript è <strong>single-threaded</strong>. Significa che ha un solo binario su cui far viaggiare le istruzioni. Può fare una sola cosa alla volta.</p>
-              <p>Se JavaScript è single-thread, come fa a non bloccarsi quando scarica un file pesante o aspetta una risposta dal server? Grazie all'<strong>Event Loop</strong>. Invece di far aspettare il thread principale, JavaScript delega le operazioni lente alle API del browser (le Web APIs). Quando l'operazione è conclusa, il browser inserisce la risposta in una coda. L'Event Loop controlla costantemente se il thread principale è libero; non appena lo è, prende la prima risposta in coda e la esegue. Questo garantisce fluidità all'interfaccia utente.</p>
+              <p>Nota storica importante per fare bella figura alle interviste di lavoro: <strong>JavaScript non ha nulla a che fare con Java</strong>. Hanno in comune solo le prime quattro lettere per pure ragioni di marketing risalenti alla metà degli anni '90. JS è nato per girare direttamente nei browser, rendendo le pagine interattive.</p>
+              <p>I browser moderni eseguono JavaScript a velocità supersonica grazie a motori complessi come **V8** (usato da Chrome, Edge e Node.js). Questi motori compiono una compilazione chiamata **JIT (Just-In-Time)**: convertono il codice sorgente in codice macchina super-ottimizzato una frazione di secondo prima di eseguirlo.</p>
+              
+              <h3>La metafora della cucina con un solo chef (Single Thread ed Event Loop)</h3>
+              <p>Il concetto più importante da tenere a mente è che JavaScript è **single-threaded**: ha una sola linea di esecuzione, il che significa che può fare una sola cosa alla volta.</p>
+              <p>Immagina la linea di esecuzione come una **cucina con un solo chef**. Se un cliente ordina una bistecca che richiede 20 minuti di cottura (una richiesta di rete o l'attesa di un file dal server), lo chef non può bloccarsi fermo davanti alla griglia senza fare nient'altro, altrimenti la cucina (il tuo sito) rimarrebbe congelata e i clienti se ne andrebbero infuriati.</p>
+              <p>Ecco come risolve il problema JavaScript:</p>
+              <ul class="guide-list">
+                <li>Lo chef mette la bistecca sulla griglia ed imposta un timer.</li>
+                <li>Nel frattempo, lo chef continua a preparare antipasti e insalate per gli altri ordini (continua l'esecuzione del codice sincrono).</li>
+                <li>Il controllo della cottura viene delegato a un assistente esterno alla cucina (le **Web API del browser**).</li>
+                <li>Quando il timer suona, l'assistente inserisce la bistecca cotta in un nastro trasportatore che scorre all'ingresso della cucina (la **Callback Queue**).</li>
+                <li>Lo chef controlla costantemente se il tagliere principale è libero. Non appena finisce di preparare gli ordini correnti (grazie all'**Event Loop**), prende la bistecca dal nastro e la impiatta per servirla.</li>
+              </ul>
+              <p>Questo permette a JavaScript di gestire operazioni lunghissime senza mai congelare l'interfaccia utente.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 03 — COLLEGARE JS ALL'HTML: ASYNC VS DEFER -->
+          <!-- CAPITOLO 03 — COLLEGAMENTO -->
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Collegare JS all'HTML: async vs defer</h2>
+            <h2>2. Il tag Script: la battaglia di async vs defer</h2>
             <section class="guide-subchapter">
-              <p>Come abbiamo visto nella <a href="/tutorial/html-fondamentali/#chapter-13">guida HTML</a>, colleghiamo i nostri file JavaScript alla struttura tramite il tag <code>&lt;script&gt;</code>. Il <em>modo</em> in cui il browser scarica ed esegue questo tag, tuttavia, determina le prestazioni del sito e può persino causare errori critici se non gestito correttamente.</p>
-              <p>Di default, quando l'analizzatore (parser) dell'HTML incontra un tag script, interrompe la costruzione del DOM per scaricare ed eseguire il file. Questo blocco rallenta la pagina. Per ottimizzare questo comportamento, abbiamo due strategie fondamentali:</p>
-              <pre><code>&lt;!-- Scarica in parallelo, esegue appena pronto (può bloccare il parsing dell'HTML) --&gt;
-&lt;script src="analytics.js" async&gt;&lt;/script&gt;
+              <p>Per agganciare un file JavaScript a una pagina HTML usiamo il tag `&lt;script src="script.js"&gt;&lt;/script&gt;`. Ma dove va posizionato questo tag? Di default, quando il browser incontra uno script mentre analizza l'HTML, interrompe la costruzione della pagina per scaricare ed eseguire il file, rallentando drasticamente il caricamento visivo.</p>
+              <p>Per risolvere questo problema, gli sviluppatori moderni inseriscono il tag nell'head della pagina usando due attributi magici:</p>
+              <pre><code>&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --&gt;
+&lt;script src="statistiche.js" async&gt;&lt;/script&gt;
 
-&lt;!-- Scarica in parallelo, esegue solo a DOM completato (non blocca mai il parsing) --&gt;
-&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
-              <h3>Differenza nell'esecuzione e nel flusso</h3>
+&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --&gt;
+&lt;script src="app-logica.js" defer&gt;&lt;/script&gt;</code></pre>
+              <h3>Quale scegliere?</h3>
               <ul class="guide-list">
-                <li><strong><code>async</code></strong>: il download avviene in background. Non appena lo script è pronto, il browser congela la lettura dell'HTML per eseguirlo. Poiché i file si eseguono appena pronti, l'ordine non è garantito (uno script piccolo scaricato dopo può eseguirsi prima). È perfetto per risorse esterne indipendenti, come tracciamenti o pixel pubblicitari.</li>
-                <li><strong><code>defer</code></strong>: il download avviene in background, ma l'esecuzione viene ritardata finché l'intero DOM non è pronto. Inoltre, gli script con <code>defer</code> mantengono rigorosamente l'ordine in cui sono scritti nell'HTML. È lo standard per i tuoi file di logica applicativa, in quanto assicura che il codice non tenti di accedere a nodi HTML che il browser deve ancora creare.</li>
+                <li><strong>`async`</strong>: perfetto per script esterni che non dipendono da altri file e non hanno bisogno di interagire subito con la pagina (es. i pixel di tracciamento di Google Analytics o Facebook). Non viene garantito l'ordine di esecuzione.</li>
+                <li><strong>`defer`</strong>: lo standard per i tuoi file di logica. Garantisce che gli script vengano eseguiti nell'ordine esatto in cui sono scritti nell'HTML, e solo dopo che la struttura della pagina è del tutto pronta, evitando errori in cui il codice tenta di modificare tag non ancora creati.</li>
               </ul>
             </section>
           </section>
 
-          <!-- CAPITOLO 04 — VARIABILI E SCOPE: VAR, LET E CONST -->
+          <!-- CAPITOLO 04 — VARIABILI E SCOPE -->
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Variabili e Scope: var, let e const</h2>
+            <h2>3. Variabili, Scope e addio definitivo a var</h2>
             <section class="guide-subchapter">
-              <p>Fino a qualche anno fa, in JavaScript si usava solo <code>var</code> per dichiarare variabili. Oggi, usare <code>var</code> è considerato un <strong>anti-pattern grave</strong>. JavaScript moderno introduce <code>let</code> e <code>const</code>, che cambiano radicalmente il modo in cui i dati vengono conservati e isolati.</p>
-              <h3>Cos'è lo Scope (Ambito di visibilità)</h3>
-              <p>Lo scope definisce dove una variabile è accessibile all'interno del tuo codice. Esistono tre livelli di scope:</p>
+              <p>In JavaScript lo **Scope** definisce la zona del codice in cui una variabile è visibile e utilizzabile. Esistono tre livelli di scope:</p>
               <ul class="guide-list">
-                <li><strong>Scope Globale</strong>: variabili accessibili ovunque nel file.</li>
-                <li><strong>Scope di Funzione</strong>: variabili accessibili solo all'interno della funzione in cui sono dichiarate.</li>
-                <li><strong>Scope di Blocco (Block Scope)</strong>: variabili accessibili solo all'interno di una coppia di parentesi graffe <code>{ ... }</code> (come in un <code>if</code>, un <code>for</code> o un <code>while</code>).</li>
+                <li><strong>Scope Globale</strong>: visibile ovunque nel file.</li>
+                <li><strong>Scope di Funzione</strong>: visibile solo all'interno della funzione in cui è stata dichiarata.</li>
+                <li><strong>Scope di Blocco</strong>: visibile solo all'interno di una coppia di parentesi graffe `{ ... }` (come in un ciclo `for` o un costrutto `if`).</li>
               </ul>
-              <h3>var vs let/const: il grande tranello</h3>
-              <p>La differenza vitale è che <code>var</code> <strong>ignora lo scope di blocco</strong> ed è visibile a livello di intera funzione o globalmente (hoisting), mentre <code>let</code> e <code>const</code> rispettano rigorosamente lo scope di blocco.</p>
+              <h3>Il problema di var e la stabilità di let/const</h3>
+              <p>In passato in JavaScript si usava solo `var`. Tuttavia, `var` **ignora completamente lo scope di blocco**, "scappando" all'esterno di cicli e condizioni e creando bug silenziosi e difficili da trovare. JavaScript moderno introduce `let` e `const` che rispettano rigorosamente lo scope di blocco:</p>
               <pre><code>if (true) {
-  var nomeVar = "Marco";
-  let nomeLet = "Sofia";
+  var scappa = "Sono visibile fuori!";
+  let protetta = "Rimango qui dentro.";
 }
-console.log(nomeVar); // Stampa "Marco" (Leaked fuori dal blocco!)
-console.log(nomeLet); // ReferenceError: nomeLet is not defined (Corretto!)</code></pre>
-              <h3>const non rende gli oggetti immutabili</h3>
-              <p>Questo è un concetto che fallisce nel 90% delle spiegazioni per principianti. Dichiarare una variabile con <code>const</code> impedisce di <strong>riassegnare il valore della variabile</strong>, ma non impedisce di <strong>modificare il contenuto</strong> dell'oggetto o dell'array a cui fa riferimento.</p>
-              <pre><code>const utente = { nome: "Luca" };
-utente.nome = "Giorgio"; // Funziona perfettamente! L'oggetto viene modificato.
+console.log(scappa);    // Stampa "Sono visibile fuori!"
+console.log(protetta);  // ReferenceError! (Corretto e sicuro)</code></pre>
+              <h3>const blocca il riferimento, non l'oggetto</h3>
+              <p>Molti sviluppatori credono erroneamente che dichiarare un oggetto con `const` lo renda immutabile. Non è così: `const` impedisce di **riassegnare il valore** della variabile ad un altro oggetto, ma ti permette di **modificare le proprietà interne** dell'oggetto stesso:</p>
+              <pre><code>const utente = { nome: "Chiara" };
+utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
 
-// utente = { nome: "Paolo" }; 
-// TypeError: Assignment to constant variable. (Bloccato!)</code></pre>
-              <p><strong>Regola d'oro pratica</strong>: usa sempre <code>const</code> di default. Se sai che il valore della variabile dovrà essere riassegnato (ad esempio in un contatore di un ciclo), usa <code>let</code>. Bandisci <code>var</code> dal tuo arsenale.</p>
+// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</code></pre>
+              <p><strong>Regola aurea</strong>: usa sempre `const` come scelta predefinita. Passa a `let` solo se sai che il valore di quella variabile dovrà essere riassegnato (es. nei contatori dei cicli). Bandisci definitivamente `var` dal tuo codice.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 05 — TIPI DI DATI E UGUAGLIANZA -->
+          <!-- CAPITOLO 05 — DATA TYPES E UGUAGLIANZA -->
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Tipi di Dati e Uguaglianza</h2>
+            <h2>4. Tipi di dati, Referenze e l'uguaglianza dei cloni</h2>
             <section class="guide-subchapter">
-              <p>JavaScript gestisce la tipizzazione in modo dinamico. Non devi specificare se una variabile contiene un numero o un testo: l'interprete lo capisce da solo a runtime. Ma questo comporta alcune insidie strutturali.</p>
-              <h3>Primitivi vs Tipi di Riferimento</h3>
-              <p>I tipi di dati in JS si dividono in due macro-categorie:</p>
+              <p>I tipi di dati in JavaScript si dividono in due grandi categorie logiche:</p>
               <ul class="guide-list">
-                <li><strong>Tipi Primitivi</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): vengono passati <strong>per valore</strong>. Se copi una variabile primitiva, crei una copia indipendente del dato originale.</li>
-                <li><strong>Tipi di Riferimento</strong> (Object, Array, Function): vengono passati <strong>per riferimento</strong> (indirizzo di memoria). Copiare un array o un oggetto copia solo il puntatore in memoria: modificando la copia, modifichi l'originale.</li>
+                <li><strong>Tipi Primitivi</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): vengono passati **per valore**. Se copi una variabile, crei un clone del tutto indipendente.</li>
+                <li><strong>Tipi di Riferimento</strong> (Object, Array, Function): vengono passati **per riferimento** (indirizzo di memoria). Copiare un oggetto copia solo la chiave per aprirlo in memoria: modificando la copia, modificherai l'originale.</li>
               </ul>
-              <pre><code>let x = 10;
-let y = x; // Copia il valore
-y = 20;
-console.log(x); // 10 (Immutato)
+              <pre><code>let nome1 = "Alice";
+let nome2 = nome1; // Copia il valore
+nome2 = "Bob";
+console.log(nome1); // "Alice" (Rimane intatta)
 
-let arrA = [1, 2];
-let arrB = arrA; // Copia il riferimento in memoria
-arrB.push(3);
-console.log(arrA); // [1, 2, 3] (Modificato!)</code></pre>
-              <h3>Uguaglianza: == vs ===</h3>
-              <p>JavaScript ha due operatori per verificare se due valori sono uguali:</p>
-              <ul class="guide-list">
-                <li><strong>Uguaglianza debole (<code>==</code>)</strong>: confronta i valori effettuando la <strong>coercizione automatica dei tipi</strong>. Se i tipi sono diversi, tenta di convertirli prima di confrontarli. Questo porta a follie logiche come: <code>0 == false</code> (true) o <code>"" == 0</code> (true).</li>
-                <li><strong>Uguaglianza stretta (<code>===</code>)</strong>: confronta sia il <strong>valore</strong> sia il <strong>tipo</strong> senza alcuna conversione. Se i tipi sono diversi, restituisce immediatamente <code>false</code>.</li>
-              </ul>
-              <pre><code>console.log(5 == "5");  // true (Coercizione del tipo)
+let array1 = [1, 2];
+let array2 = array1; // Copia il riferimento in memoria
+array2.push(3);
+console.log(array1); // [1, 2, 3] (Modificata anche l'originale!)</code></pre>
+              <h3>L'uguaglianza debole (==) vs stretta (===)</h3>
+              <p>Non usare mai l'operatore di uguaglianza debole `==`. Tenta di convertire automaticamente i tipi diversi prima di confrontarli, producendo risultati insensati come `"" == 0` (true) o `0 == false` (true).</p>
+              <p>Usa **sempre** l'operatore di uguaglianza stretta `===` (e il suo opposto `!==`), che controlla sia il valore sia il tipo senza compiere conversioni:</p>
+              <pre><code>console.log(5 == "5");  // true (Conversione automatica di tipo)
 console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
-              <p><strong>Regola pratica</strong>: usa <strong>sempre</strong> l'operatore di uguaglianza stretta <code>===</code> (e il suo corrispettivo <code>!==</code>) per evitare bug silenziosi e difficilissimi da scovare.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 06 — FUNZIONI: REGULAR VS ARROW -->
+          <!-- CAPITOLO 06 — FUNZIONI -->
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Funzioni: Regular vs Arrow</h2>
+            <h2>5. Funzioni: Classic vs Arrow (e il mistero di this)</h2>
             <section class="guide-subchapter">
-              <p>Le funzioni sono il blocco costruttivo fondamentale di JavaScript. Nel tempo la sintassi si è evoluta, introducendo le funzioni a freccia (Arrow Functions) in ES6. Ma le differenze non sono solo estetiche.</p>
-              <h3>Funzione Classica (Function Declaration)</h3>
-              <p>Ha il vantaggio dell'<strong>hoisting</strong>: puoi chiamarla nel codice prima ancora di averla dichiarata riga per riga, perché il browser la carica in memoria all'inizio.</p>
-              <pre><code>saluta(); // Funziona anche se dichiarata sotto!
-function saluta() {
-  console.log("Ciao!");
-}</code></pre>
-              <h3>Funzione Freccia (Arrow Function)</h3>
-              <p>Ha una sintassi compatta e non subisce l'hoisting (va dichiarata prima di essere usata). Offre una sintassi minimalista, soprattutto per i ritorni impliciti ad una riga.</p>
-              <pre><code>const raddoppia = x => x * 2; // Ritorno implicito senza parentesi graffe e return</code></pre>
-              <h3>La vera differenza: il valore di 'this'</h3>
-              <p>Questa è la nozione che crea panico. Nelle funzioni classiche, la parola chiave <code>this</code> fa riferimento a <strong>chi chiama la funzione</strong> a runtime. Nelle funzioni freccia, il <code>this</code> è <strong>lessicale</strong>: eredita il valore di <code>this</code> dal contesto in cui è stata definita la funzione, ignorando chi la invoca.</p>
-              <pre><code>const bottone = {
-  testo: "Acquista",
-  inizializza() {
-    // Funzione classica: 'this' fa riferimento a 'bottone'
-    setTimeout(function() {
-      console.log(this.testo); // undefined! (setTimeout sposta il contesto a window/global)
-    }, 100);
-
-    // Arrow function: eredita 'this' dal contesto 'inizializza' (cioè bottone)
-    setTimeout(() => {
-      console.log(this.testo); // Stampa "Acquista"
-    }, 100);
+              <p>Le funzioni racchiudono blocchi di codice riutilizzabili. Oltre alle funzioni classiche, in JavaScript moderno usiamo molto le Arrow Functions (funzioni a freccia).</p>
+              <p>Le funzioni classiche godono dell'**hoisting**: puoi invocarle nel file prima ancora della riga in cui le hai dichiarate, perché il browser le carica in memoria all'avvio dello script. Le Arrow Functions non hanno questa proprietà e offrono una sintassi ultra-compatta:</p>
+              <pre><code>const quadrato = x => x * x; // Ritorno implicito ad una riga</code></pre>
+              <h3>Il grande dilemma di 'this'</h3>
+              <p>La differenza fondamentale risiede nel funzionamento della parola chiave `this`:</p>
+              <ul class="guide-list">
+                <li>Nelle **funzioni classiche**, `this` fa riferimento a *chi chiama la funzione* a runtime (contesto dinamico).</li>
+                <li>Nelle **Arrow Functions**, `this` è **lessicale**: eredita il valore dal contesto circostante in cui la funzione è stata scritta, senza curarsi di chi la invoca.</li>
+              </ul>
+              <pre><code>const carrello = {
+  prodotti: ["Libro", "Penna"],
+  stampa() {
+    // Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)
+    this.prodotti.forEach(prodotto => {
+      console.log(this); // Stampa l'oggetto carrello
+    });
   }
-};
-bottone.inizializza();</code></pre>
-              <p>Se hai bisogno di mantenere il riferimento dinamico all'elemento corrente (ad esempio in un handler di un evento nativo), usa una funzione classica. Se devi scrivere callback, cicli, o mantenere stabile il contesto del genitore, usa le Arrow Functions.</p>
+};</code></pre>
             </section>
           </section>
 
-          <!-- CAPITOLO 07 — OGGETTI E ARRAY MODERNI -->
+          <!-- CAPITOLO 07 — ARRAY ED OGGETTI -->
           <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Oggetti e Array Moderni</h2>
+            <h2>6. Oggetti, Array ed operatori moderni</h2>
             <section class="guide-subchapter">
-              <p>Scrivere codice pulito in JavaScript moderno richiede la padronanza delle scorciatoie sintattiche introdotte di recente. Permettono di estrarre e unire dati scrivendo un terzo del codice tradizionale.</p>
+              <p>Per scrivere codice elegante e pulito, devi conoscere le scorciatoie sintattiche introdotte di recente.</p>
               <h3>Destrutturazione (Destructuring)</h3>
-              <p>Ti permette di estrarre proprietà da oggetti o elementi da array e memorizzarli in variabili dedicate in un colpo solo.</p>
-              <pre><code>const configurazione = { server: "localhost", porta: 8080, db: "prod" };
-
-// Metodo vecchio:
-// const server = configurazione.server;
-// const porta = configurazione.porta;
-
-// Metodo moderno (Destructuring):
-const { server, porta } = configurazione;
-console.log(server, porta); // "localhost" 8080</code></pre>
+              <p>Permette di estrarre proprietà da oggetti o elementi da array e memorizzarli in variabili dedicate in un colpo solo:</p>
+              <pre><code>const impostazioni = { tema: "dark", volume: 80 };
+const { tema, volume } = impostazioni; // Estratti in variabili indipendenti</code></pre>
               <h3>Operatore Spread (...)</h3>
-              <p>Rappresentato da tre punti consecutivi, l'operatore spread "scompatta" o "distribuisce" gli elementi di un array o le proprietà di un oggetto in un nuovo contenitore. È il modo standard per clonare o unire dati in modo non mutativo.</p>
-              <pre><code>const numeriBase = [1, 2];
-const numeriCompleti = [...numeriBase, 3, 4]; // [1, 2, 3, 4]
-
-const utenteDefault = { ruolo: "user", attivo: true };
-const nuovoUtente = { ...utenteDefault, nome: "Anna" }; // Unione proprietà</code></pre>
-              <h3>Metodi essenziali degli Array</h3>
-              <p>Evita di usare cicli <code>for</code> manuali per elaborare dati. JavaScript offre metodi funzionali puliti ed espressivi:</p>
-              <ul class="guide-list">
-                <li><code>.map()</code>: crea un nuovo array modificando ogni singolo elemento dell'array originale.</li>
-                <li><code>.filter()</code>: filtra l'array restituendo solo gli elementi che superano una determinata condizione.</li>
-                <li><code>.reduce()</code>: accumula i valori dell'array riducendoli a un singolo risultato finale (es. una somma).</li>
-              </ul>
-              <pre><code>const prezzi = [10, 20, 30];
-const prezziTassati = prezzi.map(p => p * 1.22); // [12.2, 24.4, 36.6]
-const economici = prezzi.filter(p => p < 25);     // [10, 20]</code></pre>
+              <p>Rappresentato da tre punti, "distribuisce" gli elementi di un array o le proprietà di un oggetto all'interno di un nuovo contenitore. È il modo standard per clonare o unire dati in modo sicuro senza modificarli all'origine:</p>
+              <pre><code>const votiMatematica = [7, 8];
+const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clonato)</code></pre>
+              <h3>Evitare i cicli manuali</h3>
+              <p>Non usare cicli `for` manuali per trasformare i dati degli array. JavaScript offre metodi funzionali pronti all'uso come `.map()` per modificare ogni elemento, `.filter()` per scremare gli elementi secondo una condizione, e `.reduce()` per accumulare i valori.</p>
             </section>
           </section>
 
           <!-- CAPITOLO 08 — DOM MANIPULATION -->
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. DOM Manipulation: Selezionare e Modificare</h2>
+            <h2>7. DOM Manipulation: l'interfaccia si risveglia</h2>
             <section class="guide-subchapter">
-              <p>Il DOM (Document Object Model) è l'albero strutturale generato dal browser a partire dall'HTML. Interagire con esso è il cuore di ogni script front-end.</p>
-              <h3>Selezionare elementi nel modo moderno</h3>
-              <p>Dimentica i vecchi <code>getElementById</code> o <code>getElementsByClassName</code>. Oggi la selezione si effettua in modo omogeneo sfruttando i selettori CSS tramite due soli metodi:</p>
+              <p>Il DOM (Document Object Model) è la struttura ad albero creata dal browser che rappresenta la tua pagina. JavaScript la interroga e modifica in tempo reale.</p>
+              <h3>Selezionare elementi con querySelector</h3>
+              <p>Usa esclusivamente i metodi moderni basati sui selettori CSS:</p>
               <ul class="guide-list">
-                <li><strong><code>querySelector(selettore)</code></strong>: restituisce il <strong>primo</strong> elemento che corrisponde al selettore specificato (es. id, classe o tag). Se non trova nulla, restituisce <code>null</code>.</li>
-                <li><strong><code>querySelectorAll(selettore)</code></strong>: restituisce una <strong>NodeList</strong> (struttura simile a un array) contenente tutti gli elementi corrispondenti. Puoi ciclarla direttamente con un <code>forEach</code>.</li>
+                <li><strong>`document.querySelector(".classe")`</strong>: restituisce il *primo* elemento corrispondente alla classe.</li>
+                <li><strong>`document.querySelectorAll(".classe")`</strong>: restituisce una collezione ciclabile di *tutti* gli elementi corrispondenti.</li>
               </ul>
-              <pre><code>const titolo = document.querySelector("#main-title");
-const bottoniAccetta = document.querySelectorAll(".btn-accept");
-
-bottoniAccetta.forEach(btn => {
-  btn.style.backgroundColor = "green"; // Modifica lo stile inline (con cautela)
-});</code></pre>
-              <h3>Modificare Classi vs Stili inline</h3>
-              <p>Un errore di architettura molto comune è modificare direttamente gli stili CSS tramite JavaScript (es. <code>el.style.display = 'none'</code>). Questo mescola la logica di stile con quella di esecuzione, rendendo la manutenzione un incubo.</p>
-              <p><strong>La buona pratica</strong>: definisci lo stato visivo nel CSS (tramite classi ad es. <code>.is-hidden</code>, <code>.active</code>) e usa JavaScript unicamente per <strong>aggiungere, rimuovere o scambiare queste classi</strong> nel DOM.</p>
-              <pre><code>const banner = document.querySelector(".cookie-banner");
-
-// Modo corretto ed elegante:
-banner.classList.add("is-hidden");
-banner.classList.remove("active");
-banner.classList.toggle("is-open"); // Rimuove se presente, aggiunge se assente</code></pre>
-              <h3>textContent vs innerHTML (Sicurezza XSS)</h3>
-              <p>Per modificare il testo all'interno di un elemento, prediligi sempre <code>textContent</code> rispetto a <code>innerHTML</code>. L'uso di <code>innerHTML</code> costringe il browser a ri-analizzare il markup HTML ed espone il sito a vulnerabilità di tipo <strong>XSS (Cross-Site Scripting)</strong> se inserisci dati provenienti direttamente dagli input dell'utente.</p>
-              <pre><code>const display = document.querySelector(".username-display");
-display.textContent = inputUtente; // Sicuro: interpreta tutto come testo puro</code></pre>
+              <h3>Modificare lo stile in sicurezza</h3>
+              <p>Non scrivere mai proprietà CSS direttamente nel codice JavaScript (es. `elemento.style.color = "red"`). È una cattiva pratica che rende la manutenzione difficilissima.</p>
+              <p>La prassi corretta è **definire gli stati grafici nel CSS** (es. creare una classe `.is-active` con le sue regole) e usare JavaScript unicamente per **aggiungere o rimuovere quella classe** nel DOM:</p>
+              <pre><code>const popup = document.querySelector(".popup");
+popup.classList.add("is-active");
+popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code></pre>
+              <h3>textContent vs innerHTML: Sicurezza XSS</h3>
+              <p>Se devi stampare un testo inserito dall'utente in una pagina, usa sempre `textContent`. Evita `innerHTML`, poiché interpreta i tag HTML e potrebbe permettere a malintenzionati di iniettare script dannosi nel tuo sito (attacco Cross-Site Scripting - XSS).</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 09 — GESTIRE GLI EVENTI IN MODO CORRETTO -->
+          <!-- CAPITOLO 09 — EVENTI -->
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Gestire gli Eventi in modo corretto</h2>
+            <h2>8. Catturare i click: la gestione degli Eventi</h2>
             <section class="guide-subchapter">
-              <p>Gli eventi sono i segnali emessi dal browser quando accade qualcosa: un click, il movimento del mouse, la pressione di un tasto sulla tastiera o il caricamento di una risorsa.</p>
-              <h3>La sintassi standard: addEventListener</h3>
-              <p>Non inserire mai attributi onclick direttamente nei tag HTML (es. <code>&lt;button onclick="..."&gt;</code>). Mantieni separato il comportamento legando gli ascoltatori direttamente da JavaScript.</p>
-              <pre><code>const btnSalva = document.querySelector("#btn-save");
+              <p>Il browser genera un evento ogni volta che accade qualcosa (un click, il movimento del mouse, la digitazione su tastiera o il caricamento completato).</p>
+              <p>Legare un comportamento ad un evento si fa agganciando un ascoltatore direttamente da JavaScript:</p>
+              <pre><code>const pulsante = document.querySelector("#btn-invia");
 
-function gestisciClick(event) {
-  console.log("Salvataggio in corso...");
+function gestisciInvio(event) {
+  event.preventDefault(); // Blocca l'invio del form e il ricaricamento della pagina!
+  console.log("Dati inviati in modo asincrono.");
 }
 
-btnSalva.addEventListener("click", gestisciClick);</code></pre>
-              <h3>L'oggetto Event e preventDefault()</h3>
-              <p>La funzione di callback dell'evento riceve automaticamente come primo parametro un oggetto <strong><code>event</code></strong> contenente dati preziosi sull'evento stesso (ad esempio, le coordinate del mouse, il tasto premuto o l'elemento che ha generato il click con <code>event.target</code>).</p>
-              <p>Un metodo di fondamentale importanza di questo oggetto è <strong><code>event.preventDefault()</code></strong>: istruisce il browser ad interrompere il comportamento di default associato a quell'elemento. L'esempio classico è evitare l'invio e il ricaricamento della pagina all'invio di un form HTML:</p>
-              <pre><code>const form = document.querySelector("#signup-form");
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Impedisce il ricaricamento della pagina
-  
-  // Ora possiamo convalidare i dati ed inviarli via AJAX/Fetch
-  console.log("Invio form asincrono...");
-});</code></pre>
+pulsante.addEventListener("click", gestisciInvio);</code></pre>
+              <p>L'uso di `event.preventDefault()` è cruciale nei form per fermare il comportamento predefinito del browser e permetterci di gestire l'invio in background tramite JavaScript.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 10 — L'ASINCRONIA PER UMANI: ASYNC/AWAIT -->
+          <!-- CAPITOLO 10 — ASINCRONIA -->
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. L'Asincronia per umani: async/await</h2>
+            <h2>9. L'Asincronia spiegata agli umani: async/await</h2>
             <section class="guide-subchapter">
-              <p>Poiché JavaScript è single-thread, non può congelarsi in attesa che un server esterno risponda a una chiamata API. Le operazioni di rete devono essere asincrone.</p>
-              <p>In passato questo veniva gestito con i callback (che portavano al temuto <em>Callback Hell</em>, codice piramidale illeggibile). Poi sono arrivate le <strong>Promise</strong>, e infine la sintassi moderna e pulita: <strong>async/await</strong>.</p>
-              <h3>Cosa sono le Promise</h3>
-              <p>Una Promise è un oggetto che rappresenta lo stato temporaneo di un'operazione non ancora conclusa. Può essere in tre stati:</p>
-              <ul class="guide-list">
-                <li><code>Pending</code>: l'operazione è ancora in corso.</li>
-                <li><code>Fulfilled</code>: l'operazione è completata con successo (restituisce un risultato).</li>
-                <li><code>Rejected</code>: l'operazione è fallita (restituisce un errore).</li>
-              </ul>
-              <h3>Sintassi moderna con async/await</h3>
-              <p>La combinazione di <code>async</code> e <code>await</code> è semplicemente "zucchero sintattico" sopra le Promise. Rende il codice asincrono identico al codice sincrono riga per riga, rendendolo facilissimo da leggere e mantenere.</p>
-              <p>Per poter usare la parola chiave <code>await</code>, questa deve trovarsi all'interno di una funzione contrassegnata come <code>async</code>.</p>
-              <pre><code>// Definizione di una funzione asincrona
-async function ottieniDatiUtente() {
-  console.log("Richiesta avviata...");
+              <p>Quando interroghi un server esterno per scaricare dei dati, non puoi sapere quanto tempo ci vorrà per ricevere la risposta. JavaScript gestisce queste attese tramite le **Promise**.</p>
+              <p>Una Promise può trovarsi in tre stati: `Pending` (in attesa), `Fulfilled` (risolta con successo), `Rejected` (fallita con un errore).</p>
+              <h3>La semplicità di async/await</h3>
+              <p>Per non scrivere codice disordinato basato su costrutti complessi, usiamo la sintassi moderna `async/await`. Questa ti permette di scrivere codice asincrono con la stessa struttura lineare del codice sincrono riga per riga:</p>
+              <pre><code>// Contrassegniamo la funzione come asincrona
+async function caricaDati() {
+  console.log("Caricamento avviato...");
   
-  // Il thread principale aspetta che la fetch si risolva senza bloccare la pagina
-  const risposta = await fetch("https://jsonplaceholder.typicode.com/users/1");
-  const dati = await risposta.json();
+  // Il browser aspetta la risposta della fetch senza bloccare il resto della pagina
+  const risposta = await fetch("https://api.esempio.com/prodotti");
+  const prodotti = await risposta.json();
   
-  console.log("Dati ricevuti:", dati.name);
+  console.log("Prodotti ricevuti:", prodotti);
 }
 
-ottieniDatiUtente();
-console.log("Questo messaggio appare PRIMA dei dati, perché JS è asincrono!");</code></pre>
-              <p>Quando scrivi <code>await fetch(...)</code>, l'esecuzione di <em>quella specifica funzione</em> si ferma fino a quando la Promise non si risolve, ma il resto della pagina continua a girare fluida e a rispondere alle azioni dell'utente.</p>
+caricaDati();
+console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!");</code></pre>
             </section>
           </section>
 
-          <!-- CAPITOLO 11 — PREVENIRE I CRASH: TRY/CATCH -->
+          <!-- CAPITOLO 11 — TRY/CATCH -->
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Prevenire i Crash: try/catch</h2>
+            <h2>10. Evitare l'autodistruzione: try/catch</h2>
             <section class="guide-subchapter">
-              <p>Quando JavaScript incontra un errore irreversibile (ad esempio una variabile inesistente o un parsing JSON fallito), interrompe bruscamente l'esecuzione del codice. Se questo succede, i tuoi pulsanti smetteranno di funzionare e la pagina apparirà congelata all'utente.</p>
-              <p>Per salvaguardare la stabilità dell'applicazione, avvolgiamo le operazioni "a rischio" in un blocco <strong><code>try/catch</code></strong>.</p>
-              <pre><code>const datiRicevuti = '{"nome": "Luca", "eta": 28}';
-const datiCorrotti = '{"nome": "Luca", "eta": '; // JSON non valido!
-
-function analizzaJSON(stringa) {
+              <p>Se JavaScript incontra un errore irreversibile (ad esempio una chiamata API che fallisce per assenza di rete o un JSON corrotto), interrompe bruscamente l'esecuzione. In questo stato, tutti i tuoi script smetteranno di funzionare.</p>
+              <p>Per evitare crash catastrofici, avvolgi il codice a rischio in un blocco `try/catch` per gestire l'errore con grazia:</p>
+              <pre><code>async function scaricaProfilo() {
   try {
-    const oggetto = JSON.parse(stringa);
-    console.log("Parse riuscito:", oggetto.nome);
+    const risposta = await fetch("https://api.esempio.com/profilo");
+    const dati = await risposta.json();
+    console.log("Profilo caricato:", dati.nome);
   } catch (errore) {
-    // Questo blocco viene eseguito solo se si verifica un errore nel try
-    console.warn("Attenzione, formato JSON non valido:", errore.message);
+    // Eseguito solo in caso di errore nel blocco try
+    console.error("Non è stato possibile caricare il profilo:", errore.message);
+    mostraMessaggioDiErroreAllUtente();
   } finally {
-    // (Opzionale) Eseguito sempre, a prescindere dal successo o fallimento
-    console.log("Operazione conclusa.");
+    // Eseguito sempre, a prescindere dal successo o dal fallimento
+    nascondiSpinnerCaricamento();
   }
-}
-
-analizzaJSON(datiCorrotti); // Non crasha! Gestisce l'errore in modo controllato.</code></pre>
-              <p>Usa <code>try/catch</code> per gestire gli errori legati all'interazione con servizi esterni: chiamate API (<code>fetch</code> che possono fallire per problemi di connessione), accesso a storage locali o analisi di formati dati non sicuri.</p>
+}</code></pre>
             </section>
           </section>
 
           <!-- CAPITOLO 12 — WEB STORAGE -->
           <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Web Storage: salvare dati nel browser</h2>
+            <h2>11. Web Storage: salvare le preferenze dell'utente</h2>
             <section class="guide-subchapter">
-              <p>Per rendere un'applicazione davvero utile, spesso abbiamo bisogno di salvare alcune informazioni (come le preferenze dell'utente, uno stato di accesso o i prodotti in un carrello) in modo che rimangano salvate anche se l'utente ricarica la pagina o chiude il browser. Le Web Storage API offrono una soluzione semplice e nativa per farlo.</p>
+              <p>Se l'utente imposta il tema scuro sul tuo sito, vuoi che questa scelta rimanga salvata anche se chiude il browser e torna il giorno dopo. Per farlo usiamo il localStorage.</p>
               <h3>localStorage vs sessionStorage</h3>
-              <p>Il browser ci mette a disposizione due contenitori principali che salvano i dati sotto forma di coppie <strong>chiave-valore</strong> (entrambe devono essere stringhe):</p>
+              <p>Entrambi salvano dati in coppia chiave-valore nel browser sotto forma di stringhe, ma con una differenza di ciclo di vita:</p>
               <ul class="guide-list">
-                <li><strong><code>localStorage</code></strong>: i dati salvati qui <strong>non hanno scadenza</strong>. Rimangono memorizzati nel browser finché non vengono cancellati esplicitamente via codice o dall'utente pulendo la cronologia.</li>
-                <li><strong><code>sessionStorage</code></strong>: i dati rimangono salvati solo per la durata della <strong>sessione della tab</strong>. Se l'utente chiude la scheda del browser, i dati vengono persi immediatamente.</li>
+                <li><strong>`localStorage`</strong>: i dati non hanno scadenza e rimangono memorizzati nel browser finché non vengono cancellati via codice o dall'utente.</li>
+                <li><strong>`sessionStorage`</strong>: i dati vengono persi immediatamente non appena la scheda (tab) del browser viene chiusa.</li>
               </ul>
-              <h3>Metodi fondamentali: setItem, getItem e removeItem</h3>
-              <p>Le API per interagire con lo storage sono semplicissime e identiche per entrambi i contenitori:</p>
-              <pre><code>// 1. Salvare un dato (setItem)
+              <pre><code>// Salvare un dato
 localStorage.setItem("temaScuro", "true");
 
-// 2. Leggere un dato (getItem)
-const temaAttivo = localStorage.getItem("temaScuro");
-console.log(temaAttivo); // "true"
+// Leggere un dato
+const tema = localStorage.getItem("temaScuro");
 
-// 3. Rimuovere un dato specifico (removeItem)
-localStorage.removeItem("temaScuro");
+// Rimuovere un dato
+localStorage.removeItem("temaScuro");</code></pre>
+              <h3>Salvare oggetti complessi</h3>
+              <p>Poiché il localStorage accetta **solo stringhe**, se provi a salvare un oggetto direttamente, verrà convertito nel testo inutile `"[object Object]"`. Per salvare strutture complesse (oggetti o array), dobbiamo prima convertirli in stringhe JSON con `JSON.stringify`, e riconvertirli in oggetti all'estrazione con `JSON.parse`:</p>
+              <pre><code>const carrello = ["Scarpe", "Zaino"];
 
-// 4. Svuotare tutto lo storage (clear)
-localStorage.clear();</code></pre>
-              <h3>Salvare oggetti e array: l'uso di JSON</h3>
-              <p>Poiché localStorage può salvare <strong>solo stringhe</strong>, se provi a salvare un oggetto direttamente, il browser lo convertirà nell'inutile testo <code>"[object Object]"</code>. Per salvare strutture complesse (oggetti o array) dobbiamo convertirli in stringhe JSON prima di salvarli, e riconvertirli in oggetti quando li leggiamo:</p>
-              <pre><code>const utente = { nome: "Valerio", livello: 3 };
+// Salvataggio (conversione in stringa JSON)
+localStorage.setItem("carrello_utente", JSON.stringify(carrello));
 
-// Salvataggio: convertiamo l'oggetto in stringa JSON
-localStorage.setItem("dati_utente", JSON.stringify(utente));
-
-// Lettura: analizziamo la stringa JSON per ricreare l'oggetto
+// Estrazione (conversione in array utilizzabile)
 const datiSalvati = localStorage.getItem("dati_utente");
-if (datiSalvati) {
-  const utenteOggetto = JSON.parse(datiSalvati);
-  console.log(utenteOggetto.nome); // "Valerio"
-}</code></pre>
-              <p><strong>Nota sulla sicurezza</strong>: non salvare mai informazioni sensibili (come password, token di autenticazione personali o dati bancari) in <code>localStorage</code>. Qualsiasi script JavaScript in esecuzione sulla pagina ha accesso a questi dati, esponendoli a potenziali attacchi XSS.</p>
+const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
+              <p><strong>Avviso di sicurezza</strong>: non salvare mai password, token di autenticazione o dati personali sensibili nel localStorage. Qualsiasi script JavaScript in esecuzione sulla pagina può accedervi liberamente, rendendoli facili bersagli in caso di attacchi XSS.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 13 — DEBUGGING REALE: OLTRE IL CONSOLE.LOG -->
+          <!-- CAPITOLO 13 — COMPORTAMENTI FOLLI -->
           <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. Debugging reale: oltre il console.log</h2>
+            <h2>12. I comportamenti più folli di JavaScript (e come sopravvivere)</h2>
             <section class="guide-subchapter">
-              <p>Scrivere <code>console.log()</code> ovunque per ispezionare il valore delle variabili è la prassi di molti sviluppatori, ma è un metodo inefficiente e disordinato. JavaScript e i DevTools offrono strumenti decisamente più professionali.</p>
-              <h3>Funzionalità avanzate della Console</h3>
-              <p>Invece del classico log, prova questi metodi nativi:</p>
-              <ul class="guide-list">
-                <li><code>console.table(array)</code>: formatta un array di oggetti in una magnifica tabella interattiva ordinabile.</li>
-                <li><code>console.dir(elementoDOM)</code>: mostra un elenco interattivo di tutte le proprietà JavaScript dell'oggetto DOM selezionato, invece di stamparne la rappresentazione HTML.</li>
-                <li><code>console.error()</code> e <code>console.warn()</code>: colorano i messaggi nella console aiutandoti a distinguerli visivamente.</li>
-              </ul>
-              <h3>L'istruzione debugger</h3>
-              <p>Il modo definitivo di fare debug è inserire la parola chiave <strong><code>debugger;</code></strong> direttamente nel punto del codice che desideri analizzare, tenendo aperti i DevTools del browser.</p>
-              <pre><code>function calcolaTotale(prezzo, quantita) {
-  const sconto = 0.1;
-  debugger; // Il browser congela l'esecuzione esattamente qui!
-  return (prezzo * quantita) * (1 - sconto);
-}</code></pre>
-              <p>Non appena l'interprete incontra <code>debugger</code>, congela la pagina. I DevTools ti permetteranno di ispezionare lo stato esatto di tutte le variabili in quel millisecondo, scorrere il codice istruzione per istruzione e vedere l'evoluzione dei dati senza scrivere un singolo log manuale.</p>
+              <p>JavaScript è stato scritto di fretta nei primi anni '90 e si trascina dietro alcune stranezze storiche che fanno sorridere gli sviluppatori ma disorientano i principianti. Vediamo le 4 più celebri e come risolverle:</p>
+
+              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Non è un errore di JavaScript, ma del modo in cui i computer convertono i numeri decimali in frazioni binarie. Per confrontare i prezzi in un e-commerce senza frazioni microscopiche storte, arrotonda sempre i decimali usando `toFixed()` o lavorando con i numeri interi (es. converti in centesimi prima di fare i calcoli):</p>
+                <pre style="margin-top: 0.5rem;"><code>const totale = (0.1 * 10 + 0.2 * 10) / 10; // Restituisce esattamente 0.3!</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>2. typeof null === "object"</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Questo è un vero e proprio bug storico del motore originale di JavaScript del 1995. Non può essere rimosso o corretto perché farlo romperebbe milioni di siti web attualmente attivi su internet. Per controllare se una variabile è effettivamente un oggetto escludendo `null`, fai un doppio controllo:</p>
+                <pre style="margin-top: 0.5rem;"><code>if (variabile &amp;&amp; typeof variabile === "object") { ... }</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>3. NaN !== NaN (Not-a-Number non è uguale a se stesso)</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` rappresenta il risultato matematico di un'operazione non valida (es. `"ciao" * 5`). In JavaScript, `NaN` è l'unico valore al mondo che non è uguale a se stesso se confrontato con `===`. Per verificare se un valore è `NaN`, usa il metodo nativo:</p>
+                <pre style="margin-top: 0.5rem;"><code>Number.isNaN(valore); // Restituisce true o false in modo affidabile</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>4. Coercizione automatica dei tipi bizzarra</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Se sommi un array vuoto a un altro array vuoto (`[] + []`) ottieni una stringa vuota `""`. Se sommi un array vuoto ad un oggetto vuoto (`[] + {}`) ottieni la stringa `"[object Object]"`. Per evitare questi bug silenziosi, usa sempre l'uguaglianza stretta `===` ed evita di sommare variabili di tipo diverso senza averle prima convertite esplicitamente (es. usando `Number()` o `String()`).</p>
+              </div>
             </section>
           </section>
 
-          <!-- CAPITOLO 14 — DOVE CONTINUARE DOPO -->
+          <!-- CAPITOLO 14 — DEBUGGING -->
           <section id="chapter-14" class="guide-block guide-chapter">
-            <h2>13. Dove continuare dopo</h2>
+            <h2>13. Debugging professionale: oltre il console.log</h2>
             <section class="guide-subchapter">
-              <p>Capire JavaScript è un percorso continuo. Una volta acquisiti questi concetti e prassi, puoi collegare i pezzi restanti del tuo ambiente di sviluppo e del workflow moderno. Ecco le letture ideali per fare il passo successivo:</p>
+              <p>Stampare variabili ovunque con `console.log()` è il metodo più immediato ma disordinato per fare debug. I browser offrono strumenti avanzati per analizzare lo stato del codice.</p>
               <ul class="guide-list">
-                <li><a href="/tutorial/browser-devtools/">DevTools: capire perché una pagina non funziona</a>: per approfondire l'ispezione della console, del network e fare debugging a livello pro.</li>
-                <li><a href="/tutorial/npm-vite-struttura-progetto/">NPM e Vite</a>: il tutorial indispensabile per passare da file JavaScript singoli a progetti moderni strutturati con moduli e dipendenze.</li>
-                <li><a href="/tutorial/accessibilita-web-base/">Accessibilità web</a>: per capire come rendere gli elementi interattivi creati con JavaScript fruibili anche da tastiera e screen reader.</li>
-                <li><a href="/tutorial/">Tutti i tutorial</a>: torna all'indice per consultare le altre guide a disposizione.</li>
+                <li><strong>`console.table()`</strong>: se gli passi un array di oggetti, lo formatta in una magnifica tabella ordinabile nella console.</li>
+                <li><strong>`console.dir()`</strong>: mostra l'elenco delle proprietà dell'oggetto DOM come oggetto JavaScript puro, anziché stamparne l'HTML.</li>
+              </ul>
+              <h3>La forza dell'istruzione debugger</h3>
+              <p>Se inserisci la parola chiave **`debugger;`** nel tuo script e tieni aperti gli strumenti sviluppatori del browser, l'esecuzione del codice si congelerà all'istante in quel punto preciso:</p>
+              <pre><code>function calcolaPrezzo(base) {
+  const tasse = 1.22;
+  debugger; // Il browser congela la pagina ed evidenzia questa riga nei DevTools
+  return base * tasse;
+}</code></pre>
+              <p>Potrai ispezionare il valore corrente di ogni variabile in quel millisecondo e procedere riga per riga, trovando i problemi senza sporcare il codice con log di prova.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 15 — DOVE CONTINUARE -->
+          <section id="chapter-15" class="guide-block guide-chapter">
+            <h2>14. Dove continuare dopo</h2>
+            <section class="guide-subchapter">
+              <p>Hai fatto i primi grandi passi nella logica di programmazione per il web. Ecco dove orientare le tue prossime letture per integrare queste competenze:</p>
+              <ul class="guide-list">
+                <li><a href="/tutorial/npm-vite-struttura-progetto/">NPM e Vite</a>: il tutorial indispensabile per organizzare progetti complessi dividendo il codice in file autonomi (moduli import/export) anziché scrivere script singoli enormi.</li>
+                <li><a href="/tutorial/browser-devtools/">DevTools del Browser</a>: approfondisci il funzionamento del pannello Network e dello strumento di ispezione del codice sorgente.</li>
+                <li><a href="/tutorial/accessibilita-web-base/">Accessibilità web di base</a>: scopri come garantire che il tuo codice JavaScript non ostacoli la navigazione tramite tastiera o screen reader.</li>
+                <li><a href="/tutorial/">Tutti i tutorial</a>: torna all'indice delle guide per continuare a imparare.</li>
               </ul>
             </section>
           </section>
