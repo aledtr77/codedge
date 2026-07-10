@@ -157,8 +157,8 @@
 @media (max-width: 768px) {
   .card {
     max-width: none;
-    padding: 1.15rem 1rem;
-    border-radius: 10px;
+    padding: 1.5rem 1.25rem;
+    border-radius: 12px;
   }
 
   .card h4,
@@ -185,7 +185,7 @@
 
 @media (max-width: 480px) {
   .card {
-    padding: 1rem 0.95rem;
+    padding: 1.25rem 1.1rem;
   }
 }
 
