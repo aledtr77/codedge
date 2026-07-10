@@ -196,28 +196,36 @@ h1 {
 
   .nav-menu {
     order: 3;
-    display: none;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.25s;
     position: absolute;
     z-index: 2;
     top: 100%;
     right: 0;
     flex-direction: column;
-    background-color: var(--background-one);
-    border-radius: 8px;
-    width: 200px;
-    gap: 0;
+    background-color: var(--background-two);
+    border-radius: 12px;
+    width: 210px;
+    gap: 2px;
     padding: 12px;
-    border: 1px solid;
-    border-color: var(--background-two) var(--background-four)
-      var(--background-four) var(--background-two);
-    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.35),
+      0 0 16px 1px rgba(0, 132, 255, 0.12);
   }
 
   .nav-menu.active {
-    display: flex;
-    flex-direction: column;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
     align-items: flex-start;
-    padding: 16px;
+    padding: 12px;
   }
 
   .nav-item {
@@ -229,20 +237,18 @@ h1 {
     width: 100%;
     justify-content: flex-start;
     min-width: 0;
-    padding: 0.85rem 0.1rem;
+    padding: 0.95rem 0.8rem;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: left;
     text-decoration: none;
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.35rem;
     background: transparent;
     border: 0;
-    border-radius: 0;
+    border-radius: 8px;
     box-shadow: none;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .nav-link::after {
@@ -255,10 +261,10 @@ h1 {
   .nav-link:active,
   .nav-link.is-active,
   .nav-link[aria-current="page"] {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.06);
     box-shadow: none;
     outline: none;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   /* sezione menu toggle */

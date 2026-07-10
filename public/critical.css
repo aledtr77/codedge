@@ -177,31 +177,38 @@ img {
   }
 
   .nav-menu {
-    display: none;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.25s;
     position: absolute;
     top: 100%;
     right: 0;
-    width: 200px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+    width: 210px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     background-color: #161b26;
     box-shadow:
-      inset 1px 1px 0 rgba(255, 255, 255, 0.1),
-      inset -1px -1px 0 rgba(0, 0, 0, 0.3),
-      0 2px 4px rgba(0, 0, 0, 0.2);
+      0 12px 32px rgba(0, 0, 0, 0.35),
+      0 0 16px 1px rgba(0, 132, 255, 0.12);
   }
 
   .nav-link {
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.35rem;
+    padding: 0.95rem 0.8rem;
+    font-size: 18px;
+    font-weight: 600;
     background: transparent;
     border: 0;
-    border-radius: 0;
+    border-radius: 8px;
     box-shadow: none;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .nav-link:hover,
@@ -210,10 +217,10 @@ img {
   .nav-link:active,
   .nav-link.is-active,
   .nav-link[aria-current="page"] {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.06);
     box-shadow: none;
     outline: none;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   main {
