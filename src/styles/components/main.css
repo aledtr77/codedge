@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
   --color-one: #14477d;
   --color-two: #6c757d;
@@ -12,8 +14,8 @@
   --background-six: #555;
   --text-color: #f2f2f2;
   --border-color: #ccc;
-  --main-font: "Verdana", sans-serif;
-  --heading-font: "Arial", "Helvetica", sans-serif;
+  --main-font: 'Inter', sans-serif;
+  --heading-font: 'Plus Jakarta Sans', sans-serif;
   --mobile-page-gutter: 0.875rem;
   --mobile-page-gutter-tight: 0.75rem;
   --site-link-color: #8fceff;
