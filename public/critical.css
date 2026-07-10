@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 html {
-  background-color: #2a2a2a;
-  --nav-link-hover-color: #007bf0;
-  --nav-link-active-color: #8fceff;
+  background-color: #0d111a;
+  --nav-link-hover-color: #0084ff;
+  --nav-link-active-color: #7fd1ff;
 }
 
 body {
   margin: 0;
-  background-color: #2a2a2a;
+  background-color: #0d111a;
   color: #f2f2f2;
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
@@ -34,7 +34,7 @@ header {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: #2a2a2a;
+  background-color: #090d16;
 }
 
 .navbar-container {
@@ -43,7 +43,7 @@ header {
   align-items: center;
   gap: 40px;
   padding: 5px 20px;
-  background-color: #2a2a2a;
+  background-color: #090d16;
 }
 
 .logo-link {
@@ -183,9 +183,9 @@ img {
     right: 0;
     width: 200px;
     padding: 10px;
-    border: 1px solid #3a3a3a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
-    background-color: #2a2a2a;
+    background-color: #161b26;
     box-shadow:
       inset 1px 1px 0 rgba(255, 255, 255, 0.1),
       inset -1px -1px 0 rgba(0, 0, 0, 0.3),

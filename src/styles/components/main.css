@@ -1,30 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --color-one: #14477d;
-  --color-two: #6c757d;
-  --color-three: #007bf0;
-  --color-four: #0b59ab;
-  --color-five: #888; /* aggiunta per hover scrollbar */
-  --background-one: #2a2a2a;
-  --background-two: #3a3a3a;
-  --background-three: #303030;
-  --background-four: #222222;
-  --background-five: #444;
-  --background-six: #555;
+  --color-one: #0056b3;
+  --color-two: #718096;
+  --color-three: #0084ff;
+  --color-four: #0066cc;
+  --color-five: #4a5568; /* scrollbar hover */
+  --background-one: #0d111a;
+  --background-two: #161b26;
+  --background-three: #121620;
+  --background-four: #090d16;
+  --background-five: #242c3d;
+  --background-six: #2d3748;
   --text-color: #f2f2f2;
-  --border-color: #ccc;
+  --border-color: rgba(255, 255, 255, 0.12);
   --main-font: 'Inter', sans-serif;
   --heading-font: 'Plus Jakarta Sans', sans-serif;
   --mobile-page-gutter: 0.875rem;
   --mobile-page-gutter-tight: 0.75rem;
-  --site-link-color: #8fceff;
+  --site-link-color: #7fd1ff;
   --site-link-hover-color: var(--color-three);
   --site-link-underline-thickness: 0.08em;
   --site-link-underline-offset: 0.18em;
   --box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
-    inset -1px -1px 0 rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    inset 1px 1px 0 rgba(255, 255, 255, 0.05),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 html {
