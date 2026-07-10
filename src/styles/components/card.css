@@ -67,16 +67,18 @@
   color: var(--text-color);
   margin: 0 0 1rem 0;
   text-align: center;
-  transition: color 0.3s ease;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card h4 i {
   color: var(--color-three);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease, color 0.4s ease;
+  display: inline-block;
 }
 
 .card:hover h4 i {
-  transform: scale(1.1);
+  transform: scale(1.2) translateY(-2px);
+  filter: drop-shadow(0 0 6px rgba(0, 132, 255, 0.65));
 }
 
 /* Contenuto: occupa lo spazio rimanente, spinge il CTA in fondo */

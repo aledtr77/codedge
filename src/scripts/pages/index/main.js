@@ -16,4 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroImage) {
     heroImage.src = homeHeroImage;
   }
+
+  // 3D Tilt Parallax Effect on Homepage Hero
+  const heroFrame = document.querySelector('.hero-visual-frame');
+  if (heroFrame && heroImage) {
+    heroFrame.addEventListener('mousemove', (e) => {
+      const rect = heroFrame.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      // Rotate image slightly based on cursor position (max 6 degrees for subtle look)
+      const rotateX = -(y / rect.height) * 6;
+      const rotateY = (x / rect.width) * 6;
+
+      heroImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+    });
+
+    heroFrame.addEventListener('mouseleave', () => {
+      heroImage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  }
 });

@@ -180,6 +180,9 @@
         height: auto;
         aspect-ratio: 1168 / 784;
         object-fit: cover;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        transform-style: preserve-3d;
+        will-change: transform;
       }
       .hero-media-overlay {
         position: absolute;
