@@ -1,6 +1,8 @@
 footer {
-  padding: 1rem 0;
+  padding: 1.5rem 0 calc(1.5rem + env(safe-area-inset-bottom, 0px)) 0;
   margin-top: 3.2rem;
+  background-color: var(--background-four);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 .footer-content {
   max-width: 1200px;

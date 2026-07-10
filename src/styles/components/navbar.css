@@ -6,9 +6,10 @@
 header {
   position: sticky;
   top: 0;
-  background-color: var(--background-one);
+  background-color: var(--background-four);
   z-index: 1000;
   width: 100%;
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Header e Navbar */
@@ -17,7 +18,7 @@ header {
   justify-content: flex-start;
   align-items: center;
   padding: 5px 20px;
-  background-color: var(--background-one);
+  background-color: var(--background-four);
   gap: 40px;
 }
 

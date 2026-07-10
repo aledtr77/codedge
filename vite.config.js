@@ -42,11 +42,11 @@ const htmlMinifyOptions = {
 };
 
 const antiFoucCss = [
-  'html{background:#2a2a2a;color:#f2f2f2}',
-  'body{margin:0;font-family:Verdana,sans-serif;color:#f2f2f2;background:#2a2a2a;line-height:1.6}',
+  'html{background:#0d111a;color:#f2f2f2}',
+  'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
-  'header{background:#2a2a2a}',
+  'header{background:#090d16}',
   'a{color:inherit}',
   'img{display:block;max-width:100%;height:auto}',
   '@media screen and (max-width:860px){.logo{width:48px;max-width:48px}.resize-text,.invisible-text{display:none}}'
@@ -94,7 +94,9 @@ function antiFoucHtmlPlugin() {
         let updated = html
           .replace(criticalStyleRegex, '')
           .replace(noScriptRegex, '')
-          .replace(criticalScriptRegex, '');
+          .replace(criticalScriptRegex, '')
+          .replace(/<meta name="theme-color" content="#00A8FF" \/>/gi, '<meta name="theme-color" content="#0d111a" />')
+          .replace(/<meta name="viewport" content="width=device-width,initial-scale=1" \/>/gi, '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />');
 
         updated = updated.replace(/<body([^>]*)>/i, (_match, attrs = '') => {
           const cleanedAttrs = attrs.replace(/\sdata-css-ready=(?:"[^"]*"|'[^']*')/i, '');
