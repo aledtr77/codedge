@@ -73,7 +73,28 @@ function lastModifiedForFile(filePath) {
     ).trim();
 
     if (!lastCommitDate) return fallback();
-    return new Date(lastCommitDate).toISOString();
+    let date = new Date(lastCommitDate);
+
+    // If global theme/styles/scripts were updated, consider that date as well
+    try {
+      const globalCommitDate = execFileSync(
+        'git',
+        ['log', '-1', '--format=%cI', '--', 'src/styles/components/main.css', 'src/scripts/components/navbar.css', 'src/scripts/components/navbar.js', 'public/critical.css'],
+        {
+          cwd: projectRoot,
+          encoding: 'utf8',
+          stdio: ['ignore', 'pipe', 'ignore']
+        }
+      ).trim();
+      if (globalCommitDate) {
+        const globalDate = new Date(globalCommitDate);
+        if (globalDate > date) {
+          date = globalDate;
+        }
+      }
+    } catch {}
+
+    return date.toISOString();
   } catch {
     return fallback();
   }
