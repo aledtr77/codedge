@@ -357,7 +357,7 @@ button {
 .copy-btn:active,
 .tool-button:active,
 button:active {
-  transform: scale(0.97) translateY(1px) !important;
+  transform: scale(0.985) translateY(0.5px) !important;
 }
 
 
