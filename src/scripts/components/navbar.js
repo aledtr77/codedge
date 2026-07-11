@@ -24,6 +24,7 @@ if (menuIcon && navMenu) {
     const isActive = menuIcon.classList.toggle("active");
     navMenu.classList.toggle("active");
     menuIcon.setAttribute("aria-expanded", String(isActive));
+    document.body.classList.toggle("no-scroll", isActive);
   });
 
   menuIcon.addEventListener("keydown", (e) => {
@@ -38,6 +39,7 @@ if (menuIcon && navMenu) {
       navMenu.classList.remove("active");
       menuIcon.classList.remove("active");
       menuIcon.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("no-scroll");
     }
   });
 }

@@ -360,4 +360,51 @@ button:active {
   transform: scale(0.985) translateY(0.5px) !important;
 }
 
+/* ✅ Indicatori di focus accessibili ed eleganti */
+*:focus-visible {
+  outline: 2px solid var(--color-three, #0084ff);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.25);
+}
+
+/* ✅ Aloni mesh di sfondo per dare profondità alle sezioni */
+.unified-section,
+.projects-shell,
+.gradient-shell,
+.tools-shell,
+.resources-shell {
+  position: relative;
+}
+
+.unified-section::before,
+.projects-shell::before,
+.gradient-shell::before {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 45%;
+  height: 45%;
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.045) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.unified-section::after,
+.projects-shell::after,
+.gradient-shell::after {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  right: 2%;
+  width: 45%;
+  height: 45%;
+  background: radial-gradient(circle, rgba(0, 86, 179, 0.03) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+
 

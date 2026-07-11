@@ -332,4 +332,29 @@ h1 {
       font-size: 1.2em;
     }
   }
+
+  /* ✅ Blocco dello scroll con menu aperto */
+  body.no-scroll {
+    overflow: hidden;
+  }
+
+  /* ✅ Effetto staggered fade-in per le voci del menu mobile */
+  .nav-menu .nav-item {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-menu.active .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-menu.active .nav-item:nth-child(1) { transition-delay: 0.05s; }
+  .nav-menu.active .nav-item:nth-child(2) { transition-delay: 0.09s; }
+  .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.13s; }
+  .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.17s; }
+  .nav-menu.active .nav-item:nth-child(5) { transition-delay: 0.21s; }
+  .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.25s; }
 }
+
