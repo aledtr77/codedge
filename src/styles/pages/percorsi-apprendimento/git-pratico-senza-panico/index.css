@@ -19,6 +19,7 @@
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
   gap: clamp(1rem, 1.8vw, 1.5rem);
   align-items: start;
+  min-width: 0;
 }
 
 .guide-toc {
@@ -114,6 +115,7 @@
 .guide-content {
   display: grid;
   gap: 0.95rem;
+  min-width: 0;
 }
 
 .guide-chapter > h2 {
@@ -157,6 +159,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
   scroll-margin-top: 6.2rem;
   transition: border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, transform 0.24s ease;
+  min-width: 0;
 }
 
 .guide-block.is-active {
@@ -407,6 +410,7 @@
   border: 1px solid rgba(124, 201, 255, 0.26);
   background: rgba(5, 12, 22, 0.82);
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .guide-block pre code {
@@ -542,7 +546,7 @@
 
 @media (max-width: 1200px) {
   .guide-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .guide-toc {
