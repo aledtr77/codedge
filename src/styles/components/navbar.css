@@ -20,9 +20,11 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 5px 20px;
+  padding: 5px 2rem;
   background-color: transparent;
   gap: 40px;
+  max-width: 1900px;
+  margin: 0 auto;
 }
 
 .logo-link {
@@ -173,6 +175,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
+    padding: 5px var(--mobile-page-gutter);
   }
 
   h1 {
@@ -322,6 +325,9 @@ h1 {
 
   /* Media query per schermi ancora più piccoli */
   @media screen and (max-width: 480px) {
+    .navbar-container {
+      padding: 5px var(--mobile-page-gutter-tight);
+    }
     h1 {
       font-size: 1.2em;
     }

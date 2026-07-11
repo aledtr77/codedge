@@ -73,6 +73,7 @@ body {
     radial-gradient(circle at 10% 80%, rgba(0, 86, 179, 0.03) 0%, transparent 50%);
   background-attachment: fixed;
   line-height: 1.6;
+  overflow-x: clip;
 }
 
 /* ✅ Giustificazione testo di lettura per tutto il sito */

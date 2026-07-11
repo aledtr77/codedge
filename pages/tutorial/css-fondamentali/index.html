@@ -59,6 +59,62 @@
       font-family: Consolas, "Liberation Mono", Menlo, monospace;
       font-size: 0.95em;
     }
+
+    /* Responsive Box Model Diagram */
+    .box-model-diagram {
+      margin: 2rem 0;
+    }
+    .box-model-margin {
+      border: 2px dashed #00A8FF;
+      padding: clamp(10px, 3vw, 25px);
+      background: rgba(0, 168, 255, 0.04);
+      text-align: center;
+      border-radius: 8px;
+    }
+    .box-model-border {
+      border: 3px solid #333;
+      padding: clamp(8px, 2.5vw, 20px);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    .box-model-padding {
+      border: 2px dashed #f59e42;
+      padding: clamp(6px, 2vw, 15px);
+      background: rgba(245, 158, 66, 0.04);
+    }
+    .box-model-content {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: clamp(4px, 1.5vw, 10px);
+      background: rgba(255, 255, 255, 0.08);
+      font-family: monospace;
+      font-size: clamp(0.72rem, 1.8vw, 0.9rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .box-model-label {
+      font-size: clamp(0.65rem, 1.6vw, 0.8rem);
+      font-weight: bold;
+      display: block;
+      margin-bottom: clamp(4px, 1.2vw, 10px);
+    }
+    .label-margin { color: #00A8FF; }
+    .label-border { color: #f2f2f2; }
+    .label-padding { color: #f59e42; }
+
+    /* Responsive Table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 14, 25, 0.3);
+    }
+    .table-wrapper table {
+      width: 100%;
+      min-width: 500px;
+    }
   </style>
 </head>
 
@@ -253,14 +309,14 @@ p { color: blue; }
                 <li><strong>Margin (Margine esterno)</strong>: È la distanza di sicurezza che tieni tra questa scatola e gli altri pacchi nel furgone delle consegne. Serve a distanziare gli elementi all'esterno.</li>
               </ul>
 
-              <figure class="guide-figure" style="margin: 2rem 0;">
-                <div style="border: 2px dashed #00A8FF; padding: 25px; background: rgba(0, 168, 255, 0.04); text-align: center; border-radius: 8px;">
-                  <span style="font-size: 0.8rem; color: #00A8FF; font-weight: bold; display: block; margin-bottom: 10px;">MARGIN (Distanza esterna)</span>
-                  <div style="border: 3px solid #333; padding: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 4px;">
-                    <span style="font-size: 0.8rem; color: #333; font-weight: bold; display: block; margin-bottom: 10px;">BORDER (Scatola di cartone)</span>
-                    <div style="border: 2px dashed #f59e42; padding: 15px; background: rgba(245, 158, 66, 0.04);">
-                      <span style="font-size: 0.8rem; color: #f59e42; font-weight: bold; display: block; margin-bottom: 10px;">PADDING (Pluriball protettivo)</span>
-                      <div style="border: 1px solid rgba(255,255,255,0.15); padding: 10px; background: rgba(255,255,255,0.08); font-family: monospace;">
+              <figure class="guide-figure box-model-diagram">
+                <div class="box-model-margin">
+                  <span class="box-model-label label-margin">MARGIN (Distanza esterna)</span>
+                  <div class="box-model-border">
+                    <span class="box-model-label label-border">BORDER (Scatola di cartone)</span>
+                    <div class="box-model-padding">
+                      <span class="box-model-label label-padding">PADDING (Pluriball protettivo)</span>
+                      <div class="box-model-content">
                         [ CONTENT (Vaso fragile) ]
                       </div>
                     </div>
@@ -329,32 +385,34 @@ p { color: blue; }
             <section class="guide-subchapter">
               <p>Capire la differenza logica tra questi due strumenti è uno degli scogli più frequenti. Ecco una guida decisionale semplice basata sull'approccio allo sviluppo:</p>
 
-              <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem;">
-                <thead>
-                  <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                    <th style="padding: 10px;">Caratteristica</th>
-                    <th style="padding: 10px; color: #00A8FF;">Flexbox</th>
-                    <th style="padding: 10px; color: #f59e42;">CSS Grid</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    <td style="padding: 10px; font-weight: bold;">Dimensione</td>
-                    <td style="padding: 10px;">Unidimensionale (riga *o* colonna)</td>
-                    <td style="padding: 10px;">Bidimensionale (righe *e* colonne)</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    <td style="padding: 10px; font-weight: bold;">Approccio</td>
-                    <td style="padding: 10px;">"Content-out" (il contenuto definisce lo spazio)</td>
-                    <td style="padding: 10px;">"Layout-in" (la griglia definisce lo spazio)</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    <td style="padding: 10px; font-weight: bold;">Uso Ideale</td>
-                    <td style="padding: 10px;">Navbar, allineamento icone, bottoni affiancati</td>
-                    <td style="padding: 10px;">Sezioni di pagina, gallerie di card, layout asimmetrici</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Caratteristica</th>
+                      <th style="padding: 10px; color: #00A8FF;">Flexbox</th>
+                      <th style="padding: 10px; color: #f59e42;">CSS Grid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Dimensione</td>
+                      <td style="padding: 10px;">Unidimensionale (riga *o* colonna)</td>
+                      <td style="padding: 10px;">Bidimensionale (righe *e* colonne)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Approccio</td>
+                      <td style="padding: 10px;">"Content-out" (il contenuto definisce lo spazio)</td>
+                      <td style="padding: 10px;">"Layout-in" (la griglia definisce lo spazio)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Uso Ideale</td>
+                      <td style="padding: 10px;">Navbar, allineamento icone, bottoni affiancati</td>
+                      <td style="padding: 10px;">Sezioni di pagina, gallerie di card, layout asimmetrici</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <p><strong>Regola aurea</strong>: se devi allineare un gruppo di elementi lungo una linea retta, usa **Flexbox**. Se devi disporre gli elementi su una griglia strutturata dove vuoi controllare sia l'allineamento verticale sia quello orizzontale, usa **CSS Grid**.</p>
             </section>
