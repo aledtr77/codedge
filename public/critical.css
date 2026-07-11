@@ -4,6 +4,8 @@ html {
   background-color: #0d111a;
   --nav-link-hover-color: #0084ff;
   --nav-link-active-color: #7fd1ff;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -15,6 +17,7 @@ body {
   opacity: 1;
   transition: opacity 0.2s ease;
   overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 h1, h2, h3, h4, h5, h6 {

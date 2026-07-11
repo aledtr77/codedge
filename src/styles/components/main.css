@@ -30,6 +30,8 @@
 html {
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 /* Base Styles */
@@ -74,6 +76,7 @@ body {
   background-attachment: fixed;
   line-height: 1.6;
   overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 /* ✅ Giustificazione testo di lettura per tutto il sito */
