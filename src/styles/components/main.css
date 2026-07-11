@@ -39,6 +39,12 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* ✅ Scrollbar per WebKit (Chrome, Safari, Edge) */
