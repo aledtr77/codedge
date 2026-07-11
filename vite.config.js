@@ -43,6 +43,8 @@ const htmlMinifyOptions = {
 
 const antiFoucCss = [
   'html{background:#0d111a;color:#f2f2f2}',
+  'html.js body[data-css-ready="pending"]{opacity:0!important}',
+  'html.js body[data-css-ready="ready"]{opacity:1!important;transition:opacity 0.25s ease!important}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',

@@ -406,5 +406,15 @@ button:active {
   z-index: -1;
 }
 
+/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato */
+html.js body[data-css-ready="pending"] {
+  opacity: 0 !important;
+}
+html.js body[data-css-ready="ready"] {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease !important;
+}
+
+
 
 
