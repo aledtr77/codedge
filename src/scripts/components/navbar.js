@@ -57,3 +57,44 @@ if (document.readyState === "loading") {
   markPageReady();
 }
 window.addEventListener("pageshow", markPageReady);
+
+// Smart Sticky Header logic
+const header = document.querySelector("header");
+if (header) {
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const tolerance = 15; // minimum scroll delta in px to trigger action
+
+  const updateHeader = () => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+    const isMobileMenuOpen = navMenu && navMenu.classList.contains("active");
+
+    if (currentScrollY <= 50) {
+      header.classList.remove("header-hidden", "header-scrolled");
+    } else {
+      header.classList.add("header-scrolled");
+
+      if (!isMobileMenuOpen) {
+        if (scrollDelta > tolerance) {
+          header.classList.add("header-hidden");
+        } else if (scrollDelta < -tolerance) {
+          header.classList.remove("header-hidden");
+        }
+      }
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
