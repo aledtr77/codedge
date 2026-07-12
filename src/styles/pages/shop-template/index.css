@@ -4,10 +4,11 @@
   box-sizing: border-box;
 }
 
+
 .section.shop-layout {
   --shop-content-width: 1600px;
   --shop-line: rgba(255, 255, 255, 0.09);
-  --shop-muted: rgba(255, 255, 255, 0.76);
+  --shop-muted: var(--text-color);
   position: relative;
   isolation: isolate;
   padding: clamp(1.35rem, 3vw, 2rem);
