@@ -155,6 +155,8 @@ function initBreadcrumbs() {
       mainEl.prepend(nav);
     }
   }
+
+  document.body.classList.add("has-breadcrumbs");
 }
 
 if (document.readyState === "loading") {
