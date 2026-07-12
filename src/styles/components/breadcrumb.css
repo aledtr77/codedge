@@ -1,67 +1,47 @@
 /* src/styles/components/breadcrumb.css */
 :root {
-  --breadcrumb-text-color: rgba(242, 242, 242, 0.55);
+  --breadcrumb-text-color: rgba(242, 242, 242, 0.5);
   --breadcrumb-hover-color: var(--color-three, #0084ff);
-  --breadcrumb-active-color: rgba(242, 242, 242, 0.95);
-  --breadcrumb-separator-color: rgba(255, 255, 255, 0.2);
+  --breadcrumb-active-color: rgba(242, 242, 242, 0.85);
+  --breadcrumb-separator-color: rgba(255, 255, 255, 0.15);
 }
 
-.codedge-breadcrumbs {
-  position: fixed;
-  top: 75px; /* Sotto la navbar fissa */
-  left: max(2rem, calc((100vw - 1900px) / 2 + 2rem));
-  z-index: 999; /* Sotto l'header z-index: 1000 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.codedge-breadcrumbs-header {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 2rem 12px 2rem;
   display: flex;
   align-items: center;
-  
-  /* Glassmorphism Premium */
-  background: rgba(9, 13, 22, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0.35rem 0.85rem;
-  border-radius: 50px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 
-              0 1px 2px rgba(255, 255, 255, 0.05);
-              
-  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
-              
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadeIn 0.4s ease both;
 }
 
-/* Quando l'header si nasconde (.header-hidden) la breadcrumb si sposta fluidamente in alto */
-header.header-hidden ~ main .codedge-breadcrumbs,
-header.header-hidden ~ .codedge-breadcrumbs {
-  top: 20px;
-  background: rgba(9, 13, 22, 0.85); /* Leggermente più scuro quando fluttua sul testo */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.codedge-breadcrumbs ol {
+.codedge-breadcrumbs-header ol {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 0.4rem;
+  gap: 0.45rem;
   row-gap: 0.2rem;
 }
 
-.codedge-breadcrumbs li {
+.codedge-breadcrumbs-header li {
   display: inline-flex;
   align-items: center;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--breadcrumb-text-color);
   line-height: 1.2;
 }
 
 /* Link styling */
-.codedge-breadcrumbs a.breadcrumb-link {
+.codedge-breadcrumbs-header a.breadcrumb-link {
   color: var(--breadcrumb-text-color);
   text-decoration: none;
   display: inline-flex;
@@ -71,78 +51,47 @@ header.header-hidden ~ .codedge-breadcrumbs {
   font-weight: 600;
 }
 
-.codedge-breadcrumbs a.breadcrumb-link i {
+.codedge-breadcrumbs-header a.breadcrumb-link i {
   font-size: 0.75rem;
   color: inherit;
   opacity: 0.85;
 }
 
-.codedge-breadcrumbs a.breadcrumb-link:hover {
+.codedge-breadcrumbs-header a.breadcrumb-link:hover {
   color: var(--breadcrumb-hover-color);
 }
 
 /* Separator using FontAwesome chevron */
-.codedge-breadcrumbs li:not(:last-child)::after {
+.codedge-breadcrumbs-header li:not(:last-child)::after {
   content: "\f054";
   font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
   font-weight: 900;
-  font-size: 0.6rem;
-  margin-left: 0.4rem;
+  font-size: 0.55rem;
+  margin-left: 0.45rem;
   color: var(--breadcrumb-separator-color);
   display: inline-block;
   pointer-events: none;
   opacity: 0.6;
 }
 
-.codedge-breadcrumbs li[aria-current="page"] {
+.codedge-breadcrumbs-header li[aria-current="page"] {
   color: var(--breadcrumb-active-color);
   font-weight: 600;
   pointer-events: none;
-  max-width: 250px;
+  max-width: 320px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Riabilita i click ed evita interferenze con pointer-events: none dei container padri */
-.codedge-breadcrumbs,
-.codedge-breadcrumbs ol,
-.codedge-breadcrumbs li,
-.codedge-breadcrumbs a,
-.codedge-breadcrumbs span {
-  pointer-events: auto !important;
-}
-
-/* Spaziatura protettiva per il contenuto della pagina principale in modo da non finire sotto la breadcrumb */
-body.has-breadcrumbs > main {
-  padding-top: 2.25rem !important;
-}
-
 @media (max-width: 860px) {
-  .codedge-breadcrumbs {
-    top: 65px;
-    left: 1rem;
-    padding: 0.3rem 0.75rem;
-  }
-  
-  header.header-hidden ~ main .codedge-breadcrumbs,
-  header.header-hidden ~ .codedge-breadcrumbs {
-    top: 15px;
-  }
-  
-  body.has-breadcrumbs > main {
-    padding-top: 1.75rem !important;
+  .codedge-breadcrumbs-header {
+    padding: 0 2rem 10px 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .codedge-breadcrumbs {
-    left: 1rem;
-  }
-  
-  body.has-breadcrumbs > main {
-    padding-top: 1.75rem !important;
-    padding-left: 0;
-    padding-right: 0;
+  .codedge-breadcrumbs-header {
+    padding: 0 1.5rem 10px 1.5rem;
   }
 }

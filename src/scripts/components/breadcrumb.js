@@ -79,23 +79,29 @@ function initBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   if (currentPath === "/") return; // No breadcrumbs on Homepage
 
+  const segments = currentPath.split("/").filter(Boolean);
+  if (segments.length === 0) return;
+
+  // Avoid running multiple times
+  if (document.querySelector(".codedge-breadcrumbs-header")) return;
+
+  const headerEl = document.querySelector("header");
+  if (!headerEl) return;
+
+  const navbarEl = headerEl.querySelector(".navbar");
+  if (!navbarEl) return;
+
   // Disable logo home link as it is redundant with the breadcrumbs
-  const logoLink = document.querySelector(".logo-link");
+  const logoLink = headerEl.querySelector(".logo-link");
   if (logoLink) {
     logoLink.removeAttribute("href");
     logoLink.style.pointerEvents = "none";
     logoLink.style.cursor = "default";
   }
 
-  const segments = currentPath.split("/").filter(Boolean);
-  if (segments.length === 0) return;
-
-  // Avoid running multiple times
-  if (document.querySelector(".codedge-breadcrumbs")) return;
-
-  const nav = document.createElement("nav");
-  nav.className = "codedge-breadcrumbs breadcrumb-container";
-  nav.setAttribute("aria-label", "Breadcrumbs");
+  // Create breadcrumb container
+  const nav = document.createElement("div");
+  nav.className = "codedge-breadcrumbs-header";
 
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
@@ -137,26 +143,15 @@ function initBreadcrumbs() {
 
   nav.appendChild(listEl);
 
-  // Target injection locations
-  const existingContainer = document.querySelector(".breadcrumb-container");
-  const existingBackLink = document.querySelector(".back-link, .tool-back-link");
+  // Inject breadcrumbs exactly after the navbar inside the header
+  navbarEl.insertAdjacentElement("afterend", nav);
 
-  if (existingContainer) {
-    existingContainer.innerHTML = "";
-    existingContainer.appendChild(listEl);
-    existingContainer.className = "codedge-breadcrumbs breadcrumb-container";
-    existingContainer.setAttribute("aria-label", "Breadcrumbs");
-    existingContainer.style.pointerEvents = "auto";
-  } else if (existingBackLink) {
-    existingBackLink.replaceWith(nav);
-  } else {
-    const mainEl = document.querySelector("main");
-    if (mainEl) {
-      mainEl.prepend(nav);
-    }
-  }
+  // Remove pre-existing static back links or breadcrumb placeholders from the document flow
+  const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-header)");
+  oldContainers.forEach(container => container.remove());
 
-  document.body.classList.add("has-breadcrumbs");
+  const oldBackLinks = document.querySelectorAll(".back-link, .tool-back-link");
+  oldBackLinks.forEach(link => link.remove());
 }
 
 if (document.readyState === "loading") {
