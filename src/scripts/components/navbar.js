@@ -10,7 +10,8 @@ function markPageReady() {
   });
 }
 
-const menuIcon = document.querySelector(".menu-icon"),
+const header = document.querySelector("header"),
+  menuIcon = document.querySelector(".menu-icon"),
   navMenu = document.querySelector(".nav-menu");
 
 if (menuIcon && navMenu) {
@@ -25,6 +26,10 @@ if (menuIcon && navMenu) {
     navMenu.classList.toggle("active");
     menuIcon.setAttribute("aria-expanded", String(isActive));
     document.body.classList.toggle("no-scroll", isActive);
+
+    if (isActive && header) {
+      header.classList.remove("header-hidden");
+    }
   });
 
   menuIcon.addEventListener("keydown", (e) => {
@@ -59,7 +64,6 @@ if (document.readyState === "loading") {
 window.addEventListener("pageshow", markPageReady);
 
 // Smart Sticky Header logic
-const header = document.querySelector("header");
 if (header) {
   let lastScrollY = window.scrollY;
   let ticking = false;
@@ -70,16 +74,24 @@ if (header) {
     const scrollDelta = currentScrollY - lastScrollY;
     const isMobileMenuOpen = navMenu && navMenu.classList.contains("active");
 
+    // Check if user reached the bottom of the page (with a 10px tolerance)
+    const isAtBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 10);
+
     if (currentScrollY <= 50) {
       header.classList.remove("header-hidden", "header-scrolled");
     } else {
       header.classList.add("header-scrolled");
 
-      if (!isMobileMenuOpen) {
-        if (scrollDelta > tolerance) {
-          header.classList.add("header-hidden");
-        } else if (scrollDelta < -tolerance) {
+      if (isMobileMenuOpen) {
+        header.classList.remove("header-hidden");
+      } else {
+        // Show header if scrolling up OR reached the bottom of the page
+        if (isAtBottom || scrollDelta < -tolerance) {
           header.classList.remove("header-hidden");
+        } 
+        // Hide header if scrolling down (and not at the bottom)
+        else if (scrollDelta > tolerance) {
+          header.classList.add("header-hidden");
         }
       }
     }
@@ -97,4 +109,5 @@ if (header) {
 
   window.addEventListener("scroll", onScroll, { passive: true });
 }
+
 
