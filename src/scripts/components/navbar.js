@@ -14,8 +14,6 @@ const header = document.querySelector("header"),
   menuIcon = document.querySelector(".menu-icon"),
   navMenu = document.querySelector(".nav-menu");
 
-let isResettingOverflow = false;
-
 if (menuIcon && navMenu) {
   // Set accessibility attributes dynamically to pass Lighthouse A11y audit
   menuIcon.setAttribute("role", "button");
@@ -28,13 +26,6 @@ if (menuIcon && navMenu) {
     const isActive = menuIcon.classList.toggle("active");
     navMenu.classList.toggle("active");
     menuIcon.setAttribute("aria-expanded", String(isActive));
-    
-    isResettingOverflow = true;
-    document.body.classList.toggle("no-scroll", isActive);
-    // Ignore layout shift scroll events for 400ms
-    setTimeout(() => {
-      isResettingOverflow = false;
-    }, 400);
 
     if (isActive && header) {
       header.classList.remove("header-hidden");
@@ -53,11 +44,6 @@ if (menuIcon && navMenu) {
       navMenu.classList.remove("active");
       menuIcon.classList.remove("active");
       menuIcon.setAttribute("aria-expanded", "false");
-      isResettingOverflow = true;
-      document.body.classList.remove("no-scroll");
-      setTimeout(() => {
-        isResettingOverflow = false;
-      }, 400);
     }
   });
 }
@@ -84,12 +70,25 @@ if (header) {
 
   // Track if user is touching/clicking the header to prevent hiding during taps or micro-scrolls
   let headerTouched = false;
+  let touchTimeoutId = null;
 
-  header.addEventListener("pointerdown", () => { headerTouched = true; }, { passive: true });
+  header.addEventListener("pointerdown", () => {
+    headerTouched = true;
+    if (touchTimeoutId) {
+      clearTimeout(touchTimeoutId);
+      touchTimeoutId = null;
+    }
+  }, { passive: true });
 
   const resetHeaderTouch = () => {
+    if (touchTimeoutId) {
+      clearTimeout(touchTimeoutId);
+    }
     // Delay resetting to ensure any delayed scroll events or scroll inertia complete
-    setTimeout(() => { headerTouched = false; }, 350);
+    touchTimeoutId = setTimeout(() => {
+      headerTouched = false;
+      touchTimeoutId = null;
+    }, 350);
   };
 
   window.addEventListener("pointerup", resetHeaderTouch, { passive: true });
@@ -98,14 +97,14 @@ if (header) {
   const updateHeader = () => {
     const isMobileMenuOpen = navMenu && navMenu.classList.contains("active");
 
-    // Defensive early aborts: if menu is open, touch is active, or overflow is resetting, force visibility and return
+    // Defensive early aborts: if menu is open or touch is active, force visibility and return
     if (isMobileMenuOpen) {
       header.classList.remove("header-hidden");
       ticking = false;
       return;
     }
 
-    if (headerTouched || isResettingOverflow) {
+    if (headerTouched) {
       ticking = false;
       return;
     }
