@@ -96,9 +96,22 @@ if (header) {
   window.addEventListener("pointercancel", resetHeaderTouch, { passive: true });
 
   const updateHeader = () => {
+    const isMobileMenuOpen = navMenu && navMenu.classList.contains("active");
+
+    // Defensive early aborts: if menu is open, touch is active, or overflow is resetting, force visibility and return
+    if (isMobileMenuOpen) {
+      header.classList.remove("header-hidden");
+      ticking = false;
+      return;
+    }
+
+    if (headerTouched || isResettingOverflow) {
+      ticking = false;
+      return;
+    }
+
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
-    const isMobileMenuOpen = navMenu && navMenu.classList.contains("active");
 
     // Check if user reached the bottom of the page (with a 10px tolerance)
     const isAtBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 10);
@@ -108,17 +121,13 @@ if (header) {
     } else {
       header.classList.add("header-scrolled");
 
-      if (isMobileMenuOpen) {
+      // Show header if scrolling up OR reached the bottom of the page
+      if (isAtBottom || scrollDelta < -tolerance) {
         header.classList.remove("header-hidden");
-      } else {
-        // Show header if scrolling up OR reached the bottom of the page
-        if (isAtBottom || scrollDelta < -tolerance) {
-          header.classList.remove("header-hidden");
-        } 
-        // Hide header if scrolling down (and not at the bottom), but NOT if interacting with the header or resetting overflow
-        else if (scrollDelta > tolerance && !headerTouched && !isResettingOverflow) {
-          header.classList.add("header-hidden");
-        }
+      } 
+      // Hide header if scrolling down (and not at the bottom)
+      else if (scrollDelta > tolerance) {
+        header.classList.add("header-hidden");
       }
     }
 
