@@ -1,0 +1,112 @@
+/* src/styles/components/breadcrumb.css */
+:root {
+  --breadcrumb-text-color: rgba(242, 242, 242, 0.55);
+  --breadcrumb-hover-color: var(--color-three, #0084ff);
+  --breadcrumb-active-color: rgba(242, 242, 242, 0.95);
+  --breadcrumb-separator-color: rgba(255, 255, 255, 0.2);
+}
+
+.codedge-breadcrumbs {
+  max-width: 1900px;
+  margin: 1.5rem auto 1rem auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Align with section content if inside main */
+main > .codedge-breadcrumbs {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.codedge-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.5rem;
+  row-gap: 0.25rem;
+}
+
+.codedge-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--breadcrumb-text-color);
+  line-height: 1.2;
+}
+
+/* Link styling */
+.codedge-breadcrumbs a.breadcrumb-link {
+  color: var(--breadcrumb-text-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-weight: 600;
+}
+
+.codedge-breadcrumbs a.breadcrumb-link i {
+  font-size: 0.8rem;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.codedge-breadcrumbs a.breadcrumb-link:hover {
+  color: var(--breadcrumb-hover-color);
+}
+
+/* Separator between items using FontAwesome chevron */
+.codedge-breadcrumbs li:not(:last-child)::after {
+  content: "\f054"; /* FontAwesome chevron-right */
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+  font-weight: 900;
+  font-size: 0.65rem;
+  margin-left: 0.5rem;
+  color: var(--breadcrumb-separator-color);
+  display: inline-block;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.codedge-breadcrumbs li[aria-current="page"] {
+  color: var(--breadcrumb-active-color);
+  font-weight: 600;
+  pointer-events: none;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ensure links and lists are clickable inside containers that disable pointer-events */
+.codedge-breadcrumbs,
+.codedge-breadcrumbs ol,
+.codedge-breadcrumbs li,
+.codedge-breadcrumbs a,
+.codedge-breadcrumbs span {
+  pointer-events: auto !important;
+}
+
+@media (max-width: 860px) {
+  .codedge-breadcrumbs {
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .codedge-breadcrumbs {
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}

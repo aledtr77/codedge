@@ -1,4 +1,5 @@
 import "@/scripts/components/pwa.js";
+import "@/scripts/components/breadcrumb.js";
 
 function markPageReady() {
   if (document.documentElement.dataset.pageReady === "true") return;
