@@ -69,6 +69,21 @@ if (header) {
   let ticking = false;
   const tolerance = 15; // minimum scroll delta in px to trigger action
 
+  // Track if user is touching/clicking the header to prevent hiding during taps or micro-scrolls
+  let headerTouched = false;
+
+  header.addEventListener("touchstart", () => { headerTouched = true; }, { passive: true });
+  header.addEventListener("mousedown", () => { headerTouched = true; }, { passive: true });
+
+  const resetHeaderTouch = () => {
+    // Delay resetting to ensure any delayed scroll events or scroll inertia complete
+    setTimeout(() => { headerTouched = false; }, 350);
+  };
+
+  window.addEventListener("touchend", resetHeaderTouch, { passive: true });
+  window.addEventListener("touchcancel", resetHeaderTouch, { passive: true });
+  window.addEventListener("mouseup", resetHeaderTouch, { passive: true });
+
   const updateHeader = () => {
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
@@ -89,8 +104,8 @@ if (header) {
         if (isAtBottom || scrollDelta < -tolerance) {
           header.classList.remove("header-hidden");
         } 
-        // Hide header if scrolling down (and not at the bottom)
-        else if (scrollDelta > tolerance) {
+        // Hide header if scrolling down (and not at the bottom), but NOT if interacting with the header
+        else if (scrollDelta > tolerance && !headerTouched) {
           header.classList.add("header-hidden");
         }
       }
