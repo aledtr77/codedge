@@ -79,6 +79,14 @@ function initBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   if (currentPath === "/") return; // No breadcrumbs on Homepage
 
+  // Disable logo home link as it is redundant with the breadcrumbs
+  const logoLink = document.querySelector(".logo-link");
+  if (logoLink) {
+    logoLink.removeAttribute("href");
+    logoLink.style.pointerEvents = "none";
+    logoLink.style.cursor = "default";
+  }
+
   const segments = currentPath.split("/").filter(Boolean);
   if (segments.length === 0) return;
 
