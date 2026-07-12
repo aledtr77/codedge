@@ -14,6 +14,8 @@ const header = document.querySelector("header"),
   menuIcon = document.querySelector(".menu-icon"),
   navMenu = document.querySelector(".nav-menu");
 
+let isResettingOverflow = false;
+
 if (menuIcon && navMenu) {
   // Set accessibility attributes dynamically to pass Lighthouse A11y audit
   menuIcon.setAttribute("role", "button");
@@ -21,11 +23,18 @@ if (menuIcon && navMenu) {
   menuIcon.setAttribute("aria-label", "Menu di navigazione");
   menuIcon.setAttribute("aria-expanded", "false");
 
-  menuIcon.addEventListener("click", () => {
+  menuIcon.addEventListener("click", (e) => {
+    e.stopPropagation(); // Block bubbling to document click listener
     const isActive = menuIcon.classList.toggle("active");
     navMenu.classList.toggle("active");
     menuIcon.setAttribute("aria-expanded", String(isActive));
+    
+    isResettingOverflow = true;
     document.body.classList.toggle("no-scroll", isActive);
+    // Ignore layout shift scroll events for 400ms
+    setTimeout(() => {
+      isResettingOverflow = false;
+    }, 400);
 
     if (isActive && header) {
       header.classList.remove("header-hidden");
@@ -44,7 +53,11 @@ if (menuIcon && navMenu) {
       navMenu.classList.remove("active");
       menuIcon.classList.remove("active");
       menuIcon.setAttribute("aria-expanded", "false");
+      isResettingOverflow = true;
       document.body.classList.remove("no-scroll");
+      setTimeout(() => {
+        isResettingOverflow = false;
+      }, 400);
     }
   });
 }
@@ -72,17 +85,15 @@ if (header) {
   // Track if user is touching/clicking the header to prevent hiding during taps or micro-scrolls
   let headerTouched = false;
 
-  header.addEventListener("touchstart", () => { headerTouched = true; }, { passive: true });
-  header.addEventListener("mousedown", () => { headerTouched = true; }, { passive: true });
+  header.addEventListener("pointerdown", () => { headerTouched = true; }, { passive: true });
 
   const resetHeaderTouch = () => {
     // Delay resetting to ensure any delayed scroll events or scroll inertia complete
     setTimeout(() => { headerTouched = false; }, 350);
   };
 
-  window.addEventListener("touchend", resetHeaderTouch, { passive: true });
-  window.addEventListener("touchcancel", resetHeaderTouch, { passive: true });
-  window.addEventListener("mouseup", resetHeaderTouch, { passive: true });
+  window.addEventListener("pointerup", resetHeaderTouch, { passive: true });
+  window.addEventListener("pointercancel", resetHeaderTouch, { passive: true });
 
   const updateHeader = () => {
     const currentScrollY = window.scrollY;
@@ -104,8 +115,8 @@ if (header) {
         if (isAtBottom || scrollDelta < -tolerance) {
           header.classList.remove("header-hidden");
         } 
-        // Hide header if scrolling down (and not at the bottom), but NOT if interacting with the header
-        else if (scrollDelta > tolerance && !headerTouched) {
+        // Hide header if scrolling down (and not at the bottom), but NOT if interacting with the header or resetting overflow
+        else if (scrollDelta > tolerance && !headerTouched && !isResettingOverflow) {
           header.classList.add("header-hidden");
         }
       }
@@ -124,5 +135,6 @@ if (header) {
 
   window.addEventListener("scroll", onScroll, { passive: true });
 }
+
 
 
