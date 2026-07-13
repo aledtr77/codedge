@@ -407,14 +407,12 @@ button:active {
 }
 
 /* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato */
-@media screen and (max-width: 860px) {
-  html.js body[data-css-ready="pending"] > *:not(.loading-bar-top) {
-    opacity: 0 !important;
-  }
-  html.js body[data-css-ready="ready"] > *:not(.loading-bar-top) {
-    opacity: 1 !important;
-    transition: opacity 0.25s ease !important;
-  }
+html.js body[data-css-ready="pending"] {
+  opacity: 0 !important;
+}
+html.js body[data-css-ready="ready"] {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease !important;
 }
 
 
