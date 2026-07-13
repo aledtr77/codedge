@@ -1,70 +1,75 @@
 /* src/styles/components/breadcrumb.css */
 :root {
-  --breadcrumb-text-color: rgba(242, 242, 242, 0.55);
+  --breadcrumb-text-color: rgba(242, 242, 242, 0.6);
   --breadcrumb-hover-color: var(--color-three, #0084ff);
-  --breadcrumb-active-color: var(--color-three, #0084ff);
-  --breadcrumb-separator-color: rgba(255, 255, 255, 0.2);
+  --breadcrumb-active-color: #ffffff;
+  --breadcrumb-separator-color: rgba(255, 255, 255, 0.25);
+  --breadcrumb-bg-color: rgba(9, 13, 22, 0.65);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateX(-10px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.codedge-breadcrumbs-navbar {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0;
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-  overflow: hidden;
+.codedge-breadcrumbs-bar {
+  display: block;
+  width: 100%;
+  background-color: var(--breadcrumb-bg-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px 2rem;
+  box-sizing: border-box;
+  animation: fadeInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.codedge-breadcrumbs-navbar ol {
+.codedge-breadcrumbs-bar ol {
   display: flex;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
   gap: 0.5rem;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
-.codedge-breadcrumbs-navbar li {
+.codedge-breadcrumbs-bar li {
   display: inline-flex;
   align-items: center;
-  font-size: 0.95rem; /* Stessa dimensione degli altri link navbar */
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--breadcrumb-text-color);
   line-height: 1.2;
 }
 
 /* Link styling */
-.codedge-breadcrumbs-navbar a.breadcrumb-link {
+.codedge-breadcrumbs-bar a.breadcrumb-link {
   color: var(--breadcrumb-text-color);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 600;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  font-weight: 500;
 }
 
-.codedge-breadcrumbs-navbar a.breadcrumb-link i {
-  font-size: 0.85rem;
+.codedge-breadcrumbs-bar a.breadcrumb-link i {
+  font-size: 0.8rem;
   color: inherit;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
-.codedge-breadcrumbs-navbar a.breadcrumb-link:hover {
+.codedge-breadcrumbs-bar a.breadcrumb-link:hover {
   color: var(--breadcrumb-hover-color);
 }
 
 /* Separator using FontAwesome chevron */
-.codedge-breadcrumbs-navbar li:not(:last-child)::after {
+.codedge-breadcrumbs-bar li:not(:last-child)::after {
   content: "\f054";
   font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
   font-weight: 900;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   margin-left: 0.5rem;
   color: var(--breadcrumb-separator-color);
   display: inline-block;
@@ -73,25 +78,31 @@
 }
 
 /* Active current page heading */
-.codedge-breadcrumbs-navbar h1.breadcrumb-current {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  font-size: 0.95rem;
+.codedge-breadcrumbs-bar .breadcrumb-current {
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--breadcrumb-active-color);
+  margin: 0;
+  padding: 0;
+  display: inline;
 }
 
-/* Adattamento per dispositivi mobili */
-@media (max-width: 860px) {
-  .codedge-breadcrumbs-navbar {
-    max-width: 320px;
+/* Responsive adjustment for Mobile screens */
+@media screen and (max-width: 768px) {
+  .codedge-breadcrumbs-bar {
+    padding: 8px var(--mobile-page-gutter, 1.25rem);
+    /* Make the bar horizontally scrollable on mobile to fit long paths */
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar on Firefox */
   }
-}
+  
+  .codedge-breadcrumbs-bar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on Chrome/Safari/Webkit */
+  }
 
-@media (max-width: 600px) {
-  /* Su schermi piccoli nasconde i percorsi padre intermedi per non fare overflow, lasciando solo l'H1 attivo */
-  .codedge-breadcrumbs-navbar li:not(:last-child) {
-    display: none;
+  .codedge-breadcrumbs-bar ol {
+    flex-wrap: nowrap; /* Do not wrap inside the scrollable container */
   }
 }

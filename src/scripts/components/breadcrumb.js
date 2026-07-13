@@ -77,92 +77,71 @@ function getBreadcrumbTitle(path) {
 
 function initBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
+  const isHomepage = currentPath === "/";
+
+  // Skip rendering breadcrumbs on Homepage
+  if (isHomepage) return;
 
   // Avoid running multiple times
-  if (document.querySelector(".codedge-breadcrumbs-navbar")) return;
+  if (document.querySelector(".codedge-breadcrumbs-bar")) return;
 
   const headerEl = document.querySelector("header");
   if (!headerEl) return;
 
-  const navbarH1 = headerEl.querySelector("h1");
-  if (!navbarH1) return;
+  const navbarEl = headerEl.querySelector(".navbar");
+  if (!navbarEl) return;
 
-  const isHomepage = currentPath === "/";
-
-  // Disable logo link on subpages (but keep it clickable on homepage)
-  if (!isHomepage) {
-    const logoLink = headerEl.querySelector(".logo-link");
-    if (logoLink) {
-      logoLink.removeAttribute("href");
-      logoLink.style.pointerEvents = "none";
-      logoLink.style.cursor = "default";
-    }
-  }
-
-  // Create breadcrumb navbar navigation element
+  // Create breadcrumb bar navigation element
   const nav = document.createElement("nav");
-  nav.className = "codedge-breadcrumbs-navbar";
+  nav.className = "codedge-breadcrumbs-bar";
   nav.setAttribute("aria-label", "Breadcrumbs");
 
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
 
-  if (isHomepage) {
-    // On Homepage, just show "Home" as the current active page
-    const homeLi = document.createElement("li");
-    homeLi.className = "breadcrumb-item";
-    homeLi.setAttribute("aria-current", "page");
-    
-    const homeH1 = document.createElement("h1");
-    homeH1.className = "breadcrumb-current";
-    homeH1.textContent = "Home";
-    homeLi.appendChild(homeH1);
-    listEl.appendChild(homeLi);
-  } else {
-    // Home item (link)
-    const homeLi = document.createElement("li");
-    homeLi.className = "breadcrumb-item";
-    const homeLink = document.createElement("a");
-    homeLink.href = "/";
-    homeLink.className = "breadcrumb-link";
-    homeLink.innerHTML = '<i class="fas fa-home" aria-hidden="true"></i> Home';
-    homeLi.appendChild(homeLink);
-    listEl.appendChild(homeLi);
+  // Home item (link)
+  const homeLi = document.createElement("li");
+  homeLi.className = "breadcrumb-item";
+  const homeLink = document.createElement("a");
+  homeLink.href = "/";
+  homeLink.className = "breadcrumb-link";
+  homeLink.innerHTML = '<i class="fas fa-home" aria-hidden="true"></i> Home';
+  homeLi.appendChild(homeLink);
+  listEl.appendChild(homeLi);
 
-    // Intermediate and Leaf segments
-    const segments = currentPath.split("/").filter(Boolean);
-    let accumulatedPath = "";
-    segments.forEach((segment, index) => {
-      accumulatedPath += "/" + segment;
-      const isLast = index === segments.length - 1;
+  // Intermediate and Leaf segments
+  const segments = currentPath.split("/").filter(Boolean);
+  let accumulatedPath = "";
+  segments.forEach((segment, index) => {
+    accumulatedPath += "/" + segment;
+    const isLast = index === segments.length - 1;
 
-      const li = document.createElement("li");
-      li.className = "breadcrumb-item";
+    const li = document.createElement("li");
+    li.className = "breadcrumb-item";
 
-      if (isLast) {
-        li.setAttribute("aria-current", "page");
-        const currentH1 = document.createElement("h1");
-        currentH1.className = "breadcrumb-current";
-        currentH1.textContent = getBreadcrumbTitle(accumulatedPath);
-        li.appendChild(currentH1);
-      } else {
-        const link = document.createElement("a");
-        link.href = accumulatedPath + "/";
-        link.className = "breadcrumb-link";
-        link.textContent = getBreadcrumbTitle(accumulatedPath);
-        li.appendChild(link);
-      }
-      listEl.appendChild(li);
-    });
-  }
+    if (isLast) {
+      li.setAttribute("aria-current", "page");
+      const currentSpan = document.createElement("span");
+      currentSpan.className = "breadcrumb-current";
+      currentSpan.textContent = getBreadcrumbTitle(accumulatedPath);
+      li.appendChild(currentSpan);
+    } else {
+      const link = document.createElement("a");
+      link.href = accumulatedPath + "/";
+      link.className = "breadcrumb-link";
+      link.textContent = getBreadcrumbTitle(accumulatedPath);
+      li.appendChild(link);
+    }
+    listEl.appendChild(li);
+  });
 
   nav.appendChild(listEl);
 
-  // Replace the navbar H1 with the breadcrumb list
-  navbarH1.replaceWith(nav);
+  // Insert the breadcrumb sub-bar after the main navbar inside the header
+  navbarEl.after(nav);
 
   // Remove pre-existing static back links or breadcrumb placeholders from the document flow
-  const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-navbar)");
+  const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-bar)");
   oldContainers.forEach(container => container.remove());
 
   const oldBackLinks = document.querySelectorAll(".back-link, .tool-back-link");
