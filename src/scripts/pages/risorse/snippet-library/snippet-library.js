@@ -146,19 +146,13 @@ export function initSnippets(options = {}) {
         pill.classList.add('active');
 
         const target = pill.dataset.target;
-        if (target === 'all') {
-          sections.forEach(sec => {
+        sections.forEach(sec => {
+          if (sec.id === target) {
             sec.style.display = '';
-          });
-        } else {
-          sections.forEach(sec => {
-            if (sec.id === target) {
-              sec.style.display = '';
-            } else {
-              sec.style.display = 'none';
-            }
-          });
-        }
+          } else {
+            sec.style.display = 'none';
+          }
+        });
       });
     });
 
@@ -205,9 +199,9 @@ export function initSnippets(options = {}) {
           }
         });
       } else {
-        const allPill = Array.from(pills).find(p => p.dataset.target === 'all');
-        if (allPill && !allPill.classList.contains('active')) {
-          allPill.click();
+        const activePill = Array.from(pills).find(p => p.classList.contains('active')) || pills[0];
+        if (activePill) {
+          activePill.click();
         }
       }
     }
