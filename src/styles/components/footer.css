@@ -18,12 +18,13 @@ footer {
 .footer-copyright {
   font-size: 1rem;
 }
-.footer-links a {
+ .footer-links a {
   color: var(--text-color);
   text-decoration: none;
   margin-left: 1rem;
   font-size: 1rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 .footer-links a:hover {
   color: var(--color-three);
