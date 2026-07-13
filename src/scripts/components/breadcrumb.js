@@ -83,13 +83,13 @@ function initBreadcrumbs() {
   if (segments.length === 0) return;
 
   // Avoid running multiple times
-  if (document.querySelector(".codedge-breadcrumbs-header")) return;
+  if (document.querySelector(".codedge-breadcrumbs-navbar")) return;
 
   const headerEl = document.querySelector("header");
   if (!headerEl) return;
 
-  const navbarEl = headerEl.querySelector(".navbar");
-  if (!navbarEl) return;
+  const navbarH1 = headerEl.querySelector("h1");
+  if (!navbarH1) return;
 
   // Disable logo home link as it is redundant with the breadcrumbs
   const logoLink = headerEl.querySelector(".logo-link");
@@ -99,9 +99,10 @@ function initBreadcrumbs() {
     logoLink.style.cursor = "default";
   }
 
-  // Create breadcrumb container
-  const nav = document.createElement("div");
-  nav.className = "codedge-breadcrumbs-header";
+  // Create breadcrumb navbar navigation element
+  const nav = document.createElement("nav");
+  nav.className = "codedge-breadcrumbs-navbar";
+  nav.setAttribute("aria-label", "Breadcrumbs");
 
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
@@ -127,10 +128,10 @@ function initBreadcrumbs() {
 
     if (isLast) {
       li.setAttribute("aria-current", "page");
-      const span = document.createElement("span");
-      span.className = "breadcrumb-current";
-      span.textContent = getBreadcrumbTitle(accumulatedPath);
-      li.appendChild(span);
+      const currentH1 = document.createElement("h1");
+      currentH1.className = "breadcrumb-current";
+      currentH1.textContent = getBreadcrumbTitle(accumulatedPath);
+      li.appendChild(currentH1);
     } else {
       const link = document.createElement("a");
       link.href = accumulatedPath + "/";
@@ -143,11 +144,11 @@ function initBreadcrumbs() {
 
   nav.appendChild(listEl);
 
-  // Inject breadcrumbs exactly after the navbar inside the header
-  navbarEl.insertAdjacentElement("afterend", nav);
+  // Replace the navbar H1 with the breadcrumb list to fit on the same line
+  navbarH1.replaceWith(nav);
 
   // Remove pre-existing static back links or breadcrumb placeholders from the document flow
-  const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-header)");
+  const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-navbar)");
   oldContainers.forEach(container => container.remove());
 
   const oldBackLinks = document.querySelectorAll(".back-link, .tool-back-link");
