@@ -121,7 +121,8 @@ body > main .projects-shell {
   text-align: justify;
   text-justify: inter-word;
   text-align-last: left;
-  margin-bottom: 0;
+  max-width: 72ch;
+  margin: 0;
 }
 
 .projects-intro__copy {
@@ -326,17 +327,17 @@ body > main .projects-shell {
 
 @media (max-width: 768px) {
   body > main .projects-shell {
-    margin-top: 0;
-    padding: 0.35rem 0 0;
-    overflow: visible;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .projects-shell::before,
-  .projects-shell::after {
-    display: none;
+    padding: 1.45rem 0.95rem 1.35rem;
+    background:
+      radial-gradient(circle at top left, rgba(0, 123, 240, 0.14), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(129, 206, 255, 0.1), transparent 24%),
+      linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+      var(--background-three);
+    border-radius: 18px;
+    box-shadow:
+      0 26px 70px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    margin-top: 0.25rem;
   }
 
   .projects-intro {
@@ -456,7 +457,7 @@ body > main .projects-shell {
   }
 
   body > main .projects-shell {
-    padding-top: 0.15rem;
+    border-radius: 14px;
   }
 
   .project-card__meta span {
