@@ -65,6 +65,19 @@ window.addEventListener("pageshow", markPageReady);
 
 // Smart Sticky Header logic
 if (header) {
+  const navbarEl = header.querySelector(".navbar");
+  if (navbarEl) {
+    const updateNavbarHeightVar = () => {
+      const height = navbarEl.getBoundingClientRect().height;
+      header.style.setProperty("--navbar-height", `${height}px`);
+    };
+    updateNavbarHeightVar();
+    window.addEventListener("resize", updateNavbarHeightVar);
+    window.addEventListener("orientationchange", updateNavbarHeightVar);
+    document.addEventListener("DOMContentLoaded", updateNavbarHeightVar);
+    window.addEventListener("load", updateNavbarHeightVar);
+  }
+
   let lastScrollY = window.scrollY;
   let ticking = false;
   const tolerance = 15; // minimum scroll delta in px to trigger action

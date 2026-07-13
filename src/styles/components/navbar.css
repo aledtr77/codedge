@@ -21,6 +21,12 @@ header.header-hidden {
   transform: translateY(-100%);
 }
 
+@media screen and (max-width: 768px) {
+  header.header-hidden {
+    transform: translateY(calc(-1 * var(--navbar-height, 46px)));
+  }
+}
+
 header.header-scrolled {
   background-color: rgba(9, 13, 22, 0.9);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
