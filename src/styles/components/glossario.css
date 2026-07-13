@@ -1,5 +1,5 @@
 body {
-  --glossary-header-offset: 132px;
+  --glossary-header-offset: var(--header-height, 132px);
   --glossary-navbar-gap: 2rem;
   background: var(--background-one);
   color: var(--text-color);
@@ -9,17 +9,6 @@ body {
   overscroll-behavior-x: none;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  background: rgba(42, 42, 42, 0.96);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(12px);
-}
-
 header::after {
   content: "";
   position: absolute;
@@ -27,7 +16,7 @@ header::after {
   right: 0;
   bottom: calc(var(--glossary-navbar-gap) * -1);
   height: var(--glossary-navbar-gap);
-  background: linear-gradient(180deg, rgba(42, 42, 42, 0.98), rgba(42, 42, 42, 0.96));
+  background: linear-gradient(180deg, rgba(9, 13, 22, 0.95), rgba(9, 13, 22, 0));
   pointer-events: none;
 }
 

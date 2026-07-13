@@ -70,6 +70,9 @@ if (header) {
     const updateNavbarHeightVar = () => {
       const height = navbarEl.getBoundingClientRect().height;
       header.style.setProperty("--navbar-height", `${height}px`);
+
+      const totalHeight = header.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--header-height", `${totalHeight}px`);
     };
     updateNavbarHeightVar();
     window.addEventListener("resize", updateNavbarHeightVar);
