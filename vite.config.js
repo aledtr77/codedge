@@ -129,9 +129,17 @@ function antiFoucHtmlPlugin() {
           .replace(/<meta name="theme-color" content="#00A8FF" \/>/gi, '<meta name="theme-color" content="#0d111a" />')
           .replace(/<meta name="viewport" content="width=device-width,initial-scale=1" \/>/gi, '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />');
 
+        // Force inline dark background color on HTML and body tags to completely eliminate white flash during page transition on mobile browsers
+        updated = updated.replace(/<html([^>]*)>/i, (_match, attrs = '') => {
+          const cleanedAttrs = attrs.replace(/\sstyle=(?:"[^"]*"|'[^']*')/i, '');
+          return `<html${cleanedAttrs} style="background:#0d111a;color:#f2f2f2">`;
+        });
+
         updated = updated.replace(/<body([^>]*)>/i, (_match, attrs = '') => {
-          const cleanedAttrs = attrs.replace(/\sdata-css-ready=(?:"[^"]*"|'[^']*')/i, '');
-          return `<body${cleanedAttrs} data-css-ready="pending">`;
+          const cleanedAttrs = attrs
+            .replace(/\sdata-css-ready=(?:"[^"]*"|'[^']*')/i, '')
+            .replace(/\sstyle=(?:"[^"]*"|'[^']*')/i, '');
+          return `<body${cleanedAttrs} data-css-ready="pending" style="background:#0d111a;color:#f2f2f2">`;
         });
 
         const headMatch = updated.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
