@@ -153,12 +153,15 @@ export function initSnippets(options = {}) {
     oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
     let savedScrollTop = 0;
-    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    const mobileQuery = window.matchMedia('(max-width: 980px)');
 
     function openSidebar() {
       newBtn.classList.add('active');
       container.classList.add('show-sidebar');
       sidebar.classList.add('active');
+      if (mobileQuery.matches) {
+        document.body.classList.add('no-scroll');
+      }
       setTimeout(() => {
         try { sidebar.scrollTop = savedScrollTop || 0; } catch (e) {}
       }, 40);
@@ -169,6 +172,7 @@ export function initSnippets(options = {}) {
       newBtn.classList.remove('active');
       container.classList.remove('show-sidebar');
       sidebar.classList.remove('active');
+      document.body.classList.remove('no-scroll');
     }
 
     function syncMobileSidebarState() {
@@ -179,12 +183,11 @@ export function initSnippets(options = {}) {
     newBtn.addEventListener('click', function (ev) {
       ev.preventDefault();
       ev.stopPropagation();
-      if (mobileQuery.matches) {
-        syncMobileSidebarState();
-        return;
+      if (newBtn.classList.contains('active')) {
+        closeSidebar();
+      } else {
+        openSidebar();
       }
-      if (newBtn.classList.contains('active')) closeSidebar();
-      else openSidebar();
     }, { passive: false });
 
     // close when clicking a link or button inside sidebar (only on mobile)
