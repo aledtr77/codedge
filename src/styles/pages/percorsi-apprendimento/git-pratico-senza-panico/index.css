@@ -136,7 +136,6 @@
 .guide-subchapter > h4 {
   margin: 1rem 0 0.46rem;
   padding: 0.48rem 0.68rem;
-  border-left: 3px solid rgba(132, 211, 255, 0.86);
   border-radius: 12px;
   background: rgba(84, 158, 214, 0.1);
   font-size: 0.98rem;
@@ -189,7 +188,6 @@
 .guide-block h2 + p {
   margin-bottom: 0.86rem;
   padding: 0.62rem 0.82rem;
-  border-left: 3px solid rgba(129, 211, 255, 0.82);
   border-radius: 12px;
   background: rgba(80, 157, 209, 0.1);
   color: rgba(241, 249, 255, 0.98);
@@ -383,7 +381,6 @@
 .guide-question {
   margin: 0 0 0.48rem;
   padding: 0.5rem 0.68rem;
-  border-left: 3px solid rgba(130, 214, 255, 0.86);
   border-radius: 12px;
   background: rgba(95, 172, 221, 0.11);
   color: rgba(233, 246, 255, 0.96);
@@ -595,7 +592,6 @@
   .guide-subchapter > h4 {
     margin: 0.85rem 0 0.42rem;
     padding: 0.36rem 0.58rem;
-    border-left-width: 2px;
     border-radius: 10px;
     background: rgba(84, 158, 214, 0.08);
     font-size: 1rem;

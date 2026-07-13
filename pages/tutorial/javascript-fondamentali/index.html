@@ -411,25 +411,25 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
             <section class="guide-subchapter">
               <p>JavaScript è stato scritto di fretta nei primi anni '90 e si trascina dietro alcune stranezze storiche che fanno sorridere gli sviluppatori ma disorientano i principianti. Vediamo le 4 più celebri e come risolverle:</p>
 
-              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">Non è un errore di JavaScript, ma del modo in cui i computer convertono i numeri decimali in frazioni binarie. Per confrontare i prezzi in un e-commerce senza frazioni microscopiche storte, arrotonda sempre i decimali usando `toFixed()` o lavorando con i numeri interi (es. converti in centesimi prima di fare i calcoli):</p>
                 <pre style="margin-top: 0.5rem;"><code>const totale = (0.1 * 10 + 0.2 * 10) / 10; // Restituisce esattamente 0.3!</code></pre>
               </div>
 
-              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>2. typeof null === "object"</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">Questo è un vero e proprio bug storico del motore originale di JavaScript del 1995. Non può essere rimosso o corretto perché farlo romperebbe milioni di siti web attualmente attivi su internet. Per controllare se una variabile è effettivamente un oggetto escludendo `null`, fai un doppio controllo:</p>
                 <pre style="margin-top: 0.5rem;"><code>if (variabile &amp;&amp; typeof variabile === "object") { ... }</code></pre>
               </div>
 
-              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>3. NaN !== NaN (Not-a-Number non è uguale a se stesso)</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` rappresenta il risultato matematico di un'operazione non valida (es. `"ciao" * 5`). In JavaScript, `NaN` è l'unico valore al mondo che non è uguale a se stesso se confrontato con `===`. Per verificare se un valore è `NaN`, usa il metodo nativo:</p>
                 <pre style="margin-top: 0.5rem;"><code>Number.isNaN(valore); // Restituisce true o false in modo affidabile</code></pre>
               </div>
 
-              <div class="alert alert--note" style="border-left: 4px solid #f59e42; padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>4. Coercizione automatica dei tipi bizzarra</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">Se sommi un array vuoto a un altro array vuoto (`[] + []`) ottieni una stringa vuota `""`. Se sommi un array vuoto ad un oggetto vuoto (`[] + {}`) ottieni la stringa `"[object Object]"`. Per evitare questi bug silenziosi, usa sempre l'uguaglianza stretta `===` ed evita di sommare variabili di tipo diverso senza averle prima convertite esplicitamente (es. usando `Number()` o `String()`).</p>
               </div>

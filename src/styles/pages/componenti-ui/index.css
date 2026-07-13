@@ -345,8 +345,6 @@ body > main .projects-shell {
 
   .projects-intro__copy {
     gap: 0.75rem;
-    padding-left: 0.9rem;
-    border-left: 3px solid rgba(127, 216, 255, 0.82);
   }
 
   .section-kicker {
