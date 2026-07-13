@@ -43,8 +43,8 @@ const htmlMinifyOptions = {
 
 const antiFoucCss = [
   'html{background:#0d111a;color:#f2f2f2}',
-  'html.js body[data-css-ready="pending"]{opacity:0!important}',
-  'html.js body[data-css-ready="ready"]{opacity:1!important;transition:opacity 0.25s ease!important}',
+  'html.js body[data-css-ready="pending"]>*:not(.loading-bar-top){opacity:0!important}',
+  'html.js body[data-css-ready="ready"]>*:not(.loading-bar-top){opacity:1!important;transition:opacity 0.25s ease!important}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
@@ -72,7 +72,7 @@ const antiFoucRevealScript = [
   'var bar=document.createElement("div");',
   'bar.className="loading-bar-top";',
   'bar.style.cssText="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#0056b3,#0084ff,#7fd1ff);z-index:999999;width:0%;opacity:1;transition:opacity 0.25s ease;pointer-events:none;box-shadow:0 0 8px rgba(127,209,255,0.65),0 0 4px rgba(0,132,255,0.45);border-radius:0 2px 2px 0;";',
-  'document.documentElement.appendChild(bar);',
+  'document.body.appendChild(bar);',
   'var currentWidth=0;var targetWidth=15;var animId=null;',
   'function update(){',
   'var speed=targetWidth===100?0.15:0.08;',
@@ -152,7 +152,7 @@ function antiFoucHtmlPlugin() {
             `<script data-index-redirect>${indexRedirectScript}</script>`,
             `<script data-critical-base>${antiFoucJsFlagScript}</script>`,
             `<style data-critical-base>${antiFoucCss}</style>`,
-            '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1!important;visibility:visible!important}</style></noscript>',
+            '<noscript data-critical-base><style>body[data-css-ready="pending"]>*{opacity:1!important;visibility:visible!important}</style></noscript>',
             ...stylesheets
           ].join('');
 
