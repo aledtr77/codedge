@@ -43,8 +43,8 @@ const htmlMinifyOptions = {
 
 const antiFoucCss = [
   'html{background:#0d111a;color:#f2f2f2}',
-  'html.js body[data-css-ready="pending"]>*:not(.loading-bar-top){opacity:0!important}',
-  'html.js body[data-css-ready="ready"]>*:not(.loading-bar-top){opacity:1!important;transition:opacity 0.25s ease!important}',
+  '@media screen and (max-width:860px){html.js body[data-css-ready="pending"]>*:not(.loading-bar-top){opacity:0!important}}',
+  '@media screen and (max-width:860px){html.js body[data-css-ready="ready"]>*:not(.loading-bar-top){opacity:1!important;transition:opacity 0.25s ease!important}}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
@@ -69,6 +69,11 @@ const indexRedirectScript = [
 
 const antiFoucRevealScript = [
   '(function(){',
+  'var isMobile=window.innerWidth<=860;',
+  'if(!isMobile){',
+  'var body=document.body;if(body)body.setAttribute("data-css-ready","ready");',
+  'return;',
+  '}',
   'var bar=document.createElement("div");',
   'bar.className="loading-bar-top";',
   'bar.style.cssText="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#0056b3,#0084ff,#7fd1ff);z-index:999999;width:0%;opacity:1;transition:opacity 0.25s ease;pointer-events:none;box-shadow:0 0 8px rgba(127,209,255,0.65),0 0 4px rgba(0,132,255,0.45);border-radius:0 2px 2px 0;";',
@@ -112,6 +117,7 @@ const antiFoucRevealScript = [
   'window.addEventListener("pageshow",reveal,{once:true});',
   'setTimeout(reveal,2500);',
   'document.addEventListener("click",function(e){',
+  'if(window.innerWidth>860)return;',
   'if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button===1)return;',
   'var link=e.target.closest("a");if(!link)return;',
   'var href=link.getAttribute("href");if(!href)return;',
