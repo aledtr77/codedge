@@ -26,6 +26,10 @@
   overflow: visible;
 }
 
+.mobile-category-selector {
+  display: none;
+}
+
 .snippet-sidebar {
   min-width: 280px;
   max-width: 280px;
@@ -219,6 +223,10 @@
   transform: translateY(1px);
 }
 
+.toggle-code-btn {
+  display: none;
+}
+
 .snippet-box pre {
   margin: 1.25rem 0 0 0;
   background: rgba(18, 22, 30, 0.85);
@@ -248,123 +256,125 @@
     position: relative;
     top: 0;
     left: 0;
-    padding: 1.5rem 20px 0 20px;
+    padding: 1.25rem 15px 0 15px;
     background-color: transparent;
     border-bottom: none;
   }
 
   .snippet-container {
-    padding: 0 20px;
+    padding: 0 15px;
     padding-top: 0;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
-  /* Backdrop Overlay */
-  .snippet-container::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(9, 13, 22, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 1040;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .snippet-container.show-sidebar::before {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  /* Sidebar Drawer */
+  /* Hide sidebar and toggle entirely on mobile/tablet */
+  .sidebar-toggle,
   .snippet-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 290px;
-    min-width: 0;
-    max-width: 85vw;
-    height: 100vh;
-    z-index: 1050;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    margin-bottom: 0;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    border-radius: 0 12px 12px 0;
-    border-top: none;
-    border-bottom: none;
-    border-left: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
-      #1c212b;
-    padding: 1.5rem 1rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
+    display: none !important;
   }
 
-  .snippet-sidebar.active {
-    transform: translateX(0);
-  }
-  
-  .snippet-main {
-    margin-left: 0;
-    padding: 0;
-  }
-
-  /* Floating Action Button (FAB) for drawer toggle */
-  .sidebar-toggle {
+  /* Mobile Category Pills Selector */
+  .mobile-category-selector {
     display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.15rem 0.85rem;
+    margin-bottom: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mobile-category-selector::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-pill {
+    flex: 0 0 auto;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.95rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+  }
+  .category-pill.active {
+    background: var(--color-three, #0084ff);
+    border-color: var(--color-three, #0084ff);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+  }
+
+  /* Dynamic Toggle Button Styling */
+  .toggle-code-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--color-three, #0084ff);
-    box-shadow: 0 4px 16px rgba(0, 86, 179, 0.4);
-    z-index: 1100;
+    gap: 0.35rem;
+    background: rgba(0, 132, 255, 0.08);
+    border: 1px solid rgba(0, 132, 255, 0.25);
+    color: #9cd3ff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.45rem 0.8rem;
+    border-radius: 6px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  .toggle-code-btn:hover {
+    background: rgba(0, 132, 255, 0.18);
+    border-color: rgba(0, 132, 255, 0.45);
+    color: #fff;
+  }
+  .toggle-code-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #fff;
   }
 
-  .sidebar-toggle:hover {
-    background-color: var(--color-four, #0066cc);
+  /* Collapsible Code Container */
+  .snippet-box pre {
+    display: none;
+    margin: 1.15rem 0 0 0;
+    padding: 0.9rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    overflow-x: hidden !important;
+  }
+  .snippet-box.code-expanded pre {
+    display: block !important;
+    animation: fadeInSnippetCode 0.2s ease-out;
+  }
+  .snippet-box code {
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
   }
 
-  .sidebar-toggle:active {
-    transform: scale(0.95);
+  @keyframes fadeInSnippetCode {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .sidebar-toggle .bar-container {
-    display: flex;
-    flex-direction: column;
+  /* Title Box 2-column Button Alignment */
+  .title-box {
+    flex-flow: row wrap;
     justify-content: space-between;
-    width: 18px;
-    height: 12px;
+    align-items: center;
+    gap: 0.75rem;
   }
-
-  .sidebar-toggle .bar {
+  .title-box h3 {
     width: 100%;
-    height: 2px;
-    background-color: #fff;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    font-size: 1.05rem;
   }
-
-  .sidebar-toggle.active .bar:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
-  }
-  .sidebar-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .sidebar-toggle.active .bar:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+  .title-box .copy-btn,
+  .title-box .toggle-code-btn {
+    flex: 1;
+    min-width: 110px;
+    justify-content: center;
   }
 }
 
@@ -373,32 +383,5 @@
     padding: 1rem;
     border-radius: 6px;
     scroll-margin-top: 100px;
-  }
-  
-  .title-box {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-  
-  .copy-btn {
-    align-self: flex-start;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
-  
-  .snippet-box pre {
-    padding: 0.95rem;
-    font-size: 0.8rem;
-    white-space: pre;
-    overflow-x: auto;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-  
-  .snippet-box code {
-    white-space: pre;
-    overflow-wrap: normal;
-    word-break: normal;
   }
 }

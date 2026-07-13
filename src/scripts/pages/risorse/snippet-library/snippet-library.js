@@ -129,103 +129,98 @@ export function initSnippets(options = {}) {
   });
 
   /* ----------------------
-     Sidebar handler (CLASS-ONLY, the version that worked in console)
-     - clones the toggle button to remove existing listeners
-     - toggles classes only: button.active, container.show-sidebar, sidebar.active
-     - saves scrollTop before close and restores after open
-     - closes on link click / click outside
+     Mobile category pills filter & collapsible code blocks
      ---------------------- */
-  (function setupSidebarHandlerClassOnly() {
-    const toggleSelector = '.sidebar-toggle';
-    const containerSelector = '.snippet-container';
-    const sidebarSelector = '.snippet-sidebar';
-
-    const oldBtn = document.querySelector(toggleSelector);
-    const container = document.querySelector(containerSelector);
-    const sidebar = document.querySelector(sidebarSelector);
-
-    if (!oldBtn || !container || !sidebar) {
-      return; // nothing to do on pages without these
-    }
-
-    // clone to remove previous listeners
-    const newBtn = oldBtn.cloneNode(true);
-    oldBtn.parentNode.replaceChild(newBtn, oldBtn);
-
-    let savedScrollTop = 0;
+  (function setupMobileRedesign() {
+    const pills = document.querySelectorAll('.category-pill');
+    const sections = document.querySelectorAll('.snippet-section');
+    const boxes = document.querySelectorAll('.snippet-box');
     const mobileQuery = window.matchMedia('(max-width: 980px)');
 
-    function openSidebar() {
-      newBtn.classList.add('active');
-      container.classList.add('show-sidebar');
-      sidebar.classList.add('active');
-      if (mobileQuery.matches) {
-        document.body.classList.add('no-scroll');
-      }
-      setTimeout(() => {
-        try { sidebar.scrollTop = savedScrollTop || 0; } catch (e) {}
-      }, 40);
-    }
+    if (!pills.length && !boxes.length) return;
 
-    function closeSidebar() {
-      try { savedScrollTop = sidebar.scrollTop || 0; } catch (e) {}
-      newBtn.classList.remove('active');
-      container.classList.remove('show-sidebar');
-      sidebar.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-    }
+    // 1) Category Pills Filter Logic
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
 
-    function syncMobileSidebarState() {
-      if (!mobileQuery.matches) return;
-      closeSidebar();
-    }
+        const target = pill.dataset.target;
+        if (target === 'all') {
+          sections.forEach(sec => {
+            sec.style.display = '';
+          });
+        } else {
+          sections.forEach(sec => {
+            if (sec.id === target) {
+              sec.style.display = '';
+            } else {
+              sec.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
 
-    newBtn.addEventListener('click', function (ev) {
-      ev.preventDefault();
-      ev.stopPropagation();
-      if (newBtn.classList.contains('active')) {
-        closeSidebar();
+    // 2) Collapsible Code Blocks Logic
+    boxes.forEach(box => {
+      const titleBox = box.querySelector('.title-box');
+      if (!titleBox) return;
+
+      const toggleBtn = document.createElement('button');
+      toggleBtn.className = 'toggle-code-btn';
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+
+      toggleBtn.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        
+        const isExpanded = box.classList.toggle('code-expanded');
+        toggleBtn.setAttribute('aria-expanded', String(isExpanded));
+        toggleBtn.classList.toggle('active', isExpanded);
+        
+        if (isExpanded) {
+          toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nascondi';
+        } else {
+          toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+        }
+      });
+
+      titleBox.appendChild(toggleBtn);
+    });
+
+    // 3) Sync layout on query match
+    function handleQueryChange() {
+      if (!mobileQuery.matches) {
+        sections.forEach(sec => {
+          sec.style.display = '';
+        });
+        boxes.forEach(box => {
+          box.classList.remove('code-expanded');
+          const btn = box.querySelector('.toggle-code-btn');
+          if (btn) {
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+          }
+        });
       } else {
-        openSidebar();
+        const allPill = Array.from(pills).find(p => p.dataset.target === 'all');
+        if (allPill && !allPill.classList.contains('active')) {
+          allPill.click();
+        }
       }
-    }, { passive: false });
-
-    // close when clicking a link or button inside sidebar (only on mobile)
-    sidebar.addEventListener('click', function (ev) {
-      const t = ev.target.closest('a, button, .clickable-item');
-      if (!t) return;
-      if (mobileQuery.matches) {
-        closeSidebar();
-      }
-    });
-
-    // click outside closes
-    document.addEventListener('click', function (ev) {
-      if (!sidebar.contains(ev.target) && !newBtn.contains(ev.target) && container.classList.contains('show-sidebar')) {
-        closeSidebar();
-      }
-    });
-
-    // ensure toggle above everything
-    newBtn.style.zIndex = newBtn.style.zIndex || '2600';
+    }
 
     if (typeof mobileQuery.addEventListener === 'function') {
-      mobileQuery.addEventListener('change', syncMobileSidebarState);
+      mobileQuery.addEventListener('change', handleQueryChange);
     } else if (typeof mobileQuery.addListener === 'function') {
-      mobileQuery.addListener(syncMobileSidebarState);
+      mobileQuery.addListener(handleQueryChange);
     }
-    syncMobileSidebarState();
-
-    // debug handle
-    window.__snippetSidebarHandler = {
-      remove() {
-        try { newBtn.parentNode.replaceChild(oldBtn, newBtn); } catch (e) {}
-        delete window.__snippetSidebarHandler;
-        console.log('snippetSidebarHandler removed');
-      }
-    };
-
-    console.log('snippet-library: class-only sidebar handler installed.');
+    
+    if (mobileQuery.matches) {
+      handleQueryChange();
+    }
   })();
 
   /* ----------------------
