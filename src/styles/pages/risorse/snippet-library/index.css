@@ -273,6 +273,11 @@
     display: none !important;
   }
 
+  .snippet-main {
+    margin-left: 0;
+    padding: 0;
+  }
+
   /* Mobile Category Pills Selector */
   .mobile-category-selector {
     display: flex;
