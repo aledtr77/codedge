@@ -131,17 +131,18 @@ if (header) {
 
     // Check if user reached the bottom of the page (with a 10px tolerance)
     const isAtBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 10);
+    const isMobile = window.innerWidth <= 768;
 
     if (currentScrollY <= 50) {
       header.classList.remove("header-hidden", "header-scrolled");
     } else {
       header.classList.add("header-scrolled");
 
-      // Show header if scrolling up OR reached the bottom of the page
-      if (isAtBottom || scrollDelta < -tolerance) {
+      // Show header if scrolling up OR (reached the bottom of the page AND not on mobile)
+      if ((isAtBottom && !isMobile) || scrollDelta < -tolerance) {
         header.classList.remove("header-hidden");
       } 
-      // Hide header if scrolling down (and not at the bottom)
+      // Hide header if scrolling down (and not at the bottom or on mobile)
       else if (scrollDelta > tolerance) {
         header.classList.add("header-hidden");
       }
