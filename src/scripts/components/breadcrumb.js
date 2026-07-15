@@ -1,41 +1,76 @@
 // src/scripts/components/breadcrumb.js
 import "@/styles/components/breadcrumb.css";
 
-const breadcrumbTitles = {
-  "/risorse": "Risorse",
-  "/risorse/glossario-html": "Glossario HTML",
-  "/risorse/glossario-css": "Glossario CSS",
-  "/risorse/glossario-js": "Glossario JavaScript",
-  "/risorse/snippet-library": "Snippet Library",
-  "/strumenti": "Strumenti",
-  "/strumenti/compressore-immagini": "Compressore Immagini",
-  "/strumenti/estrattore-palette": "Estrattore Palette",
-  "/strumenti/generatore-colori": "Generatore Colori",
-  "/strumenti/generatore-gradienti": "Generatore Gradienti",
-  "/componenti-ui": "Componenti UI",
-  "/componenti-ui/card-interattive": "Card Contenuto Riusabile",
-  "/componenti-ui/form": "Form Contatto Accessibile",
-  "/componenti-ui/minimal-navbar": "Header Responsive",
-  "/componenti-ui/scroll-indicator": "Progress Bar di Lettura",
-  "/tutorial": "Tutorial",
-  "/tutorial/accessibilita-web-base": "Accessibilità Web Base",
-  "/tutorial/ai-sviluppo-solido": "AI e Sviluppo Solido",
-  "/tutorial/browser-devtools": "Browser e DevTools",
-  "/tutorial/css-fondamentali": "CSS Fondamentali",
-  "/tutorial/deploy-base": "Deploy Base",
-  "/tutorial/git-pratico-senza-panico": "Git Pratico Senza Panico",
-  "/tutorial/github-operativo": "GitHub Operativo",
-  "/tutorial/html-fondamentali": "HTML Fondamentali",
-  "/tutorial/javascript-fondamentali": "JavaScript Fondamentali",
-  "/tutorial/npm-vite-struttura-progetto": "NPM, Vite e Struttura Progetto",
-  "/tutorial/seo-tecnico-base": "SEO Tecnico Base",
-  "/tutorial/vscode-essenziale": "VSCode Essenziale",
-  "/template": "Template",
-  "/chi-sono": "Chi Sono",
-  "/contatti": "Contatti",
-  "/privacy-policy": "Privacy Policy",
-  "/termini-servizio": "Termini di Servizio"
+const BREADCRUMB_VOCABULARY = {
+  // Categorie principali (parenti)
+  "risorse": "Risorse",
+  "strumenti": "Strumenti",
+  "componenti-ui": "Componenti UI",
+  "tutorial": "Tutorial",
+  "template": "Template",
+  "percorsi-apprendimento": "Percorsi di Apprendimento",
+
+  // Specifiche eccezioni di pagine per le quali non vogliamo dipendere dal DOM o come fallback
+  "privacy-policy": "Privacy Policy",
+  "termini-servizio": "Termini di Servizio",
+  "chi-sono": "Chi Sono",
+  "contatti": "Contatti",
+
+  // Acronimi e abbreviazioni comuni
+  "ui": "UI",
+  "html": "HTML",
+  "css": "CSS",
+  "js": "JavaScript",
+  "vscode": "VSCode",
+  "vs-code": "VS Code",
+  "pwa": "PWA",
+  "ai": "AI",
+  "npm": "NPM",
+  "seo": "SEO",
+  "git": "Git",
+  "github": "GitHub",
+
+  // Congiunzioni/Preposizioni in minuscolo (per la formattazione automatica)
+  "di": "di",
+  "a": "a",
+  "da": "da",
+  "in": "in",
+  "con": "con",
+  "su": "su",
+  "per": "per",
+  "tra": "tra",
+  "fra": "fra",
+  "e": "e"
 };
+
+function formatSegment(segment) {
+  if (!segment) return "";
+  
+  // Se l'intero segmento è mappato direttamente nel vocabolario, usalo subito
+  if (BREADCRUMB_VOCABULARY[segment.toLowerCase()]) {
+    return BREADCRUMB_VOCABULARY[segment.toLowerCase()];
+  }
+
+  // Altrimenti spezza per trattino, capitalizza e applica sostituzioni
+  return segment
+    .split(/[-_]+/)
+    .map((word, index) => {
+      const lowerWord = word.toLowerCase();
+      
+      // Controlla se la parola fa parte del vocabolario (es. "ui" -> "UI", "di" -> "di")
+      if (BREADCRUMB_VOCABULARY[lowerWord]) {
+        // La prima parola del segmento deve essere sempre capitalizzata, anche se è una congiunzione
+        if (index === 0 && ["di", "a", "da", "in", "con", "su", "per", "tra", "fra", "e"].includes(lowerWord)) {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+        return BREADCRUMB_VOCABULARY[lowerWord];
+      }
+      
+      // Capitalizzazione standard
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+}
 
 function normalizePath(pathname) {
   const clean = String(pathname || "")
@@ -47,42 +82,40 @@ function normalizePath(pathname) {
   return clean === "" ? "/" : clean;
 }
 
-function getBreadcrumbTitle(path) {
+function getBreadcrumbTitle(path, isCurrentPage) {
   const normalized = path.replace(/\/+$/g, "");
-  if (breadcrumbTitles[normalized]) {
-    return breadcrumbTitles[normalized];
-  }
+  const lastSegment = normalized.split("/").pop() || "";
 
-  // Fallback 1: search for main headings (h1, h2 with title class/id)
-  const mainHeading = document.querySelector('main h1, article h1, h1:not(.resize-text), h2[id*="title"], h2[class*="title"]');
-  if (mainHeading) {
-    const text = mainHeading.textContent.replace(/[\n\r]+/g, " ").replace(/\s+/g, " ").trim();
-    if (text) return text;
-  }
+  // Se è la pagina corrente, proviamo a estrarre il titolo esatto dal DOM
+  if (isCurrentPage) {
+    // 1. Cerca l'H1 principale (evitando titoli della navbar)
+    const mainHeading = document.querySelector('main h1, article h1, h1:not(.resize-text), h2[id*="title"], h2[class*="title"]');
+    if (mainHeading) {
+      const text = mainHeading.textContent.replace(/[\n\r]+/g, " ").replace(/\s+/g, " ").trim();
+      if (text) return text;
+    }
 
-  // Fallback 2: parse document.title
-  if (document.title) {
-    const parts = document.title.split(/[|\u2013\u2014-]/);
-    if (parts.length > 0) {
-      return parts[0].trim();
+    // 2. Fallback su parte iniziale del document.title
+    if (document.title) {
+      const parts = document.title.split(/[|\u2013\u2014-]/);
+      if (parts.length > 0) {
+        return parts[0].trim();
+      }
     }
   }
 
-  // Fallback 3: capitalize path segment
-  const lastSegment = normalized.split("/").pop() || "";
-  return lastSegment
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, char => char.toUpperCase());
+  // Se è un segmento genitore (o se i fallback DOM falliscono), formatta il segmento dinamicamente
+  return formatSegment(lastSegment);
 }
 
 function initBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   const isHomepage = currentPath === "/";
 
-  // Skip rendering breadcrumbs on Homepage
+  // Salta il rendering delle breadcrumb sulla Homepage
   if (isHomepage) return;
 
-  // Avoid running multiple times
+  // Evita esecuzioni multiple
   if (document.querySelector(".codedge-breadcrumbs-bar")) return;
 
   const headerEl = document.querySelector("header");
@@ -91,7 +124,7 @@ function initBreadcrumbs() {
   const navbarEl = headerEl.querySelector(".navbar");
   if (!navbarEl) return;
 
-  // Create breadcrumb bar navigation element
+  // Crea elemento nav per la barra delle breadcrumb
   const nav = document.createElement("nav");
   nav.className = "codedge-breadcrumbs-bar";
   nav.setAttribute("aria-label", "Breadcrumbs");
@@ -99,7 +132,7 @@ function initBreadcrumbs() {
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
 
-  // Home item (link)
+  // Item Home (link)
   const homeLi = document.createElement("li");
   homeLi.className = "breadcrumb-item";
   const homeLink = document.createElement("a");
@@ -109,7 +142,7 @@ function initBreadcrumbs() {
   homeLi.appendChild(homeLink);
   listEl.appendChild(homeLi);
 
-  // Intermediate and Leaf segments
+  // Segmenti intermedi e foglia
   const segments = currentPath.split("/").filter(Boolean);
   let accumulatedPath = "";
   segments.forEach((segment, index) => {
@@ -123,13 +156,13 @@ function initBreadcrumbs() {
       li.setAttribute("aria-current", "page");
       const currentSpan = document.createElement("span");
       currentSpan.className = "breadcrumb-current";
-      currentSpan.textContent = getBreadcrumbTitle(accumulatedPath);
+      currentSpan.textContent = getBreadcrumbTitle(accumulatedPath, true);
       li.appendChild(currentSpan);
     } else {
       const link = document.createElement("a");
       link.href = accumulatedPath + "/";
       link.className = "breadcrumb-link";
-      link.textContent = getBreadcrumbTitle(accumulatedPath);
+      link.textContent = getBreadcrumbTitle(accumulatedPath, false);
       li.appendChild(link);
     }
     listEl.appendChild(li);
