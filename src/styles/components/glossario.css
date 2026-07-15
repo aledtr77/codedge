@@ -1,14 +1,35 @@
+/* ── Glossary pages: full-viewport locked layout ── */
+/* Page scroll is completely disabled; only the content panels scroll */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   --glossary-header-offset: var(--header-height, 132px);
-  --glossary-navbar-gap: 2rem;
+  --glossary-navbar-gap: 1.25rem;
   background: var(--background-one);
   color: var(--text-color);
   font-family: var(--main-font);
   margin: 0;
-  overflow-x: clip;
-  overscroll-behavior-x: none;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Fixed header: never moves on scroll */
+header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  /* Disable the smart-hide navbar behaviour on glossary pages */
+  transform: none !important;
+}
+
+/* Soft gradient below header for depth */
 header::after {
   content: "";
   position: absolute;
@@ -16,7 +37,7 @@ header::after {
   right: 0;
   bottom: calc(var(--glossary-navbar-gap) * -1);
   height: var(--glossary-navbar-gap);
-  background: linear-gradient(180deg, rgba(9, 13, 22, 0.95), rgba(9, 13, 22, 0));
+  background: linear-gradient(180deg, rgba(9, 13, 22, 0.95) 0%, rgba(9, 13, 22, 0) 100%);
   pointer-events: none;
 }
 
@@ -79,10 +100,25 @@ body > main,
   padding: 0;
 }
 
+/* Scrollable wrapper: fills all remaining space below fixed header */
+.glossary-scroll-wrapper {
+  flex: 1 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  /* top padding = header height so content starts below fixed header */
+  padding-top: var(--glossary-header-offset);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
+}
+
 .main-content {
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.75rem);
+  /* stretch to fill available scroll area height so aside sticky works */
   align-items: start;
   width: min(1440px, calc(100% - 2rem));
   margin: var(--glossary-navbar-gap) auto 2.75rem;
@@ -103,9 +139,11 @@ aside {
   z-index: 2;
   isolation: isolate;
   position: sticky;
-  top: calc(var(--glossary-header-offset) + var(--glossary-navbar-gap));
-  max-height: calc(100vh - var(--glossary-header-offset) - var(--glossary-navbar-gap) - 1rem);
-  overflow: auto;
+  /* sticky within .glossary-scroll-wrapper; top relative to its scroll context */
+  top: var(--glossary-navbar-gap);
+  max-height: calc(100vh - var(--glossary-header-offset) - var(--glossary-navbar-gap) * 2 - 1rem);
+  overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;

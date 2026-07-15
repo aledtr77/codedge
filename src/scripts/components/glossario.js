@@ -4,13 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const clickableItems = Array.from(document.querySelectorAll(".concept-list .clickable-item"));
   const header = document.querySelector("header");
   const mainContent = document.querySelector(".main-content");
+  const scrollWrapper = document.querySelector(".glossary-scroll-wrapper");
   let openAsideGroupForItem = () => {};
 
   if (!entries.length) return;
 
   function syncHeaderOffset() {
     if (!header) return;
-    document.body.style.setProperty("--glossary-header-offset", `${Math.ceil(header.getBoundingClientRect().height)}px`);
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    document.body.style.setProperty("--glossary-header-offset", `${h}px`);
+    // Keep the scroll wrapper top-padding in sync so content never hides under the fixed header
+    if (scrollWrapper) scrollWrapper.style.paddingTop = `${h}px`;
   }
 
   function normalize(value) {
@@ -173,10 +177,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
 
     // Only scroll when explicitly requested (sidebar click, not typing)
-    if (scrollToFirst && bestMatch) {
-      const offset = getContentScrollOffset();
-      const top = bestMatch.getBoundingClientRect().top + window.pageYOffset - offset - 16;
-      window.scrollTo({ top, behavior: "smooth" });
+    if (scrollToFirst && bestMatch && scrollWrapper) {
+      // Scroll within the wrapper, not window (page scroll is locked)
+      const wrapperRect = scrollWrapper.getBoundingClientRect();
+      const entryRect = bestMatch.getBoundingClientRect();
+      const gap = 16;
+      scrollWrapper.scrollBy({
+        top: entryRect.top - wrapperRect.top - gap,
+        behavior: "smooth",
+      });
     }
   }
 
@@ -285,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
   prepareSearchData();
   syncHeaderOffset();
   setupAsideGroups();
-  lockAsideScroll();
+  // lockAsideScroll removed: body scroll is blocked; aside and main content scroll natively
 
   if ("ResizeObserver" in window && header) {
     new ResizeObserver(syncHeaderOffset).observe(header);
