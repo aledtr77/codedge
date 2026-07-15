@@ -280,7 +280,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", syncHeaderOffset);
 
-  search?.addEventListener("input", () => filterEntries(true));
+  // Never auto-scroll on typing — keep the search bar and navbar in view
+  search?.addEventListener("input", () => filterEntries(false));
 
   clickableItems.forEach((item) => {
     item.addEventListener("click", () => {
