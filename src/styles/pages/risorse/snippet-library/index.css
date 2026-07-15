@@ -247,6 +247,7 @@ header {
   font-size: 1.15rem;
   font-weight: 700;
   margin: 0;
+  margin-right: auto; /* Group buttons together on the right side on desktop */
 }
 
 .copy-btn {
