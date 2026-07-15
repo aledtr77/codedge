@@ -163,6 +163,36 @@ function staticFooterHtmlPlugin() {
   };
 }
 
+function staticNavbarHtmlPlugin() {
+  const navbarTemplatePath = path.resolve(process.cwd(), 'src/partials/navbar.html');
+  const navbarRegex = /<nav\b[^>]*class=["']navbar["'][^>]*>([\s\S]*?)<\/nav>/i;
+  const titleRegex = /<span\b[^>]*class=["']navbar-title[^"']*["'][^>]*>([\s\S]*?)<\/span>/i;
+
+  return {
+    name: 'static-navbar-html',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        if (!navbarRegex.test(html)) return html;
+
+        let navbarTemplate = fs.readFileSync(navbarTemplatePath, 'utf8').trim();
+
+        const navMatch = html.match(navbarRegex);
+        if (navMatch) {
+          const navContent = navMatch[1];
+          const titleMatch = navContent.match(titleRegex);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+
+          navbarTemplate = navbarTemplate.replace('{{TITLE}}', title);
+          return html.replace(navbarRegex, navbarTemplate);
+        }
+
+        return html;
+      }
+    }
+  };
+}
+
 // --- DEV: riscrive URL pulite (/risorse/) verso pages/<route>/index.html ---
 function devPagesRewrite() {
   return {
@@ -259,6 +289,7 @@ export default defineConfig(({ command }) => {
   };
 
   const plugins = [];
+  plugins.push(staticNavbarHtmlPlugin());
   plugins.push(staticFooterHtmlPlugin());
   plugins.push(antiFoucHtmlPlugin());
   if (command === 'serve') {
