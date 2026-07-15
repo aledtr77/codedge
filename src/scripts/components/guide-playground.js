@@ -163,7 +163,7 @@ export default function initGuidePlayground() {
           <div class="playground-lang-tag">${lang}</div>
         </div>
         <div class="playground-preview-pane">
-          <iframe class="playground-iframe" sandbox="allow-scripts" title="Anteprima playground"></iframe>
+          <iframe class="playground-iframe" sandbox="allow-scripts allow-same-origin" title="Anteprima playground"></iframe>
         </div>
       </div>
     `;
