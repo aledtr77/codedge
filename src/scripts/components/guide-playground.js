@@ -47,14 +47,14 @@ export default function initGuidePlayground() {
     .box:nth-child(3), .item:nth-child(3) { background: #10b981; }
 
     /* CSS scritto dal programmatore */
-    ${userCss}
+    \${userCss}
   </style>
 </head>
 <body>
   
   <div class="sandbox-section">
     <h4>1. Layout (Flexbox / Grid / Columns)</h4>
-    <!-- I contenitori hanno classi multiple per intercettare i diversi snippet -->
+    <!-- Contenitori di prova generici -->
     <div class="flex-row auto-grid layout-grid carousel-snap flex-container parent container">
       <div class="box item carousel-item card">Box 1</div>
       <div class="box item carousel-item card">Box 2</div>
@@ -84,11 +84,11 @@ export default function initGuidePlayground() {
   `.trim();
 
   const htmlDefaultTemplate = (userHtml) => {
-    // Se l'HTML ha già i tag strutturali (html, body), lo lasciamo così.
+    // Se l'HTML ha già i tag strutturali, lo lasciamo così.
     if (userHtml.includes("<html") || userHtml.includes("<body")) {
       return userHtml;
     }
-    // Altrimenti creiamo un wrapper base pulito per consentire un rendering ordinato
+    // Altrimenti creiamo un wrapper base pulito
     return `
 <!DOCTYPE html>
 <html lang="it">
@@ -193,8 +193,6 @@ export default function initGuidePlayground() {
     .submit-btn:hover {
       background: #0284c7;
     }
-    
-    /* Immagini responsitive fallback */
     picture, img {
       max-width: 100%;
       height: auto;
@@ -204,17 +202,17 @@ export default function initGuidePlayground() {
   </style>
 </head>
 <body>
-  ${userHtml}
+  \${userHtml}
 </body>
 </html>
     `.trim();
   };
 
+  // 1) Avvolge i blocchi di codice e inserisce le toolbar/pulsanti staticamente
   codeBlocks.forEach((codeEl) => {
     const preEl = codeEl.parentElement;
     if (!preEl || preEl.tagName !== "PRE") return;
 
-    // Rileva il linguaggio del blocco di codice
     let lang = "";
     if (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) {
       lang = "html";
@@ -222,7 +220,6 @@ export default function initGuidePlayground() {
       lang = "css";
     }
 
-    // Creiamo il wrapper attorno a <pre>
     const wrapper = document.createElement("div");
     wrapper.className = "code-wrapper";
     preEl.parentNode.insertBefore(wrapper, preEl);
@@ -230,7 +227,6 @@ export default function initGuidePlayground() {
 
     const snippetBox = preEl.closest('.snippet-box');
 
-    // Creiamo la toolbar fluttuante (solo se non siamo in snippet-box)
     if (!snippetBox) {
       const toolbar = document.createElement("div");
       toolbar.className = "code-toolbar";
@@ -240,25 +236,14 @@ export default function initGuidePlayground() {
       copyBtn.type = "button";
       copyBtn.className = "code-btn";
       copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
-      copyBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
-          copyBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato`;
-          setTimeout(() => {
-            copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
-          }, 2000);
-        });
-      });
       toolbar.appendChild(copyBtn);
 
-      // Bottone Modifica Live (disponibile solo per HTML e CSS)
+      // Bottone Prova Live (disponibile solo per HTML e CSS)
       if (lang === "html" || lang === "css") {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.className = "code-btn";
         editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-        editBtn.addEventListener("click", () => {
-          openPlayground(wrapper, codeEl.textContent.trim(), lang);
-        });
         toolbar.appendChild(editBtn);
       }
 
@@ -272,40 +257,24 @@ export default function initGuidePlayground() {
           editBtn.type = "button";
           editBtn.className = "play-btn";
           editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-          
-          editBtn.addEventListener("click", () => {
-            const nextSib = wrapper.nextSibling;
-            if (nextSib && nextSib.classList && nextSib.classList.contains("code-playground")) {
-              // Chiudi playground
-              nextSib.remove();
-              wrapper.style.display = "block";
-              editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-              editBtn.classList.remove("active");
-            } else {
-              // Apri playground
-              openPlayground(wrapper, codeEl.textContent.trim(), lang, editBtn);
-              editBtn.innerHTML = `<i class="fas fa-times"></i> Chiudi Live`;
-              editBtn.classList.add("active");
-            }
-          });
-          
           titleBox.appendChild(editBtn);
         }
       }
     }
   });
 
-  const openPlayground = (wrapper, initialCode, lang, editBtn = null) => {
-    // Nascondiamo il wrapper statico del codice
+  // 2) Gestore dell'apertura del playground interattivo
+  const openPlayground = (wrapper, initialCode, lang) => {
     wrapper.style.display = "none";
 
     const playground = document.createElement("div");
     playground.className = "code-playground";
+    playground.dataset.initialCode = initialCode;
 
     playground.innerHTML = `
       <div class="playground-header">
         <div class="playground-title">
-          <i class="fas fa-terminal"></i> Playground Live (${lang.toUpperCase()})
+          <i class="fas fa-terminal"></i> Playground Live (\${lang.toUpperCase()})
         </div>
         <div class="playground-actions">
           <button type="button" class="playground-btn btn-reset" title="Ripristina codice iniziale"><i class="fas fa-undo"></i> <span>Ripristina</span></button>
@@ -316,7 +285,7 @@ export default function initGuidePlayground() {
       <div class="playground-body">
         <div class="playground-editor-pane">
           <textarea class="playground-editor" spellcheck="false" aria-label="Editor di codice"></textarea>
-          <div class="playground-lang-tag">${lang}</div>
+          <div class="playground-lang-tag">\${lang}</div>
         </div>
         <div class="playground-preview-pane">
           <iframe class="playground-iframe" sandbox="allow-scripts allow-same-origin" title="Anteprima playground"></iframe>
@@ -324,16 +293,11 @@ export default function initGuidePlayground() {
       </div>
     `;
 
-    // Inseriamo il playground subito sotto il wrapper nascosto
     wrapper.parentNode.insertBefore(playground, wrapper.nextSibling);
 
     const textarea = playground.querySelector(".playground-editor");
     const iframe = playground.querySelector(".playground-iframe");
-    const btnReset = playground.querySelector(".btn-reset");
-    const btnCopy = playground.querySelector(".btn-copy");
-    const btnClose = playground.querySelector(".btn-close");
 
-    // Imposta il codice iniziale
     textarea.value = initialCode;
 
     const updatePreview = () => {
@@ -348,52 +312,140 @@ export default function initGuidePlayground() {
       iframeDoc.close();
     };
 
-    // Aggiornamento su digitazione
+    // Aggiornamento locale real-time su digitazione
     textarea.addEventListener("input", updatePreview);
-
-    // Azione Ripristina
-    btnReset.addEventListener("click", () => {
-      textarea.value = initialCode;
-      updatePreview();
-    });
-
-    // Azione Copia Codice Modificato
-    btnCopy.addEventListener("click", () => {
-      navigator.clipboard.writeText(textarea.value).then(() => {
-        const textSpan = btnCopy.querySelector(".btn-text");
-        const iconEl = btnCopy.querySelector("i");
-        
-        if (iconEl) {
-          iconEl.className = "fas fa-check";
-          iconEl.style.color = "#2ed573";
-        }
-        if (textSpan) {
-          textSpan.textContent = "Copiato!";
-        }
-        
-        setTimeout(() => {
-          if (iconEl) {
-            iconEl.className = "fas fa-copy";
-            iconEl.style.color = "";
-          }
-          if (textSpan) {
-            textSpan.textContent = "Copia Codice";
-          }
-        }, 1500);
-      });
-    });
-
-    // Azione Chiudi Playground
-    btnClose.addEventListener("click", () => {
-      playground.remove();
-      wrapper.style.display = "block";
-      if (editBtn) {
-        editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-        editBtn.classList.remove("active");
-      }
-    });
-
-    // Inizializza l'anteprima subito all'avvio
     updatePreview();
   };
+
+  // 3) Delegazione degli Eventi Click globale su document
+  document.addEventListener("click", (ev) => {
+    // A) Click su Prova Live all'interno di .snippet-box (.play-btn)
+    const playBtn = ev.target.closest(".play-btn");
+    if (playBtn) {
+      ev.preventDefault();
+      const snippetBox = playBtn.closest(".snippet-box");
+      if (snippetBox) {
+        const wrapper = snippetBox.querySelector(".code-wrapper");
+        const codeEl = snippetBox.querySelector("pre code");
+        if (wrapper && codeEl) {
+          const nextSib = wrapper.nextSibling;
+          if (nextSib && nextSib.classList && nextSib.classList.contains("code-playground")) {
+            // Chiudi
+            nextSib.remove();
+            wrapper.style.display = "block";
+            playBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+            playBtn.classList.remove("active");
+          } else {
+            // Apri
+            const lang = (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) ? "html" : "css";
+            openPlayground(wrapper, codeEl.textContent.trim(), lang);
+            playBtn.innerHTML = `<i class="fas fa-times"></i> Chiudi Live`;
+            playBtn.classList.add("active");
+          }
+        }
+      }
+      return;
+    }
+
+    // B) Click su toolbar statiche (.code-btn dei normali pre code)
+    const codeBtn = ev.target.closest(".code-btn");
+    if (codeBtn) {
+      ev.preventDefault();
+      const wrapper = codeBtn.closest(".code-wrapper");
+      if (wrapper) {
+        const codeEl = wrapper.querySelector("pre code");
+        if (codeEl) {
+          const isCopy = codeBtn.innerHTML.includes("Copia");
+          const lang = (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) ? "html" : "css";
+          if (isCopy) {
+            navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
+              codeBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato`;
+              setTimeout(() => {
+                codeBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
+              }, 2000);
+            });
+          } else {
+            openPlayground(wrapper, codeEl.textContent.trim(), lang);
+          }
+        }
+      }
+      return;
+    }
+
+    // C) Click su bottone Chiudi all'interno del playground (.btn-close)
+    const btnClose = ev.target.closest(".btn-close");
+    if (btnClose) {
+      ev.preventDefault();
+      const playground = btnClose.closest(".code-playground");
+      if (playground) {
+        const wrapper = playground.previousSibling;
+        if (wrapper && wrapper.classList && wrapper.classList.contains("code-wrapper")) {
+          playground.remove();
+          wrapper.style.display = "block";
+          
+          // Reset eventuale play-btn in snippet-box genitore
+          const snippetBox = wrapper.closest(".snippet-box");
+          if (snippetBox) {
+            const editBtn = snippetBox.querySelector(".play-btn");
+            if (editBtn) {
+              editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+              editBtn.classList.remove("active");
+            }
+          }
+        }
+      }
+      return;
+    }
+
+    // D) Click su bottone Ripristina (.btn-reset)
+    const btnReset = ev.target.closest(".btn-reset");
+    if (btnReset) {
+      ev.preventDefault();
+      const playground = btnReset.closest(".code-playground");
+      if (playground) {
+        const textarea = playground.querySelector(".playground-editor");
+        const initialCode = playground.dataset.initialCode;
+        if (textarea && initialCode !== undefined) {
+          textarea.value = initialCode;
+          textarea.dispatchEvent(new Event("input"));
+        }
+      }
+      return;
+    }
+
+    // E) Click su bottone Copia Codice del playground (.btn-copy)
+    const btnCopy = ev.target.closest(".btn-copy");
+    if (btnCopy) {
+      ev.preventDefault();
+      const playground = btnCopy.closest(".code-playground");
+      if (playground) {
+        const textarea = playground.querySelector(".playground-editor");
+        if (textarea) {
+          navigator.clipboard.writeText(textarea.value).then(() => {
+            const textSpan = btnCopy.querySelector(".btn-text");
+            const iconEl = btnCopy.querySelector("i");
+            
+            if (iconEl) {
+              iconEl.className = "fas fa-check";
+              iconEl.style.color = "#2ed573";
+            }
+            if (textSpan) {
+              textSpan.textContent = "Copiato!";
+            }
+            
+            setTimeout(() => {
+              if (iconEl) {
+                iconEl.className = "fas fa-copy";
+                iconEl.style.color = "";
+              }
+              if (textSpan) {
+                textSpan.textContent = "Copia Codice";
+              }
+            }, 1500);
+          });
+        }
+      }
+      return;
+    }
+  });
 }

@@ -1,14 +1,10 @@
-// snippet-library.js (stable final)
-// initSnippets(options) - stable class-only sidebar + robust copy feedback
+// snippet-library.js (optimized final)
+// initSnippets(options) - class-only sidebar + robust copy feedback & event delegation
 export function initSnippets(options = {}) {
   const scrollOffset = options.scrollOffset || 0;
 
   /* ----------------------
      Robust copy-to-clipboard with feedback ("Copiato!")
-     - finds code in .snippet-box / pre > code or nearby
-     - uses navigator.clipboard when available, fallback textarea
-     - preserves original button HTML & icon
-     - accessible aria-live region
      ---------------------- */
   function findCodeElementFromButton(btn) {
     if (!btn) return null;
@@ -121,102 +117,6 @@ export function initSnippets(options = {}) {
   // expose for inline onclick usage
   window.copyCode = copyCode;
 
-  document.addEventListener('click', (ev) => {
-    const copyBtn = ev.target.closest('.copy-btn');
-    if (!copyBtn) return;
-    ev.preventDefault();
-    copyCode(copyBtn);
-  });
-
-  /* ----------------------
-     Mobile category pills filter & collapsible code blocks
-     ---------------------- */
-  (function setupMobileRedesign() {
-    const pills = document.querySelectorAll('.category-pill');
-    const sections = document.querySelectorAll('.snippet-section');
-    const boxes = document.querySelectorAll('.snippet-box');
-    const mobileQuery = window.matchMedia('(max-width: 980px)');
-
-    if (!pills.length && !boxes.length) return;
-
-    // 1) Category Pills Filter Logic
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        const target = pill.dataset.target;
-        sections.forEach(sec => {
-          if (sec.id === target) {
-            sec.style.display = '';
-          } else {
-            sec.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // 2) Collapsible Code Blocks Logic
-    boxes.forEach(box => {
-      const titleBox = box.querySelector('.title-box');
-      if (!titleBox) return;
-
-      const toggleBtn = document.createElement('button');
-      toggleBtn.className = 'toggle-code-btn';
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
-
-      toggleBtn.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        ev.stopPropagation();
-        
-        const isExpanded = box.classList.toggle('code-expanded');
-        toggleBtn.setAttribute('aria-expanded', String(isExpanded));
-        toggleBtn.classList.toggle('active', isExpanded);
-        
-        if (isExpanded) {
-          toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nascondi';
-        } else {
-          toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
-        }
-      });
-
-      titleBox.appendChild(toggleBtn);
-    });
-
-    // 3) Sync layout on query match
-    function handleQueryChange() {
-      if (!mobileQuery.matches) {
-        sections.forEach(sec => {
-          sec.style.display = '';
-        });
-        boxes.forEach(box => {
-          box.classList.remove('code-expanded');
-          const btn = box.querySelector('.toggle-code-btn');
-          if (btn) {
-            btn.classList.remove('active');
-            btn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
-          }
-        });
-      } else {
-        const activePill = Array.from(pills).find(p => p.classList.contains('active')) || pills[0];
-        if (activePill) {
-          activePill.click();
-        }
-      }
-    }
-
-    if (typeof mobileQuery.addEventListener === 'function') {
-      mobileQuery.addEventListener('change', handleQueryChange);
-    } else if (typeof mobileQuery.addListener === 'function') {
-      mobileQuery.addListener(handleQueryChange);
-    }
-    
-    if (mobileQuery.matches) {
-      handleQueryChange();
-    }
-  })();
-
   /* ----------------------
      Dynamic header height offset synchronization
      ---------------------- */
@@ -233,41 +133,138 @@ export function initSnippets(options = {}) {
   window.addEventListener('resize', syncHeaderOffset);
 
   /* ----------------------
-     Smooth anchor scrolling for clickable items
+     Mobile redesign (Pills, Toggles) & Sidebar smooth scrolling
      ---------------------- */
-  (function attachClickableItems() {
-    const items = Array.from(document.querySelectorAll('.clickable-item'));
-    const snippetMain = document.querySelector('.snippet-main');
-    if (!items.length) return;
-    items.forEach(it => {
-      it.addEventListener('click', (ev) => {
-        const href = it.getAttribute('href') || it.dataset.target;
-        if (!href) return;
-        if (href.startsWith('#')) {
-          ev.preventDefault();
-          const el = document.querySelector(href);
-          if (el) {
-            const isDesktop = window.innerWidth > 980;
-            if (isDesktop && snippetMain) {
-              const containerRect = snippetMain.getBoundingClientRect();
-              const elRect = el.getBoundingClientRect();
-              const gap = 16;
-              snippetMain.scrollTo({
-                top: snippetMain.scrollTop + (elRect.top - containerRect.top) - gap,
-                behavior: 'smooth'
-              });
+  const pills = document.querySelectorAll('.category-pill');
+  const sections = document.querySelectorAll('.snippet-section');
+  const boxes = document.querySelectorAll('.snippet-box');
+  const snippetMain = document.querySelector('.snippet-main');
+  const mobileQuery = window.matchMedia('(max-width: 980px)');
 
-              // Visually activate clicked item
-              items.forEach(item => item.classList.remove('is-active'));
-              it.classList.add('is-active');
-            } else {
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+  // 1) Initialize toggle buttons inside each snippet box titleBox on page load
+  boxes.forEach(box => {
+    const titleBox = box.querySelector('.title-box');
+    if (!titleBox) return;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'toggle-code-btn';
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+    titleBox.appendChild(toggleBtn);
+  });
+
+  // 2) Centralized Event Delegation on document for all click actions
+  document.addEventListener('click', (ev) => {
+    // Copy code button click
+    const copyBtn = ev.target.closest('.copy-btn');
+    if (copyBtn) {
+      ev.preventDefault();
+      copyCode(copyBtn);
+      return;
+    }
+
+    // Category Pill filter click
+    const pill = ev.target.closest('.category-pill');
+    if (pill) {
+      ev.preventDefault();
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const target = pill.dataset.target;
+      sections.forEach(sec => {
+        sec.style.display = sec.id === target ? '' : 'none';
+      });
+      return;
+    }
+
+    // "Vedi Codice" collapsible button click
+    const toggleBtn = ev.target.closest('.toggle-code-btn');
+    if (toggleBtn) {
+      ev.preventDefault();
+      const box = toggleBtn.closest('.snippet-box');
+      if (box) {
+        const isExpanded = box.classList.toggle('code-expanded');
+        toggleBtn.setAttribute('aria-expanded', String(isExpanded));
+        toggleBtn.classList.toggle('active', isExpanded);
+        
+        if (isExpanded) {
+          toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nascondi';
+        } else {
+          toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+        }
+      }
+      return;
+    }
+
+    // Clickable Sidebar Item click (smooth scroll)
+    const it = ev.target.closest('.clickable-item');
+    if (it) {
+      const href = it.getAttribute('href') || it.dataset.target;
+      if (href && href.startsWith('#')) {
+        ev.preventDefault();
+        const el = document.querySelector(href);
+        if (el) {
+          const isDesktop = window.innerWidth > 980;
+          if (isDesktop && snippetMain) {
+            const containerRect = snippetMain.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+            const gap = 16;
+            snippetMain.scrollTo({
+              top: snippetMain.scrollTop + (elRect.top - containerRect.top) - gap,
+              behavior: 'smooth'
+            });
+
+            // Visually activate clicked item
+            const items = document.querySelectorAll('.clickable-item');
+            items.forEach(item => item.classList.remove('is-active'));
+            it.classList.add('is-active');
+          } else {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
+      }
+      return;
+    }
+  });
+
+  // 3) Sync layout on query match
+  function handleQueryChange() {
+    if (!mobileQuery.matches) {
+      sections.forEach(sec => {
+        sec.style.display = '';
       });
-    });
-  })();
+      boxes.forEach(box => {
+        box.classList.remove('code-expanded');
+        const btn = box.querySelector('.toggle-code-btn');
+        if (btn) {
+          btn.classList.remove('active');
+          btn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+        }
+      });
+    } else {
+      const activePill = Array.from(pills).find(p => p.classList.contains('active')) || pills[0];
+      if (activePill) {
+        pills.forEach(p => p.classList.remove('active'));
+        activePill.classList.add('active');
+        const target = activePill.dataset.target;
+        sections.forEach(sec => {
+          sec.style.display = sec.id === target ? '' : 'none';
+        });
+      }
+    }
+  }
+
+  if (pills.length || boxes.length) {
+    if (typeof mobileQuery.addEventListener === 'function') {
+      mobileQuery.addEventListener('change', handleQueryChange);
+    } else if (typeof mobileQuery.addListener === 'function') {
+      mobileQuery.addListener(handleQueryChange);
+    }
+    
+    if (mobileQuery.matches) {
+      handleQueryChange();
+    }
+  }
 
   console.log('initSnippets: initialized');
 }
