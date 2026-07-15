@@ -117,9 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const queryWords = query.split(/\s+/).filter(Boolean);
     if (queryWords.length === 0) return 0;
 
-    // EVERY word in the query must match at least one of the fields (title, summary, or fullText)
+    // Helper to check if a word matches as a prefix of any word in the text (using word boundary \b)
+    const hasWordPrefix = (text, qWord) => {
+      const escaped = qWord.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const regex = new RegExp('\\b' + escaped, 'i');
+      return regex.test(text);
+    };
+
+    // EVERY word in the query must match as a prefix of at least one word in title, summary, or fullText
     const matchesAllWords = queryWords.every((word) => 
-      title.includes(word) || summary.includes(word) || fullText.includes(word)
+      hasWordPrefix(title, word) || hasWordPrefix(summary, word) || hasWordPrefix(fullText, word)
     );
 
     if (!matchesAllWords) return -1; // Filter out entries that do not match all typed words
@@ -134,8 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (title.startsWith(query)) {
       score += 15000 - title.length;
     }
-    // 3. Title contains query
-    else if (title.includes(query)) {
+    // 3. Title contains query word boundary prefix
+    else if (hasWordPrefix(title, query)) {
       score += 10000 - title.indexOf(query) - title.length;
     }
 
@@ -149,15 +156,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // 5. Summary matches
-    if (summary.includes(query)) {
-      score += 5000 - summary.indexOf(query);
-    }
-
-    // 6. Full text matches
-    if (fullText.includes(query)) {
-      score += 1000 - fullText.indexOf(query);
-    }
+    // 5. Summary prefix matches
+    queryWords.forEach((qWord) => {
+      if (hasWordPrefix(summary, qWord)) {
+        score += 1000;
+      }
+    });
 
     return score;
   }
@@ -332,8 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", syncHeaderOffset);
 
-  // Never auto-scroll on typing — keep layout stable
-  search?.addEventListener("input", () => filterEntries(false));
+  // Auto-scroll to matched term on typing
+  search?.addEventListener("input", () => filterEntries(true));
 
   clickableItems.forEach((item) => {
     item.addEventListener("click", () => {
