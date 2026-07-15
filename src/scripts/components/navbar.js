@@ -138,11 +138,11 @@ if (header) {
     } else {
       header.classList.add("header-scrolled");
 
-      // Show header if scrolling up OR (reached the bottom of the page AND not on mobile)
-      if ((isAtBottom && !isMobile) || scrollDelta < -tolerance) {
+      // Show header only when scrolling up (same behaviour on all screen sizes)
+      if (scrollDelta < -tolerance) {
         header.classList.remove("header-hidden");
       } 
-      // Hide header if scrolling down (and not at the bottom or on mobile)
+      // Hide header if scrolling down
       else if (scrollDelta > tolerance) {
         header.classList.add("header-hidden");
       }
