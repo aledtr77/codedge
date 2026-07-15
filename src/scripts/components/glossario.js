@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("header");
   const mainContent = document.querySelector(".main-content");
   const scrollWrapper = document.querySelector(".glossary-scroll-wrapper");
+  const termsContainer = document.querySelector(".main-content > div:not(.sidebar-placeholder)");
   let openAsideGroupForItem = () => {};
 
   if (!entries.length) return;
@@ -13,8 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!header) return;
     const h = Math.ceil(header.getBoundingClientRect().height);
     document.body.style.setProperty("--glossary-header-offset", `${h}px`);
-    // Keep the scroll wrapper top-padding in sync so content never hides under the fixed header
-    if (scrollWrapper) scrollWrapper.style.paddingTop = `${h}px`;
   }
 
   function normalize(value) {
@@ -210,16 +209,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
 
-    // Only scroll when explicitly requested (sidebar click, not typing)
-    if (scrollToFirst && bestMatch && scrollWrapper) {
-      // Scroll within the wrapper, not window (page scroll is locked)
-      const wrapperRect = scrollWrapper.getBoundingClientRect();
-      const entryRect = bestMatch.getBoundingClientRect();
-      const gap = 16;
-      scrollWrapper.scrollBy({
-        top: entryRect.top - wrapperRect.top - gap,
-        behavior: "smooth",
-      });
+    // Scroll to the matched term
+    if (scrollToFirst && bestMatch) {
+      const isDesktop = window.innerWidth > 1180;
+      if (isDesktop && termsContainer) {
+        // Desktop: scroll the independent terms container panel
+        const containerRect = termsContainer.getBoundingClientRect();
+        const entryRect = bestMatch.getBoundingClientRect();
+        const gap = 16;
+        termsContainer.scrollBy({
+          top: entryRect.top - containerRect.top - gap,
+          behavior: "smooth",
+        });
+      } else if (scrollWrapper) {
+        // Mobile: scroll the entire wrapper
+        const wrapperRect = scrollWrapper.getBoundingClientRect();
+        const entryRect = bestMatch.getBoundingClientRect();
+        const gap = 16;
+        scrollWrapper.scrollBy({
+          top: entryRect.top - wrapperRect.top - gap,
+          behavior: "smooth",
+        });
+      }
     }
   }
 

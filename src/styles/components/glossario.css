@@ -104,31 +104,36 @@ body > main,
   padding: 0;
 }
 
-/* Scrollable wrapper: fills all remaining space below fixed header */
+/* Scrollable wrapper: locked container to support independent inner column scrolling */
 .glossary-scroll-wrapper {
   flex: 1 1 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  padding-top: var(--glossary-header-offset);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
+  padding-top: var(--glossary-header-offset);
+  min-height: 0;
+}
+
+.glossary-scroll-wrapper > main {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .main-content {
+  flex: 1 1 0;
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.75rem);
-  /* stretch to fill available scroll area height so aside sticky works */
-  align-items: start;
   width: min(1440px, calc(100% - 2rem));
   margin: var(--glossary-navbar-gap) auto 2.75rem;
+  min-height: 0;
 }
 
 .main-content > aside {
   grid-column: 1;
+  height: 100%;
 }
 
 .main-content > main,
@@ -136,15 +141,16 @@ body > main,
 .main-content > div:not(.sidebar-placeholder) {
   grid-column: 2;
   min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
 }
 
 aside {
   z-index: 2;
   isolation: isolate;
-  position: sticky;
-  /* sticky within .glossary-scroll-wrapper; top relative to its scroll context */
-  top: calc(var(--glossary-header-offset) + var(--glossary-navbar-gap));
-  max-height: calc(100vh - var(--glossary-header-offset) - var(--glossary-navbar-gap) * 2 - 1rem);
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
@@ -495,6 +501,10 @@ pre::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 1180px) {
+  .glossary-scroll-wrapper {
+    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
+  }
+
   .search-container,
   .main-content {
     width: min(100% - 1rem, 1440px);
@@ -502,6 +512,8 @@ pre::-webkit-scrollbar-thumb {
 
   .main-content {
     grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
   }
 
   .main-content > aside,
@@ -509,10 +521,13 @@ pre::-webkit-scrollbar-thumb {
   .main-content > section,
   .main-content > div:not(.sidebar-placeholder) {
     grid-column: 1;
+    height: auto;
+    overflow-y: visible;
   }
 
   aside {
     position: static;
+    height: auto;
     max-height: 320px;
   }
 }
