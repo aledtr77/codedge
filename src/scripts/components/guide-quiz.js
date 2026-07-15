@@ -38,13 +38,21 @@ export default function initGuideQuiz() {
 
     const optionsHtml = mappedOptions
       .map((item) => {
-        return `<button type="button" class="quiz-option-btn" data-correct="${item.isCorrect}">${item.opt}</button>`;
+        return `
+          <button type="button" class="quiz-option-btn" data-correct="${item.isCorrect}">
+            <span class="quiz-option-indicator"></span>
+            <span class="quiz-option-label">${item.opt}</span>
+          </button>
+        `;
       })
       .join("\n");
 
     wrapper.innerHTML = `
       <div class="quiz-question-card" data-question="${index + 1}">
-        <p class="quiz-question-text"><strong>${index + 1}. ${qData.q}</strong></p>
+        <div class="quiz-question-header">
+          <span class="quiz-question-badge">Domanda ${index + 1} di ${questions.length}</span>
+        </div>
+        <h4 class="quiz-question-text">${qData.q}</h4>
         <div class="quiz-options">
           ${optionsHtml}
         </div>
