@@ -25,10 +25,20 @@ export default function initGuideQuiz() {
 
   const renderQuestion = (index) => {
     const qData = questions[index];
-    const optionsHtml = qData.options
-      .map((opt, optIdx) => {
-        const isCorrect = optIdx === qData.correct;
-        return `<button type="button" class="quiz-option-btn" data-correct="${isCorrect}">${opt}</button>`;
+    const mappedOptions = qData.options.map((opt, optIdx) => ({
+      opt,
+      isCorrect: optIdx === qData.correct
+    }));
+
+    // Randomize option positions
+    for (let i = mappedOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [mappedOptions[i], mappedOptions[j]] = [mappedOptions[j], mappedOptions[i]];
+    }
+
+    const optionsHtml = mappedOptions
+      .map((item) => {
+        return `<button type="button" class="quiz-option-btn" data-correct="${item.isCorrect}">${item.opt}</button>`;
       })
       .join("\n");
 
