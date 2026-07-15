@@ -450,55 +450,10 @@
           </section>
 
           <!-- SEZIONE QUIZ INTERATTIVO PILOTA -->
-          <section id="chapter-quiz" class="guide-block guide-chapter quiz-section">
+          <section id="chapter-quiz" data-quiz-id="html-fondamentali" class="guide-block guide-chapter quiz-section">
             <h2>14. Verifica la tua preparazione (Quiz)</h2>
-            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test a risposta multipla.</p>
-            
-            <div id="quiz-wrapper">
-              <!-- Domanda 1 -->
-              <div class="quiz-question-card" data-question="1">
-                <p class="quiz-question-text"><strong>1. Qual è lo scopo primario dell'HTML Semantico?</strong></p>
-                <div class="quiz-options">
-                  <button type="button" class="quiz-option-btn" data-correct="false">Definire il colore e lo stile degli elementi grafici della pagina.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="true">Descrivere il significato e il ruolo del contenuto per il browser e i motori di ricerca.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="false">Rendere la pagina interattiva al click dell'utente.</button>
-                </div>
-                <div class="quiz-feedback is-hidden"></div>
-                <button type="button" class="quiz-next-btn button-simple is-hidden">Prossima domanda <i class="fas fa-chevron-right"></i></button>
-              </div>
-
-              <!-- Domanda 2 -->
-              <div class="quiz-question-card is-hidden" data-question="2">
-                <p class="quiz-question-text"><strong>2. Quale delle seguenti associazioni di tag è considerata corretta per il nesting?</strong></p>
-                <div class="quiz-options">
-                  <button type="button" class="quiz-option-btn" data-correct="false">Inserire un tag &lt;div&gt; o &lt;h2&gt; dentro un tag in linea come &lt;span&gt;.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="true">Inserire tag in linea come &lt;strong&gt; o &lt;em&gt; dentro elementi a blocco come &lt;p&gt; o &lt;div&gt;.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="false">Inserire il tag &lt;body&gt; dentro la sezione &lt;head&gt;.</button>
-                </div>
-                <div class="quiz-feedback is-hidden"></div>
-                <button type="button" class="quiz-next-btn button-simple is-hidden">Prossima domanda <i class="fas fa-chevron-right"></i></button>
-              </div>
-
-              <!-- Domanda 3 -->
-              <div class="quiz-question-card is-hidden" data-question="3">
-                <p class="quiz-question-text"><strong>3. Cosa succede se si tralascia l'attributo alt su un'immagine?</strong></p>
-                <div class="quiz-options">
-                  <button type="button" class="quiz-option-btn" data-correct="false">L'immagine non viene caricata dal browser e si rompe il layout.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="false">Vite segnalerà un errore bloccante in fase di build.</button>
-                  <button type="button" class="quiz-option-btn" data-correct="true">Si penalizza la SEO del sito e si rende il contenuto inaccessibile per chi usa screen reader.</button>
-                </div>
-                <div class="quiz-feedback is-hidden"></div>
-                <button type="button" class="quiz-next-btn button-simple is-hidden">Vedi Risultati <i class="fas fa-chevron-right"></i></button>
-              </div>
-
-              <!-- Schermata Risultati finali -->
-              <div class="quiz-results-card is-hidden">
-                <h3>Test completato!</h3>
-                <p class="quiz-results-score">Punteggio: <span id="quiz-final-score">0</span> / 3</p>
-                <p id="quiz-results-message">Hai completato il test!</p>
-                <button type="button" id="btn-restart-quiz" class="button-simple">Ricomincia il test</button>
-              </div>
-            </div>
+            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
+            <div id="quiz-wrapper"></div>
           </section>
 
           <!-- CAPITOLO 15 — DOVE CONTINUARE -->

@@ -1,49 +1,76 @@
 // src/scripts/components/guide-quiz.js
-// Logica riutilizzabile per i quiz interattivi a scelta multipla nei tutorial.
+// Motore dinamico per i quiz interattivi guidati da dati (quizzes-db.js).
+import { quizzesData } from "@/scripts/data/quizzes-db.js";
 
 export default function initGuideQuiz() {
-  const container = document.getElementById("guide-quiz-container");
+  const container = document.getElementById("chapter-quiz");
   if (!container) return;
 
-  const questionCards = Array.from(container.querySelectorAll(".quiz-question-card"));
-  const resultsCard = container.querySelector(".quiz-results-card");
-  const finalScoreSpan = document.getElementById("quiz-final-score");
-  const resultsMessage = document.getElementById("quiz-results-message");
-  const btnRestart = document.getElementById("btn-restart-quiz");
+  const quizId = container.dataset.quizId;
+  if (!quizId || !quizzesData[quizId]) {
+    console.warn(`[guide-quiz] Nessun quiz trovato per ID: ${quizId}`);
+    container.classList.add("is-hidden");
+    return;
+  }
 
+  const wrapper = container.querySelector("#quiz-wrapper");
+  if (!wrapper) {
+    console.warn("[guide-quiz] Elemento #quiz-wrapper non trovato.");
+    return;
+  }
+
+  const questions = quizzesData[quizId];
   let currentQuestionIndex = 0;
   let score = 0;
 
-  const feedbacks = {
-    1: {
-      correct: "Esatto! L'HTML Semantico descrive il ruolo strutturale del contenuto (es. articolo, intestazione, pulsante) fornendo informazioni preziose per motori di ricerca, browser e screen reader.",
-      wrong: "Non proprio. Lo stile grafico appartiene ai CSS, e l'interattività ai JavaScript. L'HTML Semantico serve a descrivere il significato strutturale dei dati."
-    },
-    2: {
-      correct: "Esatto! Gli elementi in linea (come strong, em, span, a) devono essere racchiusi all'interno di elementi a blocco (come p, div, li, h2). Non è corretto il contrario.",
-      wrong: "Sbagliato. Inserire elementi a blocco (come div o h2) dentro elementi in linea (come span) rompe la validità del codice HTML e può creare problemi di rendering."
-    },
-    3: {
-      correct: "Esatto! L'assenza o la cattiva compilazione del tag 'alt' impedisce agli screen reader di descrivere l'immagine a utenti ipovedenti o non vedenti, e limita notevolmente l'indicizzazione delle immagini su Google.",
-      wrong: "Non esattamente. Il browser caricherà comunque l'immagine (anche se rotta), e Vite compilerà senza errori, ma arrecherai un grave danno all'accessibilità del sito e alla SEO."
+  const renderQuestion = (index) => {
+    const qData = questions[index];
+    const optionsHtml = qData.options
+      .map((opt, optIdx) => {
+        const isCorrect = optIdx === qData.correct;
+        return `<button type="button" class="quiz-option-btn" data-correct="${isCorrect}">${opt}</button>`;
+      })
+      .join("\n");
+
+    wrapper.innerHTML = `
+      <div class="quiz-question-card" data-question="${index + 1}">
+        <p class="quiz-question-text"><strong>${index + 1}. ${qData.q}</strong></p>
+        <div class="quiz-options">
+          ${optionsHtml}
+        </div>
+        <div class="quiz-feedback is-hidden"></div>
+        <button type="button" class="quiz-next-btn button-simple is-hidden">
+          ${index === questions.length - 1 ? 'Vedi Risultati' : 'Prossima domanda'} <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    `;
+
+    const card = wrapper.querySelector(".quiz-question-card");
+    const buttons = card.querySelectorAll(".quiz-option-btn");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => handleOptionClick(card, btn, index));
+    });
+
+    const nextBtn = card.querySelector(".quiz-next-btn");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          renderQuestion(currentQuestionIndex);
+        } else {
+          showResults();
+        }
+      });
     }
   };
 
-  const showQuestion = (index) => {
-    questionCards.forEach((card, idx) => {
-      card.classList.toggle("is-hidden", idx !== index);
-    });
-    if (resultsCard) resultsCard.classList.add("is-hidden");
-  };
-
-  const handleOptionClick = (card, button) => {
+  const handleOptionClick = (card, button, qIdx) => {
+    const qData = questions[qIdx];
     const isCorrect = button.dataset.correct === "true";
     const buttons = card.querySelectorAll(".quiz-option-btn");
     const feedback = card.querySelector(".quiz-feedback");
     const nextBtn = card.querySelector(".quiz-next-btn");
-    const qNum = card.dataset.question;
 
-    // Disabilita tutte le opzioni per questa domanda
     buttons.forEach((btn) => {
       btn.disabled = true;
       if (btn.dataset.correct === "true") {
@@ -55,13 +82,13 @@ export default function initGuideQuiz() {
       button.classList.add("is-correct");
       score++;
       if (feedback) {
-        feedback.textContent = feedbacks[qNum].correct;
+        feedback.textContent = qData.feedback.correct;
         feedback.className = "quiz-feedback is-correct";
       }
     } else {
       button.classList.add("is-wrong");
       if (feedback) {
-        feedback.textContent = feedbacks[qNum].wrong;
+        feedback.textContent = qData.feedback.wrong;
         feedback.className = "quiz-feedback is-wrong";
       }
     }
@@ -70,73 +97,42 @@ export default function initGuideQuiz() {
   };
 
   const showResults = () => {
-    questionCards.forEach((card) => card.classList.add("is-hidden"));
-    if (resultsCard) {
-      resultsCard.classList.remove("is-hidden");
-      if (finalScoreSpan) finalScoreSpan.textContent = score;
+    let msg = "";
+    if (score === 10) {
+      msg = "Perfetto! Hai risposto correttamente a tutte le 10 domande. Sei ufficialmente un esperto di questo capitolo!";
+    } else if (score >= 8) {
+      msg = "Ottimo lavoro! Hai risposto correttamente a " + score + " domande su 10. Hai una comprensione molto solida di questo capitolo!";
+    } else if (score >= 6) {
+      msg = "Sufficiente! Hai totalizzato " + score + " punti su 10. Hai superato il test, ma rileggi i concetti in cui hai sbagliato per consolidarli.";
+    } else {
+      msg = "Hai risposto correttamente solo a " + score + " domande su 10. Ti consigliamo di rileggere con attenzione la guida e ripetere il test.";
+    }
 
-      let msg = "";
-      if (score === 3) {
-        msg = "Fantastico! Hai risposto correttamente a tutte le domande. Hai una comprensione perfetta dei fondamentali di HTML!";
-      } else if (score === 2) {
-        msg = "Ottimo lavoro! Hai risposto correttamente a 2 domande su 3. Rileggi i punti in cui hai sbagliato per consolidare!";
-      } else {
-        msg = "Puoi fare di meglio! Hai totalizzato solo 1 o 0 punti. Ti consigliamo di rileggere con attenzione la guida e riprovare.";
-      }
-      if (resultsMessage) resultsMessage.textContent = msg;
+    wrapper.innerHTML = `
+      <div class="quiz-results-card">
+        <h3>Test completato!</h3>
+        <p class="quiz-results-score">Punteggio: <span id="quiz-final-score">${score}</span> / 10</p>
+        <p id="quiz-results-message">${msg}</p>
+        <button type="button" id="btn-restart-quiz" class="button-simple">Ricomincia il test</button>
+      </div>
+    `;
 
-      // Salviamo lo stato del completamento
-      try {
-        localStorage.setItem(`quiz-completed-html-fondamentali`, "true");
-        localStorage.setItem(`quiz-score-html-fondamentali`, score);
-      } catch (e) {
-        console.warn("Impossibile salvare i risultati del quiz nel localStorage:", e);
-      }
+    try {
+      localStorage.setItem(`quiz-completed-${quizId}`, "true");
+      localStorage.setItem(`quiz-score-${quizId}`, score);
+    } catch (e) {
+      console.warn("Impossibile salvare i risultati del quiz nel localStorage:", e);
+    }
+
+    const btnRestart = document.getElementById("btn-restart-quiz");
+    if (btnRestart) {
+      btnRestart.addEventListener("click", () => {
+        currentQuestionIndex = 0;
+        score = 0;
+        renderQuestion(0);
+      });
     }
   };
 
-  const resetQuiz = () => {
-    currentQuestionIndex = 0;
-    score = 0;
-    questionCards.forEach((card) => {
-      const buttons = card.querySelectorAll(".quiz-option-btn");
-      const feedback = card.querySelector(".quiz-feedback");
-      const nextBtn = card.querySelector(".quiz-next-btn");
-
-      buttons.forEach((btn) => {
-        btn.disabled = false;
-        btn.classList.remove("is-correct", "is-wrong");
-      });
-
-      if (feedback) feedback.className = "quiz-feedback is-hidden";
-      if (nextBtn) nextBtn.classList.add("is-hidden");
-    });
-    showQuestion(0);
-  };
-
-  // Bind dei click sulle opzioni
-  questionCards.forEach((card) => {
-    const buttons = card.querySelectorAll(".quiz-option-btn");
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => handleOptionClick(card, btn));
-    });
-
-    const nextBtn = card.querySelector(".quiz-next-btn");
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questionCards.length) {
-          showQuestion(currentQuestionIndex);
-        } else {
-          showResults();
-        }
-      });
-    }
-  });
-
-  if (btnRestart) {
-    btnRestart.addEventListener("click", resetQuiz);
-  }
-
-  showQuestion(0);
+  renderQuestion(0);
 }
