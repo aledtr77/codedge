@@ -4,18 +4,16 @@
 .card {
   width: 100%;
   max-width: 340px;
-  background: rgba(22, 27, 38, 0.65);
+  background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px; /* Bordi più arrotondati */
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
   padding: 1.5rem 1rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transizione ultra-fluida */
+  transition: var(--transition-smooth);
   display: flex;
   flex-direction: column;
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: var(--card-shadow);
   margin: 0;
   position: relative;
   overflow: hidden;
@@ -33,7 +31,7 @@
   opacity: 0.95;
   transform: scaleX(0.35);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--transition-smooth);
 }
 
 .card::after {
@@ -48,12 +46,9 @@
 /* Effetto hover migliorato */
 .card:hover {
   transform: translateY(-3px);
-  background: rgba(22, 27, 38, 0.85);
-  border-color: rgba(0, 132, 255, 0.5);
-  box-shadow:
-    0 16px 36px rgba(0, 0, 0, 0.4),
-    0 0 24px rgba(0, 132, 255, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .card:hover::before {
@@ -62,17 +57,17 @@
 
 /* Titolo e icona */
 .card h4 {
-  font-size: 1.8em; /* Leggermente ridotto per equilibrio */
+  font-size: 1.8em;
   font-family: var(--heading-font);
   color: var(--text-color);
   margin: 0 0 1rem 0;
   text-align: center;
-  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color var(--transition-smooth);
 }
 
 .card h4 i {
   color: var(--color-three);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease, color 0.4s ease;
+  transition: transform var(--transition-smooth), filter 0.4s ease, color 0.4s ease;
   display: inline-block;
 }
 
