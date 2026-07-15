@@ -28,8 +28,8 @@
 /* Griglia superiore */
 .about-intro-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 280px 1fr;
+  gap: 2.2rem;
   align-items: center;
   margin-bottom: 2.2rem;
 }
@@ -42,18 +42,17 @@
 
 .about-square-img {
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   height: auto;
-  border-radius: 20px;
+  border-radius: 18px;
   border: 1px solid rgba(130, 188, 255, 0.15);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .about-square-img:hover {
-  transform: translateY(-4px) scale(1.02);
-  border-color: rgba(130, 188, 255, 0.4);
-  box-shadow: 0 20px 50px rgba(0, 132, 255, 0.25);
+  transform: scale(1.02);
+  border-color: rgba(130, 188, 255, 0.3);
 }
 
 .about-text-side p {
@@ -139,8 +138,7 @@
   }
 
   .about-square-img {
-    max-width: 320px;
-    width: 85%;
+    max-width: 240px;
   }
 }
 
