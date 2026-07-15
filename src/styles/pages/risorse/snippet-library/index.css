@@ -368,19 +368,28 @@ header {
   background: rgba(56, 189, 248, 0.3);
 }
 
-/* Responsive adjustments */
 @media (max-width: 980px) {
   html, body {
     height: auto !important;
+    min-height: 100% !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
     overscroll-behavior: auto !important;
   }
 
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+  }
+
   .snippet-scroll-wrapper {
-    flex: none !important;
+    flex: 1 0 auto !important;
     height: auto !important;
     overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .breadcrumb-container {
@@ -393,13 +402,13 @@ header {
   }
 
   .snippet-container {
-    grid-template-columns: 1fr;
-    height: auto;
-    overflow: visible;
-    padding: 0 15px;
-    padding-top: 0;
-    margin-top: 10px;
-    margin-bottom: 2rem !important;
+    flex: 1 0 auto !important;
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 15px !important;
+    margin-top: 10px !important;
+    margin-bottom: 2.5rem !important;
   }
 
   .sidebar-toggle,
@@ -408,22 +417,23 @@ header {
   }
 
   .snippet-main {
-    grid-column: 1;
-    margin-left: 0;
-    padding: 0;
-    height: auto;
-    overflow-y: visible;
+    flex: 1 0 auto !important;
+    grid-column: 1 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow-y: visible !important;
   }
 
-  /* Mobile Category Pills Selector */
+  /* Mobile Category Pills Selector - Premium Overhaul */
   .mobile-category-selector {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     overflow-x: auto;
-    padding: 0.85rem 0.25rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -434,45 +444,55 @@ header {
 
   .category-pill {
     flex: 0 0 auto;
-    background: rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.4rem 0.95rem;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(222, 242, 255, 0.75);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.5rem 1.1rem;
+    border-radius: 99px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .category-pill:hover,
+  .category-pill:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
   }
   
   .category-pill.active {
-    background: var(--color-three, #0084ff);
-    border-color: var(--color-three, #0084ff);
+    background: linear-gradient(135deg, #0084ff 0%, #00a8ff 100%);
+    border-color: #00a8ff;
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 132, 255, 0.3);
+    box-shadow: 0 4px 14px rgba(0, 132, 255, 0.4);
   }
 
-  /* Dynamic Toggle Button Styling */
+  /* Dynamic Toggle Button Styling (Vedi Codice) */
   .toggle-code-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    background: rgba(0, 132, 255, 0.08);
-    border: 1px solid rgba(0, 132, 255, 0.25);
-    color: #9cd3ff;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.45rem 0.8rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
   }
   
-  .toggle-code-btn:hover {
-    background: rgba(0, 132, 255, 0.18);
-    border-color: rgba(0, 132, 255, 0.45);
+  .toggle-code-btn:hover,
+  .toggle-code-btn:focus-visible {
+    background: rgba(56, 189, 248, 0.16);
+    border-color: rgba(56, 189, 248, 0.45);
     color: #fff;
   }
   
@@ -485,8 +505,8 @@ header {
   /* Collapsible Code Container */
   .snippet-box pre {
     display: none;
-    margin: 1.15rem 0 0 0;
-    padding: 0.9rem;
+    margin: 1.25rem 0 0 0;
+    padding: 1rem;
     font-size: 0.78rem;
     line-height: 1.5;
     white-space: pre-wrap !important;
@@ -496,7 +516,7 @@ header {
   
   .snippet-box.code-expanded pre {
     display: block !important;
-    animation: fadeInSnippetCode 0.2s ease-out;
+    animation: fadeInSnippetCode 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .snippet-box code {
@@ -505,51 +525,62 @@ header {
   }
 
   @keyframes fadeInSnippetCode {
-    from { opacity: 0; transform: translateY(-4px); }
+    from { opacity: 0; transform: translateY(-6px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Title Box 2-column Button Alignment */
+  /* Title Box 2-column Button Alignment - Overhaul for 3 equal buttons side-by-side */
   .title-box {
+    display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.85rem;
   }
   
   .title-box h3 {
-    width: 100%;
-    font-size: 1.05rem;
+    flex: 1 1 100% !important; /* Force heading to own row */
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
+    color: #fff;
+    margin: 0 0 0.25rem 0 !important;
   }
   
   .title-box .copy-btn,
   .title-box .play-btn,
   .title-box .toggle-code-btn {
-    flex: 1 1 120px;
-    min-width: 120px;
-    height: 2.2rem;
-    font-size: 0.8rem;
-    justify-content: center;
-    box-sizing: border-box;
+    flex: 1 1 0px !important; /* Share space exactly equally on a single row */
+    min-width: 0 !important;
+    height: 2.3rem !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    padding: 0 0.2rem !important;
+    justify-content: center !important;
+    gap: 0.35rem !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    border-radius: 8px !important;
   }
 
-  /* Override dynamic sticky footer adjustments on mobile to prevent overlapping content */
+  /* Pure CSS Sticky Footer dock override */
   footer {
-    position: relative !important;
-    left: auto !important;
-    bottom: auto !important;
+    position: static !important;
+    margin-top: auto !important;
     width: 100% !important;
     z-index: auto !important;
-    margin-top: 3.5rem !important;
     flex-shrink: 0 !important;
   }
 }
 
 @media (max-width: 768px) {
   .snippet-box {
-    padding: 1rem;
-    border-radius: 6px;
-    scroll-margin-top: 100px;
+    padding: 1.25rem !important;
+    border-radius: 14px !important;
+    scroll-margin-top: 100px !important;
+    background: linear-gradient(135deg, rgba(22, 28, 45, 0.6) 0%, rgba(14, 18, 30, 0.8) 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
   }
 }
 
