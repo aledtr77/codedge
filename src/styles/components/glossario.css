@@ -124,7 +124,7 @@ body > main,
 .main-content {
   flex: 1 1 0;
   display: grid;
-  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  grid-template-columns: 280px minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.75rem);
   width: min(1440px, calc(100% - 2rem));
   margin: var(--glossary-navbar-gap) auto 2.75rem;
