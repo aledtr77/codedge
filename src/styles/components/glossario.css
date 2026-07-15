@@ -96,12 +96,11 @@ h1 {
   display: none;
 }
 
-body > main,
-.main-content > main {
+main.main-content {
   width: 100%;
-  max-width: none;
+  max-width: none !important;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
 }
 
 /* Scrollable wrapper: locked container to support independent inner column scrolling */
