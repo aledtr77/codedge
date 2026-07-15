@@ -895,3 +895,55 @@
     opacity: 0;
   }
 }
+
+/* Cheat Sheet Table Premium & Responsive Styles */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  background: rgba(7, 14, 25, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 580px; /* Impedisce il collasso illeggibile delle colonne su mobile */
+  text-align: left;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: 0.95rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(232, 244, 255, 0.9);
+}
+
+.table-wrapper th {
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(22, 60, 93, 0.4);
+  border-bottom: 2px solid rgba(0, 168, 255, 0.2);
+}
+
+.table-wrapper td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-wrapper tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.table-wrapper tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-wrapper tbody tr:hover {
+  background: rgba(0, 168, 255, 0.03);
+}
