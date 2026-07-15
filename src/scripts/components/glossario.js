@@ -28,10 +28,40 @@ document.addEventListener("DOMContentLoaded", () => {
   function enhanceGlossaryLabels() {
     entries.forEach((entry) => {
       entry.querySelectorAll("ol > li").forEach((item) => {
-        item.innerHTML = item.innerHTML
-          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-          .replace(/`([^`]+)`/g, "<code>$1</code>");
+        // 1. Process markdown formatting safely on text nodes to avoid parsing escaped HTML tags as actual DOM elements
+        const childNodes = Array.from(item.childNodes);
+        childNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent;
+            if (/\*\*([^*]+)\*\*|`([^`]+)`/.test(text)) {
+              const fragment = document.createDocumentFragment();
+              let lastIndex = 0;
+              const regex = /\*\*([^*]+)\*\*|`([^`]+)`/g;
+              let match;
+              while ((match = regex.exec(text)) !== null) {
+                if (match.index > lastIndex) {
+                  fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+                }
+                if (match[1]) {
+                  const strong = document.createElement("strong");
+                  strong.textContent = match[1];
+                  fragment.appendChild(strong);
+                } else if (match[2]) {
+                  const code = document.createElement("code");
+                  code.textContent = match[2];
+                  fragment.appendChild(code);
+                }
+                lastIndex = regex.lastIndex;
+              }
+              if (lastIndex < text.length) {
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+              }
+              node.replaceWith(fragment);
+            }
+          }
+        });
 
+        // 2. Wrap glossary labels like "Cos'è:" in span elements
         if (item.querySelector(".glossary-label")) return;
 
         const textNode = Array.from(item.childNodes).find(
