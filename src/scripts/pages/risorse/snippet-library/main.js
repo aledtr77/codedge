@@ -15,12 +15,19 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-css.js';
 import 'prismjs/components/prism-javascript.js';
 
+// CSS del Playground
+import '@/styles/components/playground.css';
+
 // JS condivisi (ESM)
 import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
+import initGuidePlayground from '@/scripts/components/guide-playground.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // Inizializza il playground per gli snippet HTML/CSS
+  initGuidePlayground();
+
   // --- import condizionale del modulo degli snippet (solo se servono) ---
   if (document.querySelector('.snippet-box') || document.querySelector('.snippet-sidebar')) {
     try {

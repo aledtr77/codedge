@@ -488,3 +488,45 @@ header {
     scroll-margin-top: 100px;
   }
 }
+
+/* Integration overrides for the interactive code playground inside snippet-box */
+.snippet-box .code-wrapper {
+  margin: 1.25rem 0 0 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.snippet-box .code-wrapper:hover {
+  border-color: transparent;
+}
+
+/* Hide the duplicate Copia button from the playground code toolbar */
+.snippet-box .code-wrapper .code-toolbar .code-btn:not(:last-child) {
+  display: none;
+}
+
+/* Align and style the Prova Live button inside the code block */
+.snippet-box .code-wrapper .code-toolbar {
+  top: 12px;
+  right: 12px;
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+.snippet-box .code-wrapper:hover .code-toolbar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure the playground splits nicely inside the snippet box without breaking typography */
+.snippet-box .code-playground {
+  margin: 1.25rem 0 0 0;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+
+.snippet-box .playground-iframe {
+  background: #ffffff;
+  border: none;
+}
