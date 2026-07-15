@@ -302,9 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mobile: scroll the entire wrapper
             const wrapperRect = scrollWrapper.getBoundingClientRect();
             const entryRect = bestMatch.getBoundingClientRect();
+            const headerHeight = header ? header.getBoundingClientRect().height : 0;
             const gap = 16;
             scrollWrapper.scrollTo({
-              top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - gap,
+              top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
               behavior: "smooth",
             });
           }
@@ -464,9 +465,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (scrollWrapper) {
               const wrapperRect = scrollWrapper.getBoundingClientRect();
               const entryRect = targetEntry.getBoundingClientRect();
+              const headerHeight = header ? header.getBoundingClientRect().height : 0;
               const gap = 16;
               scrollWrapper.scrollTo({
-                top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - gap,
+                top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
                 behavior: "smooth",
               });
             }
