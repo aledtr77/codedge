@@ -17,11 +17,13 @@ export default function initGuideToc() {
   let scrollTicking = false;
 
   const setActiveState = (id) => {
+    let activeLink = null;
     tocLinks.forEach((link) => {
       const isActive = link.getAttribute("href") === `#${id}`;
       link.classList.toggle("is-active", isActive);
       if (isActive) {
         link.setAttribute("aria-current", "location");
+        activeLink = link;
       } else {
         link.removeAttribute("aria-current");
       }
@@ -30,11 +32,30 @@ export default function initGuideToc() {
     sections.forEach((section) => {
       section.classList.toggle("is-active", section.id === id);
     });
+
+    // Fa scorrere il menu laterale per mantenere l'argomento attivo sempre visibile
+    if (activeLink) {
+      const container = document.querySelector('.guide-toc');
+      if (container) {
+        const containerTop = container.scrollTop;
+        const containerBottom = containerTop + container.clientHeight;
+        const elemTop = activeLink.offsetTop;
+        const elemBottom = elemTop + activeLink.clientHeight;
+
+        if (elemTop < containerTop) {
+          container.scrollTo({ top: elemTop - 20, behavior: "smooth" });
+        } else if (elemBottom > containerBottom) {
+          container.scrollTo({ top: elemBottom - container.clientHeight + 20, behavior: "smooth" });
+        }
+      }
+    }
   };
 
   const getCurrentSection = () => {
-    // Gestione raggiungimento fondo pagina per evidenziare correttamente l'ultimo capitolo
-    const isAtBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 25;
+    // Gestione raggiungimento fondo pagina per evidenziare l'ultimo capitolo
+    // Usiamo una tolleranza di 150px per gestire zoom, DPI, footer e scrollbar elastiche
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const isAtBottom = window.pageYOffset >= maxScroll - 150;
     if (isAtBottom && sections.length > 0) {
       return sections[sections.length - 1];
     }
