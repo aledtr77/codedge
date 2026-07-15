@@ -399,6 +399,7 @@ header {
     padding: 0 15px;
     padding-top: 0;
     margin-top: 10px;
+    margin-bottom: 2rem !important;
   }
 
   .sidebar-toggle,
@@ -524,9 +525,23 @@ header {
   .title-box .copy-btn,
   .title-box .play-btn,
   .title-box .toggle-code-btn {
-    flex: 1;
-    min-width: 100px;
+    flex: 1 1 120px;
+    min-width: 120px;
+    height: 2.2rem;
+    font-size: 0.8rem;
     justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Override dynamic sticky footer adjustments on mobile to prevent overlapping content */
+  footer {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
+    margin-top: 3.5rem !important;
+    flex-shrink: 0 !important;
   }
 }
 
