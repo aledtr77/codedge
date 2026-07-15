@@ -98,8 +98,20 @@ export default function initGuideQuiz() {
 
   const showResults = () => {
     let msg = "";
+    let confettiHtml = "";
     if (score === 10) {
       msg = "Perfetto! Hai risposto correttamente a tutte le 10 domande. Sei ufficialmente un esperto di questo capitolo!";
+      
+      // Generazione dinamica di 30 particelle di coriandoli
+      confettiHtml = '<div class="quiz-confetti-container">';
+      const colors = ["#7cf5c4", "#66d9ff", "#e5c158", "#ff6b6b"];
+      for (let i = 0; i < 30; i++) {
+        const left = Math.random() * 100;
+        const delay = Math.random() * 2.5;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        confettiHtml += `<div class="quiz-confetti-particle" style="left: ${left}%; animation-delay: ${delay}s; background-color: ${color};"></div>`;
+      }
+      confettiHtml += '</div>';
     } else if (score >= 8) {
       msg = "Ottimo lavoro! Hai risposto correttamente a " + score + " domande su 10. Hai una comprensione molto solida di questo capitolo!";
     } else if (score >= 6) {
@@ -110,10 +122,11 @@ export default function initGuideQuiz() {
 
     wrapper.innerHTML = `
       <div class="quiz-results-card">
-        <h3>Test completato!</h3>
-        <p class="quiz-results-score">Punteggio: <span id="quiz-final-score">${score}</span> / 10</p>
-        <p id="quiz-results-message">${msg}</p>
-        <button type="button" id="btn-restart-quiz" class="button-simple">Ricomincia il test</button>
+        ${confettiHtml}
+        <h3 style="position: relative; z-index: 1;">Test completato!</h3>
+        <p class="quiz-results-score" style="position: relative; z-index: 1;">Punteggio: <span id="quiz-final-score">${score}</span> / 10</p>
+        <p id="quiz-results-message" style="position: relative; z-index: 1;">${msg}</p>
+        <button type="button" id="btn-restart-quiz" class="button-simple" style="position: relative; z-index: 1;">Ricomincia il test</button>
       </div>
     `;
 

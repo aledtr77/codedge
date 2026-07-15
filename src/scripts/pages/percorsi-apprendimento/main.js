@@ -24,4 +24,28 @@ document.addEventListener("DOMContentLoaded", () => {
   if (introImage) {
     introImage.src = percorsiIntroImage;
   }
+
+  // Visualizzazione dei badge di superamento quiz sulle card dei tutorial
+  const links = document.querySelectorAll('.learning-card a.button-simple');
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const match = href.match(/\/tutorial\/([^/]+)\/?$/);
+    if (match) {
+      const quizId = match[1];
+      const isCompleted = localStorage.getItem(`quiz-completed-${quizId}`);
+      if (isCompleted === 'true') {
+        const score = localStorage.getItem(`quiz-score-${quizId}`) || '10';
+        const card = link.closest('.learning-card');
+        if (card) {
+          const badge = document.createElement('div');
+          badge.className = 'learning-card__badge';
+          badge.innerHTML = `<i class="fas fa-check-circle"></i> Quiz Superato: <strong>${score}/10</strong>`;
+          
+          // Inseriamo il badge subito prima del pulsante
+          link.parentNode.insertBefore(badge, link);
+        }
+      }
+    }
+  });
 });
