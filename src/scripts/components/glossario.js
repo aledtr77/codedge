@@ -271,7 +271,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function setupAsideGroups() {
     const groups = Array.from(document.querySelectorAll(".concept-list li:not(.clickable-item)"))
       .map((heading) => {
-        const list = heading.nextElementSibling?.tagName === "UL" ? heading.nextElementSibling : null;
+        const list = (heading.nextElementSibling?.tagName === "UL")
+          ? heading.nextElementSibling
+          : heading.querySelector("ul");
         if (!list) return null;
 
         heading.classList.add("concept-group");
