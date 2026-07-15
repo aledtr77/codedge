@@ -138,7 +138,8 @@
   }
 
   .about-square-img {
-    max-width: 240px;
+    max-width: 320px;
+    width: 85%;
   }
 }
 
