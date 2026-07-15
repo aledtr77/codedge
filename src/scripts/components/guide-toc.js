@@ -53,9 +53,11 @@ export default function initGuideToc() {
 
   const getCurrentSection = () => {
     // Gestione raggiungimento fondo pagina per evidenziare l'ultimo capitolo
-    // Usiamo una tolleranza di 150px per gestire zoom, DPI, footer e scrollbar elastiche
+    // Usiamo una tolleranza ristretta (30px) ed escludiamo pagine non scrollabili per evitare falsi positivi
+    const scrollY = window.scrollY || window.pageYOffset;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const isAtBottom = window.pageYOffset >= maxScroll - 150;
+    const isAtBottom = maxScroll > 0 && scrollY >= maxScroll - 30;
+
     if (isAtBottom && sections.length > 0) {
       return sections[sections.length - 1];
     }
