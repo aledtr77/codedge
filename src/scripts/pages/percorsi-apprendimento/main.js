@@ -8,9 +8,12 @@ import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import percorsiIntroImage from '@/assets/images/shop-template/percorsi-apprendimento.webp';
+// Responsive images via vite-imagetools
+import percorsiIntroImageAvif from '@/assets/images/shop-template/percorsi-apprendimento.webp?w=480;800;1200&format=avif&as=srcset';
+import percorsiIntroImageWebp from '@/assets/images/shop-template/percorsi-apprendimento.webp?w=480;800;1200&format=webp&as=srcset';
+import fallbackPercorsiIntroImage from '@/assets/images/shop-template/percorsi-apprendimento.webp?width=1200';
 
-// CSS specifico pagina
+import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
 import '@/styles/pages/percorsi-apprendimento/index.css';
 
 // side-effect modules (se li usano)
@@ -22,7 +25,11 @@ import "@/scripts/components/footer.js";
 document.addEventListener("DOMContentLoaded", () => {
   const introImage = document.querySelector('#percorsi-intro-image');
   if (introImage) {
-    introImage.src = percorsiIntroImage;
+    setResponsiveImage(introImage, {
+      avifSrcset: percorsiIntroImageAvif,
+      webpSrcset: percorsiIntroImageWebp,
+      fallbackSrc: fallbackPercorsiIntroImage
+    });
   }
 
   // Visualizzazione dei badge di superamento quiz sulle card dei tutorial

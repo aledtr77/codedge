@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import { minify } from 'html-minifier-terser';
+import { imagetools } from 'vite-imagetools';
 
 const ENTRY_DIR = 'pages';
 
@@ -289,6 +290,7 @@ export default defineConfig(({ command }) => {
   };
 
   const plugins = [];
+  plugins.push(imagetools());
   plugins.push(staticNavbarHtmlPlugin());
   plugins.push(staticFooterHtmlPlugin());
   plugins.push(antiFoucHtmlPlugin());

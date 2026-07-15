@@ -8,9 +8,12 @@ import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import risorseIntroImage from '@/assets/images/shop-template/risorse.jpg';
+// Responsive images via vite-imagetools
+import risorseIntroImageAvif from '@/assets/images/shop-template/risorse.jpg?w=480;800;1200&format=avif&as=srcset';
+import risorseIntroImageWebp from '@/assets/images/shop-template/risorse.jpg?w=480;800;1200&format=webp&as=srcset';
+import fallbackRisorseIntroImage from '@/assets/images/shop-template/risorse.jpg?width=1200';
 
-// CSS specifico pagina
+import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
 import '@/styles/pages/risorse/index.css';
 
 // side-effect modules (se li usano)
@@ -22,6 +25,10 @@ import "@/scripts/components/footer.js";
 document.addEventListener("DOMContentLoaded", () => {
   const introImage = document.querySelector('#risorse-intro-image');
   if (introImage) {
-    introImage.src = risorseIntroImage;
+    setResponsiveImage(introImage, {
+      avifSrcset: risorseIntroImageAvif,
+      webpSrcset: risorseIntroImageWebp,
+      fallbackSrc: fallbackRisorseIntroImage
+    });
   }
 });

@@ -4,9 +4,12 @@ import '@/styles/components/navbar.css';
 import '@/styles/components/footer.css';
 import '@/styles/pages/index/index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import homeHeroImage from '@/assets/images/shop-template/home.jpg';
+// Responsive images via vite-imagetools
+import homeHeroImageAvif from '@/assets/images/shop-template/home.jpg?w=480;800;1200&format=avif&as=srcset';
+import homeHeroImageWebp from '@/assets/images/shop-template/home.jpg?w=480;800;1200&format=webp&as=srcset';
+import fallbackHomeHeroImage from '@/assets/images/shop-template/home.jpg?width=1200';
 
-
+import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
 import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
@@ -14,7 +17,11 @@ import '@/scripts/components/footer.js';
 document.addEventListener('DOMContentLoaded', () => {
   const heroImage = document.querySelector('#home-hero-image');
   if (heroImage) {
-    heroImage.src = homeHeroImage;
+    setResponsiveImage(heroImage, {
+      avifSrcset: homeHeroImageAvif,
+      webpSrcset: homeHeroImageWebp,
+      fallbackSrc: fallbackHomeHeroImage
+    });
   }
 
   // 3D Tilt Parallax Effect on Homepage Hero

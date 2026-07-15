@@ -8,12 +8,13 @@ import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import strumentiIntroImage from '@/assets/images/shop-template/strumenti.webp';
+// Responsive images via vite-imagetools
+import strumentiIntroImageAvif from '@/assets/images/shop-template/strumenti.webp?w=480;800;1200&format=avif&as=srcset';
+import strumentiIntroImageWebp from '@/assets/images/shop-template/strumenti.webp?w=480;800;1200&format=webp&as=srcset';
+import fallbackStrumentiIntroImage from '@/assets/images/shop-template/strumenti.webp?width=1200';
 
-// CSS specifico pagina
+import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
 import '@/styles/pages/strumenti/index.css';
-
-// side-effect modules (se li usano)
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
@@ -22,6 +23,10 @@ import "@/scripts/components/footer.js";
 document.addEventListener("DOMContentLoaded", () => {
   const introImage = document.querySelector('#strumenti-intro-image');
   if (introImage) {
-    introImage.src = strumentiIntroImage;
+    setResponsiveImage(introImage, {
+      avifSrcset: strumentiIntroImageAvif,
+      webpSrcset: strumentiIntroImageWebp,
+      fallbackSrc: fallbackStrumentiIntroImage
+    });
   }
 });

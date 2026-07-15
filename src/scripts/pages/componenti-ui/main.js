@@ -8,9 +8,12 @@ import "@/styles/components/footer.css";
 import "@/styles/components/card.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import progettiIntroImage from '@/assets/images/shop-template/componenti-ui.webp';
+// Responsive images via vite-imagetools
+import progettiIntroImageAvif from '@/assets/images/shop-template/componenti-ui.webp?w=480;800;1200&format=avif&as=srcset';
+import progettiIntroImageWebp from '@/assets/images/shop-template/componenti-ui.webp?w=480;800;1200&format=webp&as=srcset';
+import fallbackProgettiIntroImage from '@/assets/images/shop-template/componenti-ui.webp?width=1200';
 
-// CSS specifico pagina
+import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
 import '@/styles/pages/componenti-ui/index.css';
 
 // side-effect modules (se li usano)
@@ -22,6 +25,10 @@ import "@/scripts/components/footer.js";
 document.addEventListener("DOMContentLoaded", () => {
   const introImage = document.querySelector('#progetti-intro-image');
   if (introImage) {
-    introImage.src = progettiIntroImage;
+    setResponsiveImage(introImage, {
+      avifSrcset: progettiIntroImageAvif,
+      webpSrcset: progettiIntroImageWebp,
+      fallbackSrc: fallbackProgettiIntroImage
+    });
   }
 });
