@@ -370,8 +370,17 @@ header {
 
 /* Responsive adjustments */
 @media (max-width: 980px) {
+  html, body {
+    height: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: auto !important;
+  }
+
   .snippet-scroll-wrapper {
-    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
+    flex: none !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .breadcrumb-container {

@@ -186,6 +186,12 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .playground-editor {
+    font-size: 16px !important; /* Prevents mobile browser auto-zooming on focus */
+  }
+}
+
 .playground-editor:focus {
   background: #111a2b;
 }
