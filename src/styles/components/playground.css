@@ -1,0 +1,232 @@
+/* src/styles/components/playground.css */
+/* Stili per il Playground di Codice Interattivo Inline */
+
+.code-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(143, 206, 255, 0.12);
+  background: rgba(10, 18, 30, 0.7);
+  transition: border-color 0.25s ease;
+}
+
+.code-wrapper:hover {
+  border-color: rgba(143, 206, 255, 0.25);
+}
+
+/* Toolbar dei Blocchi Statici */
+.code-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: all 0.22s ease;
+  z-index: 10;
+}
+
+.code-wrapper:hover .code-toolbar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.code-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: rgba(222, 242, 255, 0.85);
+  background: rgba(16, 28, 48, 0.95);
+  border: 1px solid rgba(143, 206, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.code-btn:hover {
+  color: #fff;
+  background: rgba(143, 206, 255, 0.15);
+  border-color: rgba(143, 206, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.code-btn i {
+  font-size: 0.85rem;
+}
+
+/* Contenitore Playground Attivo */
+.code-playground {
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 18, 30, 0.95) !important;
+  border: 1px solid rgba(0, 168, 255, 0.25) !important;
+  border-radius: 12px;
+  padding: 0;
+  margin: 1.8rem 0;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: playgroundOpen 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Header del Playground */
+.playground-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(18, 32, 50, 0.8);
+  border-bottom: 1px solid rgba(143, 206, 255, 0.15);
+}
+
+.playground-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #00A8FF;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.playground-title i {
+  font-size: 0.95rem;
+  filter: drop-shadow(0 0 4px rgba(0, 168, 255, 0.4));
+}
+
+.playground-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.playground-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(222, 242, 255, 0.85);
+  background: transparent;
+  border: 1px solid rgba(222, 242, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.playground-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.playground-btn.btn-close {
+  color: #ff4757;
+  border-color: rgba(255, 71, 87, 0.25);
+}
+
+.playground-btn.btn-close:hover {
+  color: #fff;
+  background: rgba(255, 71, 87, 0.15);
+  border-color: rgba(255, 71, 87, 0.55);
+}
+
+/* Griglia Editor + Anteprima */
+.playground-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 320px;
+  background: #0d111a;
+}
+
+@media (max-width: 768px) {
+  .playground-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 240px;
+    min-height: auto;
+  }
+}
+
+/* Pannello Editor */
+.playground-editor-pane {
+  position: relative;
+  border-right: 1px solid rgba(143, 206, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .playground-editor-pane {
+    border-right: none;
+    border-bottom: 1px solid rgba(143, 206, 255, 0.1);
+  }
+}
+
+.playground-editor {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background: #0f1624;
+  color: #e0e6f0;
+  font-family: 'Consolas', 'Monaco', 'Fira Code', monospace;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  padding: 14px;
+  border: none;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.playground-editor:focus {
+  background: #111a2b;
+}
+
+/* Label Indicazione Linguaggio */
+.playground-lang-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Pannello Anteprima */
+.playground-preview-pane {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.playground-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* Animazione di apertura */
+@keyframes playgroundOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
