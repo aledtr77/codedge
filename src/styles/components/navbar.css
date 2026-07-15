@@ -61,7 +61,7 @@ header.header-scrolled {
   object-fit: contain;
 }
 
-h1 {
+.navbar-title {
   margin: 0;
   font-size: 2em;
   white-space: nowrap;

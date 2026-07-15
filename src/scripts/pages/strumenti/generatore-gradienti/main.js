@@ -21,10 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // se la pagina ha l'elemento del generatore, carichiamo il modulo separato
   if (document.getElementById("previewBox")) {
     try {
-      // usa alias '@' per puntare a src/
-      const mod = await import(
-        /* @vite-ignore */ "@/scripts/pages/strumenti/generatore-gradienti/generatore-gradienti.js"
-      );
+      // usa import relativo per permettere il bundling da parte di Vite
+      const mod = await import("./generatore-gradienti.js");
       // se il modulo esporta default() la chiamiamo
       if (mod && typeof mod.default === "function") {
         mod.default();

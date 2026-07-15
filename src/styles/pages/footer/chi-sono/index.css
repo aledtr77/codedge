@@ -4,6 +4,15 @@
   padding: 2rem 2rem 0;
 }
 
+.about-title {
+  font-family: var(--heading-font);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  color: var(--color-three);
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-align: left;
+}
+
 .about-content {
   max-width: 820px;
   margin: 0 auto;

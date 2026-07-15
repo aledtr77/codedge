@@ -2,6 +2,10 @@
 <html lang="it" data-page-ready="false">
 
 <head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Imposta la codifica dei caratteri usata nella pagina -->
   <meta charset="UTF-8" />
   <!-- Imposta il comportamento responsive: scala la pagina alla larghezza del dispositivo -->
@@ -59,7 +63,7 @@
     <nav class="navbar" aria-label="Navigazione principale">
       <div class="navbar-container">
         <!-- Logo: attributo alt descrive l'immagine per chi non la vede --><a href="/" class="logo-link"><img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35" /></a><!-- H1 nella navbar che indica il titolo della pagina (qui Home) -->
-        <h1 class="resize-text">Home</h1>
+        <span class="navbar-title resize-text">Home</span>
 
         <!-- Hamburger icon usata per aprire/chiudere il menu su schermi piccoli -->
         <div class="menu-icon"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
@@ -103,11 +107,10 @@
             <p class="hero-kicker">Web development hub</p>
             <!-- Logo grande nel hero per branding -->
             <img src="/icons/codedge-logo-minimal.svg" alt="Logo codedge" class="logo-compact" width="166" height="68" />
-            <!-- Titoli del hero: struttura semantica della pagina -->
-            <h2 class="hero-title-compact hero-title-lead">
+            <h1 class="hero-title-compact hero-title-lead">
               Sviluppo web, risorse pratiche e tecnologie digitali
-            </h2>
-            <h3 id="hero-title" class="hero-title-compact hero-title-brand">CODEDGE</h3>
+            </h1>
+            <h2 id="hero-title" class="hero-title-compact hero-title-brand">CODEDGE</h2>
           </div>
 
           <div class="hero-visual-column">

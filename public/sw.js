@@ -72,14 +72,38 @@ async function staleWhileRevalidate(request) {
   return cached || fetchPromise || Response.error();
 }
 
+async function cacheFirst(request) {
+  const cache = await caches.open(RUNTIME_CACHE);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response && response.ok) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    return Response.error();
+  }
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
   if (!isSameOrigin(request)) return;
 
+  const url = new URL(request.url);
+  const isAsset = url.pathname.includes("/assets/");
   const destination = request.destination;
+
   if (request.mode === "navigate") {
     event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // Se è un asset compilato da Vite (JS, CSS o Font in /assets/), usa Cache-First
+  if (isAsset && (destination === "script" || destination === "style" || destination === "font")) {
+    event.respondWith(cacheFirst(request));
     return;
   }
 
