@@ -447,7 +447,7 @@ export default function initGeneratorGradienti() {
   }
 
   function showCopyTooltip() {
-    let tooltip = document.querySelector(".tooltip");
+    let tooltip = elements.previewBox.querySelector(".tooltip");
     if (!tooltip) {
       const container = document.createElement("div");
       container.className = "tooltip-container";
