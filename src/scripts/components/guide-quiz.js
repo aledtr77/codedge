@@ -37,81 +37,113 @@ export default function initGuideQuiz() {
     }
 
     const optionsHtml = mappedOptions
-      .map((item) => {
+      .map((item, idx) => {
+        const letter = String.fromCharCode(65 + idx); // A, B, C, D
         return `
-          <button type="button" class="quiz-option-btn" data-correct="${item.isCorrect}">
-            <span class="quiz-option-indicator"></span>
-            <span class="quiz-option-label">${item.opt}</span>
-          </button>
+          <label class="quiz-option-row" data-correct="${item.isCorrect}">
+            <input type="radio" name="quiz-option-${index}" class="quiz-option-input" value="${item.isCorrect}">
+            <span class="quiz-radio-circle"></span>
+            <span class="quiz-option-text"><strong>${letter}.</strong> ${item.opt}</span>
+          </label>
         `;
       })
       .join("\n");
 
+    const progressPercent = ((index + 1) / questions.length) * 100;
+
     wrapper.innerHTML = `
-      <div class="quiz-question-card" data-question="${index + 1}">
-        <div class="quiz-question-header">
-          <span class="quiz-question-badge">Domanda ${index + 1} di ${questions.length}</span>
+      <div class="quiz-card" data-question="${index + 1}">
+        <div class="quiz-header">
+          <div class="quiz-meta">
+            <span class="quiz-step-label">Domanda ${index + 1} di ${questions.length}</span>
+            <span class="quiz-score-live">Punti: ${score}</span>
+          </div>
+          <div class="quiz-progress-container">
+            <div class="quiz-progress-bar" style="width: ${progressPercent}%;"></div>
+          </div>
         </div>
-        <h4 class="quiz-question-text">${qData.q}</h4>
-        <div class="quiz-options">
+        
+        <h4 class="quiz-question-title">${qData.q}</h4>
+        
+        <div class="quiz-options-list">
           ${optionsHtml}
         </div>
-        <div class="quiz-feedback is-hidden"></div>
-        <button type="button" class="quiz-next-btn button-simple is-hidden">
-          ${index === questions.length - 1 ? 'Vedi Risultati' : 'Prossima domanda'} <i class="fas fa-chevron-right"></i>
-        </button>
+        
+        <div class="quiz-feedback-box is-hidden"></div>
+        
+        <div class="quiz-actions">
+          <button type="button" class="quiz-submit-btn button-simple" disabled>
+            Verifica risposta
+          </button>
+          <button type="button" class="quiz-next-btn button-simple is-hidden">
+            ${index === questions.length - 1 ? 'Vedi Risultati' : 'Prossima domanda'} <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
     `;
 
-    const card = wrapper.querySelector(".quiz-question-card");
-    const buttons = card.querySelectorAll(".quiz-option-btn");
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => handleOptionClick(card, btn, index));
+    const card = wrapper.querySelector(".quiz-card");
+    const inputs = card.querySelectorAll(".quiz-option-input");
+    const submitBtn = card.querySelector(".quiz-submit-btn");
+    const nextBtn = card.querySelector(".quiz-next-btn");
+    const feedbackBox = card.querySelector(".quiz-feedback-box");
+
+    // Abilita il pulsante di verifica quando viene selezionata un'opzione
+    inputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        submitBtn.disabled = false;
+      });
     });
 
-    const nextBtn = card.querySelector(".quiz-next-btn");
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-          renderQuestion(currentQuestionIndex);
-        } else {
-          showResults();
+    submitBtn.addEventListener("click", () => {
+      const selectedInput = card.querySelector(".quiz-option-input:checked");
+      if (!selectedInput) return;
+
+      const isCorrect = selectedInput.value === "true";
+
+      // Disabilita tutti gli input per bloccare la risposta
+      inputs.forEach((input) => {
+        input.disabled = true;
+      });
+
+      // Evidenzia le risposte corrette ed errate
+      const optionRows = card.querySelectorAll(".quiz-option-row");
+      optionRows.forEach((row) => {
+        const isRowCorrect = row.dataset.correct === "true";
+        const isRowSelected = row.querySelector(".quiz-option-input").checked;
+
+        row.classList.add("is-locked");
+        if (isRowCorrect) {
+          row.classList.add("is-correct-answer");
+        } else if (isRowSelected && !isCorrect) {
+          row.classList.add("is-wrong-answer");
         }
       });
-    }
-  };
 
-  const handleOptionClick = (card, button, qIdx) => {
-    const qData = questions[qIdx];
-    const isCorrect = button.dataset.correct === "true";
-    const buttons = card.querySelectorAll(".quiz-option-btn");
-    const feedback = card.querySelector(".quiz-feedback");
-    const nextBtn = card.querySelector(".quiz-next-btn");
-
-    buttons.forEach((btn) => {
-      btn.disabled = true;
-      if (btn.dataset.correct === "true") {
-        btn.classList.add("is-correct");
+      // Aggiorna punteggio e mostra feedback
+      if (isCorrect) {
+        score++;
+        card.querySelector(".quiz-score-live").textContent = `Punti: ${score}`;
+        feedbackBox.textContent = qData.feedback.correct;
+        feedbackBox.className = "quiz-feedback-box is-correct";
+      } else {
+        feedbackBox.textContent = qData.feedback.wrong;
+        feedbackBox.className = "quiz-feedback-box is-wrong";
       }
+
+      // Mostra pulsante successivo
+      submitBtn.classList.add("is-hidden");
+      nextBtn.classList.remove("is-hidden");
     });
 
-    if (isCorrect) {
-      button.classList.add("is-correct");
-      score++;
-      if (feedback) {
-        feedback.textContent = qData.feedback.correct;
-        feedback.className = "quiz-feedback is-correct";
+    nextBtn.addEventListener("click", () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        renderQuestion(currentQuestionIndex);
+      } else {
+        showResults();
       }
-    } else {
-      button.classList.add("is-wrong");
-      if (feedback) {
-        feedback.textContent = qData.feedback.wrong;
-        feedback.className = "quiz-feedback is-wrong";
-      }
-    }
-
-    if (nextBtn) nextBtn.classList.remove("is-hidden");
+    });
   };
 
   const showResults = () => {
