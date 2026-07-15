@@ -1,66 +1,68 @@
 // src/scripts/data/quizzes-db.js
 // Database centrale contenente le domande dei quiz dei tutorial di Codedge.it.
+// Tutte le entità HTML speciali (come < e >) sono state convertite in &lt; e &gt; 
+// per evitare che il browser le interpreti come tag reali rompendo l'interfaccia.
 
 export const quizzesData = {
   "html-fondamentali": [
     {
       q: "Qual è lo scopo primario dell'HTML Semantico?",
       options: [
-        "Definire il colore e lo stile degli elementi grafici della pagina.",
-        "Descrivere il significato e il ruolo del contenuto per il browser e i motori di ricerca.",
-        "Rendere la pagina interattiva al click dell'utente."
+        "Definire il colore, la disposizione e lo stile grafico degli elementi della pagina.",
+        "Descrivere il significato ed il ruolo delle varie parti di contenuto (es. intestazioni, articoli, menu) per browser e motori di ricerca.",
+        "Aggiungere effetti di movimento e interattività al click del mouse."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! L'HTML Semantico descrive il ruolo strutturale del contenuto (es. articolo, intestazione, pulsante) fornendo informazioni preziose per motori di ricerca, browser e screen reader.",
+        correct: "Esatto! L'HTML Semantico serve a chiarire il significato strutturale dei contenuti (es. un tag &lt;article&gt; indica un articolo reale), facilitando l'indicizzazione per Google ed aiutando l'accessibilità.",
         wrong: "Non proprio. Lo stile grafico appartiene ai CSS, e l'interattività ai JavaScript. L'HTML Semantico serve a descrivere il significato strutturale dei dati."
       }
     },
     {
-      q: "Quale delle seguenti associazioni di tag è considerata corretta per il nesting?",
+      q: "Qual è la regola corretta quando inserisci (annidi) un tag dentro l'altro?",
       options: [
-        "Inserire un tag <div> o <h2> dentro un tag in linea come <span>.",
-        "Inserire tag in linea come <strong> o <em> dentro elementi a blocco come <p> o <div>.",
-        "Inserire il tag <body> dentro la sezione <head>."
+        "Si possono inserire tag di testo (come grassetti o corsivi) dentro tag di struttura (come paragrafi o contenitori).",
+        "Si possono inserire tag strutturali grandi (come titoli o interi paragrafi) dentro elementi di testo piccoli in linea (come uno span).",
+        "Non ci sono regole, i tag si possono incrociare liberamente senza un ordine preciso di chiusura."
       ],
-      correct: 1,
+      correct: 0,
       feedback: {
-        correct: "Esatto! Gli elementi in linea (come strong, em, span, a) devono essere racchiusi all'interno di elementi a blocco (come p, div, li, h2). Non è corretto il contrario.",
-        wrong: "Sbagliato. Inserire elementi a blocco (come div o h2) dentro elementi in linea (come span) rompe la validità del codice HTML e può creare problemi di rendering."
+        correct: "Esatto! I tag di testo (come &lt;strong&gt; o &lt;em&gt;) vanno sempre inseriti dentro i contenitori strutturali (come &lt;p&gt; o &lt;div&gt;) e mai il contrario. Inoltre, i tag aperti per ultimi vanno sempre chiusi per primi.",
+        wrong: "Sbagliato. Non puoi inserire elementi grandi (come titoli o blocchi div) dentro piccoli tag di testo. Inoltre, i tag non si possono mai incrociare: l'ultimo tag aperto deve essere il primo a essere chiuso."
       }
     },
     {
-      q: "Cosa succede se si tralascia l'attributo alt su un'immagine?",
+      q: "Cosa succede se si carica un'immagine nel codice tralasciando l'attributo alt?",
       options: [
-        "L'immagine non viene caricata dal browser e si rompe il layout.",
-        "Vite segnalerà un errore bloccante in fase di build.",
-        "Si penalizza la SEO del sito e si rende il contenuto inaccessibile per chi usa screen reader."
+        "Il browser si rifiuterà di caricare l'immagine mostrando una schermata nera d'errore.",
+        "Vite bloccherà la compilazione del sito segnalando un errore di sintassi insuperabile.",
+        "Il sito diventa inaccessibile per chi usa screen reader (utenti ipovedenti) e si viene penalizzati sui motori di ricerca (SEO)."
       ],
       correct: 2,
       feedback: {
-        correct: "Esatto! L'assenza o la cattiva compilazione del tag 'alt' impedisce agli screen reader di descrivere l'immagine a utenti ipovedenti o non vedenti, e limita l'indicizzazione del sito su Google.",
-        wrong: "Non esattamente. Il browser caricherà comunque l'immagine (anche se rotta), e Vite compilerà senza errori, ma arrecherai un grave danno all'accessibilità del sito e alla SEO."
+        correct: "Esatto! L'assenza o la cattiva compilazione dell'attributo 'alt' impedisce agli screen reader di descrivere l'immagine a chi non può vederla, e limita notevolmente l'indicizzazione su Google.",
+        wrong: "Non esattamente. Il browser caricherà comunque l'immagine, e Vite compilerà senza errori, ma arrecherai un grave danno all'accessibilità del sito e alla SEO."
       }
     },
     {
-      q: "Qual è l'uso corretto del tag <br>?",
+      q: "Qual è l'uso corretto del tag di interruzione di riga &lt;br&gt;?",
       options: [
-        "Creare margini e spaziature verticali tra i paragrafi o elementi del layout.",
-        "Andare a capo all'interno di un testo continuo (es. poesie, indirizzi).",
-        "Inserire una linea orizzontale divisoria nella pagina."
+        "Distanziare due paragrafi o creare spazi verticali vuoti nel layout per ragioni estetiche.",
+        "Andare a capo forzatamente all'interno dello stesso blocco di testo (es. per indirizzi o poesie).",
+        "Creare una riga orizzontale decorativa per separare due capitoli."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Il tag <br> serve unicamente per andare a capo nel testo. Per distanziare gli elementi grafici si usano i margini ed il padding nei CSS.",
-        wrong: "No. Usare <br> per distanziare gli elementi è un anti-pattern; la spaziatura deve essere gestita esclusivamente con i margini CSS."
+        correct: "Esatto! Il tag &lt;br&gt; serve unicamente per andare a capo nel testo. Per distanziare gli elementi grafici si usano i margini ed il padding nei CSS.",
+        wrong: "No. Usare &lt;br&gt; per distanziare gli elementi è un errore comune; la spaziatura estetica deve essere gestita esclusivamente con i margini CSS."
       }
     },
     {
-      q: "In HTML, come deve essere gestita la gerarchia dei titoli da h1 a h6?",
+      q: "In HTML, come deve essere gestita la gerarchia dei titoli (da &lt;h1&gt; a &lt;h6&gt;)?",
       options: [
-        "In base alla dimensione visiva del font che si vuole ottenere.",
-        "In ordine numerico logico e strutturale, partendo da un solo h1 per pagina.",
-        "Utilizzando solo h1 e h2 per evitare di appesantire il codice."
+        "In base alla dimensione visiva del testo che si desidera ottenere sullo schermo.",
+        "In ordine numerico logico (es. h1 -> h2 -> h3), partendo da un solo &lt;h1&gt; principale per pagina.",
+        "Utilizzando solo intestazioni &lt;h1&gt; per massimizzare la rilevanza su Google."
       ],
       correct: 1,
       feedback: {
@@ -69,37 +71,37 @@ export const quizzesData = {
       }
     },
     {
-      q: "Qual è la differenza principale tra la sezione <head> e il <body>?",
+      q: "Qual è la differenza principale tra la sezione &lt;head&gt; e il &lt;body&gt;?",
       options: [
-        "L'head contiene i metadati e le configurazioni invisibili; il body contiene tutto il contenuto visibile.",
-        "L'head è per i link del CSS, il body è per il codice JavaScript.",
-        "L'head viene scaricato dopo il body per velocizzare il caricamento."
+        "La sezione &lt;head&gt; contiene le informazioni invisibili e i metadati; il &lt;body&gt; racchiude tutto il contenuto visibile a schermo.",
+        "L'head serve per caricare il foglio di stile CSS, mentre il body serve solo per il codice JavaScript.",
+        "L'head viene scaricato dopo il body per ottimizzare la velocità di caricamento."
       ],
       correct: 0,
       feedback: {
         correct: "Esatto! L'head racchiude metadati, fogli di stile, font e configurazioni usati dai browser e dai motori di ricerca. Il body contiene ciò che l'utente vede e con cui interagisce.",
-        wrong: "Non è corretto. L'head è caricato prima del body per definire le regole e le risorse base prima del rendering visivo."
+        wrong: "Non è corretto. L'head contiene informazioni strutturali invisibili all'utente e viene caricato prima del body per definire le regole base."
       }
     },
     {
-      q: "Quale tag rappresenta l'utilizzo corretto di un link relativo?",
+      q: "Quale dei seguenti link rappresenta l'utilizzo corretto di un link relativo?",
       options: [
-        "<a href='https://google.com'>Google</a>",
-        "<a href='/tutorial/css-fondamentali/'>CSS Fondamentali</a>",
-        "<a href='mailto:info@codedge.it'>Scrivici</a>"
+        "&lt;a href='https://google.com'&gt;Google&lt;/a&gt;",
+        "&lt;a href='/tutorial/css-fondamentali/'&gt;CSS Fondamentali&lt;/a&gt;",
+        "&lt;a href='mailto:info@codedge.it'&gt;Scrivici&lt;/a&gt;"
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Un link relativo fa riferimento a una risorsa interna allo stesso dominio senza ripetere l'URL del sito.",
-        wrong: "No. Un URL che inizia con 'https://' è un link assoluto, e un 'mailto:' è un link per client e-mail."
+        correct: "Esatto! Un link relativo punta a una risorsa interna allo stesso dominio senza ripetere il nome del sito web (es. '/chi-sono/').",
+        wrong: "No. Un URL che inizia con 'https://' è un link assoluto (punta all'esterno), e un 'mailto:' è un collegamento e-mail."
       }
     },
     {
-      q: "A cosa servono i tag generici <div> e <span>?",
+      q: "A cosa servono i tag generici &lt;div&gt; (blocco) e &lt;span&gt; (in linea)?",
       options: [
-        "A dare un significato semantico forte a blocchi e testi.",
-        "Ad agire da contenitori neutri per applicare stili CSS o comportamenti JS.",
-        "A caricare file multimediali come audio o video."
+        "A definire sezioni semantiche importanti del testo come articoli o biografie.",
+        "Ad agire come scatole e contenitori neutri per applicare stili CSS o logiche JavaScript.",
+        "A incorporare immagini, video e file multimediali nella pagina."
       ],
       correct: 1,
       feedback: {
@@ -110,22 +112,22 @@ export const quizzesData = {
     {
       q: "Quale dei seguenti tag è definito auto-chiudente (self-closing)?",
       options: [
-        "<p>",
-        "<img>",
-        "<ul>"
+        "&lt;p&gt; (Paragrafo)",
+        "&lt;img&gt; (Immagine)",
+        "&lt;ul&gt; (Lista)"
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Il tag <img> non racchiude testo ed è auto-chiudente, definendo la sorgente tramite l'attributo 'src'.",
-        wrong: "Errato. I tag <p> (paragrafo) e <ul> (lista non ordinata) richiedono sempre il rispettivo tag di chiusura (</p> e </ul>)."
+        correct: "Esatto! Il tag &lt;img&gt; non racchiude testo ed è auto-chiudente, definendo la sorgente tramite l'attributo 'src'.",
+        wrong: "Errato. I tag &lt;p&gt; e &lt;ul&gt; richiedono sempre il rispettivo tag di chiusura (&lt;/p&gt; e &lt;/ul&gt;)."
       }
     },
     {
-      q: "Qual è il modo corretto di collegare una <label> a un campo <input> in un form?",
+      q: "Qual è il modo corretto di collegare una &lt;label&gt; a un campo &lt;input&gt; in un modulo (form)?",
       options: [
-        "Inserendo l'attributo name uguale su entrambi.",
-        "Utilizzando l'attributo 'for' sulla label corrispondente all' 'id' dell'input.",
-        "Mettendo la label dopo l'input senza alcun attributo di collegamento."
+        "Assegnare lo stesso valore all'attributo 'name' su entrambi gli elementi.",
+        "Utilizzare l'attributo 'for' sulla label con lo stesso valore dell' 'id' presente nell'input.",
+        "Posizionare la label subito dopo l'input senza aggiungere alcun collegamento di codice."
       ],
       correct: 1,
       feedback: {
