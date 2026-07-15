@@ -267,5 +267,137 @@ export const quizzesData = {
         wrong: "No. Le richieste asincrone appartengono a JavaScript (Fetch API) ed i media sono gestiti dai tag HTML5 audio/video."
       }
     }
+  ],
+  "javascript-fondamentali": [
+    {
+      q: "Qual è lo scopo primario di JavaScript in una pagina web?",
+      options: [
+        "Definire lo scheletro e l'architettura semantica del testo.",
+        "Applicare regole di stile grafico, allineamento spaziale e colori.",
+        "Aggiungere comportamento dinamico, logica ed interattività in tempo reale."
+      ],
+      correct: 2,
+      feedback: {
+        correct: "Esatto! Se l'HTML è lo scheletro e il CSS è la vernice, JavaScript è il motore che permette di reagire al click, inviare dati in background o aggiornare parti di pagina al volo.",
+        wrong: "No. La struttura è definita dall'HTML e lo stile dai CSS. JavaScript serve a rendere gli elementi intelligenti e reattivi."
+      }
+    },
+    {
+      q: "Come si dichiara una variabile in JavaScript il cui valore può essere modificato e riassegnato nel corso del programma?",
+      options: [
+        "Utilizzando la parola chiave 'const'.",
+        "Utilizzando la parola chiave 'let'.",
+        "Inserendo il valore direttamente all'interno del tag HTML &lt;var&gt;."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! Le variabili create con 'let' possono essere modificate liberamente. Quelle create con 'const' sono costanti ed un tentativo di riassegnarle causerà un errore.",
+        wrong: "Errato. La parola chiave 'const' serve a definire valori costanti non riassegnabili. Il tag HTML &lt;var&gt; serve solo ad indicare semanticamente una variabile matematica nel testo."
+      }
+    },
+    {
+      q: "Qual è la differenza principale tra l'operatore di uguaglianza '==' (doppio uguale) e quello di uguaglianza stretta '===' (triplo uguale)?",
+      options: [
+        "'==' confronta unicamente il valore (convertendo i tipi se diversi), mentre '===' confronta sia il valore che il tipo di dato (senza conversioni automatiche).",
+        "'===' è un operatore obsoleto ed è stato rimosso dalle versioni moderne di JavaScript.",
+        "'==' controlla solo i numeri, mentre '===' controlla solo le stringhe di testo."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Esatto! Il triplo uguale '===' (uguaglianza stretta) evita brutte sorprese perché non effettua la conversione di tipo automatica (ad esempio, per '===' il numero 5 è diverso dalla stringa '5').",
+        wrong: "No. Entrambi sono operatori attivi. Il doppio uguale converte i dati prima di confrontarli, mentre il triplo uguale fa un controllo rigoroso sul tipo di dato."
+      }
+    },
+    {
+      q: "Quale delle seguenti sintassi definisce un Array (elenco ordinato) in JavaScript?",
+      options: [
+        "let lista = {primo: 'mela', secondo: 'banana'};",
+        "let lista = ['mela', 'banana', 'arancia'];",
+        "let lista = 'mela, banana, arancia';"
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! Gli array si definiscono utilizzando le parentesi quadre '[ ]' e contengono un elenco ordinato di elementi separati da virgole.",
+        wrong: "Errato. Le parentesi graffe '{ }' definiscono un oggetto (coppie chiave-valore), mentre l'uso delle virgolette crea una semplice stringa di testo singola."
+      }
+    },
+    {
+      q: "Cosa rappresenta una Funzione in JavaScript?",
+      options: [
+        "Un file CSS speciale che applica stili di colore al click del mouse.",
+        "Un blocco di codice riutilizzabile progettato per eseguire una specifica operazione ogni volta che viene richiamato.",
+        "Un ciclo di ripetizione che blocca l'esecuzione della pagina finché l'utente non inserisce un dato."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! Le funzioni permettono di racchiudere una logica ripetitiva sotto un unico nome, rendendola invocabile ovunque ed evitando di riscrivere lo stesso codice.",
+        wrong: "No. Le funzioni sono i mattoni della programmazione imperativa: svolgono compiti logici e non hanno a che fare con fogli di stile o blocchi forzati del browser."
+      }
+    },
+    {
+      q: "A cosa serve il metodo del DOM 'document.getElementById()'?",
+      options: [
+        "A creare da zero un nuovo elemento HTML all'interno della pagina.",
+        "A selezionare un elemento HTML esistente nella pagina partendo dal valore del suo attributo 'id'.",
+        "A modificare l'indirizzo IP del server ospitante."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! È uno dei metodi storici per accedere al DOM (la struttura della pagina) e manipolare un elemento specifico tramite il suo identificativo unico.",
+        wrong: "Errato. Per creare elementi si usa 'document.createElement()', e JavaScript lato client nel browser non ha potere di modificare l'IP del server."
+      }
+    },
+    {
+      q: "Qual è l'effetto dell'istruzione 'console.log()'?",
+      options: [
+        "Mostra un messaggio nella console degli Strumenti per Sviluppatori (DevTools) del browser, utilissimo per il debug.",
+        "Mostra una finestra pop-up bloccante a centro schermo per catturare l'attenzione dell'utente.",
+        "Salva in modo permanente i dati all'interno del database del server."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Esatto! 'console.log()' stampa messaggi invisibili all'utente comune, ma fondamentali per lo sviluppatore per ispezionare variabili e capire se il codice scorre bene.",
+        wrong: "No. Le finestre pop-up bloccanti sono generate da 'alert()', e 'console.log()' non scrive in nessun database né server."
+      }
+    },
+    {
+      q: "Qual è la differenza principale tra un Oggetto e un Array in JavaScript?",
+      options: [
+        "L'Array organizza i dati come una lista ordinata con indici numerici (0, 1, 2...); l'Oggetto organizza i dati tramite coppie di 'chiave: valore'.",
+        "L'Array memorizza esclusivamente stringhe, mentre l'Oggetto memorizza solo numeri.",
+        "Non c'è alcuna differenza, sono lo stesso tipo di dato sotto due nomi diversi."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Esatto! Si usa l'array quando l'ordine degli elementi è importante (es. una coda di messaggi). Si usa l'oggetto per descrivere un'entità con proprietà specifiche (es. utente con nome, età, e-mail).",
+        wrong: "No. Entrambi possono memorizzare qualsiasi tipo di dato (numeri, stringhe, funzioni, o altri oggetti/array), ma cambia la loro struttura logica."
+      }
+    },
+    {
+      q: "Che cos'è un 'Evento' in JavaScript?",
+      options: [
+        "Una conferenza di programmatori per concordare lo sviluppo di nuove API.",
+        "Un segnale inviato dal browser (es. click del mouse, caricamento ultimato, tasto premuto) a cui possiamo associare del codice da eseguire in risposta.",
+        "Un ciclo di temporizzazione programmato che esegue un'operazione ogni ora."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! Gli eventi (come 'click', 'submit', 'keydown') sono la base della programmazione asincrona nel browser, consentendo al codice di reagire alle azioni dell'utente.",
+        wrong: "Errato. I cicli temporizzati si gestiscono con 'setInterval', mentre gli eventi sono legati ad accadimenti reattivi sulla pagina."
+      }
+    },
+    {
+      q: "Qual è lo scopo della parola chiave 'return' in una funzione?",
+      options: [
+        "Interrompere l'intero programma JavaScript e chiudere la finestra del browser dell'utente.",
+        "Restituire un valore specifico all'esterno, verso il punto in cui la funzione è stata invocata.",
+        "Riavviare la funzione dall'inizio creando un ciclo continuo."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Esatto! 'return' interrompe l'esecuzione della funzione ed invia il valore specificato a chi l'ha chiamata (es. una funzione di calcolo restituisce il risultato numerico).",
+        wrong: "No. Non chiude il browser (per quello si usa window.close) né riavvia la funzione. Serve unicamente ad esportare l'output finale del blocco di codice."
+      }
+    }
   ]
 };
