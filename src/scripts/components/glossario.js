@@ -192,18 +192,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function filterEntries(scrollToFirst = false) {
     const query = normalize(search?.value.trim() || "");
-    const bestMatch = query ? findBestEntry(query) : null;
 
-    entries.forEach((entry) => {
-      if (!query) {
+    if (!query) {
+      entries.forEach((entry) => {
         entry.hidden = false;
         entry.open = false;
-        return;
-      }
+      });
+      setActiveItem("");
+      return;
+    }
 
-      const isBestMatch = entry === bestMatch;
-      entry.hidden = !isBestMatch;
-      entry.open = isBestMatch;
+    // Score every entry and collect those that match (score >= 0)
+    const scored = entries.map((entry, index) => ({
+      entry,
+      index,
+      score: getMatchScore(entry, query),
+    }));
+
+    const matches = scored
+      .filter((c) => c.score >= 0)
+      .sort((a, b) => b.score - a.score || a.index - b.index);
+
+    const bestMatch = matches[0]?.entry || null;
+    const matchSet = new Set(matches.map((c) => c.entry));
+
+    entries.forEach((entry) => {
+      const visible = matchSet.has(entry);
+      entry.hidden = !visible;
+      // Auto-open only the best match, collapse the others
+      if (visible) {
+        entry.open = entry === bestMatch;
+      }
     });
 
     setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
