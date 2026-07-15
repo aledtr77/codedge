@@ -231,6 +231,12 @@ aside {
   display: none;
 }
 
+.sidebar-item--hidden,
+.sidebar-group--hidden,
+.sidebar-group-list--hidden {
+  display: none !important;
+}
+
 .concept-group-list {
   padding: 0.15rem 0 0.55rem;
 }

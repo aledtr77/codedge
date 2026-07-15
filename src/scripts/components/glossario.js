@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollWrapper = document.querySelector(".glossary-scroll-wrapper");
   const termsContainer = document.querySelector(".main-content > div:not(.sidebar-placeholder)");
   let openAsideGroupForItem = () => {};
+  let asideGroups = [];
 
   if (!entries.length) return;
 
@@ -209,6 +210,16 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.classList.remove("glossary-entry--hidden");
         entry.open = false;
       });
+      clickableItems.forEach((item) => {
+        item.classList.remove("sidebar-item--hidden");
+      });
+      asideGroups.forEach((group) => {
+        group.heading.classList.remove("sidebar-group--hidden");
+        group.list.classList.remove("sidebar-group-list--hidden");
+        group.list.hidden = true;
+        group.heading.classList.remove("is-open");
+        group.heading.setAttribute("aria-expanded", "false");
+      });
       setActiveItem("");
       return;
     }
@@ -234,6 +245,36 @@ document.addEventListener("DOMContentLoaded", () => {
       if (visible) {
         // Open only the best match; collapse others so user can expand them
         entry.open = entry === bestMatch;
+      }
+    });
+
+    const visibleTitlesSet = new Set(matches.map((c) => c.entry.dataset.glossaryTitle));
+
+    // Filter sidebar clickable items
+    clickableItems.forEach((item) => {
+      const itemTitle = normalize(item.textContent);
+      const visible = visibleTitlesSet.has(itemTitle);
+      item.classList.toggle("sidebar-item--hidden", !visible);
+    });
+
+    // Filter and auto-expand sidebar groups
+    asideGroups.forEach((group) => {
+      const itemsInGroup = Array.from(group.list.querySelectorAll(".clickable-item"));
+      const hasVisibleItems = itemsInGroup.some((item) => !item.classList.contains("sidebar-item--hidden"));
+
+      group.heading.classList.toggle("sidebar-group--hidden", !hasVisibleItems);
+      group.list.classList.toggle("sidebar-group-list--hidden", !hasVisibleItems);
+
+      if (hasVisibleItems) {
+        // Auto-expand group to show matching items
+        group.list.hidden = false;
+        group.heading.classList.add("is-open");
+        group.heading.setAttribute("aria-expanded", "true");
+      } else {
+        // Collapse and hide
+        group.list.hidden = true;
+        group.heading.classList.remove("is-open");
+        group.heading.setAttribute("aria-expanded", "false");
       }
     });
 
@@ -269,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setupAsideGroups() {
-    const groups = Array.from(document.querySelectorAll(".concept-list li:not(.clickable-item)"))
+    asideGroups = Array.from(document.querySelectorAll(".concept-list li:not(.clickable-item)"))
       .map((heading) => {
         const list = (heading.nextElementSibling?.tagName === "UL")
           ? heading.nextElementSibling
@@ -303,11 +344,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     openAsideGroupForItem = (item) => {
       const groupList = item.closest(".concept-group-list");
-      const group = groups.find((candidate) => candidate.list === groupList);
+      const group = asideGroups.find((candidate) => candidate.list === groupList);
       if (group) openGroup(group);
     };
 
-    groups.forEach((group) => {
+    asideGroups.forEach((group) => {
       group.heading.addEventListener("click", () => toggleGroup(group));
       group.heading.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
