@@ -12,49 +12,73 @@ export default function initGuidePlayground() {
 <head>
   <meta charset="UTF-8">
   <style>
+    /* Stili di base per rendere gradevole la sandbox di prova */
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 16px;
+      margin: 12px;
       padding: 0;
-      background-color: #f3f6fa;
-      color: #1e293b;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin: 16px 0 6px 0;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+    .sandbox-section {
+      margin-bottom: 20px;
     }
     
-    /* Contenitore di prova */
-    .parent, .container, .griglia, .flex-container, .card, .card-container {
-      background: #ffffff;
+    /* Box figli di prova di base per Flexbox/Grid */
+    .box, .item {
       padding: 16px;
-      border-radius: 8px;
-      border: 1px dashed #cbd5e1;
-      min-height: 100px;
-      box-sizing: border-box;
-    }
-    
-    /* Box figli di prova */
-    .box, .item, .badge {
-      padding: 20px;
-      background: #00A8FF;
+      background: #0ea5e9;
       color: white;
       border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
+      font-weight: 600;
       text-align: center;
-      box-sizing: border-box;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    .box:nth-child(2) { background: #FF4757; }
-    .box:nth-child(3) { background: #2ED573; }
+    .box:nth-child(2), .item:nth-child(2) { background: #f43f5e; }
+    .box:nth-child(3), .item:nth-child(3) { background: #10b981; }
 
-    /* CSS digitato dall'utente */
+    /* CSS scritto dal programmatore */
     ${userCss}
   </style>
 </head>
 <body>
-  <div class="parent container griglia flex-container card card-container">
-    <div class="box item badge">Box 1</div>
-    <div class="box item badge">Box 2</div>
-    <div class="box item badge">Box 3</div>
+  
+  <div class="sandbox-section">
+    <h4>1. Layout (Flexbox / Grid / Columns)</h4>
+    <!-- I contenitori hanno classi multiple per intercettare i diversi snippet -->
+    <div class="flex-row auto-grid layout-grid carousel-snap flex-container parent container">
+      <div class="box item carousel-item card">Box 1</div>
+      <div class="box item carousel-item card">Box 2</div>
+      <div class="box item carousel-item card">Box 3</div>
+    </div>
   </div>
+
+  <div class="sandbox-section">
+    <h4>2. Effetti UI e Pulsanti</h4>
+    <button class="btn-interactive button btn" type="button">Pulsante Interattivo</button>
+  </div>
+
+  <div class="sandbox-section">
+    <h4>3. Troncamento e Gestione Testo</h4>
+    <div style="max-width: 320px; padding: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;">
+      <p class="truncate-lines-3" style="margin: 0 0 8px 0; font-size: 0.85rem; color: #334155;">
+        Questo è un paragrafo molto lungo di prova. Contiene molto testo per testare l'ellissi su più righe. Se la regola CSS funziona correttamente, dovresti vedere il testo troncato con i tre puntini sospensivi alla fine della riga impostata.
+      </p>
+      <p class="single-line-ellipsis" style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #0f172a;">
+        Questo è un titolo molto lungo per testare l'ellissi su singola riga.
+      </p>
+    </div>
+  </div>
+
 </body>
 </html>
   `.trim();
