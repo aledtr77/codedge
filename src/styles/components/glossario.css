@@ -147,6 +147,7 @@ body > main,
   padding-left: 0.25rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
+  scrollbar-gutter: stable;
 }
 
 aside {
@@ -163,6 +164,7 @@ aside {
     #30343d;
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
   scrollbar-width: thin;
+  scrollbar-gutter: stable;
   scrollbar-color: rgba(155, 211, 255, 0.35) transparent;
 }
 
