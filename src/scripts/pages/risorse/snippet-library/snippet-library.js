@@ -218,10 +218,26 @@ export function initSnippets(options = {}) {
   })();
 
   /* ----------------------
+     Dynamic header height offset synchronization
+     ---------------------- */
+  const header = document.querySelector('header');
+  function syncHeaderOffset() {
+    if (!header) return;
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    document.body.style.setProperty('--snippet-header-offset', `${h}px`);
+  }
+  syncHeaderOffset();
+  if ('ResizeObserver' in window && header) {
+    new ResizeObserver(syncHeaderOffset).observe(header);
+  }
+  window.addEventListener('resize', syncHeaderOffset);
+
+  /* ----------------------
      Smooth anchor scrolling for clickable items
      ---------------------- */
   (function attachClickableItems() {
     const items = Array.from(document.querySelectorAll('.clickable-item'));
+    const snippetMain = document.querySelector('.snippet-main');
     if (!items.length) return;
     items.forEach(it => {
       it.addEventListener('click', (ev) => {
@@ -231,7 +247,22 @@ export function initSnippets(options = {}) {
           ev.preventDefault();
           const el = document.querySelector(href);
           if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const isDesktop = window.innerWidth > 980;
+            if (isDesktop && snippetMain) {
+              const containerRect = snippetMain.getBoundingClientRect();
+              const elRect = el.getBoundingClientRect();
+              const gap = 16;
+              snippetMain.scrollTo({
+                top: snippetMain.scrollTop + (elRect.top - containerRect.top) - gap,
+                behavior: 'smooth'
+              });
+
+              // Visually activate clicked item
+              items.forEach(item => item.classList.remove('is-active'));
+              it.classList.add('is-active');
+            } else {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }
         }
       });
@@ -241,5 +272,4 @@ export function initSnippets(options = {}) {
   console.log('initSnippets: initialized');
 }
 
-// default export as function (keeps compatibility with existing imports)
 export default initSnippets;
