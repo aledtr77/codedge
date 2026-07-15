@@ -159,6 +159,11 @@
               <p>Partiamo da un punto fondamentale: HTML <strong>non è un linguaggio di programmazione</strong>. Non compie calcoli, non prende decisioni logiche e non sa fare operazioni matematiche. HTML sta per <em>HyperText Markup Language</em> (Linguaggio di Marcatura Ipertestuale).</p>
               <p>Il suo unico scopo è "marcare" il testo puro per dire al browser: <em>"Questo pezzo è un titolo, questa frase è un paragrafo e questo elemento è un pulsante"</em>.</p>
               <p>Quando scrivi un file HTML e lo apri, il browser lo legge e crea una struttura ad albero chiamata <strong>DOM</strong> (Document Object Model). Immaginalo come una ramificazione di scatole: la scatola principale contiene scatole più piccole, che a loro volta contengono testi o altre scatole. CSS e JavaScript agiranno in seguito proprio su questo albero. Senza un HTML solido, non avrebbero nulla da stilizzare o animare.</p>
+              
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/html-fondamentali/dom-tree.svg" alt="Diagramma dell'albero del DOM (Document Object Model)" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Rappresentazione ad albero della struttura gerarchica degli elementi in una pagina HTML.</figcaption>
+              </figure>
             </section>
           </section>
 
@@ -181,6 +186,11 @@
               <pre><code>&lt;!-- CORRETTO: La scatola interna (&lt;strong&gt;) si chiude prima di quella esterna (&lt;p&gt;) --&gt;
 &lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/strong&gt;&lt;/p&gt;</code></pre>
               <p>I browser moderni cercano di correggere questi errori in automatico, ma farlo costringe il browser a fare calcoli inutili e spesso produce layout imprevisti o problemi di accessibilità.</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/html-fondamentali/nesting-tag.svg" alt="Diagramma di confronto tra annidamento tag corretto ed errato" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Confronto visivo tra l'annidamento strutturato (scatole cinesi) e l'incrocio scorretto dei tag.</figcaption>
+              </figure>
             </section>
           </section>
 

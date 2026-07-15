@@ -171,6 +171,11 @@
                 <li>Lo chef controlla costantemente se il tagliere principale è libero. Non appena finisce di preparare gli ordini correnti (grazie all'**Event Loop**), prende la bistecca dal nastro e la impiatta per servirla.</li>
               </ul>
               <p>Questo permette a JavaScript di gestire operazioni lunghissime senza mai congelare l'interfaccia utente.</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/javascript-fondamentali/event-loop.svg" alt="Diagramma dell'Event Loop in JavaScript" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Rappresentazione del ciclo asincrono controllato dall'Event Loop per far comunicare Call Stack, Web APIs e Callback Queue.</figcaption>
+              </figure>
             </section>
           </section>
 
@@ -309,6 +314,11 @@ popup.classList.add("is-active");
 popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code></pre>
               <h3>textContent vs innerHTML: Sicurezza XSS</h3>
               <p>Se devi stampare un testo inserito dall'utente in una pagina, usa sempre `textContent`. Evita `innerHTML`, poiché interpreta i tag HTML e potrebbe permettere a malintenzionati di iniettare script dannosi nel tuo sito (attacco Cross-Site Scripting - XSS).</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/javascript-fondamentali/dom-manipulation.svg" alt="Diagramma della manipolazione del DOM" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Rappresentazione del flusso con cui JavaScript seleziona gli elementi dell'albero HTML e ne altera dinamicamente proprietà e contenuti.</figcaption>
+              </figure>
             </section>
           </section>
 
