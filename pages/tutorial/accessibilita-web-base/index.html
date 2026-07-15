@@ -140,8 +140,10 @@
             <li><a href="#chapter-10">9. ARIA senza confusione</a></li>
             <li><a href="#chapter-11">10. Responsive, motion e contenuti</a></li>
             <li><a href="#chapter-12">11. Checklist finale</a></li>
-                      <li><a href="#chapter-quiz">12. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida Accessibilita web base">
@@ -553,8 +555,73 @@ input:focus-visible {
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo rapido degli attributi e ruoli a11y più importanti da controllare:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Elemento / Attributo</th>
+                      <th style="padding: 10px; color: #00A8FF;">Sintassi tipica</th>
+                      <th style="padding: 10px;">Scopo d'uso</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">alt</td>
+                      <td style="padding: 10px; font-family: monospace;">&lt;img alt="Descrizione"&gt;</td>
+                      <td style="padding: 10px;">Descrizione testuale delle immagini letta vocalmente dagli screen reader.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">:focus outline</td>
+                      <td style="padding: 10px; font-family: monospace;">outline: 2px solid #00A8FF;</td>
+                      <td style="padding: 10px;">Segnale visivo obbligatorio che indica quale elemento è selezionato tramite tastiera.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">aria-hidden</td>
+                      <td style="padding: 10px; font-family: monospace;">aria-hidden="true"</td>
+                      <td style="padding: 10px;">Nasconde elementi decorativi (es. icone) agli screen reader per evitare letture fastidiose.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">tabindex</td>
+                      <td style="padding: 10px; font-family: monospace;">tabindex="0"</td>
+                      <td style="padding: 10px;">Rende un elemento normalmente non interattivo (come un div) selezionabile tramite Tab.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>13. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Analizza ed ottimizza l'accessibilità delle tue pagine web:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Rendi un modulo di contatto ed un'immagine 100% accessibili a chi naviga solo da tastiera o usa lettori vocali.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Assicurati che tutte le immagini della tua pagina abbiano l'attributo <code class="language-html">alt</code> compilato. Se l'immagine è puramente decorativa, lascia l'attributo vuoto (<code class="language-html">alt=""</code>).</li>
+                  <li>Controlla il file CSS del progetto ed assicurati che non sia presente la regola distruttiva <code class="language-css">outline: none;</code> senza un'alternativa visiva di focus equivalente.</li>
+                  <li>Usa solo il tasto <code class="language-text">Tab</code> della tastiera per navigare l'intera pagina, controllando che sia possibile premere ogni link e bottone visualizzando chiaramente l'indicatore grafico di focus.</li>
+                  <li>Associa tutte le label del modulo ai rispettivi input usando gli attributi <code class="language-html">for</code> e <code class="language-html">id</code>.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="accessibilita-web-base" class="guide-block guide-chapter quiz-section">
-            <h2>12. Verifica la tua preparazione (Quiz)</h2>
+            <h2>14. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

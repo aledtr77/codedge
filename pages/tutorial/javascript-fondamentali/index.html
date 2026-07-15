@@ -127,8 +127,10 @@
             <li><a href="#chapter-12">11. Web Storage: salvare le preferenze dell'utente</a></li>
             <li><a href="#chapter-13">12. I comportamenti più folli di JavaScript (e come sopravvivere)</a></li>
             <li><a href="#chapter-14">13. Debugging professionale: oltre il console.log</a></li>
-            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
-            <li><a href="#chapter-15">15. Dove continuare dopo</a></li>
+            <li><a href="#chapter-cheatsheet">14. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">15. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">16. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-15">17. Dove continuare dopo</a></li>
           </ol>
         </aside>
 
@@ -472,15 +474,80 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
           </section>
 
           <!-- SEZIONE QUIZ INTERATTIVO PILOTA -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>14. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo rapido delle principali logiche di interrogazione e modifica del DOM:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Metodo</th>
+                      <th style="padding: 10px; color: #00A8FF;">Parametro / Uso</th>
+                      <th style="padding: 10px;">Cosa fa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">querySelector()</td>
+                      <td style="padding: 10px; font-family: monospace;">'.classe' | '#id'</td>
+                      <td style="padding: 10px;">Seleziona il primo elemento corrispondente al selettore CSS indicato.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">addEventListener()</td>
+                      <td style="padding: 10px; font-family: monospace;">'click', callback</td>
+                      <td style="padding: 10px;">Aggancia un ascoltatore per eseguire codice JavaScript in risposta all'evento.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">classList.add()</td>
+                      <td style="padding: 10px; font-family: monospace;">'is-active'</td>
+                      <td style="padding: 10px;">Aggiunge una classe CSS all'elemento per cambiarne lo stato visivo in sicurezza.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">textContent</td>
+                      <td style="padding: 10px; font-family: monospace;">'Testo puro'</td>
+                      <td style="padding: 10px;">Legge o scrive il testo all'interno dell'elemento (sicuro contro attacchi XSS).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>15. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Metti in pratica le logiche del DOM e degli eventi in JavaScript:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un contatore dinamico di caratteri in tempo reale per una casella di testo (textarea), che cambi colore (es. diventa rosso) quando si supera il limite di caratteri impostato.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Seleziona la textarea usando <code class="language-javascript">document.querySelector('.messaggio')</code> ed il contatore usando <code class="language-javascript">document.querySelector('.counter')</code>.</li>
+                  <li>Aggiungi un ascoltatore di eventi per l'evento <code class="language-javascript">'input'</code> alla tua casella di testo.</li>
+                  <li>All'interno della funzione di callback dell'ascoltatore, leggi la lunghezza corrente del testo digitato.</li>
+                  <li>Aggiorna la proprietà <code class="language-javascript">textContent</code> del contatore mostrando i caratteri correnti (es. <code class="language-javascript">msgLen + " / 100"</code>).</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section">
-            <h2>14. Verifica la tua preparazione (Quiz)</h2>
+            <h2>16. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
 
           <!-- CAPITOLO 15 — DOVE CONTINUARE -->
           <section id="chapter-15" class="guide-block guide-chapter">
-            <h2>15. Dove continuare dopo</h2>
+            <h2>17. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>Hai fatto i primi grandi passi nella logica di programmazione per il web. Ecco dove orientare le tue prossime letture per integrare queste competenze:</p>
               <ul class="guide-list">

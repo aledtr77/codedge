@@ -100,8 +100,10 @@
             <li><a href="#chapter-08">7. Routine minima di lavoro</a></li>
             <li><a href="#chapter-09">8. Errori comuni</a></li>
             <li><a href="#chapter-10">9. Da qui in poi</a></li>
-                      <li><a href="#chapter-quiz">10. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-cheatsheet">10. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">11. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">12. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida NPM, Vite e struttura progetto">
@@ -301,8 +303,78 @@ npm run preview</code></pre>
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>10. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco la tabella di riferimento rapido per la gestione dei pacchetti NPM e comandi Vite:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Comando</th>
+                      <th style="padding: 10px; color: #00A8FF;">Tipo dipendenza</th>
+                      <th style="padding: 10px;">Scopo principale</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm init -y</td>
+                      <td style="padding: 10px;">Generico</td>
+                      <td style="padding: 10px;">Inizializza un nuovo file package.json vuoto impostando le opzioni di default.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm install &lt;pkg&gt;</td>
+                      <td style="padding: 10px; font-family: monospace;">dependencies</td>
+                      <td style="padding: 10px;">Installa un pacchetto logico necessario a runtime nel sito (es. lodash).</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm install -D &lt;pkg&gt;</td>
+                      <td style="padding: 10px; font-family: monospace;">devDependencies</td>
+                      <td style="padding: 10px;">Installa pacchetti necessari solo in fase di sviluppo/build (es. Vite, Prettier).</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm run dev</td>
+                      <td style="padding: 10px; font-family: monospace;">Script</td>
+                      <td style="padding: 10px;">Avvia il server di sviluppo locale ad altissima velocità di rendering.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm run build</td>
+                      <td style="padding: 10px; font-family: monospace;">Script</td>
+                      <td style="padding: 10px;">Compila ed ottimizza gli asset creando la cartella di produzione 'dist/'.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>11. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Crea il tuo primo progetto guidato da terminale usando NPM:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un package.json, installa un pacchetto di formattazione codice come devDependency e scrivi uno script custom per eseguirlo dal terminale.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri il terminale in una cartella vuota e lancia il comando <code class="language-bash">npm init -y</code> per creare il package.json di default.</li>
+                  <li>Installa la libreria *Prettier* come dipendenza di sviluppo scrivendo nel terminale: <code class="language-bash">npm install -D prettier</code>.</li>
+                  <li>Apri il file <code class="language-text">package.json</code> con VS Code ed aggiungi lo script custom <code class="language-json">"format": "prettier --write ."</code> all'interno del blocco <code class="language-json">"scripts"</code>.</li>
+                  <li>Crea un file di prova disordinato ed esegui la formattazione automatica dal tuo terminale lanciando il comando <code class="language-bash">npm run format</code>.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="npm-vite-struttura-progetto" class="guide-block guide-chapter quiz-section">
-            <h2>10. Verifica la tua preparazione (Quiz)</h2>
+            <h2>12. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

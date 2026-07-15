@@ -117,8 +117,10 @@
             <li><a href="#chapter-09">8. Git dentro VS Code senza confusione</a></li>
             <li><a href="#chapter-10">9. Routine quotidiana consigliata</a></li>
             <li><a href="#chapter-11">10. Checklist finale</a></li>
-                      <li><a href="#chapter-quiz">11. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">12. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida Visual Studio Code">
@@ -475,8 +477,73 @@
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>11. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo rapido delle scorciatoie da tastiera essenziali da memorizzare:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Azione</th>
+                      <th style="padding: 10px; color: #00A8FF;">Scorciatoia Windows/Linux</th>
+                      <th style="padding: 10px; color: #f59e42;">Scorciatoia macOS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Apri Command Palette</td>
+                      <td style="padding: 10px; font-family: monospace;">Ctrl + Shift + P</td>
+                      <td style="padding: 10px; font-family: monospace;">Cmd + Shift + P</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Quick Open File</td>
+                      <td style="padding: 10px; font-family: monospace;">Ctrl + P</td>
+                      <td style="padding: 10px; font-family: monospace;">Cmd + P</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Cursori Multipli</td>
+                      <td style="padding: 10px; font-family: monospace;">Alt + Click</td>
+                      <td style="padding: 10px; font-family: monospace;">Option + Click</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Apri Terminale Integrato</td>
+                      <td style="padding: 10px; font-family: monospace;">Ctrl + `</td>
+                      <td style="padding: 10px; font-family: monospace;">Ctrl + `</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>12. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Usa il tuo VS Code per testare la tua agilità con i comandi rapidi:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Configura il tuo spazio di lavoro per formattare automaticamente il codice al salvataggio ed esegui modifiche parallele usando cursori multipli.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri le impostazioni (<code class="language-text">Ctrl + ,</code>) e cerca la voce <code class="language-text">Format On Save</code>. Abilita la casella per forzare la formattazione automatica dei file ad ogni salvataggio.</li>
+                  <li>Crea un file di prova HTML ed inserisci 5 paragrafi vuoti del tipo <code class="language-html">&lt;p&gt;&lt;/p&gt;</code>.</li>
+                  <li>Posiziona 5 cursori simultaneamente usando <code class="language-text">Alt + Click</code> all'interno di tutti i paragrafi e scrivi contemporaneamente la parola "Test".</li>
+                  <li>Usa la Command Palette (<code class="language-text">Ctrl + Shift + P</code>), cerca il comando <code class="language-text">Toggle Minimap</code> ed esegui l'azione per nascondere la mappa del codice laterale liberando spazio sullo schermo.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="vscode-essenziale" class="guide-block guide-chapter quiz-section">
-            <h2>11. Verifica la tua preparazione (Quiz)</h2>
+            <h2>13. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

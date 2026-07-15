@@ -140,8 +140,10 @@
             <li><a href="#chapter-10">9. Dati strutturati e social</a></li>
             <li><a href="#chapter-11">10. Search Console</a></li>
             <li><a href="#chapter-12">11. Checklist finale</a></li>
-                      <li><a href="#chapter-quiz">12. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida SEO tecnico base">
@@ -562,8 +564,73 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo dei meta tag SEO più importanti da compilare in ogni pagina:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Tag / File</th>
+                      <th style="padding: 10px; color: #00A8FF;">Struttura sintattica</th>
+                      <th style="padding: 10px;">Consigli SEO utili</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;title&gt;</td>
+                      <td style="padding: 10px; font-family: monospace;">&lt;title&gt;Titolo Pagina | Codedge&lt;/title&gt;</td>
+                      <td style="padding: 10px;">Mantieni la lunghezza sotto i 60 caratteri inserendo la parola chiave principale in testa.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">meta description</td>
+                      <td style="padding: 10px; font-family: monospace;">&lt;meta name="description" content="..."&gt;</td>
+                      <td style="padding: 10px;">Massimo 155-160 caratteri. Deve contenere una sintesi attraente del contenuto per indurre al click.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">canonical</td>
+                      <td style="padding: 10px; font-family: monospace;">&lt;link rel="canonical" href="..."&gt;</td>
+                      <td style="padding: 10px;">Indica l'URL ufficiale preferito per evitare penalizzazioni dovute a contenuti duplicati.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">robots.txt</td>
+                      <td style="padding: 10px; font-family: monospace;">User-agent: * Disallow: /admin/</td>
+                      <td style="padding: 10px;">Fornisce regole ai motori di ricerca su quali aree del sito non scansionare.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>13. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ottimizza il tuo primo file HTML reale applicando le regole di SEO tecnico:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Scrivi i tag SEO corretti nell'head del tuo sito ed imposta un file robots.txt per escludere file e cartelle riservati.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri un file di codice HTML nel tuo editor ed inserisci un tag canonical che punti all'indirizzo URL ufficiale della pagina.</li>
+                  <li>Configura un tag <code class="language-html">&lt;meta name="description" ...&gt;</code> inserendo un riepilogo accattivante di esattamente 150 caratteri.</li>
+                  <li>Crea un file di testo dal nome <code class="language-text">robots.txt</code> posizionato nella cartella principale del progetto.</li>
+                  <li>All'interno di robots.txt, scrivi le regole per consentire l'accesso a tutti i bot robot ma vietare l'indicizzazione della cartella di amministrazione <code class="language-text">/private/</code>.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="seo-tecnico-base" class="guide-block guide-chapter quiz-section">
-            <h2>12. Verifica la tua preparazione (Quiz)</h2>
+            <h2>14. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

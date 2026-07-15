@@ -130,9 +130,11 @@
             <li><a href="#chapter-18">14. Modificare dal browser</a></li>
             <li><a href="#chapter-20">15. Clone e Fork</a></li>
             <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
-            <li><a href="#chapter-23">18. Conclusioni</a></li>
-                      <li><a href="#chapter-quiz">19. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-23">17. Conclusioni</a></li>
+            <li><a href="#chapter-cheatsheet">18. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">19. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">20. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida GitHub">
@@ -684,8 +686,73 @@ git push</code></pre>
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>18. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo dei comandi chiave per lavorare in remoto con GitHub:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Comando</th>
+                      <th style="padding: 10px; color: #00A8FF;">Cosa fa</th>
+                      <th style="padding: 10px;">Quando usarlo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git clone &lt;url&gt;</td>
+                      <td style="padding: 10px;">Crea una copia locale completa di un repository ospitato su GitHub.</td>
+                      <td style="padding: 10px;">All'inizio di un nuovo progetto partendo da un repo esistente online.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git remote add origin</td>
+                      <td style="padding: 10px;">Collega il tuo repository locale a un server remoto su GitHub.</td>
+                      <td style="padding: 10px;">Dopo aver creato un nuovo repository locale ed un repo vuoto online.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git push -u origin main</td>
+                      <td style="padding: 10px;">Invia i commit locali al server remoto agganciando il tracciamento del branch.</td>
+                      <td style="padding: 10px;">Al primo push del branch locale. Successivamente basterà scrivere 'git push'.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git pull</td>
+                      <td style="padding: 10px;">Scarica ed integra le modifiche remote nel branch locale attivo.</td>
+                      <td style="padding: 10px;">All'inizio della sessione di lavoro o per allineare il computer locale.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>19. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Metti in rete il tuo codice pubblicando una pagina personale su GitHub Pages:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un repository remoto su GitHub, collega il tuo codice locale, effettua il push e pubblica la tua pagina statica su internet.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Accedi al tuo account GitHub e crea un nuovo repository pubblico dal nome <code class="language-text">sito-vetrina</code> (lascialo vuoto, senza README o .gitignore).</li>
+                  <li>Nel terminale del tuo progetto locale, scrivi <code class="language-bash">git remote add origin https://github.com/TUO-UTENTE/sito-vetrina.git</code>.</li>
+                  <li>Effettua il push del tuo branch main con il comando <code class="language-bash">git push -u origin main</code>.</li>
+                  <li>Entra in *Settings -> Pages* del repository su GitHub, seleziona la sorgente *Deploy from a branch* indicando il branch *main* e verifica dopo qualche minuto l'indirizzo pubblico del sito.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="github-operativo" class="guide-block guide-chapter quiz-section">
-            <h2>19. Verifica la tua preparazione (Quiz)</h2>
+            <h2>20. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

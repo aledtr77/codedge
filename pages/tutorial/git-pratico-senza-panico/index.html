@@ -84,19 +84,21 @@
         <aside class="guide-toc" aria-label="Indice navigabile guida Git">
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
-              <li><a href="#chapter-01">1. Prima di iniziare e storia di Git</a></li>
-              <li><a href="#chapter-02">2. Perché Git e GitHub</a></li>
-              <li><a href="#chapter-03">3. Modello mentale e aree di lavoro</a></li>
-              <li><a href="#chapter-04">4. Setup iniziale e primo repository</a></li>
-              <li><a href="#chapter-05">5. Workflow quotidiano e commit puliti</a></li>
-              <li><a href="#chapter-06">6. Branch merge e remoti</a></li>
-              <li><a href="#chapter-07">7. Recupero errori e reflog</a></li>
-              <li><a href="#chapter-08">8. Laboratorio guidato</a></li>
-              <li><a href="#chapter-09">9. Checklist e glossario</a></li>
-              <li><a href="#chapter-10">10. Git + AI in assistenza</a></li>
-              <li><a href="#chapter-11">11. Nota finale</a></li>
-                      <li><a href="#chapter-quiz">12. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-01">1. Prima di iniziare e storia di Git</a></li>
+            <li><a href="#chapter-02">2. Perché Git e GitHub</a></li>
+            <li><a href="#chapter-03">3. Modello mentale e aree di lavoro</a></li>
+            <li><a href="#chapter-04">4. Setup iniziale e primo repository</a></li>
+            <li><a href="#chapter-05">5. Workflow quotidiano e commit puliti</a></li>
+            <li><a href="#chapter-06">6. Branch merge e remoti</a></li>
+            <li><a href="#chapter-07">7. Recupero errori e reflog</a></li>
+            <li><a href="#chapter-08">8. Laboratorio guidato</a></li>
+            <li><a href="#chapter-09">9. Checklist e glossario</a></li>
+            <li><a href="#chapter-10">10. Git + AI in assistenza</a></li>
+            <li><a href="#chapter-11">11. Nota finale</a></li>
+            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida Git">
@@ -767,8 +769,73 @@ git push -u origin main</code></pre>
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco l'elenco dei comandi Git locali fondamentali da tenere sempre a mente:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Comando</th>
+                      <th style="padding: 10px; color: #00A8FF;">Cosa fa</th>
+                      <th style="padding: 10px;">Quando usarlo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git init</td>
+                      <td style="padding: 10px;">Inizializza un nuovo repository Git locale.</td>
+                      <td style="padding: 10px;">All'avvio di un nuovo progetto da tracciare.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git status</td>
+                      <td style="padding: 10px;">Mostra lo stato corrente di working directory e staging area.</td>
+                      <td style="padding: 10px;">Costantemente, prima di ogni add o commit.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git add .</td>
+                      <td style="padding: 10px;">Sposta tutte le modifiche correnti nella Staging Area.</td>
+                      <td style="padding: 10px;">Quando le modifiche sono pronte per essere committate.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">git commit -m "msg"</td>
+                      <td style="padding: 10px;">Salva definitivamente lo snapshot in staging nella cronologia.</td>
+                      <td style="padding: 10px;">Dopo aver aggiunto i file in staging area.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>13. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Apri il tuo terminale ed esegui i passaggi per creare un flusso di lavoro pulito:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un repository Git locale, crea un branch di sviluppo parallelo ed esegui un commit pulito di un nuovo file.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri la cartella del tuo progetto nel terminale integrato e digita <code class="language-bash">git init</code>.</li>
+                  <li>Crea un nuovo branch di sviluppo con il comando <code class="language-bash">git checkout -b feature/prova-sfida</code>.</li>
+                  <li>Crea un file di testo <code class="language-text">sfida.txt</code> al cui interno scrivi "Sfida completata".</li>
+                  <li>Digita <code class="language-bash">git status</code>, poi sposta il file in staging con <code class="language-bash">git add sfida.txt</code> ed effettua il commit scrivendo il messaggio in lingua inglese.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="git-pratico-senza-panico" class="guide-block guide-chapter quiz-section">
-            <h2>12. Verifica la tua preparazione (Quiz)</h2>
+            <h2>14. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>

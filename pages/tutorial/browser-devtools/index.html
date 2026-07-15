@@ -99,8 +99,10 @@
             <li><a href="#chapter-07">6. Sources, Performance, Memory e Lighthouse</a></li>
             <li><a href="#chapter-08">7. Routine minima di debug</a></li>
             <li><a href="#chapter-09">8. Da qui in poi</a></li>
-                      <li><a href="#chapter-quiz">9. Verifica la preparazione (Quiz)</a></li>
-</ol>
+            <li><a href="#chapter-cheatsheet">9. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">10. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">11. Verifica la preparazione (Quiz)</a></li>
+          </ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida Browser e DevTools">
@@ -298,8 +300,73 @@ localStorage.getItem("tema")</code></pre>
           </section>
         
           <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>9. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco i pannelli diagnostici principali e quando usarli:</p>
+              <div class="table-wrapper">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
+                      <th style="padding: 10px;">Pannello</th>
+                      <th style="padding: 10px; color: #00A8FF;">Cosa analizza</th>
+                      <th style="padding: 10px;">Caso d'uso principale</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Elements (Elementi)</td>
+                      <td style="padding: 10px;">Struttura HTML (DOM) e stili CSS attivi.</td>
+                      <td style="padding: 10px;">Modificare i colori o allineamenti CSS in tempo reale prima di scrivere il codice sorgente.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Console</td>
+                      <td style="padding: 10px;">Errori, warning ed esecuzione JS.</td>
+                      <td style="padding: 10px;">Verificare se ci sono errori bloccanti di caricamento o variabili non definite.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Network (Rete)</td>
+                      <td style="padding: 10px;">Richieste HTTP di tutte le risorse del sito.</td>
+                      <td style="padding: 10px;">Individuare immagini rotte (errore 404) o risorse pesanti che rallentano la pagina.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                      <td style="padding: 10px; font-weight: bold;">Application (Applicazione)</td>
+                      <td style="padding: 10px;">LocalStorage, SessionStorage, Cookie.</td>
+                      <td style="padding: 10px;">Ispezionare i dati salvati dal sito o cancellare i cookie di sessione per testare il login.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>10. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Metti in pratica le tue abilità di ispezione usando il tuo browser preferito:</p>
+              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+                <strong>Obiettivo della sfida:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Fai un debug visivo modificando temporaneamente una regola CSS ed analizza le chiamate di rete attive.</p>
+                <strong>Istruzioni passo-passo:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri gli strumenti sviluppatori (<code class="language-text">F12</code>) su questa pagina web.</li>
+                  <li>Attiva lo strumento di selezione elementi ed evidenzia il titolo principale della guida.</li>
+                  <li>Nel pannello laterale degli stili CSS, aggiungi una regola temporanea <code class="language-css">color: red;</code> e verifica la modifica immediata dello stile a schermo.</li>
+                  <li>Spostati nel pannello *Network*, seleziona il filtro *Img* e ricarica la pagina (<code class="language-text">F5</code>) per controllare il caricamento di tutte le immagini della pagina con la rispettiva dimensione.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
           <section id="chapter-quiz" data-quiz-id="browser-devtools" class="guide-block guide-chapter quiz-section">
-            <h2>9. Verifica la tua preparazione (Quiz)</h2>
+            <h2>11. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
