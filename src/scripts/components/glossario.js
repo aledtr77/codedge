@@ -154,12 +154,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return regex.test(text);
     };
 
-    // EVERY word in the query must match as a prefix of at least one word in title, summary, or fullText
-    const matchesAllWords = queryWords.every((word) => 
-      hasWordPrefix(title, word) || hasWordPrefix(summary, word) || hasWordPrefix(fullText, word)
-    );
-
-    if (!matchesAllWords) return -1; // Filter out entries that do not match all typed words
+    // Heuristic: for very short queries (1-2 chars), only match title to prevent noise
+    if (query.length < 3) {
+      const matchesTitle = queryWords.every((word) => hasWordPrefix(title, word));
+      if (!matchesTitle) return -1;
+    } else {
+      const matchesAllWords = queryWords.every((word) => 
+        hasWordPrefix(title, word) || hasWordPrefix(summary, word) || hasWordPrefix(fullText, word)
+      );
+      if (!matchesAllWords) return -1;
+    }
 
     let score = 0;
 
@@ -429,9 +433,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   clickableItems.forEach((item) => {
     item.addEventListener("click", () => {
-      if (!search) return;
-      search.value = item.textContent.trim();
-      filterEntries(true); // scroll on explicit sidebar click
+      if (search) {
+        search.value = "";
+        filterEntries(false);
+      }
+
+      const normalizedTitle = normalize(item.textContent);
+      const targetEntry = entries.find(
+        (entry) => entry.dataset.glossaryTitle === normalizedTitle
+      );
+
+      if (targetEntry) {
+        entries.forEach((entry) => {
+          entry.open = false;
+        });
+        targetEntry.open = true;
+        setActiveItem(targetEntry.dataset.glossaryTitleRaw);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const isDesktop = window.innerWidth > 1180;
+            if (isDesktop && termsContainer) {
+              const containerRect = termsContainer.getBoundingClientRect();
+              const entryRect = targetEntry.getBoundingClientRect();
+              const gap = 16;
+              termsContainer.scrollTo({
+                top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
+                behavior: "smooth",
+              });
+            } else if (scrollWrapper) {
+              const wrapperRect = scrollWrapper.getBoundingClientRect();
+              const entryRect = targetEntry.getBoundingClientRect();
+              const gap = 16;
+              scrollWrapper.scrollTo({
+                top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - gap,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      }
     });
   });
 
