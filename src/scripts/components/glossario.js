@@ -209,28 +209,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
 
-    // Scroll to the matched term
+    // Scroll to the matched term (after layout reflow settles)
     if (scrollToFirst && bestMatch) {
-      const isDesktop = window.innerWidth > 1180;
-      if (isDesktop && termsContainer) {
-        // Desktop: scroll the independent terms container panel
-        const containerRect = termsContainer.getBoundingClientRect();
-        const entryRect = bestMatch.getBoundingClientRect();
-        const gap = 16;
-        termsContainer.scrollBy({
-          top: entryRect.top - containerRect.top - gap,
-          behavior: "smooth",
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const isDesktop = window.innerWidth > 1180;
+          if (isDesktop && termsContainer) {
+            // Desktop: scroll the independent terms container panel
+            const containerRect = termsContainer.getBoundingClientRect();
+            const entryRect = bestMatch.getBoundingClientRect();
+            const gap = 16;
+            termsContainer.scrollTo({
+              top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
+              behavior: "smooth",
+            });
+          } else if (scrollWrapper) {
+            // Mobile: scroll the entire wrapper
+            const wrapperRect = scrollWrapper.getBoundingClientRect();
+            const entryRect = bestMatch.getBoundingClientRect();
+            const gap = 16;
+            scrollWrapper.scrollTo({
+              top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - gap,
+              behavior: "smooth",
+            });
+          }
         });
-      } else if (scrollWrapper) {
-        // Mobile: scroll the entire wrapper
-        const wrapperRect = scrollWrapper.getBoundingClientRect();
-        const entryRect = bestMatch.getBoundingClientRect();
-        const gap = 16;
-        scrollWrapper.scrollBy({
-          top: entryRect.top - wrapperRect.top - gap,
-          behavior: "smooth",
-        });
-      }
+      });
     }
   }
 

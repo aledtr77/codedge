@@ -143,6 +143,8 @@ body > main,
   min-width: 0;
   height: 100%;
   overflow-y: auto;
+  padding-right: 0.75rem; /* Breathing room for scrollbar */
+  padding-left: 0.25rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
 }
@@ -263,11 +265,6 @@ aside {
   transform: translateX(2px);
 }
 
-.main-content section {
-  display: grid;
-  gap: 0.75rem;
-}
-
 details {
   scroll-margin-top: calc(var(--glossary-header-offset) + var(--glossary-navbar-gap));
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -276,6 +273,12 @@ details {
     linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
     rgba(54, 58, 67, 0.72);
   overflow: hidden;
+}
+
+.main-content section {
+  display: grid;
+  gap: 1.1rem;
+  padding-bottom: 4rem; /* Safe scroll buffer at the bottom */
 }
 
 /* Hide filtered-out entries without collapsing the main-content grid layout */
