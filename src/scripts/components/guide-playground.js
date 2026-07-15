@@ -98,9 +98,108 @@ export default function initGuidePlayground() {
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 16px;
-      background-color: #ffffff;
+      background-color: #f8fafc;
       color: #1e293b;
       line-height: 1.5;
+    }
+    
+    /* Layout Semantico visualizer */
+    header, footer {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px;
+      text-align: center;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    nav a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    @media (min-width: 600px) {
+      main {
+        grid-template-columns: 3fr 1fr;
+      }
+    }
+    article {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    aside {
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    
+    /* Form di Contatto */
+    .form-container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      max-width: 450px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .form-group input, .form-group textarea {
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #0ea5e9;
+    }
+    .submit-btn {
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: #0284c7;
+    }
+    
+    /* Immagini responsitive fallback */
+    picture, img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
     }
   </style>
 </head>
