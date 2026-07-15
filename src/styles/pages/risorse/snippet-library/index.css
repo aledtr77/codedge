@@ -369,10 +369,12 @@ header {
   /* Mobile Category Pills Selector */
   .mobile-category-selector {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     overflow-x: auto;
-    padding: 0.5rem 0.15rem 0.85rem;
-    margin-bottom: 1.25rem;
+    padding: 0.85rem 0.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
