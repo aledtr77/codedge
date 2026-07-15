@@ -275,6 +275,45 @@ header {
   outline: 0;
 }
 
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.1rem;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.play-btn:hover,
+.play-btn:focus-visible {
+  background: #059669;
+  color: #ffffff;
+  border-color: rgba(16, 185, 129, 0.5);
+  outline: 0;
+}
+
+.play-btn.active {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.play-btn.active:hover,
+.play-btn.active:focus-visible {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
 .toggle-code-btn {
   display: none;
 }
@@ -474,9 +513,10 @@ header {
   }
   
   .title-box .copy-btn,
+  .title-box .play-btn,
   .title-box .toggle-code-btn {
     flex: 1;
-    min-width: 110px;
+    min-width: 100px;
     justify-content: center;
   }
 }

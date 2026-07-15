@@ -228,41 +228,74 @@ export default function initGuidePlayground() {
     preEl.parentNode.insertBefore(wrapper, preEl);
     wrapper.appendChild(preEl);
 
-    // Creiamo la toolbar fluttuante
-    const toolbar = document.createElement("div");
-    toolbar.className = "code-toolbar";
+    const snippetBox = preEl.closest('.snippet-box');
 
-    // Bottone Copia Codice
-    const copyBtn = document.createElement("button");
-    copyBtn.type = "button";
-    copyBtn.className = "code-btn";
-    copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
-        copyBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato`;
-        setTimeout(() => {
-          copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
-        }, 2000);
-      });
-    });
-    toolbar.appendChild(copyBtn);
+    // Creiamo la toolbar fluttuante (solo se non siamo in snippet-box)
+    if (!snippetBox) {
+      const toolbar = document.createElement("div");
+      toolbar.className = "code-toolbar";
 
-    // Bottone Modifica Live (disponibile solo per HTML e CSS)
-    if (lang === "html" || lang === "css") {
-      const editBtn = document.createElement("button");
-      editBtn.type = "button";
-      editBtn.className = "code-btn";
-      editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-      editBtn.addEventListener("click", () => {
-        openPlayground(wrapper, codeEl.textContent.trim(), lang);
+      // Bottone Copia Codice
+      const copyBtn = document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.className = "code-btn";
+      copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
+          copyBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato`;
+          setTimeout(() => {
+            copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
+          }, 2000);
+        });
       });
-      toolbar.appendChild(editBtn);
+      toolbar.appendChild(copyBtn);
+
+      // Bottone Modifica Live (disponibile solo per HTML e CSS)
+      if (lang === "html" || lang === "css") {
+        const editBtn = document.createElement("button");
+        editBtn.type = "button";
+        editBtn.className = "code-btn";
+        editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+        editBtn.addEventListener("click", () => {
+          openPlayground(wrapper, codeEl.textContent.trim(), lang);
+        });
+        toolbar.appendChild(editBtn);
+      }
+
+      wrapper.appendChild(toolbar);
+    } else {
+      // Siamo in snippet-box: aggiungiamo Prova Live alla titleBox
+      if (lang === "html" || lang === "css") {
+        const titleBox = snippetBox.querySelector('.title-box');
+        if (titleBox) {
+          const editBtn = document.createElement("button");
+          editBtn.type = "button";
+          editBtn.className = "play-btn";
+          editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+          
+          editBtn.addEventListener("click", () => {
+            const nextSib = wrapper.nextSibling;
+            if (nextSib && nextSib.classList && nextSib.classList.contains("code-playground")) {
+              // Chiudi playground
+              nextSib.remove();
+              wrapper.style.display = "block";
+              editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+              editBtn.classList.remove("active");
+            } else {
+              // Apri playground
+              openPlayground(wrapper, codeEl.textContent.trim(), lang, editBtn);
+              editBtn.innerHTML = `<i class="fas fa-times"></i> Chiudi Live`;
+              editBtn.classList.add("active");
+            }
+          });
+          
+          titleBox.appendChild(editBtn);
+        }
+      }
     }
-
-    wrapper.appendChild(toolbar);
   });
 
-  const openPlayground = (wrapper, initialCode, lang) => {
+  const openPlayground = (wrapper, initialCode, lang, editBtn = null) => {
     // Nascondiamo il wrapper statico del codice
     wrapper.style.display = "none";
 
@@ -275,9 +308,9 @@ export default function initGuidePlayground() {
           <i class="fas fa-terminal"></i> Playground Live (${lang.toUpperCase()})
         </div>
         <div class="playground-actions">
-          <button type="button" class="playground-btn btn-reset"><i class="fas fa-undo"></i> Ripristina</button>
-          <button type="button" class="playground-btn btn-copy"><i class="fas fa-copy"></i> Copia Codice</button>
-          <button type="button" class="playground-btn btn-close"><i class="fas fa-times"></i> Chiudi</button>
+          <button type="button" class="playground-btn btn-reset" title="Ripristina codice iniziale"><i class="fas fa-undo"></i> <span>Ripristina</span></button>
+          <button type="button" class="playground-btn btn-copy" title="Copia codice"><i class="fas fa-copy"></i> <span class="btn-text">Copia Codice</span></button>
+          <button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>
         </div>
       </div>
       <div class="playground-body">
@@ -327,9 +360,25 @@ export default function initGuidePlayground() {
     // Azione Copia Codice Modificato
     btnCopy.addEventListener("click", () => {
       navigator.clipboard.writeText(textarea.value).then(() => {
-        btnCopy.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato!`;
+        const textSpan = btnCopy.querySelector(".btn-text");
+        const iconEl = btnCopy.querySelector("i");
+        
+        if (iconEl) {
+          iconEl.className = "fas fa-check";
+          iconEl.style.color = "#2ed573";
+        }
+        if (textSpan) {
+          textSpan.textContent = "Copiato!";
+        }
+        
         setTimeout(() => {
-          btnCopy.innerHTML = `<i class="fas fa-copy"></i> Copia Codice`;
+          if (iconEl) {
+            iconEl.className = "fas fa-copy";
+            iconEl.style.color = "";
+          }
+          if (textSpan) {
+            textSpan.textContent = "Copia Codice";
+          }
         }, 1500);
       });
     });
@@ -338,6 +387,10 @@ export default function initGuidePlayground() {
     btnClose.addEventListener("click", () => {
       playground.remove();
       wrapper.style.display = "block";
+      if (editBtn) {
+        editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+        editBtn.classList.remove("active");
+      }
     });
 
     // Inizializza l'anteprima subito all'avvio
