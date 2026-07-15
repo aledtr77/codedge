@@ -65,13 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const summary = entry.querySelector("summary");
     if (!summary) return "";
 
-    // Walk childNodes and find the first non-empty text node
-    // (the tag name comes before the .tag-description span)
-    const titleNode = Array.from(summary.childNodes).find(
-      (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
-    );
+    // Clone summary element to avoid editing live DOM
+    const clone = summary.cloneNode(true);
+    // Remove description and group badges to isolate the term name
+    clone.querySelectorAll(".tag-description, .tag-group").forEach((el) => el.remove());
 
-    return (titleNode?.textContent || "").trim();
+    return clone.textContent.trim();
   }
 
   function prepareSearchData() {
@@ -79,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = getEntryTitle(entry);
       const description = entry.querySelector(".tag-description")?.textContent || "";
       const group = entry.querySelector(".tag-group")?.textContent || "";
-      // full normalized text of the whole entry for broad search
       const fullText = normalize(entry.textContent);
 
       entry.dataset.glossaryTitleRaw = title;
@@ -109,27 +107,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getMatchScore(entry, query) {
+    if (!query) return 0;
+
     const title = entry.dataset.glossaryTitle || "";
     const summary = entry.dataset.glossarySummary || "";
     const fullText = entry.dataset.glossarySearch || "";
 
-    if (!query) return 0;
+    // Split search query into separate words to support multi-word search in any order
+    const queryWords = query.split(/\s+/).filter(Boolean);
+    if (queryWords.length === 0) return 0;
 
-    // Exact title match
-    if (title === query) return 10000;
-    // Title starts with query
-    if (title.startsWith(query)) return 9000 - Math.max(0, title.length - query.length);
-    // Any word in title starts with query
+    // EVERY word in the query must match at least one of the fields (title, summary, or fullText)
+    const matchesAllWords = queryWords.every((word) => 
+      title.includes(word) || summary.includes(word) || fullText.includes(word)
+    );
+
+    if (!matchesAllWords) return -1; // Filter out entries that do not match all typed words
+
+    let score = 0;
+
+    // 1. Title matches query exactly (highest priority)
+    if (title === query) {
+      score += 20000;
+    }
+    // 2. Title starts with query
+    else if (title.startsWith(query)) {
+      score += 15000 - title.length;
+    }
+    // 3. Title contains query
+    else if (title.includes(query)) {
+      score += 10000 - title.indexOf(query) - title.length;
+    }
+
+    // 4. Boost score if specific words in the title match/start with the query words
     const titleWords = title.split(/[\s().,_/-]+/).filter(Boolean);
-    if (titleWords.some((w) => w.startsWith(query))) return 8000 - Math.max(0, title.length - query.length);
-    // Title contains query anywhere
-    if (title.includes(query)) return 7000 - title.indexOf(query) - Math.max(0, title.length - query.length);
-    // Summary (title+description+group) contains query
-    if (summary.includes(query)) return 5000 - summary.indexOf(query);
-    // Full text of the entry contains query
-    if (fullText.includes(query)) return 3000 - fullText.indexOf(query);
+    queryWords.forEach((qWord) => {
+      if (titleWords.includes(qWord)) {
+        score += 3000;
+      } else if (titleWords.some((tWord) => tWord.startsWith(qWord))) {
+        score += 1500;
+      }
+    });
 
-    return -1;
+    // 5. Summary matches
+    if (summary.includes(query)) {
+      score += 5000 - summary.indexOf(query);
+    }
+
+    // 6. Full text matches
+    if (fullText.includes(query)) {
+      score += 1000 - fullText.indexOf(query);
+    }
+
+    return score;
   }
 
   /**

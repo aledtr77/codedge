@@ -12,19 +12,17 @@ body {
   color: var(--text-color);
   font-family: var(--main-font);
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
   overscroll-behavior: none;
   display: flex;
   flex-direction: column;
 }
 
-/* Fixed header: never moves on scroll */
+/* Header sits naturally at the top of the flex container */
 header {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative !important;
   z-index: 100;
+  flex-shrink: 0;
   /* Disable the smart-hide navbar behaviour on glossary pages */
   transform: none !important;
 }
@@ -106,8 +104,6 @@ body > main,
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
-  /* top padding = header height so content starts below fixed header */
-  padding-top: var(--glossary-header-offset);
   display: flex;
   flex-direction: column;
   scrollbar-width: thin;
