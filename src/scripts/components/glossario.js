@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .toString()
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
   }
 
   function enhanceGlossaryLabels() {
@@ -60,11 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const summary = entry.querySelector("summary");
     if (!summary) return "";
 
+    // Walk childNodes and find the first non-empty text node
+    // (the tag name comes before the .tag-description span)
     const titleNode = Array.from(summary.childNodes).find(
       (node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim(),
     );
 
-    return (titleNode?.textContent || summary.textContent || "").trim();
+    return (titleNode?.textContent || "").trim();
   }
 
   function prepareSearchData() {
@@ -72,20 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = getEntryTitle(entry);
       const description = entry.querySelector(".tag-description")?.textContent || "";
       const group = entry.querySelector(".tag-group")?.textContent || "";
+      // full normalized text of the whole entry for broad search
+      const fullText = normalize(entry.textContent);
 
       entry.dataset.glossaryTitleRaw = title;
       entry.dataset.glossaryTitle = normalize(title);
       entry.dataset.glossarySummary = normalize(`${title} ${description} ${group}`);
-      entry.dataset.glossarySearch = normalize(entry.textContent);
+      entry.dataset.glossarySearch = fullText;
     });
   }
 
-  function setActiveItem(query) {
-    const normalizedQuery = normalize(query);
+  function setActiveItem(rawTitle) {
+    const normalizedQuery = normalize(rawTitle);
     let activeItem = null;
 
     clickableItems.forEach((item) => {
-      const active = normalize(item.textContent.trim()) === normalizedQuery;
+      const active = normalize(item.textContent) === normalizedQuery;
       item.classList.toggle("is-active", active);
       if (active) activeItem = item;
     });
@@ -102,23 +107,77 @@ document.addEventListener("DOMContentLoaded", () => {
   function getMatchScore(entry, query) {
     const title = entry.dataset.glossaryTitle || "";
     const summary = entry.dataset.glossarySummary || "";
-    const titleWords = title.split(/[\s().,_-]+/).filter(Boolean);
+    const fullText = entry.dataset.glossarySearch || "";
 
     if (!query) return 0;
+
+    // Exact title match
     if (title === query) return 10000;
+    // Title starts with query
     if (title.startsWith(query)) return 9000 - Math.max(0, title.length - query.length);
-    if (titleWords.some((word) => word.startsWith(query))) return 8000 - Math.max(0, title.length - query.length);
+    // Any word in title starts with query
+    const titleWords = title.split(/[\s().,_/-]+/).filter(Boolean);
+    if (titleWords.some((w) => w.startsWith(query))) return 8000 - Math.max(0, title.length - query.length);
+    // Title contains query anywhere
     if (title.includes(query)) return 7000 - title.indexOf(query) - Math.max(0, title.length - query.length);
+    // Summary (title+description+group) contains query
     if (summary.includes(query)) return 5000 - summary.indexOf(query);
+    // Full text of the entry contains query
+    if (fullText.includes(query)) return 3000 - fullText.indexOf(query);
 
     return -1;
   }
 
-  function findBestEntry(query) {
-    return entries
-      .map((entry, index) => ({ entry, index, score: getMatchScore(entry, query) }))
-      .filter((candidate) => candidate.score >= 0)
-      .sort((a, b) => b.score - a.score || a.index - b.index)[0]?.entry || null;
+  /**
+   * Filter entries using CSS classes (not entry.hidden) to preserve layout.
+   * entry.hidden collapses the element completely and can break the grid
+   * because the aside loses its sticky scroll context.
+   */
+  function filterEntries(scrollToFirst = false) {
+    const query = normalize(search?.value.trim() || "");
+
+    if (!query) {
+      // Reset: show everything, close all, clear active
+      entries.forEach((entry) => {
+        entry.classList.remove("glossary-entry--hidden");
+        entry.open = false;
+      });
+      setActiveItem("");
+      return;
+    }
+
+    // Score all entries
+    const scored = entries.map((entry, index) => ({
+      entry,
+      index,
+      score: getMatchScore(entry, query),
+    }));
+
+    const matches = scored
+      .filter((c) => c.score >= 0)
+      .sort((a, b) => b.score - a.score || a.index - b.index);
+
+    const bestMatch = matches[0]?.entry || null;
+    const matchSet = new Set(matches.map((c) => c.entry));
+
+    entries.forEach((entry) => {
+      const visible = matchSet.has(entry);
+      // Use a CSS class instead of `hidden` to avoid layout collapse
+      entry.classList.toggle("glossary-entry--hidden", !visible);
+      if (visible) {
+        // Open only the best match; collapse others so user can expand them
+        entry.open = entry === bestMatch;
+      }
+    });
+
+    setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
+
+    // Only scroll when explicitly requested (sidebar click, not typing)
+    if (scrollToFirst && bestMatch) {
+      const offset = getContentScrollOffset();
+      const top = bestMatch.getBoundingClientRect().top + window.pageYOffset - offset - 16;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   }
 
   function setupAsideGroups() {
@@ -190,52 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  function filterEntries(scrollToFirst = false) {
-    const query = normalize(search?.value.trim() || "");
-
-    if (!query) {
-      entries.forEach((entry) => {
-        entry.hidden = false;
-        entry.open = false;
-      });
-      setActiveItem("");
-      return;
-    }
-
-    // Score every entry and collect those that match (score >= 0)
-    const scored = entries.map((entry, index) => ({
-      entry,
-      index,
-      score: getMatchScore(entry, query),
-    }));
-
-    const matches = scored
-      .filter((c) => c.score >= 0)
-      .sort((a, b) => b.score - a.score || a.index - b.index);
-
-    const bestMatch = matches[0]?.entry || null;
-    const matchSet = new Set(matches.map((c) => c.entry));
-
-    entries.forEach((entry) => {
-      const visible = matchSet.has(entry);
-      entry.hidden = !visible;
-      // Auto-open only the best match, collapse the others
-      if (visible) {
-        entry.open = entry === bestMatch;
-      }
-    });
-
-    setActiveItem(bestMatch?.dataset.glossaryTitleRaw || "");
-
-    if (scrollToFirst && bestMatch) {
-      const offset = getContentScrollOffset();
-      window.scrollTo({
-        top: bestMatch.getBoundingClientRect().top + window.pageYOffset - offset,
-        behavior: "smooth",
-      });
-    }
-  }
-
   async function copyCode(button) {
     const codeEl = button.closest(".code-container")?.querySelector("code");
     if (!codeEl) return;
@@ -280,14 +293,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", syncHeaderOffset);
 
-  // Never auto-scroll on typing — keep the search bar and navbar in view
+  // Never auto-scroll on typing — keep layout stable
   search?.addEventListener("input", () => filterEntries(false));
 
   clickableItems.forEach((item) => {
     item.addEventListener("click", () => {
       if (!search) return;
       search.value = item.textContent.trim();
-      filterEntries(true);
+      filterEntries(true); // scroll on explicit sidebar click
     });
   });
 

@@ -231,6 +231,11 @@ details {
   overflow: hidden;
 }
 
+/* Hide filtered-out entries without collapsing the main-content grid layout */
+details.glossary-entry--hidden {
+  display: none;
+}
+
 summary {
   position: relative;
   display: flex;
