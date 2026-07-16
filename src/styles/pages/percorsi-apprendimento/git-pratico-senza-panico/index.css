@@ -711,28 +711,34 @@
 }
 
 /* Quiz Interattivo Pilota */
+/* .quiz-section is declared after .guide-block (same specificity, later in
+   this file), so it already wins the shared background/border/padding props
+   on source order alone - no !important needed. */
 .quiz-section {
-  background: rgba(143, 206, 255, 0.02) !important;
-  border: 1px solid rgba(143, 206, 255, 0.1) !important;
+  background: rgba(143, 206, 255, 0.02);
+  border: 1px solid rgba(143, 206, 255, 0.1);
   border-radius: 20px;
-  padding: 2.2rem !important;
+  padding: 2.2rem;
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
   position: relative;
 }
 
-.quiz-intro {
+/* .guide-block h2 + p (0,1,2) outranks a plain .quiz-intro (0,1,0), so the
+   override is written against the actual h2+p relationship (0,2,1) to win by
+   specificity instead of !important. */
+.guide-block h2 + .quiz-intro {
   margin-bottom: 2.2rem;
   font-size: 1.05rem;
   line-height: 1.6;
   color: rgba(236, 244, 255, 0.75);
   /* Override default guide-block h2 + p style */
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .quiz-card {
@@ -875,23 +881,31 @@
   outline-offset: 2px;
 }
 
-.quiz-option-row.is-locked {
+/* The selected row stays matched by :has(.quiz-option-input:checked) above
+   (0,3,0) after it's locked, which outranks a plain .is-locked/.is-correct-
+   answer/.is-wrong-answer class (0,2,0). Repeating each rule with the same
+   :has() clause appended (0,4,0+) wins by specificity instead of !important,
+   while the plain class still covers rows that are locked but not selected. */
+.quiz-option-row.is-locked,
+.quiz-option-row.is-locked:has(.quiz-option-input:checked) {
   cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Correct answer reveal styling */
-.quiz-option-row.is-correct-answer {
-  background: rgba(46, 213, 115, 0.08) !important;
-  border-color: rgba(46, 213, 115, 0.4) !important;
-  color: #2ed573 !important;
+.quiz-option-row.is-correct-answer,
+.quiz-option-row.is-correct-answer:has(.quiz-option-input:checked) {
+  background: rgba(46, 213, 115, 0.08);
+  border-color: rgba(46, 213, 115, 0.4);
+  color: #2ed573;
   font-weight: 600;
 }
 
-.quiz-option-row.is-correct-answer .quiz-radio-circle {
-  border-color: #2ed573 !important;
-  background: #2ed573 !important;
+.quiz-option-row.is-correct-answer .quiz-radio-circle,
+.quiz-option-row.is-correct-answer:has(.quiz-option-input:checked) .quiz-radio-circle {
+  border-color: #2ed573;
+  background: #2ed573;
 }
 
 .quiz-option-row.is-correct-answer .quiz-radio-circle::after {
@@ -909,15 +923,17 @@
 }
 
 /* Wrong answer reveal styling */
-.quiz-option-row.is-wrong-answer {
-  background: rgba(255, 71, 87, 0.08) !important;
-  border-color: rgba(255, 71, 87, 0.4) !important;
-  color: #ff4757 !important;
+.quiz-option-row.is-wrong-answer,
+.quiz-option-row.is-wrong-answer:has(.quiz-option-input:checked) {
+  background: rgba(255, 71, 87, 0.08);
+  border-color: rgba(255, 71, 87, 0.4);
+  color: #ff4757;
 }
 
-.quiz-option-row.is-wrong-answer .quiz-radio-circle {
-  border-color: #ff4757 !important;
-  background: #ff4757 !important;
+.quiz-option-row.is-wrong-answer .quiz-radio-circle,
+.quiz-option-row.is-wrong-answer:has(.quiz-option-input:checked) .quiz-radio-circle {
+  border-color: #ff4757;
+  background: #ff4757;
 }
 
 .quiz-option-row.is-wrong-answer .quiz-radio-circle::after {
@@ -1016,7 +1032,7 @@
 }
 
 .is-hidden {
-  display: none !important;
+  display: none;
 }
 
 @keyframes fadeIn {

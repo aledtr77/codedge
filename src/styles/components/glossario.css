@@ -18,9 +18,13 @@ body {
   flex-direction: column;
 }
 
-/* Fixed header: overlays the content wrapper to allow scrolling underneath */
-header {
-  position: fixed !important;
+/* Fixed header: overlays the content wrapper to allow scrolling underneath.
+   Also targets header.header-hidden directly (same specificity as navbar.css's
+   own rule, loaded after it) so the smart-hide-on-scroll transform never wins
+   here, without needing !important. */
+header,
+header.header-hidden {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -30,7 +34,7 @@ header {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   /* Disable the smart-hide navbar behaviour on glossary pages */
-  transform: none !important;
+  transform: none;
 }
 
 /* Soft gradient below header for depth */
@@ -99,9 +103,9 @@ h1 {
 
 main.main-content {
   width: 100%;
-  max-width: none !important;
+  max-width: none;
   margin: 0;
-  padding: 0 !important;
+  padding: 0;
 }
 
 /* Scrollable wrapper: locked container to support independent inner column scrolling */
@@ -231,12 +235,6 @@ aside {
   display: none;
 }
 
-.sidebar-item--hidden,
-.sidebar-group--hidden,
-.sidebar-group-list--hidden {
-  display: none !important;
-}
-
 .concept-group-list {
   padding: 0.15rem 0 0.55rem;
 }
@@ -264,6 +262,15 @@ aside {
 
 .clickable-item:hover {
   transform: translateX(4px);
+}
+
+/* Search-filter hidden state: declared after the base display rules above
+   (.clickable-item, .concept-group, .concept-group-list) so it wins on source
+   order alone, without needing !important. */
+.sidebar-item--hidden,
+.sidebar-group--hidden,
+.sidebar-group-list--hidden {
+  display: none;
 }
 
 .main-content section {
@@ -584,6 +591,18 @@ pre::-webkit-scrollbar-thumb:hover {
     position: static;
     height: auto;
     max-height: 320px;
+  }
+
+  /* On mobile the content flows as one continuous list (no side panel framing
+     the categories), so the 4rem end-of-list buffer below made every category
+     boundary look like a random, oversized gap. Keep entries evenly spaced and
+     reserve the bigger buffer for the very end of the list only. */
+  .main-content section {
+    padding-bottom: 1.1rem;
+  }
+
+  .main-content section:last-of-type {
+    padding-bottom: 4rem;
   }
 }
 

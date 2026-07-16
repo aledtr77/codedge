@@ -18,9 +18,13 @@ body {
   flex-direction: column;
 }
 
-/* Fixed header: overlays the content wrapper to allow scrolling underneath */
-header {
-  position: fixed !important;
+/* Fixed header: overlays the content wrapper to allow scrolling underneath.
+   Also targets header.header-hidden directly (same specificity as navbar.css's
+   own rule, loaded after it) so the smart-hide-on-scroll transform never wins
+   here, without needing !important. */
+header,
+header.header-hidden {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -29,7 +33,7 @@ header {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transform: none !important;
+  transform: none;
 }
 
 /* Breadcrumb positioning */
@@ -371,26 +375,26 @@ header {
 
 @media (max-width: 980px) {
   html, body {
-    height: auto !important;
-    min-height: 100% !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    overscroll-behavior: auto !important;
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: auto;
   }
 
   body {
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .snippet-scroll-wrapper {
-    flex: 1 0 auto !important;
-    height: auto !important;
-    overflow: visible !important;
-    display: flex !important;
-    flex-direction: column !important;
+    flex: 1 0 auto;
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
   }
 
   .breadcrumb-container {
@@ -403,27 +407,27 @@ header {
   }
 
   .snippet-container {
-    flex: 1 0 auto !important;
-    grid-template-columns: 1fr !important;
-    height: auto !important;
-    overflow: visible !important;
-    padding: 0 15px !important;
-    margin-top: 10px !important;
-    margin-bottom: 2.5rem !important;
+    flex: 1 0 auto;
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+    padding: 0 15px;
+    margin-top: 10px;
+    margin-bottom: 2.5rem;
   }
 
   .sidebar-toggle,
   .snippet-sidebar {
-    display: none !important;
+    display: none;
   }
 
   .snippet-main {
-    flex: 1 0 auto !important;
-    grid-column: 1 !important;
-    margin-left: 0 !important;
-    padding: 0 !important;
-    height: auto !important;
-    overflow-y: visible !important;
+    flex: 1 0 auto;
+    grid-column: 1;
+    margin-left: 0;
+    padding: 0;
+    height: auto;
+    overflow-y: visible;
   }
 
   /* Mobile Category Pills Selector - Premium Overhaul */
@@ -510,19 +514,19 @@ header {
     padding: 1rem;
     font-size: 0.78rem;
     line-height: 1.5;
-    white-space: pre-wrap !important;
-    word-break: break-all !important;
-    overflow-x: hidden !important;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow-x: hidden;
   }
   
   .snippet-box.code-expanded pre {
-    display: block !important;
+    display: block;
     animation: fadeInSnippetCode 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .snippet-box code {
-    white-space: pre-wrap !important;
-    word-break: break-all !important;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 
   @keyframes fadeInSnippetCode {
@@ -541,47 +545,47 @@ header {
   }
   
   .title-box h3 {
-    flex: 1 1 100% !important; /* Force heading to own row */
-    font-size: 1.1rem !important;
-    line-height: 1.4 !important;
+    flex: 1 1 100%; /* Force heading to own row */
+    font-size: 1.1rem;
+    line-height: 1.4;
     color: #fff;
-    margin: 0 0 0.25rem 0 !important;
+    margin: 0 0 0.25rem 0;
   }
   
   .title-box .copy-btn,
   .title-box .play-btn,
   .title-box .toggle-code-btn {
-    flex: 1 1 0px !important; /* Share space exactly equally on a single row */
-    min-width: 0 !important;
-    height: 2.3rem !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    padding: 0 0.2rem !important;
-    justify-content: center !important;
-    gap: 0.35rem !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-    border-radius: 8px !important;
+    flex: 1 1 0px; /* Share space exactly equally on a single row */
+    min-width: 0;
+    height: 2.3rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0 0.2rem;
+    justify-content: center;
+    gap: 0.35rem;
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-radius: 8px;
   }
 
   /* Pure CSS Sticky Footer dock override */
   footer {
-    position: static !important;
-    margin-top: auto !important;
-    width: 100% !important;
-    z-index: auto !important;
-    flex-shrink: 0 !important;
+    position: static;
+    margin-top: auto;
+    width: 100%;
+    z-index: auto;
+    flex-shrink: 0;
   }
 }
 
 @media (max-width: 768px) {
   .snippet-box {
-    padding: 1.25rem !important;
-    border-radius: 14px !important;
-    scroll-margin-top: 100px !important;
-    background: linear-gradient(135deg, rgba(22, 28, 45, 0.6) 0%, rgba(14, 18, 30, 0.8) 100%) !important;
-    border: 1px solid rgba(56, 189, 248, 0.08) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    padding: 1.25rem;
+    border-radius: 14px;
+    scroll-margin-top: 100px;
+    background: linear-gradient(135deg, rgba(22, 28, 45, 0.6) 0%, rgba(14, 18, 30, 0.8) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -619,7 +623,7 @@ header {
 /* Ensure the playground splits nicely inside the snippet box without breaking typography */
 .snippet-box .code-playground {
   margin: 1.25rem 0 0 0;
-  border-color: rgba(56, 189, 248, 0.25) !important;
+  border-color: rgba(56, 189, 248, 0.25);
 }
 
 .snippet-box .playground-iframe {

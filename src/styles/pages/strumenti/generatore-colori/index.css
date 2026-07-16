@@ -610,7 +610,7 @@ body > main .section h2 {
   border-radius: 6px;
   padding: 0.5rem;
   outline: none;
-  margin-left: 0 !important;
+  margin-left: 0;
   cursor: pointer;
 }
 

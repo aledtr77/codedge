@@ -65,8 +65,8 @@
 .code-playground {
   display: flex;
   flex-direction: column;
-  background: rgba(10, 18, 30, 0.95) !important;
-  border: 1px solid rgba(0, 168, 255, 0.25) !important;
+  background: rgba(10, 18, 30, 0.95);
+  border: 1px solid rgba(0, 168, 255, 0.25);
   border-radius: 12px;
   padding: 0;
   margin: 1.8rem 0;
@@ -173,7 +173,7 @@
 
 @media (max-width: 768px) {
   .playground-editor {
-    font-size: 16px !important; /* Prevents mobile browser auto-zooming on focus */
+    font-size: 16px; /* Prevents mobile browser auto-zooming on focus */
   }
 }
 

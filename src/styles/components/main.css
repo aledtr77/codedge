@@ -62,9 +62,12 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-*:focus:not(:focus-visible) {
-  outline: none !important;
-  box-shadow: none !important;
+/* html+body prefix bumps specificity to (0,2,2), above every component-level
+   :focus rule in this codebase (highest found is (0,2,1)), so this always
+   wins regardless of load order without needing !important. */
+html body *:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
 /* ✅ Scrollbar per WebKit (Chrome, Safari, Edge) */
@@ -362,22 +365,26 @@ button {
   transition: var(--transition-fast);
 }
 
-.button-simple:active,
-.back-link:active,
-.tool-back-link:active,
-.footer-social-link:active,
-.nav-link:active,
-.logo-link:active,
-.clickable-item:active,
-.card:active,
-.tool-card:active,
-.resource-card:active,
-.project-card:active,
-.learning-card:active,
-.copy-btn:active,
-.tool-button:active,
-button:active {
-  transform: scale(0.985) translateY(0.5px) !important;
+/* `body` prefix bumps specificity above any same-element :hover rule (e.g.
+   .card:hover in card.css) that would otherwise tie and win on load order
+   while the mouse is held down, so the press feedback always shows without
+   needing !important. */
+body .button-simple:active,
+body .back-link:active,
+body .tool-back-link:active,
+body .footer-social-link:active,
+body .nav-link:active,
+body .logo-link:active,
+body .clickable-item:active,
+body .card:active,
+body .tool-card:active,
+body .resource-card:active,
+body .project-card:active,
+body .learning-card:active,
+body .copy-btn:active,
+body .tool-button:active,
+body button:active {
+  transform: scale(0.985) translateY(0.5px);
 }
 
 /* ✅ Indicatori di focus accessibili ed eleganti */
