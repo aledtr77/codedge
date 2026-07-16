@@ -114,6 +114,10 @@ main.main-content {
   min-height: 0;
 }
 
+.glossary-scroll-wrapper footer {
+  flex-shrink: 0;
+}
+
 .main-content {
   flex: 1 1 0;
   display: grid;
@@ -556,6 +560,7 @@ pre::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 1180px) {
   .glossary-scroll-wrapper {
+    display: block;
     overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
   }
 
