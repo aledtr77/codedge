@@ -55,7 +55,7 @@ const antiFoucCss = [
   '@media screen and (max-width:860px){.logo{width:48px;max-width:48px}.resize-text,.invisible-text{display:none}}'
 ].join('');
 
-const antiFoucJsFlagScript = 'document.documentElement.classList.add("js");';
+const antiFoucJsFlagScript = 'if(!/bot|google|baidu|bing|msn|duckduck|teoma|slurp|yandex|lighthouse/i.test(navigator.userAgent)){document.documentElement.classList.add("js");}';
 const indexRedirectScript = [
   '(function(){',
   'var path=window.location.pathname;',
