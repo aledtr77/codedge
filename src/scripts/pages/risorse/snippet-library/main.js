@@ -23,26 +23,16 @@ import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
 import initGuidePlayground from '@/scripts/components/guide-playground.js';
+// Import statico: i pulsanti dei box vengono iniettati nello stesso tick di
+// quelli del playground, senza il pop-in ritardato del chunk dinamico.
+import initSnippets from './snippet-library.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Inizializza il playground per gli snippet HTML/CSS
   initGuidePlayground();
 
-  // --- import condizionale del modulo degli snippet (solo se servono) ---
-  if (document.querySelector('.snippet-box') || document.querySelector('.snippet-sidebar')) {
-    try {
-      // controlla che il file esista nello stesso folder: ./snippet-library.js
-      const mod = await import('./snippet-library.js');
-      const init = mod.default || mod.initSnippets;
-      if (typeof init === 'function') {
-        init({ scrollOffset: 110 }); // passa opzioni se vuoi
-      } else {
-        console.warn('snippet module imported but has no default export function');
-      }
-    } catch (err) {
-      console.error('Errore import snippet-library:', err);
-    }
-  }
+  // Inizializza sidebar, pill mobile, copia e toggle dei box
+  initSnippets();
 
   // --- Prism highlighting: esegui in idle (o setTimeout come fallback) ---
   const runPrism = () => {

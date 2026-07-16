@@ -15,22 +15,30 @@
   border-color: rgba(143, 206, 255, 0.25);
 }
 
-/* Toolbar dei Blocchi Statici */
+/* Toolbar dei Blocchi Statici.
+   Visibile di default: sui dispositivi touch non esiste hover, quindi la
+   dissolvenza al passaggio del mouse vale solo dove un puntatore c'è davvero. */
 .code-toolbar {
   position: absolute;
   top: 8px;
   right: 8px;
   display: flex;
   gap: 6px;
-  opacity: 0;
-  transform: translateY(-2px);
   transition: all 0.22s ease;
   z-index: 10;
 }
 
-.code-wrapper:hover .code-toolbar {
-  opacity: 1;
-  transform: translateY(0);
+@media (hover: hover) {
+  .code-toolbar {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+
+  .code-wrapper:hover .code-toolbar,
+  .code-wrapper:focus-within .code-toolbar {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .code-btn {
@@ -138,6 +146,33 @@
   border-color: rgba(255, 71, 87, 0.55);
 }
 
+/* Tab Anteprima/Editor: solo mobile, dove i due pannelli impilati
+   non hanno abbastanza spazio per convivere */
+.playground-tabs {
+  display: none;
+  border-bottom: 1px solid rgba(143, 206, 255, 0.15);
+  background: rgba(18, 32, 50, 0.5);
+}
+
+.playground-tab {
+  flex: 1 1 0;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(222, 242, 255, 0.6);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.playground-tab.active {
+  color: #00A8FF;
+  border-bottom-color: #00A8FF;
+}
+
 /* Griglia Editor + Anteprima */
 .playground-body {
   display: flex;
@@ -212,14 +247,22 @@
   background: #ffffff;
 }
 
-/* Responsive dimensions for mobile devices */
+/* Mobile: un pannello alla volta, selezionato dai tab, con un'altezza
+   che rende editor e anteprima davvero utilizzabili */
 @media (max-width: 768px) {
-  .playground-editor-pane {
-    height: 200px; /* Compact editor on mobile */
+  .playground-tabs {
+    display: flex;
   }
 
+  .playground-editor-pane,
   .playground-preview-pane {
-    height: 220px; /* Compact preview on mobile */
+    display: none;
+    height: min(62vh, 480px);
+  }
+
+  .code-playground.pane-editor .playground-editor-pane,
+  .code-playground.pane-preview .playground-preview-pane {
+    display: flex;
   }
 }
 

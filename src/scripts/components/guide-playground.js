@@ -32,7 +32,7 @@ export default function initGuidePlayground() {
     .sandbox-section {
       margin-bottom: 20px;
     }
-    
+
     /* Box figli di prova di base per Flexbox/Grid */
     .box, .item {
       padding: 16px;
@@ -51,7 +51,7 @@ export default function initGuidePlayground() {
   </style>
 </head>
 <body>
-  
+
   <div class="sandbox-section">
     <h4>1. Layout (Flexbox / Grid / Columns)</h4>
     <!-- Contenitori di prova generici -->
@@ -102,7 +102,7 @@ export default function initGuidePlayground() {
       color: #1e293b;
       line-height: 1.5;
     }
-    
+
     /* Layout Semantico visualizer */
     header, footer {
       background: #1e293b;
@@ -146,7 +146,7 @@ export default function initGuidePlayground() {
       border-radius: 8px;
       border: 1px solid #e2e8f0;
     }
-    
+
     /* Form di Contatto */
     .form-container {
       background: #ffffff;
@@ -208,6 +208,21 @@ export default function initGuidePlayground() {
     `.trim();
   };
 
+  const playButtonLabel = (open) => open
+    ? `<i class="fas fa-times"></i> Chiudi Live`
+    : `<i class="fas fa-play"></i> Prova Live`;
+
+  // Allinea tutti i pulsanti "Prova Live" di un box allo stato del playground
+  // (nella snippet library convivono il pulsante nella title-box, mostrato su
+  // desktop, e la barra sotto il codice, mostrata su mobile).
+  const syncPlayButtons = (scope, open) => {
+    scope.querySelectorAll(".play-btn").forEach((btn) => {
+      btn.innerHTML = playButtonLabel(open);
+      btn.classList.toggle("active", open);
+      btn.setAttribute("aria-expanded", String(open));
+    });
+  };
+
   // 1) Avvolge i blocchi di codice e inserisce le toolbar/pulsanti staticamente
   codeBlocks.forEach((codeEl) => {
     const preEl = codeEl.parentElement;
@@ -248,18 +263,23 @@ export default function initGuidePlayground() {
       }
 
       wrapper.appendChild(toolbar);
-    } else {
-      // Siamo in snippet-box: aggiungiamo Prova Live alla titleBox
-      if (lang === "html" || lang === "css") {
-        const titleBox = snippetBox.querySelector('.title-box');
-        if (titleBox) {
-          const editBtn = document.createElement("button");
-          editBtn.type = "button";
-          editBtn.className = "play-btn";
-          editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-          titleBox.appendChild(editBtn);
-        }
+    } else if (lang === "html" || lang === "css") {
+      // Siamo in snippet-box: Prova Live nella titleBox (desktop)...
+      const titleBox = snippetBox.querySelector('.title-box');
+      if (titleBox) {
+        const editBtn = document.createElement("button");
+        editBtn.type = "button";
+        editBtn.className = "play-btn";
+        editBtn.innerHTML = playButtonLabel(false);
+        titleBox.appendChild(editBtn);
       }
+
+      // ...e come barra a tutta larghezza sotto il codice (mobile)
+      const barBtn = document.createElement("button");
+      barBtn.type = "button";
+      barBtn.className = "play-btn play-btn--bar";
+      barBtn.innerHTML = playButtonLabel(false);
+      wrapper.appendChild(barBtn);
     }
   });
 
@@ -268,7 +288,9 @@ export default function initGuidePlayground() {
     wrapper.style.display = "none";
 
     const playground = document.createElement("div");
-    playground.className = "code-playground";
+    // Su mobile si parte dall'anteprima (tab "pane-preview"); su desktop i due
+    // pannelli restano impilati e i tab sono nascosti via CSS.
+    playground.className = "code-playground pane-preview";
     playground.dataset.initialCode = initialCode;
 
     playground.innerHTML = `
@@ -282,13 +304,17 @@ export default function initGuidePlayground() {
           <button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>
         </div>
       </div>
+      <div class="playground-tabs" role="tablist" aria-label="Vista playground">
+        <button type="button" class="playground-tab active" data-pane="preview" role="tab" aria-selected="true">Anteprima</button>
+        <button type="button" class="playground-tab" data-pane="editor" role="tab" aria-selected="false">Editor</button>
+      </div>
       <div class="playground-body">
         <div class="playground-editor-pane">
           <textarea class="playground-editor" spellcheck="false" aria-label="Editor di codice"></textarea>
           <div class="playground-lang-tag">${lang}</div>
         </div>
         <div class="playground-preview-pane">
-          <iframe class="playground-iframe" sandbox="allow-scripts allow-same-origin" title="Anteprima playground"></iframe>
+          <iframe class="playground-iframe" sandbox="allow-scripts" title="Anteprima playground"></iframe>
         </div>
       </div>
     `;
@@ -300,21 +326,31 @@ export default function initGuidePlayground() {
 
     textarea.value = initialCode;
 
+    // srcdoc + sandbox="allow-scripts": l'anteprima gira in un'origin opaca,
+    // senza accesso alla pagina che la ospita.
     const updatePreview = () => {
       const code = textarea.value;
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      iframeDoc.open();
-      if (lang === "css") {
-        iframeDoc.write(cssDefaultHtml(code));
-      } else {
-        iframeDoc.write(htmlDefaultTemplate(code));
-      }
-      iframeDoc.close();
+      iframe.srcdoc = lang === "css" ? cssDefaultHtml(code) : htmlDefaultTemplate(code);
     };
 
-    // Aggiornamento locale real-time su digitazione
-    textarea.addEventListener("input", updatePreview);
+    // Aggiornamento in tempo reale con debounce per non riscrivere
+    // l'iframe a ogni singolo tasto
+    let previewTimer = null;
+    textarea.addEventListener("input", () => {
+      clearTimeout(previewTimer);
+      previewTimer = setTimeout(updatePreview, 150);
+    });
     updatePreview();
+  };
+
+  const closePlayground = (playground) => {
+    const wrapper = playground.previousElementSibling;
+    playground.remove();
+    if (wrapper && wrapper.classList.contains("code-wrapper")) {
+      wrapper.style.display = "";
+      const snippetBox = wrapper.closest(".snippet-box");
+      if (snippetBox) syncPlayButtons(snippetBox, false);
+    }
   };
 
   // 3) Delegazione degli Eventi Click globale su document
@@ -328,19 +364,13 @@ export default function initGuidePlayground() {
         const wrapper = snippetBox.querySelector(".code-wrapper");
         const codeEl = snippetBox.querySelector("pre code");
         if (wrapper && codeEl) {
-          const nextSib = wrapper.nextSibling;
-          if (nextSib && nextSib.classList && nextSib.classList.contains("code-playground")) {
-            // Chiudi
-            nextSib.remove();
-            wrapper.style.display = "block";
-            playBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-            playBtn.classList.remove("active");
+          const playground = wrapper.nextElementSibling;
+          if (playground && playground.classList.contains("code-playground")) {
+            closePlayground(playground);
           } else {
-            // Apri
             const lang = (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) ? "html" : "css";
             openPlayground(wrapper, codeEl.textContent.trim(), lang);
-            playBtn.innerHTML = `<i class="fas fa-times"></i> Chiudi Live`;
-            playBtn.classList.add("active");
+            syncPlayButtons(snippetBox, true);
           }
         }
       }
@@ -377,27 +407,29 @@ export default function initGuidePlayground() {
     if (btnClose) {
       ev.preventDefault();
       const playground = btnClose.closest(".code-playground");
+      if (playground) closePlayground(playground);
+      return;
+    }
+
+    // D) Click sui tab Anteprima/Editor (visibili solo su mobile)
+    const tabBtn = ev.target.closest(".playground-tab");
+    if (tabBtn) {
+      ev.preventDefault();
+      const playground = tabBtn.closest(".code-playground");
       if (playground) {
-        const wrapper = playground.previousSibling;
-        if (wrapper && wrapper.classList && wrapper.classList.contains("code-wrapper")) {
-          playground.remove();
-          wrapper.style.display = "block";
-          
-          // Reset eventuale play-btn in snippet-box genitore
-          const snippetBox = wrapper.closest(".snippet-box");
-          if (snippetBox) {
-            const editBtn = snippetBox.querySelector(".play-btn");
-            if (editBtn) {
-              editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
-              editBtn.classList.remove("active");
-            }
-          }
-        }
+        const pane = tabBtn.dataset.pane;
+        playground.classList.toggle("pane-preview", pane === "preview");
+        playground.classList.toggle("pane-editor", pane === "editor");
+        playground.querySelectorAll(".playground-tab").forEach((tab) => {
+          const selected = tab === tabBtn;
+          tab.classList.toggle("active", selected);
+          tab.setAttribute("aria-selected", String(selected));
+        });
       }
       return;
     }
 
-    // D) Click su bottone Ripristina (.btn-reset)
+    // E) Click su bottone Ripristina (.btn-reset)
     const btnReset = ev.target.closest(".btn-reset");
     if (btnReset) {
       ev.preventDefault();
@@ -413,7 +445,7 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // E) Click su bottone Copia Codice del playground (.btn-copy)
+    // F) Click su bottone Copia Codice del playground (.btn-copy)
     const btnCopy = ev.target.closest(".btn-copy");
     if (btnCopy) {
       ev.preventDefault();
@@ -424,7 +456,7 @@ export default function initGuidePlayground() {
           navigator.clipboard.writeText(textarea.value).then(() => {
             const textSpan = btnCopy.querySelector(".btn-text");
             const iconEl = btnCopy.querySelector("i");
-            
+
             if (iconEl) {
               iconEl.className = "fas fa-check";
               iconEl.style.color = "#2ed573";
@@ -432,7 +464,7 @@ export default function initGuidePlayground() {
             if (textSpan) {
               textSpan.textContent = "Copiato!";
             }
-            
+
             setTimeout(() => {
               if (iconEl) {
                 iconEl.className = "fas fa-copy";

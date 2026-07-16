@@ -254,12 +254,16 @@ header.header-hidden {
   margin-right: auto; /* Group buttons together on the right side on desktop */
 }
 
+/* min-width sui pulsanti d'azione: le etichette cambiano con lo stato
+   ("Copia" -> "Copiato!", "Prova Live" -> "Chiudi Live") e la larghezza
+   riservata evita che il resto della riga slitti a ogni cambio. */
 .copy-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   min-height: 2.1rem;
+  min-width: 6.5rem;
   border: 1px solid rgba(56, 189, 248, 0.3);
   border-radius: 6px;
   background: rgba(56, 189, 248, 0.12);
@@ -286,6 +290,7 @@ header.header-hidden {
   justify-content: center;
   gap: 0.45rem;
   min-height: 2.1rem;
+  min-width: 7.75rem;
   border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: 6px;
   background: rgba(16, 185, 129, 0.12);
@@ -323,7 +328,17 @@ header.header-hidden {
   display: none;
 }
 
-.snippet-box pre {
+/* La barra "Prova Live" sotto il codice esiste solo per il layout mobile:
+   su desktop l'azione resta nella title-box. */
+.snippet-box .play-btn--bar {
+  display: none;
+}
+
+/* Il doppio selettore con [class*="language-"] serve a vincere sul tema
+   Prism (caricato dopo questo file): a parità di specificità vincerebbe lui,
+   reimponendo background, padding, overflow e white-space propri. */
+.snippet-box pre,
+.snippet-box pre[class*="language-"] {
   margin: 1.25rem 0 0 0;
   background: #0e121a;
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -335,14 +350,11 @@ header.header-hidden {
   -webkit-overflow-scrolling: touch;
 }
 
-.snippet-box code {
+.snippet-box code,
+.snippet-box code[class*="language-"] {
   display: block;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
-}
-
-.sidebar-toggle {
-  display: none;
 }
 
 /* Scrollbars styling */
@@ -416,7 +428,6 @@ header.header-hidden {
     margin-bottom: 2.5rem;
   }
 
-  .sidebar-toggle,
   .snippet-sidebar {
     display: none;
   }
@@ -425,6 +436,7 @@ header.header-hidden {
     flex: 1 0 auto;
     grid-column: 1;
     margin-left: 0;
+    min-width: 0; /* Impedisce ai contenuti larghi (codice) di allargare la griglia */
     padding: 0;
     height: auto;
     overflow-y: visible;
@@ -507,26 +519,33 @@ header.header-hidden {
     color: #fff;
   }
 
-  /* Collapsible Code Container */
-  .snippet-box pre {
+  /* Collapsible Code Container.
+     overflow-wrap: anywhere spezza solo i token che non entrano nella riga,
+     invece di rompere ogni parola al bordo come faceva break-all.
+     Anche qui il doppio selettore vince sul tema Prism, che altrimenti
+     riporterebbe white-space: pre facendo traboccare la pagina di lato. */
+  .snippet-box pre,
+  .snippet-box pre[class*="language-"] {
     display: none;
     margin: 1.25rem 0 0 0;
     padding: 1rem;
     font-size: 0.78rem;
     line-height: 1.5;
     white-space: pre-wrap;
-    word-break: break-all;
+    overflow-wrap: anywhere;
     overflow-x: hidden;
   }
-  
-  .snippet-box.code-expanded pre {
+
+  .snippet-box.code-expanded pre,
+  .snippet-box.code-expanded pre[class*="language-"] {
     display: block;
     animation: fadeInSnippetCode 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  
-  .snippet-box code {
+
+  .snippet-box code,
+  .snippet-box code[class*="language-"] {
     white-space: pre-wrap;
-    word-break: break-all;
+    overflow-wrap: anywhere;
   }
 
   @keyframes fadeInSnippetCode {
@@ -534,7 +553,9 @@ header.header-hidden {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Title Box 2-column Button Alignment - Overhaul for 3 equal buttons side-by-side */
+  /* Title Box: titolo su riga propria, sotto sempre e solo due azioni
+     ([Copia] [Vedi Codice]) a larghezza uguale. "Prova Live" su mobile vive
+     come barra sotto il codice espanso, non qui. */
   .title-box {
     display: flex;
     flex-flow: row wrap;
@@ -543,7 +564,7 @@ header.header-hidden {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding-bottom: 0.85rem;
   }
-  
+
   .title-box h3 {
     flex: 1 1 100%; /* Force heading to own row */
     font-size: 1.1rem;
@@ -551,20 +572,34 @@ header.header-hidden {
     color: #fff;
     margin: 0 0 0.25rem 0;
   }
-  
+
   .title-box .copy-btn,
-  .title-box .play-btn,
   .title-box .toggle-code-btn {
     flex: 1 1 0px; /* Share space exactly equally on a single row */
     min-width: 0;
     height: 2.3rem;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 0 0.2rem;
+    padding: 0 0.5rem;
     justify-content: center;
     gap: 0.35rem;
     box-sizing: border-box;
     white-space: nowrap;
+    border-radius: 8px;
+  }
+
+  .title-box .play-btn {
+    display: none;
+  }
+
+  /* Barra "Prova Live" a tutta larghezza sotto il blocco di codice espanso */
+  .snippet-box.code-expanded .code-wrapper .play-btn--bar {
+    display: inline-flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.6rem;
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
     border-radius: 8px;
   }
 
@@ -589,35 +624,15 @@ header.header-hidden {
   }
 }
 
-/* Integration overrides for the interactive code playground inside snippet-box */
+/* Integration overrides for the interactive code playground inside snippet-box.
+   La .code-toolbar non esiste dentro .snippet-box (guide-playground la crea
+   solo fuori), quindi qui si azzera soltanto la cornice del wrapper. */
 .snippet-box .code-wrapper {
   margin: 1.25rem 0 0 0;
   border: none;
   background: transparent;
   border-radius: 0;
   padding: 0;
-}
-
-.snippet-box .code-wrapper:hover {
-  border-color: transparent;
-}
-
-/* Hide the duplicate Copia button from the playground code toolbar */
-.snippet-box .code-wrapper .code-toolbar .code-btn:not(:last-child) {
-  display: none;
-}
-
-/* Align and style the Prova Live button inside the code block */
-.snippet-box .code-wrapper .code-toolbar {
-  top: 12px;
-  right: 12px;
-  opacity: 0;
-  transform: translateY(-2px);
-}
-
-.snippet-box .code-wrapper:hover .code-toolbar {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Ensure the playground splits nicely inside the snippet box without breaking typography */

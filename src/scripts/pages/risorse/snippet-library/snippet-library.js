@@ -1,8 +1,6 @@
-// snippet-library.js (optimized final)
-// initSnippets(options) - class-only sidebar + robust copy feedback & event delegation
-export function initSnippets(options = {}) {
-  const scrollOffset = options.scrollOffset || 0;
-
+// snippet-library.js
+// initSnippets() - class-only sidebar + robust copy feedback & event delegation
+export function initSnippets() {
   /* ----------------------
      Robust copy-to-clipboard with feedback ("Copiato!")
      ---------------------- */
@@ -114,8 +112,6 @@ export function initSnippets(options = {}) {
       console.error('copyCode failed', err);
     }
   }
-  // expose for inline onclick usage
-  window.copyCode = copyCode;
 
   /* ----------------------
      Dynamic header height offset synchronization
@@ -183,10 +179,18 @@ export function initSnippets(options = {}) {
       ev.preventDefault();
       const box = toggleBtn.closest('.snippet-box');
       if (box) {
+        // Un playground aperto nasconde il wrapper del codice: chiuderlo prima
+        // evita che il toggle scatti "a vuoto" su un blocco invisibile.
+        const playground = box.querySelector('.code-playground');
+        if (playground) {
+          const closeBtn = playground.querySelector('.btn-close');
+          if (closeBtn) closeBtn.click();
+        }
+
         const isExpanded = box.classList.toggle('code-expanded');
         toggleBtn.setAttribute('aria-expanded', String(isExpanded));
         toggleBtn.classList.toggle('active', isExpanded);
-        
+
         if (isExpanded) {
           toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nascondi';
         } else {
