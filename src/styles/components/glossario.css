@@ -555,8 +555,17 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 1180px) {
+  html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: auto !important;
+    overscroll-behavior: auto !important;
+  }
+
   .glossary-scroll-wrapper {
-    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
+    flex: none !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .search-container,
@@ -584,6 +593,13 @@ pre::-webkit-scrollbar-thumb:hover {
     position: static;
     height: auto;
     max-height: 320px;
+  }
+
+  footer {
+    position: static !important;
+    margin-top: auto !important;
+    width: 100% !important;
+    z-index: auto !important;
   }
 }
 
