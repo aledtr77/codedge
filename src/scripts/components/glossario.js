@@ -108,12 +108,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = getEntryTitle(entry);
       const description = entry.querySelector(".tag-description")?.textContent || "";
       const group = entry.querySelector(".tag-group")?.textContent || "";
-      const fullText = normalize(entry.textContent);
 
       entry.dataset.glossaryTitleRaw = title;
       entry.dataset.glossaryTitle = normalize(title);
+      // Deliberately scoped to title + short description + category, not the
+      // full entry body: the body's "Cos'è/A cosa serve/Quando usarlo" text is
+      // boilerplate-heavy (nearly every entry mentions the page's own subject,
+      // e.g. "in JavaScript"), so substring-matching against it would surface
+      // dozens of unrelated entries for any common word - the opposite of
+      // precise ranking.
       entry.dataset.glossarySummary = normalize(`${title} ${description} ${group}`);
-      entry.dataset.glossarySearch = fullText;
     });
   }
 
@@ -136,68 +140,66 @@ document.addEventListener("DOMContentLoaded", () => {
     return headerHeight + layoutGap;
   }
 
-  function getMatchScore(entry, query) {
-    if (!query) return 0;
+  // Named match tiers instead of a blended magic-number score: each tier is a
+  // strictly stronger signal than the one below it, so ranking is "sort by
+  // tier" plus a couple of positional tie-breakers, not an additive formula.
+  const MATCH_TIER = Object.freeze({
+    EXACT_TITLE: 6, // title === query
+    TITLE_STARTS_WITH: 5, // title.startsWith(query)
+    TITLE_WORD_BOUNDARY: 4, // query matches at the start of a word inside the title
+    TITLE_CONTAINS: 3, // title contains query anywhere, or has every query word
+    SUMMARY_CONTAINS: 2, // title+description+group has every query word
+    NO_MATCH: 0,
+  });
 
+  const escapeRegExp = (text) => text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+  // Word-boundary prefix match, e.g. "flex" matches "flexbox" but not "reflex".
+  // Returns the match index, or -1. Text/word are already normalized (lowercased,
+  // diacritics stripped) by the caller, so no case-insensitive flag is needed.
+  const wordBoundaryIndex = (text, word) => text.search(new RegExp('\\b' + escapeRegExp(word)));
+
+  function classifyMatch(entry, query, queryWords) {
     const title = entry.dataset.glossaryTitle || "";
     const summary = entry.dataset.glossarySummary || "";
-    const fullText = entry.dataset.glossarySearch || "";
+    const noMatch = { tier: MATCH_TIER.NO_MATCH, matchIndex: 0, titleLength: title.length };
 
-    // Split search query into separate words to support multi-word search in any order
-    const queryWords = query.split(/\s+/).filter(Boolean);
-    if (queryWords.length === 0) return 0;
-
-    // Helper to check if a word matches as a prefix of any word in the text (using word boundary \b)
-    const hasWordPrefix = (text, qWord) => {
-      const escaped = qWord.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-      const regex = new RegExp('\\b' + escaped, 'i');
-      return regex.test(text);
-    };
-
-    // Heuristic: for very short queries (1-2 chars), only match title to prevent noise
-    if (query.length < 3) {
-      const matchesTitle = queryWords.every((word) => hasWordPrefix(title, word));
-      if (!matchesTitle) return -1;
-    } else {
-      const matchesAllWords = queryWords.every((word) => 
-        hasWordPrefix(title, word) || hasWordPrefix(summary, word) || hasWordPrefix(fullText, word)
-      );
-      if (!matchesAllWords) return -1;
+    // Very short queries (1-2 chars) only match the title, to avoid drowning
+    // the result list in unrelated entries whose body text happens to contain
+    // a common one- or two-letter substring.
+    if (query.length < 3 && !queryWords.every((word) => title.includes(word))) {
+      return noMatch;
     }
 
-    let score = 0;
-
-    // 1. Title matches query exactly (highest priority)
     if (title === query) {
-      score += 20000;
+      return { tier: MATCH_TIER.EXACT_TITLE, matchIndex: 0, titleLength: title.length };
     }
-    // 2. Title starts with query
-    else if (title.startsWith(query)) {
-      score += 15000 - title.length;
-    }
-    // 3. Title contains query word boundary prefix
-    else if (hasWordPrefix(title, query)) {
-      score += 10000 - title.indexOf(query) - title.length;
+    if (title.startsWith(query)) {
+      return { tier: MATCH_TIER.TITLE_STARTS_WITH, matchIndex: 0, titleLength: title.length };
     }
 
-    // 4. Boost score if specific words in the title match/start with the query words
-    const titleWords = title.split(/[\s().,_/-]+/).filter(Boolean);
-    queryWords.forEach((qWord) => {
-      if (titleWords.includes(qWord)) {
-        score += 3000;
-      } else if (titleWords.some((tWord) => tWord.startsWith(qWord))) {
-        score += 1500;
-      }
-    });
+    const wbIndex = wordBoundaryIndex(title, query);
+    if (wbIndex >= 0) {
+      return { tier: MATCH_TIER.TITLE_WORD_BOUNDARY, matchIndex: wbIndex, titleLength: title.length };
+    }
 
-    // 5. Summary prefix matches
-    queryWords.forEach((qWord) => {
-      if (hasWordPrefix(summary, qWord)) {
-        score += 1000;
-      }
-    });
+    // True substring containment (unlike the word-boundary check above, this
+    // also matches mid-word - e.g. "script" inside "javascript").
+    const substringIndex = title.indexOf(query);
+    const titleHasAllWords = queryWords.every((word) => title.includes(word));
+    if (substringIndex >= 0 || titleHasAllWords) {
+      return {
+        tier: MATCH_TIER.TITLE_CONTAINS,
+        matchIndex: substringIndex >= 0 ? substringIndex : 0,
+        titleLength: title.length,
+      };
+    }
 
-    return score;
+    if (queryWords.every((word) => summary.includes(word))) {
+      return { tier: MATCH_TIER.SUMMARY_CONTAINS, matchIndex: 0, titleLength: title.length };
+    }
+
+    return noMatch;
   }
 
   /**
@@ -228,16 +230,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Score all entries
+    // Classify and rank all entries
+    const queryWords = query.split(/\s+/).filter(Boolean);
     const scored = entries.map((entry, index) => ({
       entry,
       index,
-      score: getMatchScore(entry, query),
+      ...classifyMatch(entry, query, queryWords),
     }));
 
     const matches = scored
-      .filter((c) => c.score >= 0)
-      .sort((a, b) => b.score - a.score || a.index - b.index);
+      .filter((c) => c.tier > MATCH_TIER.NO_MATCH)
+      .sort((a, b) =>
+        b.tier - a.tier || // stronger match tier wins
+        a.matchIndex - b.matchIndex || // earlier match position in the title wins
+        a.titleLength - b.titleLength || // shorter, more specific title wins
+        a.index - b.index // stable DOM order as final fallback
+      );
 
     const bestMatch = matches[0]?.entry || null;
     const matchSet = new Set(matches.map((c) => c.entry));

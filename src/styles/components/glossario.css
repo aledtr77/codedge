@@ -7,7 +7,21 @@ html, body {
 
 body {
   --glossary-header-offset: var(--header-height, 132px);
-  --glossary-navbar-gap: 1.25rem;
+  /* Spacing scale, base unit 0.25rem (4px). Built from values already reused
+     across this file, so the whole glossary shares one consistent rhythm
+     instead of ad hoc rem numbers. Icon/button-coupled offsets (e.g. the
+     summary toggle's reserved padding, the copy button's own position) are
+     deliberately NOT tokenized - they express pixel alignment with a
+     fixed-size decoration, not spacing rhythm. */
+  --glossary-space-3xs: 0.25rem; /* tightest gaps: badge padding, list-row gaps */
+  --glossary-space-2xs: 0.5rem; /* small internal gaps: sidebar list, chip padding */
+  --glossary-space-xs: 0.75rem; /* compact padding: ol gap, button padding */
+  --glossary-space-sm: 1rem; /* standard padding, entry-to-entry gap */
+  --glossary-space-md: 1.25rem; /* entry-internal spacing: ol/code-container margins */
+  --glossary-space-lg: 1.75rem; /* section-level spacing */
+  --glossary-space-xl: 2.75rem; /* code-container indent, outer content margin-bottom */
+  --glossary-space-2xl: 4rem; /* end-of-list safe scroll buffer */
+  --glossary-navbar-gap: var(--glossary-space-md);
   background: #090d16; /* Deep dark cosmic background */
   color: var(--text-color);
   font-family: var(--main-font);
@@ -59,11 +73,11 @@ h1 {
 .search-container {
   display: grid;
   grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
-  gap: 0.9rem;
+  gap: var(--glossary-space-sm);
   align-items: center;
   width: min(1440px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 0.75rem 0 0.95rem;
+  padding: var(--glossary-space-xs) 0 var(--glossary-space-sm);
 }
 
 #search {
@@ -122,9 +136,9 @@ main.main-content {
   flex: 1 1 0;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
-  gap: clamp(1rem, 2.2vw, 1.75rem);
+  gap: clamp(var(--glossary-space-sm), 2.2vw, var(--glossary-space-lg));
   width: min(1440px, calc(100% - 2rem));
-  margin: var(--glossary-navbar-gap) auto 2.75rem;
+  margin: var(--glossary-navbar-gap) auto var(--glossary-space-xl);
   min-height: 0;
 }
 
@@ -166,7 +180,7 @@ aside {
 }
 
 .aside-content {
-  padding: 0.9rem;
+  padding: var(--glossary-space-sm);
 }
 
 .concept-list,
@@ -178,13 +192,13 @@ aside {
 
 .concept-list {
   display: grid;
-  gap: 0.4rem;
+  gap: var(--glossary-space-2xs);
 }
 
 .concept-list ul {
   display: grid;
-  gap: 0.15rem;
-  margin-bottom: 0.5rem;
+  gap: var(--glossary-space-3xs);
+  margin-bottom: var(--glossary-space-2xs);
 }
 
 .concept-group {
@@ -236,7 +250,7 @@ aside {
 }
 
 .concept-group-list {
-  padding: 0.15rem 0 0.55rem;
+  padding: var(--glossary-space-3xs) 0 var(--glossary-space-2xs);
 }
 
 .clickable-item {
@@ -247,7 +261,7 @@ aside {
   cursor: pointer;
   font-size: 0.82rem;
   line-height: 1.35;
-  padding: 0.3rem 0.65rem;
+  padding: var(--glossary-space-3xs) var(--glossary-space-xs);
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -275,8 +289,8 @@ aside {
 
 .main-content section {
   display: grid;
-  gap: 1.1rem;
-  padding-bottom: 4rem; /* Safe scroll buffer at the bottom */
+  gap: var(--glossary-space-sm);
+  padding-bottom: var(--glossary-space-2xl); /* Safe scroll buffer at the bottom */
 }
 
 details {
@@ -314,10 +328,10 @@ summary {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem 0.75rem;
+  gap: var(--glossary-space-2xs) var(--glossary-space-xs);
   align-items: center;
   min-height: 3.5rem;
-  padding: 1.1rem 3.5rem 1.1rem 1.25rem;
+  padding: var(--glossary-space-sm) 3.5rem var(--glossary-space-sm) var(--glossary-space-md);
   color: #ffffff;
   cursor: pointer;
   font-weight: 750;
@@ -381,7 +395,7 @@ details[open] > :not(summary) {
   font-size: 0.92rem;
   font-weight: 400;
   line-height: 1.55;
-  margin-top: 0.35rem;
+  margin-top: var(--glossary-space-3xs);
 }
 
 .tag-group {
@@ -395,15 +409,15 @@ details[open] > :not(summary) {
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  padding: 0.15rem 0.65rem;
+  padding: var(--glossary-space-3xs) var(--glossary-space-xs);
   text-transform: uppercase;
 }
 
 ol {
   display: grid;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem 1.25rem;
-  padding: 0 1.25rem 0 1.5rem;
+  gap: var(--glossary-space-xs);
+  margin: 0 0 var(--glossary-space-md) var(--glossary-space-md);
+  padding: 0 var(--glossary-space-md) 0 1.5rem;
   border-left: 2px solid rgba(56, 189, 248, 0.12);
   line-height: 1.7;
 }
@@ -416,7 +430,7 @@ ol li {
 
 .glossary-label {
   display: inline-block;
-  margin-right: 0.35rem;
+  margin-right: var(--glossary-space-3xs);
   color: #38bdf8;
   font-weight: 800;
 }
@@ -428,7 +442,7 @@ code {
   color: #dff5ff;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-size: 0.9em;
-  padding: 0.15rem 0.35rem;
+  padding: var(--glossary-space-3xs) var(--glossary-space-2xs);
   overflow-wrap: anywhere;
   white-space: normal;
 }
@@ -439,7 +453,7 @@ strong {
 
 .code-container {
   position: relative;
-  margin: 0 1.25rem 1.25rem 2.75rem;
+  margin: 0 var(--glossary-space-md) var(--glossary-space-md) var(--glossary-space-xl);
   border-radius: 8px;
   background: #0e121a;
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -448,7 +462,7 @@ strong {
 
 pre {
   margin: 0;
-  padding: 2.8rem 1rem 1rem;
+  padding: 2.8rem var(--glossary-space-sm) var(--glossary-space-sm);
   overflow: auto;
   text-align: left;
   white-space: pre-wrap;
@@ -470,7 +484,7 @@ pre code {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: var(--glossary-space-3xs);
   min-height: 2.1rem;
   border: 1px solid rgba(56, 189, 248, 0.3);
   border-radius: 6px;
@@ -480,7 +494,7 @@ pre code {
   font: inherit;
   font-size: 0.8rem;
   font-weight: 800;
-  padding: 0 0.75rem;
+  padding: 0 var(--glossary-space-xs);
   transition: all 0.2s ease;
 }
 
@@ -562,8 +576,35 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 1180px) {
+  /* Unlock the real document scroll instead of the desktop app-shell lock.
+     Both html AND body must be overridden together: when html's own overflow
+     isn't `visible`, the viewport takes html's value regardless of what body
+     declares, so touching body alone leaves the page locked.
+     The wrapper's own scroll is dropped too (not just body's) so there is a
+     single scroll owner: keeping the wrapper independently scrollable would
+     make it a second, bounded scroll box nested inside the now-scrollable
+     document, competing with the page scroll for touch/wheel input. With a
+     single scroll context, the footer - already the next DOM sibling after
+     this wrapper (injected by staticFooterHtmlPlugin, vite.config.js) - lands
+     in normal document flow, reachable by one continuous scroll, exactly like
+     every other page on the site. */
+  html,
+  body {
+    height: auto;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
   .glossary-scroll-wrapper {
-    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
+    /* flex:1 1 0 (base rule) means "grow to fill the flex container's
+       remaining space" - meaningful when body has a fixed height (desktop).
+       Once body is height:auto here, there's no fixed space to fill, so a
+       flex-basis:0 item collapses toward zero and its overflow:visible
+       content only paints outside the box without pushing later siblings
+       (the footer) down. flex:none makes the wrapper size to its own content
+       instead, like a normal block, so the footer lands after it for real. */
+    flex: none;
+    overflow: visible;
   }
 
   .search-container,
@@ -572,12 +613,16 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 
   .main-content {
+    /* Same flex-basis:0-collapse issue as .glossary-scroll-wrapper above, one
+       level deeper: the base rule's flex:1 1 0 still applies here (only
+       grid-template-columns/height/overflow are touched by this media query),
+       so this needs the same flex:none to size to its own content. */
+    flex: none;
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
   }
 
-  .main-content > aside,
   .main-content > main,
   .main-content > section,
   .main-content > div:not(.sidebar-placeholder) {
@@ -587,10 +632,12 @@ pre::-webkit-scrollbar-thumb:hover {
     padding-right: 0;
   }
 
-  aside {
-    position: static;
-    height: auto;
-    max-height: 320px;
+  /* The category-jump sidebar is desktop-only complexity that doesn't pull
+     its weight on a phone: search already covers "jump to a specific term",
+     and the content list itself covers browsing. Mobile trades this feature
+     away on purpose rather than cramming a collapsible tree above the list. */
+  .main-content > aside {
+    display: none;
   }
 
   /* On mobile the content flows as one continuous list (no side panel framing
@@ -598,11 +645,11 @@ pre::-webkit-scrollbar-thumb:hover {
      boundary look like a random, oversized gap. Keep entries evenly spaced and
      reserve the bigger buffer for the very end of the list only. */
   .main-content section {
-    padding-bottom: 1.1rem;
+    padding-bottom: var(--glossary-space-sm);
   }
 
   .main-content section:last-of-type {
-    padding-bottom: 4rem;
+    padding-bottom: var(--glossary-space-2xl);
   }
 }
 
@@ -623,11 +670,7 @@ pre::-webkit-scrollbar-thumb:hover {
 
   .search-container {
     grid-template-columns: 1fr;
-    padding: 0.65rem 0 0.75rem;
-  }
-
-  aside {
-    max-height: 260px;
+    padding: var(--glossary-space-xs) 0;
   }
 
   summary {
@@ -640,11 +683,11 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 
   ol {
-    padding: 0 0.9rem 0 1.25rem;
-    margin-left: 0.75rem;
+    padding: 0 var(--glossary-space-sm) 0 var(--glossary-space-md);
+    margin-left: var(--glossary-space-xs);
   }
 
   .code-container {
-    margin: 0 0 1rem 1rem;
+    margin: 0 0 var(--glossary-space-sm) var(--glossary-space-sm);
   }
 }
