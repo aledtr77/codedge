@@ -114,6 +114,10 @@ main.main-content {
   min-height: 0;
 }
 
+.glossary-scroll-wrapper footer {
+  flex-shrink: 0;
+}
+
 .main-content {
   flex: 1 1 0;
   display: grid;
@@ -555,17 +559,8 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 1180px) {
-  html, body {
-    height: auto !important;
-    min-height: 100% !important;
-    overflow: auto !important;
-    overscroll-behavior: auto !important;
-  }
-
   .glossary-scroll-wrapper {
-    flex: none !important;
-    height: auto !important;
-    overflow: visible !important;
+    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
   }
 
   .search-container,
@@ -593,13 +588,6 @@ pre::-webkit-scrollbar-thumb:hover {
     position: static;
     height: auto;
     max-height: 320px;
-  }
-
-  footer {
-    position: static !important;
-    margin-top: auto !important;
-    width: 100% !important;
-    z-index: auto !important;
   }
 }
 
