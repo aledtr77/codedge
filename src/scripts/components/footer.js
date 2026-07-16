@@ -89,15 +89,7 @@
     }
 
     initFooterLinks(footerEl);
-
-    const glossaryScrollWrapper = document.querySelector('.glossary-scroll-wrapper');
-    if (glossaryScrollWrapper) {
-      // Append footer directly to document.body, outside the scroll wrapper
-      document.body.appendChild(footerEl);
-    } else {
-      initFooterAdjustment(footerEl);
-    }
-
+    initFooterAdjustment(footerEl);
     markReady();
   }
 
