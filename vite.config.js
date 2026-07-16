@@ -78,7 +78,7 @@ const antiFoucRevealScript = [
   'function waitForFlagOrEvent(flag,eventName,timeout){if(window[flag])return Promise.resolve();return new Promise(function(resolve){var done=false;function finish(){if(done)return;done=true;window.removeEventListener(eventName,finish);resolve();}window.addEventListener(eventName,finish,{once:true});setTimeout(finish,timeout||1200);});}',
   'Promise.all([waitForStyles(),waitForFonts(),waitForFlagOrEvent("__navReady","codedge:nav-ready",1200),waitForFlagOrEvent("__footerReady","codedge:footer-ready",1200)]).finally(reveal);',
   'window.addEventListener("pageshow",reveal,{once:true});',
-  'setTimeout(reveal,2500);',
+  'setTimeout(reveal,1200);',
   '})();'
 ].join('');
 

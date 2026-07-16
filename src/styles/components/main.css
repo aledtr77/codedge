@@ -435,6 +435,60 @@ html.js body[data-css-ready="ready"] {
   transition: opacity 0.25s ease !important;
 }
 
+/* ✅ Global Alert Classes */
+.alert {
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+}
+.alert--note {
+  background: rgba(0, 168, 255, 0.05);
+  border: 1px solid rgba(0, 168, 255, 0.2);
+}
+.alert--warning {
+  background: rgba(245, 158, 66, 0.05);
+  border: 1px solid rgba(245, 158, 66, 0.2);
+  border-radius: 6px;
+}
+.alert strong {
+  display: block;
+  font-weight: 700;
+}
+.alert p, .alert ol, .alert ul {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.alert ol, .alert ul {
+  padding-left: 1.2rem;
+}
+
+/* ✅ Global Table for Content/Guides */
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+.guide-table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.guide-table tr:first-child {
+  border-bottom: 2px solid rgba(250, 196, 100, 0.3);
+  text-align: left;
+}
+.guide-table th, .guide-table td {
+  padding: 10px;
+}
+.guide-table th:nth-child(2) {
+  color: #00A8FF;
+}
+.guide-table td:first-child {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+
 
 
 

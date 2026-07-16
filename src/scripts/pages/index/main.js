@@ -14,16 +14,18 @@ import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const heroImage = document.querySelector('#home-hero-image');
-  if (heroImage) {
-    setResponsiveImage(heroImage, {
-      avifSrcset: homeHeroImageAvif,
-      webpSrcset: homeHeroImageWebp,
-      fallbackSrc: fallbackHomeHeroImage
-    });
-  }
+// Run setResponsiveImage immediately because type="module" executes after DOM parsing is complete.
+// This triggers image pre-loading and fetching as early as possible.
+const heroImage = document.querySelector('#home-hero-image');
+if (heroImage) {
+  setResponsiveImage(heroImage, {
+    avifSrcset: homeHeroImageAvif,
+    webpSrcset: homeHeroImageWebp,
+    fallbackSrc: fallbackHomeHeroImage
+  });
+}
 
+document.addEventListener('DOMContentLoaded', () => {
   // 3D Tilt Parallax Effect on Homepage Hero
   const heroFrame = document.querySelector('.hero-visual-frame');
   if (heroFrame && heroImage) {

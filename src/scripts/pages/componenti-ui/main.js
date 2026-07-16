@@ -22,13 +22,11 @@ import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const introImage = document.querySelector('#progetti-intro-image');
-  if (introImage) {
-    setResponsiveImage(introImage, {
-      avifSrcset: progettiIntroImageAvif,
-      webpSrcset: progettiIntroImageWebp,
-      fallbackSrc: fallbackProgettiIntroImage
-    });
-  }
-});
+const introImage = document.querySelector('#progetti-intro-image');
+if (introImage) {
+  setResponsiveImage(introImage, {
+    avifSrcset: progettiIntroImageAvif,
+    webpSrcset: progettiIntroImageWebp,
+    fallbackSrc: fallbackProgettiIntroImage
+  });
+}

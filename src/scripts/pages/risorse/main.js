@@ -22,13 +22,11 @@ import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const introImage = document.querySelector('#risorse-intro-image');
-  if (introImage) {
-    setResponsiveImage(introImage, {
-      avifSrcset: risorseIntroImageAvif,
-      webpSrcset: risorseIntroImageWebp,
-      fallbackSrc: fallbackRisorseIntroImage
-    });
-  }
-});
+const introImage = document.querySelector('#risorse-intro-image');
+if (introImage) {
+  setResponsiveImage(introImage, {
+    avifSrcset: risorseIntroImageAvif,
+    webpSrcset: risorseIntroImageWebp,
+    fallbackSrc: fallbackRisorseIntroImage
+  });
+}

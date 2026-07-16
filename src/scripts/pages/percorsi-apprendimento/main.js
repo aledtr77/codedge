@@ -22,16 +22,16 @@ import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const introImage = document.querySelector('#percorsi-intro-image');
-  if (introImage) {
-    setResponsiveImage(introImage, {
-      avifSrcset: percorsiIntroImageAvif,
-      webpSrcset: percorsiIntroImageWebp,
-      fallbackSrc: fallbackPercorsiIntroImage
-    });
-  }
+const introImage = document.querySelector('#percorsi-intro-image');
+if (introImage) {
+  setResponsiveImage(introImage, {
+    avifSrcset: percorsiIntroImageAvif,
+    webpSrcset: percorsiIntroImageWebp,
+    fallbackSrc: fallbackPercorsiIntroImage
+  });
+}
 
+document.addEventListener("DOMContentLoaded", () => {
   // Visualizzazione dei badge di superamento quiz sulle card dei tutorial
   const links = document.querySelectorAll('.learning-card a.button-simple');
   links.forEach(link => {

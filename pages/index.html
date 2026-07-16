@@ -54,6 +54,24 @@
   <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  
+  <!-- Precaricamento immagine Hero LCP per performance ottimizzate -->
+  <link rel="preload" as="image" href="/src/assets/images/shop-template/home.jpg" />
+
+  <!-- Dati strutturati JSON-LD per il brand Codedge -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Codedge",
+      "url": "https://codedge.it/",
+      "description": "Codedge nasce con un approccio front-end per poi spaziare su sviluppo web, strumenti pratici, componenti UI e percorsi pratici sulle tecnologie digitali.",
+      "author": {
+        "@type": "Person",
+        "name": "Alessandro DTR"
+      }
+    }
+  </script>
 </head>
 
 <body>
