@@ -89,18 +89,7 @@
     }
 
     initFooterLinks(footerEl);
-
-    // On glossary pages the body is overflow:hidden and only the scroll wrapper
-    // scrolls.  The footer is injected outside the wrapper by Vite, so it would
-    // be invisible unless forced to position:fixed (sticky).  Moving it inside
-    // the wrapper lets it flow naturally at the end of the scrollable content.
-    const glossaryWrapper = document.querySelector('.glossary-scroll-wrapper');
-    if (glossaryWrapper) {
-      glossaryWrapper.appendChild(footerEl);
-    } else {
-      initFooterAdjustment(footerEl);
-    }
-
+    initFooterAdjustment(footerEl);
     markReady();
   }
 
