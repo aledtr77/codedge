@@ -569,6 +569,7 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 
   .main-content {
+    flex: none !important;
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
