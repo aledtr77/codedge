@@ -1,4 +1,10 @@
-/* ── Glossary pages: standard viewport layout ── */
+/* ── Glossary pages: full-viewport locked layout ── */
+/* Page scroll is completely disabled; only the content panels scroll */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   --glossary-header-offset: var(--header-height, 132px);
   --glossary-navbar-gap: 1.25rem;
@@ -6,6 +12,8 @@ body {
   color: var(--text-color);
   font-family: var(--main-font);
   margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
   display: flex;
   flex-direction: column;
 }
@@ -98,23 +106,27 @@ main.main-content {
 
 /* Scrollable wrapper: locked container to support independent inner column scrolling */
 .glossary-scroll-wrapper {
+  flex: 1 1 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   padding-top: var(--glossary-header-offset);
+  min-height: 0;
 }
 
 .main-content {
+  flex: 1 1 0;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
   gap: clamp(1rem, 2.2vw, 1.75rem);
   width: min(1440px, calc(100% - 2rem));
   margin: var(--glossary-navbar-gap) auto 2.75rem;
+  min-height: 0;
 }
 
 .main-content > aside {
   grid-column: 1;
-  align-self: start;
-  position: sticky;
-  top: calc(var(--glossary-header-offset) + var(--glossary-navbar-gap));
-  max-height: calc(100vh - var(--glossary-header-offset) - var(--glossary-navbar-gap) - 2rem);
+  height: 100%;
 }
 
 .main-content > main,
@@ -122,11 +134,19 @@ main.main-content {
 .main-content > div:not(.sidebar-placeholder) {
   grid-column: 2;
   min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 0.75rem; /* Breathing room for scrollbar */
+  padding-left: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
+  scrollbar-gutter: stable;
 }
 
 aside {
   z-index: 2;
   isolation: isolate;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
@@ -136,6 +156,9 @@ aside {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
 }
 
 .aside-content {
@@ -480,21 +503,29 @@ button:active {
   transform: scale(0.98);
 }
 
+aside::-webkit-scrollbar,
+.main-content > div:not(.sidebar-placeholder)::-webkit-scrollbar,
 pre::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
+aside::-webkit-scrollbar-track,
+.main-content > div:not(.sidebar-placeholder)::-webkit-scrollbar-track,
 pre::-webkit-scrollbar-track {
   background: transparent;
 }
 
+aside::-webkit-scrollbar-thumb,
+.main-content > div:not(.sidebar-placeholder)::-webkit-scrollbar-thumb,
 pre::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   transition: background-color 0.2s;
 }
 
+aside::-webkit-scrollbar-thumb:hover,
+.main-content > div:not(.sidebar-placeholder)::-webkit-scrollbar-thumb:hover,
 pre::-webkit-scrollbar-thumb:hover {
   background: rgba(56, 189, 248, 0.3);
 }
@@ -524,6 +555,9 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 1180px) {
+  .glossary-scroll-wrapper {
+    overflow-y: auto; /* Allow full wrapper scroll on mobile devices */
+  }
 
   .search-container,
   .main-content {

@@ -288,13 +288,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollToFirst && bestMatch) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          const entryRect = bestMatch.getBoundingClientRect();
-          const headerHeight = header ? header.getBoundingClientRect().height : 0;
-          const gap = 16;
-          window.scrollTo({
-            top: window.scrollY + entryRect.top - headerHeight - gap,
-            behavior: "smooth",
-          });
+          const isDesktop = window.innerWidth > 1180;
+          if (isDesktop && termsContainer) {
+            // Desktop: scroll the independent terms container panel
+            const containerRect = termsContainer.getBoundingClientRect();
+            const entryRect = bestMatch.getBoundingClientRect();
+            const gap = 16;
+            termsContainer.scrollTo({
+              top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
+              behavior: "smooth",
+            });
+          } else if (scrollWrapper) {
+            // Mobile: scroll the entire wrapper
+            const wrapperRect = scrollWrapper.getBoundingClientRect();
+            const entryRect = bestMatch.getBoundingClientRect();
+            const headerHeight = header ? header.getBoundingClientRect().height : 0;
+            const gap = 16;
+            scrollWrapper.scrollTo({
+              top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
+              behavior: "smooth",
+            });
+          }
         });
       });
     }
@@ -439,13 +453,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            const entryRect = targetEntry.getBoundingClientRect();
-            const headerHeight = header ? header.getBoundingClientRect().height : 0;
-            const gap = 16;
-            window.scrollTo({
-              top: window.scrollY + entryRect.top - headerHeight - gap,
-              behavior: "smooth",
-            });
+            const isDesktop = window.innerWidth > 1180;
+            if (isDesktop && termsContainer) {
+              const containerRect = termsContainer.getBoundingClientRect();
+              const entryRect = targetEntry.getBoundingClientRect();
+              const gap = 16;
+              termsContainer.scrollTo({
+                top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
+                behavior: "smooth",
+              });
+            } else if (scrollWrapper) {
+              const wrapperRect = scrollWrapper.getBoundingClientRect();
+              const entryRect = targetEntry.getBoundingClientRect();
+              const headerHeight = header ? header.getBoundingClientRect().height : 0;
+              const gap = 16;
+              scrollWrapper.scrollTo({
+                top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
+                behavior: "smooth",
+              });
+            }
           });
         });
       }
