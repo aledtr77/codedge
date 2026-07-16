@@ -89,14 +89,7 @@
     }
 
     initFooterLinks(footerEl);
-
-    const glossaryScrollWrapper = document.querySelector('.glossary-scroll-wrapper');
-    if (glossaryScrollWrapper) {
-      glossaryScrollWrapper.appendChild(footerEl);
-    } else {
-      initFooterAdjustment(footerEl);
-    }
-
+    initFooterAdjustment(footerEl);
     markReady();
   }
 

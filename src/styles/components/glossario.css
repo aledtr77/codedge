@@ -114,10 +114,6 @@ main.main-content {
   min-height: 0;
 }
 
-.glossary-scroll-wrapper footer {
-  flex-shrink: 0;
-}
-
 .main-content {
   flex: 1 1 0;
   display: grid;
@@ -569,7 +565,6 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 
   .main-content {
-    flex: none !important;
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
