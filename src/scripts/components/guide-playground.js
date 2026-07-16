@@ -47,7 +47,7 @@ export default function initGuidePlayground() {
     .box:nth-child(3), .item:nth-child(3) { background: #10b981; }
 
     /* CSS scritto dal programmatore */
-    \${userCss}
+    ${userCss}
   </style>
 </head>
 <body>
@@ -202,7 +202,7 @@ export default function initGuidePlayground() {
   </style>
 </head>
 <body>
-  \${userHtml}
+  ${userHtml}
 </body>
 </html>
     `.trim();
@@ -274,7 +274,7 @@ export default function initGuidePlayground() {
     playground.innerHTML = `
       <div class="playground-header">
         <div class="playground-title">
-          <i class="fas fa-terminal"></i> Playground Live (\${lang.toUpperCase()})
+          <i class="fas fa-terminal"></i> Playground Live (${lang.toUpperCase()})
         </div>
         <div class="playground-actions">
           <button type="button" class="playground-btn btn-reset" title="Ripristina codice iniziale"><i class="fas fa-undo"></i> <span>Ripristina</span></button>
@@ -285,7 +285,7 @@ export default function initGuidePlayground() {
       <div class="playground-body">
         <div class="playground-editor-pane">
           <textarea class="playground-editor" spellcheck="false" aria-label="Editor di codice"></textarea>
-          <div class="playground-lang-tag">\${lang}</div>
+          <div class="playground-lang-tag">${lang}</div>
         </div>
         <div class="playground-preview-pane">
           <iframe class="playground-iframe" sandbox="allow-scripts allow-same-origin" title="Anteprima playground"></iframe>
