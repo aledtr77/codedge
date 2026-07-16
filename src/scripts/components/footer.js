@@ -92,7 +92,8 @@
 
     const glossaryScrollWrapper = document.querySelector('.glossary-scroll-wrapper');
     if (glossaryScrollWrapper) {
-      glossaryScrollWrapper.appendChild(footerEl);
+      // Append footer directly to document.body, outside the scroll wrapper
+      document.body.appendChild(footerEl);
     } else {
       initFooterAdjustment(footerEl);
     }
