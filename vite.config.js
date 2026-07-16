@@ -44,8 +44,8 @@ const htmlMinifyOptions = {
 
 const antiFoucCss = [
   'html{background:#0d111a;color:#f2f2f2}',
-  'html.js body[data-css-ready="pending"]{opacity:0!important}',
-  'html.js body[data-css-ready="ready"]{opacity:1!important;transition:opacity 0.25s ease!important}',
+  'html.js:root body[data-css-ready="pending"]{opacity:0}',
+  'html.js:root body[data-css-ready="ready"]{opacity:1;transition:opacity 0.25s ease}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
@@ -124,7 +124,7 @@ function antiFoucHtmlPlugin() {
             `<script data-index-redirect>${indexRedirectScript}</script>`,
             `<script data-critical-base>${antiFoucJsFlagScript}</script>`,
             `<style data-critical-base>${antiFoucCss}</style>`,
-            '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1!important;visibility:visible!important}</style></noscript>',
+            '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1;visibility:visible}</style></noscript>',
             ...stylesheets
           ].join('');
 

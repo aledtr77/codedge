@@ -433,13 +433,16 @@ body button:active {
   z-index: -1;
 }
 
-/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato */
-html.js body[data-css-ready="pending"] {
-  opacity: 0 !important;
+/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato.
+   :root repeats the html element as a pseudo-class to push specificity to (0,3,2) - verified there is
+   no opacity/visibility rule anywhere in the codebase on body or html, so this is defensive headroom
+   against a future same-file rule, not a fix for a live conflict. No !important needed. */
+html.js:root body[data-css-ready="pending"] {
+  opacity: 0;
 }
-html.js body[data-css-ready="ready"] {
-  opacity: 1 !important;
-  transition: opacity 0.25s ease !important;
+html.js:root body[data-css-ready="ready"] {
+  opacity: 1;
+  transition: opacity 0.25s ease;
 }
 
 /* ✅ Global Alert Classes */

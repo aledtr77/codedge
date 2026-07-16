@@ -334,13 +334,14 @@ body.no-scroll {
   .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.25s; }
 }
 
-/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato */
-html.js body[data-css-ready="pending"] {
-  opacity: 0 !important;
+/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato.
+   Kept in sync with main.css's copy of this rule - see there for why :root replaces !important. */
+html.js:root body[data-css-ready="pending"] {
+  opacity: 0;
 }
-html.js body[data-css-ready="ready"] {
-  opacity: 1 !important;
-  transition: opacity 0.25s ease !important;
+html.js:root body[data-css-ready="ready"] {
+  opacity: 1;
+  transition: opacity 0.25s ease;
 }
 
 
