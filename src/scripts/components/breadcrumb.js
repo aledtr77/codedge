@@ -1,76 +1,7 @@
 // src/scripts/components/breadcrumb.js
 import "@/styles/components/breadcrumb.css";
+import { formatSegment } from "./breadcrumb-vocabulary.js";
 
-const BREADCRUMB_VOCABULARY = {
-  // Categorie principali (parenti)
-  "risorse": "Risorse",
-  "strumenti": "Strumenti",
-  "componenti-ui": "Componenti UI",
-  "tutorial": "Tutorial",
-  "template": "Template",
-  "percorsi-apprendimento": "Percorsi di Apprendimento",
-
-  // Specifiche eccezioni di pagine per le quali non vogliamo dipendere dal DOM o come fallback
-  "privacy-policy": "Privacy Policy",
-  "termini-servizio": "Termini di Servizio",
-  "chi-sono": "Chi Sono",
-  "contatti": "Contatti",
-
-  // Acronimi e abbreviazioni comuni
-  "ui": "UI",
-  "html": "HTML",
-  "css": "CSS",
-  "js": "JavaScript",
-  "vscode": "VSCode",
-  "vs-code": "VS Code",
-  "pwa": "PWA",
-  "ai": "AI",
-  "npm": "NPM",
-  "seo": "SEO",
-  "git": "Git",
-  "github": "GitHub",
-
-  // Congiunzioni/Preposizioni in minuscolo (per la formattazione automatica)
-  "di": "di",
-  "a": "a",
-  "da": "da",
-  "in": "in",
-  "con": "con",
-  "su": "su",
-  "per": "per",
-  "tra": "tra",
-  "fra": "fra",
-  "e": "e"
-};
-
-function formatSegment(segment) {
-  if (!segment) return "";
-  
-  // Se l'intero segmento è mappato direttamente nel vocabolario, usalo subito
-  if (BREADCRUMB_VOCABULARY[segment.toLowerCase()]) {
-    return BREADCRUMB_VOCABULARY[segment.toLowerCase()];
-  }
-
-  // Altrimenti spezza per trattino, capitalizza e applica sostituzioni
-  return segment
-    .split(/[-_]+/)
-    .map((word, index) => {
-      const lowerWord = word.toLowerCase();
-      
-      // Controlla se la parola fa parte del vocabolario (es. "ui" -> "UI", "di" -> "di")
-      if (BREADCRUMB_VOCABULARY[lowerWord]) {
-        // La prima parola del segmento deve essere sempre capitalizzata, anche se è una congiunzione
-        if (index === 0 && ["di", "a", "da", "in", "con", "su", "per", "tra", "fra", "e"].includes(lowerWord)) {
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }
-        return BREADCRUMB_VOCABULARY[lowerWord];
-      }
-      
-      // Capitalizzazione standard
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join(" ");
-}
 
 function normalizePath(pathname) {
   const clean = String(pathname || "")
@@ -82,29 +13,12 @@ function normalizePath(pathname) {
   return clean === "" ? "/" : clean;
 }
 
-function getBreadcrumbTitle(path, isCurrentPage) {
+function getBreadcrumbTitle(path) {
+  // Sempre lo slug formattato via vocabolario, mai l'H1 o il <title> della
+  // pagina: quelli sono descrittivi e lunghi (SEO), la breadcrumb vuole il
+  // nome essenziale ("Glossario CSS", non "Glossario CSS completo con...").
   const normalized = path.replace(/\/+$/g, "");
   const lastSegment = normalized.split("/").pop() || "";
-
-  // Se è la pagina corrente, proviamo a estrarre il titolo esatto dal DOM
-  if (isCurrentPage) {
-    // 1. Cerca l'H1 principale (evitando titoli della navbar)
-    const mainHeading = document.querySelector('main h1, article h1, h1:not(.resize-text), h2[id*="title"], h2[class*="title"]');
-    if (mainHeading) {
-      const text = mainHeading.textContent.replace(/[\n\r]+/g, " ").replace(/\s+/g, " ").trim();
-      if (text) return text;
-    }
-
-    // 2. Fallback su parte iniziale del document.title
-    if (document.title) {
-      const parts = document.title.split(/[|\u2013\u2014-]/);
-      if (parts.length > 0) {
-        return parts[0].trim();
-      }
-    }
-  }
-
-  // Se è un segmento genitore (o se i fallback DOM falliscono), formatta il segmento dinamicamente
   return formatSegment(lastSegment);
 }
 
@@ -156,13 +70,13 @@ function initBreadcrumbs() {
       li.setAttribute("aria-current", "page");
       const currentSpan = document.createElement("span");
       currentSpan.className = "breadcrumb-current";
-      currentSpan.textContent = getBreadcrumbTitle(accumulatedPath, true);
+      currentSpan.textContent = getBreadcrumbTitle(accumulatedPath);
       li.appendChild(currentSpan);
     } else {
       const link = document.createElement("a");
       link.href = accumulatedPath + "/";
       link.className = "breadcrumb-link";
-      link.textContent = getBreadcrumbTitle(accumulatedPath, false);
+      link.textContent = getBreadcrumbTitle(accumulatedPath);
       li.appendChild(link);
     }
     listEl.appendChild(li);
