@@ -121,14 +121,15 @@
             <li><a href="#chapter-06">5. Contesto e regole di progetto</a></li>
             <li><a href="#chapter-07">6. Scrivere prompt efficaci</a></li>
             <li><a href="#chapter-08">7. Metodo anti-frustrazione</a></li>
-            <li><a href="#chapter-09">8. Revisionare il codice generato</a></li>
-            <li><a href="#chapter-10">9. Ha ancora senso imparare?</a></li>
-            <li><a href="#chapter-11">10. Proiezione futura (3-5 anni)</a></li>
-            <li><a href="#chapter-12">11. Checklist e routine quotidiana</a></li>
-            <li><a href="#chapter-13">12. Dove continuare dopo</a></li>
-            <li><a href="#chapter-cheatsheet">13. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">14. Sfida pratica: Mettiti alla prova</a></li>
-            <li><a href="#chapter-quiz">15. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-pipeline">8. La pipeline di sviluppo</a></li>
+            <li><a href="#chapter-09">9. Revisionare il codice generato</a></li>
+            <li><a href="#chapter-10">10. Ha ancora senso imparare?</a></li>
+            <li><a href="#chapter-11">11. Proiezione futura (3-5 anni)</a></li>
+            <li><a href="#chapter-12">12. Checklist e routine quotidiana</a></li>
+            <li><a href="#chapter-13">13. Dove continuare dopo</a></li>
+            <li><a href="#chapter-cheatsheet">14. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">15. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">16. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
 
@@ -270,8 +271,99 @@
             </section>
           </section>
 
+          <section id="chapter-pipeline" class="guide-block guide-chapter">
+            <h2>8. Lavorare con gli Agent: la pipeline di sviluppo in 8 step</h2>
+            <section class="guide-subchapter">
+              <p>Quando usi l'AI per iniziare un progetto, la tentazione comune è quella di chiedere direttamente il risultato finale: <em>"Fammi una landing page per una palestra"</em>. Questo approccio costringe l'agente a indovinare centinaia di dettagli strutturali e logici, generando blocchi di codice monolitici, fragili e pieni di bug latenti.</p>
+              <p>Per fare un vero salto di qualità, devi considerare l'assistente AI come un <strong>team di sviluppo in miniatura</strong> (composto da un Architetto, uno Sviluppatore, un Revisore e un Ottimizzatore) e guidarlo attraverso una <strong>pipeline strutturata in 8 step successivi</strong>. In questo modo l'agente affronta un solo problema alla volta, lavorando con la massima precisione ed evitando soluzioni approssimative.</p>
+              
+              <div class="alert alert--note">
+                <strong>La filosofia del team in miniatura</strong>
+                <p>Usa l'AI ricoprendo ruoli diversi in base alla fase del progetto: l'<strong>Architetto</strong> per la struttura, lo <strong>Sviluppatore</strong> per una sezione alla volta, il <strong>Revisore</strong> per scovare i difetti latenti e l'<strong>Ottimizzatore</strong> per la pulizia finale. Questo garantisce stabilità e modularità a lungo termine.</p>
+              </div>
+
+              <h3>La pipeline in 8 step</h3>
+
+              <h4>STEP 1 — Pianificazione (Non chiedere codice)</h4>
+              <p>Non iniziare scrivendo codice. Chiedi prima una progettazione logica della struttura, dell'esperienza utente (UX) e dell'organizzazione delle sezioni.</p>
+              <pre><code>"Progettiamo un template per una palestra. Voglio una landing page professionale composta da Home, About, Services, Pricing, Trainer, Contact. Non scrivere codice. Definisci struttura, UX e organizzazione dei file."</code></pre>
+
+              <h4>STEP 2 — Architettura e alberatura dei file</h4>
+              <p>Solo dopo aver validato la struttura dei contenuti, chiedi di organizzare lo schema delle cartelle seguendo criteri di responsabilità unica.</p>
+              <pre><code>"Crea l'albero delle cartelle per un progetto Vite usando HTML, CSS e JavaScript vanilla. Ogni file deve avere una responsabilità precisa."</code></pre>
+              <p>Il risultato sarà una struttura modulare, ordinata e facile da navigare:</p>
+              <pre><code>src/
+├── assets/
+│   ├── images/
+│   └── icons/
+├── css/
+│   ├── base.css
+│   ├── layout.css
+│   ├── components.css
+│   └── utilities.css
+├── js/
+│   ├── main.js
+│   ├── menu.js
+│   ├── slider.js
+│   └── form.js
+└── index.html</code></pre>
+
+              <h4>STEP 3 — Definizione delle regole ferree</h4>
+              <p>Imposta delle linee guida di sviluppo chiare e inderogabili prima che l'AI scriva la prima riga di codice. Questo determina la qualità intrinseca del software.</p>
+              <pre><code>"Prima di iniziare a scrivere il codice, segui queste regole:
+- È vietato usare !important nel CSS
+- Niente CSS duplicato
+- Niente JavaScript inline
+- Usa nomi descrittivi
+- Commenta solo quando serve
+- Evita workaround
+- Se trovi un problema strutturale proponi una soluzione invece di aggiungere codice."</code></pre>
+
+              <h4>STEP 4 — Una sezione alla volta</h4>
+              <p>Evita richieste massive come <em>"Fammi tutto il sito"</em>. Chiedi l'implementazione di una singola sezione alla volta, procedendo per blocchi logici isolati e testabili.</p>
+              <ul class="guide-list">
+                <li><em>"Crea la struttura HTML e lo stile CSS per la sola sezione Hero."</em></li>
+                <li><em>"Adesso passa alla sezione Navbar (Header)."</em></li>
+                <li><em>"Ora procedi con la sezione Services..."</em></li>
+              </ul>
+
+              <h4>STEP 5 — JavaScript (Solo alla fine)</h4>
+              <p>Implementa il comportamento dinamico e l'interattività solo dopo che la struttura HTML e il layout CSS sono completi e solidi. Sviluppa un componente interattivo alla volta:</p>
+              <ul class="guide-list">
+                <li>Implementa l'interazione del menu mobile.</li>
+                <li>Aggiungi la logica per lo slider dei contenuti.</li>
+                <li>Implementa gli effetti visivi all'invio dei moduli o allo scroll.</li>
+              </ul>
+
+              <h4>STEP 6 — Refactoring e pulizia</h4>
+              <p>Quando tutto funziona, chiedi all'agente di effettuare una profonda analisi del codice scritto come se fosse un senior developer esterno.</p>
+              <pre><code>"Analizza l'intero progetto come se fossi un senior developer. Cerca codice duplicato, CSS ridondante, JavaScript inutile, possibili bug e proponi un refactoring senza modificare il comportamento."</code></pre>
+
+              <h4>STEP 7 — Ottimizzazione</h4>
+              <p>Solo alla fine focalizzati sulle performance, sull'accessibilità (a11y) e sulla SEO.</p>
+              <ul class="guide-list">
+                <li>Riduci il CSS e il JavaScript ridondanti.</li>
+                <li>Ottimizza il caricamento delle immagini e delle risorse esterne.</li>
+                <li>Verifica la SEO, l'accessibilità dei tag e la corretta visualizzazione responsive.</li>
+              </ul>
+
+              <h4>STEP 8 — Revisione finale e manutenibilità</h4>
+              <p>Chiedi una code review spietata focalizzata sulla manutenibilità a medio-lungo termine del progetto.</p>
+              <pre><code>"Esegui una code review completa del codice e del progetto. Dimmi:
+- Cosa non ti piace della struttura attuale
+- Cosa cambieresti se potessi rifarlo
+- Quali parti potrebbero creare problemi o colli di bottiglia tra sei mesi
+- In quale sezione il codice potrebbe essere ulteriormente semplificato"</code></pre>
+
+              <div class="alert alert--warning">
+                <strong>Perché questo approccio fa la differenza</strong>
+                <p>Se il tuo obiettivo non è solo "far funzionare le cose", ma creare una base di codice solida, scalabile e riutilizzabile per futuri progetti, usare l'AI come una pipeline metodica è l'unica strada percorribile. Se tra sei mesi dovrai aggiungere una funzionalità, sarà semplicissimo perché ogni pezzo è stato costruito in modo ordinato e isolato, senza ereditare migliaia di righe di codice caotico generate in una sola volta.</p>
+              </div>
+            </section>
+          </section>
+
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Revisionare il codice generato: il controllo qualità resta tuo</h2>
+            <h2>9. Revisionare il codice generato: il controllo qualità resta tuo</h2>
             <section class="guide-subchapter">
               <p>Il momento più importante non è quando l'AI scrive codice. È quando tu decidi se quel codice merita di entrare nel progetto. La revisione è il punto in cui torni davvero alla guida.</p>
               <p>Quando ricevi una modifica, controlla almeno questi aspetti:</p>
@@ -287,7 +379,7 @@
           </section>
 
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. Ha ancora senso imparare a programmare oggi?</h2>
+            <h2>10. Ha ancora senso imparare a programmare oggi?</h2>
             <section class="guide-subchapter">
               <p>È la domanda che molti si fanno davanti allo schermo: se una macchina può scrivere codice al posto nostro, ha ancora senso studiare scope, cicli, asincronia, database e architettura?</p>
               <p>La risposta è <strong>sì</strong>, ma cambia il motivo. Non studi per diventare una persona che digita codice più velocemente di un modello. Studi per capire i problemi, scegliere le soluzioni, giudicare ciò che viene generato e costruire sistemi che restano in piedi.</p>
@@ -302,9 +394,9 @@
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Proiezione futura: cosa farà uno sviluppatore tra 3-5 anni?</h2>
+            <h2>11. Proiezione futura: cosa farà uno sviluppatore tra 3-5 anni?</h2>
             <section class="guide-subchapter">
-              <p>Nessuno può prevedere con precisione i prossimi anni, ma una direzione è già visibile: lo sviluppo software si sposterà sempre di più dalla digitazione del codice alla progettazione di sistemi, flussi e decisioni.</p>
+              <p>Nessuno può prevedere con precisione i próximos anni, ma una direzione è già visibile: lo sviluppo software si sposterà sempre di più dalla digitazione del codice alla progettazione di sistemi, flussi e decisioni.</p>
               <ul class="guide-list">
                 <li><strong>Agenti sempre più presenti</strong>: non userai solo chat per ottenere singole funzioni. Coordinerai strumenti diversi per analisi, implementazione, test, sicurezza e documentazione.</li>
                 <li><strong>Più peso a gusto e utilità</strong>: quando il codice diventa abbondante, la differenza la fa ciò che scegli di costruire, quanto è utile e quanto è piacevole da usare.</li>
@@ -315,7 +407,7 @@
           </section>
 
           <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Checklist e routine quotidiana</h2>
+            <h2>12. Checklist e routine quotidiana</h2>
             <section class="guide-subchapter">
               <p>A questo punto la teoria deve diventare abitudine. Questa checklist ti aiuta a usare l'AI ogni giorno senza perdere ordine, controllo e qualità.</p>
               <ul class="guide-checklist">
@@ -327,12 +419,12 @@
                 <li>Prova la modifica localmente con test manuali o automatici;</li>
                 <li>Formatta, pulisci e fai commit solo quando il risultato è chiaro.</li>
               </ul>
-              <p>L'AI dovrebbe toglierti peso, non lucidità. Lasciale il lavoro ripetitivo, la prima bozza, l'analisi di dettaglio. Tieni per te architettura, giudizio, direzione e responsabilità finale.</p>
+              <p>L'AI dovrebbe toglierti peso, non lucidità. Lasciale le fatiche ripetitive, la prima bozza, l'analisi di dettaglio. Tieni per te architettura, giudizio, direzione e responsabilità finale.</p>
             </section>
           </section>
 
           <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. Dove continuare dopo</h2>
+            <h2>13. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>Usare bene l'AI richiede basi solide. Più capisci gli strumenti intorno al codice, meglio saprai valutare ciò che l'assistente propone. Dopo questa guida, il percorso naturale è rafforzare questi pilastri:</p>
               <ul class="guide-list">
@@ -347,7 +439,7 @@
           
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>13. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>14. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
               
               <p>Ecco la struttura logica da seguire per scrivere prompt di livello professionale:</p>
@@ -390,15 +482,15 @@
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>14. Sfida pratica: Mettiti alla prova</h2>
+            <h2>15. Sfida pratica: Mettiti alla prova</h2>
             <section class="guide-subchapter">
               
               <p>Metti in pratica le regole di prompt strutturato e revisione di codice:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Riscrivi una funzione JavaScript disordinata servendoti dell'AI, isolando il problema ed effettuando una revisione critica consapevole del codice ottenuto.</p>
+                <p>Riscrivi una funzione JavaScript disordinata servendoti dell'AI, isolando il problema ed effettuando una revisione critica consapevole del codice ottenuto.</p>
                 <strong>Istruzioni passo-passo:</strong>
-                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                <ol>
                   <li>Seleziona una funzione JavaScript complessa che contiene calcoli matematici.</li>
                   <li>Scrivi un prompt all'AI seguendo lo schema completo: specifica il ruolo, lo stack del progetto, l'obiettivo mirato ed inserisci un vincolo esplicito (es. *restituisci solo codice senza spiegazioni testuali*).</li>
                   <li>Una volta ottenuto l'output, non incollarlo direttamente: rileggi il codice riga per riga verificando che rispetti la logica richiesta.</li>
@@ -410,7 +502,7 @@
           </section>
 
           <section id="chapter-quiz" data-quiz-id="ai-sviluppo-solido" class="guide-block guide-chapter quiz-section">
-            <h2>15. Verifica la tua preparazione (Quiz)</h2>
+            <h2>16. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
