@@ -529,49 +529,26 @@
           </section>
 
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>6. Estensioni: poche ma sensate</h2>
+            <h2>6. Estensioni: la scelta è tua</h2>
             <section class="guide-subchapter">
               <h3>La trappola dell'accumulo</h3>
-              <p>Il Marketplace ospita decine di migliaia di estensioni, e installarle è così facile che il vero rischio è l'accumulo: ogni estensione aggiunge processi, memoria e — peggio — comportamenti che non hai scelto consapevolmente. È il modo più rapido per trasformare un editor agile in qualcosa che impiega secondi ad aprirsi. La regola è la stessa del capitolo 1: VS Code nasce leggero, e tocca a te tenerlo così. Installa solo ciò che risolve un problema che hai davvero, e a ogni nuova estensione chiediti quale ti puoi togliere.</p>
+              <p>Il Marketplace ospita decine di migliaia di estensioni. Installarle è facilissimo, ma il vero rischio è l'accumulo: ogni estensione aggiunge processi, consuma memoria e rischia di rallentare VS Code. Ricorda la regola d'oro: VS Code nasce leggero, e tocca a te mantenerlo tale. Molti programmatori preferiscono lavorare senza alcuna estensione installata e si trovano benissimo. Non esiste alcun obbligo: installa un'estensione solo quando senti il reale bisogno di risolvere un problema concreto.</p>
             </section>
+            
             <section class="guide-subchapter">
-              <h3>Il kit essenziale per lo sviluppo web</h3>
-              <p>Per la maggior parte dei progetti frontend e backend moderni bastano quattro estensioni, ognuna con un compito preciso:</p>
-              <ul class="guide-list guide-list-good">
-                <li><strong>Prettier (o Biome):</strong> formatta il codice al salvataggio, sempre allo stesso modo. Lo stile smette di essere una decisione e diventa un automatismo.</li>
-                <li><strong>ESLint:</strong> analizza il codice mentre lo scrivi e segnala variabili inutilizzate, errori logici probabili e pattern pericolosi. Il formatter cura la forma, il linter la sostanza.</li>
-                <li><strong>Error Lens:</strong> proietta errori e warning direttamente sulla riga in cui si trovano, colorati, invece di lasciarli nel pannello <em>Problems</em> in basso. Sembra un dettaglio estetico; nella pratica dimezza il tempo che passa tra «ho introdotto un errore» e «me ne sono accorto».</li>
-                <li><strong>REST Client:</strong> scrivi richieste HTTP in semplici file <code>.http</code> versionati nel repository e le invii dall'editor. Per il collaudo quotidiano delle API sostituisce strumenti esterni ben più pesanti.</li>
-              </ul>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Prettier vs ESLint: risolvere il conflitto storico</h3>
-              <p>Un errore classico di chi inizia è lasciare che ESLint e Prettier si contendano il controllo dello stile dei file. Se entrambi provano a correggere le virgolette o i punti e virgola al salvataggio, l'editor entrerà in un loop rallentando le performance o producendo modifiche instabili.</p>
-              <p><strong>La soluzione definitiva in tre passi:</strong></p>
-              <ol class="guide-number-list">
-                <li>Installa la dipendenza di sviluppo nel tuo progetto <code>eslint-config-prettier</code> per disabilitare tutte le regole di stile di ESLint che potrebbero entrare in conflitto con Prettier:
-                  <pre><code>npm install -D eslint-config-prettier</code></pre>
-                </li>
-                <li>Nel tuo file di configurazione ESLint (es. <code>eslint.config.js</code> o <code>.eslintrc.json</code>), aggiungi <code>"prettier"</code> all'array delle configurazioni estese.</li>
-                <li>Specifica il formatter predefinito per ogni linguaggio nelle tue impostazioni di workspace (<code>.vscode/settings.json</code>):
-                  <pre><code class="language-json">"[javascript]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[html]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-}</code></pre>
-                </li>
-              </ol>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Utilizzare l'AI con criteri di contesto</h3>
-              <p>L'integrazione di assistenti AI (come GitHub Copilot o Gemini Code Assist) ha ridefinito la programmazione. Tuttavia, l'errore comune è accettare passivamente ogni suggerimento premendo compulsivamente <code>Tab</code>.</p>
-              <p>Per lavorare in modo professionale, usa questi tre accorgimenti:</p>
+              <h3>Estensioni in base al progetto</h3>
+              <p>La scelta di cosa installare dipende interamente dal tipo di progetto su cui stai lavorando e dalle tue preferenze personali. Ad esempio:</p>
               <ul class="guide-list">
-                <li><strong>Riferimenti di contesto espliciti:</strong> Nelle chat integrate, usa i tag per circoscrivere l'analisi del modello (es. <code>@workspace</code> per fare domande sul progetto complessivo, o seleziona un blocco di codice ed usa la chat inline <code>Ctrl+I</code> / <code>Cmd+I</code> per modifiche mirate).</li>
-                <li><strong>Review strutturata:</strong> Tratta il codice generato dall'AI come se fosse scritto da un collega junior: rileggilo riga per riga e comprendine la logica prima di integrarlo o fare il commit.</li>
+                <li>Se lavori molto sul design visivo o su linguaggi specifici, potresti cercare un'estensione che evidenzi la sintassi o i colori.</li>
+                <li>Se lavori in team, potrebbe esserti utile un formatter comune (come Prettier o Biome) o un linter (come ESLint) per allineare lo stile di scrittura con quello dei colleghi.</li>
               </ul>
-              <p>Se vuoi approfondire l'uso strutturato dell'intelligenza artificiale nel tuo flusso di lavoro senza perdere le competenze analitiche, consulta la nostra guida dedicata: <a href="/tutorial/ai-sviluppo-solido/">Sviluppare con l'AI senza perdere il controllo</a>.</p>
+              <p>La regola migliore è non precorrere i tempi: inizia a scrivere codice con l'editor pulito. Man mano che lavorerai a progetti reali, capirai da solo se e quali estensioni ti servono per velocizzare le tue giornate.</p>
+            </section>
+
+            <section class="guide-subchapter">
+              <h3>E per l'Intelligenza Artificiale (AI)?</h3>
+              <p>L'integrazione di assistenti AI direttamente all'interno dell'editor (come Copilot, Gemini o altri strumenti) è un argomento estremamente vasto e, soprattutto, in continua e rapidissima evoluzione. Le funzionalità e i plugin cambiano così velocemente che qualsiasi elenco o configurazione statica rischierebbe di diventare obsoleta nel giro di poche settimane.</p>
+              <p>Per darti una panoramica strutturata, capire come usare questi assistenti come supporto senza farti sostituire (e senza perdere le tue capacità analitiche di programmatore), ti rimandiamo alla nostra guida costantemente aggiornata: <a href="/tutorial/ai-sviluppo-solido/">Sviluppare con l'AI senza perdere il controllo</a>.</p>
             </section>
           </section>
 
