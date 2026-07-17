@@ -48,22 +48,6 @@
     .guide-content .guide-subchapter li {
       max-width: 74ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(122, 202, 255, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
-    }
   </style>
 </head>
 
@@ -261,7 +245,7 @@
               <p>VS Code applica sempre una regola di prossimità: <strong>le impostazioni locali del progetto (Workspace Settings) prevalgono sempre sulle tue impostazioni globali (User Settings)</strong>.</p>
               <p>Se nei tuoi User Settings personali hai configurato un'indentazione di 4 spazi, ma apri un progetto in cui il team ha stabilito nei Workspace Settings di usare 2 spazi, VS Code userà automaticamente 2 spazi solo all'interno di quel progetto, per poi tornare a 4 quando aprirai un file sfuso o un altro progetto personale. Questo garantisce che le regole del codice vengano sempre rispettate senza costringerti a cambiare manualmente le tue preferenze ogni volta.</p>
 
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Best practice da team:</strong> Configura le opzioni critiche del codice (indentazione, formatter, linter) nelle <em>Workspace Settings</em> e condividi (fai il commit) la cartella <code>.vscode/</code> nel tuo repository Git. In questo modo, chiunque cloni il tuo progetto erediterà automaticamente le stesse regole di scrittura del codice al primo avvio.
               </div>
             </section>
@@ -477,39 +461,39 @@
               <h3>Le 5 scorciatoie da imparare subito per abbandonare il mouse</h3>
               <p>Non serve memorizzare centinaia di scorciatoie da tastiera. Impara ad usare queste cinque per velocizzare il 90% delle tue azioni quotidiane:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Azione</th>
-                      <th style="padding: 10px; color: #00A8FF;">Windows/Linux</th>
-                      <th style="padding: 10px; color: #f59e42;">macOS</th>
+                    <tr>
+                      <th>Azione</th>
+                      <th class="is-accent">Windows/Linux</th>
+                      <th class="is-warm">macOS</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Mostra/Nascondi Barra Laterale (libera spazio sullo schermo)</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + B</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + B</td>
+                    <tr>
+                      <td class="is-strong">Mostra/Nascondi Barra Laterale (libera spazio sullo schermo)</td>
+                      <td class="is-code">Ctrl + B</td>
+                      <td class="is-code">Cmd + B</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Sposta la riga corrente su o giù nel file</td>
-                      <td style="padding: 10px; font-family: monospace;">Alt + Freccia Su/Giù</td>
-                      <td style="padding: 10px; font-family: monospace;">Option + Freccia Su/Giù</td>
+                    <tr>
+                      <td class="is-strong">Sposta la riga corrente su o giù nel file</td>
+                      <td class="is-code">Alt + Freccia Su/Giù</td>
+                      <td class="is-code">Option + Freccia Su/Giù</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Duplica la riga corrente sopra o sotto</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Alt + Freccia Su/Giù</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Option + Freccia Su/Giù</td>
+                    <tr>
+                      <td class="is-strong">Duplica la riga corrente sopra o sotto</td>
+                      <td class="is-code">Shift + Alt + Freccia Su/Giù</td>
+                      <td class="is-code">Shift + Option + Freccia Su/Giù</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Commenta / scommenta una riga o blocco di codice</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + ù (o Ctrl + /)</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + /</td>
+                    <tr>
+                      <td class="is-strong">Commenta / scommenta una riga o blocco di codice</td>
+                      <td class="is-code">Ctrl + ù (o Ctrl + /)</td>
+                      <td class="is-code">Cmd + /</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Salta direttamente a dove è definita una funzione o classe</td>
-                      <td style="padding: 10px; font-family: monospace;">F12 (o Ctrl + Click)</td>
-                      <td style="padding: 10px; font-family: monospace;">F12 (o Cmd + Click)</td>
+                    <tr>
+                      <td class="is-strong">Salta direttamente a dove è definita una funzione o classe</td>
+                      <td class="is-code">F12 (o Ctrl + Click)</td>
+                      <td class="is-code">F12 (o Cmd + Click)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -592,74 +576,74 @@
             <section class="guide-subchapter">
               <p>Ecco un riepilogo rapido delle scorciatoie da tastiera fondamentali per incrementare la tua produttività quotidiana:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Azione</th>
-                      <th style="padding: 10px; color: #00A8FF;">Windows/Linux</th>
-                      <th style="padding: 10px; color: #f59e42;">macOS</th>
+                    <tr>
+                      <th>Azione</th>
+                      <th class="is-accent">Windows/Linux</th>
+                      <th class="is-warm">macOS</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Apri Command Palette (Tavolozza comandi)</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + Shift + P (o F1)</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + Shift + P (o F1)</td>
+                    <tr>
+                      <td class="is-strong">Apri Command Palette (Tavolozza comandi)</td>
+                      <td class="is-code">Ctrl + Shift + P (o F1)</td>
+                      <td class="is-code">Cmd + Shift + P (o F1)</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Quick Open File (Cerca file nel progetto)</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + P</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + P</td>
+                    <tr>
+                      <td class="is-strong">Quick Open File (Cerca file nel progetto)</td>
+                      <td class="is-code">Ctrl + P</td>
+                      <td class="is-code">Cmd + P</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Cerca simboli/funzioni nel file aperto</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + P -> digita @</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + P -> digita @</td>
+                    <tr>
+                      <td class="is-strong">Cerca simboli/funzioni nel file aperto</td>
+                      <td class="is-code">Ctrl + P -> digita @</td>
+                      <td class="is-code">Cmd + P -> digita @</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Vai a una riga specifica del file</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + P -> digita :numero</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + P -> digita :numero</td>
+                    <tr>
+                      <td class="is-strong">Vai a una riga specifica del file</td>
+                      <td class="is-code">Ctrl + P -> digita :numero</td>
+                      <td class="is-code">Cmd + P -> digita :numero</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Seleziona prossima ricorrenza (Multi-cursore)</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + D</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + D</td>
+                    <tr>
+                      <td class="is-strong">Seleziona prossima ricorrenza (Multi-cursore)</td>
+                      <td class="is-code">Ctrl + D</td>
+                      <td class="is-code">Cmd + D</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Mostra/Nascondi barra laterale</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + B</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + B</td>
+                    <tr>
+                      <td class="is-strong">Mostra/Nascondi barra laterale</td>
+                      <td class="is-code">Ctrl + B</td>
+                      <td class="is-code">Cmd + B</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Apri/Chiudi terminale integrato</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + ò (o Ctrl + `)</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + ò (o Ctrl + `)</td>
+                    <tr>
+                      <td class="is-strong">Apri/Chiudi terminale integrato</td>
+                      <td class="is-code">Ctrl + ò (o Ctrl + `)</td>
+                      <td class="is-code">Ctrl + ò (o Ctrl + `)</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Commenta / scommenta una riga o blocco</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + ù (o Ctrl + /)</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + /</td>
+                    <tr>
+                      <td class="is-strong">Commenta / scommenta una riga o blocco</td>
+                      <td class="is-code">Ctrl + ù (o Ctrl + /)</td>
+                      <td class="is-code">Cmd + /</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Sposta la riga corrente su o giù</td>
-                      <td style="padding: 10px; font-family: monospace;">Alt + Freccia Su/Giù</td>
-                      <td style="padding: 10px; font-family: monospace;">Option + Freccia Su/Giù</td>
+                    <tr>
+                      <td class="is-strong">Sposta la riga corrente su o giù</td>
+                      <td class="is-code">Alt + Freccia Su/Giù</td>
+                      <td class="is-code">Option + Freccia Su/Giù</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Duplica la riga corrente sopra o sotto</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Alt + Freccia Su/Giù</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Option + Freccia Su/Giù</td>
+                    <tr>
+                      <td class="is-strong">Duplica la riga corrente sopra o sotto</td>
+                      <td class="is-code">Shift + Alt + Freccia Su/Giù</td>
+                      <td class="is-code">Shift + Option + Freccia Su/Giù</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Formatta l'intero documento attivo</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Alt + F</td>
-                      <td style="padding: 10px; font-family: monospace;">Shift + Option + F</td>
+                    <tr>
+                      <td class="is-strong">Formatta l'intero documento attivo</td>
+                      <td class="is-code">Shift + Alt + F</td>
+                      <td class="is-code">Shift + Option + F</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Chiudi tutti i file (tab) aperti</td>
-                      <td style="padding: 10px; font-family: monospace;">Ctrl + K W</td>
-                      <td style="padding: 10px; font-family: monospace;">Cmd + K W</td>
+                    <tr>
+                      <td class="is-strong">Chiudi tutti i file (tab) aperti</td>
+                      <td class="is-code">Ctrl + K W</td>
+                      <td class="is-code">Cmd + K W</td>
                     </tr>
                   </tbody>
                 </table>
@@ -672,7 +656,7 @@
             <h2>10. Sfida pratica</h2>
             <section class="guide-subchapter">
               <p>Metti alla prova quello che hai imparato allestendo da zero un ambiente di lavoro organizzato e professionale:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea i file di configurazione locale del tuo workspace (.vscode) per attivare l'auto-formattazione e condividere le estensioni consigliate, facendo pratica con la navigazione rapida da tastiera.</p>
                 <strong>Istruzioni passo-passo:</strong>

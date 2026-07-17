@@ -48,21 +48,8 @@
     .guide-content .guide-subchapter li {
       max-width: 74ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(250, 196, 100, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
+    .guide-content {
+      --guide-pre-border: rgba(250, 196, 100, 0.18);
     }
   </style>
 </head>
@@ -482,34 +469,34 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
               
               <p>Ecco un riepilogo rapido delle principali logiche di interrogazione e modifica del DOM:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Metodo</th>
-                      <th style="padding: 10px; color: #00A8FF;">Parametro / Uso</th>
-                      <th style="padding: 10px;">Cosa fa</th>
+                    <tr>
+                      <th>Metodo</th>
+                      <th class="is-accent">Parametro / Uso</th>
+                      <th>Cosa fa</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">querySelector()</td>
-                      <td style="padding: 10px; font-family: monospace;">'.classe' | '#id'</td>
-                      <td style="padding: 10px;">Seleziona il primo elemento corrispondente al selettore CSS indicato.</td>
+                    <tr>
+                      <td class="is-code is-strong">querySelector()</td>
+                      <td class="is-code">'.classe' | '#id'</td>
+                      <td>Seleziona il primo elemento corrispondente al selettore CSS indicato.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">addEventListener()</td>
-                      <td style="padding: 10px; font-family: monospace;">'click', callback</td>
-                      <td style="padding: 10px;">Aggancia un ascoltatore per eseguire codice JavaScript in risposta all'evento.</td>
+                    <tr>
+                      <td class="is-code is-strong">addEventListener()</td>
+                      <td class="is-code">'click', callback</td>
+                      <td>Aggancia un ascoltatore per eseguire codice JavaScript in risposta all'evento.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">classList.add()</td>
-                      <td style="padding: 10px; font-family: monospace;">'is-active'</td>
-                      <td style="padding: 10px;">Aggiunge una classe CSS all'elemento per cambiarne lo stato visivo in sicurezza.</td>
+                    <tr>
+                      <td class="is-code is-strong">classList.add()</td>
+                      <td class="is-code">'is-active'</td>
+                      <td>Aggiunge una classe CSS all'elemento per cambiarne lo stato visivo in sicurezza.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">textContent</td>
-                      <td style="padding: 10px; font-family: monospace;">'Testo puro'</td>
-                      <td style="padding: 10px;">Legge o scrive il testo all'interno dell'elemento (sicuro contro attacchi XSS).</td>
+                    <tr>
+                      <td class="is-code is-strong">textContent</td>
+                      <td class="is-code">'Testo puro'</td>
+                      <td>Legge o scrive il testo all'interno dell'elemento (sicuro contro attacchi XSS).</td>
                     </tr>
                   </tbody>
                 </table>
@@ -524,7 +511,7 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
             <section class="guide-subchapter">
               
               <p>Metti in pratica le logiche del DOM e degli eventi in JavaScript:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un contatore dinamico di caratteri in tempo reale per una casella di testo (textarea), che cambi colore (es. diventa rosso) quando si supera il limite di caratteri impostato.</p>
                 <strong>Istruzioni passo-passo:</strong>

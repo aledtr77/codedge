@@ -70,22 +70,6 @@
     .guide-content .guide-subchapter li {
       max-width: 76ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(122, 202, 255, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
-    }
   </style>
 </head>
 
@@ -563,34 +547,34 @@ input:focus-visible {
               
               <p>Ecco un riepilogo rapido degli attributi e ruoli a11y più importanti da controllare:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Elemento / Attributo</th>
-                      <th style="padding: 10px; color: #00A8FF;">Sintassi tipica</th>
-                      <th style="padding: 10px;">Scopo d'uso</th>
+                    <tr>
+                      <th>Elemento / Attributo</th>
+                      <th class="is-accent">Sintassi tipica</th>
+                      <th>Scopo d'uso</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">alt</td>
-                      <td style="padding: 10px; font-family: monospace;">&lt;img alt="Descrizione"&gt;</td>
-                      <td style="padding: 10px;">Descrizione testuale delle immagini letta vocalmente dagli screen reader.</td>
+                    <tr>
+                      <td class="is-code is-strong">alt</td>
+                      <td class="is-code">&lt;img alt="Descrizione"&gt;</td>
+                      <td>Descrizione testuale delle immagini letta vocalmente dagli screen reader.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">:focus outline</td>
-                      <td style="padding: 10px; font-family: monospace;">outline: 2px solid #00A8FF;</td>
-                      <td style="padding: 10px;">Segnale visivo obbligatorio che indica quale elemento è selezionato tramite tastiera.</td>
+                    <tr>
+                      <td class="is-code is-strong">:focus outline</td>
+                      <td class="is-code">outline: 2px solid #00A8FF;</td>
+                      <td>Segnale visivo obbligatorio che indica quale elemento è selezionato tramite tastiera.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">aria-hidden</td>
-                      <td style="padding: 10px; font-family: monospace;">aria-hidden="true"</td>
-                      <td style="padding: 10px;">Nasconde elementi decorativi (es. icone) agli screen reader per evitare letture fastidiose.</td>
+                    <tr>
+                      <td class="is-code is-strong">aria-hidden</td>
+                      <td class="is-code">aria-hidden="true"</td>
+                      <td>Nasconde elementi decorativi (es. icone) agli screen reader per evitare letture fastidiose.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">tabindex</td>
-                      <td style="padding: 10px; font-family: monospace;">tabindex="0"</td>
-                      <td style="padding: 10px;">Rende un elemento normalmente non interattivo (come un div) selezionabile tramite Tab.</td>
+                    <tr>
+                      <td class="is-code is-strong">tabindex</td>
+                      <td class="is-code">tabindex="0"</td>
+                      <td>Rende un elemento normalmente non interattivo (come un div) selezionabile tramite Tab.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -605,7 +589,7 @@ input:focus-visible {
             <section class="guide-subchapter">
               
               <p>Analizza ed ottimizza l'accessibilità delle tue pagine web:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Rendi un modulo di contatto ed un'immagine 100% accessibili a chi naviga solo da tastiera o usa lettori vocali.</p>
                 <strong>Istruzioni passo-passo:</strong>

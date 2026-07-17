@@ -48,21 +48,8 @@
     .guide-content .guide-subchapter li {
       max-width: 74ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(250, 196, 100, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
+    .guide-content {
+      --guide-pre-border: rgba(250, 196, 100, 0.18);
     }
   </style>
 </head>
@@ -470,39 +457,39 @@
               
               <p>Ecco i tag semantici essenziali da ricordare per strutturare correttamente i contenuti:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Tag</th>
-                      <th style="padding: 10px; color: #00A8FF;">Ruolo Semantico</th>
-                      <th style="padding: 10px;">Regole di Annidamento</th>
+                    <tr>
+                      <th>Tag</th>
+                      <th class="is-accent">Ruolo Semantico</th>
+                      <th>Regole di Annidamento</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;header&gt;</td>
-                      <td style="padding: 10px;">Testata principale della pagina o di una sezione.</td>
-                      <td style="padding: 10px;">Solitamente contiene loghi, titoli &lt;h1&gt;-&lt;h6&gt; o navigazione.</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;header&gt;</td>
+                      <td>Testata principale della pagina o di una sezione.</td>
+                      <td>Solitamente contiene loghi, titoli &lt;h1&gt;-&lt;h6&gt; o navigazione.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;nav&gt;</td>
-                      <td style="padding: 10px;">Sezione contenente link di navigazione.</td>
-                      <td style="padding: 10px;">Spesso racchiude una lista ordinata &lt;ol&gt; o non ordinata &lt;ul&gt;.</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;nav&gt;</td>
+                      <td>Sezione contenente link di navigazione.</td>
+                      <td>Spesso racchiude una lista ordinata &lt;ol&gt; o non ordinata &lt;ul&gt;.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;main&gt;</td>
-                      <td style="padding: 10px;">Contenuto principale e unico del documento.</td>
-                      <td style="padding: 10px;">Deve essercene solo uno per pagina, non va inserito in altri tag semantici.</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;main&gt;</td>
+                      <td>Contenuto principale e unico del documento.</td>
+                      <td>Deve essercene solo uno per pagina, non va inserito in altri tag semantici.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;article&gt;</td>
-                      <td style="padding: 10px;">Contenuto autonomo e indipendente (es. post di blog).</td>
-                      <td style="padding: 10px;">Dovrebbe avere un titolo proprio (&lt;h2&gt;-&lt;h6&gt;).</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;article&gt;</td>
+                      <td>Contenuto autonomo e indipendente (es. post di blog).</td>
+                      <td>Dovrebbe avere un titolo proprio (&lt;h2&gt;-&lt;h6&gt;).</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;section&gt;</td>
-                      <td style="padding: 10px;">Sezione generica a tema del documento.</td>
-                      <td style="padding: 10px;">Usare solo se la sezione ha un senso logico e un titolo di intestazione.</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;section&gt;</td>
+                      <td>Sezione generica a tema del documento.</td>
+                      <td>Usare solo se la sezione ha un senso logico e un titolo di intestazione.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -517,7 +504,7 @@
             <section class="guide-subchapter">
               
               <p>Non c'è modo migliore di imparare che sporcarsi le mani. Prova a completare questa piccola sfida nel playground o nel tuo editor prima di passare al quiz:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea una struttura per una pagina profilo personale (curriculum) semantica, contenente una testata, una lista di passioni ed un form di contatto accessibile.</p>
                 <strong>Istruzioni passo-passo:</strong>

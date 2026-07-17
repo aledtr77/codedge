@@ -70,22 +70,6 @@
     .guide-content .guide-subchapter li {
       max-width: 76ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(122, 202, 255, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
-    }
   </style>
 </head>
 
@@ -572,34 +556,34 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
               
               <p>Ecco un riepilogo dei meta tag SEO più importanti da compilare in ogni pagina:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Tag / File</th>
-                      <th style="padding: 10px; color: #00A8FF;">Struttura sintattica</th>
-                      <th style="padding: 10px;">Consigli SEO utili</th>
+                    <tr>
+                      <th>Tag / File</th>
+                      <th class="is-accent">Struttura sintattica</th>
+                      <th>Consigli SEO utili</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">&lt;title&gt;</td>
-                      <td style="padding: 10px; font-family: monospace;">&lt;title&gt;Titolo Pagina | Codedge&lt;/title&gt;</td>
-                      <td style="padding: 10px;">Mantieni la lunghezza sotto i 60 caratteri inserendo la parola chiave principale in testa.</td>
+                    <tr>
+                      <td class="is-code is-strong">&lt;title&gt;</td>
+                      <td class="is-code">&lt;title&gt;Titolo Pagina | Codedge&lt;/title&gt;</td>
+                      <td>Mantieni la lunghezza sotto i 60 caratteri inserendo la parola chiave principale in testa.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">meta description</td>
-                      <td style="padding: 10px; font-family: monospace;">&lt;meta name="description" content="..."&gt;</td>
-                      <td style="padding: 10px;">Massimo 155-160 caratteri. Deve contenere una sintesi attraente del contenuto per indurre al click.</td>
+                    <tr>
+                      <td class="is-code is-strong">meta description</td>
+                      <td class="is-code">&lt;meta name="description" content="..."&gt;</td>
+                      <td>Massimo 155-160 caratteri. Deve contenere una sintesi attraente del contenuto per indurre al click.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">canonical</td>
-                      <td style="padding: 10px; font-family: monospace;">&lt;link rel="canonical" href="..."&gt;</td>
-                      <td style="padding: 10px;">Indica l'URL ufficiale preferito per evitare penalizzazioni dovute a contenuti duplicati.</td>
+                    <tr>
+                      <td class="is-code is-strong">canonical</td>
+                      <td class="is-code">&lt;link rel="canonical" href="..."&gt;</td>
+                      <td>Indica l'URL ufficiale preferito per evitare penalizzazioni dovute a contenuti duplicati.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">robots.txt</td>
-                      <td style="padding: 10px; font-family: monospace;">User-agent: * Disallow: /admin/</td>
-                      <td style="padding: 10px;">Fornisce regole ai motori di ricerca su quali aree del sito non scansionare.</td>
+                    <tr>
+                      <td class="is-code is-strong">robots.txt</td>
+                      <td class="is-code">User-agent: * Disallow: /admin/</td>
+                      <td>Fornisce regole ai motori di ricerca su quali aree del sito non scansionare.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -614,7 +598,7 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
             <section class="guide-subchapter">
               
               <p>Ottimizza il tuo primo file HTML reale applicando le regole di SEO tecnico:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Scrivi i tag SEO corretti nell'head del tuo sito ed imposta un file robots.txt per escludere file e cartelle riservati.</p>
                 <strong>Istruzioni passo-passo:</strong>

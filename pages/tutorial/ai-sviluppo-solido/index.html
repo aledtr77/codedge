@@ -48,21 +48,8 @@
     .guide-content .guide-subchapter li {
       max-width: 74ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(168, 85, 247, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
+    .guide-content {
+      --guide-pre-border: rgba(168, 85, 247, 0.18);
     }
 
     /* Showcase roles styles */
@@ -621,34 +608,34 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
 
               <p>I quattro blocchi di un prompt professionale, in una tabella da tenere sott'occhio finché non diventano automatici:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Blocco prompt</th>
-                      <th style="padding: 10px; color: #00A8FF;">Cosa scrivere</th>
-                      <th style="padding: 10px;">Esempio pratico</th>
+                    <tr>
+                      <th>Blocco prompt</th>
+                      <th class="is-accent">Cosa scrivere</th>
+                      <th>Esempio pratico</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">1. Ruolo / Identità</td>
-                      <td style="padding: 10px;">Assegna un'identità o competenza specifica all'AI.</td>
-                      <td style="padding: 10px; font-family: monospace;">"Agisci come esperto sviluppatore front-end..."</td>
+                    <tr>
+                      <td class="is-strong">1. Ruolo / Identità</td>
+                      <td>Assegna un'identità o competenza specifica all'AI.</td>
+                      <td class="is-code">"Agisci come esperto sviluppatore front-end..."</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">2. Contesto / Stack</td>
-                      <td style="padding: 10px;">Specifica le tecnologie e lo stile del codice.</td>
-                      <td style="padding: 10px; font-family: monospace;">"Il progetto usa HTML5, CSS puro, niente framework..."</td>
+                    <tr>
+                      <td class="is-strong">2. Contesto / Stack</td>
+                      <td>Specifica le tecnologie e lo stile del codice.</td>
+                      <td class="is-code">"Il progetto usa HTML5, CSS puro, niente framework..."</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">3. Obiettivo / Output</td>
-                      <td style="padding: 10px;">Descrivi esattamente cosa deve produrre.</td>
-                      <td style="padding: 10px; font-family: monospace;">"Scrivi una funzione JavaScript per calcolare..."</td>
+                    <tr>
+                      <td class="is-strong">3. Obiettivo / Output</td>
+                      <td>Descrivi esattamente cosa deve produrre.</td>
+                      <td class="is-code">"Scrivi una funzione JavaScript per calcolare..."</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">4. Vincoli / Limiti</td>
-                      <td style="padding: 10px;">Definisci cosa NON deve fare per evitare errori.</td>
-                      <td style="padding: 10px; font-family: monospace;">"Non importare pacchetti esterni, usa solo metodi ES6..."</td>
+                    <tr>
+                      <td class="is-strong">4. Vincoli / Limiti</td>
+                      <td>Definisci cosa NON deve fare per evitare errori.</td>
+                      <td class="is-code">"Non importare pacchetti esterni, usa solo metodi ES6..."</td>
                     </tr>
                   </tbody>
                 </table>

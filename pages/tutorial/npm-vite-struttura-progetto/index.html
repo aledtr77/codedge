@@ -311,39 +311,39 @@ npm run preview</code></pre>
               
               <p>Ecco la tabella di riferimento rapido per la gestione dei pacchetti NPM e comandi Vite:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Comando</th>
-                      <th style="padding: 10px; color: #00A8FF;">Tipo dipendenza</th>
-                      <th style="padding: 10px;">Scopo principale</th>
+                    <tr>
+                      <th>Comando</th>
+                      <th class="is-accent">Tipo dipendenza</th>
+                      <th>Scopo principale</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm init -y</td>
-                      <td style="padding: 10px;">Generico</td>
-                      <td style="padding: 10px;">Inizializza un nuovo file package.json vuoto impostando le opzioni di default.</td>
+                    <tr>
+                      <td class="is-code is-strong">npm init -y</td>
+                      <td>Generico</td>
+                      <td>Inizializza un nuovo file package.json vuoto impostando le opzioni di default.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm install &lt;pkg&gt;</td>
-                      <td style="padding: 10px; font-family: monospace;">dependencies</td>
-                      <td style="padding: 10px;">Installa un pacchetto logico necessario a runtime nel sito (es. lodash).</td>
+                    <tr>
+                      <td class="is-code is-strong">npm install &lt;pkg&gt;</td>
+                      <td class="is-code">dependencies</td>
+                      <td>Installa un pacchetto logico necessario a runtime nel sito (es. lodash).</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm install -D &lt;pkg&gt;</td>
-                      <td style="padding: 10px; font-family: monospace;">devDependencies</td>
-                      <td style="padding: 10px;">Installa pacchetti necessari solo in fase di sviluppo/build (es. Vite, Prettier).</td>
+                    <tr>
+                      <td class="is-code is-strong">npm install -D &lt;pkg&gt;</td>
+                      <td class="is-code">devDependencies</td>
+                      <td>Installa pacchetti necessari solo in fase di sviluppo/build (es. Vite, Prettier).</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm run dev</td>
-                      <td style="padding: 10px; font-family: monospace;">Script</td>
-                      <td style="padding: 10px;">Avvia il server di sviluppo locale ad altissima velocità di rendering.</td>
+                    <tr>
+                      <td class="is-code is-strong">npm run dev</td>
+                      <td class="is-code">Script</td>
+                      <td>Avvia il server di sviluppo locale ad altissima velocità di rendering.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">npm run build</td>
-                      <td style="padding: 10px; font-family: monospace;">Script</td>
-                      <td style="padding: 10px;">Compila ed ottimizza gli asset creando la cartella di produzione 'dist/'.</td>
+                    <tr>
+                      <td class="is-code is-strong">npm run build</td>
+                      <td class="is-code">Script</td>
+                      <td>Compila ed ottimizza gli asset creando la cartella di produzione 'dist/'.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -358,7 +358,7 @@ npm run preview</code></pre>
             <section class="guide-subchapter">
               
               <p>Crea il tuo primo progetto guidato da terminale usando NPM:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un package.json, installa un pacchetto di formattazione codice come devDependency e scrivi uno script custom per eseguirlo dal terminale.</p>
                 <strong>Istruzioni passo-passo:</strong>

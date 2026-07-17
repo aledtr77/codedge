@@ -48,21 +48,8 @@
     .guide-content .guide-subchapter li {
       max-width: 74ch;
     }
-
-    .guide-content .guide-subchapter pre {
-      margin: 0.9rem 0 1rem;
-      padding: 0.95rem 1rem;
-      overflow: auto;
-      border-radius: 12px;
-      border: 1px solid rgba(250, 196, 100, 0.18);
-      background: rgba(7, 14, 25, 0.7);
-      color: rgba(232, 244, 255, 0.96);
-      max-width: 100%;
-    }
-
-    .guide-content code {
-      font-family: Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.95em;
+    .guide-content {
+      --guide-pre-border: rgba(250, 196, 100, 0.18);
     }
 
     /* Responsive Box Model Diagram */
@@ -384,29 +371,29 @@ p { color: blue; }
               <p>Capire la differenza logica tra questi due strumenti è uno degli scogli più frequenti. Ecco una guida decisionale semplice basata sull'approccio allo sviluppo:</p>
 
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Caratteristica</th>
-                      <th style="padding: 10px; color: #00A8FF;">Flexbox</th>
-                      <th style="padding: 10px; color: #f59e42;">CSS Grid</th>
+                    <tr>
+                      <th>Caratteristica</th>
+                      <th class="is-accent">Flexbox</th>
+                      <th class="is-warm">CSS Grid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Dimensione</td>
-                      <td style="padding: 10px;">Unidimensionale (riga *o* colonna)</td>
-                      <td style="padding: 10px;">Bidimensionale (righe *e* colonne)</td>
+                    <tr>
+                      <td class="is-strong">Dimensione</td>
+                      <td>Unidimensionale (riga *o* colonna)</td>
+                      <td>Bidimensionale (righe *e* colonne)</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Approccio</td>
-                      <td style="padding: 10px;">"Content-out" (il contenuto definisce lo spazio)</td>
-                      <td style="padding: 10px;">"Layout-in" (la griglia definisce lo spazio)</td>
+                    <tr>
+                      <td class="is-strong">Approccio</td>
+                      <td>"Content-out" (il contenuto definisce lo spazio)</td>
+                      <td>"Layout-in" (la griglia definisce lo spazio)</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Uso Ideale</td>
-                      <td style="padding: 10px;">Navbar, allineamento icone, bottoni affiancati</td>
-                      <td style="padding: 10px;">Sezioni di pagina, gallerie di card, layout asimmetrici</td>
+                    <tr>
+                      <td class="is-strong">Uso Ideale</td>
+                      <td>Navbar, allineamento icone, bottoni affiancati</td>
+                      <td>Sezioni di pagina, gallerie di card, layout asimmetrici</td>
                     </tr>
                   </tbody>
                 </table>
@@ -524,39 +511,39 @@ p { color: blue; }
               
               <p>Ecco un riepilogo delle regole di allineamento e dimensionamento più importanti:</p>
               <div class="table-wrapper">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                <table class="guide-table">
                   <thead>
-                    <tr style="border-bottom: 2px solid rgba(250, 196, 100, 0.3); text-align: left;">
-                      <th style="padding: 10px;">Proprietà</th>
-                      <th style="padding: 10px; color: #00A8FF;">Valori Comuni</th>
-                      <th style="padding: 10px;">Scopo principale</th>
+                    <tr>
+                      <th>Proprietà</th>
+                      <th class="is-accent">Valori Comuni</th>
+                      <th>Scopo principale</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">box-sizing</td>
-                      <td style="padding: 10px; font-family: monospace;">border-box | content-box</td>
-                      <td style="padding: 10px;">Assorbe padding e bordo all'interno della larghezza definita dell'elemento.</td>
+                    <tr>
+                      <td class="is-code is-strong">box-sizing</td>
+                      <td class="is-code">border-box | content-box</td>
+                      <td>Assorbe padding e bordo all'interno della larghezza definita dell'elemento.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">display: flex</td>
-                      <td style="padding: 10px; font-family: monospace;">row | column</td>
-                      <td style="padding: 10px;">Abilita Flexbox per allineare elementi in una sola direzione (riga o colonna).</td>
+                    <tr>
+                      <td class="is-code is-strong">display: flex</td>
+                      <td class="is-code">row | column</td>
+                      <td>Abilita Flexbox per allineare elementi in una sola direzione (riga o colonna).</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">justify-content</td>
-                      <td style="padding: 10px; font-family: monospace;">center | space-between | flex-start</td>
-                      <td style="padding: 10px;">Distribuisce lo spazio tra gli elementi lungo l'asse principale.</td>
+                    <tr>
+                      <td class="is-code is-strong">justify-content</td>
+                      <td class="is-code">center | space-between | flex-start</td>
+                      <td>Distribuisce lo spazio tra gli elementi lungo l'asse principale.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">align-items</td>
-                      <td style="padding: 10px; font-family: monospace;">center | stretch | flex-end</td>
-                      <td style="padding: 10px;">Allinea gli elementi lungo l'asse trasversale.</td>
+                    <tr>
+                      <td class="is-code is-strong">align-items</td>
+                      <td class="is-code">center | stretch | flex-end</td>
+                      <td>Allinea gli elementi lungo l'asse trasversale.</td>
                     </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-family: monospace; font-weight: bold;">display: grid</td>
-                      <td style="padding: 10px; font-family: monospace;">grid-template-columns</td>
-                      <td style="padding: 10px;">Abilita Grid per allineare elementi su una griglia bidimensionale.</td>
+                    <tr>
+                      <td class="is-code is-strong">display: grid</td>
+                      <td class="is-code">grid-template-columns</td>
+                      <td>Abilita Grid per allineare elementi su una griglia bidimensionale.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -571,7 +558,7 @@ p { color: blue; }
             <section class="guide-subchapter">
               
               <p>Metti in pratica le regole di allineamento e Box Model nel playground:</p>
-              <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
+              <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Costruisci una card di presentazione profilo con effetto 'glassmorphism' sfocato ed elementi allineati verticalmente.</p>
                 <strong>Istruzioni passo-passo:</strong>

@@ -491,19 +491,48 @@ html.js:root body[data-css-ready="ready"] {
 .guide-table tr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.guide-table tr:first-child {
+/* Header row: thead when present, otherwise the first row of the implicit
+   tbody. tbody:first-child cannot match when a thead precedes it, so tables
+   WITH a thead keep their first data row on the thin border. */
+.guide-table thead tr,
+.guide-table tbody:first-child tr:first-child {
   border-bottom: 2px solid rgba(250, 196, 100, 0.3);
   text-align: left;
 }
 .guide-table th, .guide-table td {
   padding: 10px;
 }
-.guide-table th:nth-child(2) {
+/* Cell emphasis is opt-in per cell: positional rules (nth-child) don't
+   generalize across the guides' tables, whose column roles differ. */
+.guide-table .is-accent {
   color: #00A8FF;
 }
-.guide-table td:first-child {
-  font-family: monospace;
+.guide-table .is-warm {
+  color: #f59e42;
+}
+.guide-table .is-code {
+  font-family: Consolas, "Liberation Mono", Menlo, monospace;
+}
+.guide-table .is-strong {
   font-weight: bold;
+}
+
+/* Shared guide-content typography, extracted from per-page <style> blocks.
+   Pages override the pre border accent via --guide-pre-border on
+   .guide-content; page-specific widths (72/74/76ch) stay in the pages. */
+.guide-content .guide-subchapter pre {
+  margin: 0.9rem 0 1rem;
+  padding: 0.95rem 1rem;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--guide-pre-border, rgba(122, 202, 255, 0.18));
+  background: rgba(7, 14, 25, 0.7);
+  color: rgba(232, 244, 255, 0.96);
+  max-width: 100%;
+}
+.guide-content code {
+  font-family: Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.95em;
 }
 
 /* prefers-reduced-motion: same selectors as the animated rules above, declared
