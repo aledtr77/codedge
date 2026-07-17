@@ -108,18 +108,19 @@
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Introduzione</a></li>
             <li><a href="#chapter-02">1. Perché VS Code ha vinto</a></li>
-            <li><a href="#chapter-03">2. Gestire le impostazioni e personalizzare il setup</a></li>
-            <li><a href="#chapter-04">3. Il workspace: progetto, non file</a></li>
-            <li><a href="#chapter-05">4. Muoversi alla velocità del pensiero</a></li>
-            <li><a href="#chapter-06">5. Estensioni: poche ma sensate</a></li>
-            <li><a href="#chapter-07">6. Terminale, task e automazioni</a></li>
-            <li><a href="#chapter-08">7. Il debugger: osservare, non stampare</a></li>
-            <li><a href="#chapter-09">8. Git dentro VS Code</a></li>
-            <li><a href="#chapter-10">9. La routine quotidiana</a></li>
-            <li><a href="#chapter-11">10. Checklist finale</a></li>
-            <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">12. Sfida pratica</a></li>
-            <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-installation">2. Download, installazione e primo avvio</a></li>
+            <li><a href="#chapter-03">3. Aprire un progetto e impostare le preferenze</a></li>
+            <li><a href="#chapter-04">4. Il workspace: progetto, non file</a></li>
+            <li><a href="#chapter-05">5. Muoversi alla velocità del pensiero</a></li>
+            <li><a href="#chapter-06">6. Estensioni: poche ma sensate</a></li>
+            <li><a href="#chapter-07">7. Terminale, task e automazioni</a></li>
+            <li><a href="#chapter-08">8. Il debugger: osservare, non stampare</a></li>
+            <li><a href="#chapter-09">9. Git dentro VS Code</a></li>
+            <li><a href="#chapter-10">10. La routine quotidiana</a></li>
+            <li><a href="#chapter-11">11. Checklist finale</a></li>
+            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Sfida pratica</a></li>
+            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
 
@@ -176,8 +177,31 @@
             </section>
           </section>
 
+          <section id="chapter-installation" class="guide-block guide-chapter">
+            <h2>2. Download, installazione e primo avvio</h2>
+            <section class="guide-subchapter">
+              <h3>Da dove scaricare VS Code in modo sicuro</h3>
+              <p>Il punto di partenza ufficiale ed unico raccomandato è il sito di Microsoft: <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">code.visualstudio.com</a>.</p>
+              <p>Evita assolutamente portali di terze parti o installer non ufficiali. Nella pagina di download troverai i pacchetti per i tre sistemi operativi principali:</p>
+              <ul class="guide-list">
+                <li><strong>Windows:</strong> viene offerto sia l'installer "User" (consigliato, si installa nella cartella utente senza richiedere privilegi di amministratore) sia il pacchetto "System" (per installazioni su tutto il computer).</li>
+                <li><strong>macOS:</strong> viene scaricato un file ZIP contenente direttamente l'applicazione. Ti basta trascinare l'icona di Visual Studio Code all'interno della cartella <strong>Applicazioni</strong> del tuo Mac per completare l'installazione.</li>
+                <li><strong>Linux:</strong> sono disponibili pacchetti <code>.deb</code> (per Debian/Ubuntu) e <code>.rpm</code> (per RedHat/Fedora/CentOS), oltre a pacchetti flatpak o snap.</li>
+              </ul>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Il primo avvio e la schermata di Benvenuto</h3>
+              <p>Quando apri VS Code per la prima volta, sarai accolto da una schermata di benvenuto ("Welcome Page") che ti guiderà nei primi passi. La prima scelta che l'editor ti proporrà riguarda l'aspetto visivo (il tema di colore).</p>
+              <p><strong>Cosa conviene fare subito:</strong></p>
+              <ul class="guide-list">
+                <li><strong>Scegli un tema leggibile:</strong> Puoi selezionare un tema scuro (Dark, es. *Dark Modern*) o uno chiaro (Light). Un tema scuro stanca meno gli occhi durante le sessioni prolungate.</li>
+                <li><strong>Chiudi la Welcome Page:</strong> Puoi togliere la spunta a "Show welcome page on startup" in basso per evitare che si riapra ogni volta. In questo modo VS Code si avvierà su una finestra vuota e pulita, pronto a lavorare.</li>
+              </ul>
+            </section>
+          </section>
+
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Gestire le impostazioni e personalizzare il setup</h2>
+            <h2>3. Aprire un progetto e impostare le preferenze</h2>
             <section class="guide-subchapter">
               <h3>Aprire i progetti: menu grafico o terminale?</h3>
               <p>Per aprire un progetto in VS Code, hai due strade. Scegli quella che si adatta meglio al tuo modo di lavorare:</p>
@@ -262,7 +286,7 @@
           </section>
 
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Il workspace: progetto, non file</h2>
+            <h2>4. Il workspace: progetto, non file</h2>
             <section class="guide-subchapter">
               <h3>Lavorare a cartelle (non a file sfusi)</h3>
               <p>Aprire un file isolato in VS Code è un'operazione d'emergenza; il flusso normale è aprire l'intera cartella di progetto. La ragione è concreta: quasi tutta l'intelligenza dell'editor si attiva solo quando conosce il contesto. Con la cartella aperta, VS Code indicizza i file per la ricerca istantanea, capisce quali linguaggi e configurazioni usare, legge lo stato Git e accende i linter. Con un file sfuso hai un blocco note colorato.</p>
@@ -301,7 +325,7 @@
           </section>
 
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Muoversi alla velocità del pensiero</h2>
+            <h2>5. Muoversi alla velocità del pensiero</h2>
             <figure class="guide-figure">
               <img src="/images/percorsi-apprendimento/visual-studio-code-senza-panico/workflow-vscode-quotidiano.svg" alt="Routine visuale di lavoro quotidiano in Visual Studio Code con file terminale debug e Git" loading="lazy" decoding="async" width="1200" height="500">
               <figcaption>Il ciclo quotidiano: apri, navighi, modifichi, lanci, controlli, committi — tutto senza uscire dall'editor.</figcaption>
@@ -372,7 +396,7 @@
           </section>
 
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Estensioni: poche ma sensate</h2>
+            <h2>6. Estensioni: poche ma sensate</h2>
             <section class="guide-subchapter">
               <h3>La trappola dell'accumulo</h3>
               <p>Il Marketplace ospita decine di migliaia di estensioni, e installarle è così facile che il vero rischio è l'accumulo: ogni estensione aggiunge processi, memoria e — peggio — comportamenti che non hai scelto consapevolmente. È il modo più rapido per trasformare un editor agile in qualcosa che impiega secondi ad aprirsi. La regola è la stessa del capitolo 1: VS Code nasce leggero, e tocca a te tenerlo così. Installa solo ciò che risolve un problema che hai davvero, e a ogni nuova estensione chiediti quale ti puoi togliere.</p>
@@ -419,7 +443,7 @@
           </section>
 
           <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Terminale, task e automazioni leggere</h2>
+            <h2>7. Terminale, task e automazioni</h2>
             <section class="guide-subchapter">
               <h3>Il terminale integrato: addio salti di contesto</h3>
               <p>Il terminale integrato (apribile con <code>Ctrl + `</code>) è uno dei motivi per cui VS Code ha scalato le preferenze degli sviluppatori. Avviandosi automaticamente nella directory radice del tuo workspace, elimina la necessità di navigare manualmente tra le cartelle.</p>
@@ -459,7 +483,7 @@
           </section>
 
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. Debug e correzione problemi</h2>
+            <h2>8. Il debugger: osservare, non stampare</h2>
             <section class="guide-subchapter">
               <h3>Dalle stampe a console (`console.log`) al Debugger</h3>
               <p>Inserire stampe temporanee come <code>console.log</code> o <code>print</code> per ispezionare il valore delle variabili è un'abitudine comune, ma inefficiente: inquina il codice e costringe a continui salvataggi e pulizie.</p>
@@ -505,7 +529,7 @@
           </section>
 
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Git dentro VS Code senza confusione</h2>
+            <h2>9. Git dentro VS Code</h2>
             <section class="guide-subchapter">
               <p>VS Code integra Git in modo comodo e visivo nel pannello <strong>Source Control</strong> (scorciatoia <code>Ctrl + Shift + G</code> / <code>Cmd + Shift + G</code>). Tuttavia, molti sviluppatori si limitano ad usare i pulsanti per aggiungere file e scrivere messaggi di commit, ignorando le funzionalità più avanzate che rendono l'integrazione di Git davvero superiore rispetto alla riga di comando per le operazioni quotidiane.</p>
             </section>
@@ -534,7 +558,7 @@
               <ul class="guide-list">
                 <li><strong>Usa l'interfaccia grafica per:</strong> Rileggere i diff prima di un commit, fare lo stage di blocchi di righe specifici, risolvere i conflitti visivamente e scrivere messaggi di commit ordinati.</li>
                 <li><strong>Usa il terminale per:</strong> Operazioni avanzate o distruttive (es. <code>git rebase -i</code>, <code>git reset --hard</code>, o risoluzione di reflog complessi).</li>          <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. Routine quotidiana consigliata</h2>
+            <h2>10. La routine quotidiana</h2>
             <section class="guide-subchapter">
               <h3>Una sequenza strutturata che elimina il caos</h3>
               <p>Un ambiente di lavoro ordinato produce codice migliore. Questa routine quotidiana in 6 passi ti aiuterà a mantenere il flusso pulito e focalizzato:</p>
@@ -559,7 +583,7 @@
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Checklist finale</h2>
+            <h2>11. Checklist finale</h2>
             <section class="guide-subchapter">
               <p>Puoi valutare la qualità del tuo setup di VS Code misurando il tuo livello di maturità tecnica rispetto a questa checklist:</p>
               <div class="table-wrapper">
@@ -618,7 +642,7 @@
 
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>11. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
               <p>Ecco un riepilogo rapido delle scorciatoie da tastiera fondamentali per incrementare la tua produttività quotidiana:</p>
               <div class="table-wrapper">
@@ -674,7 +698,7 @@
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>12. Sfida pratica: Mettiti alla prova</h2>
+            <h2>13. Sfida pratica</h2>
             <section class="guide-subchapter">
               <p>Metti alla prova la tua destrezza configurando un workspace professionale ed usando la tastiera come uno sviluppatore esperto:</p>
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
@@ -693,7 +717,7 @@
           </section>
 
           <section id="chapter-quiz" data-quiz-id="vscode-essenziale" class="guide-block guide-chapter quiz-section">
-            <h2>13. Verifica la tua preparazione (Quiz)</h2>
+            <h2>14. Verifica la preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
