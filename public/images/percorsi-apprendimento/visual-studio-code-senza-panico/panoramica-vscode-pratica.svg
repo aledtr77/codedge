@@ -14,56 +14,56 @@
   <rect width="1200" height="520" rx="28" fill="url(#bg)"/>
   <circle cx="160" cy="90" r="110" fill="#25a6ff" opacity="0.12"/>
   <circle cx="1030" cy="410" r="130" fill="#b6e6ff" opacity="0.08"/>
-  <text x="70" y="78" fill="#eaf7ff" font-size="34" font-family="Arial, sans-serif" font-weight="700">VSCode essenziale</text>
-  <text x="70" y="112" fill="#9bd8ff" font-size="18" font-family="Arial, sans-serif">Setup pulito, workflow leggibile e strumenti usati con criterio</text>
+  <text x="70" y="78" fill="#eaf7ff" font-size="34" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">VS Code essenziale</text>
+  <text x="70" y="112" fill="#9bd8ff" font-size="18" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Setup pulito, workflow leggibile e strumenti usati con criterio</text>
 
   <g transform="translate(70 156)">
     <rect width="240" height="118" rx="20" fill="url(#card)" stroke="#55c3ff" stroke-opacity="0.45"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">1. Setup</text>
-    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">Installazione, comando</text>
-    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">code, settings essenziali</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">1. Setup</text>
+    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Installazione, comando</text>
+    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">code, settings essenziali</text>
   </g>
 
   <g transform="translate(350 156)">
     <rect width="240" height="118" rx="20" fill="url(#card)" stroke="#55c3ff" stroke-opacity="0.45"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">2. Workspace</text>
-    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">Cartelle, Explorer,</text>
-    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">tabs e contesto progetto</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">2. Workspace</text>
+    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Cartelle, Explorer,</text>
+    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">tabs e contesto progetto</text>
   </g>
 
   <g transform="translate(630 156)">
     <rect width="240" height="118" rx="20" fill="url(#card)" stroke="#55c3ff" stroke-opacity="0.45"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">3. Comandi</text>
-    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">Quick Open, ricerca,</text>
-    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">multi-cursor, palette</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">3. Comandi</text>
+    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Quick Open, ricerca,</text>
+    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">multi-cursor, palette</text>
   </g>
 
   <g transform="translate(910 156)">
     <rect width="220" height="118" rx="20" fill="url(#card)" stroke="#55c3ff" stroke-opacity="0.45"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">4. Estensioni</text>
-    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">Poche, coerenti</text>
-    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="Arial, sans-serif">e senza conflitti</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">4. Estensioni</text>
+    <text x="22" y="72" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Poche, coerenti</text>
+    <text x="22" y="95" fill="#cdefff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">e senza conflitti</text>
   </g>
 
   <g transform="translate(140 326)">
     <rect width="260" height="118" rx="20" fill="url(#card)" stroke="#82ddaa" stroke-opacity="0.48"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">5. Terminale</text>
-    <text x="22" y="72" fill="#d8fff0" font-size="17" font-family="Arial, sans-serif">Task leggeri, dev server</text>
-    <text x="22" y="95" fill="#d8fff0" font-size="17" font-family="Arial, sans-serif">e meno salti di contesto</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">5. Terminale</text>
+    <text x="22" y="72" fill="#d8fff0" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Task leggeri, dev server</text>
+    <text x="22" y="95" fill="#d8fff0" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">e meno salti di contesto</text>
   </g>
 
   <g transform="translate(470 326)">
     <rect width="260" height="118" rx="20" fill="url(#card)" stroke="#ffd07d" stroke-opacity="0.5"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">6. Debug</text>
-    <text x="22" y="72" fill="#fff1d4" font-size="17" font-family="Arial, sans-serif">Problems, breakpoints</text>
-    <text x="22" y="95" fill="#fff1d4" font-size="17" font-family="Arial, sans-serif">e diagnosi meno casuale</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">6. Debug</text>
+    <text x="22" y="72" fill="#fff1d4" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Problems, breakpoints</text>
+    <text x="22" y="95" fill="#fff1d4" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">e diagnosi meno casuale</text>
   </g>
 
   <g transform="translate(800 326)">
     <rect width="260" height="118" rx="20" fill="url(#card)" stroke="#a8d8ff" stroke-opacity="0.5"/>
-    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="Arial, sans-serif" font-weight="700">7. Git e routine</text>
-    <text x="22" y="72" fill="#d8efff" font-size="17" font-family="Arial, sans-serif">Diff, commit, ordine</text>
-    <text x="22" y="95" fill="#d8efff" font-size="17" font-family="Arial, sans-serif">e ritmo quotidiano</text>
+    <text x="22" y="40" fill="#eff9ff" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">7. Git e routine</text>
+    <text x="22" y="72" fill="#d8efff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">Diff, commit, ordine</text>
+    <text x="22" y="95" fill="#d8efff" font-size="17" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">e ritmo quotidiano</text>
   </g>
 
   <path d="M310 215 H350" stroke="#7ad1ff" stroke-width="3" stroke-linecap="round"/>
