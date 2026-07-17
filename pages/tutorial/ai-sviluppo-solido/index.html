@@ -64,6 +64,130 @@
       font-family: Consolas, "Liberation Mono", Menlo, monospace;
       font-size: 0.95em;
     }
+
+    /* Showcase roles styles */
+    .roles-showcase {
+      margin: 2rem 0;
+      padding: 1.8rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(13, 22, 38, 0.65);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(1, 4, 9, 0.4);
+    }
+    .roles-showcase-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .roles-showcase-title i {
+      color: #a855f7;
+    }
+    .roles-showcase-intro {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .role-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1.25rem;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .role-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.7rem;
+    }
+    .role-card h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .role-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+    }
+    .role-icon {
+      font-size: 1.15rem;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    /* Themes */
+    .role-card--architect .role-icon {
+      color: #c084fc;
+      background: rgba(168, 85, 247, 0.15);
+    }
+    .role-card--architect:hover {
+      border-color: rgba(168, 85, 247, 0.4);
+      background: rgba(168, 85, 247, 0.04);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+      transform: translateY(-2px);
+    }
+    .role-card--developer .role-icon {
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.15);
+    }
+    .role-card--developer:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.04);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
+    .role-card--reviewer .role-icon {
+      color: #fb923c;
+      background: rgba(249, 115, 22, 0.15);
+    }
+    .role-card--reviewer:hover {
+      border-color: rgba(249, 115, 22, 0.4);
+      background: rgba(249, 115, 22, 0.04);
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.1);
+      transform: translateY(-2px);
+    }
+    .role-card--optimizer .role-icon {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+    }
+    .role-card--optimizer:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.04);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+      transform: translateY(-2px);
+    }
+    .roles-showcase-footer {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 
@@ -277,9 +401,44 @@
               <p>Quando usi l'AI per iniziare un progetto, la tentazione comune è quella di chiedere direttamente il risultato finale: <em>"Fammi una landing page per una palestra"</em>. Questo approccio costringe l'agente a indovinare centinaia di dettagli strutturali e logici, generando blocchi di codice monolitici, fragili e pieni di bug latenti.</p>
               <p>Per fare un vero salto di qualità, devi considerare l'assistente AI come un <strong>team di sviluppo in miniatura</strong> (composto da un Architetto, uno Sviluppatore, un Revisore e un Ottimizzatore) e guidarlo attraverso una <strong>pipeline strutturata in 8 step successivi</strong>. In questo modo l'agente affronta un solo problema alla volta, lavorando con la massima precisione ed evitando soluzioni approssimative.</p>
               
-              <div class="alert alert--note">
-                <strong>La filosofia del team in miniatura</strong>
-                <p>Usa l'AI ricoprendo ruoli diversi in base alla fase del progetto: l'<strong>Architetto</strong> per la struttura, lo <strong>Sviluppatore</strong> per una sezione alla volta, il <strong>Revisore</strong> per scovare i difetti latenti e l'<strong>Ottimizzatore</strong> per la pulizia finale. Questo garantisce stabilità e modularità a lungo termine.</p>
+              <div class="roles-showcase">
+                <div class="roles-showcase-title">
+                  <i class="fas fa-users-cog"></i> La Filosofia del Team in Miniatura
+                </div>
+                <p class="roles-showcase-intro">Invece di usare l'AI in modo caotico, considera l'assistente come un team specializzato composto da figure con attitudini distinte. Cambia ruolo all'AI in base alla fase del progetto:</p>
+                <div class="roles-grid">
+                  <div class="role-card role-card--architect">
+                    <div class="role-card-header">
+                      <div class="role-icon"><i class="fas fa-sitemap"></i></div>
+                      <h4>Architetto</h4>
+                    </div>
+                    <p>Progetta la struttura, definisce l'alberatura dei file e mappa le responsabilità prima di scrivere codice.</p>
+                  </div>
+                  <div class="role-card role-card--developer">
+                    <div class="role-card-header">
+                      <div class="role-icon"><i class="fas fa-laptop-code"></i></div>
+                      <h4>Sviluppatore</h4>
+                    </div>
+                    <p>Implementa l'interfaccia a blocchi isolati (una sezione alla volta) e aggiunge la logica dinamica solo a stili completati.</p>
+                  </div>
+                  <div class="role-card role-card--reviewer">
+                    <div class="role-card-header">
+                      <div class="role-icon"><i class="fas fa-search"></i></div>
+                      <h4>Revisore</h4>
+                    </div>
+                    <p>Analizza criticamente il codice alla ricerca di bug latenti, inefficienze strutturali e valuta la manutenibilità.</p>
+                  </div>
+                  <div class="role-card role-card--optimizer">
+                    <div class="role-card-header">
+                      <div class="role-icon"><i class="fas fa-tachometer-alt"></i></div>
+                      <h4>Ottimizzatore</h4>
+                    </div>
+                    <p>Pulisce i fogli di stile, comprime gli asset e rifinisce SEO, accessibilità web (a11y) e visualizzazione responsive.</p>
+                  </div>
+                </div>
+                <div class="roles-showcase-footer">
+                  Questo approccio strutturato garantisce stabilità e modularità, eliminando il debito tecnico a lungo termine.
+                </div>
               </div>
 
               <h3>La pipeline in 8 step</h3>
