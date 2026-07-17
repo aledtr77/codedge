@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import { minify } from 'html-minifier-terser';
 import { imagetools } from 'vite-imagetools';
+import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
 
 const ENTRY_DIR = 'pages';
 
@@ -293,6 +294,7 @@ export default defineConfig(({ command }) => {
   plugins.push(imagetools());
   plugins.push(staticNavbarHtmlPlugin());
   plugins.push(staticFooterHtmlPlugin());
+  plugins.push(seoJsonLdPlugin());
   plugins.push(antiFoucHtmlPlugin());
   if (command === 'serve') {
     plugins.push(devPagesRewrite());

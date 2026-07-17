@@ -73,28 +73,12 @@ function lastModifiedForFile(filePath) {
     ).trim();
 
     if (!lastCommitDate) return fallback();
-    let date = new Date(lastCommitDate);
 
-    // If global theme/styles/scripts were updated, consider that date as well
-    try {
-      const globalCommitDate = execFileSync(
-        'git',
-        ['log', '-1', '--format=%cI', '--', 'src/styles/components/main.css', 'src/scripts/components/navbar.css', 'src/scripts/components/navbar.js', 'public/critical.css'],
-        {
-          cwd: projectRoot,
-          encoding: 'utf8',
-          stdio: ['ignore', 'pipe', 'ignore']
-        }
-      ).trim();
-      if (globalCommitDate) {
-        const globalDate = new Date(globalCommitDate);
-        if (globalDate > date) {
-          date = globalDate;
-        }
-      }
-    } catch {}
-
-    return date.toISOString();
+    // Solo la data dell'ultimo commit che tocca la pagina stessa: includere
+    // i commit "globali" (tema, navbar) appiattiva il lastmod di tutte le
+    // URL sulla stessa data a ogni ritocco di CSS, e un lastmod che cambia
+    // sempre è un lastmod che i motori imparano a ignorare.
+    return new Date(lastCommitDate).toISOString();
   } catch {
     return fallback();
   }
