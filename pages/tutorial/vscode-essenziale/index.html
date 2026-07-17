@@ -106,19 +106,19 @@
         <aside class="guide-toc" aria-label="Indice navigabile guida Visual Studio Code">
           <h3>Indice guida</h3>
           <ol class="guide-toc-list">
-            <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Perché parlarne davvero</a></li>
-            <li><a href="#chapter-03">2. Installazione e primo setup pulito</a></li>
-            <li><a href="#chapter-04">3. Workspace e struttura ordinata</a></li>
-            <li><a href="#chapter-05">4. Comandi che ti fanno risparmiare tempo</a></li>
+            <li><a href="#chapter-01">Introduzione</a></li>
+            <li><a href="#chapter-02">1. Perché VS Code ha vinto</a></li>
+            <li><a href="#chapter-03">2. Installazione e setup pulito</a></li>
+            <li><a href="#chapter-04">3. Il workspace: progetto, non file</a></li>
+            <li><a href="#chapter-05">4. Muoversi alla velocità del pensiero</a></li>
             <li><a href="#chapter-06">5. Estensioni: poche ma sensate</a></li>
-            <li><a href="#chapter-07">6. Terminale, task e automazioni leggere</a></li>
-            <li><a href="#chapter-08">7. Debug e correzione problemi</a></li>
-            <li><a href="#chapter-09">8. Git dentro VS Code senza confusione</a></li>
-            <li><a href="#chapter-10">9. Routine quotidiana consigliata</a></li>
+            <li><a href="#chapter-07">6. Terminale, task e automazioni</a></li>
+            <li><a href="#chapter-08">7. Il debugger: osservare, non stampare</a></li>
+            <li><a href="#chapter-09">8. Git dentro VS Code</a></li>
+            <li><a href="#chapter-10">9. La routine quotidiana</a></li>
             <li><a href="#chapter-11">10. Checklist finale</a></li>
             <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">12. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-challenge">12. Sfida pratica</a></li>
             <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
@@ -128,12 +128,12 @@
             <div class="guide-intro-layout">
               <div class="guide-intro-copy">
                 <p class="guide-intro-kicker">Configurare l'ambiente di lavoro ideale</p>
-                <h2 id="vscode-guide-title">Nota iniziale</h2>
+                <h2 id="vscode-guide-title">VS Code essenziale: cosa serve davvero per iniziare</h2>
               <section class="guide-subchapter">
-                <p>Per chi scrive codice, l'editor non è un semplice visualizzatore di testi, ma l'estensione diretta del proprio pensiero operativo. È lo spazio in cui i file si collegano, dove il terminale risponde, dove i bug vengono isolati e dove Git traccia il cammino.</p>
-                <p>Visual Studio Code (spesso abbreviato in VS Code) si è affermato come lo standard di fatto del settore non perché sia perfetto, ma perché ha trovato un equilibrio straordinario tra la prontezza d'uso di un editor di testo leggero e la potenza strutturata di un IDE moderno.</p>
-                <p>Imparare a usarlo bene non significa memorizzare ogni singolo menu o installare decine di estensioni a caso. Significa trasformarlo in un alleato prevedibile, pulito e configurato per supportarti ogni giorno senza generare rumore visivo o rallentamenti.</p>
-                <p>Questa guida ti accompagnerà nella costruzione di un setup solido e professionale, eliminando il superfluo e concentrandosi su ciò che migliora realmente la produttività quotidiana.</p>
+                <p>Passerai più ore nel tuo editor che in qualunque altro software. Eppure quasi nessuno lo studia: si impara a usarlo per osmosi, un menu alla volta, portandosi dietro per anni abitudini lente e configurazioni casuali. Questa guida esiste per saltare quella fase.</p>
+                <p>Visual Studio Code è diventato lo standard di fatto del settore non perché sia perfetto, ma perché ha trovato un equilibrio raro: la leggerezza di un editor di testo e la potenza di un IDE, dosate in modo che paghi solo per ciò che usi.</p>
+                <p>Usarlo bene non significa memorizzare ogni menu né installare decine di estensioni: significa trasformarlo in uno strumento prevedibile — un ambiente in cui i file si trovano al volo, il terminale risponde nel posto giusto, i bug si osservano invece di inseguirli a tentoni, e Git registra il percorso senza cerimonie.</p>
+                <p>La guida costruisce questo setup un pezzo alla volta: prima capiamo com'è fatto lo strumento, poi lo configuriamo, infine lo mettiamo al lavoro su navigazione, estensioni, task, debug e Git. Alla fine trovi la routine quotidiana che tiene tutto insieme.</p>
               </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -143,26 +143,26 @@
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Perché parlarne davvero</h2>
+            <h2>1. Perché VS Code ha vinto</h2>
             <figure class="guide-figure">
               <img src="/images/percorsi-apprendimento/visual-studio-code-senza-panico/panoramica-vscode-pratica.svg" alt="Panoramica visuale dei blocchi fondamentali per usare bene Visual Studio Code" loading="lazy" decoding="async" width="1200" height="520">
-              <figcaption>I pilastri di un flusso di lavoro efficiente in VS Code: setup, workspace, comandi rapidi, estensioni mirate, automazione dei task, debug logico e Git.</figcaption>
+              <figcaption>La mappa della guida: setup, workspace, comandi rapidi, estensioni mirate, terminale e task, debug e Git. Ogni blocco è un capitolo.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <p>VS Code domina lo sviluppo web grazie a due caratteristiche chiave: <strong>velocità</strong> all'avvio e <strong>estensibilità</strong> senza pari. Offre strumenti nativi sufficientemente potenti per coprire l'intero ciclo di vita del codice senza costringerti ad abbandonare l'interfaccia principale.</p>
+              <p>VS Code domina lo sviluppo web per due ragioni che si rafforzano a vicenda: parte <strong>veloce</strong> e cresce <strong>solo quanto serve</strong>. Gli strumenti nativi — ricerca, terminale, debug, Git — coprono l'intero ciclo di vita del codice, e tutto il resto si aggiunge per estensione. Capire come ci riesce non è cultura generale: ti servirà più avanti, quando dovrai decidere cosa installare e cosa no.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Sotto il cofano: la scelta architetturale di Microsoft</h3>
-              <p>Rilasciato da Microsoft nel 2015 come progetto open source (basato sul codice sorgente di <em>VS Code - Codium</em>), l'editor si appoggia su una struttura solida:</p>
+              <h3>Sotto il cofano: tre scelte architetturali</h3>
+              <p>Rilasciato da Microsoft nel 2015 come progetto open source <em>Code&nbsp;-&nbsp;OSS</em> (da cui derivano anche build alternative come VSCodium), l'editor si regge su tre scelte precise:</p>
               <ul class="guide-list">
-                <li><strong>Electron Core:</strong> Combina il motore di rendering Chromium e l'ambiente runtime Node.js. Questo permette di avere un'interfaccia interamente personalizzabile tramite HTML, CSS e JavaScript, pur mantenendo l'accesso alle risorse di sistema a basso livello.</li>
-                <li><strong>Monaco Editor:</strong> Il motore di editing testuale nativo, estremamente ottimizzato per gestire file di grandi dimensioni e fornire evidenziazione sintattica in tempo reale senza lag.</li>
-                <li><strong>Isolamento delle estensioni (Extension Host Process):</strong> Questa è la vera chiave di volta. In VS Code, tutte le estensioni girano in un processo di sistema dedicato e separato dall'interfaccia utente (UI Thread). Se un'estensione si blocca o esegue calcoli pesanti, l'interfaccia dell'editor rimane fluida e reattiva.</li>
+                <li><strong>Electron:</strong> combina il motore di rendering Chromium e il runtime Node.js. È il motivo per cui l'interfaccia è personalizzabile fino all'ultimo pixel (è fatta di HTML, CSS e JavaScript) pur avendo accesso diretto al file system e ai processi del sistema.</li>
+                <li><strong>Monaco Editor:</strong> il motore di editing testuale, ottimizzato per aprire file enormi e colorare la sintassi in tempo reale senza esitazioni. È lo stesso componente che ritrovi negli editor embedded di GitHub e di molti servizi web.</li>
+                <li><strong>Extension Host:</strong> la scelta più importante. Tutte le estensioni girano in un processo separato dall'interfaccia: se un'estensione si blocca o macina calcoli pesanti, l'editor resta fluido. È questo isolamento a permettere un marketplace sterminato senza che ogni installazione sia una scommessa sulla stabilità.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
-              <h3>La distinzione fondamentale: Editor evoluto vs IDE Completo</h3>
-              <p>Molti sviluppatori alle prime armi confondono la natura degli strumenti con cui lavorano. È importante comprendere le differenze:</p>
+              <h3>Editor evoluto o IDE completo? La differenza conta</h3>
+              <p>VS Code viene spesso chiamato IDE, ma la distinzione non è pedanteria: dice molto su come conviene usarlo.</p>
               <div class="table-wrapper">
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                   <thead>
@@ -191,33 +191,36 @@
                   </tbody>
                 </table>
               </div>
-              <p style="margin-top: 1rem;">Nel web development moderno, dove gli ecosistemi evolvono rapidamente, l'approccio modulare e "editor-first" di VS Code si rivela vincente rispetto alla pesantezza monolitica degli IDE vecchio stampo.</p>
+              <p style="margin-top: 1rem;">Nel web moderno, dove gli stack cambiano rapidamente, l'approccio modulare vince: un editor leggero che si adatta al progetto batte l'ambiente monolitico che pretende di anticiparlo. Ma la modularità ha un prezzo — la qualità del risultato dipende da come lo configuri. Ed è esattamente quello che facciamo adesso.</p>
             </section>
-              <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Installazione e primo setup pulito</h2>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Installazione e setup pulito</h2>
             <section class="guide-subchapter">
-              <h3>Il comando `code` nel terminale: l'accesso rapido</h3>
-              <p>Dopo aver installato VS Code, lo strumento più importante per velocizzare l'avvio del lavoro è l'integrazione con la shell del sistema operativo. Abilitare il comando <code>code</code> ti permette di aprire qualsiasi directory direttamente dal terminale con <code>code .</code>.</p>
+              <h3>Il comando `code`: l'editor parte dal terminale</h3>
+              <p>La prima abitudine da installare, ancora prima di qualunque estensione, è aprire i progetti dal terminale: entri nella cartella e digiti <code>code .</code> (il punto significa «questa directory»). Sembra un dettaglio, ma inverte il rapporto tra te e l'editor: non «apro VS Code e poi cerco il progetto», bensì «sono nel progetto e mi porto dietro l'editor». È anche il modo più sicuro per aprire sempre la cartella giusta al livello giusto.</p>
               <p><strong>Come abilitarlo:</strong></p>
               <ul class="guide-list">
-                <li><strong>macOS:</strong> Apri la Command Palette (<code>Cmd + Shift + P</code>), digita <code>Shell Command</code> e seleziona <code>Shell Command: Install 'code' command in PATH</code>. Riavvia il terminale.</li>
-                <li><strong>Windows / Linux:</strong> L'opzione viene solitamente proposta ed abilitata di default durante l'installazione guidata. Assicurati di non aver deselezionato la spunta "Aggiungi al PATH".</li>
+                <li><strong>macOS:</strong> apri la Command Palette (<code>Cmd + Shift + P</code>), digita <code>Shell Command</code> e seleziona <code>Shell Command: Install 'code' command in PATH</code>. Riavvia il terminale.</li>
+                <li><strong>Windows / Linux:</strong> l'opzione è proposta e abilitata di default durante l'installazione guidata. Verifica solo di non aver tolto la spunta «Aggiungi al PATH».</li>
               </ul>
             </section>
             <section class="guide-subchapter">
-              <h3>User Settings vs Workspace Settings: il confine invisibile</h3>
-              <p>VS Code gestisce le preferenze su due livelli logici separati. Capire questa differenza distingue uno sviluppatore dilettante da uno professionista:</p>
+              <h3>User Settings e Workspace Settings: chi decide cosa</h3>
+              <p>VS Code legge le preferenze da due livelli distinti, e capire quale usare per cosa è la singola nozione di configurazione più importante di tutta la guida:</p>
               <ul class="guide-list">
-                <li><strong>User Settings (Globali):</strong> Si applicano a tutte le istanze dell'editor che aprirai sul tuo computer. Sono salvate nella directory di sistema del tuo profilo utente.</li>
-                <li><strong>Workspace Settings (Locali del progetto):</strong> Si applicano esclusivamente alla cartella del progetto corrente. Vengono salvate nel file <code>.vscode/settings.json</code> all'interno del progetto stesso.</li>
+                <li><strong>User Settings (globali):</strong> valgono per ogni progetto che apri sul tuo computer. Qui vivono i gusti personali: tema, font, dimensione del testo.</li>
+                <li><strong>Workspace Settings (di progetto):</strong> valgono solo per la cartella corrente e vivono nel file <code>.vscode/settings.json</code> dentro il progetto. Qui vivono le regole del progetto: indentazione, formatter, comportamenti al salvataggio.</li>
               </ul>
+              <p>Il criterio per scegliere è uno solo: <strong>ciò che riguarda te va nei settings globali, ciò che riguarda il codice va nel progetto</strong>. In caso di conflitto vince sempre il livello più vicino al codice, cioè il workspace.</p>
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
-                <strong>Best Practice da Team:</strong> Configura le opzioni critiche del progetto (come spaziatura, formattazione e regole dei linter) all'interno delle <em>Workspace Settings</em> e committa la cartella <code>.vscode/</code> nel tuo repository Git. In questo modo, chiunque cloni il progetto lavorerà con le stesse identiche regole ed evidenziazioni, azzerando le discussioni sulle convenzioni del codice.
+                <strong>Best practice da team:</strong> configura le opzioni critiche (indentazione, formatter, regole del linter) nelle <em>Workspace Settings</em> e committa la cartella <code>.vscode/</code> nel repository. Chiunque cloni il progetto erediterà le stesse regole automaticamente — e le discussioni su spazi e virgolette spariscono dalle code review, perché non c'è più niente da discutere.
               </div>
             </section>
             <section class="guide-subchapter">
-              <h3>Un file `.vscode/settings.json` pronto per la produzione</h3>
-              <p>Ecco un template completo e ottimizzato che puoi copiare e incollare nella cartella <code>.vscode/settings.json</code> del tuo progetto web:</p>
+              <h3>Un file `.vscode/settings.json` pronto all'uso</h3>
+              <p>Questo è un punto di partenza collaudato per un progetto web — copialo in <code>.vscode/settings.json</code> e adattalo:</p>
               <pre><code class="language-json">{
   // Impostazioni dell'editor
   "editor.tabSize": 2,
@@ -246,21 +249,19 @@
     "**/dist": true
   }
 }</code></pre>
-              <p>L'opzione <code>editor.stickyScroll.enabled</code> è una gemma fantastica: mantiene visibili in alto le intestazioni delle funzioni o dei blocchi HTML annidati mentre scorri il codice, permettendoti di capire subito in quale contesto ti trovi.</p>
+              <p>Due righe meritano una spiegazione. <code>editor.detectIndentation: false</code> impedisce a VS Code di «indovinare» l'indentazione dal file aperto: senza, basta un file incollato da fuori per ritrovarsi con tab e spazi mescolati. E <code>editor.stickyScroll.enabled</code> tiene fisse in alto le intestazioni delle funzioni o dei blocchi HTML dentro cui ti trovi mentre scorri: in un file lungo, sapere sempre «dove sei» senza scrollare su e giù vale da solo il prezzo del capitolo.</p>
             </section>
           </section>
 
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Workspace e struttura ordinata</h2>
+            <h2>3. Il workspace: progetto, non file</h2>
             <section class="guide-subchapter">
               <h3>Lavorare a cartelle (non a file sfusi)</h3>
-              <p>Aprire un file isolato in VS Code è un'operazione d'emergenza. Il flusso di lavoro normale prevede l'apertura dell'intera directory di progetto. Solo in questo modo l'editor può indicizzare i file per la ricerca rapida, applicare i corretti interpreti di linguaggio, leggere le impostazioni Git e attivare i linter integrati.</p>
+              <p>Aprire un file isolato in VS Code è un'operazione d'emergenza; il flusso normale è aprire l'intera cartella di progetto. La ragione è concreta: quasi tutta l'intelligenza dell'editor si attiva solo quando conosce il contesto. Con la cartella aperta, VS Code indicizza i file per la ricerca istantanea, capisce quali linguaggi e configurazioni usare, legge lo stato Git e accende i linter. Con un file sfuso hai un blocco note colorato.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Condividere le estensioni con il team: `extensions.json`</h3>
-              <p>Quando si lavora in team, spesso è necessario che tutti usino le stesse estensioni (es. linter, framework helpers, o estensioni per database specifici). VS Code permette di suggerire queste estensioni definendole nel file <code>.vscode/extensions.json</code>.</p>
-              <p>All'apertura del progetto, VS Code rileverà il file e consiglierà l'installazione delle estensioni mancanti con una notifica discreta.</p>
-              <p>Ecco come configurarlo:</p>
+              <p>In team serve spesso che tutti abbiano le stesse estensioni (il linter, il formatter, magari l'helper del framework). Invece di scriverlo nel README sperando che qualcuno lo legga, dichiarale nel file <code>.vscode/extensions.json</code>: all'apertura del progetto VS Code rileva quelle mancanti e ne propone l'installazione con una notifica discreta.</p>
               <pre><code class="language-json">{
   "recommendations": [
     "esbenp.prettier-vscode",
@@ -270,9 +271,8 @@
 }</code></pre>
             </section>
             <section class="guide-subchapter">
-              <h3>Multi-Root Workspaces: quando le cartelle sono più di una</h3>
-              <p>Nei progetti complessi (es. monorepo con una cartella <code>/frontend</code> e una cartella <code>/backend</code>), potresti non voler aprire la cartella principale gigante, ma lavorare solo sulle cartelle rilevanti mantenendole separate.</p>
-              <p>VS Code gestisce questa esigenza tramite i file <code>.code-workspace</code>. Questo file JSON definisce quali directory di sistema includere nello spazio di lavoro attivo:</p>
+              <h3>Multi-Root Workspace: quando le cartelle sono più di una</h3>
+              <p>Nei progetti composti da più parti (il classico monorepo con <code>/frontend</code> e <code>/backend</code>) aprire la cartella-madre gigante porta rumore: metà dei file non ti riguarda mai. Il file <code>.code-workspace</code> risolve il problema: è un piccolo JSON che elenca solo le directory che vuoi nello spazio di lavoro, ognuna con il suo nome leggibile:</p>
               <pre><code class="language-json">{
   "folders": [
     {
@@ -288,39 +288,40 @@
     "editor.tabSize": 4 // Impostazione specifica per questo intero workspace
   }
 }</code></pre>
-              <p>Per avviare un workspace multi-root è sufficiente fare doppio clic sul file <code>.code-workspace</code> o caricarlo tramite il menu <em>File -> Open Workspace from File...</em>.</p>
+              <p>Per usarlo basta un doppio clic sul file <code>.code-workspace</code>, oppure <em>File → Open Workspace from File…</em>. Se lavori da solo su progetti a cartella singola non ti servirà spesso — ma quando arriverà il primo monorepo saprai che esiste.</p>
             </section>
           </section>
 
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Comandi che ti fanno risparmiare tempo</h2>
+            <h2>4. Muoversi alla velocità del pensiero</h2>
             <figure class="guide-figure">
               <img src="/images/percorsi-apprendimento/visual-studio-code-senza-panico/workflow-vscode-quotidiano.svg" alt="Routine visuale di lavoro quotidiano in Visual Studio Code con file terminale debug e Git" loading="lazy" decoding="async" width="1200" height="500">
-              <figcaption>Piccolo workflow quotidiano: apri il progetto, navighi, modifichi, controlli, testi e fai commit.</figcaption>
+              <figcaption>Il ciclo quotidiano: apri, navighi, modifichi, lanci, controlli, committi — tutto senza uscire dall'editor.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <h3>La Command Palette ed i prefissi segreti</h3>
-              <p>Il modo più efficiente di interagire con VS Code è la tastiera. La <strong>Command Palette</strong> (apribile con <code>Ctrl + Shift + P</code> su Windows/Linux o <code>Cmd + Shift + P</code> su macOS, oppure semplicemente premendo <code>F1</code>) è il tuo pannello di controllo principale.</p>
-              <p>Tuttavia, pochi sviluppatori sanno che la barra che appare rimuovendo il simbolo di maggiore <code>&gt;</code> (che diventa la barra di <strong>Quick Open</strong>, apribile direttamente con <code>Ctrl + P</code> o <code>Cmd + P</code>) accetta una serie di prefissi segreti che sbloccano funzionalità di ricerca straordinarie:</p>
+              <h3>La Command Palette e i prefissi di Quick Open</h3>
+              <p>La differenza di velocità tra chi usa VS Code da un mese e chi lo usa da anni è quasi tutta qui: le mani restano sulla tastiera. Il punto d'ingresso è la <strong>Command Palette</strong> (<code>Ctrl + Shift + P</code>, <code>Cmd + Shift + P</code> su macOS, o semplicemente <code>F1</code>): qualunque azione dell'editor, digitata per nome invece che cercata nei menu.</p>
+              <p>La sua gemella <strong>Quick Open</strong> (<code>Ctrl + P</code> / <code>Cmd + P</code>) è la stessa barra senza il prefisso <code>&gt;</code>, e serve a raggiungere i file per nome. Ma il vero salto arriva con i suoi prefissi, che pochi conoscono:</p>
               <ul class="guide-list">
-                <li><strong><code>@</code> (Simboli nel file):</strong> Elenca tutte le funzioni, variabili, classi o tag CSS presenti nel file corrente. Digitando <code>@:</code> i simboli verranno raggruppati per categoria (es. metodi, variabili, interfacce).</li>
-                <li><strong><code>:</code> (Vai alla riga):</strong> Digita un numero dopo i due punti (es. <code>:150</code>) per saltare istantaneamente a quella riga del codice.</li>
-                <li><strong><code>#</code> (Simboli nel workspace):</strong> Cerca una funzione o una classe digitando il suo nome, cercandola in tutti i file del progetto, anche se chiusi.</li>
-                <li><strong><code>?</code> (Aiuto interattivo):</strong> Mostra l'elenco completo di tutti i comandi e prefissi utilizzabili in quel momento nella barra.</li>
+                <li><strong><code>@</code> — simboli nel file:</strong> elenca funzioni, variabili, classi o selettori CSS del file corrente. Con <code>@:</code> li raggruppa per categoria. È il modo più rapido di muoversi dentro un file lungo.</li>
+                <li><strong><code>:</code> — vai alla riga:</strong> <code>:150</code> e sei alla riga 150. Perfetto quando un errore ti dà file e riga.</li>
+                <li><strong><code>#</code> — simboli nel progetto:</strong> trova una funzione o una classe per nome in tutti i file del workspace, anche mai aperti.</li>
+                <li><strong><code>?</code> — aiuto:</strong> mostra tutti i prefissi disponibili, se questi ti sembrano troppi da ricordare.</li>
               </ul>
+              <p>Prova questa sequenza una volta sola e capirai il principio: <code>Ctrl + P</code>, tre lettere del nome del file, <code>@</code>, due lettere del nome della funzione, Invio. Quattro secondi, zero mouse, e sei esattamente dove volevi essere.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Modifiche parallele con Cursori Multipli</h3>
-              <p>Il multi-cursore ti consente di evitare riscritture noiose riga per riga. VS Code offre tre modi principali per utilizzarlo:</p>
+              <h3>Modifiche parallele con i cursori multipli</h3>
+              <p>Il multi-cursore elimina la categoria intera delle «riscritture noiose riga per riga». Tre modi per attivarlo, in ordine di utilità:</p>
               <ul class="guide-list">
-                <li><strong>Selezione mirata:</strong> Tieni premuto <code>Alt</code> (o <code>Option</code> su Mac) e fai clic in diversi punti del file. Scriverai contemporaneamente ovunque ci sia un cursore.</li>
-                <li><strong>Selezione incrementale (Altamente consigliato):</strong> Evidenzia una parola e premi <code>Ctrl + D</code> (o <code>Cmd + D</code> su Mac). VS Code selezionerà la ricorrenza successiva della stessa parola creandovi un cursore. Premendolo più volte potrai rinominare o modificare una variabile o un tag HTML in blocco in pochissimi secondi. Se selezioni troppo, usa <code>Ctrl + U</code> (o <code>Cmd + U</code>) per deselezionare l'ultimo cursore creato.</li>
-                <li><strong>Selezione verticale (colonne):</strong> Tieni premuto <code>Shift + Alt</code> (o <code>Shift + Option</code> su Mac) e trascina il mouse verso l'alto o verso il basso per creare un cursore su più righe consecutive alla stessa colonna.</li>
+                <li><strong>Selezione incrementale (il più usato):</strong> evidenzia una parola e premi <code>Ctrl + D</code> (<code>Cmd + D</code> su Mac): ogni pressione aggiunge un cursore sulla ricorrenza successiva della stessa parola. Rinomini una variabile o una classe HTML in cinque punti in tre secondi. Se selezioni una ricorrenza di troppo, <code>Ctrl + U</code> torna indietro di un passo.</li>
+                <li><strong>Selezione mirata:</strong> tieni premuto <code>Alt</code> (<code>Option</code> su Mac) e clicca nei punti che vuoi: scriverai in tutti contemporaneamente. Utile quando i punti da modificare non sono la stessa parola.</li>
+                <li><strong>Selezione verticale:</strong> <code>Shift + Alt</code> (<code>Shift + Option</code>) e trascini in verticale: un cursore per riga, tutti alla stessa colonna. Perfetto per liste e dati tabulari.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
               <h3>Scorciatoie salvavita da fare tue oggi</h3>
-              <p>Memorizzare queste scorciatoie ti farà risparmiare ore di micro-interruzioni dovute all'uso del mouse:</p>
+              <p>Non serve impararle tutte: queste cinque coprono da sole la maggior parte delle micro-interruzioni da mouse:</p>
               <div class="table-wrapper">
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                   <thead>
@@ -359,20 +360,23 @@
                   </tbody>
                 </table>
               </div>
-           <section id="chapter-06" class="guide-block guide-chapter">
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Estensioni: poche ma sensate</h2>
             <section class="guide-subchapter">
               <h3>La trappola dell'accumulo</h3>
-              <p>Il Marketplace di VS Code ospita migliaia di estensioni. Installarne troppe è il modo più rapido per trasformare un editor agile in un elefante pesante che consuma gigabyte di RAM ed impiega secondi ad aprirsi. Il tuo obiettivo deve essere il minimalismo operativo.</p>
+              <p>Il Marketplace ospita decine di migliaia di estensioni, e installarle è così facile che il vero rischio è l'accumulo: ogni estensione aggiunge processi, memoria e — peggio — comportamenti che non hai scelto consapevolmente. È il modo più rapido per trasformare un editor agile in qualcosa che impiega secondi ad aprirsi. La regola è la stessa del capitolo 1: VS Code nasce leggero, e tocca a te tenerlo così. Installa solo ciò che risolve un problema che hai davvero, e a ogni nuova estensione chiediti quale ti puoi togliere.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Il Kit Essenziale per Sviluppo Web</h3>
-              <p>Per la maggior parte dei progetti frontend e backend moderni, ti basta un pacchetto ridottissimo di estensioni altamente professionali:</p>
+              <h3>Il kit essenziale per lo sviluppo web</h3>
+              <p>Per la maggior parte dei progetti frontend e backend moderni bastano quattro estensioni, ognuna con un compito preciso:</p>
               <ul class="guide-list guide-list-good">
-                <li><strong>Prettier (o Biome):</strong> Per la formattazione automatica e forzata dello stile del codice.</li>
-                <li><strong>ESLint:</strong> Per l'analisi statica della qualità del codice (variabili inutilizzate, bug potenziali).</li>
-                <li><strong>Error Lens:</strong> Una gemma assoluta. Invece di costringerti ad aprire continuamente il pannello <em>Problems</em> in basso, proietta gli errori ed i warning del codice direttamente sulla riga in cui si trovano, evidenziandoli con colori specifici. Riduce l'attrito cognitivo di oltre la metà.</li>
-                <li><strong>REST Client:</strong> Sostituisce software pesanti come Postman. Ti consente di scrivere ed inviare richieste HTTP scrivendole in semplici file di testo con estensione <code>.http</code> salvati direttamente nel tuo repository.</li>
+                <li><strong>Prettier (o Biome):</strong> formatta il codice al salvataggio, sempre allo stesso modo. Lo stile smette di essere una decisione e diventa un automatismo.</li>
+                <li><strong>ESLint:</strong> analizza il codice mentre lo scrivi e segnala variabili inutilizzate, errori logici probabili e pattern pericolosi. Il formatter cura la forma, il linter la sostanza.</li>
+                <li><strong>Error Lens:</strong> proietta errori e warning direttamente sulla riga in cui si trovano, colorati, invece di lasciarli nel pannello <em>Problems</em> in basso. Sembra un dettaglio estetico; nella pratica dimezza il tempo che passa tra «ho introdotto un errore» e «me ne sono accorto».</li>
+                <li><strong>REST Client:</strong> scrivi richieste HTTP in semplici file <code>.http</code> versionati nel repository e le invii dall'editor. Per il collaudo quotidiano delle API sostituisce strumenti esterni ben più pesanti.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
