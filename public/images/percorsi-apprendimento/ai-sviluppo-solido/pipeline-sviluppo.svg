@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">La Pipeline di Sviluppo in 8 Step</title>
+  <desc id="desc">Visualizzazione grafica degli 8 passaggi del workflow strutturato per sviluppare con l'AI, disposti a serpentina dal design logico alla review finale.</desc>
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080e1a"/>
+      <stop offset="60%" stop-color="#05101f"/>
+      <stop offset="100%" stop-color="#030812"/>
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="step1-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d1d4d"/>
+      <stop offset="100%" stop-color="#140a26"/>
+    </linearGradient>
+    <linearGradient id="step2-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#192e59"/>
+      <stop offset="100%" stop-color="#0b1429"/>
+    </linearGradient>
+    <linearGradient id="step3-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#123a4a"/>
+      <stop offset="100%" stop-color="#071a24"/>
+    </linearGradient>
+    <linearGradient id="step4-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f3d2b"/>
+      <stop offset="100%" stop-color="#061c13"/>
+    </linearGradient>
+    <linearGradient id="step5-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d3715"/>
+      <stop offset="100%" stop-color="#1c1908"/>
+    </linearGradient>
+    <linearGradient id="step6-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d2215"/>
+      <stop offset="100%" stop-color="#1c0f08"/>
+    </linearGradient>
+    <linearGradient id="step7-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#103d36"/>
+      <stop offset="100%" stop-color="#071c19"/>
+    </linearGradient>
+    <linearGradient id="step8-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3d1532"/>
+      <stop offset="100%" stop-color="#1c0816"/>
+    </linearGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#010307" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 10 1.5 L 2 5 L 10 8.5 z" fill="#a855f7"/>
+    </marker>
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="680" rx="24" fill="url(#bg-gradient)"/>
+
+  <!-- Background decorative lines -->
+  <g opacity="0.03" stroke="#ffffff" stroke-width="1">
+    <line x1="200" y1="0" x2="200" y2="680"/>
+    <line x1="480" y1="0" x2="480" y2="680"/>
+    <line x1="760" y1="0" x2="760" y2="680"/>
+    <line x1="1040" y1="0" x2="1040" y2="680"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="460" x2="1200" y2="460"/>
+  </g>
+
+  <!-- Title Section -->
+  <g font-family="system-ui, -apple-system, sans-serif" text-anchor="middle">
+    <text x="600" y="52" fill="#ffffff" font-size="28" font-weight="800" letter-spacing="-0.5">La Pipeline di Sviluppo in 8 Step</text>
+    <text x="600" y="80" fill="#718096" font-size="15">Tratta l'AI come un team specializzato e procedi per blocchi logici isolati e controllati</text>
+  </g>
+
+  <!-- ================= ROW 1 (Left to Right) ================= -->
+
+  <!-- STEP 1: PIANIFICAZIONE -->
+  <g filter="url(#card-shadow)" transform="translate(60, 120)">
+    <rect width="240" height="210" rx="16" fill="url(#step1-grad)" stroke="#a855f7" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#a855f7" fill-opacity="0.2"/>
+    <!-- Icon (Draft/UX) -->
+    <path d="M26 26 h16 M26 32 h10" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    <rect x="29" y="23" width="10" height="12" rx="1" fill="none" stroke="#c084fc" stroke-width="2"/>
+    <text x="16" y="84" fill="#a855f7" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 1</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Pianificazione</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Definisci la UX e la</tspan>
+      <tspan x="16" dy="18">struttura dei contenuti</tspan>
+      <tspan x="16" dy="18">senza chiedere codice.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 2: ARCHITETTURA -->
+  <g filter="url(#card-shadow)" transform="translate(340, 120)">
+    <rect width="240" height="210" rx="16" fill="url(#step2-grad)" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#3b82f6" fill-opacity="0.2"/>
+    <!-- Icon (Folder/Structure) -->
+    <path d="M24 24 h6 l3 3 h11 v11 h-20 z" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linejoin="round"/>
+    <text x="16" y="84" fill="#3b82f6" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 2</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Architettura</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Organizza le cartelle</tspan>
+      <tspan x="16" dy="18">ed i file con criteri di</tspan>
+      <tspan x="16" dy="18">responsabilità unica.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 3: REGOLE -->
+  <g filter="url(#card-shadow)" transform="translate(620, 120)">
+    <rect width="240" height="210" rx="16" fill="url(#step3-grad)" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#06b6d4" fill-opacity="0.2"/>
+    <!-- Icon (Shield/Rules) -->
+    <path d="M24 22 L34 25 v7 c0 5-3 9-10 10 -7-1-10-5-10-10v-7 Z" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linejoin="round"/>
+    <text x="16" y="84" fill="#06b6d4" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 3</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Regole Ferree</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Imponi standard ferrei</tspan>
+      <tspan x="16" dy="18">(no !important, no</tspan>
+      <tspan x="16" dy="18">inline JS) prima di iniziare.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 4: HTML/CSS SEZIONI -->
+  <g filter="url(#card-shadow)" transform="translate(900, 120)">
+    <rect width="240" height="210" rx="16" fill="url(#step4-grad)" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#10b981" fill-opacity="0.2"/>
+    <!-- Icon (Layout/Component) -->
+    <rect x="23" y="23" width="22" height="22" rx="3" fill="none" stroke="#34d399" stroke-width="2"/>
+    <line x1="23" y1="30" x2="45" y2="30" stroke="#34d399" stroke-width="1.5"/>
+    <line x1="30" y1="30" x2="30" y2="45" stroke="#34d399" stroke-width="1.5"/>
+    <text x="16" y="84" fill="#10b981" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 4</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Sezioni HTML/CSS</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Costruisci il layout</tspan>
+      <tspan x="16" dy="18">un blocco alla volta</tspan>
+      <tspan x="16" dy="18">(Hero, Navbar, ecc.).</tspan>
+    </text>
+  </g>
+
+  <!-- ================= ROW 2 (Right to Left) ================= -->
+
+  <!-- STEP 5: LOGICA JAVASCRIPT -->
+  <g filter="url(#card-shadow)" transform="translate(900, 380)">
+    <rect width="240" height="210" rx="16" fill="url(#step5-grad)" stroke="#eab308" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#eab308" fill-opacity="0.2"/>
+    <!-- Icon (JS/Code) -->
+    <path d="M22 26 L17 31 L22 36 M30 26 L35 31 L30 36" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="28" y1="24" x2="24" y2="38" stroke="#facc15" stroke-width="2"/>
+    <text x="16" y="84" fill="#eab308" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 5</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Logica JS</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Aggiungi l'interazione</tspan>
+      <tspan x="16" dy="18">solo a stili completati,</tspan>
+      <tspan x="16" dy="18">un componente alla volta.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 6: REFACTORING -->
+  <g filter="url(#card-shadow)" transform="translate(620, 380)">
+    <rect width="240" height="210" rx="16" fill="url(#step6-grad)" stroke="#f97316" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#f97316" fill-opacity="0.2"/>
+    <!-- Icon (Broom/Clean) -->
+    <path d="M23 35 L33 25 M27 39 L37 29 M31 39 L35 35" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+    <rect x="19" y="19" width="10" height="10" rx="1" fill="none" stroke="#fdba74" stroke-width="2"/>
+    <text x="16" y="84" fill="#f97316" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 6</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Refactoring</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Analizza l'intero codice</tspan>
+      <tspan x="16" dy="18">per eliminare CSS duplicato</tspan>
+      <tspan x="16" dy="18">e JS ridondante.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 7: OTTIMIZZAZIONE -->
+  <g filter="url(#card-shadow)" transform="translate(340, 380)">
+    <rect width="240" height="210" rx="16" fill="url(#step7-grad)" stroke="#14b8a6" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#14b8a6" fill-opacity="0.2"/>
+    <!-- Icon (Rocket/Performance) -->
+    <path d="M36 20 C32 20 23 23 23 31 c0 3 2 5 5 5 8 0 11-9 11-13 Z" fill="none" stroke="#5eead4" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M21 37 l-3 3 M37 21 l1-1" stroke="#5eead4" stroke-width="2" stroke-linecap="round"/>
+    <text x="16" y="84" fill="#14b8a6" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 7</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Ottimizzazione</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Rifinisci SEO,</tspan>
+      <tspan x="16" dy="18">accessibilità, responsive</tspan>
+      <tspan x="16" dy="18">e compressione asset.</tspan>
+    </text>
+  </g>
+
+  <!-- STEP 8: REVISIONE FINALE -->
+  <g filter="url(#card-shadow)" transform="translate(60, 380)">
+    <rect width="240" height="210" rx="16" fill="url(#step8-grad)" stroke="#ec4899" stroke-opacity="0.3" stroke-width="1.5"/>
+    <rect x="16" y="16" width="36" height="36" rx="8" fill="#ec4899" fill-opacity="0.2"/>
+    <!-- Icon (Glasses/Review) -->
+    <circle cx="25" cy="30" r="6" fill="none" stroke="#f472b6" stroke-width="2"/>
+    <circle cx="37" cy="30" r="6" fill="none" stroke="#f472b6" stroke-width="2"/>
+    <path d="M31 30 h2 M27 24 c4-2 6-2 10 0" stroke="#f472b6" stroke-width="1.5"/>
+    <text x="16" y="84" fill="#ec4899" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1.5">STEP 8</text>
+    <text x="16" y="108" fill="#ffffff" font-family="system-ui, sans-serif" font-size="17" font-weight="800">Revisione Finale</text>
+    <text x="16" y="136" fill="#a0aec0" font-family="system-ui, sans-serif" font-size="13" font-weight="500">
+      <tspan x="16" dy="0">Chiedi una review critica</tspan>
+      <tspan x="16" dy="18">sulla stabilità e la</tspan>
+      <tspan x="16" dy="18">manutenibilità a 6 mesi.</tspan>
+    </text>
+  </g>
+
+  <!-- ================= FLOW ARROWS (Serpentine path) ================= -->
+  <g fill="none" stroke-width="3" stroke-linecap="round">
+    <!-- Row 1: Right Arrows -->
+    <!-- 1 -> 2 -->
+    <path d="M 305 225 L 332 225" stroke="#3b82f6" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <!-- 2 -> 3 -->
+    <path d="M 585 225 L 612 225" stroke="#06b6d4" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <!-- 3 -> 4 -->
+    <path d="M 865 225 L 892 225" stroke="#10b981" marker-end="url(#arrow-right)" opacity="0.6"/>
+
+    <!-- Connection Row 1 -> Row 2 (Down from Step 4 to Step 5) -->
+    <!-- 4 -> 5 -->
+    <path d="M 1020 335 L 1020 372" stroke="#10b981" marker-end="url(#arrow-down)" opacity="0.6"/>
+
+    <!-- Row 2: Left Arrows -->
+    <!-- 5 -> 6 -->
+    <path d="M 900 485 L 873 485" stroke="#f97316" marker-end="url(#arrow-left)" opacity="0.6"/>
+    <!-- 6 -> 7 -->
+    <path d="M 620 485 L 593 485" stroke="#14b8a6" marker-end="url(#arrow-left)" opacity="0.6"/>
+    <!-- 7 -> 8 -->
+    <path d="M 340 485 L 313 485" stroke="#ec4899" marker-end="url(#arrow-left)" opacity="0.6"/>
+  </g>
+
+  <!-- Footer Info -->
+  <text x="600" y="642" fill="#4a5568" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Una pipeline ordinata assicura basi di codice riutilizzabili e azzera il debito tecnico fin dal primo giorno.</text>
+</svg>

@@ -1,69 +1,147 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
-  <title id="title">Workflow di Sviluppo con AI</title>
-  <desc id="desc">Confronto tra workflow sragionato (copia-incolla cieco) e workflow solido (revisione critica ed integrazione controllata).</desc>
+  <title id="title">Workflow di Sviluppo con AI: Cieco vs Solido</title>
+  <desc id="desc">Confronto grafico tra il workflow sragionato basato su copia-incolla cieco e il workflow assistito basato su controllo, contesto e piccoli blocchi logici.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#07192b"/>
-      <stop offset="0.55" stop-color="#0c263d"/>
-      <stop offset="1" stop-color="#0f1d2d"/>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#071524"/>
+      <stop offset="100%" stop-color="#040914"/>
     </linearGradient>
-    <linearGradient id="card-correct" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0e3a2f"/>
-      <stop offset="1" stop-color="#051c16"/>
+
+    <!-- Card Wrong Gradient -->
+    <linearGradient id="card-wrong-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1417"/>
+      <stop offset="100%" stop-color="#14070a"/>
     </linearGradient>
-    <linearGradient id="card-wrong" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3d181d"/>
-      <stop offset="1" stop-color="#1f090c"/>
+
+    <!-- Card Correct Gradient -->
+    <linearGradient id="card-correct-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c2d20"/>
+      <stop offset="100%" stop-color="#05140e"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#020812" flood-opacity="0.3"/>
+
+    <!-- Step Item Wrong Background -->
+    <linearGradient id="step-wrong-bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3d181d"/>
+      <stop offset="100%" stop-color="#240c0f"/>
+    </linearGradient>
+
+    <!-- Step Item Correct Background -->
+    <linearGradient id="step-correct-bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f3c2b"/>
+      <stop offset="100%" stop-color="#092419"/>
+    </linearGradient>
+
+    <!-- Shadow Filter -->
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#010408" flood-opacity="0.5"/>
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="520" rx="28" fill="url(#bg)"/>
+  <!-- 1. Background -->
+  <rect width="1200" height="520" rx="24" fill="url(#bg-gradient)"/>
+  
+  <!-- Subtle background grids or tech lines -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="520"/>
+    <line x1="600" y1="0" x2="600" y2="520"/>
+    <line x1="1100" y1="0" x2="1100" y2="520"/>
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+  </g>
 
-  <!-- Left: Sragionato (Wrong Workflow) -->
-  <g filter="url(#shadow)">
-    <rect x="80" y="80" width="480" height="300" rx="18" fill="url(#card-wrong)" stroke="#ff6b6b" stroke-opacity="0.4" stroke-width="2"/>
-    <text x="320" y="115" fill="#ff6b6b" font-family="Verdana" font-size="18" font-weight="700" text-anchor="middle">WORKFLOW SRAGIONATO (Cieco)</text>
+  <!-- Title Section -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <text x="600" y="52" fill="#ffffff" font-size="28" font-weight="800" letter-spacing="-0.5">Workflow di Sviluppo con AI: Metodo a Confronto</text>
+    <text x="600" y="80" fill="#718096" font-size="15">Come interagisci con il tuo assistente determina la stabilità e la manutenibilità del codice</text>
+  </g>
+
+  <!-- LEFT COLUMN: WORKFLOW SRAGIONATO (Cieco) -->
+  <g filter="url(#card-shadow)">
+    <!-- Container Card -->
+    <rect x="60" y="110" width="500" height="340" rx="20" fill="url(#card-wrong-grad)" stroke="#ff4d4d" stroke-opacity="0.3" stroke-width="1.5"/>
     
-    <!-- Steps -->
-    <rect x="120" y="140" width="400" height="40" rx="8" fill="#1f090c" stroke="#ff6b6b" stroke-opacity="0.3"/>
-    <text x="320" y="165" fill="#fccacf" font-family="Verdana" font-size="14" text-anchor="middle">1. Copia un errore immenso o chiedi codice vago</text>
-
-    <rect x="120" y="195" width="400" height="40" rx="8" fill="#1f090c" stroke="#ff6b6b" stroke-opacity="0.3"/>
-    <text x="320" y="220" fill="#fccacf" font-family="Verdana" font-size="14" text-anchor="middle">2. Genera intere cartelle o file enormi di codice</text>
-
-    <rect x="120" y="250" width="400" height="40" rx="8" fill="#1f090c" stroke="#ff6b6b" stroke-opacity="0.3"/>
-    <text x="320" y="275" fill="#fccacf" font-family="Verdana" font-size="14" text-anchor="middle">3. Copia/incolla diretto nel tuo file senza rileggere</text>
-
-    <rect x="120" y="305" width="400" height="45" rx="8" fill="#ff6b6b" fill-opacity="0.15" stroke="#ff6b6b" stroke-width="2"/>
-    <text x="320" y="332" fill="#ff8b8b" font-family="Verdana" font-size="14" font-weight="700" text-anchor="middle">RISULTATO: Bug latenti o blocchi in compilazione</text>
-  </g>
-
-  <!-- Right: Solido (Correct Workflow) -->
-  <g filter="url(#shadow)">
-    <rect x="640" y="80" width="480" height="300" rx="18" fill="url(#card-correct)" stroke="#7cf5c4" stroke-opacity="0.4" stroke-width="2"/>
-    <text x="880" y="115" fill="#7cf5c4" font-family="Verdana" font-size="18" font-weight="700" text-anchor="middle">WORKFLOW ASSISTITO (Solido)</text>
+    <!-- Title -->
+    <text x="310" y="148" fill="#ff4d4d" font-family="system-ui, sans-serif" font-size="18" font-weight="800" text-anchor="middle" letter-spacing="1">WORKFLOW SRAGIONATO (Cieco)</text>
     
-    <!-- Steps -->
-    <rect x="680" y="140" width="400" height="40" rx="8" fill="#051c16" stroke="#7cf5c4" stroke-opacity="0.3"/>
-    <text x="880" y="165" fill="#d8fff0" font-family="Verdana" font-size="14" text-anchor="middle">1. Isola il problema reale e fornisci contesto</text>
+    <!-- Step 1 -->
+    <g transform="translate(90, 175)">
+      <rect width="440" height="48" rx="10" fill="url(#step-wrong-bg)" stroke="#ff4d4d" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#5c1d24"/>
+      <text x="28" y="29" fill="#ff9999" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">1</text>
+      <text x="60" y="29" fill="#ffd1d1" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Richieste vaghe o incolla di errori immensi</text>
+    </g>
 
-    <rect x="680" y="195" width="400" height="40" rx="8" fill="#051c16" stroke="#7cf5c4" stroke-opacity="0.3"/>
-    <text x="880" y="220" fill="#d8fff0" font-family="Verdana" font-size="14" text-anchor="middle">2. Chiedi blocchi piccoli ed imponi vincoli chiari</text>
+    <!-- Step 2 -->
+    <g transform="translate(90, 235)">
+      <rect width="440" height="48" rx="10" fill="url(#step-wrong-bg)" stroke="#ff4d4d" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#5c1d24"/>
+      <text x="28" y="29" fill="#ff9999" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">2</text>
+      <text x="60" y="29" fill="#ffd1d1" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Generazione di blocchi monolitici o interi file</text>
+    </g>
 
-    <rect x="680" y="250" width="400" height="40" rx="8" fill="#051c16" stroke="#7cf5c4" stroke-opacity="0.3"/>
-    <text x="880" y="275" fill="#d8fff0" font-family="Verdana" font-size="14" text-anchor="middle">3. Leggi riga per riga, comprendi e testa il codice</text>
+    <!-- Step 3 -->
+    <g transform="translate(90, 295)">
+      <rect width="440" height="48" rx="10" fill="url(#step-wrong-bg)" stroke="#ff4d4d" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#5c1d24"/>
+      <text x="28" y="29" fill="#ff9999" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">3</text>
+      <text x="60" y="29" fill="#ffd1d1" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Copia-incolla immediato senza comprendere</text>
+    </g>
 
-    <rect x="680" y="305" width="400" height="45" rx="8" fill="#7cf5c4" fill-opacity="0.15" stroke="#7cf5c4" stroke-width="2"/>
-    <text x="880" y="332" fill="#9effd7" font-family="Verdana" font-size="14" font-weight="700" text-anchor="middle">RISULTATO: Codice pulito, controllo totale del progetto</text>
+    <!-- Result -->
+    <g transform="translate(90, 365)">
+      <rect width="440" height="54" rx="12" fill="#ff4d4d" fill-opacity="0.1" stroke="#ff4d4d" stroke-width="2"/>
+      <!-- Warning icon -->
+      <path d="M26 17 L18 31 L34 31 Z" fill="none" stroke="#ff4d4d" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="26" y1="22" x2="26" y2="26" stroke="#ff4d4d" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="26" cy="29" r="1" fill="#ff4d4d"/>
+      <text x="56" y="32" fill="#ff6666" font-family="system-ui, sans-serif" font-size="14" font-weight="800">RISULTATO: Bug latenti e perdita di controllo</text>
+    </g>
   </g>
 
-  <!-- Titles and explanations -->
-  <g font-family="Verdana, Arial, sans-serif" text-anchor="middle" fill="#b8ddf4">
-    <text x="600" y="445" font-size="22" font-weight="700">Integrazione dell'AI nello sviluppo software</text>
-    <text x="600" y="475" font-size="15">L'intelligenza artificiale accelera il lavoro ripetitivo, ma la guida logica, la revisione ed i test appartengono sempre a te.</text>
+  <!-- RIGHT COLUMN: WORKFLOW ASSISTITO (Solido) -->
+  <g filter="url(#card-shadow)">
+    <!-- Container Card -->
+    <rect x="640" y="110" width="500" height="340" rx="20" fill="url(#card-correct-grad)" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5"/>
+    
+    <!-- Title -->
+    <text x="890" y="148" fill="#10b981" font-family="system-ui, sans-serif" font-size="18" font-weight="800" text-anchor="middle" letter-spacing="1">WORKFLOW ASSISTITO (Solido)</text>
+    
+    <!-- Step 1 -->
+    <g transform="translate(670, 175)">
+      <rect width="440" height="48" rx="10" fill="url(#step-correct-bg)" stroke="#10b981" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#064e3b"/>
+      <text x="28" y="29" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">1</text>
+      <text x="60" y="29" fill="#d1fae5" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Isola il problema singolo e dai contesto preciso</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(670, 235)">
+      <rect width="440" height="48" rx="10" fill="url(#step-correct-bg)" stroke="#10b981" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#064e3b"/>
+      <text x="28" y="29" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">2</text>
+      <text x="60" y="29" fill="#d1fae5" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Chiedi moduli circoscritti e imponi vincoli</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(670, 295)">
+      <rect width="440" height="48" rx="10" fill="url(#step-correct-bg)" stroke="#10b981" stroke-opacity="0.15"/>
+      <circle cx="28" cy="24" r="14" fill="#064e3b"/>
+      <text x="28" y="29" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">3</text>
+      <text x="60" y="29" fill="#d1fae5" font-family="system-ui, sans-serif" font-size="14" font-weight="500">Leggi riga per riga, comprendi e testa</text>
+    </g>
+
+    <!-- Result -->
+    <g transform="translate(670, 365)">
+      <rect width="440" height="54" rx="12" fill="#10b981" fill-opacity="0.1" stroke="#10b981" stroke-width="2"/>
+      <!-- Shield/Check icon -->
+      <path d="M26 18 L26 23 L31 19" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+      <path d="M19 23 L25 29 L33 17" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="56" y="32" fill="#34d399" font-family="system-ui, sans-serif" font-size="14" font-weight="800">RISULTATO: Codice pulito e controllo assoluto</text>
+    </g>
   </g>
+
+  <!-- Footer explanation -->
+  <text x="600" y="488" fill="#4a5568" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">L'AI accelera la stesura materiale delle soluzioni, ma la responsabilità della logica e dei test è sempre tua.</text>
 </svg>
