@@ -34,7 +34,14 @@
   --radius-lg: 18px;
   --radius-pill: 999px;
 
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* --ease-smooth/--dur-smooth exist for per-property compositions
+     (e.g. `transition: transform var(--dur-smooth) var(--ease-smooth)`):
+     --transition-smooth embeds the `all` keyword, so interpolating it after a
+     property name expands to `transform all 0.45s ...`, which is invalid CSS
+     and silently drops the whole declaration. */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-smooth: 0.45s;
+  --transition-smooth: all var(--dur-smooth) var(--ease-smooth);
   --transition-normal: all 0.25s ease;
   --transition-fast: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 
@@ -357,6 +364,17 @@ main > article,
 .tool-button,
 button {
   transition: var(--transition-fast);
+}
+
+/* Cards glide, buttons snap: declared after the fast group so the card family
+   always gets the gradual ride, even on pages that never import card.css
+   (whose identical .card rule covers only part of the site). */
+.card,
+.tool-card,
+.resource-card,
+.project-card,
+.learning-card {
+  transition: var(--transition-smooth);
 }
 
 /* `body` prefix bumps specificity above any same-element :hover rule (e.g.

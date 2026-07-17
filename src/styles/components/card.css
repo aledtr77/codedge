@@ -29,7 +29,7 @@
   opacity: 0.95;
   transform: scaleX(0.35);
   transform-origin: left;
-  transition: transform var(--transition-smooth);
+  transition: transform var(--dur-smooth) var(--ease-smooth);
 }
 
 .card::after {
@@ -58,12 +58,12 @@
   color: var(--text-color);
   margin: 0 0 1rem 0;
   text-align: center;
-  transition: color var(--transition-smooth);
+  transition: color var(--dur-smooth) var(--ease-smooth);
 }
 
 .card h4 i {
   color: var(--color-three);
-  transition: transform var(--transition-smooth), filter 0.4s ease, color 0.4s ease;
+  transition: transform var(--dur-smooth) var(--ease-smooth), filter var(--dur-smooth) ease, color var(--dur-smooth) ease;
   display: inline-block;
 }
 
@@ -94,7 +94,7 @@
 .card span.button-simple {
   margin-top: auto;
   align-self: center;
-  transition: all 0.3s ease;
+  transition: var(--transition-smooth);
 }
 
 .card:hover .button-simple {
