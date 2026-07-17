@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
   <title id="title">La Pipeline di Sviluppo in 8 Step</title>
-  <desc id="desc">Visualizzazione grafica degli 8 passaggi del workflow strutturato per sviluppare con l'AI, disposti a serpentina dal design logico alla review finale.</desc>
+  <desc id="desc">Visualizzazione logica degli 8 passaggi del workflow strutturato per lo sviluppo con AI, ordinata in due righe da sinistra a destra con flussi di connessione chiari.</desc>
   <defs>
     <!-- Background Gradient -->
     <linearGradient id="bg-gradient" x1="0" y1="0" x2="1" y2="1">
@@ -52,9 +52,6 @@
     <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 10 1.5 L 2 5 L 10 8.5 z" fill="#a855f7"/>
-    </marker>
     <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#10b981"/>
     </marker>
@@ -76,10 +73,10 @@
   <!-- Title Section -->
   <g font-family="system-ui, -apple-system, sans-serif" text-anchor="middle">
     <text x="600" y="52" fill="#ffffff" font-size="28" font-weight="800" letter-spacing="-0.5">La Pipeline di Sviluppo in 8 Step</text>
-    <text x="600" y="80" fill="#718096" font-size="15">Tratta l'AI come un team specializzato e procedi per blocchi logici isolati e controllati</text>
+    <text x="600" y="80" fill="#718096" font-size="15">Tratta l'AI come un team specializzato e procedi per blocchi logici isolati e ordinati da sinistra a destra</text>
   </g>
 
-  <!-- ================= ROW 1 (Left to Right) ================= -->
+  <!-- ================= ROW 1 (Left to Right, Steps 1-4) ================= -->
 
   <!-- STEP 1: PIANIFICAZIONE -->
   <g filter="url(#card-shadow)" transform="translate(60, 120)">
@@ -144,10 +141,10 @@
     </text>
   </g>
 
-  <!-- ================= ROW 2 (Right to Left) ================= -->
+  <!-- ================= ROW 2 (Left to Right, Steps 5-8) ================= -->
 
   <!-- STEP 5: LOGICA JAVASCRIPT -->
-  <g filter="url(#card-shadow)" transform="translate(900, 380)">
+  <g filter="url(#card-shadow)" transform="translate(60, 380)">
     <rect width="240" height="210" rx="16" fill="url(#step5-grad)" stroke="#eab308" stroke-opacity="0.3" stroke-width="1.5"/>
     <rect x="16" y="16" width="36" height="36" rx="8" fill="#eab308" fill-opacity="0.2"/>
     <!-- Icon (JS/Code) -->
@@ -163,7 +160,7 @@
   </g>
 
   <!-- STEP 6: REFACTORING -->
-  <g filter="url(#card-shadow)" transform="translate(620, 380)">
+  <g filter="url(#card-shadow)" transform="translate(340, 380)">
     <rect width="240" height="210" rx="16" fill="url(#step6-grad)" stroke="#f97316" stroke-opacity="0.3" stroke-width="1.5"/>
     <rect x="16" y="16" width="36" height="36" rx="8" fill="#f97316" fill-opacity="0.2"/>
     <!-- Icon (Broom/Clean) -->
@@ -179,7 +176,7 @@
   </g>
 
   <!-- STEP 7: OTTIMIZZAZIONE -->
-  <g filter="url(#card-shadow)" transform="translate(340, 380)">
+  <g filter="url(#card-shadow)" transform="translate(620, 380)">
     <rect width="240" height="210" rx="16" fill="url(#step7-grad)" stroke="#14b8a6" stroke-opacity="0.3" stroke-width="1.5"/>
     <rect x="16" y="16" width="36" height="36" rx="8" fill="#14b8a6" fill-opacity="0.2"/>
     <!-- Icon (Rocket/Performance) -->
@@ -195,7 +192,7 @@
   </g>
 
   <!-- STEP 8: REVISIONE FINALE -->
-  <g filter="url(#card-shadow)" transform="translate(60, 380)">
+  <g filter="url(#card-shadow)" transform="translate(900, 380)">
     <rect width="240" height="210" rx="16" fill="url(#step8-grad)" stroke="#ec4899" stroke-opacity="0.3" stroke-width="1.5"/>
     <rect x="16" y="16" width="36" height="36" rx="8" fill="#ec4899" fill-opacity="0.2"/>
     <!-- Icon (Glasses/Review) -->
@@ -211,7 +208,7 @@
     </text>
   </g>
 
-  <!-- ================= FLOW ARROWS (Serpentine path) ================= -->
+  <!-- ================= FLOW ARROWS (Natural Left-to-Right path) ================= -->
   <g fill="none" stroke-width="3" stroke-linecap="round">
     <!-- Row 1: Right Arrows -->
     <!-- 1 -> 2 -->
@@ -221,17 +218,17 @@
     <!-- 3 -> 4 -->
     <path d="M 865 225 L 892 225" stroke="#10b981" marker-end="url(#arrow-right)" opacity="0.6"/>
 
-    <!-- Connection Row 1 -> Row 2 (Down from Step 4 to Step 5) -->
+    <!-- Sweep connection from Row 1 End (Step 4 bottom) to Row 2 Start (Step 5 top) -->
     <!-- 4 -> 5 -->
-    <path d="M 1020 335 L 1020 372" stroke="#10b981" marker-end="url(#arrow-down)" opacity="0.6"/>
+    <path d="M 1020 330 C 1020 365, 180 345, 180 372" stroke="#10b981" stroke-dasharray="6,4" marker-end="url(#arrow-down)" opacity="0.7"/>
 
-    <!-- Row 2: Left Arrows -->
+    <!-- Row 2: Right Arrows -->
     <!-- 5 -> 6 -->
-    <path d="M 900 485 L 873 485" stroke="#f97316" marker-end="url(#arrow-left)" opacity="0.6"/>
+    <path d="M 305 485 L 332 485" stroke="#f97316" marker-end="url(#arrow-right)" opacity="0.6"/>
     <!-- 6 -> 7 -->
-    <path d="M 620 485 L 593 485" stroke="#14b8a6" marker-end="url(#arrow-left)" opacity="0.6"/>
+    <path d="M 585 485 L 612 485" stroke="#14b8a6" marker-end="url(#arrow-right)" opacity="0.6"/>
     <!-- 7 -> 8 -->
-    <path d="M 340 485 L 313 485" stroke="#ec4899" marker-end="url(#arrow-left)" opacity="0.6"/>
+    <path d="M 865 485 L 892 485" stroke="#ec4899" marker-end="url(#arrow-right)" opacity="0.6"/>
   </g>
 
   <!-- Footer Info -->
