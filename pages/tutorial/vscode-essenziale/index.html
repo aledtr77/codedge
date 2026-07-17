@@ -180,18 +180,35 @@
             <h2>2. Installazione e setup pulito</h2>
             <section class="guide-subchapter">
               <h3>Aprire i progetti: menu grafico o terminale?</h3>
-              <p>Per aprire un progetto in VS Code, puoi usare la classica interfaccia grafica: fai clic su <strong>File -> Apri cartella</strong> (o <em>Open Folder</em>) e selezioni la directory dal tuo computer. Questo metodo funziona benissimo ed è intuitivo.</p>
+              <p>Per aprire un progetto in VS Code, hai due strade. Scegli quella che si adatta meglio al tuo modo di lavorare:</p>
               
-              <p>Tuttavia, man mano che lavorerai con Git, NPM e altri strumenti di sviluppo, ti ritroverai a usare molto spesso il terminale (la linea di comando). Se sei già posizionato all'interno della cartella del tuo progetto nel terminale, aprirla in VS Code con un solo comando è immensamente più rapido che navigare tra i menu con il mouse.</p>
-              
-              <p>Per questo motivo esiste il comando <code>code .</code>. Vediamo esattamente cosa significa:</p>
-              <ul class="guide-list">
-                <li><strong><code>code</code>:</strong> è il nome abbreviato dell'applicazione Visual Studio Code registrato nel tuo sistema.</li>
-                <li><strong><code>.</code> (il punto):</strong> nei sistemi operativi (come Unix, macOS, Linux e Windows) rappresenta la <em>cartella corrente</em>, ovvero la directory in cui ti trovi in quel preciso istante nel terminale.</li>
-              </ul>
-              <p>Quindi, digitare <code>code .</code> dice al computer: <em>"Apri Visual Studio Code caricando immediatamente la cartella in cui mi trovo adesso"</em>.</p>
+              <ol class="guide-number-list">
+                <li><strong>La via grafica (Classica):</strong> Apri VS Code cliccando sulla sua icona di sistema, fai clic su <strong>File -> Apri cartella</strong> (o <em>Open Folder</em>) e selezioni la cartella del tuo progetto cercandola nelle cartelle del tuo computer. Questo metodo funziona benissimo, è intuitivo e non richiede l'uso del terminale.</li>
+                <li><strong>La via da terminale (Ottimizzata):</strong> Digiti un semplice comando nel terminale del tuo computer per lanciare l'editor direttamente nella cartella in cui stai lavorando.</li>
+              </ol>
 
-              <p><strong>Come abilitare questo comando sul tuo computer:</strong></p>
+              <h4>Che cosa significa esattamente il comando <code>code .</code>?</h4>
+              <p>Se decidi di usare la via da terminale, il comando da scrivere è composto da due parti separate da uno spazio:</p>
+              <ul class="guide-list">
+                <li><strong><code>code</code>:</strong> è il comando che richiama l'eseguibile di Visual Studio Code.</li>
+                <li><strong><code>.</code> (il punto):</strong> nei sistemi operativi (come macOS, Windows e Linux) rappresenta la <em>cartella corrente</em>, ovvero la cartella in cui ti trovi in quel momento all'interno del terminale.</li>
+              </ul>
+              <p>In sintesi, digitare <code>code .</code> dice al computer: <em>"Apri VS Code impostando come spazio di lavoro attivo la cartella esatta in cui mi trovo adesso nel terminale"</em>.</p>
+
+              <h4>Quando e perché questo comando diventa incredibilmente utile? (Esempi Pratici)</h4>
+              <p>Se non hai mai usato il terminale, questo comando può sembrarti un'inutile complicazione. Diventa però fondamentale in queste due circostanze tipiche del flusso di lavoro di uno sviluppatore:</p>
+              <ul class="guide-list">
+                <li><strong>Scenario 1: Quando scarichi un progetto da internet (Git clone)</strong><br>
+                  Immagina di voler lavorare su un progetto open source esistente. Apri il terminale del tuo computer e digiti <code>git clone https://github.com/esempio/progetto.git</code> per scaricarlo. Successivamente, digiti <code>cd progetto</code> per entrare all'interno della cartella appena scaricata.<br>
+                  A questo punto sei già lì con il terminale. Invece di staccare le mani dalla tastiera, prendere il mouse, cercare l'icona di VS Code, aprirlo, fare clic su File, selezionare Apri, navigare tra le cartelle per ritrovare il progetto scaricato e cliccare su OK... digiti semplicemente <code>code .</code> e l'editor si apre istantaneamente sulla cartella corretta. Risparmi tempo ed eviti distrazioni.
+                </li>
+                <li><strong>Scenario 2: Quando lavori su progetti con cartelle annidate (Monorepo o Sottocartelle)</strong><br>
+                  Molti progetti moderni hanno una struttura a sottocartelle (es. una cartella principale che contiene una cartella <code>/frontend</code> e una <code>/backend</code>). Se usi l'interfaccia grafica per aprirli, potresti confonderti e aprire la cartella principale gigante rallentando l'editor. Se invece usi il terminale per entrare esattamente dentro <code>/frontend</code> (con il comando <code>cd frontend</code>) e digiti <code>code .</code>, aprirai solo la porzione di codice su cui devi lavorare, con la certezza di non sbagliare directory.
+                </li>
+              </ul>
+              <p><strong>Nota bene:</strong> Se per ora preferisci non usare il terminale, puoi saltare tranquillamente l'abilitazione di questo comando. Potrai sempre configurarlo in un secondo momento se e quando ne sentirai la reale utilità nel tuo flusso di lavoro quotidiano.</p>
+
+              <h4>Come abilitare il comando sul tuo sistema (Opzionale):</h4>
               <ul class="guide-list">
                 <li><strong>macOS:</strong> Apri VS Code normalmente. Premi <code>Cmd + Shift + P</code> per aprire la Command Palette, digita <code>Shell Command</code> e seleziona la voce <code>Shell Command: Install 'code' command in PATH</code>. Ora chiudi e riapri il terminale di sistema per applicare la modifica.</li>
                 <li><strong>Windows / Linux:</strong> Il comando viene configurato automaticamente durante l'installazione di VS Code. Assicurati solo, durante i passaggi dell'installatore, di non aver deselezionato la casella "Aggiungi al PATH" (Add to PATH).</li>
