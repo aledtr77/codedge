@@ -61,40 +61,10 @@
 <body>
     <header>
         <!-- Navigazione principale: struttura della barra superiore -->
-        <nav class="navbar">
-            <div class="navbar-container">
-                <!-- Logo con alt significativo per accessibilità --><a href="/" class="logo-link"><img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35" /></a><!-- Titolo della sezione con icona CSS (aria-hidden=true perché decorativa) -->
-                <span class="navbar-title resize-text"><i class="fab fa-css3" aria-hidden="true"></i> Glossario CSS</span>
-
-
-                <!-- Hamburger menu: visivo, attivato via JS/CSS per menu mobile -->
-                <div class="menu-icon">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <!-- Menu vuoto: viene popolato dinamicamente dallo script del sito -->
-<ul id="nav-menu" class="nav-menu">
-          <li class="nav-item">
-            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
-          </li>
-          <li class="nav-item">
-            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
-          </li>
-          <li class="nav-item">
-            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
-          </li>
-          <li class="nav-item">
-            <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
-          </li>
-          <li class="nav-item">
-            <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
-          </li>
-        </ul>
-      </div>
+        <nav class="navbar" aria-label="Navigazione principale">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (staticNavbarHtmlPlugin, vite.config.js). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fab fa-css3" aria-hidden="true"></i> Glossario CSS</span>
     </nav>
 
         <!-- Placeholder per breadcrumb: il loader inserisce qui la traccia di navigazione -->

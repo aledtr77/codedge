@@ -40,40 +40,10 @@
 <body>
     <header>
         <!-- Barra di navigazione principale -->
-        <nav class="navbar">
-            <div class="navbar-container">
-                <!-- Logo: alt descrive l'immagine per chi usa screen reader --><a href="/" class="logo-link"><img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35" /></a><!-- Titolo della sezione: include icona JS (decorativa) -->
-                <span class="navbar-title resize-text"><i class="fab fa-js-square" aria-hidden="true"></i> Glossario JS</span>
-
-                <!-- Icona hamburger per attivare il menu su dispositivi piccoli -->
-                <div class="menu-icon">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-
-                <!-- Punto in cui il menu viene popolato via JavaScript -->
-<ul id="nav-menu" class="nav-menu">
-          <li class="nav-item">
-            <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
-          </li>
-          <li class="nav-item">
-            <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
-          </li>
-          <li class="nav-item">
-            <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
-          </li>
-          <li class="nav-item">
-            <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
-          </li>
-          <li class="nav-item">
-            <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
-          </li>
-        </ul>
-      </div>
+        <nav class="navbar" aria-label="Navigazione principale">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (staticNavbarHtmlPlugin, vite.config.js). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fab fa-js-square" aria-hidden="true"></i> Glossario JS</span>
     </nav>
 
         <!-- Contenitore vuoto dove il breadcrumb runtime verrà inserito -->
