@@ -55,7 +55,8 @@ function handleResize() {
     ? headings.forEach((e) => (e.style.display = "none"))
     : headings.forEach((e) => (e.style.display = ""));
 }
-(window.addEventListener("resize", handleResize), handleResize());
+window.addEventListener("resize", handleResize);
+handleResize();
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", markPageReady, { once: true });
 } else {

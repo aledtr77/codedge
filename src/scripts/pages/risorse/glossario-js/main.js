@@ -8,5 +8,3 @@ import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
 import '@/scripts/components/glossario.js';
-
-document.addEventListener("DOMContentLoaded", () => {});

@@ -14,7 +14,14 @@ export default function initGuideToc() {
 
   if (!tocLinks.length || !sections.length) return;
 
-  const headerOffset = 120;
+  // Measured live instead of hardcoded: the fixed header's height varies with
+  // viewport (title wrap on mobile), and a stale offset skews both the
+  // scrollspy activation line and the scroll-to-anchor landing position.
+  const header = document.querySelector("header");
+  const getHeaderOffset = () => {
+    const height = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    return height + 24;
+  };
   let scrollTicking = false;
 
   const setActiveState = (id) => {
@@ -62,7 +69,7 @@ export default function initGuideToc() {
       return sections[sections.length - 1];
     }
 
-    const activationLine = headerOffset + Math.min(window.innerHeight * 0.18, 140);
+    const activationLine = getHeaderOffset() + Math.min(window.innerHeight * 0.18, 140);
     let current = sections[0];
 
     sections.forEach((section) => {
@@ -97,7 +104,7 @@ export default function initGuideToc() {
       event.preventDefault();
 
       const top =
-        target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
 
       history.replaceState(null, "", href);
       window.scrollTo({ top, behavior: scrollBehavior() });
@@ -113,7 +120,7 @@ export default function initGuideToc() {
     if (target) {
       setTimeout(() => {
         const top =
-          target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+          target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
         window.scrollTo({ top, behavior: scrollBehavior() });
         setActiveState(target.id);
       }, 30);
