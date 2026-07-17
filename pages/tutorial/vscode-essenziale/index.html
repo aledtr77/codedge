@@ -724,17 +724,29 @@
           <section id="chapter-challenge" class="guide-block guide-chapter">
             <h2>11. Sfida pratica</h2>
             <section class="guide-subchapter">
-              <p>Metti alla prova la tua destrezza configurando un workspace professionale ed usando la tastiera come uno sviluppatore esperto:</p>
+              <p>Metti alla prova quello che hai imparato allestendo da zero un ambiente di lavoro organizzato e professionale:</p>
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
                 <strong>Obiettivo della sfida:</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un file di configurazione locale, abilita la formattazione automatica al salvataggio ed esegui modifiche parallele rapide senza mouse.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea i file di configurazione locale del tuo workspace (.vscode) per attivare l'auto-formattazione e condividere le estensioni consigliate, facendo pratica con la navigazione rapida da tastiera.</p>
                 <strong>Istruzioni passo-passo:</strong>
-                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
-                  <li>Apri il tuo progetto in VS Code. Crea una cartella chiamata <code>.vscode</code> nella root del progetto (se non esiste già) e crea all'interno un file chiamato <code>settings.json</code>.</li>
-                  <li>Incolla all'interno del file la regola per attivare il salvataggio automatico con formattazione: <code>"editor.formatOnSave": true</code> e abilita lo Sticky Scroll con <code>"editor.stickyScroll.enabled": true</code>. Salva il file.</li>
-                  <li>Crea un nuovo file HTML di prova, scrivi 5 righe contenenti <code>&lt;li class="item"&gt;Elemento&lt;/li&gt;</code>.</li>
-                  <li>Posiziona il cursore sulla parola <code>item</code> e premi <code>Ctrl + D</code> (o <code>Cmd + D</code> su Mac) cinque volte fino ad avere tutti gli <code>item</code> evidenziati con cursori multipli attivi. Cambia contemporaneamente la classe in <code>list-item</code> usando la tastiera.</li>
-                  <li>Usa la Command Palette (<code>Ctrl + Shift + P</code> o <code>F1</code>), digita <code>Toggle Minimap</code> ed esegui l'azione per nascondere la mappa del codice laterale, aumentando l'area visiva utile sul tuo schermo.</li>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; list-style-type: decimal;">
+                  <li style="margin-bottom: 0.5rem;"><strong>Apri una cartella di progetto:</strong> Crea una nuova cartella vuota sul computer. In VS Code, seleziona <em>File -> Open Folder</em> (Apri cartella) e seleziona quella cartella. Ora hai un Workspace attivo.</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Crea le impostazioni locali:</strong> Crea una cartella chiamata <code>.vscode</code> nella radice del tuo workspace. All'interno di essa, crea un file chiamato <code>settings.json</code> e incollaci questa configurazione di base per allineare l'editor:
+                    <pre><code class="language-json">{
+  "editor.formatOnSave": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.tabSize": 2
+}</code></pre>
+                  </li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Crea le estensioni consigliate:</strong> Nella stessa cartella <code>.vscode</code>, crea un file chiamato <code>extensions.json</code> e indica l'estensione di formattazione ufficiale (Prettier) in modo che chiunque collabori con te riceva il suggerimento per installarla:
+                    <pre><code class="language-json">{
+  "recommendations": [
+    "esbenp.prettier-vscode"
+  ]
+}</code></pre>
+                  </li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Testa l'auto-formattazione:</strong> Crea un file chiamato <code>index.html</code> nella radice del progetto. Scrivi del codice disallineato (es. tag indentati male o righe sparpagliate). Salva il file (<code>Ctrl + S</code> o <code>Cmd + S</code>) e osserva come l'editor riallinea e ordina il codice in automatico grazie al <code>formatOnSave</code>.</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Naviga senza mouse:</strong> Chiudi tutte le schede aperte premendo <code>Ctrl + K W</code> (o <code>Cmd + K W</code>). Ora premi <code>Ctrl + P</code> (o <code>Cmd + P</code>), scrivi <code>set</code>, seleziona <code>settings.json</code> usando le frecce della tastiera e premi Invio. Hai riaperto il file in un secondo senza toccare il mouse!</li>
                 </ol>
               </div>
             </section>
