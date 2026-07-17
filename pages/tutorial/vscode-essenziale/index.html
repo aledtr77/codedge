@@ -366,12 +366,23 @@
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>4. Il workspace: progetto, non file</h2>
             <section class="guide-subchapter">
-              <h3>Lavorare a cartelle (non a file sfusi)</h3>
-              <p>Aprire un file isolato in VS Code è un'operazione d'emergenza; il flusso normale è aprire l'intera cartella di progetto. La ragione è concreta: quasi tutta l'intelligenza dell'editor si attiva solo quando conosce il contesto. Con la cartella aperta, VS Code indicizza i file per la ricerca istantanea, capisce quali linguaggi e configurazioni usare, legge lo stato Git e accende i linter. Con un file sfuso hai un blocco note colorato.</p>
+              <h3>Lavorare con le cartelle (e non con file singoli)</h3>
+              <p>Quando usi VS Code, non dovresti mai aprire un singolo file isolato (come faresti con il Blocco Note). La regola d'oro è <strong>aprire sempre l'intera cartella del tuo progetto</strong>.</p>
+              
+              <p>Perché questo fa una differenza enorme?</p>
+              <ul class="guide-list">
+                <li>Se apri solo un file singolo, VS Code non ha idea di dove si trovi nel tuo computer. Non può aiutarti a trovare le altre pagine del sito, non sa quali regole di formattazione usare e non rileva gli errori negli altri file. Diventa solo un visualizzatore di testo colorato.</li>
+                <li>Se apri la cartella del progetto, VS Code si attiva al massimo delle sue potenzialità: indicizza tutti i file consentendoti di cercare una parola in tutto il progetto in un millesimo di secondo, attiva i controlli automatici degli errori e si collega a Git per mostrarti quali file hai modificato.</li>
+              </ul>
             </section>
+            
             <section class="guide-subchapter">
-              <h3>Condividere le estensioni con il team: `extensions.json`</h3>
-              <p>In team serve spesso che tutti abbiano le stesse estensioni (il linter, il formatter, magari l'helper del framework). Invece di scriverlo nel README sperando che qualcuno lo legga, dichiarale nel file <code>.vscode/extensions.json</code>: all'apertura del progetto VS Code rileva quelle mancanti e ne propone l'installazione con una notifica discreta.</p>
+              <h3>Consigliare le estensioni giuste: il file `extensions.json`</h3>
+              <p>Quando lavori in gruppo con altre persone (o quando riapri un tuo vecchio progetto dopo mesi), è importante che tutti usino le stesse estensioni di VS Code (ad esempio Prettier per tenere ordinato il codice).</p>
+              
+              <p>Invece di scrivere una lista di estensioni su un foglio di testo sperando che gli altri le installino manualemente, puoi creare un file speciale dentro la cartella <code>.vscode</code> chiamato <code>extensions.json</code>.</p>
+              
+              <p>Al suo interno inserisci questo semplice testo:</p>
               <pre><code class="language-json">{
   "recommendations": [
     "esbenp.prettier-vscode",
@@ -379,26 +390,32 @@
     "usernamehw.errorlens"
   ]
 }</code></pre>
+              <p>Da quel momento, quando un altro programmatore aprirà la cartella del progetto, VS Code leggerà questo file e gli mostrerà un piccolo avviso in basso a destra: <em>"Questo progetto raccomanda alcune estensioni. Vuoi installarle?"</em>. Con un solo clic, installerà tutto ciò che serve, senza perdite di tempo.</p>
             </section>
+            
             <section class="guide-subchapter">
-              <h3>Multi-Root Workspace: quando le cartelle sono più di una</h3>
-              <p>Nei progetti composti da più parti (il classico monorepo con <code>/frontend</code> e <code>/backend</code>) aprire la cartella-madre gigante porta rumore: metà dei file non ti riguarda mai. Il file <code>.code-workspace</code> risolve il problema: è un piccolo JSON che elenca solo le directory che vuoi nello spazio di lavoro, ognuna con il suo nome leggibile:</p>
+              <h3>Workspace: lavorare su più cartelle contemporaneamente</h3>
+              <p>A volte un progetto è diviso in più cartelle separate. Ad esempio, potresti avere una cartella chiamata <code>/sito-web</code> per la parte pubblica e una chiamata <code>/database</code> per la parte dei dati di backend.</p>
+              
+              <p>Aprire la cartella principale gigante che le contiene entrambe rischia di appesantire lo schermo con file inutili. Per risolvere questo problema, VS Code ti permette di salvare uno <strong>Spazio di lavoro (Workspace)</strong> personalizzato, che raggruppa solo le cartelle su cui vuoi lavorare davvero, mostrandole affiancate nella barra laterale.</p>
+              
+              <p>Questo viene fatto tramite un piccolo file di testo con estensione <code>.code-workspace</code> che ha questa struttura:</p>
               <pre><code class="language-json">{
   "folders": [
     {
       "name": "Sito Web Frontend",
-      "path": "./frontend"
+      "path": "./sito-web"
     },
     {
-      "name": "API Servizi Backend",
-      "path": "./backend"
+      "name": "Database Backend",
+      "path": "./database"
     }
   ],
   "settings": {
-    "editor.tabSize": 4 // Impostazione specifica per questo intero workspace
+    "editor.tabSize": 2
   }
 }</code></pre>
-              <p>Per usarlo basta un doppio clic sul file <code>.code-workspace</code>, oppure <em>File → Open Workspace from File…</em>. Se lavori da solo su progetti a cartella singola non ti servirà spesso — ma quando arriverà il primo monorepo saprai che esiste.</p>
+              <p>Per avviare il tuo spazio di lavoro, ti basterà fare doppio clic sul file <code>.code-workspace</code>. Se per ora lavori da solo su progetti semplici a cartella singola non ne avrai bisogno, ma è importante sapere che esiste questa possibilità per quando i tuoi progetti diventeranno più complessi.</p>
             </section>
           </section>
 
