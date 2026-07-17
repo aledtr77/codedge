@@ -24,6 +24,18 @@ export default function initGuideToc() {
   };
   let scrollTicking = false;
 
+  // The TOC must feel autonomous from the content scroll: the highlight
+  // follows the reading position, but the TOC itself repositions only when
+  // the active link actually leaves its visible area - instantly and by the
+  // minimal amount (block: nearest), never with animated drift. And never
+  // while the pointer is over the TOC: at that moment the user owns it.
+  const tocContainer = document.querySelector(".guide-toc");
+  let pointerInsideToc = false;
+  if (tocContainer) {
+    tocContainer.addEventListener("pointerenter", () => { pointerInsideToc = true; });
+    tocContainer.addEventListener("pointerleave", () => { pointerInsideToc = false; });
+  }
+
   const setActiveState = (id) => {
     let activeLink = null;
     tocLinks.forEach((link) => {
@@ -41,19 +53,14 @@ export default function initGuideToc() {
       section.classList.toggle("is-active", section.id === id);
     });
 
-    if (activeLink) {
-      const container = document.querySelector('.guide-toc');
-      if (container) {
-        const containerTop = container.scrollTop;
-        const containerBottom = containerTop + container.clientHeight;
-        const elemTop = activeLink.offsetTop;
-        const elemBottom = elemTop + activeLink.clientHeight;
+    if (activeLink && tocContainer && !pointerInsideToc) {
+      const containerTop = tocContainer.scrollTop;
+      const containerBottom = containerTop + tocContainer.clientHeight;
+      const elemTop = activeLink.offsetTop;
+      const elemBottom = elemTop + activeLink.clientHeight;
 
-        if (elemTop < containerTop) {
-          container.scrollTo({ top: elemTop - 20, behavior: scrollBehavior() });
-        } else if (elemBottom > containerBottom) {
-          container.scrollTo({ top: elemBottom - container.clientHeight + 20, behavior: scrollBehavior() });
-        }
+      if (elemTop < containerTop || elemBottom > containerBottom) {
+        activeLink.scrollIntoView({ block: "nearest" });
       }
     }
   };
@@ -115,7 +122,6 @@ export default function initGuideToc() {
   // wheel at the TOC's scroll boundary (or on a TOC with no overflow) chains
   // into the page scroll, which moves the scrollspy, which re-scrolls the TOC
   // against the user. Same pattern as lockAsideScroll in glossario.js.
-  const tocContainer = document.querySelector(".guide-toc");
   if (tocContainer) {
     tocContainer.addEventListener(
       "wheel",
