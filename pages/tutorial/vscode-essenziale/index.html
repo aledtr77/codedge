@@ -299,7 +299,36 @@
     "**/dist": true
   }
 }</code></pre>
-              <p>Due righe meritano una spiegazione. <code>editor.detectIndentation: false</code> impedisce a VS Code di «indovinare» l'indentazione dal file aperto: senza, basta un file incollato da fuori per ritrovarsi con tab e spazi mescolati. E <code>editor.stickyScroll.enabled</code> tiene fisse in alto le intestazioni delle funzioni o dei blocchi HTML dentro cui ti trovi mentre scorri: in un file lungo, sapere sempre «dove sei» senza scrollare su e giù vale da solo il prezzo del capitolo.</p>
+              
+              <h4>Cosa fanno esattamente queste impostazioni? (Spiegazione dettagliata)</h4>
+              <p>Copiare questo file all'interno del progetto è comodo, ma capire il significato di ciascuna chiave ti eviterà molti mal di testa. Ecco come funzionano le regole principali che abbiamo inserito:</p>
+              
+              <ul class="guide-list">
+                <li><strong><code>"editor.tabSize": 2</code> e <code>"editor.insertSpaces": true</code>:</strong><br>
+                  Impostano la larghezza del rientro (indentazione) a 2 spazi ed evitano di usare il tasto Tabulatore puro (Tab). In questo modo, premendo Tab verranno inseriti due caratteri di spazio reale. Questo garantisce che la formattazione rimanga ordinata e identica su qualunque computer venga visualizzato il codice.
+                </li>
+                <li><strong><code>"editor.detectIndentation": false</code>:</strong><br>
+                  Per impostazione predefinita, VS Code cerca di "indovinare" l'indentazione leggendo l'ultimo file che hai aperto. Questo comportamento automatico è rischioso: se incolli del codice copiato da internet che usa formati diversi, VS Code potrebbe cambiare improvvisamente le regole di tutto il progetto. Impostando questo valore su <code>false</code>, costringi l'editor a rispettare sempre la regola dei 2 spazi che hai deciso tu.
+                </li>
+                <li><strong><code>"editor.formatOnSave": true</code>:</strong><br>
+                  Attiva la formattazione automatica. Ogni volta che salverai un file (es. premendo <code>Ctrl + S</code> o <code>Cmd + S</code>), l'editor riordinerà il codice da solo, correggendo gli spazi superflui e le righe storte.
+                </li>
+                <li><strong><code>"editor.defaultFormatter": "esbenp.prettier-vscode"</code>:</strong><br>
+                  Stabilisce che lo strumento incaricato di formattare il codice deve essere Prettier (una delle estensioni più diffuse ed efficaci, di cui parleremo nei prossimi capitoli).
+                </li>
+                <li><strong><code>"editor.codeActionsOnSave"</code>:</strong><br>
+                  Dice a VS Code di eseguire delle azioni correttive automatiche al salvataggio. In questo caso, rileva le regole del linter (ESLint) ed esegue da solo le correzioni di sintassi minori senza farti perdere tempo.
+                </li>
+                <li><strong><code>"editor.stickyScroll.enabled": true</code>:</strong><br>
+                  È una delle funzioni visive più utili: tiene fisse in alto le righe che definiscono la classe o il tag HTML dentro cui ti trovi mentre scorri la pagina verso il basso. Quando lavori in un file molto lungo, ti permette di capire all'istante in quale sezione ti trovi senza dover scorrere continuamente verso l'alto per leggerlo.
+                </li>
+                <li><strong><code>"editor.minimap.enabled": false</code>:</strong><br>
+                  Disabilita la mappa in miniatura del codice sul lato destro dello schermo. Nello sviluppo web moderno questa mappa è spesso superflua e toglie solo spazio prezioso alla visualizzazione del testo.
+                </li>
+                <li><strong><code>"files.exclude"</code>:</strong><br>
+                  Nasconde dalla barra laterale di VS Code (Explorer) le cartelle di servizio che non devi mai modificare manualmente (come <code>node_modules</code>, le cartelle compilate come <code>dist</code>, o file nascosti del sistema come <code>.git</code> e <code>.DS_Store</code>). Questo ti consente di concentrarti solo sui tuoi file sorgenti, mantenendo pulito lo schermo.
+                </li>
+              </ul>
             </section>
           </section>
 
