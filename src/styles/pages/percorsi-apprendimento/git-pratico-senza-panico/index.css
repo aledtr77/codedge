@@ -14,6 +14,14 @@
   z-index: 1;
 }
 
+/* No entrance animation on the shell: fadeInUp's fill-mode leaves a permanent
+   transform on the section, which would silently become the containing block
+   of the fixed TOC (making it scroll with the page). The chapters inside
+   animate individually, so nothing is lost visually. */
+.git-guide-shell {
+  animation: none;
+}
+
 .guide-layout {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
@@ -22,12 +30,22 @@
   min-width: 0;
 }
 
+/* Occupies the grid track the fixed TOC no longer fills, so the content
+   column keeps its position. Width matches the track's upper bound. */
+.guide-toc-placeholder {
+  width: 360px;
+}
+
+/* Fixed, not sticky: the TOC is pinned below the navbar from the first pixel
+   and never travels with the page scroll - it shares only the scrollspy
+   highlight with the content. Visible only above 1200px (hidden below), so
+   these rules are desktop-only by construction. guide-toc.js keeps left and
+   width synced to the grid track via a placeholder. */
 .guide-toc {
-  position: sticky;
-  top: 5.6rem;
-  /* 20px of guaranteed air between the TOC's bottom edge and the viewport */
-  max-height: calc(100vh - 5.6rem - 20px);
-  margin-bottom: 20px;
+  position: fixed;
+  top: calc(var(--header-height, 96px) + 32px);
+  /* 32px of air below the navbar, 20px above the viewport bottom */
+  max-height: calc(100vh - var(--header-height, 96px) - 52px);
   overflow: auto;
   /* Wheel over the TOC must never chain into the page scroll: chaining also
      triggers the scrollspy, which re-scrolls the TOC against the user. The

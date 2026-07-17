@@ -36,6 +36,37 @@ export default function initGuideToc() {
     tocContainer.addEventListener("pointerleave", () => { pointerInsideToc = false; });
   }
 
+  // The TOC is position:fixed on desktop (see the guide stylesheet), so it
+  // leaves the grid flow; this placeholder keeps its track occupied and is the
+  // source of truth for the fixed element's left/width. Below 1200px the TOC
+  // is display:none, so the placeholder is dropped there.
+  const desktopToc = window.matchMedia("(min-width: 1201px)");
+  let tocPlaceholder = null;
+  const syncFixedToc = () => {
+    if (!tocContainer) return;
+    if (desktopToc.matches) {
+      if (!tocPlaceholder) {
+        tocPlaceholder = document.createElement("div");
+        tocPlaceholder.className = "guide-toc-placeholder";
+        tocPlaceholder.setAttribute("aria-hidden", "true");
+        tocContainer.parentNode.insertBefore(tocPlaceholder, tocContainer);
+      }
+      const rect = tocPlaceholder.getBoundingClientRect();
+      tocContainer.style.left = `${Math.round(rect.left)}px`;
+      tocContainer.style.width = `${Math.round(rect.width)}px`;
+    } else if (tocPlaceholder) {
+      tocPlaceholder.remove();
+      tocPlaceholder = null;
+      tocContainer.style.left = "";
+      tocContainer.style.width = "";
+    }
+  };
+  if (tocContainer) {
+    syncFixedToc();
+    window.addEventListener("resize", syncFixedToc, { passive: true });
+    window.addEventListener("load", syncFixedToc, { once: true });
+  }
+
   const setActiveState = (id) => {
     let activeLink = null;
     tocLinks.forEach((link) => {
