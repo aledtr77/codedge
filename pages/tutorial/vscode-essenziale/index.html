@@ -242,7 +242,7 @@
               <h3>User Settings e Workspace Settings: chi decide cosa?</h3>
               <p>Quando usi VS Code, puoi personalizzare qualunque dettaglio dell'interfaccia o del funzionamento: dalla dimensione del testo al colore di sfondo, fino a regole rigide su come il codice deve essere formattato. Questa personalizzazione avviene tramite le <strong>Impostazioni (Settings)</strong>.</p>
               
-              <p>Per evitare di fare confusione, VS Code divide le impostazioni in due livelli ben distinti. Capire come funzionano è fondamentale per evitare conflitti e lavorare in modo ordinato:</p>
+              <p>Per evitare di fare confusione, VS Code ti permette di applicare le preferenze su due livelli logici differenti:</p>
               
               <ul class="guide-list">
                 <li><strong>1. User Settings (Impostazioni Utente - Globali):</strong><br>
@@ -250,8 +250,8 @@
                   <br><em>Esempi tipici:</em> la scelta del tema scuro o chiaro, la dimensione del carattere del testo (es. <code>16px</code>), la famiglia di font, o la scelta di abilitare la mappa del codice laterale (Minimap).
                 </li>
                 <li><strong>2. Workspace Settings (Impostazioni dello Spazio di Lavoro - Locali):</strong><br>
-                  Si applicano <strong>esclusivamente</strong> alla cartella del progetto che hai aperto in quel momento. VS Code salva queste preferenze all'interno di una cartella speciale (chiamata <code>.vscode</code>) creata all'interno del tuo progetto, in un file di testo chiamato <code>settings.json</code>.
-                  <br><em>Esempi tipici:</em> l'uso di 2 spazi invece di 4 per i rientri del codice (indentazione), il tipo di linter/formatter da usare obbligatoriamente su quel progetto, o l'attivazione della formattazione automatica ad ogni salvataggio del file.
+                  Si applicano <strong>esclusivamente</strong> alla cartella del progetto corrente. Queste impostazioni vengono lette da un file chiamato <code>settings.json</code> situato all'interno di una cartella speciale chiamata <code>.vscode</code> nella radice del tuo progetto. Questo file non viene creato all'avvio: esiste solo se decidi tu (o il tuo team) di inserire regole specifiche per quel progetto.
+                  <br><em>Esempi tipici:</em> l'uso obbligatorio di 2 spazi per i rientri (indentazione), l'attivazione della formattazione automatica al salvataggio o configurazioni specifiche per i linter.
                 </li>
               </ul>
 
@@ -270,15 +270,21 @@
             </section>
             <section class="guide-subchapter">
               <h3>Dove si trova questo file e come crearlo (se non c'è)</h3>
-              <p>Molti sviluppatori alle prime armi cercano questo file nel proprio progetto senza trovarlo. <strong>È del tutto normale: all'inizio la cartella <code>.vscode</code> non esiste</strong>, spetta a te crearla.</p>
+              <p>Dato che il file delle impostazioni del progetto (Workspace Settings) non viene generato in automatico all'inizio, è normale che tu non trova alcuna cartella chiamata <code>.vscode</code> quando crei o cloni un nuovo progetto. Hai due modi per crearla:</p>
               
-              <p>Ecco i passaggi esatti per configurare il file nel tuo progetto corrente:</p>
-              <ol class="guide-number-list">
-                <li>Apri la cartella del tuo progetto in VS Code.</li>
-                <li>Fai clic destro in un punto vuoto all'interno della barra laterale sinistra (l'Explorer di VS Code) e seleziona <strong>Nuova cartella</strong> (<em>New Folder</em>). Chiamala esattamente <code>.vscode</code> (ricorda di includere il punto all'inizio).</li>
-                <li>Fai clic destro sulla nuova cartella <code>.vscode</code> appena creata, seleziona <strong>Nuovo file</strong> (<em>New File</em>) e nominalo <code>settings.json</code>.</li>
-                <li>Copia il codice che trovi qui sotto e incollalo all'interno di questo file, quindi salva.</li>
-              </ol>
+              <ul class="guide-list">
+                <li><strong>Metodo 1: Tramite l'interfaccia grafica (Automatico)</strong><br>
+                  Se apri le impostazioni grafiche di VS Code (premendo <code>Ctrl + ,</code> o <code>Cmd + ,</code> su Mac), noterai in alto due schede: <em>User</em> e <em>Workspace</em>. Clicca sulla scheda <strong>Workspace</strong> e modifica una qualsiasi impostazione (ad esempio la dimensione del font). In quell'istante, VS Code creerà automaticamente all'interno del tuo progetto la cartella <code>.vscode</code> e il file <code>settings.json</code> contenente la tua modifica.
+                </li>
+                <li><strong>Metodo 2: Creazione manuale (Consigliato per i programmatori)</strong><br>
+                  Puoi creare la cartella e il file direttamente dal tuo editor in pochi secondi:
+                  <ol class="guide-number-list" style="margin-top: 0.5rem;">
+                    <li>Fai clic destro in un punto vuoto all'interno dell'Explorer laterale di VS Code (la barra dei file del progetto) e seleziona <strong>Nuova cartella</strong> (<em>New Folder</em>). Chiamala esattamente <code>.vscode</code> (con il punto iniziale).</li>
+                    <li>Fai clic destro sulla cartella <code>.vscode</code> appena creata, seleziona <strong>Nuovo file</strong> (<em>New File</em>) e nominalo <code>settings.json</code>.</li>
+                    <li>Copia il blocco di codice che trovi nel paragrafo successivo e incollalo all'interno del file.</li>
+                  </ol>
+                </li>
+              </ul>
 
               <div class="alert alert--info" style="padding: 1rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.03); border: 1px solid rgba(0, 168, 255, 0.15); border-radius: 8px; font-size: 0.95rem;">
                 <strong>Nota sulle cartelle nascoste:</strong> Nei sistemi operativi come macOS e Linux, le cartelle che iniziano con un punto (come <code>.vscode</code>) vengono considerate cartelle nascoste di sistema. Non preoccuparti se non le vedi nel normale gestore dei file del tuo computer: VS Code le mostrerà sempre all'interno del suo Explorer.
