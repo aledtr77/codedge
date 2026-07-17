@@ -565,54 +565,9 @@
             </section>
           </section>
 
-          <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>8. Il debugger: osservare, non stampare</h2>
-            <section class="guide-subchapter">
-              <h3>Dalle stampe a console (`console.log`) al Debugger</h3>
-              <p>Inserire stampe temporanee come <code>console.log</code> o <code>print</code> per ispezionare il valore delle variabili è un'abitudine comune, ma inefficiente: inquina il codice e costringe a continui salvataggi e pulizie.</p>
-              <p>VS Code integra un debugger nativo estremamente potente. Per attivarlo, è sufficiente fare clic a sinistra del numero di riga per posizionare un <strong>Breakpoint (punto di interruzione)</strong> (cerchio rosso) e avviare la sessione di debug.</p>
-            </section>
-            <section class="guide-subchapter">
-              <h3>La configurazione `launch.json`</h3>
-              <p>Per dire a VS Code come avviare il debugger nel contesto del tuo progetto, viene utilizzato il file <code>.vscode/launch.json</code>. Ecco un esempio standard per il debug di un'applicazione Node.js:</p>
-              <pre><code class="language-json">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Avvia Server con Debugger",
-      "program": "${workspaceFolder}/index.js", // Percorso dell'entrypoint del tuo server
-      "skipFiles": [
-        "<node_internals>/**" // Salta le librerie interne di Node durante il debug
-      ]
-    }
-  ]
-}</code></pre>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Breakpoint avanzati: Condizionali e Logpoint</h3>
-              <p>I breakpoint normali fermano sempre l'esecuzione. In VS Code puoi fare clic destro sulla zona dei breakpoint per creare tipologie più intelligenti:</p>
-              <ul class="guide-list">
-                <li><strong>Conditional Breakpoint:</strong> L'esecuzione si ferma solo se una determinata espressione logica è vera (es. <code>utente.ruolo === 'admin'</code>). Ideale per isolare errori che si verificano solo con specifici dati.</li>
-                <li><strong>Logpoint:</strong> Invece di interrompere il codice, stampa un messaggio nel terminale di debug includendo variabili dinamiche racchiuse tra parentesi graffe (es. <code>Il valore corrente è {variabile}</code>). Funziona esattamente come un <code>console.log</code> ma senza toccare una singola riga di codice reale.</li>
-              </ul>
-            </section>
-            <section class="guide-subchapter">
-              <h3>I tasti di controllo del debug</h3>
-              <p>Quando il debugger si ferma su un breakpoint, in alto appare una barra con i controlli fondamentali:</p>
-              <ul class="guide-list">
-                <li><strong>Continue (F5):</strong> Riprende l'esecuzione del codice fino al prossimo breakpoint.</li>
-                <li><strong>Step Over (F10):</strong> Esegue la riga corrente e si ferma alla riga successiva, senza entrare all'interno delle funzioni chiamate.</li>
-                <li><strong>Step Into (F11):</strong> Entra all'interno della funzione presente sulla riga corrente per analizzarla passo-passo.</li>
-                <li><strong>Step Out (Shift + F11):</strong> Esce dalla funzione corrente e torna a chi l'ha chiamata.</li>
-                <li><strong>Restart (Ctrl/Cmd + Shift + F5):</strong> Riavvia la sessione di debug da capo ricaricando il processo.</li>
-              </ul>
-            </section>
-          </section>
 
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>9. Git dentro VS Code</h2>
+            <h2>8. Git dentro VS Code</h2>
             <section class="guide-subchapter">
               <p>VS Code integra Git in modo comodo e visivo nel pannello <strong>Source Control</strong> (scorciatoia <code>Ctrl + Shift + G</code> / <code>Cmd + Shift + G</code>). Tuttavia, molti sviluppatori si limitano ad usare i pulsanti per aggiungere file e scrivere messaggi di commit, ignorando le funzionalità più avanzate che rendono l'integrazione di Git davvero superiore rispetto alla riga di comando per le operazioni quotidiane.</p>
             </section>
@@ -640,15 +595,20 @@
               <p>Il modo migliore per lavorare con Git è un approccio ibrido:</p>
               <ul class="guide-list">
                 <li><strong>Usa l'interfaccia grafica per:</strong> Rileggere i diff prima di un commit, fare lo stage di blocchi di righe specifici, risolvere i conflitti visivamente e scrivere messaggi di commit ordinati.</li>
-                <li><strong>Usa il terminale per:</strong> Operazioni avanzate o distruttive (es. <code>git rebase -i</code>, <code>git reset --hard</code>, o risoluzione di reflog complessi).</li>          <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>10. La routine quotidiana</h2>
+                <li><strong>Usa il terminale per:</strong> Operazioni avanzate o distruttive (es. <code>git rebase -i</code>, <code>git reset --hard</code>, o risoluzione di reflog complessi).</li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. La routine quotidiana</h2>
             <section class="guide-subchapter">
               <h3>Una sequenza strutturata che elimina il caos</h3>
               <p>Un ambiente di lavoro ordinato produce codice migliore. Questa routine quotidiana in 6 passi ti aiuterà a mantenere il flusso pulito e focalizzato:</p>
               <ol class="guide-number-list">
                 <li><strong>Avvio da Shell:</strong> Apri il terminale del tuo sistema operativo, naviga nella cartella del progetto e digita <code>code .</code> per caricare l'ambiente corretto.</li>
                 <li><strong>Allineamento Repository:</strong> Controlla il pannello <em>Source Control</em> (o il terminale integrato) per assicurarti di essere sul branch corretto e fai un <code>git pull</code> per integrare le modifiche del team.</li>
-                <li><strong>Start dei Servizi:</strong> Lancia il tuo dev server locale (tramite il Task preconfigurato <code>Ctrl + Shift + B</code> o digitando il comando nel terminale integrato).</li>
+                <li><strong>Start dei Servizi:</strong> Lancia il tuo dev server locale (ad esempio digitando <code>npm run dev</code> nel terminale integrato).</li>
                 <li><strong>Scrittura senza mouse:</strong> Naviga tra i file usando <code>Ctrl/Cmd + P</code> (Quick Open) ed esegui le modifiche di testo in parallelo sfruttando il multi-cursore <code>Ctrl/Cmd + D</code>.</li>
                 <li><strong>Diagnostica in tempo reale:</strong> Risolvi eventuali errori visualizzati da <em>Error Lens</em> direttamente sulla riga interessata prima ancora di ricaricare il browser.</li>
                 <li><strong>Staging e Commit Atomici:</strong> Prima di chiudere la sessione, rileggi le modifiche visive nel pannello Source Control, fai lo stage mirato delle righe pulite tramite il gutter ed esegui un commit descrittivo.</li>
@@ -666,7 +626,7 @@
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>11. Checklist finale</h2>
+            <h2>10. Checklist finale</h2>
             <section class="guide-subchapter">
               <p>Puoi valutare la qualità del tuo setup di VS Code misurando il tuo livello di maturità tecnica rispetto a questa checklist:</p>
               <div class="table-wrapper">
@@ -699,12 +659,12 @@
                       </td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold; vertical-align: top;">Livello 3: Mago del Debug e Automazione</td>
+                      <td style="padding: 10px; font-weight: bold; vertical-align: top;">Livello 3: Sviluppatore Autonomo e Rapido</td>
                       <td style="padding: 10px;">
                         <ul class="guide-list" style="margin: 0; padding-left: 1.2rem;">
-                          <li>Automatizzi l'avvio dei server locali tramite <code>tasks.json</code>.</li>
-                          <li>Risolvi i bug complessi posizionando breakpoint condizionali e ispezionando le variabili con <code>launch.json</code>.</li>
+                          <li>Ti muovi velocemente con le scorciatoie avanzate e i prefissi della barra di ricerca.</li>
                           <li>Risolvi i conflitti Git visivamente tramite il 3-way Merge Editor integrato.</li>
+                          <li>Lavori in modo fluido senza mai dover abbandonare la tastiera per usare il mouse.</li>
                         </ul>
                       </td>
                     </tr>
@@ -725,7 +685,7 @@
 
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>11. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
               <p>Ecco un riepilogo rapido delle scorciatoie da tastiera fondamentali per incrementare la tua produttività quotidiana:</p>
               <div class="table-wrapper">
@@ -781,7 +741,7 @@
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>13. Sfida pratica</h2>
+            <h2>12. Sfida pratica</h2>
             <section class="guide-subchapter">
               <p>Metti alla prova la tua destrezza configurando un workspace professionale ed usando la tastiera come uno sviluppatore esperto:</p>
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
@@ -800,7 +760,7 @@
           </section>
 
           <section id="chapter-quiz" data-quiz-id="vscode-essenziale" class="guide-block guide-chapter quiz-section">
-            <h2>14. Verifica la preparazione (Quiz)</h2>
+            <h2>13. Verifica la preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
