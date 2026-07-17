@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
+        with:
+          # Storia completa: le date git (lastmod sitemap, datePublished dei
+          # TechArticle) e il diff del ping IndexNow la richiedono
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4.4.0
@@ -25,10 +29,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Prepare dist (copy CNAME if present, craft 404)
-        run: |
-          cp CNAME dist/ 2>/dev/null || true
-          if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
+      # CNAME e la vera 404 (con noindex) arrivano già da public/ via Vite:
+      # niente più copia di index.html su 404.html, che serviva la homepage
+      # intera come pagina di errore
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
@@ -36,3 +39,21 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
+
+      - name: IndexNow ping (pagine cambiate in questo push)
+        continue-on-error: true
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          if [ -z "$BEFORE" ] || echo "$BEFORE" | grep -Eq '^0+$' || ! git cat-file -e "$BEFORE" 2>/dev/null; then
+            echo "Commit di partenza non disponibile: invio tutta la sitemap"
+            node scripts/indexnow-ping.mjs --all
+            exit 0
+          fi
+          ROUTES=$(git diff --name-only "$BEFORE" "$AFTER" -- pages/ | grep 'index\.html$' | sed 's|^pages||; s|index\.html$||' | sort -u)
+          if [ -n "$ROUTES" ]; then
+            node scripts/indexnow-ping.mjs $ROUTES
+          else
+            echo "Nessuna pagina cambiata in questo push: niente ping IndexNow"
+          fi
