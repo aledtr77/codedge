@@ -112,8 +112,8 @@
             <li><a href="#chapter-03">3. Aprire un progetto e impostare le preferenze</a></li>
             <li><a href="#chapter-04">4. Il workspace: progetto, non file</a></li>
             <li><a href="#chapter-05">5. Muoversi alla velocità del pensiero</a></li>
-            <li><a href="#chapter-06">6. Estensioni: poche ma sensate</a></li>
-            <li><a href="#chapter-07">7. Terminale, task e automazioni</a></li>
+            <li><a href="#chapter-06">6. Estensioni: la scelta è tua</a></li>
+            <li><a href="#chapter-07">7. Il terminale integrato</a></li>
             <li><a href="#chapter-08">8. Il debugger: osservare, non stampare</a></li>
             <li><a href="#chapter-09">9. Git dentro VS Code</a></li>
             <li><a href="#chapter-10">10. La routine quotidiana</a></li>
@@ -553,42 +553,15 @@
           </section>
 
           <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>7. Terminale, task e automazioni</h2>
+            <h2>7. Il terminale integrato</h2>
             <section class="guide-subchapter">
-              <h3>Il terminale integrato: addio salti di contesto</h3>
+              <h3>La riga di comando a portata di mano</h3>
               <p>Il terminale integrato (che puoi aprire e chiudere rapidamente premendo <code>Ctrl + ò</code> sulle tastiere con layout italiano, oppure <code>Ctrl + `</code> su quelle americane che hanno il tasto dedicato per il simbolo dell'accento grave, il <em>backtick</em>) è uno dei motivi principali del successo di VS Code. Avviandosi in automatico nella cartella principale del tuo progetto (workspace), elimina del tutto la noia di dover navigare tra le cartelle da riga di comando per lanciare i tuoi script.</p>
               <p>Per un workflow ottimizzato, sfrutta queste funzionalità native:</p>
               <ul class="guide-list">
                 <li><strong>Split terminal:</strong> Clicca sull'icona delle due colonne (o premi <code>Ctrl + Shift + 5</code> / <code>Cmd + \</code>) per dividere lo schermo ed avere due terminali affiancati nello stesso pannello (es. uno per il server locale e uno per i comandi Git).</li>
                 <li><strong>Icone e colori personalizzati:</strong> Quando hai più terminali aperti, vedrai la lista delle schede sul lato destro del pannello del terminale. Fai clic destro su una di queste schede (ad esempio <code>1: node</code>) e seleziona <em>Change Color...</em> (Cambia colore) o <em>Change Icon...</em> (Cambia icona) per riconoscerle all'istante (es. verde per il server locale, rosso per i test). Se invece hai un solo terminale aperto, fai clic destro sul nome del terminale che trovi in alto a destra nell'intestazione del pannello per accedere alle stesse voci.</li>
               </ul>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Automazione dei Task con `tasks.json`</h3>
-              <p>Molti sviluppatori utilizzano script npm scritti a mano ogni volta. VS Code ti consente di formalizzare questi comandi e controllarli direttamente dall'editor tramite il file <code>.vscode/tasks.json</code>.</p>
-              <p>Ecco una configurazione professionale per gestire l'avvio del server di sviluppo in background:</p>
-              <pre><code class="language-json">{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Avvia Dev Server (Vite)",
-      "type": "shell",
-      "command": "npm run dev",
-      "isBackground": true, // Indica che il task rimane in ascolto
-      "problemMatcher": [], // Previene il blocco in attesa di completamento
-      "group": {
-        "kind": "build",
-        "isDefault": true // Eseguibile rapidamente con la scorciatoia di build
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated", // Crea un terminale dedicato per questo task
-        "clear": true         // Pulisce l'output ad ogni avvio
-      }
-    }
-  ]
-}</code></pre>
-              <p>Salvare questo file sotto la cartella <code>.vscode/</code> fa sì che chiunque cloni il progetto possa avviare il server semplicemente aprendo la Command Palette e digitando <code>Run Task</code>, oppure premendo la scorciatoia di build globale <code>Ctrl + Shift + B</code> (o <code>Cmd + Shift + B</code> su Mac).</p>
             </section>
           </section>
 
