@@ -48,12 +48,27 @@
       <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#010307" flood-opacity="0.6"/>
     </filter>
 
-    <!-- Arrow Markers -->
-    <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <!-- Step-specific Markers for Matching Arrowhead Colors -->
+    <marker id="marker-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3b82f6"/>
     </marker>
-    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="marker-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="marker-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+    </marker>
+    <marker id="marker-emerald-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#10b981"/>
+    </marker>
+    <marker id="marker-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f97316"/>
+    </marker>
+    <marker id="marker-teal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#14b8a6"/>
+    </marker>
+    <marker id="marker-pink" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ec4899"/>
     </marker>
   </defs>
 
@@ -212,23 +227,23 @@
   <g fill="none" stroke-width="3" stroke-linecap="round">
     <!-- Row 1: Right Arrows -->
     <!-- 1 -> 2 -->
-    <path d="M 305 225 L 332 225" stroke="#3b82f6" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 305 225 L 332 225" stroke="#3b82f6" marker-end="url(#marker-blue)" opacity="0.6"/>
     <!-- 2 -> 3 -->
-    <path d="M 585 225 L 612 225" stroke="#06b6d4" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 585 225 L 612 225" stroke="#06b6d4" marker-end="url(#marker-cyan)" opacity="0.6"/>
     <!-- 3 -> 4 -->
-    <path d="M 865 225 L 892 225" stroke="#10b981" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 865 225 L 892 225" stroke="#10b981" marker-end="url(#marker-emerald)" opacity="0.6"/>
 
     <!-- Sweep connection from Row 1 End (Step 4 bottom) to Row 2 Start (Step 5 top) -->
     <!-- 4 -> 5 -->
-    <path d="M 1020 330 C 1020 365, 180 345, 180 372" stroke="#10b981" stroke-dasharray="6,4" marker-end="url(#arrow-down)" opacity="0.7"/>
+    <path d="M 1020 330 C 1020 365, 180 345, 180 372" stroke="#10b981" stroke-dasharray="6,4" marker-end="url(#marker-emerald-down)" opacity="0.7"/>
 
     <!-- Row 2: Right Arrows -->
     <!-- 5 -> 6 -->
-    <path d="M 305 485 L 332 485" stroke="#f97316" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 305 485 L 332 485" stroke="#f97316" marker-end="url(#marker-orange)" opacity="0.6"/>
     <!-- 6 -> 7 -->
-    <path d="M 585 485 L 612 485" stroke="#14b8a6" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 585 485 L 612 485" stroke="#14b8a6" marker-end="url(#marker-teal)" opacity="0.6"/>
     <!-- 7 -> 8 -->
-    <path d="M 865 485 L 892 485" stroke="#ec4899" marker-end="url(#arrow-right)" opacity="0.6"/>
+    <path d="M 865 485 L 892 485" stroke="#ec4899" marker-end="url(#marker-pink)" opacity="0.6"/>
   </g>
 
   <!-- Footer Info -->
