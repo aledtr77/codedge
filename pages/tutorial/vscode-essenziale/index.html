@@ -115,11 +115,10 @@
             <li><a href="#chapter-06">6. Estensioni: la scelta è tua</a></li>
             <li><a href="#chapter-07">7. Il terminale integrato</a></li>
             <li><a href="#chapter-09">8. Git dentro VS Code</a></li>
-            <li><a href="#chapter-10">9. La routine quotidiana</a></li>
-            <li><a href="#chapter-11">10. Checklist finale</a></li>
-            <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">12. Sfida pratica</a></li>
-            <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-11">9. Checklist finale</a></li>
+            <li><a href="#chapter-cheatsheet">10. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">11. Sfida pratica</a></li>
+            <li><a href="#chapter-quiz">12. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
 
@@ -132,8 +131,8 @@
               <section class="guide-subchapter">
                 <p>Passerai più ore nel tuo editor che in qualunque altro software. Eppure quasi nessuno lo studia: si impara a usarlo per osmosi, un menu alla volta, portandosi dietro per anni abitudini lente e configurazioni casuali. Questa guida esiste per saltare quella fase.</p>
                 <p>Visual Studio Code è diventato lo standard di fatto del settore non perché sia perfetto, ma perché ha trovato un equilibrio raro: la leggerezza di un editor di testo e la potenza di un IDE, dosate in modo che paghi solo per ciò che usi.</p>
-                <p>Usarlo bene non significa memorizzare ogni menu né installare decine di estensioni: significa trasformarlo in uno strumento prevedibile — un ambiente in cui i file si trovano al volo, il terminale risponde nel posto giusto, i bug si osservano invece di inseguirli a tentoni, e Git registra il percorso senza cerimonie.</p>
-                <p>La guida costruisce questo setup un pezzo alla volta: prima capiamo com'è fatto lo strumento, poi lo configuriamo, infine lo mettiamo al lavoro su navigazione, estensioni, task, debug e Git. Alla fine trovi la routine quotidiana che tiene tutto insieme.</p>
+                <p>Usarlo bene non significa memorizzare ogni menu né installare decine di estensioni: significa trasformarlo in uno strumento prevedibile — un ambiente in cui i file si trovano al volo, il terminale risponde nel posto giusto, e Git registra il percorso senza cerimonie.</p>
+                <p>La guida costruisce questo setup un pezzo alla volta: prima capiamo com'è fatto lo strumento, poi lo configuriamo, infine lo mettiamo al lavoro su navigazione, estensioni e Git. Alla fine trovi una sfida pratica per consolidare quello che hai imparato.</p>
               </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -580,33 +579,10 @@
             </section>
           </section>
 
-          <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. La routine quotidiana</h2>
-            <section class="guide-subchapter">
-              <h3>Una sequenza strutturata che elimina il caos</h3>
-              <p>Un ambiente di lavoro ordinato produce codice migliore. Questa routine quotidiana in 6 passi ti aiuterà a mantenere il flusso pulito e focalizzato:</p>
-              <ol class="guide-number-list">
-                <li><strong>Avvio da Shell:</strong> Apri il terminale del tuo sistema operativo, naviga nella cartella del progetto e digita <code>code .</code> per caricare l'ambiente corretto.</li>
-                <li><strong>Allineamento Repository:</strong> Controlla il pannello <em>Source Control</em> (o il terminale integrato) per assicurarti di essere sul branch corretto e fai un <code>git pull</code> per integrare le modifiche del team.</li>
-                <li><strong>Start dei Servizi:</strong> Lancia il tuo dev server locale (ad esempio digitando <code>npm run dev</code> nel terminale integrato).</li>
-                <li><strong>Scrittura senza mouse:</strong> Naviga tra i file usando <code>Ctrl/Cmd + P</code> (Quick Open) ed esegui le modifiche di testo in parallelo sfruttando il multi-cursore <code>Ctrl/Cmd + D</code>.</li>
-                <li><strong>Diagnostica in tempo reale:</strong> Risolvi eventuali errori visualizzati da <em>Error Lens</em> direttamente sulla riga interessata prima ancora di ricaricare il browser.</li>
-                <li><strong>Staging e Commit Atomici:</strong> Prima di chiudere la sessione, rileggi le modifiche visive nel pannello Source Control, fai lo stage mirato delle righe pulite tramite il gutter ed esegui un commit descrittivo.</li>
-              </ol>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Consigli di igiene digitale</h3>
-              <p>Mantenere efficiente il proprio editor richiede pochi minuti alla settimana:</p>
-              <ul class="guide-checklist">
-                <li><strong>Chiudi i tab inutilizzati:</strong> Tieni aperti solo i file su cui stai lavorando attivamente. Troppi tab generano confusione visiva e riducono l'attenzione. Puoi premere <code>Ctrl/Cmd + K W</code> per chiudere tutti i tab aperti in un colpo solo.</li>
-                <li><strong>Rimuovi le estensioni dormienti:</strong> Fai periodicamente un controllo delle estensioni installate. Se non le usi in nessun progetto attivo, disabilitale o disinstallale.</li>
-                <li><strong>Non ignorare i warning:</strong> Risolvi i warning segnalati dal linter anche se non bloccano il funzionamento dell'app. Un progetto pulito da warning è molto più facile da manutenere nel lungo periodo.</li>
-              </ul>
-            </section>
-          </section>
+
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Checklist finale</h2>
+            <h2>9. Checklist finale</h2>
             <section class="guide-subchapter">
               <p>Puoi valutare la qualità del tuo setup di VS Code misurando il tuo livello di maturità tecnica rispetto a questa checklist:</p>
               <div class="table-wrapper">
@@ -665,7 +641,7 @@
 
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>11. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>10. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
               <p>Ecco un riepilogo rapido delle scorciatoie da tastiera fondamentali per incrementare la tua produttività quotidiana:</p>
               <div class="table-wrapper">
@@ -721,7 +697,7 @@
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>12. Sfida pratica</h2>
+            <h2>11. Sfida pratica</h2>
             <section class="guide-subchapter">
               <p>Metti alla prova la tua destrezza configurando un workspace professionale ed usando la tastiera come uno sviluppatore esperto:</p>
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
@@ -740,7 +716,7 @@
           </section>
 
           <section id="chapter-quiz" data-quiz-id="vscode-essenziale" class="guide-block guide-chapter quiz-section">
-            <h2>13. Verifica la preparazione (Quiz)</h2>
+            <h2>12. Verifica la preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
