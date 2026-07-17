@@ -443,10 +443,16 @@
               </div>
 
               <ul class="guide-list">
-                <li><strong><code>@</code> (Indice del file corrente):</strong> Elenca tutte le sezioni, i tag HTML o le funzioni JavaScript presenti <em>solo</em> nel file che hai aperto in quel momento sullo schermo. È utilissimo per saltare direttamente a un punto preciso senza scorrere la pagina con la rotella del mouse. (Esempio: digiti <code>@</code> seguito dal nome della funzione).</li>
+                <li><strong><code>@</code> (Indice del file corrente):</strong> Elenca tutte le sezioni, i tag HTML o le funzioni JavaScript presenti <em>solo</em> nel file che hai aperto in quel momento sullo schermo. È utilissimo per saltare direttamente a un punto preciso. (Esempio: digiti <code>@</code> seguito dal nome della funzione).</li>
+                <li><strong><code>@:</code> (Simboli divisi per categoria):</strong> È una variante di <code>@</code> che raggruppa i simboli del file per categorie (es. divide le variabili dalle funzioni o dalle classi), rendendo ancora più ordinata la ricerca nei file molto grandi.</li>
                 <li><strong><code>:</code> (Vai alla riga nel file corrente):</strong> Digita ad esempio <code>:150</code> per portare il cursore istantaneamente alla riga 150 del file aperto. È il modo più rapido per trovare la riga esatta segnalata da un errore del codice.</li>
-                <li><strong><code>#</code> (Cerca simboli in tutto il progetto):</strong> A differenza di <code>@</code>, questo simbolo cerca funzioni o classi <strong>in tutti i file del progetto</strong>, anche in quelli attualmente chiusi.</li>
-                <li><strong><code>?</code> (Guida rapida):</strong> Digitando il punto interrogativo nella barra, VS Code ti mostrerà un elenco riassuntivo di tutti i simboli di ricerca disponibili.</li>
+                <li><strong><code>#</code> (Cerca simboli in tutto il progetto):</strong> Cerca funzioni, variabili o classi <strong>in tutti i file del progetto</strong>, anche in quelli attualmente chiusi.</li>
+                <li><strong><code>&gt;</code> (Passa ai Comandi - Command Palette):</strong> Trasforma la barra di ricerca file in un motore di ricerca per comandi. Ti permette di eseguire azioni dell'editor (es. <code>&gt;Toggle Minimap</code>) senza usare il mouse.</li>
+                <li><strong><code>edt </code> (Cerca tra le schede aperte):</strong> Inserendo il prefisso <code>edt </code> (con uno spazio), la ricerca si limiterà solo alle schede (editor) attualmente aperte in quel momento, ignorando gli altri file del progetto.</li>
+                <li><strong><code>ext </code> (Gestione estensioni):</strong> Digitando <code>ext </code> seguito dal nome di uno strumento, puoi cercare e installare estensioni dal marketplace direttamente da questa barra.</li>
+                <li><strong><code>task </code> (Avvia automazioni):</strong> Digitando <code>task </code> seguito da uno spazio, puoi selezionare ed eseguire uno dei task di automazione definiti nel tuo progetto (es. avviare il server locale).</li>
+                <li><strong><code>debug </code> (Avvia sessioni di debug):</strong> Digitando <code>debug </code> puoi selezionare e far partire una delle configurazioni di debug salvate per analizzare i comportamenti del codice.</li>
+                <li><strong><code>?</code> (Guida rapida):</strong> Digitando il punto interrogativo nella barra, VS Code ti mostrerà un elenco riassuntivo e aggiornato di tutti i simboli di ricerca disponibili.</li>
               </ul>
 
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
