@@ -25,7 +25,9 @@
 .guide-toc {
   position: sticky;
   top: 5.6rem;
-  max-height: calc(100vh - 6.6rem);
+  /* 20px of guaranteed air between the TOC's bottom edge and the viewport */
+  max-height: calc(100vh - 5.6rem - 20px);
+  margin-bottom: 20px;
   overflow: auto;
   /* Wheel over the TOC must never chain into the page scroll: chaining also
      triggers the scrollspy, which re-scrolls the TOC against the user. The
