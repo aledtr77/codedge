@@ -114,13 +114,12 @@
             <li><a href="#chapter-05">5. Muoversi alla velocità del pensiero</a></li>
             <li><a href="#chapter-06">6. Estensioni: la scelta è tua</a></li>
             <li><a href="#chapter-07">7. Il terminale integrato</a></li>
-            <li><a href="#chapter-08">8. Il debugger: osservare, non stampare</a></li>
-            <li><a href="#chapter-09">9. Git dentro VS Code</a></li>
-            <li><a href="#chapter-10">10. La routine quotidiana</a></li>
-            <li><a href="#chapter-11">11. Checklist finale</a></li>
-            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">13. Sfida pratica</a></li>
-            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-09">8. Git dentro VS Code</a></li>
+            <li><a href="#chapter-10">9. La routine quotidiana</a></li>
+            <li><a href="#chapter-11">10. Checklist finale</a></li>
+            <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">12. Sfida pratica</a></li>
+            <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
 
@@ -569,34 +568,15 @@
           <section id="chapter-09" class="guide-block guide-chapter">
             <h2>8. Git dentro VS Code</h2>
             <section class="guide-subchapter">
-              <p>VS Code integra Git in modo comodo e visivo nel pannello <strong>Source Control</strong> (scorciatoia <code>Ctrl + Shift + G</code> / <code>Cmd + Shift + G</code>). Tuttavia, molti sviluppatori si limitano ad usare i pulsanti per aggiungere file e scrivere messaggi di commit, ignorando le funzionalità più avanzate che rendono l'integrazione di Git davvero superiore rispetto alla riga di comando per le operazioni quotidiane.</p>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Gutter Staging: committare solo righe specifiche</h3>
-              <p>Ti è mai capitato di fare modifiche di debug (es. un <code>console.log</code> temporaneo o un valore hardcoded) in un file e voler committare solo la parte di codice pulito nello stesso file?</p>
-              <p>VS Code permette di fare questo in modo immediato tramite la barra laterale interna (il <strong>gutter</strong>, ovvero la zona grigia tra i numeri di riga e il codice):</p>
+              <h3>L'integrazione visuale di Git</h3>
+              <p>VS Code integra Git in modo nativo e visivo all'interno del pannello <strong>Source Control</strong> (che puoi aprire rapidamente premendo <code>Ctrl + Shift + G</code>, o <code>Cmd + Shift + G</code> su Mac).</p>
+              <p>Questa integrazione è utilissima per chi inizia perché ti permette di:</p>
               <ul class="guide-list">
-                <li>Le righe aggiunte mostrano una barra verticale <strong>verde</strong> nel gutter; quelle modificate una barra <strong>blu</strong>; quelle eliminate un triangolo <strong>rosso</strong>.</li>
-                <li>Fai clic su quella barra colorata: apparirà un pop-up con il diff locale di quella singola riga o blocco.</li>
-                <li>Puoi selezionare <strong>Stage Selected Ranges</strong> per mettere in staging solo quel blocco specifico nel prossimo commit, ignorando il resto del file, oppure <strong>Revert Change</strong> per annullare solo quella specifica modifica.</li>
+                <li>Vedere l'elenco esatto di tutti i file che hai modificato, creato o cancellato nel progetto.</li>
+                <li>Fare clic su un file modificato per confrontare visivamente le differenze (il "diff") tra la version precedente e quella nuova, riga per riga.</li>
+                <li>Mettere in staging i file e scrivere il tuo messaggio di commit direttamente dalla barra di testo dell'editor, senza dover digitare comandi nel terminale.</li>
               </ul>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Il Merge Editor a 3 vie: risolvere i conflitti senza panico</h3>
-              <p>Quando due rami modificano lo stesso file, Git segnala un conflitto. Molti sviluppatori temono questo momento perché i tag classici di Git (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch</code>) rendono il codice illeggibile.</p>
-              <p>VS Code offre il <strong>3-Way Merge Editor</strong> automatico:</p>
-              <ul class="guide-list">
-                <li>All'apertura di un file in conflitto, l'editor mostra tre pannelli: <strong>Current (il tuo codice locale)</strong> in alto a sinistra, <strong>Incoming (il codice che stai importando)</strong> in alto a destra, e <strong>Result (il file finale combinato)</strong> in basso.</li>
-                <li>Ti basta fare clic sui pulsanti <em>Accept Current</em> o <em>Accept Incoming</em> (o entrambi) per comporre visivamente il file finale senza dover ripulire manualmente i tag testuali di Git.</li>
-              </ul>
-            </section>
-            <section class="guide-subchapter">
-              <h3>UI vs Terminale: quando usare l'uno o l'altro</h3>
-              <p>Il modo migliore per lavorare con Git è un approccio ibrido:</p>
-              <ul class="guide-list">
-                <li><strong>Usa l'interfaccia grafica per:</strong> Rileggere i diff prima di un commit, fare lo stage di blocchi di righe specifici, risolvere i conflitti visivamente e scrivere messaggi di commit ordinati.</li>
-                <li><strong>Usa il terminale per:</strong> Operazioni avanzate o distruttive (es. <code>git rebase -i</code>, <code>git reset --hard</code>, o risoluzione di reflog complessi).</li>
-              </ul>
+              <p>La gestione visuale di Git in VS Code è comodissima per le operazioni quotidiane, ma dato che Git è un argomento vasto e fondamentale a sé stante, ti rimando al nostro tutorial dedicato per approfondire e comprenderne a fondo le basi e tutti i comandi: <a href="/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>.</p>
             </section>
           </section>
 
@@ -654,7 +634,7 @@
                         <ul class="guide-list" style="margin: 0; padding-left: 1.2rem;">
                           <li>Usi le <em>Workspace Settings</em> (<code>.vscode/settings.json</code>) per allineare lo stile del codice con il team.</li>
                           <li>Usi <code>.vscode/extensions.json</code> per suggerire estensioni a chi collabora al progetto.</li>
-                          <li>Fai staging di righe di codice specifiche tramite il gutter di Git.</li>
+                          <li>Usi l'interfaccia visuale di Git per tracciare le modifiche ed eseguire i commit in modo ordinato.</li>
                         </ul>
                       </td>
                     </tr>
@@ -663,7 +643,7 @@
                       <td style="padding: 10px;">
                         <ul class="guide-list" style="margin: 0; padding-left: 1.2rem;">
                           <li>Ti muovi velocemente con le scorciatoie avanzate e i prefissi della barra di ricerca.</li>
-                          <li>Risolvi i conflitti Git visivamente tramite il 3-way Merge Editor integrato.</li>
+                          <li>Usi il terminale integrato per gestire l'avvio del server e i comandi senza cambiare finestra.</li>
                           <li>Lavori in modo fluido senza mai dover abbandonare la tastiera per usare il mouse.</li>
                         </ul>
                       </td>
