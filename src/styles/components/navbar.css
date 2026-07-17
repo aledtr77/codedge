@@ -17,10 +17,9 @@ header {
   touch-action: none; /* Prevents touch drags on the header from triggering a window scroll/canceling clicks */
 }
 
-header.header-hidden {
-  transform: translateY(-100%);
-}
-
+/* Smart-hide is mobile-only: on desktop there is vertical room to spare, so
+   the header stays fixed and visible - a navbar that slides away on scroll
+   only adds motion noise there. navbar.js mirrors this same 768px cutoff. */
 @media screen and (max-width: 768px) {
   header.header-hidden {
     transform: translateY(calc(-1 * var(--navbar-height, 46px)));

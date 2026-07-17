@@ -137,9 +137,11 @@ if (header) {
     } else {
       header.classList.add("header-scrolled");
 
-      if (scrollDelta < -tolerance) {
+      // Smart-hide is mobile-only (mirrors the 768px cutoff in navbar.css):
+      // on desktop the header stays visible whatever the scroll direction.
+      if (!isMobile || scrollDelta < -tolerance) {
         header.classList.remove("header-hidden");
-      } 
+      }
       else if (scrollDelta > tolerance) {
         header.classList.add("header-hidden");
       }
