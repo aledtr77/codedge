@@ -63,7 +63,6 @@ if (document.readyState === "loading") {
 }
 window.addEventListener("pageshow", markPageReady);
 
-// Smart Sticky Header logic
 if (header) {
   const navbarEl = header.querySelector(".navbar");
   if (navbarEl) {
@@ -129,7 +128,6 @@ if (header) {
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
 
-    // Check if user reached the bottom of the page (with a 10px tolerance)
     const isAtBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 10);
     const isMobile = window.innerWidth <= 768;
 
@@ -138,11 +136,9 @@ if (header) {
     } else {
       header.classList.add("header-scrolled");
 
-      // Show header only when scrolling up (same behaviour on all screen sizes)
       if (scrollDelta < -tolerance) {
         header.classList.remove("header-hidden");
       } 
-      // Hide header if scrolling down
       else if (scrollDelta > tolerance) {
         header.classList.add("header-hidden");
       }
@@ -161,6 +157,4 @@ if (header) {
 
   window.addEventListener("scroll", onScroll, { passive: true });
 }
-
-
 

@@ -1,5 +1,4 @@
-/* src/styles/components/playground.css */
-/* Stili per il Playground di Codice Interattivo Inline */
+
 
 .code-wrapper {
   position: relative;
@@ -15,9 +14,8 @@
   border-color: rgba(143, 206, 255, 0.25);
 }
 
-/* Toolbar dei Blocchi Statici.
-   Visibile di default: sui dispositivi touch non esiste hover, quindi la
-   dissolvenza al passaggio del mouse vale solo dove un puntatore c'è davvero. */
+/* Static-block toolbar, visible by default: touch devices have no hover, so
+   the fade-on-hover treatment only applies where a real pointer exists. */
 .code-toolbar {
   position: absolute;
   top: 8px;
@@ -69,7 +67,6 @@
   font-size: 0.85rem;
 }
 
-/* Contenitore Playground Attivo */
 .code-playground {
   display: flex;
   flex-direction: column;
@@ -83,7 +80,6 @@
   animation: playgroundOpen 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Header del Playground */
 .playground-header {
   display: flex;
   justify-content: space-between;
@@ -146,8 +142,8 @@
   border-color: rgba(255, 71, 87, 0.55);
 }
 
-/* Tab Anteprima/Editor: solo mobile, dove i due pannelli impilati
-   non hanno abbastanza spazio per convivere */
+/* Preview/Editor tabs are mobile-only: the stacked panels do not fit a phone,
+   so one pane shows at a time. */
 .playground-tabs {
   display: none;
   border-bottom: 1px solid rgba(143, 206, 255, 0.15);
@@ -173,21 +169,19 @@
   border-bottom-color: #00A8FF;
 }
 
-/* Griglia Editor + Anteprima */
 .playground-body {
   display: flex;
   flex-direction: column;
   background: #0d111a;
 }
 
-/* Pannello Editor */
 .playground-editor-pane {
   position: relative;
   border-bottom: 1px solid rgba(143, 206, 255, 0.1);
   border-right: none;
   display: flex;
   flex-direction: column;
-  height: 320px; /* Comfortable height for coding on desktop */
+  height: 320px;
 }
 
 .playground-editor {
@@ -216,7 +210,6 @@
   background: #111a2b;
 }
 
-/* Label Indicazione Linguaggio */
 .playground-lang-tag {
   position: absolute;
   bottom: 8px;
@@ -231,13 +224,12 @@
   pointer-events: none;
 }
 
-/* Pannello Anteprima */
 .playground-preview-pane {
   background: #fff;
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 550px; /* Large, spacious preview area below the editor */
+  height: 550px;
 }
 
 .playground-iframe {
@@ -247,8 +239,8 @@
   background: #ffffff;
 }
 
-/* Mobile: un pannello alla volta, selezionato dai tab, con un'altezza
-   che rende editor e anteprima davvero utilizzabili */
+/* Mobile: one pane at a time, chosen by the tabs, sized so editor and preview
+   stay genuinely usable. */
 @media (max-width: 768px) {
   .playground-tabs {
     display: flex;
@@ -266,7 +258,6 @@
   }
 }
 
-/* Animazione di apertura */
 @keyframes playgroundOpen {
   from {
     opacity: 0;
@@ -278,7 +269,6 @@
   }
 }
 
-/* Responsive adjustments for header actions on small screens */
 @media (max-width: 600px) {
   .playground-btn span {
     display: none;
@@ -292,5 +282,11 @@
   }
   .playground-title {
     font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code-playground {
+    animation: none;
   }
 }

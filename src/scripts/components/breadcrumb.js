@@ -1,7 +1,5 @@
-// src/scripts/components/breadcrumb.js
 import "@/styles/components/breadcrumb.css";
 import { formatSegment } from "./breadcrumb-vocabulary.js";
-
 
 function normalizePath(pathname) {
   const clean = String(pathname || "")
@@ -14,9 +12,9 @@ function normalizePath(pathname) {
 }
 
 function getBreadcrumbTitle(path) {
-  // Sempre lo slug formattato via vocabolario, mai l'H1 o il <title> della
-  // pagina: quelli sono descrittivi e lunghi (SEO), la breadcrumb vuole il
-  // nome essenziale ("Glossario CSS", non "Glossario CSS completo con...").
+  // Always the formatted slug, never the page H1 or <title>: those are long,
+  // SEO-oriented ("Glossario CSS completo con..."); the breadcrumb wants the
+  // essential name ("Glossario CSS").
   const normalized = path.replace(/\/+$/g, "");
   const lastSegment = normalized.split("/").pop() || "";
   return formatSegment(lastSegment);
@@ -26,10 +24,8 @@ function initBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   const isHomepage = currentPath === "/";
 
-  // Salta il rendering delle breadcrumb sulla Homepage
   if (isHomepage) return;
 
-  // Evita esecuzioni multiple
   if (document.querySelector(".codedge-breadcrumbs-bar")) return;
 
   const headerEl = document.querySelector("header");
@@ -38,7 +34,6 @@ function initBreadcrumbs() {
   const navbarEl = headerEl.querySelector(".navbar");
   if (!navbarEl) return;
 
-  // Crea elemento nav per la barra delle breadcrumb
   const nav = document.createElement("nav");
   nav.className = "codedge-breadcrumbs-bar";
   nav.setAttribute("aria-label", "Breadcrumbs");
@@ -46,7 +41,6 @@ function initBreadcrumbs() {
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
 
-  // Item Home (link)
   const homeLi = document.createElement("li");
   homeLi.className = "breadcrumb-item";
   const homeLink = document.createElement("a");
@@ -56,7 +50,6 @@ function initBreadcrumbs() {
   homeLi.appendChild(homeLink);
   listEl.appendChild(homeLi);
 
-  // Segmenti intermedi e foglia
   const segments = currentPath.split("/").filter(Boolean);
   let accumulatedPath = "";
   segments.forEach((segment, index) => {
@@ -84,10 +77,10 @@ function initBreadcrumbs() {
 
   nav.appendChild(listEl);
 
-  // Insert the breadcrumb sub-bar after the main navbar inside the header
   navbarEl.after(nav);
 
-  // Remove pre-existing static back links or breadcrumb placeholders from the document flow
+  // Static back links and breadcrumb placeholders become redundant once the
+  // runtime bar exists: drop them from the flow
   const oldContainers = document.querySelectorAll(".breadcrumb-container:not(.codedge-breadcrumbs-bar)");
   oldContainers.forEach(container => container.remove());
 

@@ -1,5 +1,3 @@
-// src/scripts/pages/strumenti/generatore-gradienti/generatore-gradienti.js
-
 let initialized = false;
 
 export default function initGeneratorGradienti() {
@@ -60,7 +58,6 @@ export default function initGeneratorGradienti() {
   updateUI();
 
   function initUI() {
-    // Carica preset grid
     if (elements.presetContainer) {
       elements.presetContainer.innerHTML = "";
       presets.forEach((p) => {
@@ -82,11 +79,9 @@ export default function initGeneratorGradienti() {
   }
 
   function bindEvents() {
-    // Toggles Linear/Radial
     elements.btnLinear.addEventListener("click", () => setGradientType("linear"));
     elements.btnRadial.addEventListener("click", () => setGradientType("radial"));
 
-    // Sync Angle Inputs (Range slider & Number field)
     elements.angleRange.addEventListener("input", (e) => {
       state.angle = parseInt(e.target.value, 10);
       updateUI();
@@ -100,7 +95,6 @@ export default function initGeneratorGradienti() {
       updateUI();
     });
 
-    // Quick angle buttons
     document.querySelectorAll(".quick-angle-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         state.angle = parseInt(btn.dataset.angle, 10);
@@ -108,7 +102,6 @@ export default function initGeneratorGradienti() {
       });
     });
 
-    // Compass drag listener
     elements.angleCompass.addEventListener("mousedown", (e) => {
       e.preventDefault();
       state.isDraggingCompass = true;
@@ -120,7 +113,6 @@ export default function initGeneratorGradienti() {
       if (e.touches[0]) rotateCompassToClientCoords(e.touches[0].clientX, e.touches[0].clientY);
     });
 
-    // Click track to add stop
     elements.timelineTrack.addEventListener("click", (e) => {
       if (e.target.classList.contains("gradient-handle")) return;
       const rect = elements.timelineTrack.getBoundingClientRect();
@@ -131,9 +123,8 @@ export default function initGeneratorGradienti() {
       addStopAtPosition(clampedPct);
     });
 
-    // Add Stop Button Click
     elements.btnAddStop.addEventListener("click", () => {
-      // Trova una posizione vuota intorno al 50%
+      // Find a free position around 50%
       let position = 50;
       while (state.stops.some(s => s.position === position) && position < 100) {
         position += 5;
@@ -143,13 +134,11 @@ export default function initGeneratorGradienti() {
       addStopAtPosition(position);
     });
 
-    // Global drag handlers
     window.addEventListener("mousemove", onGlobalMove);
     window.addEventListener("touchmove", onGlobalMove, { passive: false });
     window.addEventListener("mouseup", onGlobalEnd);
     window.addEventListener("touchend", onGlobalEnd);
 
-    // Mockup card show/hide toggle
     elements.btnToggleMockup.addEventListener("click", () => {
       state.showMockup = !state.showMockup;
       const card = document.querySelector(".mockup-ui-card");
@@ -158,7 +147,6 @@ export default function initGeneratorGradienti() {
       }
     });
 
-    // Export formats tabs
     document.querySelectorAll(".export-tab-btn").forEach((tab) => {
       tab.addEventListener("click", () => {
         document.querySelectorAll(".export-tab-btn").forEach(t => t.classList.remove("active"));
@@ -193,7 +181,7 @@ export default function initGeneratorGradienti() {
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
     if (state.draggedStopIndex !== null) {
-      if (e.touches) e.preventDefault(); // prevenire scroll su mobile
+      if (e.touches) e.preventDefault(); // prevents page scroll while dragging
       const rect = elements.timelineTrack.getBoundingClientRect();
       const x = clientX - rect.left;
       let pct = Math.round((x / rect.width) * 100);
@@ -201,7 +189,7 @@ export default function initGeneratorGradienti() {
 
       state.stops[state.draggedStopIndex].position = pct;
 
-      // ordina dinamicamente mantenendo l'indice selezionato corretto
+      // Keep stops sorted while preserving the selected stop identity
       const draggedStop = state.stops[state.draggedStopIndex];
       state.stops.sort((a, b) => a.position - b.position);
       state.draggedStopIndex = state.stops.indexOf(draggedStop);
@@ -234,25 +222,21 @@ export default function initGeneratorGradienti() {
   }
 
   function updateUI() {
-    // 1. Anteprima visiva & traccia timeline
     const cssGradient = buildGradientCSSString(state.gradientType, state.angle, state.stops);
     elements.previewBox.style.background = cssGradient;
 
-    // Timeline track (sempre lineare da sinistra a destra)
+    // The timeline track is always rendered left-to-right linear, whatever the
+    // gradient type
     elements.timelineTrack.style.background = buildGradientCSSString("linear", 90, state.stops);
 
-    // 2. Rendering degli handles sulla timeline
     renderHandles();
 
-    // 3. Sync controlli Angolo (Compass, Range Slider e Numero)
     elements.angleRange.value = state.angle;
     elements.angleNum.value = state.angle;
     elements.angleCompassHand.style.transform = `rotate(${state.angle}deg)`;
 
-    // 4. Rendering dell'elenco verticale di stop colore
     renderStopsList();
 
-    // 5. Update codice box
     updateCodeOutput();
   }
 
@@ -267,7 +251,6 @@ export default function initGeneratorGradienti() {
       handle.style.left = `${stop.position}%`;
       handle.style.backgroundColor = stop.color;
 
-      // Click / Drag
       handle.addEventListener("mousedown", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -317,7 +300,6 @@ export default function initGeneratorGradienti() {
         </div>
       `;
 
-      // Selezione della riga
       row.addEventListener("click", () => {
         if (state.activeStopIndex !== index) {
           state.activeStopIndex = index;
@@ -325,20 +307,18 @@ export default function initGeneratorGradienti() {
         }
       });
 
-      // Modifica Colore Picker
       const picker = row.querySelector(".row-color-input");
       picker.addEventListener("input", (e) => {
         state.stops[index].color = e.target.value;
         updateUI();
       });
 
-      // Modifica Posizione Slider
       const slider = row.querySelector(".row-position-slider");
       slider.addEventListener("input", (e) => {
         const pct = parseInt(e.target.value, 10);
         state.stops[index].position = pct;
 
-        // Ordina e mantieni selezionato il medesimo oggetto
+        // Re-sort, keeping the same object selected
         const activeStop = state.stops[state.activeStopIndex];
         state.stops.sort((a, b) => a.position - b.position);
         state.activeStopIndex = state.stops.indexOf(activeStop);
@@ -346,13 +326,12 @@ export default function initGeneratorGradienti() {
         updateUI();
       });
 
-      // Elimina stop
       const delBtn = row.querySelector(".btn-delete-row-stop");
       if (state.stops.length <= 2) {
         delBtn.disabled = true;
       }
       delBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Evita di selezionare la riga eliminata
+        e.stopPropagation(); // avoid selecting the deleted row
         state.stops.splice(index, 1);
         state.activeStopIndex = 0;
         updateUI();
@@ -367,7 +346,7 @@ export default function initGeneratorGradienti() {
       const cssString = buildGradientCSSString(state.gradientType, state.angle, state.stops);
       elements.cssCode.textContent = `background: ${cssString};`;
     } else {
-      // Tailwind CSS arbitrary format
+      // Tailwind arbitrary-value format
       const stopsString = state.stops.map(s => `${s.color}_${s.position}%`).join(",_");
       if (state.gradientType === "linear") {
         elements.cssCode.textContent = `class="bg-[linear-gradient(${state.angle}deg,_${stopsString})]"`;
@@ -385,7 +364,6 @@ export default function initGeneratorGradienti() {
     return `radial-gradient(circle, ${stopsStr})`;
   }
 
-  // Interpolazione cromatica lineare (RGB)
   function getColorAtPercentage(pct) {
     if (state.stops.length === 0) return "#3b82f6";
     if (pct <= state.stops[0].position) return state.stops[0].color;

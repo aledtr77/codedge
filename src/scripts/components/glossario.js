@@ -1,3 +1,5 @@
+import { scrollBehavior } from "@/scripts/utils/motion.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const search = document.getElementById("search");
   const entries = Array.from(document.querySelectorAll(".main-content details"));
@@ -211,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const query = normalize(search?.value.trim() || "");
 
     if (!query) {
-      // Reset: show everything, close all, clear active
       entries.forEach((entry) => {
         entry.classList.remove("glossary-entry--hidden");
         entry.open = false;
@@ -230,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Classify and rank all entries
     const queryWords = query.split(/\s+/).filter(Boolean);
     const scored = entries.map((entry, index) => ({
       entry,
@@ -262,14 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const visibleTitlesSet = new Set(matches.map((c) => c.entry.dataset.glossaryTitle));
 
-    // Filter sidebar clickable items
     clickableItems.forEach((item) => {
       const itemTitle = normalize(item.textContent);
       const visible = visibleTitlesSet.has(itemTitle);
       item.classList.toggle("sidebar-item--hidden", !visible);
     });
 
-    // Filter and auto-expand sidebar groups
     asideGroups.forEach((group) => {
       const itemsInGroup = Array.from(group.list.querySelectorAll(".clickable-item"));
       const hasVisibleItems = itemsInGroup.some((item) => !item.classList.contains("sidebar-item--hidden"));
@@ -278,12 +276,10 @@ document.addEventListener("DOMContentLoaded", () => {
       group.list.classList.toggle("sidebar-group-list--hidden", !hasVisibleItems);
 
       if (hasVisibleItems) {
-        // Auto-expand group to show matching items
         group.list.hidden = false;
         group.heading.classList.add("is-open");
         group.heading.setAttribute("aria-expanded", "true");
       } else {
-        // Collapse and hide
         group.list.hidden = true;
         group.heading.classList.remove("is-open");
         group.heading.setAttribute("aria-expanded", "false");
@@ -304,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const gap = 16;
             termsContainer.scrollTo({
               top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
-              behavior: "smooth",
+              behavior: scrollBehavior(),
             });
           } else if (scrollWrapper) {
             // Mobile: scroll the entire wrapper
@@ -314,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const gap = 16;
             scrollWrapper.scrollTo({
               top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
-              behavior: "smooth",
+              behavior: scrollBehavior(),
             });
           }
         });
@@ -429,7 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
   prepareSearchData();
   syncHeaderOffset();
   setupAsideGroups();
-  // lockAsideScroll removed: body scroll is blocked; aside and main content scroll natively
 
   if ("ResizeObserver" in window && header) {
     new ResizeObserver(syncHeaderOffset).observe(header);
@@ -437,7 +432,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", syncHeaderOffset);
 
-  // Auto-scroll to matched term on typing
   search?.addEventListener("input", () => filterEntries(true));
 
   clickableItems.forEach((item) => {
@@ -468,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const gap = 16;
               termsContainer.scrollTo({
                 top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
-                behavior: "smooth",
+                behavior: scrollBehavior(),
               });
             } else if (scrollWrapper) {
               const wrapperRect = scrollWrapper.getBoundingClientRect();
@@ -477,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const gap = 16;
               scrollWrapper.scrollTo({
                 top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
-                behavior: "smooth",
+                behavior: scrollBehavior(),
               });
             }
           });

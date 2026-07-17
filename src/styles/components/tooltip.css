@@ -1,12 +1,8 @@
-/* Inizio Tooltip Styles */
-/* Per un controllo più granulare, puoi sovrascrivere la variabile per specifici elementi o classi.
- Per esempio:
-cssCopy.my-special-tooltip {
-  --tooltip-distance: 20px;
-}
-Puoi anche usare valori negativi per avvicinare il tooltip all'elemento, se necessario. */
+
+/* Override --tooltip-distance on a specific element or class for custom
+   spacing. */
 :root {
-  --tooltip-distance: 10px; /* Distanza di base del tooltip */
+  --tooltip-distance: 10px;
 }
 
 .tooltip {
@@ -51,7 +47,6 @@ Puoi anche usare valori negativi per avvicinare il tooltip all'elemento, se nece
   border-color: var(--background-six) transparent transparent transparent;
 }
 
-/* Varianti di posizionamento */
 .tooltip-top .tooltiptext {
   bottom: calc(100% + var(--tooltip-distance));
 }
@@ -99,4 +94,4 @@ Puoi anche usare valori negativi per avvicinare il tooltip all'elemento, se nece
   margin-right: 0;
   border-color: transparent var(--background-six) transparent transparent;
 }
-/* Fine Tooltip Styles */
+

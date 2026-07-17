@@ -32,8 +32,6 @@ header.header-scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-
-/* Header e Navbar */
 .navbar-container {
   display: flex;
   justify-content: flex-start;
@@ -166,7 +164,7 @@ header.header-scrolled {
 @media screen and (max-width: 1230px) {
   h1 {
     font-size: calc(1.2em + 0.8vw);
-    /* Riduzione graduale del font size */
+
     white-space: normal;
     word-wrap: break-word;
   }
@@ -198,7 +196,7 @@ header.header-scrolled {
 
   h1 {
     max-width: calc(100% - 40px);
-    /* Lascia spazio per l'icona del menu */
+
     order: 1;
     flex-basis: 100%;
     margin-bottom: 10px;
@@ -213,7 +211,7 @@ header.header-scrolled {
     height: 25px;
     transition: transform 0.3s ease;
     margin-left: auto;
-    /* Sposta l'icona a destra */
+
     background-color: transparent;
     border-radius: 3px;
   }
@@ -291,7 +289,6 @@ header.header-scrolled {
     text-decoration: none;
   }
 
-  /* sezione menu toggle */
   .sidebar-toggle {
     display: flex;
     flex-direction: column;
@@ -301,7 +298,7 @@ header.header-scrolled {
     height: 25px;
     position: fixed;
     top: 56px;
-    /* Aggiusta questa altezza in base all'altezza dell'header */
+
     left: 20px;
     z-index: 1002;
     background-color: transparent;
@@ -316,13 +313,12 @@ header.header-scrolled {
     transition: all 0.3s;
   }
 
-  /* Effetto hover */
   .sidebar-toggle:hover .bar,
   .menu-icon:hover .bar {
     background-color: var(--color-three);
-    /* Cambia colore delle barre */
+
     transform: scale(1.1);
-    /* Ingrandisce leggermente le barre */
+
     cursor: pointer;
   }
 
@@ -341,7 +337,6 @@ header.header-scrolled {
     transform: rotate(-45deg) translate(7.3px, -7.3px);
   }
 
-  /* Media query per schermi ancora più piccoli */
   @media screen and (max-width: 480px) {
     .navbar-container {
       padding: 5px var(--mobile-page-gutter-tight);
@@ -351,12 +346,10 @@ header.header-scrolled {
     }
   }
 
-  /* ✅ Blocco dello scroll con menu aperto */
   body.no-scroll {
     overflow: hidden;
   }
 
-  /* ✅ Effetto staggered fade-in per le voci del menu mobile */
   .nav-menu .nav-item {
     opacity: 0;
     transform: translateY(-6px);

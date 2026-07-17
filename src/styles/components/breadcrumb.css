@@ -1,4 +1,4 @@
-/* src/styles/components/breadcrumb.css */
+
 :root {
   --breadcrumb-text-color: rgba(242, 242, 242, 0.6);
   --breadcrumb-hover-color: var(--color-three, #0084ff);
@@ -43,7 +43,6 @@
   line-height: 1.2;
 }
 
-/* Link styling */
 .codedge-breadcrumbs-bar a.breadcrumb-link {
   color: var(--breadcrumb-text-color);
   text-decoration: none;
@@ -64,7 +63,6 @@
   color: var(--breadcrumb-hover-color);
 }
 
-/* Separator using FontAwesome chevron */
 .codedge-breadcrumbs-bar li:not(:last-child)::after {
   content: "\f054";
   font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
@@ -77,7 +75,6 @@
   opacity: 0.6;
 }
 
-/* Active current page heading */
 .codedge-breadcrumbs-bar .breadcrumb-current {
   font-size: 0.85rem;
   font-weight: 600;
@@ -87,7 +84,6 @@
   display: inline;
 }
 
-/* Responsive adjustment for Mobile screens */
 @media screen and (max-width: 768px) {
   .codedge-breadcrumbs-bar {
     padding: 8px var(--mobile-page-gutter, 1.25rem);
@@ -95,14 +91,20 @@
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar on Firefox */
+    scrollbar-width: none;
   }
-  
+
   .codedge-breadcrumbs-bar::-webkit-scrollbar {
-    display: none; /* Hide scrollbar on Chrome/Safari/Webkit */
+    display: none;
   }
 
   .codedge-breadcrumbs-bar ol {
     flex-wrap: nowrap; /* Do not wrap inside the scrollable container */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codedge-breadcrumbs-bar {
+    animation: none;
   }
 }

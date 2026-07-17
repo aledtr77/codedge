@@ -1,3 +1,5 @@
+import { scrollBehavior } from "@/scripts/utils/motion.js";
+
 export function initReadingProgress(rootSelector = "[data-reading-progress]") {
   const root = document.querySelector(rootSelector);
   if (!root) return;
@@ -45,13 +47,13 @@ export function initReadingProgress(rootSelector = "[data-reading-progress]") {
       event.preventDefault();
       scroller.scrollTo({
         top: getSectionTop(target) - 16,
-        behavior: "smooth",
+        behavior: scrollBehavior(),
       });
     });
   });
 
   topButton?.addEventListener("click", () => {
-    scroller.scrollTo({ top: 0, behavior: "smooth" });
+    scroller.scrollTo({ top: 0, behavior: scrollBehavior() });
   });
 
   scroller.addEventListener("scroll", update, { passive: true });

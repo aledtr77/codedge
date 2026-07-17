@@ -1,5 +1,4 @@
-// src/scripts/components/guide-quiz.js
-// Motore dinamico per i quiz interattivi guidati da dati (quizzes-db.js).
+// Data-driven quiz engine (questions come from quizzes-db.js).
 import { quizzesData } from "@/scripts/data/quizzes-db.js";
 
 export default function initGuideQuiz() {
@@ -88,7 +87,6 @@ export default function initGuideQuiz() {
     const nextBtn = card.querySelector(".quiz-next-btn");
     const feedbackBox = card.querySelector(".quiz-feedback-box");
 
-    // Abilita il pulsante di verifica quando viene selezionata un'opzione
     inputs.forEach((input) => {
       input.addEventListener("change", () => {
         submitBtn.disabled = false;
@@ -101,12 +99,10 @@ export default function initGuideQuiz() {
 
       const isCorrect = selectedInput.value === "true";
 
-      // Disabilita tutti gli input per bloccare la risposta
       inputs.forEach((input) => {
         input.disabled = true;
       });
 
-      // Evidenzia le risposte corrette ed errate
       const optionRows = card.querySelectorAll(".quiz-option-row");
       optionRows.forEach((row) => {
         const isRowCorrect = row.dataset.correct === "true";
@@ -120,7 +116,6 @@ export default function initGuideQuiz() {
         }
       });
 
-      // Aggiorna punteggio e mostra feedback
       if (isCorrect) {
         score++;
         card.querySelector(".quiz-score-live").textContent = `Punti: ${score}`;
@@ -131,7 +126,6 @@ export default function initGuideQuiz() {
         feedbackBox.className = "quiz-feedback-box is-wrong";
       }
 
-      // Mostra pulsante successivo
       submitBtn.classList.add("is-hidden");
       nextBtn.classList.remove("is-hidden");
     });
@@ -152,7 +146,6 @@ export default function initGuideQuiz() {
     if (score === 10) {
       msg = "Perfetto! Hai risposto correttamente a tutte le 10 domande. Sei ufficialmente un esperto di questo capitolo!";
       
-      // Generazione dinamica di 30 particelle di coriandoli
       confettiHtml = '<div class="quiz-confetti-container">';
       const colors = ["#7cf5c4", "#66d9ff", "#e5c158", "#ff6b6b"];
       for (let i = 0; i < 30; i++) {

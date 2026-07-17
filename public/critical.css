@@ -12,6 +12,8 @@ html body *:focus:not(:focus-visible) {
 
 html {
   background-color: #0d111a;
+  /* Dark native UI from the first paint - kept in sync with main.css. */
+  color-scheme: dark;
   --nav-link-hover-color: #0084ff;
   --nav-link-active-color: #7fd1ff;
   overflow-x: clip;
@@ -34,11 +36,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/*
- * Il contenuto deve restare visibile anche se il bundle JavaScript non viene
- * eseguito. Nascondere l'intero body fino a `data-page-ready="true"` rendeva
- * la pagina vuota in caso di errore o rendering JS incompleto.
- */
+/* Content must stay visible even when the JS bundle never runs: hiding the
+   whole body until data-page-ready="true" blanked the page for bots and no-JS
+   users. The anti-FOUC path only engages when html.js is set. */
 html[data-page-ready] body {
   opacity: 1;
 }
@@ -262,7 +262,6 @@ img {
   }
 }
 
-/* ✅ Effetto pressione tattile (pressione fisica) per tutti i pulsanti e link interattivi del sito */
 .button-simple,
 .back-link,
 .tool-back-link,
@@ -301,19 +300,16 @@ body button:active {
   transform: scale(0.985) translateY(0.5px);
 }
 
-/* ✅ Indicatori di focus accessibili ed eleganti */
 *:focus-visible {
   outline: 2px solid var(--color-three, #0084ff);
   outline-offset: 4px;
   box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.25);
 }
 
-/* ✅ Blocco dello scroll con menu aperto */
 body.no-scroll {
   overflow: hidden;
 }
 
-/* ✅ Effetto staggered fade-in per le voci del menu mobile */
 @media screen and (max-width: 768px) {
   .nav-menu .nav-item {
     opacity: 0;
@@ -334,8 +330,8 @@ body.no-scroll {
   .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.25s; }
 }
 
-/* ✅ Anti-FOUC: nasconde il body all'avvio solo se JS è attivo, rivelandolo a caricamento completato.
-   Kept in sync with main.css's copy of this rule - see there for why :root replaces !important. */
+/* Anti-FOUC twin of main.css's rule - see there for why :root replaces
+   !important. Keep both copies in sync. */
 html.js:root body[data-css-ready="pending"] {
   opacity: 0;
 }
@@ -343,5 +339,4 @@ html.js:root body[data-css-ready="ready"] {
   opacity: 1;
   transition: opacity 0.25s ease;
 }
-
 

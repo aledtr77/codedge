@@ -1,13 +1,12 @@
-// scripts/indexnow-ping.mjs
-// Notifica IndexNow (Bing & co.) degli URL nuovi o modificati.
+// Pings IndexNow (Bing & friends) with new or changed URLs.
 //
-// Uso:
-//   node scripts/indexnow-ping.mjs --all              tutti gli URL della sitemap
-//   node scripts/indexnow-ping.mjs /tutorial/x/ ...   solo le route indicate
-//   ... --dry-run                                     mostra il payload senza inviare
+// Usage:
+//   node scripts/indexnow-ping.mjs --all              every sitemap URL
+//   node scripts/indexnow-ping.mjs /tutorial/x/ ...   specific routes
+//   ... --dry-run                                     print payload, no send
 //
-// La chiave è quella ospitata in public/<chiave>.txt: è pubblica per design
-// (l'endpoint la verifica proprio scaricando quel file dal sito).
+// The key is the one hosted at public/<key>.txt: public by design, the
+// endpoint verifies ownership by downloading that very file.
 
 import fs from 'fs';
 import path from 'path';
@@ -22,8 +21,8 @@ function readBaseUrl() {
   return String(pkg.homepage || 'https://codedge.it/').replace(/\/+$/, '');
 }
 
-// Trova il file chiave in public/: un .txt il cui contenuto (esadecimale)
-// coincide con il nome del file stesso.
+// The key file in public/: a .txt whose hex content matches its own
+// basename.
 function findKey() {
   for (const name of fs.readdirSync(publicRoot)) {
     if (!/^[0-9a-f]{16,64}\.txt$/i.test(name)) continue;
@@ -94,7 +93,7 @@ const res = await fetch(ENDPOINT, {
   body: JSON.stringify(payload)
 });
 
-// 200 = ok, 202 = accettato (chiave in corso di verifica): entrambi buoni.
+// 200 = ok; 202 = accepted, key verification still pending. Both fine.
 if (res.ok) {
   console.log(`IndexNow: inviato, risposta ${res.status} ${res.statusText}`);
 } else {

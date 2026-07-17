@@ -710,7 +710,6 @@
   }
 }
 
-/* Quiz Interattivo Pilota */
 /* .quiz-section is declared after .guide-block (same specificity, later in
    this file), so it already wins the shared background/border/padding props
    on source order alone - no !important needed. */
@@ -733,7 +732,7 @@
   font-size: 1.05rem;
   line-height: 1.6;
   color: rgba(236, 244, 255, 0.75);
-  /* Override default guide-block h2 + p style */
+
   background: transparent;
   border: none;
   padding: 0;
@@ -802,7 +801,6 @@
   gap: 0.95rem;
 }
 
-/* Selectable Radio Button Row */
 .quiz-option-row {
   display: flex;
   align-items: center;
@@ -826,7 +824,6 @@
   box-shadow: 0 4px 12px rgba(0, 132, 255, 0.06);
 }
 
-/* Hide native input */
 .quiz-option-input {
   position: absolute;
   opacity: 0;
@@ -834,7 +831,6 @@
   height: 0;
 }
 
-/* Custom Radio Circle */
 .quiz-radio-circle {
   flex-shrink: 0;
   width: 20px;
@@ -851,7 +847,6 @@
   transform: scale(1.05);
 }
 
-/* Selection State (active radio dot) */
 .quiz-option-row:has(.quiz-option-input:checked) {
   background: rgba(0, 132, 255, 0.08);
   border-color: rgba(0, 132, 255, 0.45);
@@ -875,7 +870,6 @@
   animation: scaleUp 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Keyboard focus */
 .quiz-option-row:has(.quiz-option-input:focus-visible) {
   outline: 2px solid #7fd1ff;
   outline-offset: 2px;
@@ -893,7 +887,6 @@
   box-shadow: none;
 }
 
-/* Correct answer reveal styling */
 .quiz-option-row.is-correct-answer,
 .quiz-option-row.is-correct-answer:has(.quiz-option-input:checked) {
   background: rgba(46, 213, 115, 0.08);
@@ -922,7 +915,6 @@
   background: transparent;
 }
 
-/* Wrong answer reveal styling */
 .quiz-option-row.is-wrong-answer,
 .quiz-option-row.is-wrong-answer:has(.quiz-option-input:checked) {
   background: rgba(255, 71, 87, 0.08);
@@ -965,7 +957,6 @@
   font-weight: 500;
 }
 
-/* Feedback Block */
 .quiz-feedback-box {
   padding: 1.1rem 1.4rem;
   border-radius: 12px;
@@ -987,7 +978,6 @@
   color: #ffb3b9;
 }
 
-/* Actions Container */
 .quiz-actions {
   display: flex;
   margin-top: 0.8rem;
@@ -1050,7 +1040,6 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Quiz Confetti Animation Styles */
 .quiz-results-card {
   position: relative;
   overflow: hidden;
@@ -1087,7 +1076,6 @@
   }
 }
 
-/* Cheat Sheet Table Premium & Responsive Styles */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -1102,7 +1090,7 @@
 .table-wrapper table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 580px; /* Impedisce il collasso illeggibile delle colonne su mobile */
+  min-width: 580px; /* Prevents unreadable column collapse on mobile */
   text-align: left;
 }
 
@@ -1137,4 +1125,19 @@
 
 .table-wrapper tbody tr:hover {
   background: rgba(0, 168, 255, 0.03);
+}
+
+/* prefers-reduced-motion: entry animations off; confetti is pure decorative
+   motion, so it disappears entirely. */
+@media (prefers-reduced-motion: reduce) {
+  .quiz-card,
+  .quiz-option-row:has(.quiz-option-input:checked) .quiz-radio-circle::after,
+  .quiz-feedback-box,
+  .quiz-results-card {
+    animation: none;
+  }
+
+  .quiz-confetti-particle {
+    display: none;
+  }
 }

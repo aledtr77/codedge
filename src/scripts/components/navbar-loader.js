@@ -1,5 +1,4 @@
-// src/scripts/components/navbar-loader.js
-// Segna la navbar statica come pronta e applica lo stato attivo del link corrente.
+// Marks the static navbar as ready and applies the current-page link state.
 
 !(function () {
   "use strict";

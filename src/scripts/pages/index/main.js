@@ -1,10 +1,8 @@
-// src/scripts/pages/index/main.js — minimalissimo e funzionale
 import '@/styles/components/main.css';
 import '@/styles/components/navbar.css';
 import '@/styles/components/footer.css';
 import '@/styles/pages/index/index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-// Responsive images via vite-imagetools
 import homeHeroImageAvif from '@/assets/images/shop-template/home.jpg?w=480;800;1200&format=avif&as=srcset';
 import homeHeroImageWebp from '@/assets/images/shop-template/home.jpg?w=480;800;1200&format=webp&as=srcset';
 import fallbackHomeHeroImage from '@/assets/images/shop-template/home.jpg?width=1200';
@@ -26,7 +24,6 @@ if (heroImage) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 3D Tilt Parallax Effect on Homepage Hero
   const heroFrame = document.querySelector('.hero-visual-frame');
   if (heroFrame && heroImage) {
     heroFrame.addEventListener('mousemove', (e) => {

@@ -1,11 +1,9 @@
-// src/scripts/components/breadcrumb-vocabulary.js
-// Vocabolario e formattazione degli slug, condivisi tra la breadcrumb runtime
-// (breadcrumb.js) e la generazione build-time dei dati strutturati
-// (scripts/seo-jsonld-plugin.mjs): le etichette visibili e quelle nei
-// BreadcrumbList JSON-LD devono coincidere.
+// Slug vocabulary and formatting, shared between the runtime breadcrumb
+// (breadcrumb.js) and the build-time structured data (seo-jsonld-plugin.mjs):
+// the visible labels and the BreadcrumbList JSON-LD must stay identical.
 
 export const BREADCRUMB_VOCABULARY = {
-  // Categorie principali (parenti)
+  // Parent categories
   "risorse": "Risorse",
   "strumenti": "Strumenti",
   "componenti-ui": "Componenti UI",
@@ -13,13 +11,13 @@ export const BREADCRUMB_VOCABULARY = {
   "template": "Template",
   "percorsi-apprendimento": "Percorsi di Apprendimento",
 
-  // Specifiche eccezioni di pagine per le quali non vogliamo dipendere dal DOM o come fallback
+  // Page-specific overrides
   "privacy-policy": "Privacy Policy",
   "termini-servizio": "Termini di Servizio",
   "chi-sono": "Chi Sono",
   "contatti": "Contatti",
 
-  // Acronimi e abbreviazioni comuni
+  // Acronyms and casing fixes
   "ui": "UI",
   "html": "HTML",
   "css": "CSS",
@@ -35,10 +33,10 @@ export const BREADCRUMB_VOCABULARY = {
   "github": "GitHub",
   "devtools": "DevTools",
 
-  // Parole degli slug che perdono l'accento nell'URL
+  // Slug words that lose their accent in the URL
   "accessibilita": "Accessibilità",
 
-  // Congiunzioni/Preposizioni in minuscolo (per la formattazione automatica)
+  // Prepositions kept lowercase mid-title
   "di": "di",
   "a": "a",
   "da": "da",
@@ -57,27 +55,23 @@ const LOWERCASE_WORDS = ["di", "a", "da", "in", "con", "su", "per", "tra", "fra"
 export function formatSegment(segment) {
   if (!segment) return "";
 
-  // Se l'intero segmento è mappato direttamente nel vocabolario, usalo subito
   if (BREADCRUMB_VOCABULARY[segment.toLowerCase()]) {
     return BREADCRUMB_VOCABULARY[segment.toLowerCase()];
   }
 
-  // Altrimenti spezza per trattino, capitalizza e applica sostituzioni
   return segment
     .split(/[-_]+/)
     .map((word, index) => {
       const lowerWord = word.toLowerCase();
 
-      // Controlla se la parola fa parte del vocabolario (es. "ui" -> "UI", "di" -> "di")
       if (BREADCRUMB_VOCABULARY[lowerWord]) {
-        // La prima parola del segmento deve essere sempre capitalizzata, anche se è una congiunzione
+        // The first word is always capitalized, even when it is a preposition
         if (index === 0 && LOWERCASE_WORDS.includes(lowerWord)) {
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }
         return BREADCRUMB_VOCABULARY[lowerWord];
       }
 
-      // Capitalizzazione standard
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
     .join(" ");

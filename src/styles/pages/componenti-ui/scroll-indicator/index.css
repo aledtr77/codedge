@@ -190,3 +190,9 @@
     margin-top: 0.5rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress__content {
+    scroll-behavior: auto;
+  }
+}

@@ -1,29 +1,20 @@
-// src/scripts/pages/risorse/main.js
-// Entry per la pagina "Risorse"
-
-// CSS globali
 import "@/styles/components/main.css";
 import "@/styles/components/navbar.css";
 import "@/styles/components/footer.css";
 import "@/styles/components/button.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-// CSS specifico pagina
 import '@/styles/pages/strumenti/generatore-gradienti/index.css';
 
-// side-effect modules (se li usano)
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // se la pagina ha l'elemento del generatore, carichiamo il modulo separato
   if (document.getElementById("previewBox")) {
     try {
-      // usa import relativo per permettere il bundling da parte di Vite
       const mod = await import("./generatore-gradienti.js");
-      // se il modulo esporta default() la chiamiamo
       if (mod && typeof mod.default === "function") {
         mod.default();
       } else if (mod && typeof mod.initGeneratorGradienti === "function") {

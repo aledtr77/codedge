@@ -1,5 +1,3 @@
-// src/scripts/pages/strumenti/generatore-colori/generatore-colori.js
-
 let palette = [
   { hex: "#264653", locked: false },
   { hex: "#2A9D8F", locked: false },
@@ -8,7 +6,6 @@ let palette = [
   { hex: "#E76F51", locked: false }
 ];
 
-// Dictionary of colors for human-readable name matching
 const COLOR_NAMES = [
   { name: "Rosso Fuoco", r: 231, g: 76, b: 60 },
   { name: "Rosso Corallo", r: 230, g: 126, b: 34 },
@@ -75,7 +72,6 @@ export function initColorGenerator() {
     return;
   }
 
-  // ============ Tooltip Helper ============
   function showTooltip(el, msg, duration = 1500) {
     if (!el) return;
     let tip = el.querySelector(".tooltiptext");
@@ -95,7 +91,6 @@ export function initColorGenerator() {
     }, duration);
   }
 
-  // ============ Color Converter Helpers ============
   function hexToRgb(hex) {
     const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return r ? {
@@ -170,7 +165,6 @@ export function initColorGenerator() {
     return calculateLuminance(hex) > 0.45;
   }
 
-  // Find the closest descriptive name for a color
   function getColorName(hex) {
     const rgb = hexToRgb(hex);
     if (!rgb) return "Sconosciuto";
@@ -189,8 +183,6 @@ export function initColorGenerator() {
     }
     return closestName;
   }
-
-  // ============ Core Logic ============
 
   function loadPaletteFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -309,7 +301,6 @@ export function initColorGenerator() {
       card.className = `color-card ${isLight ? "light-color" : ""}`;
       card.style.backgroundColor = color.hex;
 
-      // Card inner HTML with lock, copy, picker and shades overlay
       card.innerHTML = `
         <div class="color-card-actions">
           <button class="card-action-btn lock-btn ${color.locked ? "is-locked" : ""}" title="${color.locked ? "Sblocca colore" : "Blocca colore"}">
@@ -345,7 +336,6 @@ export function initColorGenerator() {
         </div>
       `;
 
-      // Event listeners
       const lockBtn = card.querySelector(".lock-btn");
       const copyBtn = card.querySelector(".copy-btn");
       const shadesBtn = card.querySelector(".shades-btn");
@@ -354,7 +344,6 @@ export function initColorGenerator() {
       const shadesPanel = card.querySelector(".shades-panel");
       const closeShadesBtn = card.querySelector(".close-shades-btn");
 
-      // Lock action
       lockBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         color.locked = !color.locked;
@@ -370,7 +359,6 @@ export function initColorGenerator() {
         }
       });
 
-      // Copy Action
       function copyHexAction(e) {
         e.stopPropagation();
         navigator.clipboard.writeText(color.hex)
@@ -380,7 +368,6 @@ export function initColorGenerator() {
       copyBtn.addEventListener("click", copyHexAction);
       hexText.addEventListener("click", copyHexAction);
 
-      // Picker manual adjustment
       pickerInput.addEventListener("input", (e) => {
         color.hex = e.target.value;
         card.style.backgroundColor = color.hex;
@@ -403,14 +390,12 @@ export function initColorGenerator() {
         updateContrastChecker();
       });
 
-      // Open shades panel
       shadesBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         const hsl = hexToHsl(color.hex);
         const shadesList = shadesPanel.querySelector(".shades-list");
         shadesList.innerHTML = "";
 
-        // Generate 9 steps of lightness from 10% to 90%
         for (let i = 1; i <= 9; i++) {
           const l = i * 10;
           const shadeHex = hslToHex(hsl.h, hsl.s, l);
@@ -450,7 +435,6 @@ export function initColorGenerator() {
     updateContrastChecker();
   }
 
-  // ============ Recommended Presets ============
   function renderPresets() {
     if (!presetsContainer) return;
     presetsContainer.innerHTML = "";
@@ -483,7 +467,6 @@ export function initColorGenerator() {
     });
   }
 
-  // ============ Live UI Mockup Updater ============
   function updateLiveMockup() {
     const mockupBody = document.getElementById("live-mockup-body");
     const mockupNav = document.getElementById("mockup-nav");
@@ -501,26 +484,21 @@ export function initColorGenerator() {
     const c4 = palette[3].hex; // Card background
     const c5 = palette[4].hex; // Main body background
 
-    // 1. Mockup background
     mockupBody.style.backgroundColor = c5;
     mockupBody.style.color = isLightColor(c5) ? "#1e293b" : "#f8fafc";
     heroText.style.color = isLightColor(c5) ? "rgba(30, 41, 59, 0.7)" : "rgba(248, 250, 252, 0.7)";
 
-    // 2. Navbar
     mockupNav.style.backgroundColor = c1;
     mockupNav.style.color = isLightColor(c1) ? "#1e293b" : "#ffffff";
     mockupNav.querySelectorAll(".mockup-link").forEach(l => {
       l.style.color = isLightColor(c1) ? "rgba(30, 41, 59, 0.8)" : "rgba(255, 255, 255, 0.8)";
     });
 
-    // 3. Hero Text
     heroTitle.style.color = c2;
 
-    // 4. CTA Button
     heroBtn.style.backgroundColor = c3;
     heroBtn.style.color = isLightColor(c3) ? "#1e293b" : "#ffffff";
 
-    // 5. Card Component
     cardBody.style.backgroundColor = c4;
     cardBody.style.color = isLightColor(c4) ? "#1e293b" : "#ffffff";
     const cardP = cardBody.querySelector("p");
@@ -528,12 +506,10 @@ export function initColorGenerator() {
       cardP.style.color = isLightColor(c4) ? "rgba(30, 41, 59, 0.7)" : "rgba(255, 255, 255, 0.6)";
     }
 
-    // 6. Card Badge
     cardBadge.style.backgroundColor = c2;
     cardBadge.style.color = isLightColor(c2) ? "#1e293b" : "#ffffff";
   }
 
-  // ============ Contrast Checker Section ============
   function updateContrastCheckerOptions() {
     if (!bgSelect || !textSelect) return;
     
@@ -609,7 +585,6 @@ export function initColorGenerator() {
     `;
   }
 
-  // ============ Export Helpers ============
   function copyTextToClipboard(text, button, successMsg) {
     navigator.clipboard.writeText(text)
       .then(() => {
@@ -621,7 +596,6 @@ export function initColorGenerator() {
       });
   }
 
-  // Bind Events
   btnGenerate.addEventListener("click", () => generateRandomPalette());
 
   bgSelect.addEventListener("change", updateContrastChecker);
@@ -642,7 +616,6 @@ export function initColorGenerator() {
     copyTextToClipboard(window.location.href, btnCopyLink, "Link Copiato!");
   });
 
-  // Spacebar to trigger random generation
   document.addEventListener("keydown", (e) => {
     const targetTag = e.target.tagName.toLowerCase();
     if (targetTag === "input" || targetTag === "select" || targetTag === "textarea") {
@@ -655,7 +628,6 @@ export function initColorGenerator() {
     }
   });
 
-  // Bootstrapping
   loadPaletteFromUrl();
   renderPalette();
   renderPresets();

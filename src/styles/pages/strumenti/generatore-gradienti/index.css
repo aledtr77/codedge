@@ -1,4 +1,4 @@
-/* Rebuilt CSS Gradient Generator Styles (Spacious & Responsive Rebuild) */
+
 
 .gradient-page {
   width: 95%;
@@ -53,7 +53,6 @@
   margin: 0;
 }
 
-/* Spacious Asymmetric Grid Layout */
 .gradient-workspace {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -61,7 +60,6 @@
   width: 100%;
 }
 
-/* Common Control Blocks */
 .control-block {
   display: flex;
   flex-direction: column;
@@ -102,13 +100,11 @@
   margin-bottom: 0.35rem;
 }
 
-/* Left Panel Controls Column */
 .controls-panel {
   display: flex;
   flex-direction: column;
 }
 
-/* Type & Angle Row controls */
 .type-angle-row {
   display: flex;
   gap: 2.2rem;
@@ -131,7 +127,6 @@
   pointer-events: none;
 }
 
-/* Gradient Type Toggle buttons styling */
 .gradient-type-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -164,14 +159,12 @@
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.25);
 }
 
-/* Angle Slider Control (Compass + Range + Text) */
 .angle-slider-control {
   display: flex;
   align-items: center;
   gap: 1.25rem;
 }
 
-/* Visual Angle Compass Dial Widget */
 .angle-compass {
   position: relative;
   width: 66px;
@@ -286,7 +279,6 @@
   margin-left: 2px;
 }
 
-/* Quick Direction angles buttons */
 .quick-angles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -313,7 +305,6 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Color Stops Timeline Track & Handles */
 .gradient-timeline-wrapper {
   position: relative;
   margin: 0.5rem 0 1.5rem 0;
@@ -375,7 +366,6 @@
   z-index: 10;
 }
 
-/* Color Stops List (Editable Rows) */
 .stops-list {
   display: flex;
   flex-direction: column;
@@ -517,7 +507,6 @@
   cursor: not-allowed;
 }
 
-/* Add stop big button */
 .btn-add-stop-main {
   background: rgba(255, 255, 255, 0.03);
   border: 1px dashed rgba(255, 255, 255, 0.15);
@@ -543,13 +532,11 @@
   transform: translateY(-1px);
 }
 
-/* Right Panel Preview & Code Columns */
 .preview-panel {
   display: flex;
   flex-direction: column;
 }
 
-/* Preview Box Card with Mockup overlay */
 .preview-card {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
@@ -595,7 +582,6 @@
   color: var(--hover-color);
 }
 
-/* Live Mockup UI Card Overlay */
 .mockup-ui-card {
   background: rgba(18, 18, 18, 0.72);
   backdrop-filter: blur(8px);
@@ -659,7 +645,6 @@
   opacity: 0.9;
 }
 
-/* Export Code Box */
 .code-export-block {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -746,7 +731,6 @@
   color: var(--hover-color);
 }
 
-/* Presets Block & Grids */
 .preset-gradients {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -767,7 +751,6 @@
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-/* Toast Copy Feedback Tooltip */
 .tooltip-container {
   position: absolute;
   bottom: 12px;
@@ -802,7 +785,6 @@ body > main .section {
   margin-bottom: 2.5rem;
 }
 
-/* SEO Description Article & FAQs */
 .seo-text-content p,
 .faq-content p {
   text-align: justify;
@@ -836,7 +818,6 @@ body > main .section {
   font-size: 1.05rem;
 }
 
-/* Responsive Overrides */
 @media (max-width: 968px) {
   .gradient-workspace {
     grid-template-columns: 1fr;
@@ -859,7 +840,7 @@ body > main .section {
     width: 100%;
     min-width: 0;
   }
-  
+
   .angle-slider-control {
     flex-direction: column;
     align-items: center;

@@ -1,13 +1,11 @@
-// snippet-library.js
 // initSnippets() - class-only sidebar + robust copy feedback & event delegation
+import { scrollBehavior } from "@/scripts/utils/motion.js";
+
 export function initSnippets() {
-  /* ----------------------
-     Robust copy-to-clipboard with feedback ("Copiato!")
-     ---------------------- */
+  // Copy-to-clipboard with visual and screen-reader feedback
   function findCodeElementFromButton(btn) {
     if (!btn) return null;
 
-    // 1) If inside .snippet-box or .code-container, prefer that
     const ancestorPriority = ['.snippet-box', '.code-container', '.code'];
     for (const sel of ancestorPriority) {
       const anc = btn.closest(sel);
@@ -17,7 +15,6 @@ export function initSnippets() {
       }
     }
 
-    // 2) Search siblings/nearby: look for nextElementSibling chain
     let el = btn;
     while (el && el.parentElement) {
       let sib = el.nextElementSibling;
@@ -29,7 +26,6 @@ export function initSnippets() {
       el = el.parentElement;
     }
 
-    // 3) last resort: search within parent
     if (btn.parentElement) {
       const fallback = btn.parentElement.querySelector('pre code, code');
       if (fallback) return fallback;
@@ -45,7 +41,6 @@ export function initSnippets() {
         await navigator.clipboard.writeText(text);
         return true;
       } catch (e) {
-        // fall through to fallback
       }
     }
     try {
@@ -76,7 +71,6 @@ export function initSnippets() {
       }
       const text = codeEl.innerText || codeEl.textContent || '';
       copyTextToClipboard(text).then((ok) => {
-        // accessible live region
         let live = document.getElementById('__copy_live_region');
         if (!live) {
           live = document.createElement('div');
@@ -91,7 +85,6 @@ export function initSnippets() {
         }
         live.textContent = ok ? 'Copiato' : 'Copia fallita';
 
-        // visual feedback (preserve original)
         if (!btn.dataset._origHtml) btn.dataset._origHtml = btn.innerHTML;
         const iconHTML = btn.querySelector('i') ? btn.querySelector('i').outerHTML : '';
         btn.innerHTML = iconHTML + ' Copiato!';
@@ -113,9 +106,7 @@ export function initSnippets() {
     }
   }
 
-  /* ----------------------
-     Dynamic header height offset synchronization
-     ---------------------- */
+  // Keep --snippet-header-offset in sync with the real header height
   const header = document.querySelector('header');
   function syncHeaderOffset() {
     if (!header) return;
@@ -128,16 +119,13 @@ export function initSnippets() {
   }
   window.addEventListener('resize', syncHeaderOffset);
 
-  /* ----------------------
-     Mobile redesign (Pills, Toggles) & Sidebar smooth scrolling
-     ---------------------- */
+  // Category pills, code toggles, sidebar scrolling
   const pills = document.querySelectorAll('.category-pill');
   const sections = document.querySelectorAll('.snippet-section');
   const boxes = document.querySelectorAll('.snippet-box');
   const snippetMain = document.querySelector('.snippet-main');
   const mobileQuery = window.matchMedia('(max-width: 980px)');
 
-  // 1) Initialize toggle buttons inside each snippet box titleBox on page load
   boxes.forEach(box => {
     const titleBox = box.querySelector('.title-box');
     if (!titleBox) return;
@@ -146,8 +134,8 @@ export function initSnippets() {
     toggleBtn.className = 'toggle-code-btn';
     toggleBtn.setAttribute('aria-expanded', 'false');
     toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
-    // Prima del "Prova Live" (se presente), così su mobile l'ordine resta
-    // [Copia] [Vedi Codice] sulla riga e la barra "Prova Live" in coda.
+    // Before "Prova Live" when present: on mobile the row order stays
+    // [Copia] [Vedi Codice] with the "Prova Live" bar last.
     const playBtn = titleBox.querySelector('.play-btn');
     if (playBtn) {
       titleBox.insertBefore(toggleBtn, playBtn);
@@ -156,9 +144,7 @@ export function initSnippets() {
     }
   });
 
-  // 2) Centralized Event Delegation on document for all click actions
   document.addEventListener('click', (ev) => {
-    // Copy code button click
     const copyBtn = ev.target.closest('.copy-btn');
     if (copyBtn) {
       ev.preventDefault();
@@ -166,7 +152,6 @@ export function initSnippets() {
       return;
     }
 
-    // Category Pill filter click
     const pill = ev.target.closest('.category-pill');
     if (pill) {
       ev.preventDefault();
@@ -180,16 +165,14 @@ export function initSnippets() {
       return;
     }
 
-    // "Vedi Codice" collapsible button click
     const toggleBtn = ev.target.closest('.toggle-code-btn');
     if (toggleBtn) {
       ev.preventDefault();
       const box = toggleBtn.closest('.snippet-box');
       if (box) {
-        // Un playground aperto nasconde il wrapper del codice: chiuderlo prima
-        // evita che il toggle scatti "a vuoto" su un blocco invisibile.
-        // Si passa dal "Chiudi Live" della title-box: dentro gli snippet-box
-        // il playground non ha un proprio pulsante Chiudi.
+        // An open playground hides the code wrapper: close it first so the toggle
+        // does not fire on an invisible block. Closing goes through the title-box
+        // "Chiudi Live" - snippet-box playgrounds have no close button of their own.
         const playground = box.querySelector('.code-playground');
         if (playground) {
           const playBtn = box.querySelector('.play-btn');
@@ -209,7 +192,6 @@ export function initSnippets() {
       return;
     }
 
-    // Clickable Sidebar Item click (smooth scroll)
     const it = ev.target.closest('.clickable-item');
     if (it) {
       const href = it.getAttribute('href') || it.dataset.target;
@@ -224,15 +206,14 @@ export function initSnippets() {
             const gap = 16;
             snippetMain.scrollTo({
               top: snippetMain.scrollTop + (elRect.top - containerRect.top) - gap,
-              behavior: 'smooth'
+              behavior: scrollBehavior()
             });
 
-            // Visually activate clicked item
             const items = document.querySelectorAll('.clickable-item');
             items.forEach(item => item.classList.remove('is-active'));
             it.classList.add('is-active');
           } else {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            el.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
           }
         }
       }
@@ -240,7 +221,6 @@ export function initSnippets() {
     }
   });
 
-  // 3) Sync layout on query match
   function handleQueryChange() {
     if (!mobileQuery.matches) {
       sections.forEach(sec => {

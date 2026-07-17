@@ -1,6 +1,5 @@
-// src/scripts/pages/footer/contatti/contatti.js
-// Modulo per il form contatti. Esporta initContactForm().
-// Supporta sia l'uso via CDN (window.emailjs) che via pacchetto npm (@emailjs/browser).
+// Contact form module. Works with EmailJS from either the CDN
+// (window.emailjs) or the npm package (@emailjs/browser).
 
 let _initialized = false;
 let _bound = false;
@@ -11,13 +10,13 @@ let _feedbackTimer = null;
 async function ensureEmailjs() {
   if (_emailjs) return _emailjs;
 
-  // Prima prova il CDN (window.emailjs)
+  // CDN first
   if (typeof window !== "undefined" && window.emailjs) {
     _emailjs = window.emailjs;
     return _emailjs;
   }
 
-  // Altrimenti prova a importare dinamicamente il pacchetto (richiede npm install @emailjs/browser)
+  // Fall back to the npm package via dynamic import
   try {
     const mod = await import("@emailjs/browser");
     _emailjs = mod.default || mod;
@@ -62,7 +61,7 @@ export async function initContactForm({
     return;
   }
 
-  // inizializza (emailjs.init è idempotente)
+  // emailjs.init is idempotent
   try {
     if (typeof emailjs.init === "function") {
       emailjs.init(userId);
@@ -221,7 +220,7 @@ export async function initContactForm({
     _bound = true;
   }
 
-  // Ritorniamo un oggetto per poter distruggere il binding se necessario (utile per HMR)
+  // Return a destroyer so the binding can be torn down (useful under HMR)
   return {
     destroy() {
       if (_bound && _submitHandler) {

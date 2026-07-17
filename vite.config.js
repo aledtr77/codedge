@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
@@ -44,7 +43,7 @@ const htmlMinifyOptions = {
 };
 
 const antiFoucCss = [
-  'html{background:#0d111a;color:#f2f2f2}',
+  'html{background:#0d111a;color:#f2f2f2;color-scheme:dark}',
   'html.js:root body[data-css-ready="pending"]{opacity:0}',
   'html.js:root body[data-css-ready="ready"]{opacity:1;transition:opacity 0.25s ease}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
@@ -195,7 +194,7 @@ function staticNavbarHtmlPlugin() {
   };
 }
 
-// --- DEV: riscrive URL pulite (/risorse/) verso pages/<route>/index.html ---
+// Dev only: rewrites clean URLs (/risorse/) to pages/<route>/index.html
 function devPagesRewrite() {
   return {
     name: 'dev-pages-rewrite',
@@ -220,7 +219,7 @@ function devPagesRewrite() {
         ];
         if (skipPrefixes.some((p) => pathname.startsWith(p))) return next();
 
-        // evita rewrite di richieste file espliciti (es. /robots.txt)
+        // no rewrite for explicit file requests (e.g. /robots.txt)
         if (path.extname(pathname)) return next();
 
         const cleanPath = pathname.replace(/^\/+/, '').replace(/\/+$/, '');
@@ -239,7 +238,7 @@ function devPagesRewrite() {
   };
 }
 
-// Build: sposta i file generati in dist/pages/* dentro dist/*
+// Build: hoists dist/pages/* to dist/* so URLs match the page tree
 function movePagesToRootPlugin(outDir) {
   return {
     name: 'move-pages-to-root',
@@ -277,7 +276,6 @@ export default defineConfig(({ command }) => {
     }
   }
 
-  // html minifier (solo in build)
   const htmlMinifierPlugin = {
     name: 'html-minifier',
     transformIndexHtml: {

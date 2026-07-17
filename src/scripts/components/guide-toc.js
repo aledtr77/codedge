@@ -1,5 +1,6 @@
-// src/scripts/components/guide-toc.js
-// Gestione dell'indice (TOC) navigabile per le guide e i tutorial, con Scrollspy attivo.
+// Navigable TOC for guides and tutorials, with active scrollspy.
+
+import { scrollBehavior } from "@/scripts/utils/motion.js";
 
 export default function initGuideToc() {
   const tocLinks = Array.from(document.querySelectorAll('.guide-toc a[href^="#"]'));
@@ -33,7 +34,6 @@ export default function initGuideToc() {
       section.classList.toggle("is-active", section.id === id);
     });
 
-    // Fa scorrere il menu laterale per mantenere l'argomento attivo sempre visibile
     if (activeLink) {
       const container = document.querySelector('.guide-toc');
       if (container) {
@@ -43,17 +43,17 @@ export default function initGuideToc() {
         const elemBottom = elemTop + activeLink.clientHeight;
 
         if (elemTop < containerTop) {
-          container.scrollTo({ top: elemTop - 20, behavior: "smooth" });
+          container.scrollTo({ top: elemTop - 20, behavior: scrollBehavior() });
         } else if (elemBottom > containerBottom) {
-          container.scrollTo({ top: elemBottom - container.clientHeight + 20, behavior: "smooth" });
+          container.scrollTo({ top: elemBottom - container.clientHeight + 20, behavior: scrollBehavior() });
         }
       }
     }
   };
 
   const getCurrentSection = () => {
-    // Gestione raggiungimento fondo pagina per evidenziare l'ultimo capitolo
-    // Usiamo una tolleranza ristretta (30px) ed escludiamo pagine non scrollabili per evitare falsi positivi
+    // Tight 30px tolerance, and non-scrollable pages excluded, to avoid
+    // false "last chapter" positives.
     const scrollY = window.scrollY || window.pageYOffset;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const isAtBottom = maxScroll > 0 && scrollY >= maxScroll - 30;
@@ -100,7 +100,7 @@ export default function initGuideToc() {
         target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
       history.replaceState(null, "", href);
-      window.scrollTo({ top, behavior: "smooth" });
+      window.scrollTo({ top, behavior: scrollBehavior() });
       setActiveState(target.id);
     });
   });
@@ -114,7 +114,7 @@ export default function initGuideToc() {
       setTimeout(() => {
         const top =
           target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-        window.scrollTo({ top, behavior: "smooth" });
+        window.scrollTo({ top, behavior: scrollBehavior() });
         setActiveState(target.id);
       }, 30);
       return;

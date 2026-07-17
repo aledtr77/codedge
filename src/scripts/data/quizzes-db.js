@@ -1,7 +1,6 @@
-// src/scripts/data/quizzes-db.js
-// Database centrale contenente le domande dei quiz dei tutorial di Codedge.it.
-// Tutte le entità HTML speciali (come < e >) sono state convertite in &lt; e &gt; 
-// per evitare che il browser le interpreti come tag reali rompendo l'interfaccia.
+// Central question bank for the tutorial quizzes.
+// HTML entities (&lt; &gt;) are mandatory in every string: raw < > would be
+// parsed as real tags and break the quiz UI.
 
 export const quizzesData = {
   "html-fondamentali": [

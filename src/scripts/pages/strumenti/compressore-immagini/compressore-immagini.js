@@ -1,4 +1,3 @@
-// src/scripts/pages/strumenti/compressore-immagini/compressore-immagini.js
 import Compressor from "compressorjs";
 
 let initialized = false;
@@ -68,7 +67,6 @@ export function initImageCompressor() {
   }
 
   function bindEvents() {
-    // Dropzone upload trigger
     elements.uploadArea.addEventListener("click", () => elements.fileInput.click());
     
     elements.uploadArea.addEventListener("dragover", (event) => {
@@ -91,8 +89,6 @@ export function initImageCompressor() {
       const file = event.target.files?.[0];
       if (file) await handleSelectedFile(file);
     });
-
-
 
     setupSlider(elements.qualitySlider, elements.qualityFill, elements.qualityValueInput, "%");
     setupSlider(elements.maxWidthSlider, elements.maxWidthFill, elements.maxWidthValueInput, "px");
@@ -159,11 +155,10 @@ export function initImageCompressor() {
       return;
     }
 
-    // Resetta fileInput per consentire il re-upload dello stesso file
+    // Reset the input so the same file can be re-uploaded
     elements.fileInput.value = "";
     elements.resultsContainer.style.display = "flex";
 
-    // Genera riga dinamica di caricamento
     const rowId = `row-${Date.now()}`;
     const rowEl = document.createElement("div");
     rowEl.className = "result-file-row";
@@ -192,7 +187,6 @@ export function initImageCompressor() {
 
     elements.resultsList.insertBefore(rowEl, elements.resultsList.firstChild);
 
-    // Esegui la compressione asincrona in background
     setTimeout(async () => {
       try {
         const quality = clamp(Number.parseInt(elements.qualitySlider.value, 10), 35, 95) / 100;
@@ -210,7 +204,6 @@ export function initImageCompressor() {
           });
         });
 
-        // Aggiorna la riga con il successo ed il link per scaricare
         const savedPercent = ((file.size - compressedBlob.size) / file.size) * 100;
         const savedText = savedPercent > 0 ? `-${savedPercent.toFixed(0)}%` : "0%";
 
@@ -310,7 +303,6 @@ export function initImageCompressor() {
     return map[mimeType] || "img";
   }
 
-  // Helper utility to clamp numbers
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
   }

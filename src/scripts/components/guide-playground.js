@@ -1,11 +1,10 @@
-// src/scripts/components/guide-playground.js
-// Componente dinamico per iniettare playground interattivi (Editor + Iframe)
-// nei blocchi di codice HTML e CSS di Codedge.it.
+// Injects interactive playgrounds (editor + sandboxed iframe preview) into
+// HTML and CSS code blocks. Inside .snippet-box the single "Prova Live"
+// button lives in the title-box; outside, a per-block toolbar is built.
 
 export default function initGuidePlayground() {
   const codeBlocks = Array.from(document.querySelectorAll("pre code"));
 
-  // Template HTML predefinito per testare il CSS in modo visivo
   const cssDefaultHtml = (userCss) => `
 <!DOCTYPE html>
 <html lang="it">
@@ -84,11 +83,10 @@ export default function initGuidePlayground() {
   `.trim();
 
   const htmlDefaultTemplate = (userHtml) => {
-    // Se l'HTML ha già i tag strutturali, lo lasciamo così.
+    // User HTML that already brings <html>/<body> is used as-is
     if (userHtml.includes("<html") || userHtml.includes("<body")) {
       return userHtml;
     }
-    // Altrimenti creiamo un wrapper base pulito
     return `
 <!DOCTYPE html>
 <html lang="it">
@@ -212,7 +210,7 @@ export default function initGuidePlayground() {
     ? `<i class="fas fa-times"></i> Chiudi Live`
     : `<i class="fas fa-play"></i> Prova Live`;
 
-  // Allinea il pulsante "Prova Live" di un box allo stato del playground
+  // Sync the box "Prova Live" button with the playground state
   const syncPlayButtons = (scope, open) => {
     scope.querySelectorAll(".play-btn").forEach((btn) => {
       btn.innerHTML = playButtonLabel(open);
@@ -221,7 +219,6 @@ export default function initGuidePlayground() {
     });
   };
 
-  // 1) Avvolge i blocchi di codice e inserisce le toolbar/pulsanti staticamente
   codeBlocks.forEach((codeEl) => {
     const preEl = codeEl.parentElement;
     if (!preEl || preEl.tagName !== "PRE") return;
@@ -244,14 +241,12 @@ export default function initGuidePlayground() {
       const toolbar = document.createElement("div");
       toolbar.className = "code-toolbar";
 
-      // Bottone Copia Codice
       const copyBtn = document.createElement("button");
       copyBtn.type = "button";
       copyBtn.className = "code-btn";
       copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
       toolbar.appendChild(copyBtn);
 
-      // Bottone Prova Live (disponibile solo per HTML e CSS)
       if (lang === "html" || lang === "css") {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
@@ -262,8 +257,8 @@ export default function initGuidePlayground() {
 
       wrapper.appendChild(toolbar);
     } else if (lang === "html" || lang === "css") {
-      // Siamo in snippet-box: un unico Prova Live nella titleBox, insieme
-      // alle altre azioni del box (sia desktop che mobile)
+      // snippet-box: one "Prova Live" in the title-box, next to the other box
+      // actions (desktop and mobile share the same placement)
       const titleBox = snippetBox.querySelector('.title-box');
       if (titleBox) {
         const editBtn = document.createElement("button");
@@ -276,21 +271,20 @@ export default function initGuidePlayground() {
     }
   });
 
-  // 2) Gestore dell'apertura del playground interattivo
   const openPlayground = (wrapper, initialCode, lang) => {
     wrapper.style.display = "none";
 
-    // Dentro .snippet-box la chiusura passa dal "Chiudi Live" della title-box,
-    // che resta visibile: un secondo "Chiudi" nell'header sarebbe ridondante.
-    // Fuori (guide), la toolbar sparisce col wrapper e questo è l'unico Chiudi.
+    // Inside .snippet-box closing goes through the always-visible "Chiudi Live"
+    // in the title-box, so no duplicate close in the header. Outside (guides)
+    // the toolbar disappears with the wrapper: this close is the only one.
     const inSnippetBox = Boolean(wrapper.closest(".snippet-box"));
     const closeBtnHtml = inSnippetBox
       ? ""
       : `<button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>`;
 
     const playground = document.createElement("div");
-    // Su mobile si parte dall'anteprima (tab "pane-preview"); su desktop i due
-    // pannelli restano impilati e i tab sono nascosti via CSS.
+    // Mobile starts on the preview tab; on desktop both panels stay stacked
+    // and the tabs are hidden via CSS.
     playground.className = "code-playground pane-preview";
     playground.dataset.initialCode = initialCode;
 
@@ -327,15 +321,14 @@ export default function initGuidePlayground() {
 
     textarea.value = initialCode;
 
-    // srcdoc + sandbox="allow-scripts": l'anteprima gira in un'origin opaca,
-    // senza accesso alla pagina che la ospita.
+    // srcdoc + sandbox="allow-scripts": the preview runs in an opaque origin
+    // with no access to the hosting page.
     const updatePreview = () => {
       const code = textarea.value;
       iframe.srcdoc = lang === "css" ? cssDefaultHtml(code) : htmlDefaultTemplate(code);
     };
 
-    // Aggiornamento in tempo reale con debounce per non riscrivere
-    // l'iframe a ogni singolo tasto
+    // Debounced live preview: avoid rewriting the iframe on every keystroke
     let previewTimer = null;
     textarea.addEventListener("input", () => {
       clearTimeout(previewTimer);
@@ -354,9 +347,8 @@ export default function initGuidePlayground() {
     }
   };
 
-  // 3) Delegazione degli Eventi Click globale su document
+  // Single delegated click handler for every playground control
   document.addEventListener("click", (ev) => {
-    // A) Click su Prova Live all'interno di .snippet-box (.play-btn)
     const playBtn = ev.target.closest(".play-btn");
     if (playBtn) {
       ev.preventDefault();
@@ -378,7 +370,6 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // B) Click su toolbar statiche (.code-btn dei normali pre code)
     const codeBtn = ev.target.closest(".code-btn");
     if (codeBtn) {
       ev.preventDefault();
@@ -403,7 +394,6 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // C) Click su bottone Chiudi all'interno del playground (.btn-close)
     const btnClose = ev.target.closest(".btn-close");
     if (btnClose) {
       ev.preventDefault();
@@ -412,7 +402,6 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // D) Click sui tab Anteprima/Editor (visibili solo su mobile)
     const tabBtn = ev.target.closest(".playground-tab");
     if (tabBtn) {
       ev.preventDefault();
@@ -430,7 +419,6 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // E) Click su bottone Ripristina (.btn-reset)
     const btnReset = ev.target.closest(".btn-reset");
     if (btnReset) {
       ev.preventDefault();
@@ -446,7 +434,6 @@ export default function initGuidePlayground() {
       return;
     }
 
-    // F) Click su bottone Copia Codice del playground (.btn-copy)
     const btnCopy = ev.target.closest(".btn-copy");
     if (btnCopy) {
       ev.preventDefault();

@@ -1,5 +1,6 @@
-/* ── Glossary pages: full-viewport locked layout ── */
-/* Page scroll is completely disabled; only the content panels scroll */
+/* Glossary app shell: the page itself never scrolls, only the sidebar and the
+   terms panel do. The mobile block near the end undoes this lock. */
+
 html, body {
   height: 100%;
   overflow: hidden;
@@ -7,12 +8,9 @@ html, body {
 
 body {
   --glossary-header-offset: var(--header-height, 132px);
-  /* Spacing scale, base unit 0.25rem (4px). Built from values already reused
-     across this file, so the whole glossary shares one consistent rhythm
-     instead of ad hoc rem numbers. Icon/button-coupled offsets (e.g. the
-     summary toggle's reserved padding, the copy button's own position) are
-     deliberately NOT tokenized - they express pixel alignment with a
-     fixed-size decoration, not spacing rhythm. */
+  /* Spacing scale (base 0.25rem). Icon/button-coupled offsets (summary toggle
+     padding, copy button position) are deliberately NOT tokenized: they
+     express pixel alignment with fixed-size decorations, not spacing rhythm. */
   --glossary-space-3xs: 0.25rem; /* tightest gaps: badge padding, list-row gaps */
   --glossary-space-2xs: 0.5rem; /* small internal gaps: sidebar list, chip padding */
   --glossary-space-xs: 0.75rem; /* compact padding: ol gap, button padding */
@@ -22,7 +20,7 @@ body {
   --glossary-space-xl: 2.75rem; /* code-container indent, outer content margin-bottom */
   --glossary-space-2xl: 4rem; /* end-of-list safe scroll buffer */
   --glossary-navbar-gap: var(--glossary-space-md);
-  background: #090d16; /* Deep dark cosmic background */
+  background: #090d16;
   color: var(--text-color);
   font-family: var(--main-font);
   margin: 0;
@@ -32,10 +30,9 @@ body {
   flex-direction: column;
 }
 
-/* Fixed header: overlays the content wrapper to allow scrolling underneath.
-   Also targets header.header-hidden directly (same specificity as navbar.css's
-   own rule, loaded after it) so the smart-hide-on-scroll transform never wins
-   here, without needing !important. */
+/* Fixed header. header.header-hidden is matched at equal specificity, declared
+   after navbar.css, so the smart-hide scroll transform can never win here
+   without !important. */
 header,
 header.header-hidden {
   position: fixed;
@@ -47,11 +44,10 @@ header.header-hidden {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  /* Disable the smart-hide navbar behaviour on glossary pages */
+
   transform: none;
 }
 
-/* Soft gradient below header for depth */
 header::after {
   content: "";
   position: absolute;
@@ -117,7 +113,6 @@ main.main-content {
   padding: 0;
 }
 
-/* Scrollable wrapper: locked container to support independent inner column scrolling */
 .glossary-scroll-wrapper {
   flex: 1 1 0;
   overflow: hidden;
@@ -149,7 +144,7 @@ main.main-content {
   min-width: 0;
   height: 100%;
   overflow-y: auto;
-  padding-right: 0.75rem; /* Breathing room for scrollbar */
+  padding-right: 0.75rem;
   padding-left: 0.25rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 211, 255, 0.25) transparent;
@@ -273,9 +268,8 @@ aside {
   transform: translateX(4px);
 }
 
-/* Search-filter hidden state: declared after the base display rules above
-   (.clickable-item, .concept-group, .concept-group-list) so it wins on source
-   order alone, without needing !important. */
+/* Search-filter hidden states: declared after the base display rules above, so
+   they win on source order alone - no !important. */
 .sidebar-item--hidden,
 .sidebar-group--hidden,
 .sidebar-group-list--hidden {
@@ -285,7 +279,7 @@ aside {
 .main-content section {
   display: grid;
   gap: var(--glossary-space-sm);
-  padding-bottom: var(--glossary-space-2xl); /* Safe scroll buffer at the bottom */
+  padding-bottom: var(--glossary-space-2xl);
 }
 
 details {
@@ -297,8 +291,8 @@ details {
   -webkit-backdrop-filter: blur(10px);
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -314,7 +308,8 @@ details[open] {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 15px rgba(56, 189, 248, 0.08);
 }
 
-/* Hide filtered-out entries without collapsing the main-content grid layout */
+/* display:none via class (not [hidden]) so filtering cannot collapse the grid
+   track the aside relies on. */
 details.glossary-entry--hidden {
   display: none;
 }
@@ -326,8 +321,8 @@ summary {
   gap: var(--glossary-space-2xs) var(--glossary-space-xs);
   align-items: center;
   min-height: 3.5rem;
-  /* Right padding clears the "+" toggle footprint (1.25rem offset + 2.1rem
-     width = 3.35rem) plus 0.75rem of guaranteed air between text and button */
+  /* Right padding must clear the + toggle footprint (1.25rem offset + 2.1rem
+     width = 3.35rem) plus 0.75rem of guaranteed air between text and button. */
   padding: var(--glossary-space-sm) 4.1rem var(--glossary-space-sm) var(--glossary-space-md);
   color: #ffffff;
   cursor: pointer;
@@ -358,8 +353,8 @@ summary::after {
   font-size: 1.4rem;
   font-weight: 300;
   line-height: 1;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 0.25s ease, 
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.25s ease,
               background-color 0.25s ease,
               border-color 0.25s ease;
 }
@@ -559,7 +554,7 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* Evita che il pulsante di ritorno venga tagliato dal gradiente sfumato dell'header sticky */
+/* Keeps the back link clear of the sticky header fade gradient. */
 .breadcrumb-container {
   max-width: 1900px;
   margin: 3.25rem auto 0 auto;
@@ -688,5 +683,11 @@ pre::-webkit-scrollbar-thumb:hover {
 
   .code-container {
     margin: 0 0 var(--glossary-space-sm) var(--glossary-space-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  details[open] > :not(summary) {
+    animation: none;
   }
 }

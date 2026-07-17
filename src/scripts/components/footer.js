@@ -1,6 +1,5 @@
-// src/scripts/components/footer.js
-// Inizializza il footer già presente nel markup statico e gestisce il piccolo
-// adjust "sticky" per le pagine con contenuto più corto della viewport.
+// Boots the static footer and applies the sticky-bottom adjust for pages
+// shorter than the viewport.
 
 (function () {
   'use strict';
@@ -12,7 +11,6 @@
     window.dispatchEvent(new Event(READY_EVENT));
   }
 
-  // Semplice normalizzazione dei link: se link senza href ma con data-href -> trasforma in href
   function initFooterLinks(container) {
     if (!container) return;
     container.querySelectorAll('a').forEach(a => {
@@ -20,7 +18,6 @@
         a.setAttribute('href', a.dataset.href);
         delete a.dataset.href;
       }
-      // fallback click handler (solo per link senza href)
       a.addEventListener('click', function (ev) {
         if (!this.getAttribute('href') && this.dataset && this.dataset.href) {
           ev.preventDefault();
@@ -30,7 +27,6 @@
     });
   }
 
-  // Piccolo helper che rende il footer "fixed bottom" se il contenuto è più corto della viewport
   function initFooterAdjustment(footerEl) {
     if (!footerEl) return;
 
@@ -73,8 +69,8 @@
       });
     }
 
-    // Applichiamo subito e al load completo: i timeout ritardati introducevano
-    // un salto visibile del layout dopo il primo paint.
+    // Run immediately and again on load: delayed timeouts caused a visible
+    // layout jump after first paint.
     setTimeout(adjust, 0);
     window.addEventListener('resize', adjust, { passive: true });
     window.addEventListener('orientationchange', adjust, { passive: true });
@@ -93,11 +89,9 @@
     markReady();
   }
 
-  // Avvia al DOMContentLoaded (comportamento semplice, side-effect voluto)
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadFooter);
   } else {
-    // se lo script viene eseguito dopo il DOM ready
     loadFooter();
   }
 

@@ -74,10 +74,10 @@ function lastModifiedForFile(filePath) {
 
     if (!lastCommitDate) return fallback();
 
-    // Solo la data dell'ultimo commit che tocca la pagina stessa: includere
-    // i commit "globali" (tema, navbar) appiattiva il lastmod di tutte le
-    // URL sulla stessa data a ogni ritocco di CSS, e un lastmod che cambia
-    // sempre è un lastmod che i motori imparano a ignorare.
+    // Only the last commit touching the page itself: folding in "global"
+    // commits (theme, navbar) flattened every lastmod to the same date on any
+    // CSS touch-up, and an always-changing lastmod is one crawlers learn to
+    // ignore.
     return new Date(lastCommitDate).toISOString();
   } catch {
     return fallback();

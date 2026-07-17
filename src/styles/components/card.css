@@ -1,6 +1,5 @@
-/* ====== CARD EFFECTS ENHANCEMENT - DA AGGIUNGERE AL TUO CSS ====== */
 
-/* Card base - versione migliorata */
+
 .card {
   width: 100%;
   max-width: 340px;
@@ -19,7 +18,6 @@
   overflow: hidden;
 }
 
-/* Effetto gradiente superiore */
 .card::before {
   content: "";
   position: absolute;
@@ -43,7 +41,6 @@
   pointer-events: none;
 }
 
-/* Effetto hover migliorato */
 .card:hover {
   transform: translateY(-3px);
   background: var(--card-bg-hover);
@@ -55,7 +52,6 @@
   transform: scaleX(1);
 }
 
-/* Titolo e icona */
 .card h4 {
   font-size: 1.8em;
   font-family: var(--heading-font);
@@ -76,7 +72,7 @@
   filter: drop-shadow(0 0 8px rgba(0, 132, 255, 0.7));
 }
 
-/* Contenuto: occupa lo spazio rimanente, spinge il CTA in fondo */
+/* Content grows to fill, pinning the CTA to the bottom */
 .card p {
   margin: 0 0 1.5rem 0;
   flex: 1 1 auto;
@@ -85,7 +81,6 @@
   opacity: 0.9;
 }
 
-/* Preview del contenuto (se presente) */
 .card .resource-preview {
   font-family: "Courier New", monospace;
   padding: 0.5rem;
@@ -95,7 +90,6 @@
   opacity: 0.8;
 }
 
-/* Bottone/CTA sempre in fondo e centrato */
 .card .button-simple,
 .card span.button-simple {
   margin-top: auto;
@@ -108,7 +102,6 @@
   box-shadow: 0 6px 16px rgba(0, 132, 255, 0.25);
 }
 
-/* Coming soon variant */
 .coming-soon {
   border-color: rgba(255, 208, 82, 0.34);
   background:
@@ -149,7 +142,6 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.16);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .card {
     max-width: none;

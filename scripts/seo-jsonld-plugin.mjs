@@ -1,11 +1,10 @@
-// scripts/seo-jsonld-plugin.mjs
-// Plugin Vite: inietta dati strutturati JSON-LD nelle pagine in build,
-// senza toccare i sorgenti in pages/:
-//  - BreadcrumbList  su ogni pagina indicizzabile (etichette identiche alla
-//    breadcrumb visibile, stesso vocabolario condiviso)
-//  - TechArticle     sui tutorial che non ne hanno già uno scritto a mano
-//  - DefinedTermSet  sui glossari (un DefinedTerm per ogni voce)
-// Le pagine che hanno già un blocco di quel @type vengono lasciate stare.
+// Vite plugin: injects JSON-LD into built pages without touching pages/
+// sources.
+//   - BreadcrumbList  on every indexable page (labels identical to the
+//     visible breadcrumbs via the shared vocabulary)
+//   - TechArticle     on tutorials that lack a hand-written one
+//   - DefinedTermSet  on the glossaries (one DefinedTerm per entry)
+// Pages already carrying a block of a given @type are left alone.
 
 import fs from 'fs';
 import path from 'path';
@@ -23,9 +22,8 @@ function readBaseUrl(projectRoot) {
   }
 }
 
-// Estrae il valore di un attributo da un tag trovato via regex sull'HTML.
-// I meta del progetto sono spesso scritti su più righe, quindi niente
-// matching riga-per-riga: si scandiscono i tag interi.
+// Attribute extraction that scans whole tags: meta tags in this project
+// often span multiple lines, so line-based matching misses them.
 function findTagAttr(html, tagRegex, mustMatch, attr) {
   const tags = html.match(tagRegex) || [];
   for (const tag of tags) {
@@ -61,7 +59,7 @@ function gitDate(projectRoot, filePath, { first = false } = {}) {
     }).trim();
     if (!out) return '';
     const lines = out.split('\n');
-    // per la data di pubblicazione serve il commit più vecchio (ultima riga)
+    // publication date needs the oldest commit (last line)
     return (first ? lines[lines.length - 1] : lines[0]).slice(0, 10);
   } catch {
     return '';
@@ -155,7 +153,7 @@ export default function seoJsonLdPlugin() {
         const filename = ctx.filename ? path.resolve(ctx.filename) : '';
         if (!filename.startsWith(pagesRoot + path.sep)) return html;
 
-        // Niente dati strutturati su redirect stub e pagine noindex
+        // No structured data on redirect stubs or noindex pages
         if (/http-equiv\s*=\s*["']refresh["']/i.test(html)) return html;
         if (/<meta\b[^>]*name\s*=\s*["']robots["'][^>]*noindex/i.test(html)) return html;
 
@@ -179,8 +177,8 @@ export default function seoJsonLdPlugin() {
         const valid = blocks.filter(Boolean);
         if (!valid.length) return html;
 
-        // < al posto di "<" dentro le stringhe JSON: un contenuto che
-        // citasse "</script>" non può chiudere il blocco per sbaglio.
+        // Escape < inside JSON strings: content quoting "</script>" must not be
+        // able to close the block.
         const scripts = valid
           .map((obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`)
           .join('\n');

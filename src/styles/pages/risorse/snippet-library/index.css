@@ -1,5 +1,6 @@
-/* ── Snippet Library page: full-viewport locked layout ── */
-/* Page scroll is completely disabled on desktop; only the content panels scroll */
+/* Snippet Library app shell: page scroll is disabled on desktop, only the
+   panels scroll; the max-width:980px block undoes the lock. */
+
 html, body {
   height: 100%;
   overflow: hidden;
@@ -8,7 +9,7 @@ html, body {
 body {
   --snippet-header-offset: var(--header-height, 60px);
   --snippet-navbar-gap: 1.25rem;
-  background: #090d16; /* Deep dark cosmic background */
+  background: #090d16;
   color: var(--text-color);
   font-family: var(--main-font);
   margin: 0;
@@ -18,10 +19,9 @@ body {
   flex-direction: column;
 }
 
-/* Fixed header: overlays the content wrapper to allow scrolling underneath.
-   Also targets header.header-hidden directly (same specificity as navbar.css's
-   own rule, loaded after it) so the smart-hide-on-scroll transform never wins
-   here, without needing !important. */
+/* Fixed header. header.header-hidden is matched at equal specificity, declared
+   after navbar.css, so the smart-hide scroll transform can never win here
+   without !important. */
 header,
 header.header-hidden {
   position: fixed;
@@ -36,7 +36,6 @@ header.header-hidden {
   transform: none;
 }
 
-/* Breadcrumb positioning */
 .breadcrumb-container {
   max-width: 1440px;
   margin: 1.5rem auto 0 auto;
@@ -45,7 +44,6 @@ header.header-hidden {
   box-sizing: border-box;
 }
 
-/* Scroll wrapper for the page contents */
 .snippet-scroll-wrapper {
   flex: 1 1 0;
   overflow: hidden;
@@ -55,7 +53,6 @@ header.header-hidden {
   min-height: 0;
 }
 
-/* Main page layout */
 .snippet-container {
   flex: 1 1 0;
   display: grid;
@@ -72,7 +69,6 @@ header.header-hidden {
   display: none;
 }
 
-/* Sidebar scroll panel */
 .snippet-sidebar {
   grid-column: 1;
   height: 100%;
@@ -196,7 +192,6 @@ header.header-hidden {
   transform: translateX(4px);
 }
 
-/* Right Content scroll panel */
 .snippet-main {
   grid-column: 2;
   margin-left: 0;
@@ -225,8 +220,8 @@ header.header-hidden {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   scroll-margin-top: 24px;
-  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -254,9 +249,9 @@ header.header-hidden {
   margin-right: auto; /* Group buttons together on the right side on desktop */
 }
 
-/* min-width sui pulsanti d'azione: le etichette cambiano con lo stato
-   ("Copia" -> "Copiato!", "Prova Live" -> "Chiudi Live") e la larghezza
-   riservata evita che il resto della riga slitti a ogni cambio. */
+/* Reserved min-widths: labels swap with state ("Copia"->"Copiato!", "Prova
+   Live"->"Chiudi Live"); fixed widths keep the row from shifting on every
+   toggle. */
 .copy-btn {
   display: inline-flex;
   align-items: center;
@@ -328,9 +323,9 @@ header.header-hidden {
   display: none;
 }
 
-/* Il doppio selettore con [class*="language-"] serve a vincere sul tema
-   Prism (caricato dopo questo file): a parità di specificità vincerebbe lui,
-   reimponendo background, padding, overflow e white-space propri. */
+/* The [class*="language-"] twin selector beats the Prism theme (loaded after
+   this file), which would otherwise re-impose its own background, padding,
+   overflow and white-space. */
 .snippet-box pre,
 .snippet-box pre[class*="language-"] {
   margin: 1.25rem 0 0 0;
@@ -351,7 +346,6 @@ header.header-hidden {
   font-size: 0.9rem;
 }
 
-/* Scrollbars styling */
 .snippet-sidebar::-webkit-scrollbar,
 .snippet-main::-webkit-scrollbar,
 .snippet-box pre::-webkit-scrollbar {
@@ -430,13 +424,12 @@ header.header-hidden {
     flex: 1 0 auto;
     grid-column: 1;
     margin-left: 0;
-    min-width: 0; /* Impedisce ai contenuti larghi (codice) di allargare la griglia */
+    min-width: 0; /* min-width:0 keeps wide code from stretching the grid track */
     padding: 0;
     height: auto;
     overflow-y: visible;
   }
 
-  /* Mobile Category Pills Selector - Premium Overhaul */
   .mobile-category-selector {
     display: flex;
     align-items: center;
@@ -448,7 +441,7 @@ header.header-hidden {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
-  
+
   .mobile-category-selector::-webkit-scrollbar {
     display: none;
   }
@@ -475,7 +468,7 @@ header.header-hidden {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.15);
   }
-  
+
   .category-pill.active {
     background: linear-gradient(135deg, #0084ff 0%, #00a8ff 100%);
     border-color: #00a8ff;
@@ -483,7 +476,6 @@ header.header-hidden {
     box-shadow: 0 4px 14px rgba(0, 132, 255, 0.4);
   }
 
-  /* Dynamic Toggle Button Styling (Vedi Codice) */
   .toggle-code-btn {
     display: inline-flex;
     align-items: center;
@@ -499,25 +491,20 @@ header.header-hidden {
     cursor: pointer;
     transition: all 0.2s ease;
   }
-  
+
   .toggle-code-btn:hover,
   .toggle-code-btn:focus-visible {
     background: rgba(56, 189, 248, 0.16);
     border-color: rgba(56, 189, 248, 0.45);
     color: #fff;
   }
-  
+
   .toggle-code-btn.active {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.18);
     color: #fff;
   }
 
-  /* Collapsible Code Container.
-     overflow-wrap: anywhere spezza solo i token che non entrano nella riga,
-     invece di rompere ogni parola al bordo come faceva break-all.
-     Anche qui il doppio selettore vince sul tema Prism, che altrimenti
-     riporterebbe white-space: pre facendo traboccare la pagina di lato. */
   .snippet-box pre,
   .snippet-box pre[class*="language-"] {
     display: none;
@@ -547,10 +534,10 @@ header.header-hidden {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Title Box: titolo su riga propria, sotto [Copia] [Vedi Codice] a
-     larghezza uguale e, per gli snippet HTML/CSS, la barra "Prova Live"
-     a tutta larghezza. Tutte le azioni del box vivono qui, in alto:
-     niente pulsanti sparsi da cercare scrollando il codice. */
+  /* Mobile title-box contract: heading on its own row, [Copia][Vedi Codice]
+     sharing one row equally, and for HTML/CSS snippets the full-width "Prova
+     Live" bar below. Every box action lives here - nothing down by the code
+     block. */
   .title-box {
     display: flex;
     flex-flow: row wrap;
@@ -597,7 +584,6 @@ header.header-hidden {
     border-radius: 8px;
   }
 
-  /* Pure CSS Sticky Footer dock override */
   footer {
     position: static;
     margin-top: auto;
@@ -618,9 +604,8 @@ header.header-hidden {
   }
 }
 
-/* Integration overrides for the interactive code playground inside snippet-box.
-   La .code-toolbar non esiste dentro .snippet-box (guide-playground la crea
-   solo fuori), quindi qui si azzera soltanto la cornice del wrapper. */
+/* Inside .snippet-box there is no .code-toolbar (guide-playground only builds
+   it outside), so this just flattens the wrapper chrome. */
 .snippet-box .code-wrapper {
   margin: 1.25rem 0 0 0;
   border: none;
@@ -629,7 +614,6 @@ header.header-hidden {
   padding: 0;
 }
 
-/* Ensure the playground splits nicely inside the snippet box without breaking typography */
 .snippet-box .code-playground {
   margin: 1.25rem 0 0 0;
   border-color: rgba(56, 189, 248, 0.25);
@@ -638,4 +622,11 @@ header.header-hidden {
 .snippet-box .playground-iframe {
   background: #ffffff;
   border: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snippet-box.code-expanded pre,
+  .snippet-box.code-expanded pre[class*="language-"] {
+    animation: none;
+  }
 }

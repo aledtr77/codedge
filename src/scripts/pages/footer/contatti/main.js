@@ -1,4 +1,3 @@
-// src/scripts/pages/index/main.js — minimalissimo e funzionale
 import '@/styles/components/main.css';
 import '@/styles/components/navbar.css';
 import '@/styles/components/footer.css';
@@ -10,7 +9,6 @@ import '@/scripts/components/navbar.js';
 import '@/scripts/components/navbar-loader.js';
 import '@/scripts/components/footer.js';
 
-// import del modulo contact-form (metti il file in 
 import { initContactForm } from "@/scripts/pages/footer/contatti/contatti.js";
 
 document.addEventListener("DOMContentLoaded", () => {

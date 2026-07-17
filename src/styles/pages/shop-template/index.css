@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 .section.shop-layout {
   --shop-content-width: 1600px;
   --shop-line: rgba(255, 255, 255, 0.09);

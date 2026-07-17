@@ -574,7 +574,6 @@ body > main .learning-shell {
   }
 }
 
-/* Quiz Completion Badge Premium Styles */
 .learning-card__badge {
   display: inline-flex;
   align-items: center;
@@ -605,5 +604,11 @@ body > main .learning-shell {
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learning-card__badge {
+    animation: none;
   }
 }
