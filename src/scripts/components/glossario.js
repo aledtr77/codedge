@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const entries = Array.from(document.querySelectorAll(".main-content details"));
   const clickableItems = Array.from(document.querySelectorAll(".concept-list .clickable-item"));
   const header = document.querySelector("header");
-  const mainContent = document.querySelector(".main-content");
-  const scrollWrapper = document.querySelector(".glossary-scroll-wrapper");
   const termsContainer = document.querySelector(".main-content > div:not(.sidebar-placeholder)");
+  // Must mirror the glossario.css breakpoint that switches the scroll owner:
+  // above it the terms panel scrolls (desktop app-shell), at or below it the
+  // document itself scrolls and the wrapper becomes overflow:visible.
+  const mobileLayout = window.matchMedia("(max-width: 1180px)");
   let openAsideGroupForItem = () => {};
   let asideGroups = [];
 
@@ -136,10 +138,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activeItem) openAsideGroupForItem(activeItem);
   }
 
-  function getContentScrollOffset() {
-    const headerHeight = header?.offsetHeight || 0;
-    const layoutGap = parseFloat(getComputedStyle(mainContent || document.body).marginTop) || 0;
-    return headerHeight + layoutGap;
+  // Places the entry just below the fixed header (which holds the search bar).
+  // Double rAF: the [open] reflow must settle before measuring positions.
+  function scrollEntryIntoView(entry) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const gap = 16;
+        const entryRect = entry.getBoundingClientRect();
+
+        if (!mobileLayout.matches && termsContainer) {
+          // Desktop app-shell: the terms panel is the only scroll container.
+          const containerRect = termsContainer.getBoundingClientRect();
+          termsContainer.scrollTo({
+            top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
+            behavior: scrollBehavior(),
+          });
+        } else {
+          // Mobile: glossario.css hands the scroll back to the document and
+          // makes the wrapper overflow:visible, so scrolling any inner element
+          // is a no-op - only window.scrollTo actually moves the viewport.
+          const headerHeight = header ? header.getBoundingClientRect().height : 0;
+          window.scrollTo({
+            top: window.scrollY + entryRect.top - headerHeight - gap,
+            behavior: scrollBehavior(),
+          });
+        }
+      });
+    });
   }
 
   // Named match tiers instead of a blended magic-number score: each tier is a
@@ -290,31 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Scroll to the matched term (after layout reflow settles)
     if (scrollToFirst && bestMatch) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const isDesktop = window.innerWidth > 1180;
-          if (isDesktop && termsContainer) {
-            // Desktop: scroll the independent terms container panel
-            const containerRect = termsContainer.getBoundingClientRect();
-            const entryRect = bestMatch.getBoundingClientRect();
-            const gap = 16;
-            termsContainer.scrollTo({
-              top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
-              behavior: scrollBehavior(),
-            });
-          } else if (scrollWrapper) {
-            // Mobile: scroll the entire wrapper
-            const wrapperRect = scrollWrapper.getBoundingClientRect();
-            const entryRect = bestMatch.getBoundingClientRect();
-            const headerHeight = header ? header.getBoundingClientRect().height : 0;
-            const gap = 16;
-            scrollWrapper.scrollTo({
-              top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
-              behavior: scrollBehavior(),
-            });
-          }
-        });
-      });
+      scrollEntryIntoView(bestMatch);
     }
   }
 
@@ -452,30 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         targetEntry.open = true;
         setActiveItem(targetEntry.dataset.glossaryTitleRaw);
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            const isDesktop = window.innerWidth > 1180;
-            if (isDesktop && termsContainer) {
-              const containerRect = termsContainer.getBoundingClientRect();
-              const entryRect = targetEntry.getBoundingClientRect();
-              const gap = 16;
-              termsContainer.scrollTo({
-                top: termsContainer.scrollTop + (entryRect.top - containerRect.top) - gap,
-                behavior: scrollBehavior(),
-              });
-            } else if (scrollWrapper) {
-              const wrapperRect = scrollWrapper.getBoundingClientRect();
-              const entryRect = targetEntry.getBoundingClientRect();
-              const headerHeight = header ? header.getBoundingClientRect().height : 0;
-              const gap = 16;
-              scrollWrapper.scrollTo({
-                top: scrollWrapper.scrollTop + (entryRect.top - wrapperRect.top) - headerHeight - gap,
-                behavior: scrollBehavior(),
-              });
-            }
-          });
-        });
+        scrollEntryIntoView(targetEntry);
       }
     });
   });
