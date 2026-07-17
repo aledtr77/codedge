@@ -326,7 +326,9 @@ summary {
   gap: var(--glossary-space-2xs) var(--glossary-space-xs);
   align-items: center;
   min-height: 3.5rem;
-  padding: var(--glossary-space-sm) 3.5rem var(--glossary-space-sm) var(--glossary-space-md);
+  /* Right padding clears the "+" toggle footprint (1.25rem offset + 2.1rem
+     width = 3.35rem) plus 0.75rem of guaranteed air between text and button */
+  padding: var(--glossary-space-sm) 4.1rem var(--glossary-space-sm) var(--glossary-space-md);
   color: #ffffff;
   cursor: pointer;
   font-weight: 750;
@@ -669,7 +671,9 @@ pre::-webkit-scrollbar-thumb:hover {
   }
 
   summary {
-    padding: 0.95rem 2.8rem 0.95rem 1rem;
+    /* Same clearance as desktop: the "+" keeps its 3.35rem footprint here,
+       so 2.8rem would let the text run underneath it */
+    padding: 0.95rem 4.1rem 0.95rem 1rem;
     font-size: 1.05rem;
   }
 
