@@ -239,15 +239,33 @@
               </ul>
             </section>
             <section class="guide-subchapter">
-              <h3>User Settings e Workspace Settings: chi decide cosa</h3>
-              <p>VS Code legge le preferenze da due livelli distinti, e capire quale usare per cosa è la singola nozione di configurazione più importante di tutta la guida:</p>
+              <h3>User Settings e Workspace Settings: chi decide cosa?</h3>
+              <p>Quando usi VS Code, puoi personalizzare qualunque dettaglio dell'interfaccia o del funzionamento: dalla dimensione del testo al colore di sfondo, fino a regole rigide su come il codice deve essere formattato. Questa personalizzazione avviene tramite le <strong>Impostazioni (Settings)</strong>.</p>
+              
+              <p>Per evitare di fare confusione, VS Code divide le impostazioni in due livelli ben distinti. Capire come funzionano è fondamentale per evitare conflitti e lavorare in modo ordinato:</p>
+              
               <ul class="guide-list">
-                <li><strong>User Settings (globali):</strong> valgono per ogni progetto che apri sul tuo computer. Qui vivono i gusti personali: tema, font, dimensione del testo.</li>
-                <li><strong>Workspace Settings (di progetto):</strong> valgono solo per la cartella corrente e vivono nel file <code>.vscode/settings.json</code> dentro il progetto. Qui vivono le regole del progetto: indentazione, formatter, comportamenti al salvataggio.</li>
+                <li><strong>1. User Settings (Impostazioni Utente - Globali):</strong><br>
+                  Sono le tue preferenze personali legate al tuo account sul computer. Si applicano a <strong>qualsiasi</strong> file o cartella che aprirai in VS Code. Qui devi inserire le preferenze legate al tuo comfort visivo e alle tue abitudini personali.
+                  <br><em>Esempi tipici:</em> la scelta del tema scuro o chiaro, la dimensione del carattere del testo (es. <code>16px</code>), la famiglia di font, o la scelta di abilitare la mappa del codice laterale (Minimap).
+                </li>
+                <li><strong>2. Workspace Settings (Impostazioni dello Spazio di Lavoro - Locali):</strong><br>
+                  Si applicano <strong>esclusivamente</strong> alla cartella del progetto che hai aperto in quel momento. VS Code salva queste preferenze all'interno di una cartella speciale (chiamata <code>.vscode</code>) creata all'interno del tuo progetto, in un file di testo chiamato <code>settings.json</code>.
+                  <br><em>Esempi tipici:</em> l'uso di 2 spazi invece di 4 per i rientri del codice (indentazione), il tipo di linter/formatter da usare obbligatoriamente su quel progetto, o l'attivazione della formattazione automatica ad ogni salvataggio del file.
+                </li>
               </ul>
-              <p>Il criterio per scegliere è uno solo: <strong>ciò che riguarda te va nei settings globali, ciò che riguarda il codice va nel progetto</strong>. In caso di conflitto vince sempre il livello più vicino al codice, cioè il workspace.</p>
+
+              <h4>Perché questa distinzione è di vitale importanza?</h4>
+              <p>Immagina di collaborare con un collega su uno stesso sito web. Tu preferisci vedere il codice scritto molto grande (font size 18px) ed usare un tema blu scuro, mentre il tuo collega ha un monitor enorme e preferisce caratteri piccoli (font size 12px) e un tema grigio chiaro. Queste sono preferenze <strong>personali</strong> e vanno impostate nei vostri rispettivi <strong>User Settings</strong>, in modo che ognuno lavori comodamente.</p>
+              
+              <p>Tuttavia, il codice del sito deve essere scritto seguendo le stesse identiche regole per entrambi (ad esempio, indentato sempre a 2 spazi e formattato automaticamente da Prettier al salvataggio), altrimenti ogni volta che uno dei due fa un commit modificherà involontariamente la formattazione dell'altro, creando conflitti ingovernabili in Git. Queste regole di formattazione del codice vanno quindi salvate nei <strong>Workspace Settings</strong> del progetto.</p>
+
+              <h4>In caso di conflitto, chi vince?</h4>
+              <p>VS Code applica sempre una regola di prossimità: <strong>le impostazioni locali del progetto (Workspace Settings) prevalgono sempre sulle tue impostazioni globali (User Settings)</strong>.</p>
+              <p>Se nei tuoi User Settings personali hai configurato un'indentazione di 4 spazi, ma apri un progetto in cui il team ha stabilito nei Workspace Settings di usare 2 spazi, VS Code userà automaticamente 2 spazi solo all'interno di quel progetto, per poi tornare a 4 quando aprirai un file sfuso o un altro progetto personale. Questo garantisce che le regole del codice vengano sempre rispettate senza costringerti a cambiare manualmente le tue preferenze ogni volta.</p>
+
               <div class="alert alert--note" style="padding: 1.2rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.05); border: 1px solid rgba(0, 168, 255, 0.2); border-radius: 8px;">
-                <strong>Best practice da team:</strong> configura le opzioni critiche (indentazione, formatter, regole del linter) nelle <em>Workspace Settings</em> e committa la cartella <code>.vscode/</code> nel repository. Chiunque cloni il progetto erediterà le stesse regole automaticamente — e le discussioni su spazi e virgolette spariscono dalle code review, perché non c'è più niente da discutere.
+                <strong>Best practice da team:</strong> Configura le opzioni critiche del codice (indentazione, formatter, linter) nelle <em>Workspace Settings</em> e condividi (fai il commit) la cartella <code>.vscode/</code> nel tuo repository Git. In questo modo, chiunque cloni il tuo progetto erediterà automaticamente le stesse regole di scrittura del codice al primo avvio.
               </div>
             </section>
             <section class="guide-subchapter">
