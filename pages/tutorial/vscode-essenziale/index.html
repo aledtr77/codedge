@@ -426,29 +426,47 @@
               <figcaption>Il ciclo quotidiano: apri, navighi, modifichi, lanci, controlli, committi — tutto senza uscire dall'editor.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <h3>La Command Palette e i prefissi di Quick Open</h3>
-              <p>La differenza di velocità tra chi usa VS Code da un mese e chi lo usa da anni è quasi tutta qui: le mani restano sulla tastiera. Il punto d'ingresso è la <strong>Command Palette</strong> (<code>Ctrl + Shift + P</code>, <code>Cmd + Shift + P</code> su macOS, o semplicemente <code>F1</code>): qualunque azione dell'editor, digitata per nome invece che cercata nei menu.</p>
-              <p>La sua gemella <strong>Quick Open</strong> (<code>Ctrl + P</code> / <code>Cmd + P</code>) è la stessa barra senza il prefisso <code>&gt;</code>, e serve a raggiungere i file per nome. Ma il vero salto arriva con i suoi prefissi, che pochi conoscono:</p>
+              <h3>La Command Palette e la barra Quick Open: due strumenti in uno</h3>
+              <p>Muoversi alla velocità di un professionista in VS Code significa una cosa sola: <strong>usare il mouse il meno possibile</strong> e tenere le mani sulla tastiera. Per farlo, VS Code mette a disposizione due strumenti che all'apparenza sembrano separati, ma che in realtà condividono la stessa identica barra di ricerca in alto sullo schermo:</p>
+              
               <ul class="guide-list">
-                <li><strong><code>@</code> — simboli nel file:</strong> elenca funzioni, variabili, classi o selettori CSS del file corrente. Con <code>@:</code> li raggruppa per categoria. È il modo più rapido di muoversi dentro un file lungo.</li>
-                <li><strong><code>:</code> — vai alla riga:</strong> <code>:150</code> e sei alla riga 150. Perfetto quando un errore ti dà file e riga.</li>
-                <li><strong><code>#</code> — simboli nel progetto:</strong> trova una funzione o una classe per nome in tutti i file del workspace, anche mai aperti.</li>
-                <li><strong><code>?</code> — aiuto:</strong> mostra tutti i prefissi disponibili, se questi ti sembrano troppi da ricordare.</li>
+                <li><strong>1. Quick Open (Apertura Rapida - <code>Ctrl + P</code> o <code>Cmd + P</code> su Mac):</strong><br>
+                  Pensa a questo come a un <strong>motore di ricerca per i file del tuo progetto</strong>. Lo apri, digiti le prime lettere di un file (anche senza scrivere il nome intero o il percorso) e premi Invio per aprirlo. Evita di dover scorrere l'Explorer a sinistra per cercare i file.
+                </li>
+                <li><strong>2. Command Palette (Tavolozza dei Comandi - <code>Ctrl + Shift + P</code> o <code>Cmd + Shift + P</code> su Mac):</strong><br>
+                  Pensa a questo come a un <strong>motore di ricerca per le funzioni di VS Code</strong>. Invece di navigare nei menu grafici dell'editor per trovare un'azione (come cambiare tema, formattare la pagina o nascondere la barra laterale), la cerchi digitandola a parole. Di fatto, è la stessa barra del Quick Open, ma con il simbolo maggiore (<code>&gt;</code>) inserito automaticamente all'inizio.
+                </li>
               </ul>
-              <p>Prova questa sequenza una volta sola e capirai il principio: <code>Ctrl + P</code>, tre lettere del nome del file, <code>@</code>, due lettere del nome della funzione, Invio. Quattro secondi, zero mouse, e sei esattamente dove volevi essere.</p>
-            </section>
-            <section class="guide-subchapter">
-              <h3>Modifiche parallele con i cursori multipli</h3>
-              <p>Il multi-cursore elimina la categoria intera delle «riscritture noiose riga per riga». Tre modi per attivarlo, in ordine di utilità:</p>
+
+              <h4>Le scorciatoie da digitare nella barra (Prefissi utili)</h4>
+              <p>Quando premi <code>Ctrl + P</code>, puoi inserire dei simboli speciali prima di iniziare a scrivere. Questi simboli cambiano il comportamento della barra, permettendoti di fare ricerche avanzate:</p>
               <ul class="guide-list">
-                <li><strong>Selezione incrementale (il più usato):</strong> evidenzia una parola e premi <code>Ctrl + D</code> (<code>Cmd + D</code> su Mac): ogni pressione aggiunge un cursore sulla ricorrenza successiva della stessa parola. Rinomini una variabile o una classe HTML in cinque punti in tre secondi. Se selezioni una ricorrenza di troppo, <code>Ctrl + U</code> torna indietro di un passo.</li>
-                <li><strong>Selezione mirata:</strong> tieni premuto <code>Alt</code> (<code>Option</code> su Mac) e clicca nei punti che vuoi: scriverai in tutti contemporaneamente. Utile quando i punti da modificare non sono la stessa parola.</li>
-                <li><strong>Selezione verticale:</strong> <code>Shift + Alt</code> (<code>Shift + Option</code>) e trascini in verticale: un cursore per riga, tutti alla stessa colonna. Perfetto per liste e dati tabulari.</li>
+                <li><strong><code>@</code> (Indice del file):</strong> Elenca tutte le sezioni, i tag HTML o le funzioni JavaScript presenti nel file che hai aperto in quel momento. È utilissimo per saltare direttamente a un punto preciso senza scorrere la pagina. (Digiti <code>@</code> seguito dal nome della sezione).</li>
+                <li><strong><code>:</code> (Vai alla riga):</strong> Digita ad esempio <code>:150</code> per portare il cursore istantaneamente alla riga 150. È il modo più rapido per trovare la riga segnalata da un errore del codice.</li>
+                <li><strong><code>#</code> (Cerca simboli nel progetto):</strong> Cerca una specifica funzione o classe in tutti i file del tuo progetto, anche in quelli chiusi.</li>
+                <li><strong><code>?</code> (Guida rapida):</strong> Se non ricordi questi simboli, digita il punto interrogativo per visualizzare un elenco di tutti i comandi e prefissi disponibili.</li>
               </ul>
             </section>
+            
             <section class="guide-subchapter">
-              <h3>Scorciatoie salvavita da fare tue oggi</h3>
-              <p>Non serve impararle tutte: queste cinque coprono da sole la maggior parte delle micro-interruzioni da mouse:</p>
+              <h3>Modifiche parallele: quando e come usare i cursori multipli</h3>
+              <p>Il multi-cursore ti permette di scrivere in più punti della pagina contemporaneamente, risparmiandoti la noia di modificare riga per riga. Esistono tre modi per attivarlo, ognuno adatto a una situazione specifica:</p>
+              <ul class="guide-list">
+                <li><strong>Metodo 1: Modificare la stessa parola in più punti (<code>Ctrl + D</code> o <code>Cmd + D</code>)</strong><br>
+                  Seleziona una parola (es. una variabile o il nome di una classe HTML) e premi la scorciatoia. Ogni volta che la premi, VS Code evidenzierà la parola successiva identica a quella selezionata aggiungendo un cursore attivo. Ti permette di rinominare una parola in 5 punti diversi in 3 secondi. Se selezioni una parola per errore, puoi premere <code>Ctrl + U</code> (o <code>Cmd + U</code>) per annullare l'ultima selezione.
+                </li>
+                <li><strong>Metodo 2: Scrivere in punti sparsi a piacere (<code>Alt + Click</code> o <code>Option + Click</code>)</strong><br>
+                  Tieni premuto il tasto Alt ed effettua un clic con il mouse in tutti i punti in cui vuoi scrivere. È ideale per fare modifiche parallele su righe diverse in cui le parole non sono identiche.
+                </li>
+                <li><strong>Metodo 3: Selezione verticale a colonna (<code>Shift + Alt + Drag</code> o <code>Shift + Option + Drag</code>)</strong><br>
+                  Tieni premuti i tasti e trascina il mouse in verticale. Creerà un cursore per ogni riga, perfettamente allineato. È utilissimo quando devi inserire o modificare lo stesso codice all'inizio di un elenco di righe (es. aggiungere tag ad una lista di elementi).
+                </li>
+              </ul>
+            </section>
+            
+            <section class="guide-subchapter">
+              <h3>Le 5 scorciatoie da imparare subito per abbandonare il mouse</h3>
+              <p>Non serve memorizzare centinaia di scorciatoie da tastiera. Impara ad usare queste cinque per velocizzare il 90% delle tue azioni quotidiane:</p>
               <div class="table-wrapper">
                 <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                   <thead>
@@ -460,27 +478,27 @@
                   </thead>
                   <tbody>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Mostra/Nascondi Barra Laterale</td>
+                      <td style="padding: 10px; font-weight: bold;">Mostra/Nascondi Barra Laterale (libera spazio sullo schermo)</td>
                       <td style="padding: 10px; font-family: monospace;">Ctrl + B</td>
                       <td style="padding: 10px; font-family: monospace;">Cmd + B</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Sposta riga su/giù</td>
+                      <td style="padding: 10px; font-weight: bold;">Sposta la riga corrente su o giù nel file</td>
                       <td style="padding: 10px; font-family: monospace;">Alt + Freccia Su/Giù</td>
                       <td style="padding: 10px; font-family: monospace;">Option + Freccia Su/Giù</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Duplica riga su/giù</td>
+                      <td style="padding: 10px; font-weight: bold;">Duplica la riga corrente sopra o sotto</td>
                       <td style="padding: 10px; font-family: monospace;">Shift + Alt + Freccia Su/Giù</td>
                       <td style="padding: 10px; font-family: monospace;">Shift + Option + Freccia Su/Giù</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Commenta blocco di codice</td>
+                      <td style="padding: 10px; font-weight: bold;">Commenta / scommenta una riga o blocco di codice</td>
                       <td style="padding: 10px; font-family: monospace;">Ctrl + ù (o Ctrl + /)</td>
                       <td style="padding: 10px; font-family: monospace;">Cmd + /</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                      <td style="padding: 10px; font-weight: bold;">Vai alla definizione del simbolo</td>
+                      <td style="padding: 10px; font-weight: bold;">Salta direttamente a dove è definita una funzione o classe</td>
                       <td style="padding: 10px; font-family: monospace;">F12 (o Ctrl + Click)</td>
                       <td style="padding: 10px; font-family: monospace;">F12 (o Cmd + Click)</td>
                     </tr>
