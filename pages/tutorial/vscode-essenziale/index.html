@@ -179,12 +179,22 @@
           <section id="chapter-03" class="guide-block guide-chapter">
             <h2>2. Installazione e setup pulito</h2>
             <section class="guide-subchapter">
-              <h3>Il comando `code`: l'editor parte dal terminale</h3>
-              <p>La prima abitudine da installare, ancora prima di qualunque estensione, è aprire i progetti dal terminale: entri nella cartella e digiti <code>code .</code> (il punto significa «questa directory»). Sembra un dettaglio, ma inverte il rapporto tra te e l'editor: non «apro VS Code e poi cerco il progetto», bensì «sono nel progetto e mi porto dietro l'editor». È anche il modo più sicuro per aprire sempre la cartella giusta al livello giusto.</p>
-              <p><strong>Come abilitarlo:</strong></p>
+              <h3>Aprire i progetti: menu grafico o terminale?</h3>
+              <p>Per aprire un progetto in VS Code, puoi usare la classica interfaccia grafica: fai clic su <strong>File -> Apri cartella</strong> (o <em>Open Folder</em>) e selezioni la directory dal tuo computer. Questo metodo funziona benissimo ed è intuitivo.</p>
+              
+              <p>Tuttavia, man mano che lavorerai con Git, NPM e altri strumenti di sviluppo, ti ritroverai a usare molto spesso il terminale (la linea di comando). Se sei già posizionato all'interno della cartella del tuo progetto nel terminale, aprirla in VS Code con un solo comando è immensamente più rapido che navigare tra i menu con il mouse.</p>
+              
+              <p>Per questo motivo esiste il comando <code>code .</code>. Vediamo esattamente cosa significa:</p>
               <ul class="guide-list">
-                <li><strong>macOS:</strong> apri la Command Palette (<code>Cmd + Shift + P</code>), digita <code>Shell Command</code> e seleziona <code>Shell Command: Install 'code' command in PATH</code>. Riavvia il terminale.</li>
-                <li><strong>Windows / Linux:</strong> l'opzione è proposta e abilitata di default durante l'installazione guidata. Verifica solo di non aver tolto la spunta «Aggiungi al PATH».</li>
+                <li><strong><code>code</code>:</strong> è il nome abbreviato dell'applicazione Visual Studio Code registrato nel tuo sistema.</li>
+                <li><strong><code>.</code> (il punto):</strong> nei sistemi operativi (come Unix, macOS, Linux e Windows) rappresenta la <em>cartella corrente</em>, ovvero la directory in cui ti trovi in quel preciso istante nel terminale.</li>
+              </ul>
+              <p>Quindi, digitare <code>code .</code> dice al computer: <em>"Apri Visual Studio Code caricando immediatamente la cartella in cui mi trovo adesso"</em>.</p>
+
+              <p><strong>Come abilitare questo comando sul tuo computer:</strong></p>
+              <ul class="guide-list">
+                <li><strong>macOS:</strong> Apri VS Code normalmente. Premi <code>Cmd + Shift + P</code> per aprire la Command Palette, digita <code>Shell Command</code> e seleziona la voce <code>Shell Command: Install 'code' command in PATH</code>. Ora chiudi e riapri il terminale di sistema per applicare la modifica.</li>
+                <li><strong>Windows / Linux:</strong> Il comando viene configurato automaticamente durante l'installazione di VS Code. Assicurati solo, durante i passaggi dell'installatore, di non aver deselezionato la casella "Aggiungi al PATH" (Add to PATH).</li>
               </ul>
             </section>
             <section class="guide-subchapter">
