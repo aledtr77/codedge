@@ -269,8 +269,33 @@
               </div>
             </section>
             <section class="guide-subchapter">
+              <h3>Dove si trova questo file e come crearlo (se non c'è)</h3>
+              <p>Molti sviluppatori alle prime armi cercano questo file nel proprio progetto senza trovarlo. <strong>È del tutto normale: all'inizio la cartella <code>.vscode</code> non esiste</strong>, spetta a te crearla.</p>
+              
+              <p>Ecco i passaggi esatti per configurare il file nel tuo progetto corrente:</p>
+              <ol class="guide-number-list">
+                <li>Apri la cartella del tuo progetto in VS Code.</li>
+                <li>Fai clic destro in un punto vuoto all'interno della barra laterale sinistra (l'Explorer di VS Code) e seleziona <strong>Nuova cartella</strong> (<em>New Folder</em>). Chiamala esattamente <code>.vscode</code> (ricorda di includere il punto all'inizio).</li>
+                <li>Fai clic destro sulla nuova cartella <code>.vscode</code> appena creata, seleziona <strong>Nuovo file</strong> (<em>New File</em>) e nominalo <code>settings.json</code>.</li>
+                <li>Copia il codice che trovi qui sotto e incollalo all'interno di questo file, quindi salva.</li>
+              </ol>
+
+              <div class="alert alert--info" style="padding: 1rem; margin: 1.5rem 0; background: rgba(0, 168, 255, 0.03); border: 1px solid rgba(0, 168, 255, 0.15); border-radius: 8px; font-size: 0.95rem;">
+                <strong>Nota sulle cartelle nascoste:</strong> Nei sistemi operativi come macOS e Linux, le cartelle che iniziano con un punto (come <code>.vscode</code>) vengono considerate cartelle nascoste di sistema. Non preoccuparti se non le vedi nel normale gestore dei file del tuo computer: VS Code le mostrerà sempre all'interno del suo Explorer.
+              </div>
+
+              <h4>E dove trovo invece le impostazioni globali (User Settings)?</h4>
+              <p>Se vuoi vedere o modificare il file di impostazioni globali (User Settings) in formato testo (JSON), non devi cercarlo nelle cartelle del tuo progetto. Puoi aprirlo direttamente da VS Code in questo modo:</p>
+              <ul class="guide-list">
+                <li>Apri la <strong>Command Palette</strong> (premi <code>Ctrl + Shift + P</code> o <code>Cmd + Shift + P</code> su Mac).</li>
+                <li>Digita <code>Preferences: Open User Settings (JSON)</code> e premi Invio.</li>
+                <li>VS Code aprirà il file JSON globale memorizzato nelle cartelle di sistema del tuo computer (ad esempio in <code>~/.config/Code/User/settings.json</code> su Linux o in <code>%APPDATA%\Code\User\settings.json</code> su Windows).</li>
+              </ul>
+            </section>
+
+            <section class="guide-subchapter">
               <h3>Un file `.vscode/settings.json` pronto all'uso</h3>
-              <p>Questo è un punto di partenza collaudato per un progetto web — copialo in <code>.vscode/settings.json</code> e adattalo:</p>
+              <p>Questo è un punto di partenza collaudato per un progetto web. Copialo e incollalo nel file <code>settings.json</code> dentro la cartella <code>.vscode</code> che hai appena creato:</p>
               <pre><code class="language-json">{
   // Impostazioni dell'editor
   "editor.tabSize": 2,
