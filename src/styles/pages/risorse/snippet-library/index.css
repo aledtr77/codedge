@@ -328,12 +328,6 @@ header.header-hidden {
   display: none;
 }
 
-/* La barra "Prova Live" sotto il codice esiste solo per il layout mobile:
-   su desktop l'azione resta nella title-box. */
-.snippet-box .play-btn--bar {
-  display: none;
-}
-
 /* Il doppio selettore con [class*="language-"] serve a vincere sul tema
    Prism (caricato dopo questo file): a parità di specificità vincerebbe lui,
    reimponendo background, padding, overflow e white-space propri. */
@@ -553,9 +547,10 @@ header.header-hidden {
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Title Box: titolo su riga propria, sotto sempre e solo due azioni
-     ([Copia] [Vedi Codice]) a larghezza uguale. "Prova Live" su mobile vive
-     come barra sotto il codice espanso, non qui. */
+  /* Title Box: titolo su riga propria, sotto [Copia] [Vedi Codice] a
+     larghezza uguale e, per gli snippet HTML/CSS, la barra "Prova Live"
+     a tutta larghezza. Tutte le azioni del box vivono qui, in alto:
+     niente pulsanti sparsi da cercare scrollando il codice. */
   .title-box {
     display: flex;
     flex-flow: row wrap;
@@ -589,17 +584,16 @@ header.header-hidden {
   }
 
   .title-box .play-btn {
-    display: none;
-  }
-
-  /* Barra "Prova Live" a tutta larghezza sotto il blocco di codice espanso */
-  .snippet-box.code-expanded .code-wrapper .play-btn--bar {
-    display: inline-flex;
-    width: 100%;
+    flex: 1 1 100%; /* Full-width bar on its own row, below the pair above */
     min-width: 0;
-    min-height: 2.6rem;
-    margin-top: 0.9rem;
-    font-size: 0.82rem;
+    min-height: 2.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0 0.5rem;
+    justify-content: center;
+    gap: 0.35rem;
+    box-sizing: border-box;
+    white-space: nowrap;
     border-radius: 8px;
   }
 

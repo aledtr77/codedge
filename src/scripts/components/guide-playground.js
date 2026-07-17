@@ -212,9 +212,7 @@ export default function initGuidePlayground() {
     ? `<i class="fas fa-times"></i> Chiudi Live`
     : `<i class="fas fa-play"></i> Prova Live`;
 
-  // Allinea tutti i pulsanti "Prova Live" di un box allo stato del playground
-  // (nella snippet library convivono il pulsante nella title-box, mostrato su
-  // desktop, e la barra sotto il codice, mostrata su mobile).
+  // Allinea il pulsante "Prova Live" di un box allo stato del playground
   const syncPlayButtons = (scope, open) => {
     scope.querySelectorAll(".play-btn").forEach((btn) => {
       btn.innerHTML = playButtonLabel(open);
@@ -264,28 +262,31 @@ export default function initGuidePlayground() {
 
       wrapper.appendChild(toolbar);
     } else if (lang === "html" || lang === "css") {
-      // Siamo in snippet-box: Prova Live nella titleBox (desktop)...
+      // Siamo in snippet-box: un unico Prova Live nella titleBox, insieme
+      // alle altre azioni del box (sia desktop che mobile)
       const titleBox = snippetBox.querySelector('.title-box');
       if (titleBox) {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.className = "play-btn";
+        editBtn.setAttribute("aria-expanded", "false");
         editBtn.innerHTML = playButtonLabel(false);
         titleBox.appendChild(editBtn);
       }
-
-      // ...e come barra a tutta larghezza sotto il codice (mobile)
-      const barBtn = document.createElement("button");
-      barBtn.type = "button";
-      barBtn.className = "play-btn play-btn--bar";
-      barBtn.innerHTML = playButtonLabel(false);
-      wrapper.appendChild(barBtn);
     }
   });
 
   // 2) Gestore dell'apertura del playground interattivo
   const openPlayground = (wrapper, initialCode, lang) => {
     wrapper.style.display = "none";
+
+    // Dentro .snippet-box la chiusura passa dal "Chiudi Live" della title-box,
+    // che resta visibile: un secondo "Chiudi" nell'header sarebbe ridondante.
+    // Fuori (guide), la toolbar sparisce col wrapper e questo è l'unico Chiudi.
+    const inSnippetBox = Boolean(wrapper.closest(".snippet-box"));
+    const closeBtnHtml = inSnippetBox
+      ? ""
+      : `<button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>`;
 
     const playground = document.createElement("div");
     // Su mobile si parte dall'anteprima (tab "pane-preview"); su desktop i due
@@ -301,7 +302,7 @@ export default function initGuidePlayground() {
         <div class="playground-actions">
           <button type="button" class="playground-btn btn-reset" title="Ripristina codice iniziale"><i class="fas fa-undo"></i> <span>Ripristina</span></button>
           <button type="button" class="playground-btn btn-copy" title="Copia codice"><i class="fas fa-copy"></i> <span class="btn-text">Copia Codice</span></button>
-          <button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>
+          ${closeBtnHtml}
         </div>
       </div>
       <div class="playground-tabs" role="tablist" aria-label="Vista playground">

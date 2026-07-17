@@ -146,7 +146,14 @@ export function initSnippets() {
     toggleBtn.className = 'toggle-code-btn';
     toggleBtn.setAttribute('aria-expanded', 'false');
     toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
-    titleBox.appendChild(toggleBtn);
+    // Prima del "Prova Live" (se presente), così su mobile l'ordine resta
+    // [Copia] [Vedi Codice] sulla riga e la barra "Prova Live" in coda.
+    const playBtn = titleBox.querySelector('.play-btn');
+    if (playBtn) {
+      titleBox.insertBefore(toggleBtn, playBtn);
+    } else {
+      titleBox.appendChild(toggleBtn);
+    }
   });
 
   // 2) Centralized Event Delegation on document for all click actions
@@ -181,10 +188,12 @@ export function initSnippets() {
       if (box) {
         // Un playground aperto nasconde il wrapper del codice: chiuderlo prima
         // evita che il toggle scatti "a vuoto" su un blocco invisibile.
+        // Si passa dal "Chiudi Live" della title-box: dentro gli snippet-box
+        // il playground non ha un proprio pulsante Chiudi.
         const playground = box.querySelector('.code-playground');
         if (playground) {
-          const closeBtn = playground.querySelector('.btn-close');
-          if (closeBtn) closeBtn.click();
+          const playBtn = box.querySelector('.play-btn');
+          if (playBtn) playBtn.click();
         }
 
         const isExpanded = box.classList.toggle('code-expanded');
