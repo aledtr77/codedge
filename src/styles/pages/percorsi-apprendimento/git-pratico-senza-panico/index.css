@@ -27,6 +27,10 @@
   top: 5.6rem;
   max-height: calc(100vh - 6.6rem);
   overflow: auto;
+  /* Wheel over the TOC must never chain into the page scroll: chaining also
+     triggers the scrollspy, which re-scrolls the TOC against the user. The
+     wheel lock in guide-toc.js covers the no-overflow case. */
+  overscroll-behavior: contain;
   padding: 1rem 0.9rem;
   border-radius: 14px;
   border: 1px solid var(--guide-border);

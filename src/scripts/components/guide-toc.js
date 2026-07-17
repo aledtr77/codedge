@@ -111,6 +111,23 @@ export default function initGuideToc() {
       setActiveState(target.id);
     });
   });
+  // Keep vertical wheel input over the TOC inside the TOC: without this, a
+  // wheel at the TOC's scroll boundary (or on a TOC with no overflow) chains
+  // into the page scroll, which moves the scrollspy, which re-scrolls the TOC
+  // against the user. Same pattern as lockAsideScroll in glossario.js.
+  const tocContainer = document.querySelector(".guide-toc");
+  if (tocContainer) {
+    tocContainer.addEventListener(
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+        event.preventDefault();
+        tocContainer.scrollTop += event.deltaY;
+      },
+      { passive: false },
+    );
+  }
+
   window.addEventListener("scroll", queueScrollUpdate, { passive: true });
   window.addEventListener("resize", queueScrollUpdate, { passive: true });
 
