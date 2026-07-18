@@ -602,6 +602,26 @@
     overflow-wrap: break-word;
   }
 
+  /* On mobile the scrollspy walks the active highlight down the page as you
+     read; the desktop treatment (lighter gradient fill + glow + blue heading)
+     turns that into a distracting "disco" flicker. Keep the same idea but
+     reduce it to a single, fine, readable border change — no fill, no glow,
+     no heading color shift. Later source order + equal specificity (0,2,0)
+     means these win over the base .guide-block.is-active rules here. */
+  .guide-block.is-active {
+    border-color: rgba(138, 210, 255, 0.5);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(6, 15, 27, 0.2)),
+      var(--guide-panel);
+    box-shadow:
+      0 12px 22px rgba(0, 8, 20, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .guide-block.is-active h2 {
+    color: rgba(230, 247, 255, 0.99);
+  }
+
   .guide-chapter > h2,
   .guide-block h2 {
     font-size: 1.28rem;
