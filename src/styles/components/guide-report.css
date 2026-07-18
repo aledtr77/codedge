@@ -1,0 +1,58 @@
+/* Contextual "report a problem with this page" prompt, appended to the end of
+   guide/tutorial articles by guide-report.js. No card chrome — just the text
+   and the action, to keep the page tail light and compact. */
+.guide-report {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+}
+
+.guide-report-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  max-width: 46ch;
+}
+
+.guide-report-text i {
+  color: var(--color-three);
+  margin-right: 0.35rem;
+}
+
+.guide-report-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.guide-report-link i {
+  font-size: 1.05em;
+}
+
+@media (max-width: 600px) {
+  .guide-report {
+    margin-top: 2.25rem;
+  }
+  .guide-report-link {
+    white-space: normal;
+  }
+}
+
+/* Desktop: shrink the full-width base button to a content-sized, centered
+   action so it reads as a tasteful call-to-action rather than a banner.
+   .guide-report-link.button-simple (0,2,0) beats .button-simple (0,1,0). */
+@media (min-width: 769px) {
+  .guide-report-link.button-simple {
+    width: auto;
+    min-height: 2.5rem;
+    padding: 0.55rem 1.6rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.03rem;
+  }
+}

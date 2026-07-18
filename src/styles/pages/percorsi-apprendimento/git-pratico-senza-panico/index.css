@@ -1013,6 +1013,26 @@
   min-width: 170px;
 }
 
+/* Desktop: the base .button-simple is full-width (ideal on touch), but that
+   makes the quiz actions look oversized on a wide reading column. Shrink them
+   to a content-sized, left-aligned action button. Compound selectors
+   (.quiz-*-btn.button-simple, 0,2,0) beat .button-simple (0,1,0) regardless of
+   bundle source order. */
+@media (min-width: 769px) {
+  .quiz-actions {
+    margin-top: 1.2rem;
+  }
+  .quiz-submit-btn.button-simple,
+  .quiz-next-btn.button-simple {
+    width: auto;
+    min-width: 0;
+    min-height: 2.5rem;
+    padding: 0.55rem 1.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.03rem;
+  }
+}
+
 .quiz-results-card {
   display: flex;
   flex-direction: column;

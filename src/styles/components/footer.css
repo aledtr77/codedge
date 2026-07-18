@@ -29,6 +29,13 @@ footer {
 .footer-links a:hover {
   color: var(--color-three);
 }
+.footer-links a.footer-contribute-link {
+  font-weight: 600;
+}
+.footer-links a.footer-contribute-link i {
+  color: var(--color-three);
+  margin-right: 0.15rem;
+}
 .footer-social {
   width: auto;
   display: flex;

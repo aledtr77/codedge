@@ -1,0 +1,44 @@
+name: "🐛 Segnala un bug"
+description: "Qualcosa non funziona come dovrebbe su Codedge."
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie per esserti preso un minuto per segnalare il problema. 🙏
+        Più dettagli aggiungi, più in fretta riusciamo a sistemarlo.
+  - type: input
+    id: page_url
+    attributes:
+      label: "Pagina interessata"
+      description: "URL o titolo della pagina dove hai trovato il problema."
+      placeholder: "https://codedge.it/tutorial/..."
+    validations:
+      required: false
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: "Cosa è successo?"
+      description: "Descrivi il problema e cosa ti aspettavi che succedesse invece."
+      placeholder: "Al termine del quiz i due pulsanti compaiono affiancati e sovrapposti invece che uno alla volta..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Come riprodurlo (opzionale)"
+      description: "I passaggi per far ricomparire il problema."
+      placeholder: |
+        1. Vai su ...
+        2. Clicca su ...
+        3. Il problema compare qui
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: "Dispositivo e browser (opzionale)"
+      placeholder: "es. Samsung S25 Ultra + Chrome / iPhone + Safari / Desktop Windows + Firefox"
+    validations:
+      required: false
