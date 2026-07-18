@@ -147,12 +147,20 @@
 Tag di                      Testo                      Tag di
 apertura                  contenuto                   chiusura</code></pre>
 
-              <p>I tag possono contenere anche degli <strong>attributi</strong>, ovvero delle informazioni extra inserite esclusivamente all'interno del tag di apertura. Pensa agli attributi come a delle caratteristiche aggiuntive (come un link di destinazione o un'altezza) scritte nella forma <code>nome-attributo="valore"</code>:</p>
+              <p>I tag possono contenere anche degli <strong>attributi</strong>, ovvero delle informazioni extra inserite esclusivamente all'interno del tag di apertura. Gli attributi servono a specificare caratteristiche o comportamenti dell'elemento (come la destinazione di un link o la sorgente di un'immagine) e si scrivono sempre nella forma <code>nome-attributo="valore"</code> (detta anche coppia <strong>chiave="valore"</strong>).</p>
               
+              <p>Vediamo l'esempio di un link (il tag <code>&lt;a&gt;</code>):</p>
+
               <pre><code>&lt;a href="https://codedge.it"&gt;Visita il nostro sito&lt;/a&gt;
-   └───────────┬───────────┘
-           Attributo
-  (indica dove porta il link)</code></pre>
+   │    └──────────┬────────┘
+   │               └─ Valore (la destinazione del link)
+   └─ Nome attributo o Chiave (l'indirizzo a cui puntare)</code></pre>
+              
+              <p>In questo esempio:</p>
+              <ul>
+                <li>La <strong>chiave</strong> (o nome dell'attributo) è <code>href</code>, che indica al browser: <em>"Voglio impostare un indirizzo web di destinazione"</em>.</li>
+                <li>Il <strong>valore</strong> è <code>"https://codedge.it"</code> (scritto sempre tra virgolette dopo il segno di uguale <code>=</code>), che definisce l'indirizzo web specifico.</li>
+              </ul>
 
               <p>Alcuni tag rari non contengono testo e non racchiudono nulla, quindi non hanno bisogno di un tag di chiusura. Vengono chiamati <strong>tag vuoti</strong> (o auto-chiudenti). Un esempio è il tag <code>&lt;img&gt;</code> per mostrare un'immagine o <code>&lt;br&gt;</code> per andare a capo.</p>
 
