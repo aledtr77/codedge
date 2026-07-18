@@ -569,7 +569,7 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
                 <p>Scrivere <code>&lt;span&gt;&lt;h2&gt;Titolo&lt;/h2&gt;&lt;/span&gt;</code> o <code>&lt;p&gt;&lt;div&gt;...&lt;/div&gt;&lt;/p&gt;</code> è codice non valido. Il browser non si ferma: riscrive l'albero come gli pare, e ti ritrovi con un risultato che non capisci e un CSS che sembra "non funzionare".</p>
               </div>
 
-              <p>C'è un'eccezione che ti farà comodo conoscere: il tag <code>&lt;a&gt;</code>, pur essendo in linea, può racchiudere blocchi interi. È così che si rende cliccabile un'intera scheda prodotto.</p>
+              <p>C'è un'eccezione molto importante a questa regola: il tag di collegamento <code>&lt;a&gt;</code>, pur essendo un elemento in linea, <strong>può racchiudere interi blocchi</strong> (come titoli, paragrafi, o interi <code>&lt;div&gt;</code>). Questo è fondamentale per rendere cliccabile un'intera area o una scheda prodotto, anziché solo il suo testo:</p>
 
               <pre><code class="language-html">&lt;a href="/prodotti/tazza/"&gt;
   &lt;h3&gt;Tazza Codedge&lt;/h3&gt;
@@ -577,8 +577,13 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
 &lt;/a&gt;</code></pre>
 
               <div class="alert alert--note">
-                <strong>Blocco e in linea non sono una scelta grafica</strong>
-                <p>Con il CSS potrai far comportare un blocco come un elemento in linea e viceversa (proprietà <code>display</code>). Ma le regole di annidamento restano quelle del tag: il CSS cambia l'aspetto, non la validità dell'HTML.</p>
+                <strong>Struttura (HTML) vs Resa Grafica (CSS): non fare confusione</strong>
+                <p>È facile confondere le regole di annidamento dell'HTML con l'aspetto grafico degli elementi:</p>
+                <ul class="guide-list">
+                  <li><strong>Le regole dell'HTML (strutturali):</strong> Definiscono la validità del codice. Ad esempio, non si può inserire un <code>&lt;p&gt;</code> (blocco) dentro uno <code>&lt;span&gt;</code> (in linea). Questa gerarchia è fissa ed è quella che determina come il browser interpreta il documento.</li>
+                  <li><strong>Le proprietà del CSS (estetiche):</strong> Attraverso la proprietà <code>display</code> (es. <code>display: block</code> o <code>display: inline</code>) puoi dire al browser di <em>mostrare</em> graficamente uno <code>&lt;span&gt;</code> a tutta larghezza come fosse un blocco, o un paragrafo sulla stessa riga come fosse in linea.</li>
+                </ul>
+                <p>Ricorda: cambiare il comportamento visivo con il CSS <strong>non cambia le regole dell'HTML</strong>. Anche se applichi <code>display: block</code> a uno <code>&lt;span&gt;</code>, rimane illegale inserire un paragrafo o un titolo al suo interno.</p>
               </div>
 
               <p>Sai come si scrivono i tag e come si dispongono. Manca un pezzo trasversale: gli attributi che puoi mettere su qualsiasi tag, e che i prossimi capitoli useranno di continuo.</p>
