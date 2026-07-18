@@ -269,6 +269,28 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
             <section class="guide-subchapter">
               <p>Hai il tuo scheletro con un <code>&lt;body&gt;</code> vuoto. Adesso ci mettiamo dentro del contenuto, e partiamo dal caso più frequente in assoluto: del testo.</p>
 
+              <h3>Che cos'è il tag &lt;body&gt;?</h3>
+              <p>Il tag <code>&lt;body&gt;</code> (che in inglese significa "corpo") rappresenta a tutti gli effetti la <strong>tela visibile</strong> del tuo sito web. Tutto ciò che un utente vede, legge, clicca o con cui interagisce all'interno della finestra del browser — testi, titoli, immagini, video, pulsanti, menu di navigazione, form per i contatti — deve essere posizionato tassativamente all'interno di questa scatola.</p>
+              
+              <p>Per capire meglio la sua importanza, pensa alla struttura di una lettera cartacea:</p>
+              <ul class="guide-list">
+                <li>L'<code>&lt;head&gt;</code> è la busta della lettera: contiene l'indirizzo del destinatario, il francobollo, il mittente. Sono informazioni fondamentali per far viaggiare la lettera, ma chi la riceve non legge la busta per conoscere il messaggio.</li>
+                <li>Il <code>&lt;body&gt;</code> è il foglio di carta interno: contiene il messaggio vero e proprio, le parole scritte, i disegni o gli allegati. È ciò che interessa davvero al lettore.</li>
+              </ul>
+
+              <p>Ci sono tre regole d'oro da tenere sempre a mente quando si lavora con il <code>&lt;body&gt;</code>:</p>
+              
+              <div class="alert alert--warning" style="margin: 1.5rem 0;">
+                <strong>Le tre regole d'oro del &lt;body&gt;:</strong>
+                <ol class="guide-list" style="margin-top: 0.5rem; margin-bottom: 0;">
+                  <li><strong>Unicità:</strong> Può esistere un solo ed unico tag <code>&lt;body&gt;</code> all'interno di ogni file HTML. Non puoi avere "due body".</li>
+                  <li><strong>Posizione:</strong> Viene aperto subito dopo la chiusura dell'<code>&lt;head&gt;</code> (cioè dopo <code>&lt;/head&gt;</code>) e viene chiuso subito prima del tag finale di chiusura della pagina (cioè prima di <code>&lt;/html&gt;</code>).</li>
+                  <li><strong>Niente fuori dai bordi:</strong> Scrivere del codice o inserire tag visibili all'esterno di <code>&lt;body&gt;</code> (ad esempio sotto la sua chiusura) è un grave errore di sintassi. Anche se i browser moderni cercano di rimediare a questo errore "spostando" forzatamente il codice nel body dietro le quinte, questo crea bug molto difficili da individuare nel layout grafico (CSS) e nel comportamento interattivo (JavaScript).</li>
+                </ol>
+              </div>
+
+              <p>Ora che abbiamo chiaro cos'è questo spazio e perché esiste, iniziamo a riempirlo. Partiamo dal caso più comune e frequente in assoluto: del testo.</p>
+
               <h3>Perché il testo "nudo" non basta</h3>
               <p>La prima reazione istintiva è scrivere il testo direttamente dentro il body, andando a capo dove serve:</p>
 
