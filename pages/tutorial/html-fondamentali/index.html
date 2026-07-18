@@ -256,16 +256,35 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
                 Usa i titoli per definire l'importanza logica delle informazioni, non per decidere quanto grandi devono apparire sullo schermo (a quello ci pensa il CSS).
               </div>
 
-              <p>Pensa alla struttura di un libro o di una tesina scolastica: l'<code>&lt;h1&gt;</code> è il titolo principale, l'<code>&lt;h2&gt;</code> è il titolo di un capitolo, e l'<code>&lt;h3&gt;</code> è una sotto-sezione interna al capitolo. Ecco un esempio pratico:</p>
+              <p>Pensa alla struttura di un libro o di una tesina scolastica: l'<code>&lt;h1&gt;</code> è il titolo principale, l'<code>&lt;h2&gt;</code> è il titolo di un capitolo, e l'<code>&lt;h3&gt;</code> è una sotto-sezione interna al capitolo.</p>
+              
+              <div class="alert alert--note" style="margin: 1.5rem 0;">
+                <strong>⚠️ Attenzione:</strong><br>
+                I tag dei titoli <strong>non si inseriscono fisicamente uno dentro l'altro</strong> nel codice (sarebbe un errore!). Si scrivono uno di seguito all'altro, ma creano una gerarchia logica in base al loro numero.
+              </div>
 
+              <p>Ecco come si scrive il codice in modo corretto (i tag sono posizionati uno dopo l'altro):</p>
+              
               <pre><code>&lt;h1&gt;Il titolo principale del sito (Solo uno per pagina!)&lt;/h1&gt;
-  &lt;h2&gt;Capitolo 1: Gli strumenti di lavoro&lt;/h2&gt;
-    &lt;h3&gt;Sotto-sezione 1.1: Installazione di VS Code&lt;/h3&gt;
-    &lt;h3&gt;Sotto-sezione 1.2: Primi comandi utili&lt;/h3&gt;
-  &lt;h2&gt;Capitolo 2: La struttura della pagina&lt;/h2&gt;</code></pre>
+&lt;h2&gt;Capitolo 1: Gli strumenti di lavoro&lt;/h2&gt;
+&lt;h3&gt;Sotto-sezione 1.1: Installazione di VS Code&lt;/h3&gt;
+&lt;h3&gt;Sotto-sezione 1.2: Primi comandi utili&lt;/h3&gt;
+&lt;h2&gt;Capitolo 2: La struttura della pagina&lt;/h2&gt;</code></pre>
+
+              <p>Ed ecco l'<strong>albero logico</strong> (o mappa dei contenuti) che il browser e i motori di ricerca creano leggendo quel codice:</p>
+
+              <pre><code>[h1] Il titolo principale del sito
+ │
+ ├─── [h2] Capitolo 1: Gli strumenti di lavoro
+ │     │
+ │     ├─── [h3] Sotto-sezione 1.1: Installazione di VS Code
+ │     │
+ │     └─── [h3] Sotto-sezione 1.2: Primi comandi utili
+ │
+ └─── [h2] Capitolo 2: La struttura della pagina</code></pre>
 
               <p><strong>Perché questa gerarchia è importante?</strong><br>
-              Non devi mai saltare i livelli (come passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code>). Se lo fai, confondi i motori di ricerca che cercano di catalogare e capire il tuo sito, e rendi difficile la navigazione alle persone non vedenti che usano lettori vocali dello schermo, i quali leggono i titoli proprio come se fossero l'indice del libro.</p>
+              Non devi mai saltare i livelli (come passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code>). Se lo fai, confondi i motori di ricerca che tentano di comprendere la struttura del tuo sito, e rendi difficile la navigazione alle persone non vedenti che usano lettori vocali di schermo, i quali navigano la pagina proprio saltando da un titolo all'altro come se fosse l'indice di un libro.</p>
 
               <h3>Paragrafi e formattazione del testo</h3>
               <p>Ogni volta che vuoi inserire un blocco di testo normale, devi racchiuderlo nel tag del paragrafo, cioè <code>&lt;p&gt;</code> (che sta per <em>paragraph</em>). Il browser si occuperà in automatico di mandare a capo il testo alla fine del blocco e di aggiungere un po' di spazio vuoto prima del paragrafo successivo per facilitare la lettura.</p>
