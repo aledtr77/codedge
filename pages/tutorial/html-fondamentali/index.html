@@ -228,33 +228,35 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>3. Lo scheletro base (Boilerplate)</h2>
             <section class="guide-subchapter">
-              <p>Ora che abbiamo studiato come si costruisce un singolo tag e come si incastrano le scatole con il nesting, proviamo a unire tutti questi pezzi. Mettendo insieme queste regole, scopriamo lo scheletro di partenza pronto che ogni pagina internet deve possedere per poter esistere: nel mondo dello sviluppo questo modello iniziale si chiama <strong>Boilerplate</strong>.</p>
+              <p>Nelle prime due lezioni abbiamo visto la teoria dell'HTML: come ragiona il browser creandone l'albero (il DOM) e le regole per scrivere correttamente i singoli tag. Ora facciamo un passo in avanti: uniamo questi concetti per costruire il nostro primo file reale.</p>
               
-              <p>Non devi scriverlo da zero a mano ogni volta (in VS Code ti basta digitare il simbolo <code>!</code> e premere Invio per generarlo all'istante), ma è fondamentale che tu sappia cosa fa ogni singola riga:</p>
+              <p>Ogni singola pagina internet ha bisogno di una struttura di partenza fissa per poter essere interpretata dal browser. Questa struttura ripetitiva, una vera e propria "tela bianca", viene chiamata in gergo <strong>Boilerplate</strong> (o scheletro di base). In VS Code ti basterà digitare <code>!</code> e premere Invio per generarlo all'istante, ma da bravi sviluppatori dobbiamo capirne ogni singola riga:</p>
 
               <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="it"&gt;
   &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Titolo della pagina&lt;/title&gt;
+    &lt;title&gt;La mia prima pagina web&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1&gt;Primi passi su internet&lt;/h1&gt;
+    &lt;!-- Qui scriveremo i contenuti visibili del sito --&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-              <h3>I componenti chiave dello scheletro:</h3>
+              <h3>Come è organizzata la struttura:</h3>
               <ul class="guide-list">
-                <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong>: comunica al browser che la pagina segue lo standard moderno HTML5. Va inserito sempre come primissima riga, prima di ogni altra cosa.</li>
-                <li><strong><code>&lt;html lang="it"&gt;</code></strong>: è la scatola più grande, quella che racchiude l'intero codice. L'attributo <code>lang="it"</code> dichiara che la pagina è in italiano, cosa importantissima per far capire ai motori di ricerca la lingua del sito e per permettere ai sintetizzatori vocali di leggere correttamente i testi.</li>
-                <li><strong><code>&lt;head&gt;</code></strong>: rappresenta la "mente invisibile" della pagina. Tutto ciò che inserisci qui dentro non apparirà visivamente a schermo, ma contiene informazioni tecniche per il browser e per i motori di ricerca (come titoli della scheda, descrizioni per Google, fogli di stile ed estensioni).</li>
-                <li><strong><code>&lt;meta charset="UTF-8"&gt;</code></strong>: dice al browser quale tabella di caratteri usare. Configurando <code>UTF-8</code>, ti assicuri che lettere accentate ed emoji vengano visualizzate correttamente, evitando quegli strani caratteri rotti come <code>Ã²</code>.</li>
-                <li><strong><code>&lt;meta name="viewport" content="..."&gt;</code></strong>: fondamentale per gli smartphone. Dice al browser di adattare la pagina alla larghezza del telefono, impedendo che il sito venga ridotto a una miniatura illeggibile.</li>
-                <li><strong><code>&lt;body&gt;</code></strong>: è il "corpo visibile" del nostro sito. Tutto ciò che l'utente finale vedrà sullo schermo (testi, bottoni, immagini, moduli) va inserito esclusivamente dentro questa scatola.</li>
+                <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong>: è una dichiarazione tecnica. Serve a gridare al browser: <em>"Attenzione, questo è un file HTML moderno (HTML5), leggilo usando gli standard attuali!"</em>. Va scritto obbligatoriamente come prima riga, in alto.</li>
+                <li><strong><code>&lt;html lang="it"&gt;</code></strong>: è la scatola radice che contiene tutto il resto. L'attributo <code>lang="it"</code> è fondamentale: indica che il testo è in italiano, aiutando i motori di ricerca a indicizzarlo e permettendo agli screen reader di pronunciarlo con la giusta intonazione.</li>
+                <li><strong>La divisione in due macro-aree</strong>: nota come il contenuto dentro <code>&lt;html&gt;</code> sia diviso in due grandi "scatole cinesi" principali:
+                  <ul>
+                    <li><strong><code>&lt;head&gt;</code> (La cabina di regia)</strong>: contiene i metadati, cioè informazioni utili al browser e a Google ma invisibili ai visitatori della pagina (es. la codifica dei caratteri <code>UTF-8</code> per le lettere accentate e le emoji, o il titolo della scheda nel tag <code>&lt;title&gt;</code>).</li>
+                    <li><strong><code>&lt;body&gt;</code> (Il palcoscenico visibile)</strong>: è il corpo della pagina. Tutto quello che inseriremo in questo blocco verrà visualizzato sullo schermo dell'utente.</li>
+                  </ul>
+                </li>
               </ul>
 
-              <p style="margin-top: 1.5rem;">Ora che abbiamo montato lo scheletro vuoto del nostro file, sappiamo esattamente in quale scatola inserire i contenuti visibili: la scatola del <code>&lt;body&gt;</code>. Nel prossimo capitolo entreremo finalmente nel vivo e scopriremo come riempire questo contenitore partendo dai tag dedicati alla scrittura dei testi.</p>
+              <p style="margin-top: 1.5rem;">Ora che hai impostato il tuo contenitore vuoto, è il momento di entrare nel <code>&lt;body&gt;</code> e iniziare a scoprire il <strong>catalogo dei tag</strong>: i mattoni effettivi con cui popoleremo la nostra pagina. Partiamo dall'elemento base di qualsiasi comunicazione: la scrittura del testo.</p>
             </section>
           </section>
 
@@ -262,49 +264,35 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>4. Comunicare con le parole: titoli e paragrafi</h2>
             <section class="guide-subchapter">
-              <p>Il testo è l'anima di qualsiasi pagina web: ogni articolo di giornale, scheda prodotto o post social si basa sulla parola scritta. Tuttavia, un muro di testo piatto e uniforme è stancante da leggere e impossibile da navigare.</p>
+              <p>Quando scrivi un testo su un documento di videoscrittura (come Word), per formattare un titolo ti basta selezionarlo, ingrandire il carattere o farlo in grassetto. In HTML questo approccio visivo non funziona: dobbiamo spiegare al browser il <strong>ruolo logico</strong> di ciascuna parola scritta.</p>
               
-              <p>Per questo motivo, HTML mette a disposizione degli strumenti specifici per strutturare i contenuti, creando una gerarchia visiva e logica chiara (attraverso i <strong>titoli</strong>) e organizzando i concetti in blocchi di senso compiuto (i <strong>paragrafi</strong>).</p>
-              
-              <h3>I Titoli: la scala da h1 a h6</h3>
-              <p>Per dare un ordine di lettura e dividere la pagina in capitoli e argomenti, usiamo i tag dei titoli (in inglese chiamati <em>headings</em>). Questi tag vanno da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>, dove il numero indica quanto è importante quel titolo.</p>
-              
+              <p>Se scriviamo del testo libero nel body, il browser lo mostrerà come un unico ammasso disordinato. Per strutturarlo, usiamo due tipi di tag fondamentali: i titoli e i paragrafi.</p>
+
+              <h3>Strutturare con i Titoli (da h1 a h6)</h3>
+              <p>Per dividere la pagina in capitoli e argomenti usiamo i tag <strong>Heading</strong>, contrassegnati dalla lettera "h" seguita da un numero da 1 a 6 (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, ecc.). Il numero rappresenta il livello di importanza logica, non la grandezza del font:</p>
+
               <div class="alert alert--note" style="margin: 1.5rem 0;">
-                <strong>💡 La regola d'oro dei Titoli:</strong><br>
-                Usa i titoli per definire l'importanza logica delle informazioni, non per decidere quanto grandi devono apparire sullo schermo (a quello ci pensa il CSS).
+                <strong>💡 Regola fondamentale per i titoli:</strong><br>
+                Scegli il tag in base all'importanza logica dell'argomento, mai per decidere quanto grandi debba apparire a schermo (per regolare la grandezza useremo in seguito i fogli di stile CSS).
               </div>
 
-              <p>Pensa alla struttura di un libro o di una tesina scolastica: l'<code>&lt;h1&gt;</code> è il titolo principale, l'<code>&lt;h2&gt;</code> è il titolo di un capitolo, e l'<code>&lt;h3&gt;</code> è una sotto-sezione interna al capitolo.</p>
-              
-              <div class="alert alert--note" style="margin: 1.5rem 0;">
-                <strong>⚠️ Attenzione:</strong><br>
-                I tag dei titoli <strong>non si inseriscono fisicamente uno dentro l'altro</strong> nel codice (sarebbe un errore!). Si scrivono semplicemente uno di seguito all'altro.
-              </div>
+              <p>Pensa alla gerarchia logica dei titoli come all'indice di un libro o di una tesi scolastica:</p>
 
-              <p>Ecco come il browser e i motori di ricerca interpretano e strutturano la gerarchia dei titoli (l'albero logico dei contenuti):</p>
-
-              <pre><code>[h1] Il titolo principale del sito
+              <pre><code>[h1] Titolo Principale della Pagina (Deve essercene SOLO UNO!)
  │
- ├─── [h2] Capitolo 1: Gli strumenti di lavoro
+ ├─── [h2] Capitolo 1: Gli strumenti di sviluppo
  │     │
- │     ├─── [h3] Sotto-sezione 1.1: Installazione di VS Code
- │     │
- │     └─── [h3] Sotto-sezione 1.2: Primi comandi utili
+ │     ├─── [h3] Sotto-sezione 1.1: Installazione dell'editor
+ │     └─── [h3] Sotto-sezione 1.2: Configurazione della tastiera
  │
- └─── [h2] Capitolo 2: La struttura della pagina</code></pre>
+ └─── [h2] Capitolo 2: Scrivere il primo codice</code></pre>
 
-              <p><strong>Perché questa gerarchia è importante?</strong><br>
-              Non devi mai saltare i livelli (come passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code>). Se lo fai, confondi i motori di ricerca che tentano di comprendere la struttura del tuo sito, e rendi difficile la navigazione alle persone non vedenti che usano lettori vocali di schermo, i quali navigano la pagina proprio saltando da un titolo all'altro come se fosse l'indice di un libro.</p>
+              <p>I motori di ricerca come Google leggono questi tag per capire di cosa parla la tua pagina, mentre i lettori vocali usati dai non vedenti li sfruttano come un indice per permettere all'utente di saltare da un capitolo all'altro. Saltare un livello (es. passare da <code>&lt;h1&gt;</code> a <code>&lt;h4&gt;</code>) rompe questo indice ed è un grave errore.</p>
 
-              <h3>Paragrafi e formattazione del testo</h3>
-              <p>Ogni volta che vuoi inserire un blocco di testo normale, devi racchiuderlo nel tag del paragrafo, cioè <code>&lt;p&gt;</code> (che sta per <em>paragraph</em>). Il browser si occuperà in automatico di mandare a capo il testo alla fine del blocco e di aggiungere un po' di spazio vuoto prima del paragrafo successivo per facilitare la lettura.</p>
+              <h3>Scrivere i testi (Paragrafi e Tag in Linea)</h3>
+              <p>Il testo normale va inserito all'interno del tag del paragrafo: <strong><code>&lt;p&gt;</code></strong> (<em>paragraph</em>). Ogni volta che chiudi un paragrafo e ne apri un altro, il browser si occupa di mandarli a capo distanziandoli per facilitare la lettura.</p>
               
-              <p>Se all'interno di un paragrafo vuoi dare un significato speciale a singole parole o frasi, puoi usare dei tag HTML specifici (chiamati tag in linea).</p>
-              
-              <div class="alert alert--note" style="margin: 1.5rem 0;">
-                <strong>💡 Nota importante sullo stile:</strong><br>
-                Nel web moderno, per cambiare l'aspetto estetico (come colori, font o dimensioni) si usano sempre i fogli di stile (CSS). I tag HTML qui sotto servono solo a dare un <strong>significato logico (semantica)</strong> alle parole. I browser, tuttavia, applicano a questi tag uno stile grafico predefinito per distinguerli a schermo:
-              </div>
+              <p>Se all'interno del testo vuoi dare risalto o un significato speciale a una parola, usi dei tag specifici (chiamati tag in linea) posizionati direttamente dentro al paragrafo:</p>
 
               <ul class="guide-list">
                 <li><strong><code>&lt;strong&gt;</code></strong>: definisce una parola o frase di <strong>forte importanza</strong> (il browser la mostrerà in grassetto).</li>
@@ -314,11 +302,11 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
               </ul>
 
               <div class="alert alert--warning" style="margin: 1.5rem 0;">
-                <strong>⚠️ Attenzione all'uso semantico:</strong><br>
-                Evita di usare i vecchi tag <code>&lt;b&gt;</code> (grassetto) e <code>&lt;i&gt;</code> (corsivo). Sebbene producano lo stesso identico aspetto visivo di <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>, sono tag puramente grafici e privi di significato logico per i motori di ricerca e per chi usa ausili alla lettura. Usa sempre <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>!
+                <strong>⚠️ Attenzione alla semantica:</strong><br>
+                Evita di usare i vecchi tag <code>&lt;b&gt;</code> (grassetto) e <code>&lt;i&gt;</code> (corsivo). Sebbene producano lo stesso effetto estetico a schermo, sono tag obsoleti che indicano solo un comando grafico privo di valore logico. Nel web moderno, per definire l'aspetto estetico si usa solo il CSS, mentre HTML serve esclusivamente per la logica del contenuto!
               </div>
 
-              <p style="margin-top: 1.5rem;">Saper organizzare il testo è un ottimo punto di partenza, ma un sito internet non è un semplice foglio stampato. Nel prossimo capitolo vedremo come connettere tra loro i testi di pagine diverse attraverso la caratteristica che rende internet una vera rete: i link.</p>
+              <p style="margin-top: 1.5rem;">Saper organizzare il testo è un ottimo punto di partenza, ma un sito internet non è un semplice foglio stampato. Nel prossimo capitolo vedremo come connettere tra loro le pagine per creare una vera rete di navigazione: i link.</p>
             </section>
           </section>
 
@@ -326,34 +314,34 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. La ragnatela del Web: i Link</h2>
             <section class="guide-subchapter">
-              <p>Ciò che trasforma singoli documenti isolati in quella rete globale chiamata <em>World Wide Web</em> è la capacità di saltare da una pagina all'altra con un clic. Per creare questi collegamenti ipertestuali usiamo il tag <strong><code>&lt;a&gt;</code></strong> (che sta per <em>anchor</em>, ancora).</p>
+              <p>Il motivo per cui internet viene chiamato <em>World Wide Web</em> (ragnatela globale) risiede interamente nella capacità di saltare da una pagina all'altra o da un sito all'altro tramite un clic. Per creare questa connessione ipertestuale usiamo il tag di ancoraggio <strong><code>&lt;a&gt;</code></strong> (<em>anchor</em>).</p>
               
-              <p>Come abbiamo visto quando parlavamo di attributi, per indicare al browser dove deve portare il link usiamo l'attributo <strong><code>href</code></strong>:</p>
-              
-              <pre><code>&lt;a href="https://google.com"&gt;Visita il motore di ricerca Google&lt;/a&gt;</code></pre>
+              <p>Il tag <code>&lt;a&gt;</code> da solo non sa dove deve portare l'utente: ha bisogno che tu specifichi la destinazione nell'attributo <strong><code>href</code></strong> (<em>hypertext reference</em>), inserendo il testo del link all'interno del tag:</p>
 
-              <h3>I percorsi assoluti vs relativi</h3>
-              <p>L'indirizzo che scrivi nell'attributo <code>href</code> può essere di tre tipi diversi, a seconda di dove si trova la pagina di destinazione:</p>
+              <pre><code>&lt;a href="https://codedge.it"&gt;Visita il sito di Codedge&lt;/a&gt;</code></pre>
+
+              <h3>I tre tipi di collegamenti (href)</h3>
+              <p>A seconda di dove si trova la pagina di destinazione, scriverai l'indirizzo in tre modi diversi:</p>
               
               <ul class="guide-list">
-                <li><strong>Percorsi Assoluti (Collegamenti esterni)</strong>: si usano per puntare a siti web diversi dal tuo. Devono sempre includere l'indirizzo internet completo, compreso il protocollo (es. <code>https://github.com</code>).</li>
-                <li><strong>Percorsi Relativi (Collegamenti interni)</strong>: si usano per collegare pagine che si trovano nello stesso sito web. Non serve scrivere l'intero dominio, basta indicare il percorso del file a partire dalla pagina corrente (es. <code>/contatti/</code> o <code>../chi-sono/</code>).</li>
-                <li><strong>Ancore interne (Saltare nella stessa pagina)</strong>: utilissime per creare indici navigabili. Se inserisci un simbolo di cancelletto seguito da un ID (es. <code>href="#chapter-03"</code>), al clic la pagina scorrerà automaticamente fino all'elemento che possiede quell'ID (<code>id="chapter-03"</code>).</li>
+                <li><strong>Collegamenti esterni (Percorsi Assoluti)</strong>: si usano per portare il visitatore su un altro sito web. Richiedono l'indirizzo internet completo, incluso il protocollo di sicurezza (es. <code>https://google.com</code>).</li>
+                <li><strong>Collegamenti interni (Percorsi Relativi)</strong>: si usano per navigare tra le pagine del tuo stesso sito. Non serve scrivere l'intero dominio, basta indicare dove si trova il file rispetto alla pagina corrente (es. <code>/contatti/</code> o <code>../chi-sono/</code>).</li>
+                <li><strong>Ancore interne (Saltare nella stessa pagina)</strong>: se scrivi un cancelletto seguito da un identificatore (es. <code>href="#chapter-02"</code>), al clic la pagina scorrerà automaticamente fino all'elemento che possiede quell'ID (<code>id="chapter-02"</code>).</li>
               </ul>
 
-              <h3>Aprire link in nuove schede (in sicurezza!)</h3>
-              <p>Se vuoi che il link apra la pagina in una nuova scheda del browser anziché sostituire quella attuale, devi aggiungere l'attributo <code>target="_blank"</code>.</p>
+              <h3>Gestire i link esterni in sicurezza</h3>
+              <p>Se vuoi che il collegamento si apra in una nuova scheda del browser (lasciando il tuo sito aperto nella scheda precedente), devi aggiungere l'attributo <code>target="_blank"</code>.</p>
               
               <div class="alert alert--warning" style="margin: 1.5rem 0;">
-                <strong>🛡️ Regola di sicurezza fondamentale:</strong><br>
-                Ogni volta che usi <code>target="_blank"</code> per linkare un sito esterno, devi obbligatoriamente accompagnarlo con l'attributo <code>rel="noopener noreferrer"</code>. Senza questo attributo, la pagina esterna potrebbe accedere a quella precedente tramite script malevoli, rallentando inoltre la navigazione dell'utente.
+                <strong>🛡️ Regola di sicurezza obbligatoria:</strong><br>
+                Ogni volta che usi <code>target="_blank"</code> per puntare a siti esterni, accompagnalo sempre con l'attributo <code>rel="noopener noreferrer"</code>. Senza di esso, la pagina esterna potrebbe accedere a quella di origine rallentandola o rubando dati sensibili attraverso script malevoli.
               </div>
 
               <pre><code>&lt;a href="https://github.com" target="_blank" rel="noopener noreferrer"&gt;
-  Apri GitHub in una nuova scheda (protetta)
+  Apri GitHub in una nuova scheda sicura
 &lt;/a&gt;</code></pre>
 
-              <p style="margin-top: 1.5rem;">Ora che sappiamo scrivere testi e collegarli con i link, la nostra pagina comincia a prendere forma. Ma una pagina web non è fatta di sole parole: nel prossimo capitolo vedremo come inserire elementi visivi come immagini e illustrazioni, gestendo le performance e l'accessibilità.</p>
+              <p style="margin-top: 1.5rem;">Ora che sappiamo scrivere testi e connetterli tra loro, abbiamo creato l'ossatura logica della pagina. Però, una pagina web formata da sole scritte può essere monotona: nel prossimo capitolo vedremo come inserire elementi multimediali come immagini ed illustrazioni, tenendo d'occhio performance e accessibilità.</p>
             </section>
           </section>
 
@@ -361,33 +349,33 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-07" class="guide-block guide-chapter">
             <h2>6. Elementi Multimediali: Immagini e Figure</h2>
             <section class="guide-subchapter">
-              <p>Per arricchire il testo e dare un impatto visivo alla pagina, usiamo le immagini. In HTML, le immagini si inseriscono tramite il tag <strong><code>&lt;img&gt;</code></strong>.</p>
+              <p>Le immagini danno vita alla nostra pagina, spiegando visivamente i concetti o rendendola più accattivante. In HTML inseriamo le immagini tramite il tag vuoto (auto-chiudente) <strong><code>&lt;img&gt;</code></strong>.</p>
               
-              <p>Ricordi i tag vuoti (auto-chiudenti)? Il tag <code>&lt;img&gt;</code> è uno di questi: non racchiude del testo, quindi non ha un tag di chiusura, ma si basa interamente sugli attributi che specifichi al suo interno:</p>
+              <p>Essendo un tag vuoto, non racchiude del testo e non ha una chiusura: le informazioni vengono passate interamente tramite gli attributi:</p>
               
-              <pre><code>&lt;img src="/images/copertina.jpg" alt="Un gatto rosso che gioca con un gomitolo di lana" width="800" height="600"&gt;</code></pre>
+              <pre><code>&lt;img src="/images/foto.jpg" alt="Un gatto rosso addormentato su un divano" width="800" height="600"&gt;</code></pre>
 
-              <h3>I tre attributi fondamentali:</h3>
+              <h3>Gli attributi che devi assolutamente conoscere:</h3>
               <ul class="guide-list">
-                <li><strong><code>src</code> (La sorgente)</strong>: indica il percorso in cui si trova il file dell'immagine. Può essere un percorso relativo (un file nella cartella del tuo sito) o un URL assoluto (un'immagine ospitata altrove).</li>
-                <li><strong><code>alt</code> (L'alternativa testuale)</strong>: descrive a parole cosa c'è nell'immagine. Questo attributo è <strong>obbligatorio</strong>. Viene letto ad alta voce dai sintetizzatori vocali per i non vedenti e appare sullo schermo se l'immagine non può essere caricata per problemi di rete.</li>
-                <li><strong><code>width</code> e <code>height</code> (Le dimensioni)</strong>: indicano al browser la larghezza e l'altezza fisica dell'immagine in pixel.</li>
+                <li><strong><code>src</code> (La sorgente)</strong>: indica al browser il percorso del file dell'immagine (es. un file locale nella cartella del sito o un indirizzo web esterno).</li>
+                <li><strong><code>alt</code> (L'alternativa testuale)</strong>: è l'attributo più importante per l'accessibilità. Descrive a parole cosa c'è nell'immagine. Sarà letto ad alta voce dagli screen reader per i non vedenti e apparirà a schermo se l'utente ha una connessione lenta e l'immagine non si carica. Non ometterlo mai! Se l'immagine è solo decorativa, scrivi <code>alt=""</code> vuoto per far sì che i lettori la ignorino.</li>
+                <li><strong><code>width</code> e <code>height</code> (Le dimensioni)</strong>: indicano la larghezza e l'altezza fisica dell'immagine in pixel.</li>
               </ul>
 
               <div class="alert alert--note" style="margin: 1.5rem 0;">
-                <strong>💡 La regola d'oro per le immagini:</strong><br>
-                Specifica sempre <code>width</code> e <code>height</code> nel codice. In questo modo, il browser riserverà lo spazio esatto per l'immagine ancora prima di scaricarla, evitando sgradevoli "salti" del testo e del layout durante il caricamento (noti come <em>layout shifts</em>).
+                <strong>💡 La regola d'oro delle immagini:</strong><br>
+                Scrivi sempre le dimensioni <code>width</code> e <code>height</code> direttamente nel codice. In questo modo il browser calcola lo spazio necessario ancora prima di scaricare il file, evitando sgradevoli "salti" di layout del testo durante il caricamento della pagina (layout shift).
               </div>
 
-              <h3>Didascalie semantiche con Figure e Figcaption</h3>
-              <p>Se un'immagine ha una didascalia descrittiva sotto di essa (come nei libri di scuola o negli articoli di giornale), non usare un semplice paragrafo di testo. HTML5 ci offre un'associazione semantica corretta racchiudendo il tutto nel tag <code>&lt;figure&gt;</code> e usando il tag <code>&lt;figcaption&gt;</code> per la didascalia:</p>
+              <h3>Didascalie semantiche (Figure e Figcaption)</h3>
+              <p>Quando un'immagine ha una didascalia descrittiva sotto di essa, non usare un semplice paragrafo <code>&lt;p&gt;</code>. HTML5 ci offre un'associazione logica perfetta racchiudendo l'immagine all'interno del tag <code>&lt;figure&gt;</code> e inserendo la didascalia nel tag <code>&lt;figcaption&gt;</code>:</p>
 
               <pre><code>&lt;figure&gt;
-  &lt;img src="/images/schema-internet.png" alt="Grafico con computer client e server collegati" width="600" height="400" loading="lazy"&gt;
-  &lt;figcaption&gt;Figura 1.2: Il modello di comunicazione tra client e server.&lt;/figcaption&gt;
+  &lt;img src="/images/server-schema.png" alt="Schema di collegamento tra client e server" width="600" height="400" loading="lazy"&gt;
+  &lt;figcaption&gt;Figura 1.2: Rappresentazione del flusso di rete client-server.&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
 
-              <p style="margin-top: 1.5rem;">Oltre ai testi lunghi e alle immagini, spesso abbiamo bisogno di presentare le informazioni sotto forma di elenchi strutturati (pensa agli ingredienti di una ricetta o ai menu del sito). Nel prossimo capitolo scopriremo come organizzare i dati in liste ordinate e non.</p>
+              <p style="margin-top: 1.5rem;">Oltre a testi lunghi, link e immagini singole, spesso abbiamo la necessità di raggruppare informazioni correlate sotto forma di elenchi (como l'elenco dei servizi offerti o i link del menu di navigazione). Nel prossimo capitolo vedremo come organizzarli tramite le liste.</p>
             </section>
           </section>
 
@@ -395,39 +383,39 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>7. Liste: ordinare e descrivere il mondo</h2>
             <section class="guide-subchapter">
-              <p>Le liste sono uno degli strumenti più usati nel web. Non servono solo a scrivere l'elenco della spesa, ma sono la struttura invisibile dietro ai menu di navigazione dei siti, alle gallerie di prodotti e a qualsiasi elenco di elementi correlati.</p>
+              <p>Nel web le liste sono ovunque. Non servono solo per fare la lista della spesa, ma costituiscono l'ossatura invisibile di quasi tutti i menu di navigazione dei siti, delle schede prodotto affiancate e dei flussi di istruzioni passo-passo.</p>
               
-              <p>HTML offre tre tipi di liste, ciascuna con una sua precisa funzione logica:</p>
+              <p>HTML offre tre modi diversi per raggruppare ed elencare le informazioni:</p>
 
               <h3>1. Lista non ordinata (Tag <code>&lt;ul&gt;</code>)</h3>
-              <p>Si usa quando l'ordine delle voci non ha alcuna importanza (es. l'elenco degli ingredienti). Le voci vengono racchiuse nel contenitore principale <code>&lt;ul&gt;</code> (<em>unordered list</em>) e ogni singolo elemento dell'elenco viene definito con il tag <code>&lt;li&gt;</code> (<em>list item</em>). Di default, il browser mostra dei pallini neri a inizio riga:</p>
+              <p>Si usa quando l'ordine degli elementi non è importante (es. gli ingredienti di una torta). Apri il contenitore principale con <code>&lt;ul&gt;</code> (<em>unordered list</em>) e inserisci ogni elemento dentro il tag <code>&lt;li&gt;</code> (<em>list item</em>). Il browser mostrerà dei pallini neri a inizio riga:</p>
               
               <pre><code>&lt;ul&gt;
-  &lt;li&gt;Farina di grano tipo 0&lt;/li&gt;
-  &lt;li&gt;Acqua naturale tiepida&lt;/li&gt;
-  &lt;li&gt;Lievito di birra fresco&lt;/li&gt;
+  &lt;li&gt;Farina di grano tenero&lt;/li&gt;
+  &lt;li&gt;Zucchero semolato&lt;/li&gt;
+  &lt;li&gt;Uova fresche&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 
               <h3>2. Lista ordinata (Tag <code>&lt;ol&gt;</code>)</h3>
-              <p>Si usa quando l'ordine dei passaggi è fondamentale (es. le istruzioni di una ricetta o i passaggi di una guida). Il contenitore principale è <code>&lt;ol&gt;</code> (<em>ordered list</em>), mentre gli elementi interni rimangono <code>&lt;li&gt;</code>. Il browser calcolerà e visualizzerà i numeri in sequenza automatica:</p>
+              <p>Si usa quando l'ordine è cruciale per la comprensione (es. i passaggi di una ricetta o i capitoli di una guida). Il contenitore principale è <code>&lt;ol&gt;</code> (<em>ordered list</em>), mentre gli elementi rimangono <code>&lt;li&gt;</code>. Il browser gestirà i numeri di inizio riga in automatico:</p>
 
               <pre><code>&lt;ol&gt;
-  &lt;li&gt;Mescola la farina con il lievito&lt;/li&gt;
-  &lt;li&gt;Aggiungi l'acqua a filo impastando&lt;/li&gt;
-  &lt;li&gt;Lascia lievitare per due ore&lt;/li&gt;
+  &lt;li&gt;Preriscalda il forno a 180 gradi&lt;/li&gt;
+  &lt;li&gt;Mescola gli ingredienti in una ciotola&lt;/li&gt;
+  &lt;li&gt;Inforna per 40 minuti&lt;/li&gt;
 &lt;/ol&gt;</code></pre>
 
               <h3>3. Lista di descrizioni (Tag <code>&lt;dl&gt;</code>)</h3>
-              <p>Meno comune ma utilissima, serve per associare coppie di informazioni (es. un termine e la sua definizione, o una domanda e una risposta nelle FAQ). La lista si apre con <code>&lt;dl&gt;</code> (<em>description list</em>), il termine da definire si scrive in <code>&lt;dt&gt;</code> (<em>description term</em>) e la spiegazione si scrive in <code>&lt;dd&gt;</code> (<em>description details</em>):</p>
+              <p>Perfetta per glossari, definizioni di termini o moduli di FAQ (domande frequenti). Associa una chiave a un valore: si apre con <code>&lt;dl&gt;</code> (<em>description list</em>), si definisce il termine con <code>&lt;dt&gt;</code> (<em>description term</em>) e si scrive la spiegazione con <code>&lt;dd&gt;</code> (<em>description details</em>):</p>
 
               <pre><code>&lt;dl&gt;
-  &lt;dt&gt;HTML&lt;/dt&gt;
-  &lt;dd&gt;L'HyperText Markup Language, usato per strutturare le pagine web.&lt;/dd&gt;
-  &lt;dt&gt;CSS&lt;/dt&gt;
-  &lt;dd&gt;I fogli di stile usati per gestire il design e la grafica del sito.&lt;/dd&gt;
+  &lt;dt&gt;URL&lt;/dt&gt;
+  &lt;dd&gt;L'indirizzo univoco di una risorsa su internet (es. un sito).&lt;/dd&gt;
+  &lt;dt&gt;DOM&lt;/dt&gt;
+  &lt;dd&gt;La struttura ad albero creata dal browser leggendo il codice HTML.&lt;/dd&gt;
 &lt;/dl&gt;</code></pre>
 
-              <p style="margin-top: 1.5rem;">Le liste gestiscono sequenze di elementi semplici, ma quando i dati diventano bidimensionali e abbiamo bisogno di organizzarli in tabelle con righe e colonne (come i listini prezzi o gli orari dei treni), entrano in gioco le tabelle. Vediamo come funzionano nel prossimo capitolo.</p>
+              <p style="margin-top: 1.5rem;">Le liste sono perfette per informazioni monodimensionali. Quando però le informazioni si complicano e abbiamo bisogno di organizzarli in una griglia a due dimensioni (con righe e colonne per confrontare dati o prezzi), usiamo le tabelle. Vediamo come funzionano nel prossimo capitolo.</p>
             </section>
           </section>
 
@@ -435,39 +423,39 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-09" class="guide-block guide-chapter">
             <h2>8. Organizzare dati complessi: le Tabelle</h2>
             <section class="guide-subchapter">
-              <p>Le tabelle in HTML servono <strong>esclusivamente per organizzare dati relazionali</strong> in righe e colonne. In passato, a causa della mancanza di strumenti moderni, le tabelle venivano usate abusivamente per creare la struttura grafica e il layout delle pagine: si tratta di una pessima pratica ormai abbandonata, da evitare assolutamente.</p>
+              <p>Le tabelle servono <strong>esclusivamente per organizzare dati relazionali</strong> in righe e colonne. In passato venivano usate per impostare la struttura grafica e la disposizione degli elementi nei siti web: una pessima abitudine da evitare assolutamente, in quanto rende il sito inutilizzabile per chi ha disabilità e penalizza pesantemente la SEO.</p>
               
-              <p>Una tabella corretta ed accessibile si compone di una serie di tag specifici che cooperano tra loro:</p>
+              <p>Per creare una tabella corretta e accessibile dobbiamo combinare una serie di tag specifici che cooperano tra loro:</p>
 
               <pre><code>&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th&gt;Corso&lt;/th&gt;
-      &lt;th&gt;Durata&lt;/th&gt;
+      &lt;th&gt;Abbonamento&lt;/th&gt;
+      &lt;th&gt;Prezzo Mensile&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;HTML Base&lt;/td&gt;
-      &lt;td&gt;4 ore&lt;/td&gt;
+      &lt;td&gt;Base&lt;/td&gt;
+      &lt;td&gt;€9.99&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;CSS Avanzato&lt;/td&gt;
-      &lt;td&gt;6 ore&lt;/td&gt;
+      &lt;td&gt;Premium&lt;/td&gt;
+      &lt;td&gt;€14.99&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
 
-              <h3>I ruoli dei tag della tabella:</h3>
+              <h3>I tag della tabella spiegati con logica:</h3>
               <ul class="guide-list">
-                <li><strong><code>&lt;table&gt;</code></strong>: è la scatola esterna che racchiude tutta la tabella.</li>
-                <li><strong><code>&lt;thead&gt;</code> e <code>&lt;tbody&gt;</code></strong>: dividono la tabella in "testata dei titoli" e "corpo dei dati". Questo aiuta molto i motori di ricerca e i lettori di schermo a capire le colonne.</li>
-                <li><strong><code>&lt;tr&gt;</code> (Row)</strong>: rappresenta una singola riga della tabella.</li>
-                <li><strong><code>&lt;th&gt;</code> (Header cell)</strong>: definisce una cella d'intestazione (il browser la mostrerà in grassetto e centrata).</li>
+                <li><strong><code>&lt;table&gt;</code></strong>: è il contenitore principale, la grande scatola esterna.</li>
+                <li><strong><code>&lt;thead&gt;</code> e <code>&lt;tbody&gt;</code></strong>: dividono la tabella in "testata con i titoli" e "corpo dei dati". Questa separazione è di vitale importanza per consentire agli screen reader di associare correttamente ogni dato alla propria intestazione di colonna.</li>
+                <li><strong><code>&lt;tr&gt;</code> (Row)</strong>: rappresenta una singola riga della tabella. Ogni riga conterrà le celle al suo interno.</li>
+                <li><strong><code>&lt;th&gt;</code> (Header cell)</strong>: definisce una cella d'intestazione in cima alle colonne (il browser la mostrerà in grassetto e centrata di default).</li>
                 <li><strong><code>&lt;td&gt;</code> (Data cell)</strong>: contiene il dato effettivo all'interno di una cella standard.</li>
               </ul>
 
-              <p style="margin-top: 1.5rem;">Ora che abbiamo imparato a inserire tutti i singoli elementi di contenuto (testi, immagini, liste, tabelle), è arrivato il momento di fare un passo indietro e guardare la pagina nel suo insieme. Nel prossimo capitolo vedremo come raggruppare questi elementi in macro-aree logiche usando le "stanze" dell'HTML semantico.</p>
+              <p style="margin-top: 1.5rem;">Ora che conosciamo tutti i singoli mattoni di contenuto (testi, link, immagini, liste, tabelle), facciamo un passo indietro. Come organizziamo questi elementi dentro il body per evitare un ammasso caotico? Nel prossimo capitolo vedremo come progettare il layout della pagina usando le "stanze" dell'HTML semantico.</p>
             </section>
           </section>
 
@@ -475,28 +463,29 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-10" class="guide-block guide-chapter">
             <h2>9. HTML Semantico: dare un ruolo ad ogni blocco</h2>
             <section class="guide-subchapter">
-              <p>Fino ad ora abbiamo visto i singoli mattoni di una pagina web. Ma come organizziamo questi mattoni all'interno del <code>&lt;body&gt;</code> per dare un senso logico alla pagina? Qui entra in gioco l'<strong>HTML Semantico</strong>.</p>
+              <p>Immagina di progettare una casa. Non terresti mai un unico enorme spazio vuoto in cui gettare disordinatamente il letto, i fornelli, la doccia e il divano. Al contrario, divideresti la casa in stanze logiche, ognuna con un compito ben preciso (la cucina, la camera da letto, il bagno).</p>
               
-              <p>Scrivere codice semantico significa usare dei tag specifici per definire il ruolo logico di un'intera sezione di pagina. Per capire questo concetto, usa la <strong>metafora della casa</strong>:</p>
+              <p>In HTML facciamo la stessa identica cosa con il <code>&lt;body&gt;</code>. Per organizzare i nostri contenuti in aree logiche chiare, usiamo l'<strong>HTML Semantico</strong>: dei tag speciali introdotti con HTML5 dotati di un significato ben preciso:</p>
 
-              <div class="alert alert--note" style="margin: 1.5rem 0;">
-                <strong>🏠 La metafora delle stanze:</strong><br>
-                Invece di avere una casa formata da un'unica grande stanza caotica in cui butti dentro letti, fornelli e divani insieme, dividi la casa in aree specifiche dotate di una funzione precisa (cucina, camera da letto, bagno). In HTML facciamo la stessa cosa con i tag semantici del layout:
-              </div>
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/html-fondamentali/semantica-layout.svg" alt="Diagramma del layout di pagina con tag semantici" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Rappresentazione delle macro-aree semantiche (stanze logiche) all'interno di una pagina web.</figcaption>
+              </figure>
 
+              <h3>Le macro-aree (le stanze della casa) spiegate:</h3>
               <ul class="guide-list">
-                <li><strong><code>&lt;header&gt;</code> (L'ingresso)</strong>: racchiude gli elementi introduttivi in cima alla pagina o di una sezione, come il logo, il nome del sito o il menu iniziale.</li>
-                <li><strong><code>&lt;nav&gt;</code> (I corridoi)</strong>: dichiara esplicitamente al browser che quel blocco contiene i link di navigazione principali del sito.</li>
-                <li><strong><code>&lt;main&gt;</code> (La stanza principale)</strong>: contiene il contenuto principale ed esclusivo di quella specifica pagina (es. il testo dell'articolo in una pagina blog). Ce ne deve essere solo uno in tutto il file.</li>
-                <li><strong><code>&lt;article&gt;</code> (Un monolocale indipendente)</strong>: si usa per un blocco di contenuto che ha senso da solo e che potrebbe essere rimosso e ripubblicato altrove mantenendo intatto il suo significato (es. un singolo post di un blog, una notizia o la scheda di un prodotto).</li>
-                <li><strong><code>&lt;section&gt;</code> (Una stanza generica)</strong>: raggruppa elementi legati dallo stesso argomento logico (es. la sezione "Chi siamo" o "Caratteristiche"). Di norma, ogni section deve aprirsi con un titolo (<code>&lt;h2&gt;</code>-<code>&lt;h6&gt;</code>).</li>
-                <li><strong><code>&lt;aside&gt;</code> (Il balcone o ripostiglio)</strong>: racchiude contenuti secondari, non strettamente necessari al testo principale (es. barre laterali con link correlati, banner pubblicitari, approfondimenti).</li>
-                <li><strong><code>&lt;footer&gt;</code> (Le fondamenta)</strong>: si posiziona in fondo alla pagina e racchiude note legali, copyright, contatti e link alla privacy policy.</li>
+                <li><strong><code>&lt;header&gt;</code> (L'ingresso)</strong>: racchiude l'intestazione superiore del sito o di una sezione, contenendo solitamente il logo, il titolo della pagina e il menu di navigazione.</li>
+                <li><strong><code>&lt;nav&gt;</code> (I corridoi di collegamento)</strong>: segnala esplicitamente che quel blocco racchiude i link di navigazione principali del sito.</li>
+                <li><strong><code>&lt;main&gt;</code> (Il soggiorno/stanza principale)</strong>: contiene il contenuto unico ed esclusivo di quella specifica pagina (es. il testo dell'articolo di blog). Ce ne deve essere uno solo per file.</li>
+                <li><strong><code>&lt;article&gt;</code> (Un monolocale autonomo)</strong>: racchiude un blocco di contenuto indipendente, che ha senso da solo e che potrebbe essere rimosso dal sito e ripubblicato altrove (es. un post di un blog, una scheda prodotto, una recensione).</li>
+                <li><strong><code>&lt;section&gt;</code> (Una stanza generica)</strong>: raggruppa elementi legati dallo stesso identico sotto-argomento logico (es. la sezione "Chi siamo" o la sezione "Contatti"). Ogni section deve aprirsi con un titolo (<code>&lt;h2&gt;</code>-<code>&lt;h6&gt;</code>).</li>
+                <li><strong><code>&lt;aside&gt;</code> (Il ripostiglio o il balcone)</strong>: contiene informazioni di supporto o secondarie, correlate solo parzialmente al testo principale (es. barre laterali, box di approfondimento, banner).</li>
+                <li><strong><code>&lt;footer&gt;</code> (Le fondamenta)</strong>: si posiziona in fondo alla pagina e racchiude note sul copyright, link legali alla privacy policy e contatti.</li>
               </ul>
 
-              <p>Utilizzare questi tag non cambia l'aspetto grafico a schermo (che viene gestito sempre dal CSS), ma permette ai motori di ricerca (Google) di catalogare perfettamente il valore del tuo sito e garantisce una navigazione accessibile e strutturata a chiunque.</p>
+              <p>Usare questi tag non cambierà l'estetica a schermo del sito, ma è di fondamentale importanza: permette a Google di indicizzare correttamente il tuo sito (SEO) e consente a chi ha disabilità visive di saltare direttamente alla stanza desiderata (es. andare direttamente al menu o al contenuto principale).</p>
 
-              <p style="margin-top: 1.5rem;">Cosa succede però se abbiamo bisogno di creare delle scatole o dei contenitori che non hanno un significato logico o semantico, ma servono solo ad applicare uno stile estetico o un posizionamento grafico? Nel prossimo capitolo vedremo come usare i contenitori neutri: div e span.</p>
+              <p style="margin-top: 1.5rem;">Cosa succede però se abbiamo bisogno di creare delle scatole o dei contenitori che non hanno alcun valore logico o semantico, ma servono esclusivamente ad applicare uno stile grafico o un posizionamento spaziale con il CSS? Nel prossimo capitolo vedremo come usare i contenitori neutri: div e span.</p>
             </section>
           </section>
 
@@ -504,7 +493,7 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-11" class="guide-block guide-chapter">
             <h2>10. Div e span: l'ultima spiaggia per lo stile</h2>
             <section class="guide-subchapter">
-              <p>Spesso, durante la creazione di una pagina, avrai bisogno di raggruppare degli elementi sotto un unico contenitore solo per poter applicare una grafica specifica, uno sfondo colorato o un posizionamento spaziale con il CSS. In questi casi, dove non esiste alcun valore logico o semantico, usiamo i tag contenitori neutri: <strong><code>&lt;div&gt;</code></strong> e <strong><code>&lt;span&gt;</code></strong>.</p>
+              <p>Durante la costruzione del layout di un sito, capiterà spesso di dover raggruppare degli elementi sotto un unico contenitore al solo scopo di applicare una grafica specifica, uno sfondo colorato o un posizionamento spaziale con il CSS. In questi casi, dove non c'è alcun valore logico o semantico da comunicare, usiamo i tag contenitori neutri: <strong><code>&lt;div&gt;</code></strong> e <strong><code>&lt;span&gt;</code></strong>.</p>
               
               <h3>La differenza nel flusso della pagina (Block vs Inline)</h3>
               <p>Per usare correttamente questi due contenitori neutri, dobbiamo comprendere come si comportano all'interno della pagina:</p>
@@ -521,7 +510,7 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
 
               <div class="alert alert--warning" style="margin: 1.5rem 0;">
                 <strong>⚠️ Regola dello sviluppatore:</strong><br>
-                Usa <code>&lt;div&gt;</code> e <code>&lt;span&gt;</code> solo come "ultima spiaggia" quando nessun tag semantico (como <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> o <code>&lt;strong&gt;</code>) si adatta al tuo scopo logico. Evita la cosiddetta <em>"divite"</em> (cioè riempire la pagina esclusivamente di div anonimi), che distrugge la struttura logica del codice.
+                Usa <code>&lt;div&gt;</code> e <code>&lt;span&gt;</code> solo come "ultima spiaggia" quando nessun tag semantico (come <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> o <code>&lt;strong&gt;</code>) si adatta al tuo scopo logico. Evita la cosiddetta <em>"divite"</em> (cioè riempire la pagina esclusivamente di div anonimi), che distrugge la struttura logica del codice.
               </div>
 
               <p style="margin-top: 1.5rem;">Fino ad ora abbiamo costruito pagine in cui l'utente si limita a leggere o a guardare i contenuti. Conosciamo i mattoni, le stanze e le scatole grafiche. Ma se volessimo permettere al visitatore di risponderci, scrivendo del testo o inviando dati? Nel prossimo capitolo vedremo lo strumento di interazione per eccellenza: i moduli form.</p>
@@ -532,27 +521,26 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-12" class="guide-block guide-chapter">
             <h2>11. Interagire con l'utente: i Form</h2>
             <section class="guide-subchapter">
-              <p>I moduli (chiamati in inglese <strong>Form</strong>) sono il punto di contatto diretto tra l'utente e il nostro sito. Senza di essi non esisterebbero barre di ricerca, login, carrelli di e-commerce o moduli di contatto. In HTML, definiamo questa area interattiva con il tag <strong><code>&lt;form&gt;</code></strong>.</p>
+              <p>Finora abbiamo creato pagine web a senso unico: noi scriviamo e l'utente legge. Ma la vera forza del web sta nell'interazione. Ogni volta che effettui una ricerca su Google, accedi a un sito, inserisci i dati di pagamento o compili un modulo di contatto, stai usando un modulo interattivo: in HTML, questo contenitore si definisce con il tag <strong><code>&lt;form&gt;</code></strong>.</p>
               
-              <p>Ecco un esempio pulito di un modulo per la raccolta del nome utente e dei contatti:</p>
+              <p>Ecco un esempio minimale e pulito di un modulo per la raccolta del nome e del contatto email:</p>
 
-              <pre><code>&lt;form action="/invia-modulo" method="POST"&gt;
+              <pre><code>&lt;form action="/invia-dati" method="POST"&gt;
   &lt;label for="username"&gt;Nome Utente&lt;/label&gt;
-  &lt;input type="text" id="username" name="username" required placeholder="Scrivi il tuo nome"&gt;
+  &lt;input type="text" id="username" name="username_utente" required placeholder="Inserisci il tuo nome"&gt;
 
-  &lt;label for="privacy"&gt;
-    &lt;input type="checkbox" id="privacy" name="privacy_accettata" required&gt; Accetto i termini legali
-  &lt;/label>
+  &lt;label for="email"&gt;Indirizzo Email&lt;/label&gt;
+  &lt;input type="email" id="email" name="email_utente" required placeholder="esempio@email.com"&gt;
 
-  &lt;button type="submit"&gt;Invia i dati&lt;/button&gt;
+  &lt;button type="submit"&gt;Invia modulo&lt;/button&gt;
 &lt;/form&gt;</code></pre>
 
-              <h3>I quattro pilastri dei moduli:</h3>
+              <h3>I 4 pilastri per costruire un form corretto:</h3>
               <ul class="guide-list">
-                <li><strong>L'attributo <code>name</code> (La chiave del server)</strong>: è l'attributo più importante di ogni input. Rappresenta l'etichetta associata al dato quando questo viene spedito al server (es. <code>name="username"</code>). Se ti dimentichi di scrivere <code>name</code>, il dato inserito dall'utente non verrà inviato!</li>
-                <li><strong>L'accoppiata Label/Input (Accessibilità)</strong>: il tag <code>&lt;label&gt;</code> descrive a parole il campo. Collegandolo all'input tramite la corrispondenza tra l'attributo <code>for="..."</code> della label e l'<code>id="..."</code> dell'input, garantisci che cliccando sul testo della label il cursore si posizioni automaticamente nel campo corrispondente. Questo è fondamentale per chi ha difficoltà motorie o usa lettori vocali.</li>
-                <li><strong>La tipologia di input (<code>type</code>)</strong>: modificando il valore dell'attributo <code>type</code> indichi al browser quale tastiera mostrare sugli smartphone (es. <code>type="email"</code> apre la chiocciola, <code>type="tel"</code> apre il tastierino numerico).</li>
-                <li><strong>La convalida automatica (<code>required</code>)</strong>: aggiungendo l'attributo <code>required</code>, impedisci l'invio del form se quel campo specifico è vuoto, senza dover scrivere codice complesso.</li>
+                <li><strong>L'attributo <code>name</code> (Il messaggero)</strong>: è l'attributo più importante per gli input. Rappresenta la "chiave" con cui il server identificherà quel dato all'invio. Ad esempio, se l'utente scrive "Mario", il server riceverà <code>username_utente=Mario</code>. Se ometti l'attributo <code>name</code>, il browser ignorerà totalmente quel campo e il dato andrà perso!</li>
+                <li><strong>L'accoppiamento Label/Input (Accessibilità)</strong>: il tag <code>&lt;label&gt;</code> descrive a parole il campo. Collegandolo all'input tramite la corrispondenza tra l'attributo <code>for="..."</code> della label e l'<code>id="..."</code> dell'input, garantisci che cliccando sulla label il cursore si posizioni automaticamente nel campo corrispondente. Questo è fondamentale per chi ha difficoltà motorie e per l'accessibilità.</li>
+                <li><strong>La tipologia di input (<code>type</code>)</strong>: modificando il valore dell'attributo <code>type</code> di <code>&lt;input&gt;</code> dici al browser quale tastiera mostrare su smartphone (es. <code>type="email"</code> apre la tastiera con la chiocciola, <code>type="tel"</code> il tastierino numerico).</li>
+                <li><strong>La validazione nativa (<code>required</code>)</strong>: aggiungendo l'attributo <code>required</code>, impedisci l'invio del modulo se il campo è vuoto, senza dover scrivere codice complesso in JavaScript.</li>
               </ul>
 
               <p style="margin-top: 1.5rem;">Ora che la parte visibile del nostro body è completa e interattiva, facciamo un salto indietro all'inizio del nostro file. Nel prossimo capitolo scopriremo come configurare i dati invisibili della testa della pagina (l'head) per far apparire al meglio il nostro sito sui motori di ricerca e sui social network.</p>
@@ -563,19 +551,19 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-13" class="guide-block guide-chapter">
             <h2>12. L'Head invisibile: SEO e Social Card</h2>
             <section class="guide-subchapter">
-              <p>Dopo aver completato tutto ciò che gli utenti vedono all'interno del <code>&lt;body&gt;</code>, dobbiamo configurare la parte invisibile che avevamo accennato nel boilerplate: il tag <strong><code>&lt;head&gt;</code></strong>. Questa sezione è fondamentale per dialogare con i robot dei motori di ricerca (SEO) e gestire la condivisione nei social media.</p>
+              <p>Ora che il nostro <code>&lt;body&gt;</code> è completo di testi, link, immagini, liste, tabelle, form e organizzato in aree semantiche, facciamo un passo indietro e torniamo all'inizio del file, in quella cabina di regia invisibile che è il tag <strong><code>&lt;head&gt;</code></strong>. In questo capitolo vedremo come configurare i metadati indispensabili per presentare il nostro sito al mondo esterno.</p>
               
-              <h3>I metadati essenziali per farsi trovare (SEO):</h3>
-              <p>I metadati (definiti con il tag <code>&lt;meta&gt;</code>) contengono informazioni strutturate sulla pagina:</p>
+              <h3>I metadati essenziali per farsi trovare su Google (SEO):</h3>
+              <p>I metadati (definiti con il tag <code>&lt;meta&gt;</code>) contengono informazioni sulla pagina destinate esclusivamente a robot e motori di ricerca:</p>
               
               <ul class="guide-list">
-                <li><strong>Il titolo della scheda (Tag <code>&lt;title&gt;</code>)</strong>: è il testo che appare nella scheda in alto sul browser ed è il titolo blu cliccabile che vedi su Google. Deve essere conciso, descrittivo e contenere le parole chiave del tuo sito.</li>
-                <li><strong>La descrizione dei risultati (<code>&lt;meta name="description" content="..."&gt;</code>)</strong>: è il testo di due righe (circa 150 caratteri) che vedi sotto il titolo sui risultati di Google. Scrivere una descrizione accattivante invita gli utenti a cliccare sul tuo sito anziché su altri.</li>
-                <li><strong>La versione ufficiale (<code>&lt;link rel="canonical" href="..."&gt;</code>)</strong>: indica a Google qual è l'indirizzo originale di questa pagina, evitando penalizzazioni per contenuti duplicati se il tuo sito è raggiungibile da diversi indirizzi leggermente differenti.</li>
+                <li><strong>Il titolo dei risultati (Tag <code>&lt;title&gt;</code>)</strong>: definisce il titolo mostrato sulla scheda del browser e nei risultati di Google. Deve essere breve, contenere le parole chiave del tuo sito e non superare i 60 caratteri.</li>
+                <li><strong>La descrizione dei risultati (<code>&lt;meta name="description" content="..."&gt;</code>)</strong>: è il testo di due righe che appare sotto il titolo blu nei risultati di ricerca. Scrivere un riassunto chiaro ed accattivante (circa 150 caratteri) incentiva gli utenti a cliccare sul tuo sito.</li>
+                <li><strong>La sorgente ufficiale (<code>&lt;link rel="canonical" href="..."&gt;</code>)</strong>: comunica a Google qual è l'indirizzo originale di questa pagina, evitando di essere penalizzati per contenuti duplicati se lo stesso file è raggiungibile da diversi indirizzi web leggermente differenti.</li>
               </ul>
 
-              <h3>Le anteprime per i Social Network (Open Graph)</h3>
-              <p>Hai presente l'anteprima dotata di immagine, titolo in grassetto e descrizione sintetica che compare quando condividi un link su WhatsApp, Telegram, Facebook o Slack? Viene generata leggendo degli speciali metadati definiti con il protocollo **Open Graph**:</p>
+              <h3>Le anteprime per la condivisione sui Social (Open Graph)</h3>
+              <p>Ti sei mai chiesto come fanno WhatsApp, Facebook, LinkedIn o Slack a mostrare una bella scheda con foto, titolo e descrizione quando incolli un link in chat? Lo fanno leggendo degli speciali metadati inseriti nell'head, basati sul protocollo **Open Graph**:</p>
 
               <pre><code>&lt;meta property="og:title" content="HTML Fondamentali: Capire la Struttura del Web"&gt;
 &lt;meta property="og:description" content="Una guida passo-passo per comprendere l'architettura logica di una pagina web."&gt;
