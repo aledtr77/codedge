@@ -51,6 +51,14 @@
     .guide-content {
       --guide-pre-border: rgba(250, 196, 100, 0.18);
     }
+    .guide-content mark,
+    .guide-content mark code {
+      background-color: #ffd369;
+      color: #000000;
+      padding: 0 2px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
   </style>
 </head>
 
@@ -281,18 +289,23 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
               <h3>Paragrafi e formattazione del testo</h3>
               <p>Ogni volta che vuoi inserire un blocco di testo normale, devi racchiuderlo nel tag del paragrafo, cioè <code>&lt;p&gt;</code> (che sta per <em>paragraph</em>). Il browser si occuperà in automatico di mandare a capo il testo alla fine del blocco e di aggiungere un po' di spazio vuoto prima del paragrafo successivo per facilitare la lettura.</p>
               
-              <p>Se all'interno di un paragrafo vuoi dare risalto o un significato speciale a singole parole, puoi usare dei tag specifici (chiamati tag in linea):</p>
+              <p>Se all'interno di un paragrafo vuoi dare un significato speciale a singole parole o frasi, puoi usare dei tag HTML specifici (chiamati tag in linea).</p>
               
+              <div class="alert alert--note" style="margin: 1.5rem 0;">
+                <strong>💡 Nota importante sullo stile:</strong><br>
+                Nel web moderno, per cambiare l'aspetto estetico (come colori, font o dimensioni) si usano sempre i fogli di stile (CSS). I tag HTML qui sotto servono solo a dare un <strong>significato logico (semantica)</strong> alle parole. I browser, tuttavia, applicano a questi tag uno stile grafico predefinito per distinguerli a schermo:
+              </div>
+
               <ul class="guide-list">
-                <li><strong><code>&lt;strong&gt;</code></strong>: si usa per evidenziare concetti di <strong>forte importanza</strong> o parole chiave (a schermo apparirà in grassetto).</li>
-                <li><em><code>&lt;em&gt;</code></em>: si usa per dare enfasi o per parole che pronunceresti con un tono diverso (a schermo apparirà in corsivo).</li>
-                <li><code><code>&lt;code&gt;</code></code>: serve per mostrare codice di programmazione o termini tecnici, formattandoli con un carattere monospazio.</li>
-                <li><mark><code>&lt;mark&gt;</code></mark>: serve per evidenziare fisicamente una parola o una frase, esattamente come faresti con un evidenziatore giallo.</li>
+                <li><strong><code>&lt;strong&gt;</code></strong>: definisce una parola o frase di <strong>forte importanza</strong> (il browser la mostrerà in grassetto).</li>
+                <li><em><code>&lt;em&gt;</code></em>: definisce un'enfasi sul testo, ad esempio parole pronunciate con un tono diverso (il browser la mostrerà in corsivo).</li>
+                <li><code><code>&lt;code&gt;</code></code>: serve per mostrare codice di programmazione o termini informatici, formattandoli con un carattere monospazio.</li>
+                <li><mark><code>&lt;mark&gt;</code></mark>: serve per evidenziare visivamente una parola o una frase, simulando l'effetto di un evidenziatore giallo.</li>
               </ul>
 
               <div class="alert alert--warning" style="margin: 1.5rem 0;">
                 <strong>⚠️ Attenzione all'uso semantico:</strong><br>
-                Evita di usare i vecchi tag <code>&lt;b&gt;</code> (grassetto) e <code>&lt;i&gt;</code> (corsivo). Sebbene abbiano lo stesso identico effetto visivo di <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>, sono tag obsoleti e privi di significato per i motori di ricerca e per chi usa ausili alla lettura. Usa sempre <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>!
+                Evita di usare i vecchi tag <code>&lt;b&gt;</code> (grassetto) e <code>&lt;i&gt;</code> (corsivo). Sebbene producano lo stesso identico aspetto visivo di <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>, sono tag puramente grafici e privi di significato logico per i motori di ricerca e per chi usa ausili alla lettura. Usa sempre <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>!
               </div>
             </section>
           </section>
