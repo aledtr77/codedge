@@ -1,4 +1,4 @@
-const SW_VERSION = "v7";
+const SW_VERSION = "v8";
 const STATIC_CACHE = `codedge-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `codedge-runtime-${SW_VERSION}`;
 
