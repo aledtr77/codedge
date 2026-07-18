@@ -1,6 +1,6 @@
-/* Contact page. Layout: intro header, then a two-column grid with the form
-   card on the right and a light-weight info rail on the left. The form is
-   first in source order (primary action) and stacks first on mobile. */
+/* Contact page. Centered intro, then two twin cards that share the same
+   chrome and stretch to the same height: info rail on the left, form on the
+   right (50/50 on desktop). On mobile they stack with the form first. */
 
 @keyframes spin {
   to {
@@ -9,23 +9,34 @@
 }
 
 .contact-page {
-  max-width: 1080px;
-  margin: 0 auto 4rem;
+  max-width: 1240px;
+  margin: 0 auto 4.5rem;
   padding: 2.25rem 2rem 0;
 }
 
 /* The global justified-paragraph rule (main.css) creates rivers of whitespace
-   in this page's narrow columns. Its :not() chain carries ~(0,7,9) specificity,
-   so the page-level opt-out needs !important to win. */
+   in these columns; its :not() chain carries ~(0,7,9) specificity, so the
+   opt-out needs !important. Paragraphs follow their container's alignment;
+   text-align-last must be reset too or last lines stay left-flushed even in
+   centered blocks. */
 .contact-page p {
-  text-align: left !important;
+  text-align: inherit !important;
+  text-align-last: auto !important;
+}
+
+/* Both footnotes stay centered regardless of their card's alignment.
+   (0,2,0)!important outranks the (0,1,1)!important opt-out above. */
+.contact-page .contact-form-note,
+.contact-page .contact-report-note {
+  text-align: center !important;
 }
 
 /* ---------- Intro ---------- */
 
 .contact-intro {
-  max-width: 62ch;
-  margin-bottom: 2.75rem;
+  max-width: 68ch;
+  margin: 0 auto 2.6rem;
+  text-align: center;
 }
 
 .contact-title {
@@ -37,64 +48,126 @@
   color: #fff;
 }
 
-.contact-lead {
+/* Justified like the site's other body copy (the title above stays centered).
+   (0,2,0)!important outranks the .contact-page p opt-out. */
+.contact-page .contact-lead {
   font-size: 1.05rem;
   line-height: 1.65;
   color: rgba(242, 242, 242, 0.85);
+  text-align: justify !important;
+  text-justify: inter-word;
+  text-align-last: center !important;
 }
 
-/* ---------- Layout ---------- */
+/* ---------- Twin cards ---------- */
 
-.contact-layout {
+.contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  grid-template-areas: "aside form";
-  gap: 3.25rem;
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas: "info form";
+  gap: 2rem;
+  align-items: stretch;
 }
 
-.contact-form-shell {
+.contact-form-card {
   grid-area: form;
 }
 
-.contact-aside {
-  grid-area: aside;
+.contact-info-card {
+  grid-area: info;
 }
 
-/* ---------- Info rail ---------- */
-
-.contact-aside-item + .contact-aside-item {
-  margin-top: 1.9rem;
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2.1rem;
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(0, 132, 255, 0.12), transparent 42%),
+    linear-gradient(180deg, #171e2d 0%, #10141f 100%);
+  box-shadow: var(--card-shadow);
 }
 
-.contact-aside-item h3 {
+.contact-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 45%);
+  pointer-events: none;
+}
+
+.contact-card-title {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin-bottom: 0.55rem;
+  margin-bottom: 1.5rem;
   font-family: var(--heading-font);
-  font-size: 1.12rem;
+  font-size: 1.45rem;
   color: #fff;
 }
 
-.contact-aside-item h3 i {
-  font-size: 1rem;
+.contact-card-title i {
+  font-size: 1.15rem;
   color: var(--color-three);
 }
 
-.contact-aside-item p {
-  font-size: 0.96rem;
+/* ---------- Info card ---------- */
+
+/* The list spreads out to fill the stretched card so both columns end flush. */
+.contact-points {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contact-point-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 132, 255, 0.32);
+  background: rgba(0, 132, 255, 0.12);
+  color: var(--color-three);
+  font-size: 1.05rem;
+}
+
+.contact-point-body h4 {
+  margin-bottom: 0.35rem;
+  font-family: var(--heading-font);
+  font-size: 1.08rem;
+  color: #fff;
+}
+
+.contact-point-body p {
+  font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(242, 242, 242, 0.78);
+  color: rgba(242, 242, 242, 0.75);
 }
 
 /* Discreet "found a mistake?" pointer to the GitHub issue template — a quiet
-   footnote at the end of the rail, deliberately not a call-to-action. */
+   footnote pinned to the card bottom, deliberately not a call-to-action.
+   Mirrors the form card's privacy footnote for symmetry. */
 .contact-report-note {
-  margin-top: 2.4rem;
-  padding-top: 1.4rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--border-color);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   line-height: 1.6;
   color: rgba(242, 242, 242, 0.6);
 }
@@ -110,40 +183,24 @@
 
 /* ---------- Form card ---------- */
 
-.contact-form-shell {
-  position: relative;
-  overflow: hidden;
-  padding: 2rem;
-  border: 1px solid var(--card-border);
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at top right, rgba(0, 132, 255, 0.13), transparent 42%),
-    linear-gradient(180deg, #171e2d 0%, #10141f 100%);
-  box-shadow: var(--card-shadow);
-}
-
-.contact-form-shell::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 45%);
-  pointer-events: none;
-}
-
-.contact-form-title {
-  margin-bottom: 1.5rem;
-  font-family: var(--heading-font);
-  font-size: 1.55rem;
-  color: #fff;
-}
-
 .contact-form {
+  flex: 1;
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* The message row soaks up any extra height so the twin cards end flush. */
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
   gap: 1.05rem;
+}
+
+.form-group-full,
+.contact-form .button-simple,
+.contact-form-note {
+  grid-column: 1 / -1;
 }
 
 .form-group {
   position: relative;
+  display: flex;
 }
 
 .form-group input,
@@ -155,6 +212,7 @@
   background: rgba(9, 13, 22, 0.6);
   color: #fff;
   font-size: 1rem;
+  text-align: left;
   outline: 0;
   transition:
     border-color 0.2s ease,
@@ -163,7 +221,7 @@
 }
 
 .form-group textarea {
-  min-height: 170px;
+  min-height: 180px;
   resize: vertical;
 }
 
@@ -217,7 +275,7 @@
 
 .contact-form .button-simple {
   max-width: 100%;
-  margin-top: 0.35rem;
+  margin-top: 0.15rem;
 }
 
 .contact-form .button-simple[disabled] {
@@ -228,11 +286,14 @@
   font-size: 0.9em;
 }
 
+/* Mirrors the info card's report footnote: same weight, same position. */
 .contact-form-note {
-  margin: 0;
-  font-size: 0.84rem;
-  text-align: center;
-  color: rgba(242, 242, 242, 0.55);
+  margin: 0.35rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: rgba(242, 242, 242, 0.6);
 }
 
 /* Honeypot: visually removed, still submitted with the form. */
@@ -291,41 +352,84 @@
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .contact-page {
     padding: 1.5rem 1rem 0;
   }
 
   .contact-intro {
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.9rem;
   }
 
-  .contact-layout {
+  .contact-lead {
+    font-size: 0.98rem;
+  }
+
+  /* Stack: the form (primary action) first, the info card after. */
+  .contact-grid {
     grid-template-columns: 1fr;
     grid-template-areas:
       "form"
-      "aside";
-    gap: 2.75rem;
+      "info";
+    gap: 1.4rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
+  }
+
+  .contact-card-title {
+    margin-bottom: 1.25rem;
+    font-size: 1.3rem;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 0.95rem;
+  }
+
+  .form-group-full,
+  .contact-form .button-simple,
+  .contact-form-note {
+    grid-column: auto;
+  }
+
+  .form-group textarea {
+    min-height: 150px;
+  }
+
+  .contact-points {
+    gap: 1.15rem;
+  }
+
+  .contact-point-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 0.95rem;
+  }
+
+  .contact-point-body h4 {
+    font-size: 1.02rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-point-body p {
+    font-size: 0.92rem;
+  }
+
+  .contact-report-note,
+  .contact-form-note {
+    font-size: 0.82rem;
   }
 }
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 1.25rem var(--mobile-page-gutter) 0;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-form-shell {
-    padding: 1.4rem 1.15rem;
-    border-radius: 18px;
-  }
-
-  .contact-form-title {
-    font-size: 1.35rem;
-  }
-
-  .contact-lead {
-    font-size: 0.98rem;
+    padding-left: var(--mobile-page-gutter);
+    padding-right: var(--mobile-page-gutter);
+    margin-bottom: 2.75rem;
   }
 
   .feedback-message {

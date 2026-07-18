@@ -68,9 +68,13 @@
         </p>
       </div>
 
-      <div class="contact-layout">
-        <section class="contact-form-shell" aria-labelledby="contact-form-title">
-          <h3 id="contact-form-title" class="contact-form-title">Invia un messaggio</h3>
+      <!-- Two twin cards, 50/50 on desktop (info left, form right), stacked on
+           mobile with the form first. Same chrome on both = symmetric layout. -->
+      <div class="contact-grid">
+        <section class="contact-card contact-form-card" aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title" class="contact-card-title">
+            <i class="fa-regular fa-envelope" aria-hidden="true"></i> Invia un messaggio
+          </h3>
           <form id="contact-form" class="contact-form">
             <div class="form-group">
               <input id="nome" name="nome" autocomplete="name" required="" placeholder=" ">
@@ -80,11 +84,11 @@
               <input type="email" id="email" name="email" autocomplete="email" required="" placeholder=" ">
               <label for="email">Email</label>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-full">
               <input id="oggetto" name="oggetto" autocomplete="off" required="" placeholder=" ">
               <label for="oggetto">Oggetto</label>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-full">
               <textarea id="messaggio" name="messaggio" autocomplete="off" required="" placeholder=" "></textarea>
               <label for="messaggio">Messaggio</label>
             </div>
@@ -102,31 +106,45 @@
           </form>
         </section>
 
-        <aside class="contact-aside" aria-label="Prima di scrivere">
-          <div class="contact-aside-item">
-            <h3><i class="fa-solid fa-handshake" aria-hidden="true"></i> Collaborazioni</h3>
-            <p>
-              Se mi proponi un progetto, indica obiettivo, tempistiche e budget indicativo:
-              mi permette di risponderti in modo concreto.
-            </p>
-          </div>
-          <div class="contact-aside-item">
-            <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Domande e richieste</h3>
-            <p>
-              Prima di scrivere dai un'occhiata a
-              <a href="/risorse/">Risorse</a>,
-              <a href="/strumenti/">Strumenti</a> e
-              <a href="/tutorial/">Tutorial</a>:
-              forse quello che cerchi &egrave; gi&agrave; pronto.
-            </p>
-          </div>
-          <div class="contact-aside-item">
-            <h3><i class="fa-regular fa-clock" aria-hidden="true"></i> Tempi di risposta</h3>
-            <p>
-              In genere 24&ndash;72 ore lavorative. Un oggetto chiaro e un po' di contesto
-              aiutano ad avere una risposta pi&ugrave; utile.
-            </p>
-          </div>
+        <section class="contact-card contact-info-card" aria-labelledby="contact-info-title">
+          <h3 id="contact-info-title" class="contact-card-title">
+            <i class="fa-regular fa-lightbulb" aria-hidden="true"></i> Prima di scrivere
+          </h3>
+          <ul class="contact-points">
+            <li class="contact-point">
+              <span class="contact-point-icon" aria-hidden="true"><i class="fa-solid fa-handshake"></i></span>
+              <div class="contact-point-body">
+                <h4>Collaborazioni</h4>
+                <p>
+                  Per un progetto indica obiettivo, tempistiche e budget indicativo:
+                  cos&igrave; posso risponderti in modo concreto.
+                </p>
+              </div>
+            </li>
+            <li class="contact-point">
+              <span class="contact-point-icon" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></span>
+              <div class="contact-point-body">
+                <h4>Domande e richieste</h4>
+                <p>
+                  Dai prima un'occhiata a
+                  <a href="/risorse/">Risorse</a>,
+                  <a href="/strumenti/">Strumenti</a> e
+                  <a href="/tutorial/">Tutorial</a>:
+                  forse quello che cerchi &egrave; gi&agrave; pronto.
+                </p>
+              </div>
+            </li>
+            <li class="contact-point">
+              <span class="contact-point-icon" aria-hidden="true"><i class="fa-regular fa-clock"></i></span>
+              <div class="contact-point-body">
+                <h4>Tempi di risposta</h4>
+                <p>
+                  In genere 24&ndash;72 ore lavorative. Un oggetto chiaro e un po'
+                  di contesto aiutano ad avere una risposta pi&ugrave; utile.
+                </p>
+              </div>
+            </li>
+          </ul>
           <p class="contact-report-note">
             Hai trovato un errore o un refuso in una pagina? Puoi
             <a
@@ -135,7 +153,7 @@
               rel="noopener noreferrer"
             >segnalarlo su GitHub <i class="fa-brands fa-github" aria-hidden="true"></i></a>.
           </p>
-        </aside>
+        </section>
       </div>
     </main>
     <div id="feedback" class="feedback-message"></div>
