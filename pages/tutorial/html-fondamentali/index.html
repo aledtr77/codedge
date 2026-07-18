@@ -594,7 +594,14 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>7. Gli attributi globali: id, class e gli altri</h2>
             <section class="guide-subchapter">
-              <p>Nel capitolo 2 hai visto che un tag può avere attributi scritti nella forma <code>nome="valore"</code>. Alcuni sono specifici di un tag (<code>href</code> funziona solo sui link, <code>src</code> solo su immagini e simili). Altri, detti <strong>globali</strong>, funzionano su qualunque elemento. Due sono indispensabili.</p>
+              <p>Nel capitolo 2 hai visto che un tag può avere degli attributi scritti nella forma <code>nome="valore"</code>. Se dividiamo gli attributi per tipologia, possiamo classificarli in due grandi categorie:</p>
+              
+              <ul class="guide-list">
+                <li><strong>Attributi specifici:</strong> Funzionano solo su determinati tag. Ad esempio, l'attributo <code>href</code> che abbiamo visto nel capitolo 2 appartiene a questa categoria: serve solo per definire la destinazione di un link (il tag <code>&lt;a&gt;</code>) e non avrebbe alcun senso inserito su un paragrafo (<code>&lt;p&gt;</code>) o su un titolo. Lo stesso vale per l'attributo <code>src</code>, specifico per le immagini.</li>
+                <li><strong>Attributi globali:</strong> Sono attributi speciali che puoi applicare a <strong>qualsiasi tag HTML</strong> esistente (come <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;div&gt;</code>, ecc.). Servono a dare proprietà universali agli elementi.</li>
+              </ul>
+
+              <p>Tra tutti gli attributi globali, ce ne sono due che sono assolutamente indispensabili per lo sviluppo web. Vediamoli nel dettaglio.</p>
 
               <h3><code>id</code>: il nome proprio di un elemento</h3>
               <p>L'attributo <code>id</code> assegna a un elemento un identificativo <strong>unico in tutta la pagina</strong>.</p>
