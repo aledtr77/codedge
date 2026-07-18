@@ -164,20 +164,51 @@ apertura                  contenuto                   chiusura</code></pre>
 
               <p>Alcuni tag rari non contengono testo e non racchiudono nulla, quindi non hanno bisogno di un tag di chiusura. Vengono chiamati <strong>tag vuoti</strong> (o auto-chiudenti). Un esempio è il tag <code>&lt;img&gt;</code> per mostrare un'immagine o <code>&lt;br&gt;</code> per andare a capo.</p>
 
-              <h3>La regola delle scatole cinesi (Nesting)</h3>
-              <p>Quando inserisci un tag dentro l'altro, devi rispettare rigorosamente l'ordine di apertura. Immagina delle bambole russe (matrioske) o delle scatole cinesi: non puoi chiudere la scatola esterna se non hai prima chiuso quella interna.</p>
-              <p>Guarda questo esempio errato:</p>
-              <pre><code>&lt;!-- ERRORE: Il tag &lt;strong&gt; viene chiuso dopo &lt;p&gt; --&gt;
-&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/p&gt;&lt;/strong&gt;</code></pre>
-              <p>Ed ecco invece la struttura corretta:</p>
-              <pre><code>&lt;!-- CORRETTO: La scatola interna (&lt;strong&gt;) si chiude prima di quella esterna (&lt;p&gt;) --&gt;
-&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/strong&gt;&lt;/p&gt;</code></pre>
-              <p>I browser moderni cercano di correggere questi errori in automatico, ma farlo costringe il browser a fare calcoli inutili e spesso produce layout imprevisti o problemi di accessibilità.</p>
+              <h3>La regola del Nesting (Annidamento)</h3>
+              <p>In HTML, quando inseriamo un tag all'interno di un altro, parliamo di <strong>Nesting</strong> (annidamento). Immagina questa struttura come una serie di scatole cinesi o matrioske: una scatola più piccola deve essere inserita interamente dentro una scatola più grande.</p>
+              
+              <p>C'è una regola d'oro semplicissima da ricordare per non sbagliare mai:</p>
+              <div class="alert alert--note" style="margin: 1.5rem 0;">
+                <strong>Regola d'oro del Nesting:</strong><br>
+                L'ultimo tag che apri deve essere sempre il primo che chiudi. Non puoi mai incrociare i tag!
+              </div>
 
-              <figure class="guide-figure">
-                <img src="/images/percorsi-apprendimento/html-fondamentali/nesting-tag.svg" alt="Diagramma di confronto tra annidamento tag corretto ed errato" loading="lazy" decoding="async" width="1200" height="520">
-                <figcaption>Confronto visivo tra l'annidamento strutturato (scatole cinesi) e l'incrocio scorretto dei tag.</figcaption>
-              </figure>
+              <p>Per capire questo concetto in modo semplicissimo, pensa alle parentesi che usi quando scrivi a mano. Se apri una parentesi tonda <code>(</code> e poi una parentesi quadra <code>[</code>, devi obbligatoriamente chiudere prima la quadra e poi la tonda. Non puoi incrociarle in questo modo: <code>( [ ) ]</code>.</p>
+              
+              <p>Vediamo il confronto diretto tra la struttura errata e quella corretta.</p>
+
+              <div style="border-left: 4px solid #ff4d4d; padding-left: 1rem; margin: 1.5rem 0; background: rgba(255, 77, 77, 0.05);">
+                <h4 style="color: #ff4d4d; margin-top: 0; font-size: 1.1rem;">❌ L'errore più comune (Tag incrociati)</h4>
+                <p>Immagina di voler mettere una parola in grassetto (usando il tag <code>&lt;strong&gt;</code>) all'interno di un paragrafo (usando <code>&lt;p&gt;</code>):</p>
+                <pre><code>&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/p&gt;&lt;/strong&gt;</code></pre>
+                <p>Se proviamo a visualizzarlo come scatole, notiamo subito l'errore:</p>
+                <pre><code>Scatola Paragrafo INIZIA  (&lt;p&gt;)
+   │   Scatola Grassetto INIZIA (&lt;strong&gt;)
+   │      │
+   │      └─&gt; Testo molto importante.
+   │
+Scatola Paragrafo FINISCE   (&lt;/p&gt;)   &lt;-- ERRORE! La chiudi mentre il grassetto è ancora aperto!
+          └─&gt; Scatola Grassetto FINISCE (&lt;/strong&gt;)  &lt;-- Troppo tardi, è fuori posto!</code></pre>
+                <p>In questo caso, le scatole si tagliano a metà l'una con l'altra. Questo costringe il browser a fare supposizioni e può rompere l'aspetto grafico della tua pagina.</p>
+              </div>
+
+              <div style="border-left: 4px solid #4dffb4; padding-left: 1rem; margin: 1.5rem 0; background: rgba(77, 255, 180, 0.05);">
+                <h4 style="color: #4dffb4; margin-top: 0; font-size: 1.1rem;">✅ La struttura corretta (Scatole ordinate)</h4>
+                <p>Per correggere l'errore, dobbiamo assicurarci che la scatola più piccola (il grassetto) si chiuda prima della scatola più grande (il paragrafo):</p>
+                <pre><code>&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/strong&gt;&lt;/p&gt;</code></pre>
+                <p>Vediamo come le scatole si inseriscono perfettamente l'una dentro l'altra:</p>
+                <pre><code>Scatola Paragrafo INIZIA  (&lt;p&gt;)
+   │   Scatola Grassetto INIZIA (&lt;strong&gt;)
+   │      │
+   │      ├─&gt; Testo molto importante.
+   │      │
+   │   Scatola Grassetto FINISCE (&lt;/strong&gt;) --&gt; Chiusa ordinatamente dentro!
+   │
+Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code></pre>
+                <p>In questo modo, la gerarchia è pulita, logica e facilissima da interpretare per qualsiasi browser o lettore di schermo.</p>
+              </div>
+
+              <p style="margin-top: 1.5rem;">Sebbene i browser moderni facciano del loro meglio per "correggere" da soli gli errori di nesting, farlo li costringe a rallentare e a indovinare le tue intenzioni. Questo porta spesso a bug grafici inaspettati, problemi sui dispositivi mobili o difficoltà per le persone che usano lettori di schermo per non vedenti.</p>
             </section>
           </section>
 
