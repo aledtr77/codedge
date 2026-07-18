@@ -249,21 +249,23 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
               <p>Per questo motivo, HTML mette a disposizione degli strumenti specifici per strutturare i contenuti, creando una gerarchia visiva e logica chiara (attraverso i <strong>titoli</strong>) e organizzando i concetti in blocchi di senso compiuto (i <strong>paragrafi</strong>).</p>
               
               <h3>I Titoli: la scala da h1 a h6</h3>
-              <p>Per suddividere il tuo testo in sezioni e sotto-sezioni, usi i tag di intestazione (detti <em>headings</em>), che vanno da <code>&lt;h1&gt;</code> fino a <code>&lt;h6&gt;</code>.</p>
-              
-              <p>Immagina questa struttura esattamente come l'indice di un libro o la suddivisione di una tesina scolastica:</p>
+              <p>Per dare un ordine di lettura e dividere la pagina in capitoli e argomenti, usiamo i tag dei titoli (in inglese chiamati <em>headings</em>). Questi tag vanno da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>, dove il numero indica quanto è importante quel titolo.</p>
               
               <div class="alert alert--note" style="margin: 1.5rem 0;">
                 <strong>💡 La regola d'oro dei Titoli:</strong><br>
-                Non scegliere mai un tag (ad esempio un <code>&lt;h3&gt;</code>) solo perché a schermo appare più piccolo o più grande di un altro. La grandezza visiva è un compito che spetta esclusivamente ai fogli di stile (CSS). In HTML devi scegliere i titoli basandoti solo sulla loro <strong>importanza logica</strong>.
+                Usa i titoli per definire l'importanza logica delle informazioni, non per decidere quanto grandi devono apparire sullo schermo (a quello ci pensa il CSS).
               </div>
 
-              <pre><code>&lt;h1&gt;Il titolo principale del libro (Solo uno per pagina!)&lt;/h1&gt;
-  &lt;h2&gt;Capitolo 1: L'inizio della storia&lt;/h2&gt;
-    &lt;h3&gt;Paragrafo 1.1: I dettagli dell'ambientazione&lt;/h3&gt;
-  &lt;h2&gt;Capitolo 2: Il colpo di scena&lt;/h2&gt;</code></pre>
+              <p>Pensa alla struttura di un libro o di una tesina scolastica: l'<code>&lt;h1&gt;</code> è il titolo principale, l'<code>&lt;h2&gt;</code> è il titolo di un capitolo, e l'<code>&lt;h3&gt;</code> è una sotto-sezione interna al capitolo. Ecco un esempio pratico:</p>
 
-              <p>Saltare i livelli gerarchici (ad esempio passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code> senza passare per un <code>&lt;h2&gt;</code> o <code>&lt;h3&gt;</code>) è un errore grave: rompe la struttura logica del documento, penalizza il posizionamento sui motori di ricerca (SEO) e disorienta gli screen reader utilizzati dai visitatori non vedenti.</p>
+              <pre><code>&lt;h1&gt;Il titolo principale del sito (Solo uno per pagina!)&lt;/h1&gt;
+  &lt;h2&gt;Capitolo 1: Gli strumenti di lavoro&lt;/h2&gt;
+    &lt;h3&gt;Sotto-sezione 1.1: Installazione di VS Code&lt;/h3&gt;
+    &lt;h3&gt;Sotto-sezione 1.2: Primi comandi utili&lt;/h3&gt;
+  &lt;h2&gt;Capitolo 2: La struttura della pagina&lt;/h2&gt;</code></pre>
+
+              <p><strong>Perché questa gerarchia è importante?</strong><br>
+              Non devi mai saltare i livelli (come passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code>). Se lo fai, confondi i motori di ricerca che cercano di catalogare e capire il tuo sito, e rendi difficile la navigazione alle persone non vedenti che usano lettori vocali dello schermo, i quali leggono i titoli proprio come se fossero l'indice del libro.</p>
 
               <h3>Paragrafi e formattazione del testo</h3>
               <p>Ogni volta che vuoi inserire un blocco di testo normale, devi racchiuderlo nel tag del paragrafo, cioè <code>&lt;p&gt;</code> (che sta per <em>paragraph</em>). Il browser si occuperà in automatico di mandare a capo il testo alla fine del blocco e di aggiungere un po' di spazio vuoto prima del paragrafo successivo per facilitare la lettura.</p>
