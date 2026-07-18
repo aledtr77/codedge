@@ -244,22 +244,43 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>4. Comunicare con le parole: titoli e paragrafi</h2>
             <section class="guide-subchapter">
-              <p>Il testo è l'anima delle pagine web. HTML mette a disposizione strumenti specifici per organizzare le gerarchie e dare risalto a singole parole.</p>
+              <p>Il testo è l'anima di qualsiasi pagina web: ogni articolo di giornale, scheda prodotto o post social si basa sulla parola scritta. Tuttavia, un muro di testo piatto e uniforme è stancante da leggere e impossibile da navigare.</p>
+              
+              <p>Per questo motivo, HTML mette a disposizione degli strumenti specifici per strutturare i contenuti, creando una gerarchia visiva e logica chiara (attraverso i <strong>titoli</strong>) e organizzando i concetti in blocchi di senso compiuto (i <strong>paragrafi</strong>).</p>
+              
               <h3>I Titoli: la scala da h1 a h6</h3>
-              <p>I titoli indicano l'importanza degli argomenti. Ricorda: **non si scelgono in base alla grandezza visiva** (a quella ci pensa il CSS), ma al loro significato logico.</p>
-              <pre><code>&lt;h1&gt;Titolo Principale del Sito (Uno solo per pagina!)&lt;/h1&gt;
-&lt;h2&gt;Titolo di Sezione&lt;/h2&gt;
-&lt;h3&gt;Sottosezione specifica&lt;/h3&gt;</code></pre>
-              <p>Saltare i livelli (ad esempio passare da un `h1` direttamente a un `h4` senza inserire `h2` e `h3`) rompe l'indice logico del documento e disorienta gli screen reader usati dalle persone con disabilità visive.</p>
+              <p>Per suddividere il tuo testo in sezioni e sotto-sezioni, usi i tag di intestazione (detti <em>headings</em>), che vanno da <code>&lt;h1&gt;</code> fino a <code>&lt;h6&gt;</code>.</p>
+              
+              <p>Immagina questa struttura esattamente come l'indice di un libro o la suddivisione di una tesina scolastica:</p>
+              
+              <div class="alert alert--note" style="margin: 1.5rem 0;">
+                <strong>💡 La regola d'oro dei Titoli:</strong><br>
+                Non scegliere mai un tag (ad esempio un <code>&lt;h3&gt;</code>) solo perché a schermo appare più piccolo o più grande di un altro. La grandezza visiva è un compito che spetta esclusivamente ai fogli di stile (CSS). In HTML devi scegliere i titoli basandoti solo sulla loro <strong>importanza logica</strong>.
+              </div>
+
+              <pre><code>&lt;h1&gt;Il titolo principale del libro (Solo uno per pagina!)&lt;/h1&gt;
+  &lt;h2&gt;Capitolo 1: L'inizio della storia&lt;/h2&gt;
+    &lt;h3&gt;Paragrafo 1.1: I dettagli dell'ambientazione&lt;/h3&gt;
+  &lt;h2&gt;Capitolo 2: Il colpo di scena&lt;/h2&gt;</code></pre>
+
+              <p>Saltare i livelli gerarchici (ad esempio passare da un <code>&lt;h1&gt;</code> direttamente a un <code>&lt;h4&gt;</code> senza passare per un <code>&lt;h2&gt;</code> o <code>&lt;h3&gt;</code>) è un errore grave: rompe la struttura logica del documento, penalizza il posizionamento sui motori di ricerca (SEO) e disorienta gli screen reader utilizzati dai visitatori non vedenti.</p>
+
               <h3>Paragrafi e formattazione del testo</h3>
-              <p>I blocchi di testo vanno avvolti nel tag `&lt;p&gt;` (paragrafo). Se all'interno del paragrafo vuoi dare enfasi o specificare un tipo di informazione, usa i tag in linea:</p>
+              <p>Ogni volta che vuoi inserire un blocco di testo normale, devi racchiuderlo nel tag del paragrafo, cioè <code>&lt;p&gt;</code> (che sta per <em>paragraph</em>). Il browser si occuperà in automatico di mandare a capo il testo alla fine del blocco e di aggiungere un po' di spazio vuoto prima del paragrafo successivo per facilitare la lettura.</p>
+              
+              <p>Se all'interno di un paragrafo vuoi dare risalto o un significato speciale a singole parole, puoi usare dei tag specifici (chiamati tag in linea):</p>
+              
               <ul class="guide-list">
-                <li><strong>`&lt;strong&gt;`</strong>: indica forte importanza (solitamente formattato in grassetto).</li>
-                <li><em>`&lt;em&gt;`</em>: indica enfasi (reso in corsivo).</li>
-                <li><code>`&lt;code&gt;`</code>: perfetto per codice di programmazione o comandi a terminale (usa un font a larghezza fissa).</li>
-                <li><mark>`&lt;mark&gt;`</mark>: evidenzia un testo (come un evidenziatore giallo).</li>
+                <li><strong><code>&lt;strong&gt;</code></strong>: si usa per evidenziare concetti di <strong>forte importanza</strong> o parole chiave (a schermo apparirà in grassetto).</li>
+                <li><em><code>&lt;em&gt;</code></em>: si usa per dare enfasi o per parole che pronunceresti con un tono diverso (a schermo apparirà in corsivo).</li>
+                <li><code><code>&lt;code&gt;</code></code>: serve per mostrare codice di programmazione o termini tecnici, formattandoli con un carattere monospazio.</li>
+                <li><mark><code>&lt;mark&gt;</code></mark>: serve per evidenziare fisicamente una parola o una frase, esattamente come faresti con un evidenziatore giallo.</li>
               </ul>
-              <p>Evita i vecchi tag `&lt;b&gt;` (grassetto) e `&lt;i&gt;` (corsivo): sono puramente decorativi. HTML moderno preferisce tag come `&lt;strong&gt;` ed `&lt;em&gt;` perché portano un vero valore semantico.</p>
+
+              <div class="alert alert--warning" style="margin: 1.5rem 0;">
+                <strong>⚠️ Attenzione all'uso semantico:</strong><br>
+                Evita di usare i vecchi tag <code>&lt;b&gt;</code> (grassetto) e <code>&lt;i&gt;</code> (corsivo). Sebbene abbiano lo stesso identico effetto visivo di <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>, sono tag obsoleti e privi di significato per i motori di ricerca e per chi usa ausili alla lettura. Usa sempre <code>&lt;strong&gt;</code> ed <code>&lt;em&gt;</code>!
+              </div>
             </section>
           </section>
 
