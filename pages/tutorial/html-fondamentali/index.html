@@ -380,6 +380,12 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
             <section class="guide-subchapter">
               <p>Nel capitolo precedente sono stati utilizzati tag che creano interi blocchi di testo e vanno a capo automaticamente (come i paragrafi <code>&lt;p&gt;</code> e i titoli). I tag <strong>in linea</strong> (<em>inline</em>), invece, si inseriscono direttamente <em>all'interno</em> di un testo. Servono a evidenziare o definire una o più parole specifiche senza spezzare la riga o interrompere il flusso del paragrafo.</p>
 
+              <div class="alert alert--note" style="margin: 1.5rem 0;">
+                <strong>Una premessa fondamentale: Semantica vs Stile</strong>
+                <p>Prima di scoprire i singoli tag, c'è una regola d'oro da comprendere: <strong>l'HTML serve a definire il significato (la semantica) del testo, non il suo aspetto estetico</strong>. Oggi, qualsiasi effetto puramente visivo (come cambiare colore, ingrandire un carattere o applicare stili complessi) si gestisce in modo molto più efficace e professionale con il <strong>CSS</strong>.</p>
+                <p>Usa i tag descritti in questo capitolo solo quando vuoi dare un significato preciso a una parola (ad esempio per far capire a Google o a uno screen reader che un termine è cruciale o che si tratta di un'abbreviazione). Se il tuo scopo è unicamente decorativo o grafico, dovrai invece affidarti al CSS.</p>
+              </div>
+
               <pre><code class="language-html">&lt;p&gt;Ricorda: il tag &lt;code&gt;&amp;lt;title&amp;gt;&lt;/code&gt; è &lt;strong&gt;obbligatorio&lt;/strong&gt; in ogni pagina.&lt;/p&gt;</code></pre>
 
               <p>La frase resta una frase sola: <code>&lt;strong&gt;</code> e <code>&lt;code&gt;</code> non creano un nuovo blocco, marcano una porzione di testo esistente.</p>
