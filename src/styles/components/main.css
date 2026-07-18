@@ -469,7 +469,7 @@ html.js:root body[data-css-ready="ready"] {
   border: 1px solid rgba(245, 158, 66, 0.2);
   border-radius: 6px;
 }
-.alert strong {
+.alert > strong {
   display: block;
   font-weight: 700;
 }
