@@ -1045,7 +1045,12 @@
   margin-bottom: 0.8rem;
 }
 
-.is-hidden {
+/* .button-simple.is-hidden (0,2,0): in the production bundle Vite may emit
+   the shared button.css chunk after this file, so the plain .is-hidden
+   utility (0,1,0) would lose to .button-simple { display: inline-flex } on
+   source order. The compound selector wins by specificity instead. */
+.is-hidden,
+.button-simple.is-hidden {
   display: none;
 }
 

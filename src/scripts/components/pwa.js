@@ -16,9 +16,21 @@ if ("serviceWorker" in navigator) {
   });
 
   const registerSW = () => {
-    navigator.serviceWorker.register("/sw.js").catch((error) => {
-      console.warn("Service Worker registration failed:", error);
-    });
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        // The browser only checks for a new sw.js on navigation. An installed
+        // PWA resumed from the background may not navigate for a long time,
+        // so also check whenever the app returns to the foreground.
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") {
+            registration.update().catch(() => {});
+          }
+        });
+      })
+      .catch((error) => {
+        console.warn("Service Worker registration failed:", error);
+      });
   };
 
   if (document.readyState === "complete") {

@@ -6,3 +6,6 @@
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-Permitted-Cross-Domain-Policies: none
+
+/sw.js
+  Cache-Control: no-cache
