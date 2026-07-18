@@ -194,6 +194,42 @@ function staticNavbarHtmlPlugin() {
   };
 }
 
+// Dev only: serves /@imagetools/<id> from the plugin's own disk cache when its
+// in-memory map doesn't have the id yet (e.g. a tab left open across a server
+// restart requesting lazy images), instead of letting vite-imagetools throw
+// "cannot find image with id ... this is likely an internal error".
+function imagetoolsCacheFallback() {
+  const cacheDir = path.resolve(process.cwd(), 'node_modules/.cache/imagetools');
+  const sniffFormat = (buf) => {
+    if (buf.length >= 12 && buf.toString('ascii', 4, 8) === 'ftyp') return 'avif';
+    if (buf.length >= 12 && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WEBP') return 'webp';
+    if (buf[0] === 0xff && buf[1] === 0xd8) return 'jpeg';
+    if (buf[0] === 0x89 && buf[1] === 0x50) return 'png';
+    if (buf.toString('ascii', 0, 3) === 'GIF') return 'gif';
+    return null;
+  };
+  return {
+    name: 'imagetools-cache-fallback',
+    apply: 'serve',
+    // vite-imagetools is enforce:'pre'; match it so this middleware registers
+    // first (same enforce → array order wins) and can intercept before it throws
+    enforce: 'pre',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (!req.url || !req.url.startsWith('/@imagetools/')) return next();
+        const id = req.url.slice('/@imagetools/'.length);
+        if (!/^[a-f0-9]+$/.test(id)) return next();
+        const file = path.join(cacheDir, id);
+        if (!fs.existsSync(file)) return next();
+        const buf = fs.readFileSync(file);
+        const format = sniffFormat(buf);
+        if (format) res.setHeader('Content-Type', `image/${format}`);
+        res.end(buf);
+      });
+    }
+  };
+}
+
 // Dev only: rewrites clean URLs (/risorse/) to pages/<route>/index.html
 function devPagesRewrite() {
   return {
@@ -289,6 +325,7 @@ export default defineConfig(({ command }) => {
   };
 
   const plugins = [];
+  plugins.push(imagetoolsCacheFallback());
   plugins.push(imagetools());
   plugins.push(staticNavbarHtmlPlugin());
   plugins.push(staticFooterHtmlPlugin());
