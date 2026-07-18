@@ -35,24 +35,32 @@
   font-size: 1.05em;
 }
 
+/* Shrink the full-width base button to a content-sized, centered action at
+   every breakpoint, so it reads as a tasteful call-to-action rather than a
+   full-width banner — on mobile too, where the base .button-simple would
+   otherwise stretch edge to edge like a road sign.
+   .guide-report-link.button-simple (0,2,0) beats .button-simple (0,1,0). */
+.guide-report-link.button-simple {
+  width: auto;
+  max-width: 100%;
+  min-height: 2.5rem;
+  padding: 0.55rem 1.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.03rem;
+}
+
 @media (max-width: 600px) {
   .guide-report {
     margin-top: 2.25rem;
+    /* Keep side breathing room so the text doesn't stick to the screen edges
+       on mobile — respect the same horizontal gutter as the rest of the page. */
+    padding-inline: 1.25rem;
   }
-  .guide-report-link {
-    white-space: normal;
-  }
-}
-
-/* Desktop: shrink the full-width base button to a content-sized, centered
-   action so it reads as a tasteful call-to-action rather than a banner.
-   .guide-report-link.button-simple (0,2,0) beats .button-simple (0,1,0). */
-@media (min-width: 769px) {
+  /* Trim padding further and allow wrapping so the button stays compact and
+     never overflows on the narrowest screens. */
   .guide-report-link.button-simple {
-    width: auto;
-    min-height: 2.5rem;
-    padding: 0.55rem 1.6rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    white-space: normal;
   }
 }
