@@ -57,78 +57,20 @@
      
     </header>
     <main class="contact-page">
-      <section class="contact-hero">
-        <div class="contact-hero-copy">
-          <h2 class="contact-title">Scrivimi per collaborazioni, domande e segnalazioni</h2>
-          <p class="contact-lead">
-            Hai domande, proposte o curiosita? Scrivimi. Non sono un guru, solo uno che impara sul campo
-            e condivide quello che scopre.
-          </p>
-          <p class="contact-lead">
-            Accolgo con piacere suggerimenti su bug, miglioramenti del sito e nuove idee utili per
-            risorse, strumenti, componenti e template.
-          </p>
-          <ul class="contact-highlights" aria-label="Punti chiave">
-            <li class="contact-highlight"><i class="fas fa-bolt" aria-hidden="true"></i> Messaggi chiari</li>
-            <li class="contact-highlight"><i class="fas fa-bug" aria-hidden="true"></i> Bug e feedback utili</li>
-            <li class="contact-highlight"><i class="fas fa-handshake" aria-hidden="true"></i> Collaborazioni reali</li>
-          </ul>
-        </div>
-        <aside class="contact-hero-card" aria-label="Cosa aiuta a ricevere risposta">
-          <p class="contact-card-kicker">Per aiutarmi a risponderti meglio</p>
-          <ul class="contact-checklist">
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> usa un oggetto chiaro e specifico</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> descrivi il contesto in modo sintetico</li>
-            <li><i class="fas fa-check-circle" aria-hidden="true"></i> se c'e un problema, indica pagina ed errore</li>
-          </ul>
-        </aside>
-      </section>
+      <!-- div, not <header>: the global header element style (sticky + solid
+           background, critical.css) must not apply to this in-page intro. -->
+      <div class="contact-intro">
+        <h2 class="contact-title">Scrivimi</h2>
+        <p class="contact-lead">
+          Collaborazioni, proposte, domande sui contenuti o suggerimenti per il sito:
+          questo &egrave; il canale diretto. Leggo tutto personalmente e in genere
+          rispondo entro 24&ndash;72 ore.
+        </p>
+      </div>
 
-      <section class="contact-layout" aria-labelledby="contact-form-title">
-        <div class="contact-panels">
-          <article class="contact-panel">
-            <h3><i class="fas fa-compass" aria-hidden="true"></i> Quando scrivermi</h3>
-            <p>
-              Questa pagina e il posto giusto se vuoi propormi una collaborazione, segnalarmi un problema,
-              chiedermi qualcosa su una risorsa pubblicata o suggerire un miglioramento concreto per il sito.
-            </p>
-          </article>
-
-          <article class="contact-panel">
-            <h3><i class="fas fa-list-check" aria-hidden="true"></i> Prima di inviare</h3>
-            <ul>
-              <li>Per bug o errori sul sito, indica la pagina precisa e cosa succede.</li>
-              <li>Per collaborazioni, spiega obiettivo, tempistiche e budget indicativo.</li>
-              <li>Per richieste su risorse o tool, indica il risultato che vuoi ottenere.</li>
-            </ul>
-          </article>
-
-          <article class="contact-panel contact-panel-soft">
-            <h3><i class="fas fa-clock" aria-hidden="true"></i> Tempi di risposta</h3>
-            <p>
-              In genere rispondo entro 24-72 ore lavorative. Se la richiesta e tecnica, includere contesto
-              e dettagli aiuta molto a ricevere una risposta piu utile e veloce.
-            </p>
-            <p>
-              Puoi anche consultare prima le sezioni
-              <a href="/risorse/">Risorse</a>,
-              <a href="/strumenti/">Strumenti</a> e
-              <a href="/tutorial/">Tutorial</a>
-              per trovare materiale gia pronto.
-            </p>
-          </article>
-        </div>
-
-        <section class="contact-form-shell">
-          <div class="contact-form-header">
-            <p class="contact-form-kicker">Modulo diretto</p>
-            <h3 id="contact-form-title" class="contact-form-title">
-              <i class="fas fa-envelope" aria-hidden="true"></i> Invia messaggio
-            </h3>
-            <p class="contact-form-intro">
-              Se mi scrivi in modo chiaro e contestualizzato, riesco a darti una risposta molto piu utile.
-            </p>
-          </div>
+      <div class="contact-layout">
+        <section class="contact-form-shell" aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title" class="contact-form-title">Invia un messaggio</h3>
           <form id="contact-form" class="contact-form">
             <div class="form-group">
               <input id="nome" name="nome" autocomplete="name" required="" placeholder=" ">
@@ -152,11 +94,49 @@
             </div>
             <button type="submit" class="button-simple">
               Invia messaggio
-              <i class="fa-solid fa-share" aria-hidden="true"></i>
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
             </button>
+            <p class="contact-form-note">
+              Niente spam e niente liste: la tua email viene usata solo per risponderti.
+            </p>
           </form>
         </section>
-      </section>
+
+        <aside class="contact-aside" aria-label="Prima di scrivere">
+          <div class="contact-aside-item">
+            <h3><i class="fa-solid fa-handshake" aria-hidden="true"></i> Collaborazioni</h3>
+            <p>
+              Se mi proponi un progetto, indica obiettivo, tempistiche e budget indicativo:
+              mi permette di risponderti in modo concreto.
+            </p>
+          </div>
+          <div class="contact-aside-item">
+            <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Domande e richieste</h3>
+            <p>
+              Prima di scrivere dai un'occhiata a
+              <a href="/risorse/">Risorse</a>,
+              <a href="/strumenti/">Strumenti</a> e
+              <a href="/tutorial/">Tutorial</a>:
+              forse quello che cerchi &egrave; gi&agrave; pronto.
+            </p>
+          </div>
+          <div class="contact-aside-item">
+            <h3><i class="fa-regular fa-clock" aria-hidden="true"></i> Tempi di risposta</h3>
+            <p>
+              In genere 24&ndash;72 ore lavorative. Un oggetto chiaro e un po' di contesto
+              aiutano ad avere una risposta pi&ugrave; utile.
+            </p>
+          </div>
+          <p class="contact-report-note">
+            Hai trovato un errore o un refuso in una pagina? Puoi
+            <a
+              href="https://github.com/aledtr77/01-codedge/issues/new?template=bug_report.yml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >segnalarlo su GitHub <i class="fa-brands fa-github" aria-hidden="true"></i></a>.
+          </p>
+        </aside>
+      </div>
     </main>
     <div id="feedback" class="feedback-message"></div>
 

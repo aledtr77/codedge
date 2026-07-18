@@ -1,3 +1,7 @@
+/* Contact page. Layout: intro header, then a two-column grid with the form
+   card on the right and a light-weight info rail on the left. The form is
+   first in source order (primary action) and stacks first on mobile. */
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -5,296 +9,197 @@
 }
 
 .contact-page {
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto 4rem;
-  padding: 1.5rem 2rem 0;
+  padding: 2.25rem 2rem 0;
 }
 
-.contact-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
-  gap: 2.5rem;
-  align-items: start;
-  margin-bottom: 2.5rem;
-  padding-bottom: 2.1rem;
-  border-bottom: 1px solid rgba(131, 190, 255, 0.14);
+/* The global justified-paragraph rule (main.css) creates rivers of whitespace
+   in this page's narrow columns. Its :not() chain carries ~(0,7,9) specificity,
+   so the page-level opt-out needs !important to win. */
+.contact-page p {
+  text-align: left !important;
 }
 
-.contact-form-shell,
-.feedback-message {
-  position: relative;
-  overflow: hidden;
-}
+/* ---------- Intro ---------- */
 
-.contact-form-shell {
-  border: 1px solid rgba(131, 190, 255, 0.14);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at top right, rgba(0, 123, 240, 0.22), transparent 36%),
-    linear-gradient(180deg, rgba(74, 74, 74, 0.96) 0%, rgba(44, 44, 44, 0.98) 100%);
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.contact-hero-copy {
-  padding-right: 1.5rem;
-}
-
-.contact-card-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1.1rem;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #9ad7ff;
-}
-
-.contact-form-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.95rem;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #9ad7ff;
-}
-
-.contact-form-kicker::before {
-  content: "";
-  width: 38px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(154, 215, 255, 0.95), rgba(154, 215, 255, 0.18));
-}
-
-.contact-card-kicker::before {
-  content: "";
-  width: 38px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(154, 215, 255, 0.95), rgba(154, 215, 255, 0.18));
-}
-
-.contact-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1rem;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #9ad7ff;
-}
-
-.contact-eyebrow::before {
-  content: "";
-  width: 44px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(154, 215, 255, 0.95), rgba(154, 215, 255, 0.18));
+.contact-intro {
+  max-width: 62ch;
+  margin-bottom: 2.75rem;
 }
 
 .contact-title {
-  max-width: 17ch;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   font-family: var(--heading-font);
-  font-size: clamp(2.2rem, 4vw, 4rem);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
   color: #fff;
 }
 
 .contact-lead {
-  max-width: 62ch;
-  margin-bottom: 0.95rem;
-  font-size: 1.02rem;
-  color: rgba(242, 242, 242, 0.92);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(242, 242, 242, 0.85);
 }
 
-.contact-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem 1.3rem;
-  margin-top: 1.5rem;
-  padding: 0;
-  list-style: none;
-}
-
-.contact-highlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0;
-  font-size: 0.96rem;
-  font-weight: 600;
-  color: rgba(244, 248, 255, 0.9);
-}
-
-.contact-highlight i,
-.contact-panel h3 i,
-.contact-checklist i,
-.contact-form-title i {
-  color: #6ec6ff;
-}
-
-.contact-hero-card {
-  align-self: end;
-  padding: 0 0 0 1.6rem;
-  border-left: 1px solid rgba(131, 190, 255, 0.18);
-}
-
-.contact-checklist {
-  list-style: none;
-}
-
-.contact-checklist li {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  padding: 0.9rem 0;
-  color: rgba(242, 242, 242, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.contact-checklist li:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
+/* ---------- Layout ---------- */
 
 .contact-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 3rem;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  grid-template-areas: "aside form";
+  gap: 3.25rem;
   align-items: start;
 }
 
-.contact-panels {
-  display: grid;
-  gap: 1.6rem;
+.contact-form-shell {
+  grid-area: form;
 }
 
-.contact-panel {
-  padding-top: 1.35rem;
-  border-top: 1px solid rgba(131, 190, 255, 0.16);
+.contact-aside {
+  grid-area: aside;
 }
 
-.contact-panel h3,
-.contact-form-title {
+/* ---------- Info rail ---------- */
+
+.contact-aside-item + .contact-aside-item {
+  margin-top: 1.9rem;
+}
+
+.contact-aside-item h3 {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1rem;
+  gap: 0.65rem;
+  margin-bottom: 0.55rem;
   font-family: var(--heading-font);
-  font-size: 1.4rem;
+  font-size: 1.12rem;
   color: #fff;
 }
 
-.contact-panel p,
-.contact-panel li,
-.contact-form-intro {
-  color: rgba(242, 242, 242, 0.9);
+.contact-aside-item h3 i {
+  font-size: 1rem;
+  color: var(--color-three);
 }
 
-.contact-panel ul {
-  padding-left: 1.1rem;
+.contact-aside-item p {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: rgba(242, 242, 242, 0.78);
 }
 
-.contact-panel li + li,
-.contact-panel p + p {
-  margin-top: 0.7rem;
+/* Discreet "found a mistake?" pointer to the GitHub issue template — a quiet
+   footnote at the end of the rail, deliberately not a call-to-action. */
+.contact-report-note {
+  margin-top: 2.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(242, 242, 242, 0.6);
 }
 
-.contact-panel a {
-  color: #8ed6ff;
+.contact-report-note a {
+  white-space: nowrap;
 }
+
+.contact-report-note i {
+  font-size: 0.95em;
+  margin-left: 0.15rem;
+}
+
+/* ---------- Form card ---------- */
 
 .contact-form-shell {
-  padding: 1.85rem;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(0, 132, 255, 0.13), transparent 42%),
+    linear-gradient(180deg, #171e2d 0%, #10141f 100%);
+  box-shadow: var(--card-shadow);
 }
 
-.contact-form-header {
-  margin-bottom: 1.4rem;
-}
-
-.contact-form-kicker {
-  margin-bottom: 0.95rem;
+.contact-form-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 45%);
+  pointer-events: none;
 }
 
 .contact-form-title {
-  margin-bottom: 0.7rem;
-  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--heading-font);
+  font-size: 1.55rem;
+  color: #fff;
 }
 
 .contact-form {
   display: grid;
-  gap: 1rem;
+  gap: 1.05rem;
 }
 
 .form-group {
   position: relative;
 }
 
-.form-group label {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0 0.4rem;
-  border-radius: 999px;
-  background: #2f3136;
-  color: rgba(255, 255, 255, 0.72);
-  transition:
-    top 0.2s ease,
-    transform 0.2s ease,
-    color 0.2s ease,
-    font-size 0.2s ease,
-    background-color 0.2s ease;
-  pointer-events: none;
-}
-
-.form-group textarea + label {
-  top: 1.25rem;
-  transform: none;
-}
-
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 1.1rem 1rem;
-  border: 1px solid rgba(138, 193, 255, 0.22);
-  border-radius: 18px;
-  background: rgba(20, 22, 27, 0.62);
+  padding: 1.05rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(9, 13, 22, 0.6);
   color: #fff;
   font-size: 1rem;
   outline: 0;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
+    background-color 0.2s ease;
 }
 
 .form-group textarea {
-  min-height: 180px;
+  min-height: 170px;
   resize: vertical;
 }
 
 .form-group input:hover,
 .form-group textarea:hover {
-  border-color: rgba(171, 215, 255, 0.42);
+  border-color: rgba(255, 255, 255, 0.26);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: rgba(141, 209, 255, 0.88);
-  background: rgba(19, 22, 27, 0.86);
-  box-shadow:
-    0 0 0 4px rgba(0, 123, 240, 0.16),
-    0 14px 30px rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 132, 255, 0.75);
+  background: rgba(9, 13, 22, 0.85);
+  box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.18);
+}
+
+/* Floating labels: rest inside the field, float onto its top border on
+   focus/fill. The solid background masks the border they cross. */
+.form-group label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.58);
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease,
+    font-size 0.2s ease,
+    background-color 0.2s ease,
+    padding 0.2s ease;
+  pointer-events: none;
+}
+
+.form-group textarea + label {
+  top: 1.2rem;
+  transform: none;
 }
 
 .form-group input:focus + label,
@@ -303,25 +208,34 @@
 .form-group textarea:not(:placeholder-shown) + label {
   top: 0;
   transform: translateY(-50%);
+  padding: 0 0.4rem;
+  border-radius: var(--radius-sm);
   font-size: 0.76rem;
-  color: #bfe2ff;
-  background: #252a31;
+  color: var(--site-link-color);
+  background: #131927;
 }
 
-.button-simple {
+.contact-form .button-simple {
   max-width: 100%;
-  margin-top: 0.3rem;
+  margin-top: 0.35rem;
 }
 
-.button-simple[disabled] {
+.contact-form .button-simple[disabled] {
   cursor: wait;
-  opacity: 0.72;
 }
 
-.button-simple i {
-  margin-left: 0.2rem;
+.contact-form .button-simple i {
+  font-size: 0.9em;
 }
 
+.contact-form-note {
+  margin: 0;
+  font-size: 0.84rem;
+  text-align: center;
+  color: rgba(242, 242, 242, 0.55);
+}
+
+/* Honeypot: visually removed, still submitted with the form. */
 .form-trap {
   position: absolute;
   left: -9999px;
@@ -332,20 +246,20 @@
   pointer-events: none;
 }
 
+/* ---------- Feedback toast ---------- */
+
 .feedback-message {
   position: fixed;
   right: 1.25rem;
   bottom: 1.25rem;
   max-width: min(420px, calc(100vw - 2rem));
   padding: 0.95rem 1.15rem;
-  border: 1px solid rgba(149, 210, 255, 0.24);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at top right, rgba(0, 123, 240, 0.18), transparent 48%),
-    rgba(35, 38, 46, 0.96);
+  border: 1px solid rgba(0, 132, 255, 0.35);
+  border-radius: var(--radius-lg);
+  background: rgba(22, 27, 38, 0.97);
   color: #f7fbff;
   font-size: 0.96rem;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(14px);
@@ -356,15 +270,6 @@
   z-index: 9999;
 }
 
-.contact-form-shell::after,
-.feedback-message::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 45%);
-  pointer-events: none;
-}
-
 .feedback-message.show {
   opacity: 1;
   visibility: visible;
@@ -373,103 +278,54 @@
 
 .feedback-message.is-loading::after {
   content: "";
-  border: 3px solid rgba(255, 255, 255, 0.22);
-  border-top-color: #8ed6ff;
-  border-radius: 50%;
+  display: inline-block;
   width: 16px;
   height: 16px;
-  animation: spin 0.8s linear infinite;
-  display: inline-block;
   margin-left: 8px;
   vertical-align: middle;
-}
-
-.spinner {
   border: 3px solid rgba(255, 255, 255, 0.22);
-  border-top: 3px solid #8ed6ff;
+  border-top-color: var(--site-link-color);
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
   animation: spin 0.8s linear infinite;
-  display: inline-block;
-  margin-left: 8px;
 }
 
-@media (max-width: 980px) {
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
   .contact-page {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1.5rem 1rem 0;
   }
 
-  .contact-hero,
+  .contact-intro {
+    margin-bottom: 2.25rem;
+  }
+
   .contact-layout {
     grid-template-columns: 1fr;
-  }
-
-  .contact-hero {
-    gap: 1.6rem;
-  }
-
-  .contact-hero-copy {
-    padding-right: 0;
-  }
-
-  .contact-hero-card {
-    padding: 1.3rem 0 0;
-    border-left: 0;
-    border-top: 1px solid rgba(131, 190, 255, 0.18);
-  }
-
-  .contact-title {
-    max-width: 18ch;
+    grid-template-areas:
+      "form"
+      "aside";
+    gap: 2.75rem;
   }
 }
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 1rem var(--mobile-page-gutter) 0;
+    padding: 1.25rem var(--mobile-page-gutter) 0;
     margin-bottom: 2.5rem;
   }
 
   .contact-form-shell {
-    padding: 1.3rem;
-    border-radius: 22px;
+    padding: 1.4rem 1.15rem;
+    border-radius: 18px;
   }
 
-  .contact-hero {
-    margin-bottom: 2rem;
-    padding-bottom: 1.6rem;
-  }
-
-  .contact-hero-card {
-    padding: 1.1rem 0 0;
-    border-radius: 0;
-  }
-
-  .contact-panel {
-    padding-top: 1.1rem;
-  }
-
-  .contact-title {
-    max-width: none;
-    font-size: clamp(2rem, 11vw, 3.1rem);
+  .contact-form-title {
+    font-size: 1.35rem;
   }
 
   .contact-lead {
     font-size: 0.98rem;
-  }
-
-  .contact-highlights {
-    gap: 0.6rem;
-  }
-
-  .contact-highlight {
-    width: 100%;
-  }
-
-  .contact-panel h3,
-  .contact-form-title {
-    font-size: 1.3rem;
   }
 
   .feedback-message {
@@ -490,6 +346,7 @@
     padding-right: var(--mobile-page-gutter-tight);
   }
 
+  /* 16px floor prevents iOS Safari from zooming the page on field focus. */
   .form-group input,
   .form-group textarea {
     font-size: 16px;

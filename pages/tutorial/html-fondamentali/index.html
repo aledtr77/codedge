@@ -129,11 +129,32 @@
           <section id="chapter-03" class="guide-block guide-chapter">
             <h2>2. Anatomia di un Tag e la Regola del Nesting</h2>
             <section class="guide-subchapter">
-              <p>Per marcare il contenuto usiamo i <strong>tag</strong>: parole chiave scritte tra parentesi angolari. Quasi tutti i tag lavorano in coppia: un tag di apertura (ad esempio <code>&lt;p&gt;</code>) e uno di chiusura, quest'ultimo identificato dalla barra <code>/</code> inserita prima del nome del tag (ad esempio <code>&lt;/p&gt;</code>). Tutto ciò che sta nel mezzo è l'<strong>elemento</strong>.</p>
-              <pre><code>&lt;p&gt;Questo è l'elemento paragrafo.&lt;/p&gt;</code></pre>
-              <p>I tag possono contenere gli <strong>attributi</strong>, cioè informazioni aggiuntive posizionate sempre all'interno del tag di apertura nella forma <code>chiave="valore"</code>:</p>
-              <pre><code>&lt;a href="https://codedge.it"&gt;Visita il nostro sito&lt;/a&gt;</code></pre>
-              <p>Alcuni tag rari non contengono testo e non hanno bisogno di chiusura: si chiamano <strong>tag vuoti</strong> (o auto-chiudenti), come `&lt;img&gt;` per le immagini o `&lt;br&gt;` per andare a capo.</p>
+              <p>Per dare una struttura a una pagina web, HTML usa i <strong>tag</strong> (che in inglese significa letteralmente "etichette"). Immagina di avere del testo semplice e di voler dire al browser: <em>"Questo pezzo di testo è un paragrafo, mentre quest'altro è un titolo"</em>. Per farlo, "incolli" un'etichetta prima e dopo il testo.</p>
+              
+              <p>Queste etichette si scrivono racchiuse tra <strong>parentesi angolari</strong> (i simboli di minore <code>&lt;</code> e maggiore <code>&gt;</code>) e, nella maggior parte dei casi, lavorano sempre in coppia:</p>
+              
+              <ul>
+                <li><strong>Il tag di apertura (l'inizio)</strong>: indica l'inizio del nostro elemento. Si scrive inserendo il nome dell'etichetta tra le parentesi angolari. Ad esempio, per iniziare un paragrafo usiamo il tag <code>&lt;p&gt;</code> (la "p" sta per <em>paragraph</em>).</li>
+                <li><strong>Il contenuto</strong>: è tutto ciò che si trova racchiuso tra l'etichetta iniziale e quella finale (ad esempio, il testo del paragrafo).</li>
+                <li><strong>Il tag di chiusura (la fine)</strong>: indica al browser dove finisce l'elemento. È identico a quello di apertura, ma contiene una <strong>barra obliqua <code>/</code> (chiamata slash)</strong> posizionata subito dopo la prima parentesi angolare, in questo modo: <code>&lt;/p&gt;</code>. Pensa alla barra come a un cartello di "stop".</li>
+              </ul>
+
+              <p>L'unione di queste tre parti (tag di apertura + contenuto + tag di chiusura) forma quello che in gergo si chiama <strong>elemento HTML</strong>.</p>
+
+              <pre><code>&lt;p&gt;Questo testo è il contenuto racchiuso nell'elemento.&lt;/p&gt;
+ │  └─────────────────────────┬────────────────────────┘ │
+ │                           │                           │
+Tag di                      Testo                      Tag di
+apertura                  contenuto                   chiusura</code></pre>
+
+              <p>I tag possono contenere anche degli <strong>attributi</strong>, ovvero delle informazioni extra inserite esclusivamente all'interno del tag di apertura. Pensa agli attributi come a delle caratteristiche aggiuntive (come un link di destinazione o un'altezza) scritte nella forma <code>nome-attributo="valore"</code>:</p>
+              
+              <pre><code>&lt;a href="https://codedge.it"&gt;Visita il nostro sito&lt;/a&gt;
+   └───────────┬───────────┘
+           Attributo
+  (indica dove porta il link)</code></pre>
+
+              <p>Alcuni tag rari non contengono testo e non racchiudono nulla, quindi non hanno bisogno di un tag di chiusura. Vengono chiamati <strong>tag vuoti</strong> (o auto-chiudenti). Un esempio è il tag <code>&lt;img&gt;</code> per mostrare un'immagine o <code>&lt;br&gt;</code> per andare a capo.</p>
 
               <h3>La regola delle scatole cinesi (Nesting)</h3>
               <p>Quando inserisci un tag dentro l'altro, devi rispettare rigorosamente l'ordine di apertura. Immagina delle bambole russe (matrioske) o delle scatole cinesi: non puoi chiudere la scatola esterna se non hai prima chiuso quella interna.</p>
