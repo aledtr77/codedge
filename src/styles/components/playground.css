@@ -10,6 +10,15 @@
   transition: border-color 0.25s ease;
 }
 
+.code-wrapper pre {
+  margin: 0 !important;
+  padding-top: 2.8rem !important; /* Leave room for absolute toolbar so it doesn't overlap text */
+}
+
+.snippet-box .code-wrapper pre {
+  padding-top: 0.95rem !important; /* Reset for snippet library without overlay toolbar */
+}
+
 .code-wrapper:hover {
   border-color: rgba(143, 206, 255, 0.25);
 }
