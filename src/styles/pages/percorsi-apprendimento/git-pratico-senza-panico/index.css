@@ -1210,3 +1210,341 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE DIAGRAMS & CODE TREES
+   ========================================================================== */
+
+/* Resets wrapping on directory structures to preserve aligning tree glyphs */
+.guide-block pre code.code-tree {
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Custom Interactive Diagrams for Tutorials */
+.anatomy-diagram {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(10, 20, 35, 0.65);
+  border: 1px solid rgba(124, 201, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 8, 22, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.anatomy-code-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  font-family: Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  padding: 1.2rem;
+  background: rgba(5, 12, 22, 0.85);
+  border: 1px solid rgba(0, 168, 255, 0.15);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.anatomy-token {
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+/* Colors for elements */
+.token-tag-open, .token-tag-close {
+  color: #ff9d00;
+  background: rgba(255, 157, 0, 0.05);
+  border-color: rgba(255, 157, 0, 0.15);
+}
+
+.token-content {
+  color: #e2f1ff;
+  background: rgba(226, 241, 255, 0.03);
+  border-color: rgba(226, 241, 255, 0.1);
+}
+
+.token-attr-name {
+  color: #4dffb4;
+  background: rgba(77, 255, 180, 0.05);
+  border-color: rgba(77, 255, 180, 0.15);
+}
+
+.token-attr-value {
+  color: #ff5e97;
+  background: rgba(255, 94, 151, 0.05);
+  border-color: rgba(255, 94, 151, 0.15);
+}
+
+.text-muted {
+  color: rgba(232, 244, 255, 0.4);
+}
+
+/* Hover highlights */
+.token-tag-open:hover, .token-tag-close:hover {
+  background: rgba(255, 157, 0, 0.2);
+  border-color: rgba(255, 157, 0, 0.6);
+  box-shadow: 0 0 12px rgba(255, 157, 0, 0.2);
+}
+
+.token-content:hover {
+  background: rgba(226, 241, 255, 0.15);
+  border-color: rgba(226, 241, 255, 0.5);
+  box-shadow: 0 0 12px rgba(226, 241, 255, 0.15);
+}
+
+.token-attr-name:hover {
+  background: rgba(77, 255, 180, 0.2);
+  border-color: rgba(77, 255, 180, 0.6);
+  box-shadow: 0 0 12px rgba(77, 255, 180, 0.2);
+}
+
+.token-attr-value:hover {
+  background: rgba(255, 94, 151, 0.2);
+  border-color: rgba(255, 94, 151, 0.6);
+  box-shadow: 0 0 12px rgba(255, 94, 151, 0.2);
+}
+
+/* Explanation Cards */
+.anatomy-labels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .anatomy-labels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .anatomy-labels.double-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.anatomy-label-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(5, 12, 22, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.25s ease;
+}
+
+.anatomy-label-card p {
+  margin: 0.5rem 0 0 !important;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(232, 244, 255, 0.7);
+}
+
+.label-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.badge-tag-open, .badge-tag-close {
+  background: rgba(255, 157, 0, 0.15);
+  color: #ff9d00;
+  border: 1px solid rgba(255, 157, 0, 0.3);
+}
+
+.badge-content {
+  background: rgba(226, 241, 255, 0.1);
+  color: #e2f1ff;
+  border: 1px solid rgba(226, 241, 255, 0.25);
+}
+
+.badge-attr-name {
+  background: rgba(77, 255, 180, 0.15);
+  color: #4dffb4;
+  border: 1px solid rgba(77, 255, 180, 0.3);
+}
+
+.badge-attr-value {
+  background: rgba(255, 94, 151, 0.15);
+  color: #ff5e97;
+  border: 1px solid rgba(255, 94, 151, 0.3);
+}
+
+/* Interactivity: Card Hover Highlights Code Token */
+.anatomy-diagram:has(.card-tag-open:hover) .token-tag-open,
+.anatomy-diagram:has(.card-tag-close:hover) .token-tag-close {
+  background: rgba(255, 157, 0, 0.2);
+  border-color: rgba(255, 157, 0, 0.6);
+  box-shadow: 0 0 12px rgba(255, 157, 0, 0.2);
+}
+.anatomy-diagram:has(.card-content:hover) .token-content {
+  background: rgba(226, 241, 255, 0.15);
+  border-color: rgba(226, 241, 255, 0.5);
+  box-shadow: 0 0 12px rgba(226, 241, 255, 0.15);
+}
+.anatomy-diagram:has(.card-attr-name:hover) .token-attr-name {
+  background: rgba(77, 255, 180, 0.2);
+  border-color: rgba(77, 255, 180, 0.6);
+  box-shadow: 0 0 12px rgba(77, 255, 180, 0.2);
+}
+.anatomy-diagram:has(.card-attr-value:hover) .token-attr-value {
+  background: rgba(255, 94, 151, 0.2);
+  border-color: rgba(255, 94, 151, 0.6);
+  box-shadow: 0 0 12px rgba(255, 94, 151, 0.2);
+}
+
+/* Interactivity: Code Token Hover Highlights Card */
+.anatomy-diagram:has(.token-tag-open:hover) .card-tag-open,
+.anatomy-diagram:has(.token-tag-close:hover) .card-tag-close {
+  border-color: rgba(255, 157, 0, 0.4);
+  background: rgba(255, 157, 0, 0.05);
+  transform: translateY(-2px);
+}
+.anatomy-diagram:has(.token-content:hover) .card-content {
+  border-color: rgba(226, 241, 255, 0.3);
+  background: rgba(226, 241, 255, 0.03);
+  transform: translateY(-2px);
+}
+.anatomy-diagram:has(.token-attr-name:hover) .card-attr-name {
+  border-color: rgba(77, 255, 180, 0.4);
+  background: rgba(77, 255, 180, 0.03);
+  transform: translateY(-2px);
+}
+.anatomy-diagram:has(.token-attr-value:hover) .card-attr-value {
+  border-color: rgba(255, 94, 151, 0.4);
+  background: rgba(255, 94, 151, 0.03);
+  transform: translateY(-2px);
+}
+
+/* Nesting Diagram */
+.nesting-diagram {
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: rgba(10, 20, 35, 0.5);
+  border: 1px solid rgba(124, 201, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 8, 22, 0.25);
+  position: relative;
+}
+
+.nesting-header-badge {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.nesting-diagram.correct .nesting-header-badge {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.nesting-diagram.incorrect .nesting-header-badge {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.nesting-box {
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.box-outer {
+  border: 2px solid rgba(0, 168, 255, 0.35);
+  background: rgba(0, 168, 255, 0.04);
+}
+
+.box-outer.error-crossing {
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.box-inner {
+  border: 2px dashed rgba(77, 255, 180, 0.35);
+  background: rgba(77, 255, 180, 0.04);
+  margin: 0.8rem 0;
+  padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+  border-radius: 6px;
+}
+
+.box-inner-crossed {
+  border: 2px dashed rgba(77, 255, 180, 0.35);
+  border-bottom: none;
+  background: rgba(77, 255, 180, 0.04);
+  margin-top: 0.8rem;
+  padding: 0.8rem 0.8rem 0.4rem 1.2rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.crossed-overflow-box {
+  border: 2px dashed rgba(77, 255, 180, 0.35);
+  border-top: none;
+  background: rgba(77, 255, 180, 0.04);
+  padding: 0.2rem 0.8rem 0.8rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+  margin-top: -2px;
+  position: relative;
+  z-index: 2;
+  margin-left: 0;
+  display: block;
+}
+
+.box-tag {
+  color: #ff9d00;
+  font-weight: 600;
+}
+
+.tag-error {
+  color: rgba(239, 68, 68, 0.9);
+}
+
+.box-tag-label {
+  font-size: 0.78rem;
+  color: rgba(232, 244, 255, 0.45);
+  margin-left: 0.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: normal;
+}
+
+.box-content {
+  color: rgba(232, 244, 255, 0.9);
+  display: block;
+  margin: 0.4rem 0;
+}
+
+.text-error-crossed {
+  color: rgba(239, 68, 68, 0.8);
+}
+
+.error-badge {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  font-size: 0.72rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}

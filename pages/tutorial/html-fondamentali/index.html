@@ -154,20 +154,53 @@
 
               <p>L'unione di queste tre parti (tag di apertura + contenuto + tag di chiusura) forma quello che in gergo si chiama <strong>elemento HTML</strong>.</p>
 
-              <pre><code>&lt;p&gt;Questo testo è il contenuto racchiuso nell'elemento.&lt;/p&gt;
- │  └─────────────────────────┬────────────────────────┘ │
- │                           │                           │
-Tag di                      Testo                      Tag di
-apertura                  contenuto                   chiusura</code></pre>
+              <div class="anatomy-diagram" id="anatomy-element">
+                <div class="anatomy-code-line">
+                  <span class="anatomy-token token-tag-open">&lt;p&gt;</span>
+                  <span class="anatomy-token token-content">Questo testo è il contenuto racchiuso nell'elemento.</span>
+                  <span class="anatomy-token token-tag-close">&lt;/p&gt;</span>
+                </div>
+                
+                <div class="anatomy-labels">
+                  <div class="anatomy-label-card card-tag-open">
+                    <span class="label-badge badge-tag-open">Tag di apertura</span>
+                    <p>indica l'inizio del nostro elemento. Per iniziare un paragrafo usiamo il tag <code>&lt;p&gt;</code>.</p>
+                  </div>
+                  <div class="anatomy-label-card card-content">
+                    <span class="label-badge badge-content">Testo contenuto</span>
+                    <p>è tutto ciò che si trova racchiuso tra l'etichetta iniziale e quella finale.</p>
+                  </div>
+                  <div class="anatomy-label-card card-tag-close">
+                    <span class="label-badge badge-tag-close">Tag di chiusura</span>
+                    <p>indica al browser dove finisce l'elemento. Contiene la barra slash (<code>/</code>).</p>
+                  </div>
+                </div>
+              </div>
 
               <p>I tag possono contenere anche degli <strong>attributi</strong>, ovvero delle informazioni extra inserite esclusivamente all'interno del tag di apertura. Gli attributi servono a specificare caratteristiche o comportamenti dell'elemento (come la destinazione di un link o la sorgente di un'immagine) e si scrivono sempre nella forma <code>nome-attributo="valore"</code> (detta anche coppia <strong>chiave="valore"</strong>).</p>
               
               <p>Vediamo l'esempio di un link (il tag <code>&lt;a&gt;</code>):</p>
 
-              <pre><code>&lt;a href="https://codedge.it"&gt;Visita il nostro sito&lt;/a&gt;
-   │    └──────────┬────────┘
-   │               └─ Valore (la destinazione del link)
-   └─ Nome attributo o Chiave (l'indirizzo a cui puntare)</code></pre>
+              <div class="anatomy-diagram" id="anatomy-attribute">
+                <div class="anatomy-code-line">
+                  <span class="text-muted">&lt;a </span>
+                  <span class="anatomy-token token-attr-name">href</span>
+                  <span class="text-muted">=</span>
+                  <span class="anatomy-token token-attr-value">"https://codedge.it"</span>
+                  <span class="text-muted">&gt;Visita il nostro sito&lt;/a&gt;</span>
+                </div>
+                
+                <div class="anatomy-labels double-columns">
+                  <div class="anatomy-label-card card-attr-name">
+                    <span class="label-badge badge-attr-name">Nome attributo o Chiave</span>
+                    <p>l'indirizzo o parametro a cui puntare (in questo esempio, <code>href</code>).</p>
+                  </div>
+                  <div class="anatomy-label-card card-attr-value">
+                    <span class="label-badge badge-attr-value">Valore dell'attributo</span>
+                    <p>il valore specifico associato all'attributo, scritto sempre tra virgolette (<code>"https://codedge.it"</code>).</p>
+                  </div>
+                </div>
+              </div>
               
               <p>In questo esempio:</p>
               <ul>
@@ -195,13 +228,22 @@ apertura                  contenuto                   chiusura</code></pre>
                 <p>Immagina di voler mettere una parola in grassetto (usando il tag <code>&lt;strong&gt;</code>) all'interno di un paragrafo (usando <code>&lt;p&gt;</code>):</p>
                 <pre><code>&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/p&gt;&lt;/strong&gt;</code></pre>
                 <p>Se proviamo a visualizzarlo come scatole, notiamo subito l'errore:</p>
-                <pre><code>Scatola Paragrafo INIZIA  (&lt;p&gt;)
-   │   Scatola Grassetto INIZIA (&lt;strong&gt;)
-   │      │
-   │      └─&gt; Testo molto importante.
-   │
-Scatola Paragrafo FINISCE   (&lt;/p&gt;)   &lt;-- ERRORE! La chiudi mentre il grassetto è ancora aperto!
-          └─&gt; Scatola Grassetto FINISCE (&lt;/strong&gt;)  &lt;-- Troppo tardi, è fuori posto!</code></pre>
+                <div class="nesting-diagram incorrect">
+                  <span class="nesting-header-badge">Incrociato (Errato)</span>
+                  <div class="nesting-box box-outer error-crossing">
+                    <span class="box-tag tag-error">&lt;p&gt; <span class="box-tag-label">(Scatola Paragrafo inizia)</span></span>
+                    
+                    <div class="nesting-box box-inner-crossed">
+                      <span class="box-tag">&lt;strong&gt; <span class="box-tag-label">(Scatola Grassetto inizia)</span></span>
+                      <span class="box-content text-error-crossed">Testo molto importante...</span>
+                    </div>
+                    
+                    <span class="box-tag tag-error">&lt;/p&gt; <span class="error-badge">ERRORE! Chiusa prima della fine del grassetto</span></span>
+                  </div>
+                  <div class="crossed-overflow-box">
+                    <span class="box-tag">&lt;/strong&gt; <span class="error-badge">Orfano (Fuori posto!)</span></span>
+                  </div>
+                </div>
                 <p>In questo caso, le scatole si tagliano a metà l'una con l'altra. Questo costringe il browser a fare supposizioni e può rompere l'aspetto grafico della pagina.</p>
               </div>
 
@@ -210,14 +252,20 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)   &lt;-- ERRORE! La chiudi mentre il gr
                 <p>Per correggere l'errore, dobbiamo assicurarci che la scatola più piccola (il grassetto) si chiuda prima della scatola più grande (il paragrafo):</p>
                 <pre><code>&lt;p&gt;Questo testo è &lt;strong&gt;molto importante.&lt;/strong&gt;&lt;/p&gt;</code></pre>
                 <p>Vediamo come le scatole si inseriscono perfettamente l'una dentro l'altra:</p>
-                <pre><code>Scatola Paragrafo INIZIA  (&lt;p&gt;)
-   │   Scatola Grassetto INIZIA (&lt;strong&gt;)
-   │      │
-   │      ├─&gt; Testo molto importante.
-   │      │
-   │   Scatola Grassetto FINISCE (&lt;/strong&gt;) --&gt; Chiusa ordinatamente dentro!
-   │
-Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code></pre>
+                <div class="nesting-diagram correct">
+                  <span class="nesting-header-badge">Ordinato (Corretto)</span>
+                  <div class="nesting-box box-outer">
+                    <span class="box-tag">&lt;p&gt; <span class="box-tag-label">(Scatola Paragrafo inizia)</span></span>
+                    
+                    <div class="nesting-box box-inner">
+                      <span class="box-tag">&lt;strong&gt; <span class="box-tag-label">(Scatola Grassetto inizia)</span></span>
+                      <span class="box-content">Testo molto importante.</span>
+                      <span class="box-tag">&lt;/strong&gt; <span class="box-tag-label">(Scatola Grassetto chiude)</span></span>
+                    </div>
+                    
+                    <span class="box-tag">&lt;/p&gt; <span class="box-tag-label">(Scatola Paragrafo chiude)</span></span>
+                  </div>
+                </div>
                 <p>In questo modo, la gerarchia è pulita, logica e facilissima da interpretare per qualsiasi browser o lettore di schermo.</p>
               </div>
 
@@ -739,7 +787,7 @@ Scatola Paragrafo FINISCE   (&lt;/p&gt;)        --&gt; Chiusa per ultima!</code>
               <h3>I percorsi relativi, spiegati una volta per tutte</h3>
               <p>È il punto in cui si inciampa sempre. Immagina questa struttura di cartelle sul tuo computer:</p>
 
-              <pre><code>sito/
+              <pre><code class="code-tree">sito/
 ├── index.html          ← la home
 ├── chi-siamo.html
 ├── immagini/
