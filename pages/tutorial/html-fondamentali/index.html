@@ -666,33 +666,62 @@
                 </ul>
               </div>
 
-              <h3>1. L'attributo <code>id</code> (il nome proprio, si usa con <code>#</code>)</h3>
-              <p>Usa l'attributo <code>id</code> quando hai bisogno di dare un nome univoco e inconfondibile a un elemento della pagina. Si scrive in questo modo:</p>
+              <h3>1. L'attributo <code>id</code> (l'identità master o radice unica)</h3>
+              <p>L'<code>id</code> assegna un nome unico a un elemento della pagina. Pensa a esso come a una chiave primaria: non possono esistere due elementi con lo stesso <code>id</code> nello stesso file HTML.</p>
 
-              <pre><code class="language-html">&lt;h2 id="contatti"&gt;Come raggiungerci&lt;/h2&gt;</code></pre>
-
-              <p>Questo "nome proprio" ti servirà principalmente per due scopi pratici:</p>
+              <p>Questo identificatore master non si limita all'HTML, ma viene richiamato su tutti i fronti dello sviluppo web:</p>
               <ul class="guide-list">
-                <li><strong>Creare collegamenti interni (ancore):</strong> Se scrivi un link come <code>&lt;a href="#contatti"&gt;Vai ai contatti&lt;/a&gt;</code>, cliccandolo la pagina scorrerà da sola fino al titolo con quell'id. Nota che nel valore di <code>href</code> si inserisce il cancelletto (<code>#</code>) prima del nome dell'id.</li>
-                <li><strong>Collegare i moduli:</strong> Serve a connettere una descrizione (etichetta) alla casella di testo in cui l'utente deve scrivere (lo vedremo nella sezione dei form).</li>
+                <li><strong>HTML (Ancore e Moduli):</strong> Per creare collegamenti di scorrimento interni (es. <code>&lt;a href="#sezione"&gt;</code>) o per accoppiare le etichette ai campi dei form.</li>
+                <li><strong>CSS (Stile mirato):</strong> Per applicare una grafica specifica a quell'unico elemento, richiamando l'id con il cancelletto (es. <code>#mio-id { color: red; }</code>).</li>
+                <li><strong>JavaScript (Logica dinamica):</strong> Per selezionare e manipolare tramite codice quell'elemento specifico (es. <code>document.getElementById("mio-id")</code>).</li>
               </ul>
+
+              <p>Prova il funzionamento delle ancore in questo esempio live (clicca sul pulsante per vederlo scorrere):</p>
+              <pre><code class="language-html">&lt;a href="#dettagli" style="display: inline-block; background: #0ea5e9; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 500;"&gt;
+  Scorri fino ai dettagli
+&lt;/a&gt;
+
+&lt;!-- Spazio vuoto per allungare la pagina e mostrare l'effetto dello scorrimento --&gt;
+&lt;div style="height: 350px; border-left: 2px dashed #cbd5e1; margin: 15px 0 15px 20px;"&gt;&lt;/div>
+
+&lt;h3 id="dettagli"&gt;Dettagli del Prodotto&lt;/h3&gt;
+&lt;p&gt;Sei arrivato a destinazione all'elemento con id="dettagli"!&lt;/p&gt;</code></pre>
 
               <div class="alert alert--warning">
                 <strong>Regole importanti per l'id:</strong>
-                <p>Deve essere unico (mai usarlo due volte nella stessa pagina), non deve contenere spazi e fa differenza tra maiuscole e minuscole. Per sicurezza, usa sempre lettere minuscole e trattini (es. <code>sezione-contatti</code>).</p>
+                <p>Deve essere unico in tutta la pagina, non deve contenere spazi e fa differenza tra maiuscole e minuscole. Per sicurezza, usa sempre lettere minuscole e trattini (es. <code>sezione-contatti</code>).</p>
               </div>
 
-              <h3>2. L'attributo <code>class</code> (la categoria per la grafica, si usa con <code>.</code>)</h3>
-              <p>Usa l'attributo <code>class</code> per raggruppare elementi che dovranno avere lo stesso aspetto. Sarà il tuo strumento principale quando collegherai il CSS all'HTML.</p>
+              <h3>2. L'attributo <code>class</code> (il gruppo di appartenenza)</h3>
+              <p>L'attributo <code>class</code> raggruppa più elementi sotto una categoria comune. A differenza dell'<code>id</code>, puoi riutilizzare la stessa classe su quanti elementi desideri, e un singolo tag HTML può far parte di più classi contemporaneamente (separate da uno spazio).</p>
 
-              <pre><code class="language-html">&lt;p class="avviso"&gt;Le spedizioni sono sospese.&lt;/p&gt;
-&lt;p class="avviso urgente"&gt;Attenzione: ultimo giorno per ordinare!&lt;/p&gt;</code></pre>
-
-              <p>Come vedi nell'esempio:</p>
+              <p>La classe è l'attributo più utilizzato nello sviluppo moderno per collegare i vari linguaggi:</p>
               <ul class="guide-list">
-                <li>Entrambi i paragrafi hanno la classe <code>avviso</code>. Nel CSS ti basterà una sola riga di codice per colorarli entrambi, facendo riferimento alla classe con il punto: <code>.avviso</code>.</li>
-                <li>Il secondo paragrafo ha due classi: <code>avviso</code> e <code>urgente</code> (separate da uno spazio). In questo modo prenderà lo stile grafico comune a tutti gli avvisi, ma potrai aggiungere uno stile specifico solo a lui richiamando la classe <code>.urgente</code>.</li>
+                <li><strong>HTML (Strutturazione):</strong> Per etichettare elementi simili (es. tutti i pulsanti o tutte le schede prodotto).</li>
+                <li><strong>CSS (Stile di gruppo):</strong> Per definire la grafica di tutta la categoria in una volta sola, richiamando la classe con il punto (es. <code>.avviso { color: red; }</code>).</li>
+                <li><strong>JavaScript (Logica di gruppo):</strong> Per applicare dinamismo a tutti gli elementi appartenenti allo stesso gruppo (es. nascondere tutti gli elementi con classe <code>.avviso</code>).</li>
               </ul>
+
+              <p>Prova questo esempio live per vedere come il foglio di stile CSS colora e imposta il bordo degli elementi sfruttando il gruppo di appartenenza:</p>
+              <pre><code class="language-html">&lt;style&gt;
+  /* Richiamiamo la classe comune con il punto "." */
+  .avviso {
+    padding: 12px;
+    background-color: #fef08a; /* Giallo chiaro */
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-family: sans-serif;
+  }
+  
+  /* Richiamiamo la classe specifica */
+  .urgente {
+    border: 2px solid #ef4444; /* Bordo rosso */
+    font-weight: bold;
+  }
+&lt;/style&gt;
+
+&lt;p class="avviso"&gt;Le spedizioni sono regolari.&lt;/p&gt;
+&lt;p class="avviso urgente"&gt;Attenzione: ultimo giorno per ordinare!&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
