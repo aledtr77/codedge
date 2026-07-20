@@ -642,71 +642,75 @@
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>7. Gli attributi universali: dare un'identità ai tag</h2>
             <section class="guide-subchapter">
-              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag (come <code>href</code> per i link, che non avrebbe senso su un paragrafo). Ma l'HTML mette a disposizione anche degli <strong>attributi universali</strong> (chiamati tecnicamente <em>globali</em>) che puoi usare su <strong>qualsiasi tag</strong>.</p>
-              
-              <p>I due attributi più importanti in assoluto servono a dare un nome o una categoria agli elementi della pagina. Per capire la differenza, pensa a una classe scolastica:</p>
+              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette però a disposizione anche degli <strong>attributi globali</strong> (o universali): attributi che puoi scrivere su <strong>qualsiasi elemento</strong>.</p>
+
+              <p>I due più importanti sono <code>id</code> e <code>class</code>, e servono entrambi alla stessa cosa: <strong>dare un'etichetta a un elemento</strong>, così da poterlo ritrovare più avanti. Cambia solo quante volte quell'etichetta può comparire nella pagina:</p>
 
               <ul class="guide-list">
-                <li><strong><code>id</code> (identificato dal cancelletto <code>#</code>):</strong> È come il codice fiscale o il numero di matricola di un alunno. Identifica <strong>un solo</strong> elemento specifico in tutta la pagina. Non possono esistere due elementi con lo stesso <code>id</code>. Nei collegamenti e nel CSS lo richiami usando il cancelletto (es. <code>#contatti</code>).</li>
-                <li><strong><code>class</code> (identificata dal punto <code>.</code>):</strong> È come la divisa scolastica o l'appartenenza a un gruppo (es. "classe 3A"). Identifica un <strong>gruppo</strong> di elementi che condividono lo stesso stile. Più elementi possono avere la stessa classe, e nel CSS la richiami usando il punto (es. <code>.avviso</code>).</li>
+                <li><strong><code>id</code>:</strong> è come il numero di matricola di uno studente. Appartiene a <strong>un solo</strong> elemento: nella stessa pagina non possono esistere due elementi con lo stesso <code>id</code>.</li>
+                <li><strong><code>class</code>:</strong> è come dire "studenti della 3A". Può essere ripetuta su <strong>quanti elementi vuoi</strong>, e un elemento può appartenere a più classi insieme.</li>
+              </ul>
+
+              <div class="alert alert--note">
+                <strong>Da soli non si vedono.</strong>
+                <p>Scrivere <code>id</code> o <code>class</code> non cambia né l'aspetto né il comportamento della pagina: il browser non mostra nulla di diverso. Sono nomi che <em>preparano il terreno</em>, e diventano utili quando qualcosa va a cercarli: un link, un foglio di stile CSS o del codice JavaScript.</p>
+              </div>
+
+              <h3>1. L'attributo <code>id</code>: un nome unico</h3>
+              <p>L'<code>id</code> assegna un nome che identifica un singolo elemento della pagina. Si scrive come qualunque altro attributo, dentro il tag di apertura:</p>
+              <pre><code class="language-html">&lt;h2 id="contatti"&gt;Dove trovarci&lt;/h2&gt;
+&lt;p&gt;Siamo in via Roma 12, aperti dal lunedì al venerdì.&lt;/p&gt;</code></pre>
+
+              <p><strong>A cosa serve avere un nome unico?</strong></p>
+              <ul class="guide-list">
+                <li><strong>Nell'HTML:</strong> per creare link che portano a un punto preciso della pagina (le <em>ancore</em>, che vedremo nel prossimo capitolo) e per collegare l'etichetta di un modulo al suo campo di inserimento.</li>
+                <li><strong>Nel CSS:</strong> per applicare uno stile a quell'unico elemento.</li>
+                <li><strong>In JavaScript:</strong> per raggiungere quell'elemento specifico e modificarlo, per esempio in risposta a un clic.</li>
               </ul>
 
               <div class="alert alert--warning">
-                <strong>Attenzione: i simboli # e . si usano solo per richiamare!</strong>
-                <p>Uno degli errori più comuni per chi inizia è inserire il cancelletto o il punto direttamente dentro il tag HTML. Ricorda questa regola molto semplice:</p>
+                <strong>Le regole dell'<code>id</code>:</strong>
                 <ul class="guide-list">
-                  <li><strong>Nell'HTML (quando crei l'elemento):</strong> Scrivi solo il nome dell'ID o della classe, senza simboli davanti.
-                    <br>❌ Errato: <code>&lt;h2 id="#contatti"&gt;</code> oppure <code>&lt;p class=".avviso"&gt;</code>
-                    <br>✅ Corretto: <code>&lt;h2 id="contatti"&gt;</code> e <code>&lt;p class="avviso"&gt;</code>
-                  </li>
-                  <li><strong>Nel CSS o nei Link (quando lo richiami):</strong> Aggiungi il simbolo davanti al nome per far capire al browser che cosa stai cercando.
-                    <br>• Per l'<strong>ID</strong> si usa il <strong>cancelletto</strong> (es. <code>href="#contatti"</code> in HTML, o <code>#contatti { color: red; }</code> nel CSS).
-                    <br>• Per la <strong>classe</strong> si usa il <strong>punto</strong> (es. <code>.avviso { background: yellow; }</code> nel CSS).
-                  </li>
+                  <li>Deve essere <strong>unico</strong> nella pagina: se lo ripeti, la pagina si vede lo stesso, ma link e JavaScript troveranno solo il primo elemento e il comportamento diventa imprevedibile.</li>
+                  <li>Non può essere vuoto e <strong>non può contenere spazi</strong>: scrivi <code>sezione-contatti</code>, non <code>sezione contatti</code>.</li>
+                  <li>Distingue maiuscole e minuscole: <code>Contatti</code> e <code>contatti</code> sono due id diversi.</li>
+                  <li>Per stare tranquillo, usa solo lettere minuscole, numeri e trattini, e comincia sempre con una lettera.</li>
                 </ul>
               </div>
 
-              <h3>1. L'attributo <code>id</code> (l'identità master o radice unica)</h3>
-              <p>L'<code>id</code> assegna un nome unico a un singolo elemento della pagina. Pensa ad esso come a un'etichetta con un nome proprio: non possono esistere due elementi con lo stesso <code>id</code> nel tuo codice HTML.</p>
-              
-              <p><strong>A cosa serve?</strong></p>
-              <ul class="guide-list">
-                <li><strong>HTML (Collegamenti e moduli):</strong> Per creare link di scorrimento interni alla pagina (ancore) o per connettere le etichette ai relativi campi di inserimento.</li>
-                <li><strong>CSS (Stile mirato):</strong> Permette al foglio di stile di applicare una grafica speciale a quell'unico elemento preciso (lo si farà richiamandolo con il cancelletto <code>#</code>).</li>
-                <li><strong>JavaScript (Logica e comportamento):</strong> Permette di selezionare e manipolare quell'elemento specifico per farlo reagire ad azioni dell'utente.</li>
-              </ul>
+              <h3>2. L'attributo <code>class</code>: un'etichetta di gruppo</h3>
+              <p>La <code>class</code> raggruppa elementi sotto una categoria comune. La stessa classe può comparire su quanti elementi vuoi:</p>
+              <pre><code class="language-html">&lt;p class="avviso"&gt;Le spedizioni sono regolari.&lt;/p&gt;
+&lt;p class="avviso"&gt;Ultimo giorno utile per ordinare!&lt;/p&gt;
+&lt;p&gt;Questo paragrafo non ha classi: non fa parte del gruppo.&lt;/p&gt;</code></pre>
 
-              <p>In questa guida HTML scriviamo solo il codice di base (struttura). Prova questo esempio live per vedere come si dichiara un <code>id</code> in puro HTML:</p>
-              <pre><code class="language-html">&lt;h2 id="titolo-principale"&gt;Questo titolo ha un ID unico&lt;/h2&gt;
-&lt;p&gt;Il titolo sopra ha l'id="titolo-principale". Questo gli dà una firma unica che potremo controllare più avanti con CSS e JavaScript.&lt;/p&gt;</code></pre>
+              <p>Un elemento può anche appartenere a più gruppi contemporaneamente: basta scrivere i nomi <strong>separati da uno spazio</strong>. Non è "una classe con lo spazio dentro", sono due classi distinte:</p>
+              <pre><code class="language-html">&lt;p class="avviso urgente"&gt;Consegne sospese oggi.&lt;/p&gt;</code></pre>
+
+              <p><strong>A cosa serve raggruppare?</strong></p>
+              <ul class="guide-list">
+                <li><strong>Nel CSS:</strong> per dare lo stesso aspetto a tutti gli elementi del gruppo scrivendo la regola una volta sola.</li>
+                <li><strong>In JavaScript:</strong> per agire su tutti gli elementi del gruppo con una sola istruzione.</li>
+                <li><strong>Per chi legge il codice:</strong> un nome come <code>scheda-prodotto</code> racconta a colpo d'occhio che ruolo ha quell'elemento.</li>
+              </ul>
 
               <div class="alert alert--warning">
-                <strong>Regole importanti per l'id:</strong>
-                <p>Deve essere unico in tutta la pagina, non deve contenere spazi e fa differenza tra maiuscole e minuscole. Per sicurezza, usa sempre lettere minuscole e trattini (es. <code>sezione-contatti</code>).</p>
+                <strong>Attenzione: <code>#</code> e <code>.</code> non si scrivono nell'HTML!</strong>
+                <p>Quando più avanti incontrerai il CSS, vedrai gli id preceduti dal cancelletto (<code>#contatti</code>) e le classi precedute dal punto (<code>.avviso</code>). Quei simboli servono <strong>solo a richiamarli</strong> da fuori: dicono al browser "cerca l'elemento che ha questo id" o "cerca gli elementi che hanno questa classe". Nel tag HTML, invece, scrivi soltanto il nome.</p>
+                <ul class="guide-list">
+                  <li>❌ Errato: <code>&lt;h2 id="#contatti"&gt;</code> — <code>&lt;p class=".avviso"&gt;</code></li>
+                  <li>✅ Corretto: <code>&lt;h2 id="contatti"&gt;</code> — <code>&lt;p class="avviso"&gt;</code></li>
+                </ul>
+                <p>L'unica eccezione che vedrai in HTML è il <code>href</code> di un link interno, che punta a un id e quindi usa il cancelletto: <code>&lt;a href="#contatti"&gt;</code>.</p>
               </div>
-
-              <h3>2. L'attributo <code>class</code> (il gruppo di appartenenza)</h3>
-              <p>L'attributo <code>class</code> raggruppa più elementi sotto una categoria comune. A differenza dell'<code>id</code>, puoi riutilizzare la stessa classe su quanti elementi desideri, e lo stesso elemento può far parte di più classi contemporaneamente (separate da uno spazio).</p>
-
-              <p><strong>A cosa serve?</strong></p>
-              <ul class="guide-list">
-                <li><strong>HTML (Strutturazione):</strong> Per catalogare e raggruppare sotto la stessa categoria più elementi simili della pagina (es. tutti i pulsanti o tutte le schede prodotto).</li>
-                <li><strong>CSS (Stile di gruppo):</strong> Permette di dare la stessa grafica a tutti gli elementi appartenenti allo stesso gruppo in una volta sola (richiamandoli con il punto <code>.</code>).</li>
-                <li><strong>JavaScript (Logica di gruppo):</strong> Permette di modificare o nascondere interi gruppi di elementi con una sola istruzione.</li>
-              </ul>
-
-              <p>Prova questo esempio live in puro HTML per vedere come più elementi possono dichiarare la stessa classe (il gruppo di appartenenza):</p>
-              <pre><code class="language-html">&lt;p class="avviso"&gt;Le spedizioni sono regolari.&lt;/p&gt;
-&lt;p class="avviso"&gt;Attenzione: ultimo giorno per ordinare!&lt;/p&gt;
-&lt;p&gt;Questo paragrafo è normale e non fa parte del gruppo con classe="avviso".&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
-                <p>Se un elemento è unico nella pagina (es. la testata principale, il menu, o un'ancora di scorrimento), usa <code>id</code> (contrassegnato da <code>#</code>). Se invece vuoi definire uno stile grafico che potrebbe ripetersi su più elementi (es. un pulsante, un box evidenziato, una riga di testo colorata), usa sempre <code>class</code> (contrassegnata da <code>.</code>). Nel dubbio, usa <code>class</code>.</p>
+                <p>Se ti serve raggiungere <em>quel preciso</em> elemento (una sezione a cui puntare con un link, un campo di un modulo), usa <code>id</code>. Se stai descrivendo un tipo di elemento che potrebbe ripetersi (un pulsante, un box evidenziato, una scheda prodotto), usa <code>class</code>. Nel dubbio, usa <code>class</code>: non rischi mai di creare doppioni.</p>
               </div>
 
-              <h3>Altri attributi universali utili</h3>
-              <p>Oltre a questi due giganti, ci sono altri attributi universali che ti capiterà di incontrare spesso:</p>
+              <h3>Altri attributi globali utili</h3>
+              <p>Oltre a questi due, ce ne sono altri che ti capiterà di incontrare spesso:</p>
 
               <div class="table-wrapper">
                 <table class="guide-table">
@@ -720,23 +724,23 @@
                   <tbody>
                     <tr>
                       <td class="is-code is-strong">lang</td>
-                      <td>Indica la lingua del testo per aiutare i motori di ricerca e i lettori vocali.</td>
-                      <td>Si mette di solito sul tag <code>&lt;html&gt;</code> di partenza (es. <code>lang="it"</code>).</td>
+                      <td>Dichiara la lingua del testo, utile ai motori di ricerca e ai lettori vocali.</td>
+                      <td>Si mette sul tag <code>&lt;html&gt;</code> per l'intera pagina (es. <code>lang="it"</code>) e su un singolo elemento solo quando cambia lingua.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">title</td>
-                      <td>Mostra un piccolo fumetto di spiegazione (tooltip) quando si passa sopra con il mouse.</td>
-                      <td>Non metterci informazioni vitali, perché sugli smartphone non è facile da visualizzare.</td>
+                      <td>Mostra un piccolo fumetto di spiegazione (tooltip) al passaggio del mouse.</td>
+                      <td>Non metterci informazioni indispensabili: su smartphone e per chi naviga da tastiera spesso non compare affatto.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">hidden</td>
-                      <td>Nasconde completamente l'elemento a schermo.</td>
-                      <td>Non serve un valore, basta scriverlo nel tag: <code>&lt;p hidden&gt;...&lt;/p&gt;</code>.</td>
+                      <td>Dice al browser che l'elemento non è ancora pertinente: non viene mostrato né letto dai lettori vocali.</td>
+                      <td>Non vuole un valore, basta scriverlo nel tag: <code>&lt;p hidden&gt;...&lt;/p&gt;</code>.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">style</td>
-                      <td>Applica stili CSS direttamente a un singolo tag.</td>
-                      <td><strong>Da evitare:</strong> mescola la grafica con la struttura e rende il codice difficile da gestire.</td>
+                      <td>Applica regole CSS direttamente a quel singolo tag.</td>
+                      <td><strong>Meglio evitarlo:</strong> mescola grafica e struttura e non è riutilizzabile. Usa <code>class</code> e un foglio di stile.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -744,9 +748,9 @@
 
               <p>Ad esempio, se in una pagina scritta in italiano inserisci una frase o una citazione in inglese, è un'ottima pratica segnalarlo così:</p>
               <pre><code class="language-html">&lt;p&gt;Il motto dell'azienda è &lt;span lang="en"&gt;think different&lt;/span&gt;.&lt;/p&gt;</code></pre>
-              <p>In questo modo, le tecnologie assistive (come i lettori vocali per chi ha disabilità visive) leggeranno la frase con la corretta pronuncia inglese, anziché leggerla all'italiana.</p>
+              <p>In questo modo i lettori vocali usati da chi ha difficoltà visive pronunceranno la frase all'inglese, anziché leggerla all'italiana.</p>
 
-              <p>Con <code>id</code> in tasca possiamo affrontare il tag che ha reso il web una rete: il link.</p>
+              <p>Ora che sai dare un <code>id</code> a un elemento, possiamo affrontare il tag che ha reso il web una rete: il link.</p>
             </section>
           </section>
 
