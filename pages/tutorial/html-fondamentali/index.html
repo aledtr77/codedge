@@ -667,19 +667,17 @@
               </div>
 
               <h3>1. L'attributo <code>id</code> (l'identità master o radice unica)</h3>
-              <p>L'<code>id</code> assegna un nome unico a un elemento della pagina. Pensa a esso come a una chiave primaria: non possono esistere due elementi con lo stesso <code>id</code> nello stesso file HTML.</p>
+              <p>L'<code>id</code> assegna un nome unico a un singolo elemento della pagina. Pensa ad esso come a un'etichetta con un nome proprio: non possono esistere due elementi con lo stesso <code>id</code> nel tuo codice HTML.</p>
+              
+              <p><strong>A cosa serve? (L'infarinatura iniziale):</strong></p>
+              <ul class="guide-list">
+                <li><strong>CSS (Stile mirato):</strong> Permette al foglio di stile di applicare una grafica speciale a quell'unico elemento preciso (lo si farà richiamandolo con il cancelletto <code>#</code>).</li>
+                <li><strong>JavaScript (Logica e comportamento):</strong> Permette di selezionare e manipolare quell'elemento specifico per farlo reagire ad azioni dell'utente.</li>
+              </ul>
 
-              <p>Prova questo esempio live per vedere come solo l'elemento unico con quel preciso <code>id</code> viene colorato di blu:</p>
-              <pre><code class="language-html">&lt;style&gt;
-  /* Solo l'elemento unico con id "titolo-speciale" diventa blu */
-  #titolo-speciale {
-    color: blue;
-  }
-&lt;/style&gt;
-
-&lt;h2 id="titolo-speciale"&gt;Questo titolo ha l'id speciale (blu)&lt;/h2&gt;
-&lt;h2&gt;Questo è un titolo normale (nero)&lt;/h2&gt;
-&lt;h2&gt;Questo è un altro titolo normale (nero)&lt;/h2&gt;</code></pre>
+              <p>In questa guida HTML scriviamo solo il codice di base (struttura). Prova questo esempio live per vedere come si dichiara un <code>id</code> in puro HTML:</p>
+              <pre><code class="language-html">&lt;h2 id="titolo-principale"&gt;Questo titolo ha un ID unico&lt;/h2&gt;
+&lt;p&gt;Il titolo sopra ha l'id="titolo-principale". Questo gli dà una firma unica che potremo controllare più avanti con CSS e JavaScript.&lt;/p&gt;</code></pre>
 
               <div class="alert alert--warning">
                 <strong>Regole importanti per l'id:</strong>
@@ -687,20 +685,18 @@
               </div>
 
               <h3>2. L'attributo <code>class</code> (il gruppo di appartenenza)</h3>
-              <p>L'attributo <code>class</code> raggruppa più elementi sotto una categoria comune. A differenza dell'<code>id</code>, puoi riutilizzare la stessa classe su quanti elementi desideri, e un singolo tag HTML può far parte di più classi contemporaneamente (separate da uno spazio).</p>
+              <p>L'attributo <code>class</code> raggruppa più elementi sotto una categoria comune. A differenza dell'<code>id</code>, puoi riutilizzare la stessa classe su quanti elementi desideri, e lo stesso elemento può far parte di più classi contemporaneamente (separate da uno spazio).</p>
 
-              <p>Prova questo esempio live per vedere come tutti gli elementi del gruppo (della classe) vengono colorati con lo sfondo giallo contemporaneamente:</p>
-              <pre><code class="language-html">&lt;style&gt;
-  /* Tutti gli elementi del gruppo "evidenziato" avranno lo sfondo giallo */
-  .evidenziato {
-    background-color: yellow;
-  }
-&lt;/style&gt;
+              <p><strong>A cosa serve? (L'infarinatura iniziale):</strong></p>
+              <ul class="guide-list">
+                <li><strong>CSS (Stile di gruppo):</strong> Permette di dare la stessa grafica a tutti gli elementi appartenenti allo stesso gruppo in una volta sola (richiamandoli con il punto <code>.</code>).</li>
+                <li><strong>JavaScript (Logica di gruppo):</strong> Permette di modificare o nascondere interi gruppi di elementi con una sola istruzione.</li>
+              </ul>
 
-&lt;p&gt;Questo è un paragrafo normale.&lt;/p&gt;
-&lt;p class="evidenziato"&gt;Questo paragrafo fa parte del gruppo evidenziato!&lt;/p&gt;
-&lt;p&gt;Questo è un altro paragrafo normale.&lt;/p&gt;
-&lt;p class="evidenziato"&gt;Anche io faccio parte del gruppo evidenziato!&lt;/p&gt;</code></pre>
+              <p>Prova questo esempio live in puro HTML per vedere come più elementi possono dichiarare la stessa classe (il gruppo di appartenenza):</p>
+              <pre><code class="language-html">&lt;p class="avviso"&gt;Le spedizioni sono regolari.&lt;/p&gt;
+&lt;p class="avviso"&gt;Attenzione: ultimo giorno per ordinare!&lt;/p&gt;
+&lt;p&gt;Questo paragrafo è normale e non fa parte del gruppo con classe="avviso".&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
