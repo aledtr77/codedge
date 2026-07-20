@@ -652,16 +652,16 @@
               </ul>
 
               <div class="alert alert--warning">
-                <strong>Identificatori Master (HTML) vs Richiami (CSS e Link)</strong>
-                <p>Gli attributi <code>id</code> e <code>class</code> fungono da <strong>identificatori radice (o attributi master)</strong>. Nel codice HTML assegni direttamente il valore desiderato a questi master. I simboli speciali servono solo successivamente, nei rami collegati, per indicare a quale tipo di radice fare riferimento:</p>
+                <strong>Definizione (HTML) vs Richiamo (CSS e Link)</strong>
+                <p>Mentre l'<code>id</code> funge da <strong>identificatore master (o radice unica)</strong>, la <code>class</code> rappresenta un <strong>gruppo di appartenenza (o categoria comune)</strong>. Nel codice HTML assegni direttamente il valore desiderato a questi attributi. I simboli speciali servono solo successivamente, nei rami collegati, per indicare a che cosa fare riferimento:</p>
                 <ul class="guide-list">
-                  <li><strong>I Master Radice (nel tag HTML):</strong> Definisci il valore assegnato all'attributo master senza anteporre simboli.
+                  <li><strong>La Definizione (nel tag HTML):</strong> Assegni il nome dell'identità master (per l'<code>id</code>) o il nome del gruppo di appartenenza (per la <code>class</code>) senza anteporre simboli.
                     <br>❌ Errato: <code>&lt;h2 id="#contatti"&gt;</code> oppure <code>&lt;p class=".avviso"&gt;</code>
                     <br>✅ Corretto: <code>&lt;h2 id="contatti"&gt;</code> e <code>&lt;p class="avviso"&gt;</code>
                   </li>
-                  <li><strong>I Rami di Richiamo (nei fogli CSS o nei link):</strong> Usi il prefisso corretto per agganciarti alla radice master:
-                    <br>• Per fare riferimento al master <code>id</code>: usi il prefisso <strong>cancelletto</strong> (es. <code>href="#contatti"</code> in HTML, o <code>#contatti { ... }</code> nel CSS).
-                    <br>• Per fare riferimento al master <code>class</code>: usi il prefisso <strong>punto</strong> (es. <code>.avviso { ... }</code> nel CSS).
+                  <li><strong>I Rami di Richiamo (nei fogli CSS o nei link):</strong> Usi il prefisso corretto per agganciarti alla risorsa:
+                    <br>• Per agganciarti all'<code>id</code> master: usi il prefisso <strong>cancelletto</strong> (es. <code>href="#contatti"</code> in HTML, o <code>#contatti { ... }</code> nel CSS).
+                    <br>• Per agganciarti al gruppo della <code>class</code>: usi il prefisso <strong>punto</strong> (es. <code>.avviso { ... }</code> nel CSS).
                   </li>
                 </ul>
               </div>
