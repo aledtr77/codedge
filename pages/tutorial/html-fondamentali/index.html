@@ -652,16 +652,16 @@
               </ul>
 
               <div class="alert alert--warning">
-                <strong>Definizione (HTML) vs Richiamo (CSS e Link)</strong>
-                <p>Mentre l'<code>id</code> funge da <strong>identificatore master (o radice unica)</strong>, la <code>class</code> rappresenta un <strong>gruppo di appartenenza (o categoria comune)</strong>. Nel codice HTML assegni direttamente il valore desiderato a questi attributi. I simboli speciali servono solo successivamente, nei rami collegati, per indicare a che cosa fare riferimento:</p>
+                <strong>Attenzione: i simboli # e . si usano solo per richiamare!</strong>
+                <p>Uno degli errori più comuni per chi inizia è inserire il cancelletto o il punto direttamente dentro il tag HTML. Ricorda questa regola molto semplice:</p>
                 <ul class="guide-list">
-                  <li><strong>La Definizione (nel tag HTML):</strong> Assegni il nome dell'identità master (per l'<code>id</code>) o il nome del gruppo di appartenenza (per la <code>class</code>) senza anteporre simboli.
+                  <li><strong>Nell'HTML (quando crei l'elemento):</strong> Scrivi solo il nome dell'ID o della classe, senza simboli davanti.
                     <br>❌ Errato: <code>&lt;h2 id="#contatti"&gt;</code> oppure <code>&lt;p class=".avviso"&gt;</code>
                     <br>✅ Corretto: <code>&lt;h2 id="contatti"&gt;</code> e <code>&lt;p class="avviso"&gt;</code>
                   </li>
-                  <li><strong>I Rami di Richiamo (nei fogli CSS o nei link):</strong> Usi il prefisso corretto per agganciarti alla risorsa:
-                    <br>• Per agganciarti all'<code>id</code> master: usi il prefisso <strong>cancelletto</strong> (es. <code>href="#contatti"</code> in HTML, o <code>#contatti { color: red; }</code> nel CSS).
-                    <br>• Per agganciarti al gruppo della <code>class</code>: usi il prefisso <strong>punto</strong> (es. <code>.avviso { background: yellow; }</code> nel CSS).
+                  <li><strong>Nel CSS o nei Link (quando lo richiami):</strong> Aggiungi il simbolo davanti al nome per far capire al browser che cosa stai cercando.
+                    <br>• Per l'<strong>ID</strong> si usa il <strong>cancelletto</strong> (es. <code>href="#contatti"</code> in HTML, o <code>#contatti { color: red; }</code> nel CSS).
+                    <br>• Per la <strong>classe</strong> si usa il <strong>punto</strong> (es. <code>.avviso { background: yellow; }</code> nel CSS).
                   </li>
                 </ul>
               </div>
