@@ -651,6 +651,21 @@
                 <li><strong><code>class</code> (identificata dal punto <code>.</code>):</strong> È come la divisa scolastica o l'appartenenza a un gruppo (es. "classe 3A"). Identifica un <strong>gruppo</strong> di elementi che condividono lo stesso stile. Più elementi possono avere la stessa classe, e nel CSS la richiami usando il punto (es. <code>.avviso</code>).</li>
               </ul>
 
+              <div class="alert alert--warning">
+                <strong>Dichiarazione vs Richiamo: dove si mettono i simboli (# e .)?</strong>
+                <p>Questo è uno degli errori più comuni per chi inizia: inserire il cancelletto o il punto all'interno del tag HTML. Ricorda questa distinzione fondamentale:</p>
+                <ul class="guide-list">
+                  <li><strong>Nella "radice" (quando definisci l'attributo nel tag HTML):</strong> Scrivi il nome pulito, <strong>senza alcun simbolo</strong>.
+                    <br>❌ Errato: <code>&lt;h2 id="#contatti"&gt;</code> oppure <code>&lt;p class=".avviso"&gt;</code>
+                    <br>✅ Corretto: <code>&lt;h2 id="contatti"&gt;</code> e <code>&lt;p class="avviso"&gt;</code>
+                  </li>
+                  <li><strong>Nei "rami" (quando richiami l'attributo da altre parti):</strong> Usi il simbolo per indicare al browser che tipo di attributo stai cercando.
+                    <br>• Nei link HTML (ancore): usi il cancelletto per cercare un ID (es. <code>&lt;a href="#contatti"&gt;</code>).
+                    <br>• Nei fogli di stile CSS: usi il cancelletto per gli ID (es. <code>#contatti { ... }</code>) e il punto per le classi (es. <code>.avviso { ... }</code>).
+                  </li>
+                </ul>
+              </div>
+
               <h3>1. L'attributo <code>id</code> (il nome proprio, si usa con <code>#</code>)</h3>
               <p>Usa l'attributo <code>id</code> quando hai bisogno di dare un nome univoco e inconfondibile a un elemento della pagina. Si scrive in questo modo:</p>
 
