@@ -677,15 +677,13 @@
               </ul>
 
               <p>Prova il funzionamento delle ancore in questo esempio live (clicca sul pulsante per vederlo scorrere):</p>
-              <pre><code class="language-html">&lt;a href="#dettagli" style="display: inline-block; background: #0ea5e9; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 500;"&gt;
-  Scorri fino ai dettagli
-&lt;/a&gt;
+              <pre><code class="language-html">&lt;a href="#sezione-dettagli"&gt;Vai ai Dettagli&lt;/a&gt;
 
-&lt;!-- Spazio vuoto per allungare la pagina e mostrare l'effetto dello scorrimento --&gt;
-&lt;div style="height: 350px; border-left: 2px dashed #cbd5e1; margin: 15px 0 15px 20px;"&gt;&lt;/div>
+&lt;!-- Molti a capo per allungare l'anteprima e far scorrere la pagina --&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;h3 id="dettagli"&gt;Dettagli del Prodotto&lt;/h3&gt;
-&lt;p&gt;Sei arrivato a destinazione all'elemento con id="dettagli"!&lt;/p&gt;</code></pre>
+&lt;h3 id="sezione-dettagli"&gt;Dettagli del Prodotto&lt;/h3&gt;
+&lt;p&gt;Sei arrivato qui grazie al collegamento all'id!&lt;/p&gt;</code></pre>
 
               <div class="alert alert--warning">
                 <strong>Regole importanti per l'id:</strong>
@@ -702,26 +700,21 @@
                 <li><strong>JavaScript (Logica di gruppo):</strong> Per applicare dinamismo a tutti gli elementi appartenenti allo stesso gruppo (es. nascondere tutti gli elementi con classe <code>.avviso</code>).</li>
               </ul>
 
-              <p>Prova questo esempio live per vedere come il foglio di stile CSS colora e imposta il bordo degli elementi sfruttando il gruppo di appartenenza:</p>
+              <p>Prova questo esempio live per vedere come il foglio di stile CSS colora il testo e lo sfondo degli elementi sfruttando il gruppo di appartenenza:</p>
               <pre><code class="language-html">&lt;style&gt;
-  /* Richiamiamo la classe comune con il punto "." */
-  .avviso {
-    padding: 12px;
-    background-color: #fef08a; /* Giallo chiaro */
-    border-radius: 6px;
-    margin-bottom: 8px;
-    font-family: sans-serif;
+  /* La classe "rosso" colora il testo di rosso */
+  .rosso {
+    color: red;
   }
-  
-  /* Richiamiamo la classe specifica */
-  .urgente {
-    border: 2px solid #ef4444; /* Bordo rosso */
-    font-weight: bold;
+  /* La classe "evidenziato" colora lo sfondo di giallo */
+  .evidenziato {
+    background-color: yellow;
   }
 &lt;/style&gt;
 
-&lt;p class="avviso"&gt;Le spedizioni sono regolari.&lt;/p&gt;
-&lt;p class="avviso urgente"&gt;Attenzione: ultimo giorno per ordinare!&lt;/p&gt;</code></pre>
+&lt;p class="rosso"&gt;Testo rosso&lt;/p&gt;
+&lt;p class="evidenziato"&gt;Sfondo giallo&lt;/p&gt;
+&lt;p class="rosso evidenziato"&gt;Testo rosso con sfondo giallo!&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
