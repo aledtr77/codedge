@@ -2,6 +2,86 @@
 // HTML and CSS code blocks. Inside .snippet-box the single "Prova Live"
 // button lives in the title-box; outside, a per-block toolbar is built.
 
+const injectHelperScript = (html) => {
+  const helperStyle = `
+  <style>
+    .sandbox-toast {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      opacity: 0;
+      z-index: 99999;
+      pointer-events: none;
+      white-space: nowrap;
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sandbox-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    .sandbox-toast svg {
+      width: 16px;
+      height: 16px;
+      fill: #0ea5e9;
+      flex-shrink: 0;
+    }
+  </style>
+  `;
+
+  const helperScript = `
+  <script>
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+      
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('javascript:')) {
+        return;
+      }
+      
+      e.preventDefault();
+      
+      let toast = document.getElementById('sandbox-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'sandbox-toast';
+        toast.className = 'sandbox-toast';
+        toast.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>I collegamenti esterni sono disattivati nell\\'anteprima.</span>';
+        document.body.appendChild(toast);
+      }
+      
+      toast.classList.add('show');
+      
+      clearTimeout(window.sandboxToastTimeout);
+      window.sandboxToastTimeout = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2500);
+    });
+  </script>
+  `;
+
+  if (html.includes("</body>")) {
+    return html.replace("</body>", `${helperStyle}${helperScript}</body>`);
+  } else if (html.includes("</html>")) {
+    return html.replace("</html>", `${helperStyle}${helperScript}</html>`);
+  } else {
+    return `${html}${helperStyle}${helperScript}`;
+  }
+};
+
+
 export default function initGuidePlayground() {
   const codeBlocks = Array.from(document.querySelectorAll("pre code"));
 
@@ -325,7 +405,8 @@ export default function initGuidePlayground() {
     // with no access to the hosting page.
     const updatePreview = () => {
       const code = textarea.value;
-      iframe.srcdoc = lang === "css" ? cssDefaultHtml(code) : htmlDefaultTemplate(code);
+      const rawHtml = lang === "css" ? cssDefaultHtml(code) : htmlDefaultTemplate(code);
+      iframe.srcdoc = injectHelperScript(rawHtml);
     };
 
     // Debounced live preview: avoid rewriting the iframe on every keystroke
