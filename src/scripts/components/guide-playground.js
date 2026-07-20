@@ -40,7 +40,27 @@ const injectHelperScript = (html) => {
   </style>
   `;
 
+  // The sandboxed iframe has an opaque origin, so the parent cannot read its
+  // content height: the document measures itself and reports via postMessage,
+  // letting the preview pane match its content instead of a fixed height.
   const helperScript = `
+  <script>
+    (function() {
+      var report = function() {
+        var body = document.body;
+        if (!body) return;
+        var rect = body.getBoundingClientRect();
+        var cs = getComputedStyle(body);
+        var height = Math.ceil(rect.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom));
+        parent.postMessage({ type: 'playground:height', height: height }, '*');
+      };
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(report).observe(document.body);
+      }
+      window.addEventListener('load', report);
+      report();
+    })();
+  </script>
   <script>
     document.addEventListener('click', function(e) {
       const link = e.target.closest('a');
@@ -84,6 +104,23 @@ const injectHelperScript = (html) => {
 
 export default function initGuidePlayground() {
   const codeBlocks = Array.from(document.querySelectorAll("pre code"));
+
+  // Fit the preview pane to the reported content height: tall enough to avoid
+  // scrolling, but never a near-empty sheet taller than the viewport allows.
+  const clampPreviewHeight = (height) => {
+    const max = Math.min(550, Math.round(window.innerHeight * 0.62));
+    return Math.max(120, Math.min(max, height + 2));
+  };
+
+  window.addEventListener("message", (ev) => {
+    const data = ev.data;
+    if (!data || data.type !== "playground:height" || typeof data.height !== "number") return;
+    document.querySelectorAll(".playground-iframe").forEach((iframe) => {
+      if (iframe.contentWindow !== ev.source) return;
+      const pane = iframe.closest(".playground-preview-pane");
+      if (pane) pane.style.height = `${clampPreviewHeight(data.height)}px`;
+    });
+  });
 
   const cssDefaultHtml = (userCss) => `
 <!DOCTYPE html>
@@ -401,6 +438,19 @@ export default function initGuidePlayground() {
 
     textarea.value = initialCode;
 
+    // Fit the editor pane to its line count (clamped) so short snippets don't
+    // leave a mostly-empty dark box; the preview pane fits via postMessage.
+    const editorPane = playground.querySelector(".playground-editor-pane");
+    const sizeEditorPane = () => {
+      const cs = getComputedStyle(textarea);
+      const lineHeight = parseFloat(cs.lineHeight);
+      const padding = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      const lines = textarea.value.split("\n").length;
+      const fit = Math.ceil(lines * lineHeight + padding);
+      editorPane.style.height = `${Math.max(120, Math.min(320, fit))}px`;
+    };
+    sizeEditorPane();
+
     // srcdoc + sandbox="allow-scripts": the preview runs in an opaque origin
     // with no access to the hosting page.
     const updatePreview = () => {
@@ -412,6 +462,7 @@ export default function initGuidePlayground() {
     // Debounced live preview: avoid rewriting the iframe on every keystroke
     let previewTimer = null;
     textarea.addEventListener("input", () => {
+      sizeEditorPane();
       clearTimeout(previewTimer);
       previewTimer = setTimeout(updatePreview, 150);
     });
