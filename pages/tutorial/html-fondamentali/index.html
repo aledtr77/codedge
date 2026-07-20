@@ -647,18 +647,18 @@
               <p>I due attributi più importanti in assoluto servono a dare un nome o una categoria agli elementi della pagina. Per capire la differenza, pensa a una classe scolastica:</p>
 
               <ul class="guide-list">
-                <li><strong><code>id</code> (l'identità unica):</strong> È come il codice fiscale o il numero di matricola di un alunno. Identifica <strong>un solo</strong> elemento specifico in tutta la pagina. Non possono esistere due elementi con lo stesso <code>id</code>.</li>
-                <li><strong><code>class</code> (la categoria):</strong> È come la divisa scolastica o l'appartenenza a un gruppo (es. "classe 3A"). Identifica un <strong>gruppo</strong> di elementi che condividono lo stesso stile. Più elementi possono avere la stessa classe, e un singolo elemento può avere più classi contemporaneamente.</li>
+                <li><strong><code>id</code> (identificato dal cancelletto <code>#</code>):</strong> È come il codice fiscale o il numero di matricola di un alunno. Identifica <strong>un solo</strong> elemento specifico in tutta la pagina. Non possono esistere due elementi con lo stesso <code>id</code>. Nei collegamenti e nel CSS lo richiami usando il cancelletto (es. <code>#contatti</code>).</li>
+                <li><strong><code>class</code> (identificata dal punto <code>.</code>):</strong> È come la divisa scolastica o l'appartenenza a un gruppo (es. "classe 3A"). Identifica un <strong>gruppo</strong> di elementi che condividono lo stesso stile. Più elementi possono avere la stessa classe, e nel CSS la richiami usando il punto (es. <code>.avviso</code>).</li>
               </ul>
 
-              <h3>1. L'attributo <code>id</code> (il nome proprio)</h3>
+              <h3>1. L'attributo <code>id</code> (il nome proprio, si usa con <code>#</code>)</h3>
               <p>Usa l'attributo <code>id</code> quando hai bisogno di dare un nome univoco e inconfondibile a un elemento della pagina. Si scrive in questo modo:</p>
 
               <pre><code class="language-html">&lt;h2 id="contatti"&gt;Come raggiungerci&lt;/h2&gt;</code></pre>
 
               <p>Questo "nome proprio" ti servirà principalmente per due scopi pratici:</p>
               <ul class="guide-list">
-                <li><strong>Creare collegamenti interni (ancore):</strong> Se scrivi un link come <code>&lt;a href="#contatti"&gt;Vai ai contatti&lt;/a&gt;</code>, cliccandolo la pagina scorrerà da sola fino al titolo con quell'id.</li>
+                <li><strong>Creare collegamenti interni (ancore):</strong> Se scrivi un link come <code>&lt;a href="#contatti"&gt;Vai ai contatti&lt;/a&gt;</code>, cliccandolo la pagina scorrerà da sola fino al titolo con quell'id. Nota che nel valore di <code>href</code> si inserisce il cancelletto (<code>#</code>) prima del nome dell'id.</li>
                 <li><strong>Collegare i moduli:</strong> Serve a connettere una descrizione (etichetta) alla casella di testo in cui l'utente deve scrivere (lo vedremo nella sezione dei form).</li>
               </ul>
 
@@ -667,7 +667,7 @@
                 <p>Deve essere unico (mai usarlo due volte nella stessa pagina), non deve contenere spazi e fa differenza tra maiuscole e minuscole. Per sicurezza, usa sempre lettere minuscole e trattini (es. <code>sezione-contatti</code>).</p>
               </div>
 
-              <h3>2. L'attributo <code>class</code> (la categoria per la grafica)</h3>
+              <h3>2. L'attributo <code>class</code> (la categoria per la grafica, si usa con <code>.</code>)</h3>
               <p>Usa l'attributo <code>class</code> per raggruppare elementi che dovranno avere lo stesso aspetto. Sarà il tuo strumento principale quando collegherai il CSS all'HTML.</p>
 
               <pre><code class="language-html">&lt;p class="avviso"&gt;Le spedizioni sono sospese.&lt;/p&gt;
@@ -675,13 +675,13 @@
 
               <p>Come vedi nell'esempio:</p>
               <ul class="guide-list">
-                <li>Entrambi i paragrafi hanno la classe <code>avviso</code>. Nel CSS ti basterà una sola riga di codice per colorarli entrambi, ad esempio di giallo.</li>
-                <li>Il secondo paragrafo ha due classi: <code>avviso</code> e <code>urgente</code> (separate da uno spazio). In questo modo prenderà lo stile grafico comune a tutti gli avvisi, ma potrai aggiungere un bordo rosso specifico solo a lui perché è anche urgente.</li>
+                <li>Entrambi i paragrafi hanno la classe <code>avviso</code>. Nel CSS ti basterà una sola riga di codice per colorarli entrambi, facendo riferimento alla classe con il punto: <code>.avviso</code>.</li>
+                <li>Il secondo paragrafo ha due classi: <code>avviso</code> e <code>urgente</code> (separate da uno spazio). In questo modo prenderà lo stile grafico comune a tutti gli avvisi, ma potrai aggiungere uno stile specifico solo a lui richiamando la classe <code>.urgente</code>.</li>
               </ul>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
-                <p>Se un elemento è unico nella pagina (es. la testata principale, il menu, o un'ancora di scorrimento), usa <code>id</code>. Se invece vuoi definire uno stile grafico che potrebbe ripetersi su più elementi (es. un pulsante, un box evidenziato, una riga di testo colorata), usa sempre <code>class</code>. Nel dubbio, usa <code>class</code>.</p>
+                <p>Se un elemento è unico nella pagina (es. la testata principale, il menu, o un'ancora di scorrimento), usa <code>id</code> (contrassegnato da <code>#</code>). Se invece vuoi definire uno stile grafico che potrebbe ripetersi su più elementi (es. un pulsante, un box evidenziato, una riga di testo colorata), usa sempre <code>class</code> (contrassegnata da <code>.</code>). Nel dubbio, usa <code>class</code>.</p>
               </div>
 
               <h3>Altri attributi universali utili</h3>
