@@ -82,44 +82,6 @@ footer {
     0 0 0 3px rgba(0, 168, 255, 0.22),
     0 14px 26px -14px rgba(0, 0, 0, 0.55);
 }
-.footer-social-link-instagram {
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-}
-.footer-social-link-instagram i {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.56rem;
-  color: #ffffff;
-  font-size: 1.45rem;
-  background:
-    radial-gradient(circle at 31% 107%, #fdf497 0 7%, #fd5949 38%, #d6249f 62%, #285aeb 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-top-color: rgba(255, 255, 255, 0.45);
-  border-bottom-color: rgba(0, 0, 0, 0.45);
-  box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35),
-    0 4px 10px -6px rgba(221, 42, 123, 0.75);
-  -webkit-text-fill-color: #ffffff;
-  transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease;
-}
-.footer-social-link-instagram:hover {
-  filter: none;
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-}
-.footer-social-link-instagram:hover i {
-  transform: scale(1.06);
-  box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
-    0 8px 16px -8px rgba(221, 42, 123, 0.9);
-}
 .footer-social-link-youtube {
   border-color: transparent;
   background: transparent;
@@ -165,11 +127,6 @@ footer {
   outline: 2px solid var(--color-three);
   outline-offset: 4px;
   border-radius: 0.45rem;
-}
-.footer-social-link-instagram:focus-visible {
-  outline-color: rgba(204, 151, 250, 0.95);
-  border-color: transparent;
-  background: transparent;
 }
 .footer-social-link-youtube:focus-visible {
   outline-color: rgba(255, 76, 107, 0.95);
