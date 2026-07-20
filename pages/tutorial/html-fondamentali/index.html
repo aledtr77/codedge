@@ -669,21 +669,17 @@
               <h3>1. L'attributo <code>id</code> (l'identità master o radice unica)</h3>
               <p>L'<code>id</code> assegna un nome unico a un elemento della pagina. Pensa a esso come a una chiave primaria: non possono esistere due elementi con lo stesso <code>id</code> nello stesso file HTML.</p>
 
-              <p>Questo identificatore master non si limita all'HTML, ma viene richiamato su tutti i fronti dello sviluppo web:</p>
-              <ul class="guide-list">
-                <li><strong>HTML (Ancore e Moduli):</strong> Per creare collegamenti di scorrimento interni (es. <code>&lt;a href="#sezione"&gt;</code>) o per accoppiare le etichette ai campi dei form.</li>
-                <li><strong>CSS (Stile mirato):</strong> Per applicare una grafica specifica a quell'unico elemento, richiamando l'id con il cancelletto (es. <code>#mio-id { color: red; }</code>).</li>
-                <li><strong>JavaScript (Logica dinamica):</strong> Per selezionare e manipolare tramite codice quell'elemento specifico (es. <code>document.getElementById("mio-id")</code>).</li>
-              </ul>
+              <p>Prova questo esempio live per vedere come solo l'elemento unico con quel preciso <code>id</code> viene colorato di blu:</p>
+              <pre><code class="language-html">&lt;style&gt;
+  /* Solo l'elemento unico con id "titolo-speciale" diventa blu */
+  #titolo-speciale {
+    color: blue;
+  }
+&lt;/style&gt;
 
-              <p>Prova il funzionamento delle ancore in questo esempio live (clicca sul pulsante per vederlo scorrere):</p>
-              <pre><code class="language-html">&lt;a href="#sezione-dettagli"&gt;Vai ai Dettagli&lt;/a&gt;
-
-&lt;!-- Molti a capo per allungare l'anteprima e far scorrere la pagina --&gt;
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;h3 id="sezione-dettagli"&gt;Dettagli del Prodotto&lt;/h3&gt;
-&lt;p&gt;Sei arrivato qui grazie al collegamento all'id!&lt;/p&gt;</code></pre>
+&lt;h2 id="titolo-speciale"&gt;Questo titolo ha l'id speciale (blu)&lt;/h2&gt;
+&lt;h2&gt;Questo è un titolo normale (nero)&lt;/h2&gt;
+&lt;h2&gt;Questo è un altro titolo normale (nero)&lt;/h2&gt;</code></pre>
 
               <div class="alert alert--warning">
                 <strong>Regole importanti per l'id:</strong>
@@ -693,28 +689,18 @@
               <h3>2. L'attributo <code>class</code> (il gruppo di appartenenza)</h3>
               <p>L'attributo <code>class</code> raggruppa più elementi sotto una categoria comune. A differenza dell'<code>id</code>, puoi riutilizzare la stessa classe su quanti elementi desideri, e un singolo tag HTML può far parte di più classi contemporaneamente (separate da uno spazio).</p>
 
-              <p>La classe è l'attributo più utilizzato nello sviluppo moderno per collegare i vari linguaggi:</p>
-              <ul class="guide-list">
-                <li><strong>HTML (Strutturazione):</strong> Per etichettare elementi simili (es. tutti i pulsanti o tutte le schede prodotto).</li>
-                <li><strong>CSS (Stile di gruppo):</strong> Per definire la grafica di tutta la categoria in una volta sola, richiamando la classe con il punto (es. <code>.avviso { color: red; }</code>).</li>
-                <li><strong>JavaScript (Logica di gruppo):</strong> Per applicare dinamismo a tutti gli elementi appartenenti allo stesso gruppo (es. nascondere tutti gli elementi con classe <code>.avviso</code>).</li>
-              </ul>
-
-              <p>Prova questo esempio live per vedere come il foglio di stile CSS colora il testo e lo sfondo degli elementi sfruttando il gruppo di appartenenza:</p>
+              <p>Prova questo esempio live per vedere come tutti gli elementi del gruppo (della classe) vengono colorati con lo sfondo giallo contemporaneamente:</p>
               <pre><code class="language-html">&lt;style&gt;
-  /* La classe "rosso" colora il testo di rosso */
-  .rosso {
-    color: red;
-  }
-  /* La classe "evidenziato" colora lo sfondo di giallo */
+  /* Tutti gli elementi del gruppo "evidenziato" avranno lo sfondo giallo */
   .evidenziato {
     background-color: yellow;
   }
 &lt;/style&gt;
 
-&lt;p class="rosso"&gt;Testo rosso&lt;/p&gt;
-&lt;p class="evidenziato"&gt;Sfondo giallo&lt;/p&gt;
-&lt;p class="rosso evidenziato"&gt;Testo rosso con sfondo giallo!&lt;/p&gt;</code></pre>
+&lt;p&gt;Questo è un paragrafo normale.&lt;/p&gt;
+&lt;p class="evidenziato"&gt;Questo paragrafo fa parte del gruppo evidenziato!&lt;/p&gt;
+&lt;p&gt;Questo è un altro paragrafo normale.&lt;/p&gt;
+&lt;p class="evidenziato"&gt;Anche io faccio parte del gruppo evidenziato!&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>id o class? La regola pratica:</strong>
