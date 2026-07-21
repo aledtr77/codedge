@@ -94,6 +94,7 @@
                         <li>1. Fondamenti HTML</li>
 
                         <ul>
+                            <li class="clickable-item">DOCTYPE</li>
                             <li class="clickable-item">html</li>
                             <li class="clickable-item">head</li>
                             <li class="clickable-item">body</li>
@@ -114,7 +115,10 @@
                             <li class="clickable-item">section</li>
                             <li class="clickable-item">aside</li>
                             <li class="clickable-item">div</li>
+                            <li class="clickable-item">span</li>
+                            <li class="clickable-item">address</li>
                             <li class="clickable-item">h1-h6</li>
+                            <li class="clickable-item">hgroup</li>
                             <li class="clickable-item">p</li>
                             <li class="clickable-item">ul</li>
                             <li class="clickable-item">ol</li>
@@ -143,6 +147,14 @@
                             <li class="clickable-item">q</li>
                             <li class="clickable-item">blockquote</li>
                             <li class="clickable-item">cite</li>
+                            <li class="clickable-item">code</li>
+                            <li class="clickable-item">pre</li>
+                            <li class="clickable-item">s</li>
+                            <li class="clickable-item">kbd</li>
+                            <li class="clickable-item">samp</li>
+                            <li class="clickable-item">var</li>
+                            <li class="clickable-item">dfn</li>
+                            <li class="clickable-item">data</li>
                         </ul>
                         <li>4. Collegamenti e Navigazione</li>
                         <ul>
@@ -166,6 +178,9 @@
                         <li>6. Tabelle</li>
                         <ul>
                             <li class="clickable-item">table</li>
+                            <li class="clickable-item">caption</li>
+                            <li class="clickable-item">colgroup</li>
+                            <li class="clickable-item">col</li>
                             <li class="clickable-item">thead</li>
                             <li class="clickable-item">tbody</li>
                             <li class="clickable-item">tfoot</li>
@@ -195,6 +210,9 @@
                             <li class="clickable-item">details</li>
                             <li class="clickable-item">summary</li>
                             <li class="clickable-item">picture</li>
+                            <li class="clickable-item">dialog</li>
+                            <li class="clickable-item">template</li>
+                            <li class="clickable-item">menu</li>
                         </ul>
                         <li>9. Contenuti Incorporati</li>
                         <ul>
@@ -214,6 +232,17 @@
                       Voce del glossario: ogni <details> rappresenta una voce espandibile.
                       <summary> mostra il titolo/etichetta e una breve descrizione.
                     -->
+                    <details>
+                        <summary>DOCTYPE<span class="tag-description" aria-label="descrizione tag">dichiarazione del tipo di documento</span>
+                            <div class="tag-group" aria-label="gruppo">1.1 Tag di Base</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: La dichiarazione &lt;!DOCTYPE html&gt; è la primissima riga di una pagina e indica al browser che il documento usa lo standard HTML5.</li>
+                            <li>A cosa serve: Attiva la modalità standard del browser (standards mode), evitando la "quirks mode" che renderebbe la pagina in modo incoerente tra i diversi browser.</li>
+                            <li>Quando usarlo: Va scritta sempre come prima riga del documento, prima del tag &lt;html&gt;.</li>
+                        </ol>
+                    </details>
+
                     <details>
                         <summary>html<span class="tag-description" aria-label="descrizione tag">Radice del documento
                                 html.</span>
@@ -440,6 +469,28 @@
                     </details>
 
                     <details>
+                        <summary>span<span class="tag-description" aria-label="descrizione tag">contenitore inline generico</span>
+                            <div class="tag-group" aria-label="gruppo">2.1 Tag di Struttura Principale</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;span&gt; è un contenitore inline generico che di per sé non rappresenta nulla e non aggiunge alcun significato semantico.</li>
+                            <li>A cosa serve: Serve a isolare una porzione di testo o di elementi inline per applicarvi stili con CSS (tramite class o id) o per manipolarla con JavaScript.</li>
+                            <li>Quando usarlo: Quando ti serve un "gancio" per stile o script su una parte di testo e non esiste un tag semantico più adatto; è l'equivalente inline di &lt;div&gt;.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>address<span class="tag-description" aria-label="descrizione tag">informazioni di contatto</span>
+                            <div class="tag-group" aria-label="gruppo">2.1 Tag di Struttura Principale</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;address&gt; è un elemento semantico che racchiude le informazioni di contatto dell'autore di un articolo o dell'intera pagina.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente recapiti come email, indirizzi, numeri di telefono o link, aiutando browser e tecnologie assistive a riconoscerli.</li>
+                            <li>Quando usarlo: Utilizzarlo per i contatti riferiti all'&lt;article&gt; o al &lt;body&gt; che lo contiene, tipicamente dentro un &lt;footer&gt;; non usarlo per un indirizzo postale generico che non sia un recapito.</li>
+                        </ol>
+                    </details>
+
+                    <details>
                         <summary>h1-h6<span class="tag-description" aria-label="descrizione tag">Titoli e sottotitoli di
                                 vari livelli</span>
                             <div class="tag-group" aria-label="gruppo">2.2 Titoli e Paragrafi</div>
@@ -448,6 +499,17 @@
                             <li>Cos'è: I tag &lt;h1&gt; fino a &lt;h6&gt; sono elementi di intestazione HTML che definiscono sei livelli di titoli in ordine decrescente di importanza.</li>
                             <li>A cosa serve: Sono utilizzati per creare una struttura gerarchica del contenuto, facilitando la lettura e la comprensione del documento.</li>
                             <li>Quando usarlo: Per titoli e sottotitoli delle varie sezioni, rispettando l'ordine gerarchico del contenuto.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>hgroup<span class="tag-description" aria-label="descrizione tag">gruppo titolo + sottotitolo</span>
+                            <div class="tag-group" aria-label="gruppo">2.2 Titoli e Paragrafi</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;hgroup&gt; raggruppa un titolo principale (un elemento da &lt;h1&gt; a &lt;h6&gt;) con uno o più paragrafi di sottotitolo o didascalia ad esso associati.</li>
+                            <li>A cosa serve: Serve a rappresentare come un'unica unità un titolo e il testo secondario che lo accompagna, senza che quest'ultimo crei un nuovo livello nella struttura del documento.</li>
+                            <li>Quando usarlo: Utilizzarlo quando un titolo ha un sottotitolo o uno slogan che vuoi tenere legato ad esso, ad esempio all'inizio di un &lt;header&gt; o di un &lt;article&gt;.</li>
                         </ol>
                     </details>
 
@@ -740,6 +802,94 @@
                             <li>Quando usarlo: Utilizzarlo quando si fa riferimento al titolo di un'opera come libri, articoli, film, canzoni, dipinti, siti web, ecc.</li>
                         </ol>
                     </details>
+
+                    <details>
+                        <summary>code<span class="tag-description" aria-label="descrizione tag">frammento di codice</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;code&gt; è un elemento inline che rappresenta una breve porzione di codice sorgente informatico.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente frammenti di codice, che i browser mostrano di default con un font a spaziatura fissa (monospace).</li>
+                            <li>Quando usarlo: Utilizzarlo per nomi di comandi, variabili, tag o brevi frammenti di codice nel testo; per blocchi su più righe abbinalo a &lt;pre&gt;.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>pre<span class="tag-description" aria-label="descrizione tag">testo preformattato</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;pre&gt; (preformatted) è un elemento a livello di blocco che mostra il testo esattamente come è scritto nel codice sorgente.</li>
+                            <li>A cosa serve: Serve a preservare spazi, tabulazioni e a capo, che normalmente l'HTML comprimerebbe o ignorerebbe, ed è reso con un font a spaziatura fissa.</li>
+                            <li>Quando usarlo: Utilizzarlo per blocchi di codice (spesso insieme a &lt;code&gt;), output di terminale o ASCII art, cioè quando gli spazi hanno un significato.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>s<span class="tag-description" aria-label="descrizione tag">testo non più accurato (barrato)</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;s&gt; è un elemento inline che mostra il testo barrato, con una linea che lo attraversa.</li>
+                            <li>A cosa serve: Serve a indicare contenuti che non sono più accurati o pertinenti, ma che si vogliono comunque mostrare.</li>
+                            <li>Quando usarlo: Utilizzarlo per informazioni superate, come un vecchio prezzo accanto a quello scontato; per il testo rimosso in una revisione usa invece &lt;del&gt;.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>kbd<span class="tag-description" aria-label="descrizione tag">input da tastiera</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;kbd&gt; (keyboard) è un elemento inline che rappresenta un input inserito dall'utente, tipicamente da tastiera.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente tasti, combinazioni di tasti o comandi da digitare, di solito resi con un font a spaziatura fissa.</li>
+                            <li>Quando usarlo: Utilizzarlo nelle istruzioni per indicare scorciatoie o comandi, ad esempio la combinazione Ctrl + C.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>samp<span class="tag-description" aria-label="descrizione tag">output di un programma</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;samp&gt; (sample) è un elemento inline che rappresenta l'output di esempio prodotto da un programma o da un sistema.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente messaggi, risultati o output generati dal computer, resi di default con un font a spaziatura fissa.</li>
+                            <li>Quando usarlo: Utilizzarlo per mostrare nel testo messaggi di errore, output di comandi o risposte del sistema.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>var<span class="tag-description" aria-label="descrizione tag">variabile</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;var&gt; è un elemento inline che rappresenta una variabile in un'espressione matematica o in un contesto di programmazione.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente il nome di una variabile, tipicamente reso in corsivo dai browser.</li>
+                            <li>Quando usarlo: Utilizzarlo per indicare variabili in formule o spiegazioni di codice, ad esempio "l'area si ottiene moltiplicando base per altezza".</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>dfn<span class="tag-description" aria-label="descrizione tag">termine che viene definito</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;dfn&gt; (definition) è un elemento inline che identifica il termine che viene definito all'interno di una frase.</li>
+                            <li>A cosa serve: Serve a marcare semanticamente la prima occorrenza di un termine, quella in cui se ne dà la definizione.</li>
+                            <li>Quando usarlo: Utilizzarlo attorno al termine definito quando lo si introduce e spiega per la prima volta nel testo.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>data<span class="tag-description" aria-label="descrizione tag">valore leggibile dalla macchina</span>
+                            <div class="tag-group" aria-label="gruppo">3.2 Formattazione Avanzata</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;data&gt; è un elemento inline che collega un contenuto testuale leggibile dall'utente a una versione leggibile dalla macchina, tramite l'attributo value.</li>
+                            <li>A cosa serve: Serve a fornire in modo semantico un valore machine-readable (come un codice prodotto o un identificativo) accanto al testo mostrato.</li>
+                            <li>Quando usarlo: Utilizzarlo quando un testo ha un valore corrispondente utile a script o elaborazioni; per date e orari usa invece l'elemento più specifico &lt;time&gt;.</li>
+                        </ol>
+                    </details>
                 </section>
 
                 <section>
@@ -911,6 +1061,39 @@
                             <li>Cos'è: Il tag &lt;table&gt; è un elemento HTML utilizzato per creare tabelle di dati strutturati in righe e colonne.</li>
                             <li>A cosa serve: Serve a presentare informazioni in un formato tabulare, organizzando dati in righe e colonne per una facile lettura e confronto.</li>
                             <li>Quando usarlo: Utilizzarlo quando si necessita di presentare dati strutturati che hanno una relazione bidimensionale, come orari, statistiche, informazioni di confronto o qualsiasi set di...</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>caption<span class="tag-description" aria-label="descrizione tag">titolo della tabella</span>
+                            <div class="tag-group" aria-label="gruppo">6. Tabelle</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;caption&gt; definisce il titolo o la didascalia di una tabella.</li>
+                            <li>A cosa serve: Serve a fornire una descrizione dell'intera tabella, utile alla comprensione e all'accessibilità, mostrata di default sopra di essa.</li>
+                            <li>Quando usarlo: Utilizzarlo come primo figlio dell'elemento &lt;table&gt;, per dare un titolo che spieghi quali dati contiene.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>colgroup<span class="tag-description" aria-label="descrizione tag">gruppo di colonne</span>
+                            <div class="tag-group" aria-label="gruppo">6. Tabelle</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;colgroup&gt; raggruppa una o più colonne di una tabella per poterle formattare insieme.</li>
+                            <li>A cosa serve: Serve a definire proprietà comuni (come larghezza o stile) applicabili a intere colonne, senza doverle ripetere su ogni cella.</li>
+                            <li>Quando usarlo: Utilizzarlo subito dopo &lt;caption&gt; (o all'inizio della tabella), contenendo di norma elementi &lt;col&gt;.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>col<span class="tag-description" aria-label="descrizione tag">singola colonna</span>
+                            <div class="tag-group" aria-label="gruppo">6. Tabelle</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;col&gt; rappresenta una singola colonna (o più colonne con l'attributo span) all'interno di un &lt;colgroup&gt;.</li>
+                            <li>A cosa serve: Serve ad applicare stili o attributi a una colonna specifica della tabella; è un elemento vuoto, senza tag di chiusura.</li>
+                            <li>Quando usarlo: Utilizzarlo dentro un &lt;colgroup&gt; quando vuoi dare a colonne precise una larghezza o uno stile comune.</li>
                         </ol>
                     </details>
 
@@ -1204,6 +1387,39 @@
                             <li>Cos'è: Il tag &lt;picture&gt; è un elemento HTML che contiene zero o più elementi &lt;source&gt; e un elemento &lt;img&gt;, fornendo un modo per specificare multiple sorgenti per...</li>
                             <li>A cosa serve: Serve a offrire versioni alternative di un'immagine per diversi scenari, come diverse risoluzioni dello schermo, formati di file supportati o art direction (adattamento del...</li>
                             <li>Quando usarlo: Utilizzarlo quando si vuole fornire immagini responsive che si adattano a diverse condizioni di visualizzazione, o quando si desidera offrire formati di immagine più efficienti...</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>dialog<span class="tag-description" aria-label="descrizione tag">finestra di dialogo / modale</span>
+                            <div class="tag-group" aria-label="gruppo">8. Elementi Avanzati e Semantici</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;dialog&gt; rappresenta una finestra di dialogo o un pannello interattivo, come una modale o un box a comparsa.</li>
+                            <li>A cosa serve: Serve a creare finestre modali native del browser, che gestiscono automaticamente il focus e lo sfondo oscurato quando aperte con il metodo showModal().</li>
+                            <li>Quando usarlo: Utilizzarlo per popup, conferme o form modali, aprendolo e chiudendolo via JavaScript (show/showModal/close) invece di ricostruire tutto a mano.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>template<span class="tag-description" aria-label="descrizione tag">modello HTML non renderizzato</span>
+                            <div class="tag-group" aria-label="gruppo">8. Elementi Avanzati e Semantici</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;template&gt; contiene frammenti di HTML che non vengono renderizzati al caricamento della pagina.</li>
+                            <li>A cosa serve: Serve a definire una porzione di markup "modello" da clonare e inserire nel documento tramite JavaScript quando serve.</li>
+                            <li>Quando usarlo: Utilizzarlo quando devi generare dinamicamente elementi ripetuti (righe di una lista, card, ecc.) partendo da una struttura predefinita.</li>
+                        </ol>
+                    </details>
+
+                    <details>
+                        <summary>menu<span class="tag-description" aria-label="descrizione tag">elenco di comandi</span>
+                            <div class="tag-group" aria-label="gruppo">8. Elementi Avanzati e Semantici</div>
+                        </summary>
+                        <ol>
+                            <li>Cos'è: Il tag &lt;menu&gt; rappresenta un elenco di comandi o di voci, semanticamente simile a una lista non ordinata.</li>
+                            <li>A cosa serve: Serve a raggruppare in modo semantico un insieme di azioni o strumenti, ad esempio una barra di pulsanti (toolbar).</li>
+                            <li>Quando usarlo: Utilizzarlo per toolbar e liste di comandi interattivi; per la navigazione principale del sito preferisci &lt;nav&gt; con &lt;ul&gt;.</li>
                         </ol>
                     </details>
                 </section>

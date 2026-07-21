@@ -99,7 +99,15 @@
                         <li class="clickable-item">Margin</li>
                         <li class="clickable-item">Padding</li>
                         <li class="clickable-item">Border</li>
+                        <li class="clickable-item">Border-radius</li>
                         <li class="clickable-item">Box Model</li>
+                        <li class="clickable-item">Box-sizing</li>
+                        <li class="clickable-item">Width</li>
+                        <li class="clickable-item">Height</li>
+                        <li class="clickable-item">Min-width</li>
+                        <li class="clickable-item">Max-width</li>
+                        <li class="clickable-item">Min-height</li>
+                        <li class="clickable-item">Max-height</li>
                         <li class="clickable-item">Specificity</li>
                         <li class="clickable-item">Inheritance</li>
                         <li class="clickable-item">Cascade</li>
@@ -108,6 +116,9 @@
                         <li class="clickable-item">Custom Properties</li>
                         <li class="clickable-item">CSS Variables</li>
                         <li class="clickable-item">Calc()</li>
+                        <li class="clickable-item">Clamp()</li>
+                        <li class="clickable-item">Min() e Max()</li>
+                        <li class="clickable-item">!important</li>
                     </ul>
                     <li>2. Selectors e Combinators</li>
                     <ul>
@@ -120,6 +131,7 @@
                         <li class="clickable-item">Combinators</li>
                         <li class="clickable-item">Attribute selectors</li>
                         <li class="clickable-item">:Not()</li>
+                        <li class="clickable-item">:root</li>
                     </ul>
                     <li>3. Layout e Positioning</li>
                     <ul>
@@ -142,12 +154,32 @@
                         <li class="clickable-item">Flex item</li>
                         <li class="clickable-item">Main axis</li>
                         <li class="clickable-item">Cross axis</li>
+                        <li class="clickable-item">Flex-direction</li>
+                        <li class="clickable-item">Flex-wrap</li>
+                        <li class="clickable-item">Justify-content</li>
+                        <li class="clickable-item">Align-items</li>
+                        <li class="clickable-item">Align-content</li>
+                        <li class="clickable-item">Align-self</li>
+                        <li class="clickable-item">Flex-grow</li>
+                        <li class="clickable-item">Flex-shrink</li>
+                        <li class="clickable-item">Flex-basis</li>
+                        <li class="clickable-item">Order</li>
                         <li class="clickable-item">Grid Layout</li>
                         <li class="clickable-item">Grid container</li>
                         <li class="clickable-item">Grid items</li>
                         <li class="clickable-item">FR unit</li>
                         <li class="clickable-item">Repeat function</li>
                         <li class="clickable-item">Gap</li>
+                        <li class="clickable-item">Grid-template-columns</li>
+                        <li class="clickable-item">Grid-template-rows</li>
+                        <li class="clickable-item">Grid-template-areas</li>
+                        <li class="clickable-item">Grid-column</li>
+                        <li class="clickable-item">Grid-row</li>
+                        <li class="clickable-item">Minmax()</li>
+                        <li class="clickable-item">Place-items</li>
+                        <li class="clickable-item">Auto-fit e Auto-fill</li>
+                        <li class="clickable-item">Object-fit</li>
+                        <li class="clickable-item">Aspect-ratio</li>
                     </ul>
                     <li>4. Tipografia e Testo</li>
                     <ul>
@@ -163,6 +195,8 @@
                         <li class="clickable-item">Text-shadow</li>
                         <li class="clickable-item">@font-face</li>
                         <li class="clickable-item">Font-display</li>
+                        <li class="clickable-item">List-style</li>
+                        <li class="clickable-item">Vertical-align</li>
                     </ul>
                     <li>5. Colori e Sfondi</li>
                     <ul>
@@ -182,6 +216,7 @@
                         <li class="clickable-item">Mobile First</li>
                         <li class="clickable-item">Responsive Images</li>
                         <li class="clickable-item">Container queries</li>
+                        <li class="clickable-item">@supports</li>
                     </ul>
                     <li>7. Trasformazioni e Animazioni</li>
                     <ul>
@@ -199,6 +234,8 @@
                         <li class="clickable-item">Focus Styles</li>
                         <li class="clickable-item">User-select</li>
                         <li class="clickable-item">Pointer-events</li>
+                        <li class="clickable-item">Outline</li>
+                        <li class="clickable-item">Scroll-behavior</li>
                     </ul>
                     <li>9. Tecniche Avanzate e Ottimizzazione</li>
                     <ul>
@@ -240,7 +277,7 @@
                 <!-- Dettaglio espandibile che contiene la definizione iniziale del glossario -->
                 <details>
                     <!-- Summary: titolo breve visibile, include una breve descrizione (span) -->
-                    <summary>CSS (Cascading Style Sheets)<span class="tag-description"
+                    <summary>CSS<span class="tag-description"
                             aria-label="descrizione concetto">Linguaggio per stilizzare pagine web</span>
                         <!-- tag-group indica la categoria della voce; utile per styling/JS -->
                         <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
@@ -362,6 +399,18 @@
                 </details>
 
                 <details>
+                    <summary>Border-radius<span class="tag-description" aria-label="descrizione concetto">Arrotonda gli angoli di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'border-radius' arrotonda gli angoli del box di un elemento.</li>
+                        <li>A cosa serve: Serve a creare angoli smussati o forme circolari; impostando un raggio pari alla metà di un quadrato si ottiene un cerchio.</li>
+                        <li>Quando usarlo: Quando vuoi bottoni, card o avatar con angoli arrotondati.</li>
+                    </ol>
+                </details>
+
+                <details>
                     <summary>Box Model<span class="tag-description" aria-label="descrizione concetto">Modello di layout
                             per
                             elementi HTML</span>
@@ -372,6 +421,90 @@
                         <li>Cos'è: Il CSS Box Model è un concetto fondamentale che descrive come gli elementi HTML sono rappresentati come box rettangolari, composti da content, padding, border e margin.</li>
                         <li>A cosa serve: Serve a definire la struttura e il layout degli elementi in una pagina web, controllando le dimensioni, lo spazio interno ed esterno, e i bordi di ogni elemento.</li>
                         <li>Quando usarlo: Quando devi calcolare le dimensioni effettive degli elementi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Box-sizing<span class="tag-description" aria-label="descrizione concetto">Come si calcolano larghezza e altezza</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'box-sizing' definisce se 'width' e 'height' includono o meno padding e bordo nel calcolo delle dimensioni.</li>
+                        <li>A cosa serve: Con il valore 'border-box' la dimensione dichiarata comprende anche padding e bordo, rendendo i layout molto più prevedibili rispetto al 'content-box' predefinito.</li>
+                        <li>Quando usarlo: Praticamente sempre; è consuetudine impostare 'box-sizing: border-box' su tutti gli elementi all'inizio del foglio di stile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Width<span class="tag-description" aria-label="descrizione concetto">Larghezza di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'width' definisce la larghezza dell'area del contenuto di un elemento.</li>
+                        <li>A cosa serve: Serve a controllare quanto spazio orizzontale occupa un elemento; accetta valori in px, %, em, rem o la parola chiave 'auto'.</li>
+                        <li>Quando usarlo: Quando devi dare a un elemento una larghezza precisa invece di lasciarla determinare al contenuto o al contenitore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Height<span class="tag-description" aria-label="descrizione concetto">Altezza di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'height' definisce l'altezza dell'area del contenuto di un elemento.</li>
+                        <li>A cosa serve: Serve a controllare lo spazio verticale occupato da un elemento; il valore 'auto' lascia che sia il contenuto a determinarla.</li>
+                        <li>Quando usarlo: Quando devi fissare un'altezza precisa; spesso è meglio lasciare 'auto' per evitare che il contenuto trabocchi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min-width<span class="tag-description" aria-label="descrizione concetto">Larghezza minima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'min-width' imposta la larghezza minima che un elemento può assumere.</li>
+                        <li>A cosa serve: Serve a impedire che un elemento diventi più stretto di un certo valore, anche quando lo spazio si riduce.</li>
+                        <li>Quando usarlo: Nei layout responsive, per evitare che colonne o bottoni si comprimano troppo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Max-width<span class="tag-description" aria-label="descrizione concetto">Larghezza massima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'max-width' imposta la larghezza massima che un elemento può raggiungere.</li>
+                        <li>A cosa serve: Serve a limitare la crescita di un elemento; è molto usata per mantenere leggibili i blocchi di testo su schermi larghi.</li>
+                        <li>Quando usarlo: Per contenitori centrali (es. 'max-width: 1200px') o per rendere fluide le immagini con 'max-width: 100%'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min-height<span class="tag-description" aria-label="descrizione concetto">Altezza minima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'min-height' imposta l'altezza minima di un elemento.</li>
+                        <li>A cosa serve: Serve a garantire un'altezza minima anche con poco contenuto, lasciando comunque crescere l'elemento se serve.</li>
+                        <li>Quando usarlo: Per sezioni a tutta pagina (es. 'min-height: 100vh') o per uniformare l'altezza minima di più blocchi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Max-height<span class="tag-description" aria-label="descrizione concetto">Altezza massima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'max-height' imposta l'altezza massima che un elemento può raggiungere.</li>
+                        <li>A cosa serve: Serve a limitare l'altezza di un elemento; combinata con 'overflow' permette di rendere scorrevoli i contenuti troppo lunghi.</li>
+                        <li>Quando usarlo: Per pannelli a comparsa, aree scrollabili o transizioni di apertura e chiusura.</li>
                     </ol>
                 </details>
 
@@ -481,6 +614,42 @@
                         <li>Cos'è: La funzione calc() in CSS permette di eseguire calcoli matematici per determinare valori di proprietà CSS, consentendo l'uso di operazioni aritmetiche con unità di misura diverse.</li>
                         <li>A cosa serve: Serve a creare layout flessibili e responsivi, combinando unità di misura diverse e permettendo calcoli dinamici che non sarebbero possibili con valori statici.</li>
                         <li>Quando usarlo: Quando devi combinare unità di misura diverse (es.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Clamp()<span class="tag-description" aria-label="descrizione concetto">Valore fluido tra un minimo e un massimo</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La funzione CSS 'clamp()' restituisce un valore vincolato tra un minimo e un massimo, partendo da un valore preferito centrale: clamp(minimo, ideale, massimo).</li>
+                        <li>A cosa serve: Serve a creare dimensioni fluide (tipografia, spaziature, larghezze) che si adattano al viewport senza mai uscire dai limiti definiti.</li>
+                        <li>Quando usarlo: Per la tipografia responsive, ad esempio 'font-size: clamp(1rem, 2.5vw, 1.5rem)', evitando molte media query.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min() e Max()<span class="tag-description" aria-label="descrizione concetto">Scelgono il valore minore o maggiore</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Le funzioni CSS 'min()' e 'max()' restituiscono rispettivamente il più piccolo e il più grande tra i valori passati come argomenti.</li>
+                        <li>A cosa serve: Servono a creare valori adattivi combinando unità diverse, ad esempio limitando una larghezza fluida.</li>
+                        <li>Quando usarlo: Ad esempio 'width: min(100%, 600px)' per una larghezza che non superi mai 600px ma si riduca sugli schermi piccoli.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>!important<span class="tag-description" aria-label="descrizione concetto">Forza la priorità di una regola</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: '!important' è un'annotazione che si aggiunge a una dichiarazione CSS per darle la massima priorità, scavalcando la normale specificità.</li>
+                        <li>A cosa serve: Serve a forzare l'applicazione di una regola anche quando altre più specifiche entrerebbero in conflitto.</li>
+                        <li>Quando usarlo: Il meno possibile: solo come ultima risorsa o per sovrascrivere stili di terze parti, perché rende il CSS difficile da mantenere.</li>
                     </ol>
                 </details>
             </section>
@@ -610,6 +779,18 @@
                         <li>Cos'è: not() è una pseudo-classe in CSS che seleziona elementi che non corrispondono a un selettore o a una lista di selettori specificati come argomento.</li>
                         <li>A cosa serve: Serve a escludere elementi specifici da una selezione, permettendo di applicare stili a tutti gli elementi tranne quelli che soddisfano determinati criteri.</li>
                         <li>Quando usarlo: Quando devi applicare stili a tutti gli elementi tranne quelli specificati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>:root<span class="tag-description" aria-label="descrizione concetto">Selettore della radice del documento</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La pseudo-classe ':root' seleziona l'elemento radice del documento, che in HTML corrisponde all'elemento &lt;html&gt;.</li>
+                        <li>A cosa serve: Serve soprattutto a dichiarare le variabili CSS (custom properties) in un punto globale accessibile da tutta la pagina.</li>
+                        <li>Quando usarlo: Quando vuoi definire un tema o valori riutilizzabili, ad esempio ':root { --colore-primario: #00A8FF; }'.</li>
                     </ol>
                 </details>
             </section>
@@ -872,6 +1053,126 @@
                 </details>
 
                 <details>
+                    <summary>Flex-direction<span class="tag-description" aria-label="descrizione concetto">Direzione degli elementi in un flex container</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-direction' definisce la direzione dell'asse principale di un flex container, cioè come vengono disposti i suoi figli.</li>
+                        <li>A cosa serve: Serve a scegliere se gli elementi si dispongono in riga ('row') o in colonna ('column'), eventualmente in ordine inverso.</li>
+                        <li>Quando usarlo: Quando devi impostare l'orientamento di un layout flessibile, ad esempio una navbar in riga o una lista in colonna.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-wrap<span class="tag-description" aria-label="descrizione concetto">Manda gli elementi a capo su più righe</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-wrap' stabilisce se i flex item devono restare su una sola riga o andare a capo su più righe.</li>
+                        <li>A cosa serve: Serve a evitare che gli elementi si comprimano troppo, permettendo loro di scorrere su nuove righe quando lo spazio finisce.</li>
+                        <li>Quando usarlo: Con 'flex-wrap: wrap' per griglie fluide di card o tag che devono adattarsi alla larghezza disponibile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Justify-content<span class="tag-description" aria-label="descrizione concetto">Allineamento lungo l'asse principale</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'justify-content' allinea i flex item lungo l'asse principale del container.</li>
+                        <li>A cosa serve: Serve a distribuire lo spazio lungo l'asse principale con valori come 'center', 'space-between' e 'space-around'.</li>
+                        <li>Quando usarlo: Quando devi centrare gli elementi o distribuire lo spazio tra di essi, ad esempio in una barra di navigazione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-items<span class="tag-description" aria-label="descrizione concetto">Allineamento lungo l'asse trasversale</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-items' allinea i flex item lungo l'asse trasversale, perpendicolare a quello principale.</li>
+                        <li>A cosa serve: Serve a controllare l'allineamento trasversale (in un layout in riga, quello verticale) con valori come 'center', 'flex-start' e 'stretch'.</li>
+                        <li>Quando usarlo: Quando devi allineare elementi di altezze diverse, ad esempio centrarli con 'align-items: center'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-content<span class="tag-description" aria-label="descrizione concetto">Allinea più righe di flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-content' distribuisce lo spazio tra le righe di un flex container quando gli elementi occupano più righe.</li>
+                        <li>A cosa serve: Serve ad allineare l'insieme delle righe lungo l'asse trasversale; ha effetto solo con 'flex-wrap: wrap' e più righe presenti.</li>
+                        <li>Quando usarlo: Quando un container flessibile ha più righe e vuoi controllarne la spaziatura complessiva.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-self<span class="tag-description" aria-label="descrizione concetto">Allineamento del singolo flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-self' permette a un singolo flex item di sovrascrivere l'allineamento trasversale definito da 'align-items'.</li>
+                        <li>A cosa serve: Serve a dare a un elemento specifico un allineamento diverso dagli altri del container.</li>
+                        <li>Quando usarlo: Quando un solo elemento deve comportarsi diversamente, ad esempio con 'align-self: flex-end'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-grow<span class="tag-description" aria-label="descrizione concetto">Fattore di crescita di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-grow' definisce quanto un flex item può crescere rispetto agli altri per occupare lo spazio libero.</li>
+                        <li>A cosa serve: Serve a distribuire lo spazio disponibile in proporzione: un valore più alto fa crescere di più quell'elemento.</li>
+                        <li>Quando usarlo: Quando vuoi che un elemento occupi tutto lo spazio rimanente (es. 'flex-grow: 1'); fa parte della shorthand 'flex'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-shrink<span class="tag-description" aria-label="descrizione concetto">Fattore di restringimento di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-shrink' definisce quanto un flex item può restringersi quando lo spazio non basta.</li>
+                        <li>A cosa serve: Serve a controllare quali elementi si comprimono e in che misura; con valore '0' un elemento non si restringe mai.</li>
+                        <li>Quando usarlo: Quando vuoi impedire o consentire la compressione di un elemento in spazi ristretti; fa parte della shorthand 'flex'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-basis<span class="tag-description" aria-label="descrizione concetto">Dimensione iniziale di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-basis' definisce la dimensione di base di un flex item prima che lo spazio venga distribuito.</li>
+                        <li>A cosa serve: Serve a impostare la dimensione di partenza dell'elemento lungo l'asse principale, prima dell'effetto di grow e shrink.</li>
+                        <li>Quando usarlo: Quando vuoi una dimensione di partenza precisa nella shorthand 'flex' (es. 'flex: 1 1 200px').</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Order<span class="tag-description" aria-label="descrizione concetto">Ordine di visualizzazione degli item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'order' cambia l'ordine in cui i flex (o grid) item vengono visualizzati, senza modificare l'ordine nell'HTML.</li>
+                        <li>A cosa serve: Serve a riordinare visivamente gli elementi; il valore predefinito è 0 e valori più bassi appaiono prima.</li>
+                        <li>Quando usarlo: Con parsimonia, per riordinare elementi nei layout responsive; attenzione perché disallinea l'ordine visivo da quello di lettura e accessibilità.</li>
+                    </ol>
+                </details>
+
+                <details>
                     <summary>Grid Layout<span class="tag-description" aria-label="descrizione concetto">Sistema di
                             layout
                             bidimensionale per creare strutture complesse e responsive</span>
@@ -949,6 +1250,126 @@
                         <li>Cos'è: La proprietà gap in CSS è una shorthand che definisce lo spazio tra le righe e le colonne in un layout Grid o Flexbox, permettendo di controllare facilmente la spaziatura tra gli...</li>
                         <li>A cosa serve: Serve a creare spazi uniformi e coerenti tra gli elementi in layout Grid e Flexbox, semplificando la gestione della spaziatura e migliorando la leggibilità e l'estetica del design.</li>
                         <li>Quando usarlo: Quando devi definire spazi uniformi tra righe e colonne in Grid.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-columns<span class="tag-description" aria-label="descrizione concetto">Definisce le colonne della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-columns' definisce numero e dimensione delle colonne di una griglia.</li>
+                        <li>A cosa serve: Serve a impostare la struttura orizzontale della griglia, usando px, %, unità 'fr' o funzioni come 'repeat()' e 'minmax()'.</li>
+                        <li>Quando usarlo: Su un grid container, per stabilire quante colonne creare e come dimensionarle.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-rows<span class="tag-description" aria-label="descrizione concetto">Definisce le righe della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-rows' definisce numero e dimensione delle righe di una griglia.</li>
+                        <li>A cosa serve: Serve a impostare la struttura verticale della griglia; se non specificata, le righe si creano automaticamente in base al contenuto.</li>
+                        <li>Quando usarlo: Quando vuoi righe di altezze precise anziché lasciarle dimensionare al contenuto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-areas<span class="tag-description" aria-label="descrizione concetto">Layout tramite aree nominate</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-areas' definisce il layout di una griglia assegnando dei nomi alle aree, disegnandolo con delle stringhe.</li>
+                        <li>A cosa serve: Serve a posizionare gli elementi per nome (tramite 'grid-area'), rendendo il layout molto leggibile.</li>
+                        <li>Quando usarlo: Per layout di pagina strutturati (header, sidebar, main, footer) facili da riorganizzare nelle media query.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-column<span class="tag-description" aria-label="descrizione concetto">Posiziona un item tra le colonne</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-column' è una shorthand che indica su quali linee di colonna inizia e finisce un grid item.</li>
+                        <li>A cosa serve: Serve a posizionare ed estendere un elemento su una o più colonne (es. 'grid-column: 1 / 3' oppure 'grid-column: span 2').</li>
+                        <li>Quando usarlo: Quando un elemento deve occupare più colonne o partire da una colonna precisa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-row<span class="tag-description" aria-label="descrizione concetto">Posiziona un item tra le righe</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-row' è una shorthand che indica su quali linee di riga inizia e finisce un grid item.</li>
+                        <li>A cosa serve: Serve a posizionare ed estendere un elemento su una o più righe (es. 'grid-row: 1 / 3' oppure 'grid-row: span 2').</li>
+                        <li>Quando usarlo: Quando un elemento deve occupare più righe o partire da una riga precisa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Minmax()<span class="tag-description" aria-label="descrizione concetto">Intervallo di dimensione per le tracce</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La funzione CSS 'minmax()' definisce un intervallo di dimensione, con un valore minimo e uno massimo, per una traccia di griglia.</li>
+                        <li>A cosa serve: Serve a creare colonne o righe che restano tra due limiti, ad esempio 'minmax(200px, 1fr)'.</li>
+                        <li>Quando usarlo: Nelle griglie responsive, tipicamente dentro 'repeat()' per colonne fluide ma con una larghezza minima.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Place-items<span class="tag-description" aria-label="descrizione concetto">Shorthand per align-items e justify-items</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'place-items' è una shorthand che imposta insieme 'align-items' e 'justify-items' in un grid container.</li>
+                        <li>A cosa serve: Serve ad allineare gli elementi contemporaneamente sui due assi con una sola dichiarazione.</li>
+                        <li>Quando usarlo: Per centrare rapidamente il contenuto delle celle, ad esempio con 'place-items: center'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Auto-fit e Auto-fill<span class="tag-description" aria-label="descrizione concetto">Colonne di griglia che si adattano da sole</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: 'auto-fit' e 'auto-fill' sono parole chiave usate dentro 'repeat()' per creare automaticamente il numero di tracce che entrano nello spazio disponibile.</li>
+                        <li>A cosa serve: Servono a costruire griglie responsive senza media query; 'auto-fill' mantiene le tracce vuote, 'auto-fit' le collassa.</li>
+                        <li>Quando usarlo: Con 'repeat(auto-fit, minmax(200px, 1fr))' per griglie di card che si riorganizzano da sole.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object-fit<span class="tag-description" aria-label="descrizione concetto">Come un'immagine riempie il suo box</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'object-fit' definisce come un contenuto sostituito (come un'immagine o un video) si adatta al proprio box.</li>
+                        <li>A cosa serve: Serve a controllare il ridimensionamento evitando deformazioni, con valori come 'cover' (riempie ritagliando) e 'contain' (mostra tutto).</li>
+                        <li>Quando usarlo: Per immagini e video di dimensioni fisse che devono riempire un contenitore senza distorcersi, spesso con 'object-fit: cover'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Aspect-ratio<span class="tag-description" aria-label="descrizione concetto">Mantiene un rapporto tra larghezza e altezza</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'aspect-ratio' definisce il rapporto tra larghezza e altezza di un elemento.</li>
+                        <li>A cosa serve: Serve a mantenere proporzioni costanti (es. '16 / 9') senza dover calcolare manualmente l'altezza.</li>
+                        <li>Quando usarlo: Per box di video, immagini o anteprime che devono conservare un rapporto fisso al variare della larghezza.</li>
                     </ol>
                 </details>
             </section>
@@ -1117,6 +1538,30 @@
                         <li>Cos'è: La proprietà font-display specifica come un font personalizzato deve essere visualizzato durante il suo caricamento e quando il caricamento fallisce, controllando il comportamento...</li>
                         <li>A cosa serve: Serve a migliorare l'esperienza utente durante il caricamento dei font personalizzati, bilanciando la velocità di visualizzazione del contenuto con la coerenza visiva, e gestendo...</li>
                         <li>Quando usarlo: Quando devi ottimizzare la visualizzazione del testo durante il caricamento dei font.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>List-style<span class="tag-description" aria-label="descrizione concetto">Aspetto dei marcatori di lista</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'list-style' è una shorthand che controlla tipo, posizione ed eventuale immagine del marcatore degli elementi di una lista.</li>
+                        <li>A cosa serve: Serve a cambiare o rimuovere i pallini e i numeri delle liste (es. 'list-style: none') e a personalizzarne l'aspetto.</li>
+                        <li>Quando usarlo: Quando devi stilizzare o azzerare l'aspetto di 'ul' e 'ol', ad esempio per menu e navigazioni.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Vertical-align<span class="tag-description" aria-label="descrizione concetto">Allineamento verticale di elementi inline</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'vertical-align' definisce l'allineamento verticale di un elemento inline, inline-block o di una cella di tabella.</li>
+                        <li>A cosa serve: Serve ad allineare testo e immagini sulla stessa riga (es. 'middle', 'baseline', 'top') o il contenuto delle celle.</li>
+                        <li>Quando usarlo: Quando devi allineare verticalmente elementi inline; nota che non ha effetto sugli elementi block (per quelli usa Flexbox o Grid).</li>
                     </ol>
                 </details>
             </section>
@@ -1302,6 +1747,18 @@
                         <li>Quando usarlo: Quando devi applicare stili in base alle dimensioni del contenitore padre.</li>
                     </ol>
                 </details>
+
+                <details>
+                    <summary>@supports<span class="tag-description" aria-label="descrizione concetto">Applica stili solo se una feature è supportata</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La regola CSS '@supports' (feature query) applica un blocco di stili solo se il browser supporta una determinata proprietà o valore.</li>
+                        <li>A cosa serve: Serve a fornire miglioramenti progressivi, usando funzionalità moderne solo dove disponibili e mantenendo un fallback altrove.</li>
+                        <li>Quando usarlo: Ad esempio '@supports (display: grid) { ... }' per applicare regole solo ai browser che supportano Grid.</li>
+                    </ol>
+                </details>
             </section>
 
             <section>
@@ -1449,6 +1906,30 @@
                         <li>Cos'è: La proprietà CSS `pointer-events` specifica in che circostanze (se del caso) un particolare elemento grafico può diventare il target di eventi del puntatore.</li>
                         <li>A cosa serve: Permette di controllare l'interattività degli elementi, disabilitando o abilitando la loro risposta agli eventi del puntatore.</li>
                         <li>Quando usarlo: Quando devi creare overlay trasparenti che non interferiscono con gli elementi sottostanti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Outline<span class="tag-description" aria-label="descrizione concetto">Contorno di un elemento, spesso per il focus</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'outline' disegna una linea attorno a un elemento, all'esterno del bordo, senza occupare spazio nel layout.</li>
+                        <li>A cosa serve: Serve soprattutto a indicare quale elemento ha il focus da tastiera, un requisito importante per l'accessibilità.</li>
+                        <li>Quando usarlo: Per personalizzare l'anello di focus; non rimuoverlo senza fornire un'alternativa visibile, perché serve alla navigazione da tastiera.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Scroll-behavior<span class="tag-description" aria-label="descrizione concetto">Scorrimento fluido della pagina</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'scroll-behavior' definisce se lo scorrimento verso una posizione avviene in modo istantaneo o animato.</li>
+                        <li>A cosa serve: Serve a rendere fluido lo scorrimento, ad esempio quando si clicca su un link verso un'ancora interna.</li>
+                        <li>Quando usarlo: Con 'scroll-behavior: smooth' sull'elemento radice; valuta di rispettare la preferenza 'prefers-reduced-motion' per l'accessibilità.</li>
                     </ol>
                 </details>
             </section>
