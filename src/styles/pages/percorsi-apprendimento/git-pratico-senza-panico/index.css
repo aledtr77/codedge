@@ -1569,6 +1569,7 @@
   color: var(--color-three, #0084ff);
   font-size: 1.4rem;
   margin-top: 0.15rem;
+  margin-left: 0.5rem;
 }
 
 .guide-next-step__content {
@@ -1577,6 +1578,7 @@
 
 .guide-next-step__title {
   margin: 0 0 0.75rem;
+  margin-left: 0.2rem;
   font-family: var(--heading-font);
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   line-height: 1.25;
