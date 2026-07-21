@@ -1548,3 +1548,83 @@
   margin-left: 0.5rem;
   vertical-align: middle;
 }
+
+/* ---------------------------------------------------------------------------
+   Prossimo passo — invito ai template a fine guida, verso l'hub /template/.
+   Ultimo figlio di .guide-content (dopo il quiz). Nessun box ne' chrome: stesso
+   stile pulito e centrato del box "segnala un bug" (guide-report), cosi' non
+   grida "pubblicita'". Solo titolo, testo e un pulsante compatto. Zero JS.
+--------------------------------------------------------------------------- */
+.guide-next-step {
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  padding: 2.25rem 2rem;
+  background: rgba(22, 27, 38, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md, 12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+.guide-next-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(0, 132, 255, 0.08);
+  color: var(--color-three, #0084ff);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid rgba(0, 132, 255, 0.15);
+}
+
+.guide-next-step__title {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  line-height: 1.25;
+  color: #f4f9ff;
+}
+
+/* Esclusa dal justify globale via :not(.guide-next-step p) in main.css: eredita
+   cosi' il center dal contenitore. */
+.guide-next-step__text {
+  margin: 0 0 0.35rem;
+  max-width: 54ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  text-wrap: pretty;
+}
+
+/* Stessa impostazione di .guide-report-link: restringe il .button-simple a
+   larghezza contenuto, compatto e centrato, a ogni breakpoint. */
+.guide-next-step__cta.button-simple {
+  width: auto;
+  max-width: 100%;
+  min-height: 2.5rem;
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.6rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.03rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .guide-next-step {
+    margin-top: 3rem;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .guide-next-step__cta.button-simple {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    white-space: normal;
+  }
+}
