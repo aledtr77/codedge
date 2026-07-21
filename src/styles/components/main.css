@@ -113,7 +113,7 @@ body {
   overscroll-behavior-x: none;
 }
 
-main p:not(.card p):not(.tool-card p):not(.resource-card p):not(.project-card p):not(.learning-card p):not(.glossario-term-def p):not(.tooltip p) {
+main p:not(.card p):not(.tool-card p):not(.resource-card p):not(.project-card p):not(.learning-card p):not(.glossario-term-def p):not(.tooltip p):not(.guide-next-step p) {
   text-align: justify;
   text-justify: inter-word;
   text-align-last: left;

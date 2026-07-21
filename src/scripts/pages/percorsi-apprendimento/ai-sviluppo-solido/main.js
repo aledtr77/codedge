@@ -12,7 +12,6 @@ import "@/scripts/components/navbar-loader.js";
 import "@/scripts/components/button.js";
 import "@/scripts/components/footer.js";
 
-import "@/scripts/components/guide-report.js";
 import initGuideToc from "@/scripts/components/guide-toc.js";
 import initGuideQuiz from "@/scripts/components/guide-quiz.js";
 import initGuidePlayground from "@/scripts/components/guide-playground.js";
