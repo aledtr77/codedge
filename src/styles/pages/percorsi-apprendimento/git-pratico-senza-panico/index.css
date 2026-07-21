@@ -1556,8 +1556,9 @@
    grida "pubblicita'". Solo titolo, testo e un pulsante compatto. Zero JS.
 --------------------------------------------------------------------------- */
 .guide-next-step {
-  margin-top: 3.5rem;
-  margin-bottom: 2rem;
+  margin: 3.5rem auto 2rem;
+  max-width: 74ch;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
@@ -1584,7 +1585,6 @@
 
 .guide-next-step__text {
   margin: 0 0 1.25rem;
-  max-width: 74ch;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color);
