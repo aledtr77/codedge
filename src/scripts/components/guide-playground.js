@@ -435,20 +435,35 @@ export default function initGuidePlayground() {
 
     const textarea = playground.querySelector(".playground-editor");
     const iframe = playground.querySelector(".playground-iframe");
+    const editorPane = playground.querySelector(".playground-editor-pane");
+    const previewPane = playground.querySelector(".playground-preview-pane");
 
     textarea.value = initialCode;
 
-    // Fit the editor pane to its line count (clamped) so short snippets don't
-    // leave a mostly-empty dark box; the preview pane fits via postMessage.
-    const editorPane = playground.querySelector(".playground-editor-pane");
+    // Start the preview at the clamp floor so its first fit only ever grows it
+    // into place - it never opens tall and animates down (there is no height
+    // transition either). The sandbox reports its real height via postMessage.
+    if (previewPane) previewPane.style.height = "120px";
+
+    // Grow the editor to fit ALL its code so there is never an inner scrollbar:
+    // reading the snippet means scrolling the page, not wrestling a nested box.
+    // scrollHeight needs the pane visible to account for line wrapping, so on
+    // mobile - where the editor tab is hidden until picked - this re-runs when
+    // that tab is opened (see the tab handler) and on viewport resize.
     const sizeEditorPane = () => {
-      const cs = getComputedStyle(textarea);
-      const lineHeight = parseFloat(cs.lineHeight);
-      const padding = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      const lines = textarea.value.split("\n").length;
-      const fit = Math.ceil(lines * lineHeight + padding);
-      editorPane.style.height = `${Math.max(120, Math.min(320, fit))}px`;
+      if (editorPane.offsetParent === null) return; // hidden: sized on tab open
+      const prevFlex = textarea.style.flex;
+      const prevHeight = textarea.style.height;
+      // Neutralise flex-grow + fixed height so scrollHeight reports the real
+      // content height (wrapping included), not the pane's current height.
+      textarea.style.flex = "0 0 auto";
+      textarea.style.height = "auto";
+      const needed = Math.ceil(textarea.scrollHeight);
+      textarea.style.flex = prevFlex;
+      textarea.style.height = prevHeight;
+      editorPane.style.height = `${Math.max(120, needed + 2)}px`;
     };
+    playground._sizeEditor = sizeEditorPane;
     sizeEditorPane();
 
     // srcdoc + sandbox="allow-scripts": the preview runs in an opaque origin
@@ -547,6 +562,12 @@ export default function initGuidePlayground() {
           tab.classList.toggle("active", selected);
           tab.setAttribute("aria-selected", String(selected));
         });
+        // The editor was hidden (display:none) and couldn't be measured at
+        // open; now that its tab is showing, fit it to the code so it opens at
+        // full height straight away instead of the capped, scrollable box.
+        if (pane === "editor" && typeof playground._sizeEditor === "function") {
+          playground._sizeEditor();
+        }
       }
       return;
     }
@@ -599,5 +620,18 @@ export default function initGuidePlayground() {
       }
       return;
     }
+  });
+
+  // Re-fit visible editors when the viewport changes (e.g. a phone rotating):
+  // line wrapping changes the code's real height. Hidden editors skip via their
+  // own visibility guard.
+  let editorResizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(editorResizeTimer);
+    editorResizeTimer = setTimeout(() => {
+      document.querySelectorAll(".code-playground").forEach((pg) => {
+        if (typeof pg._sizeEditor === "function") pg._sizeEditor();
+      });
+    }, 150);
   });
 }
