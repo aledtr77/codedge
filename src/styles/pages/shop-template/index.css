@@ -450,6 +450,12 @@
   font-size: 0.7rem;
 }
 
+.shop-card-meta .badge-architecture--lp {
+  background: rgba(255, 179, 130, 0.14);
+  border-color: rgba(255, 179, 130, 0.35);
+  color: #ffb382;
+}
+
 .shop-layout .shop-demo-link {
   align-self: flex-start;
   margin-top: auto;
