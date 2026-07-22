@@ -1338,7 +1338,9 @@
 }
 
 .anatomy-label-card p {
-  margin: 0.5rem 0 0 !important;
+  /* Later in source than .guide-block p at equal (0,2,0) specificity, so it
+     wins on source order alone - no !important needed. */
+  margin: 0.5rem 0 0;
   font-size: 0.9rem;
   line-height: 1.4;
   color: rgba(232, 244, 255, 0.7);
@@ -1555,30 +1557,36 @@
    stile pulito e centrato del box "segnala un bug" (guide-report), cosi' non
    grida "pubblicita'". Solo titolo, testo e un pulsante compatto. Zero JS.
 --------------------------------------------------------------------------- */
+/* Centred header at every width: the icon and title run inline as one unit,
+   centred over the justified paragraph below. Flattening the content wrapper
+   (display: contents) makes the title a sibling of the icon so the two share
+   the same line; inline (not flex) keeps the icon glued to the title's first
+   line, so a wrapped title can never strand it on a line of its own. The
+   paragraph stays justified between the two, with the header centred above it
+   and the button centred below - a symmetric, balanced stack. */
 .guide-next-step {
   margin: 3.5rem auto 2rem;
   max-width: 74ch;
   width: 100%;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-}
-
-.guide-next-step__icon {
-  flex-shrink: 0;
-  color: var(--color-three, #0084ff);
-  font-size: 1.4rem;
-  margin-top: 0.15rem;
-  margin-left: 0.5rem;
+  display: block;
+  text-align: center;
 }
 
 .guide-next-step__content {
-  flex-grow: 1;
+  display: contents;
+}
+
+.guide-next-step__icon {
+  display: inline;
+  color: var(--color-three, #0084ff);
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+  vertical-align: baseline;
 }
 
 .guide-next-step__title {
-  margin: 0 0 0.75rem;
-  margin-left: 0.2rem;
+  display: inline;
+  margin: 0;
   font-family: var(--heading-font);
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   line-height: 1.25;
@@ -1586,7 +1594,8 @@
 }
 
 .guide-next-step__text {
-  margin: 0 0 1.25rem;
+  display: block;
+  margin: 1rem 0 1.25rem;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color);
@@ -1597,10 +1606,10 @@
 }
 
 .guide-next-step__cta.button-simple {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  margin-inline: auto;
   align-items: center;
-  width: auto;
-  max-width: 100%;
   min-height: 2.5rem;
   padding: 0.55rem 1.6rem;
   font-size: 0.9rem;
@@ -1609,13 +1618,19 @@
 }
 
 @media (max-width: 600px) {
+  /* Same centred layout, just narrower: symmetric side padding matches the
+     card text inset above so the header stays centred over the paragraph, and
+     the icon shrinks to sit with the smaller title. */
   .guide-next-step {
     margin-top: 2.75rem;
-    gap: 1rem;
+    padding-inline: 2.25rem;
   }
 
   .guide-next-step__icon {
     font-size: 1.2rem;
-    margin-top: 0.1rem;
+  }
+
+  .guide-next-step__text {
+    margin-top: 0.95rem;
   }
 }
