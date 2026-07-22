@@ -73,6 +73,7 @@ body > main .learning-shell {
   padding: 0.4rem 0 0.1rem;
 }
 
+.intro h1,
 .intro h3,
 .intro p {
   color: var(--text-color);
@@ -107,6 +108,7 @@ body > main .learning-shell {
   text-transform: uppercase;
 }
 
+.intro h1,
 .intro h3 {
   font-size: clamp(2rem, 3.2vw, 3rem);
   margin-bottom: 1rem;
@@ -449,6 +451,7 @@ body > main .learning-shell {
     max-width: none;
   }
 
+  .intro h1,
   .intro h3 {
     text-align: left;
   }

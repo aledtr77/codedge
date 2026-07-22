@@ -81,6 +81,7 @@
   text-transform: uppercase;
 }
 
+.shop-hero h1,
 .shop-hero h2,
 .shop-section-heading h2,
 .shop-custom h2 {
@@ -90,6 +91,7 @@
   text-wrap: balance;
 }
 
+.shop-hero h1,
 .shop-hero h2 {
   max-width: 16ch;
   font-size: clamp(2rem, 3.25vw, 3.15rem);
@@ -513,6 +515,7 @@
     padding-bottom: 2.75rem;
   }
 
+  .shop-hero h1,
   .shop-hero h2 {
     font-size: clamp(1.8rem, 8.6vw, 2.35rem);
   }

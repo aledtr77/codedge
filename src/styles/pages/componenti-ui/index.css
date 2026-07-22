@@ -73,6 +73,7 @@ body > main .projects-shell {
   padding: 0.4rem 0 0.1rem;
 }
 
+.intro h1,
 .intro h3,
 .intro p {
   color: var(--text-color);
@@ -107,6 +108,7 @@ body > main .projects-shell {
   text-transform: uppercase;
 }
 
+.intro h1,
 .intro h3 {
   font-size: clamp(2rem, 3.2vw, 3rem);
   margin-bottom: 1rem;
@@ -308,6 +310,7 @@ body > main .projects-shell {
     max-width: none;
   }
 
+  .intro h1,
   .intro h3,
   .project-card h4,
   .project-card p {
@@ -354,6 +357,7 @@ body > main .projects-shell {
     letter-spacing: 0.16em;
   }
 
+  .intro h1,
   .intro h3 {
     max-width: 16ch;
     margin-bottom: 0.25rem;

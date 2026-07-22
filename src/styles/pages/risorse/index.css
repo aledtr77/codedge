@@ -77,6 +77,7 @@
         margin: 0 auto;
         padding: 0.4rem 0 0.1rem;
       }
+      .intro h1,
       .intro h3,
       .intro p {
         color: var(--text-color);
@@ -106,6 +107,7 @@
         letter-spacing: 0.18em;
         text-transform: uppercase;
       }
+      .intro h1,
       .intro h3 {
         font-size: clamp(2rem, 3.2vw, 3rem);
         margin-bottom: 1rem;
@@ -321,6 +323,7 @@
           grid-template-columns: 1fr;
           text-align: center;
         }
+        .intro h1,
         .intro h3,
         .resource-card h4,
         .resource-card p {
