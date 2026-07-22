@@ -41,7 +41,7 @@
   text-transform: uppercase;
 }
 
-.contact-demo__intro h4 {
+.contact-demo__intro h3 {
   color: var(--text-color);
   font-size: clamp(1.35rem, 3vw, 2rem);
   line-height: 1.15;

@@ -53,7 +53,7 @@ body {
   text-transform: uppercase;
 }
 
-.palette-tool-hero h2 {
+.palette-tool-hero h1 {
   max-width: 1180px;
   margin: 0;
   font-size: clamp(1.55rem, 2.15vw, 2.75rem);
@@ -330,7 +330,7 @@ body {
   margin-bottom: 14px;
 }
 
-.section-head h3,
+.section-head h2,
 .faq-panel h3 {
   margin: 0;
   font-size: 1.05rem;
@@ -615,7 +615,7 @@ pre {
     padding-bottom: 20px;
   }
 
-  .palette-tool-hero h2 {
+  .palette-tool-hero h1 {
     font-size: 1.55rem;
     line-height: 1.08;
     max-width: 100%;

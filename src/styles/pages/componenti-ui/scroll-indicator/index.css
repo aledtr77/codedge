@@ -155,7 +155,7 @@
   text-transform: uppercase;
 }
 
-.reading-progress__content h4 {
+.reading-progress__content h3 {
   color: var(--text-color);
   font-size: clamp(1.35rem, 3vw, 2rem);
   line-height: 1.15;

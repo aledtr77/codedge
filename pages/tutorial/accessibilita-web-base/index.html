@@ -83,11 +83,12 @@
   </header>
 
   <main id="main-content">
+    <h1 class="sr-only" id="accessibility-guide-title">Accessibilita web base</h1>
     <a href="/tutorial/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti i tutorial</a>
     <section class="section git-guide-shell" aria-labelledby="accessibility-guide-title">
       <div class="guide-layout">
         <aside class="guide-toc" aria-label="Indice navigabile guida Accessibilita web base">
-          <h3>Indice guida</h3>
+          <h2>Indice guida</h2>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
             <li><a href="#chapter-02">1. Cos'e l'accessibilita</a></li>
@@ -112,7 +113,7 @@
             <div class="guide-intro-layout">
               <div class="guide-intro-copy">
                 <p class="guide-intro-kicker">Guida pratica per costruire interfacce piu usabili, leggibili e solide</p>
-                <h2 id="accessibility-guide-title">Nota iniziale</h2>
+                <h2>Nota iniziale</h2>
               <section class="guide-subchapter">
                 <p>L'accessibilita web spesso viene raccontata come un tema enorme, tecnico e pieno di sigle. In parte lo e: ci sono standard, criteri, tecnologie assistive, casi d'uso diversi e responsabilita reali.</p>
                 <p>Pero per iniziare bene non serve sapere tutto. Serve capire il modello mentale giusto e applicare poche abitudini concrete mentre scrivi HTML, CSS e JavaScript.</p>
@@ -225,7 +226,8 @@
               <p>Un errore molto comune e usare link e bottoni come se fossero intercambiabili. Non lo sono.</p>
               <div class="guide-compare-grid">
                 <div class="guide-compare-card">
-                  <h4>Link</h4>
+                  <h3 class="sr-only">Link e button a confronto</h3>
+              <h4>Link</h4>
                   <p>Porta verso un'altra pagina, sezione, file o URL.</p>
                   <pre><code>&lt;a href="/tutorial/"&gt;Vai ai tutorial&lt;/a&gt;</code></pre>
                 </div>

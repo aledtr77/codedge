@@ -29,7 +29,7 @@
   text-transform: uppercase;
 }
 
-.gradient-shell__header h2 {
+.gradient-shell__header h1 {
   font-family: var(--heading-font);
   font-size: 2.1rem;
   line-height: 1.2;
@@ -75,7 +75,7 @@
   margin-bottom: 0;
 }
 
-.control-block h3 {
+.control-block h2 {
   font-size: 1.05rem;
   font-weight: 750;
   margin: 0;
@@ -614,7 +614,7 @@
   margin-bottom: 0.45rem;
 }
 
-.mockup-ui-card h4 {
+.mockup-ui-card .mockup-ui-title {
   margin: 0 0 0.25rem 0;
   font-size: 0.92rem;
   font-weight: 750;

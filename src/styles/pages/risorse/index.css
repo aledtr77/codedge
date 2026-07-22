@@ -259,7 +259,7 @@
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
-      .resource-card h4 {
+      .resource-card h2 {
         text-align: left;
         font-size: clamp(1.45rem, 2vw, 1.75rem);
         line-height: 1.08;
@@ -325,7 +325,7 @@
         }
         .intro h1,
         .intro h3,
-        .resource-card h4,
+        .resource-card h2,
         .resource-card p {
           text-align: left;
         }

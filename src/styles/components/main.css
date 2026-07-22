@@ -250,6 +250,7 @@ img {
     padding-right: 0;
   }
 
+  body > main .intro h1,
   body > main .intro h3 {
     max-width: none;
     text-align: left;

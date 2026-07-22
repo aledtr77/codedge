@@ -238,7 +238,7 @@ body > main .projects-shell {
   text-transform: uppercase;
 }
 
-.project-card h4 {
+.project-card h2 {
   text-align: left;
   font-size: clamp(1.45rem, 2vw, 1.75rem);
   line-height: 1.08;
@@ -312,7 +312,7 @@ body > main .projects-shell {
 
   .intro h1,
   .intro h3,
-  .project-card h4,
+  .project-card h2,
   .project-card p {
     text-align: left;
   }
@@ -426,7 +426,7 @@ body > main .projects-shell {
     letter-spacing: 0.13em;
   }
 
-  .project-card h4 {
+  .project-card h2 {
     margin-bottom: 0.65rem;
     font-size: clamp(1.35rem, 6vw, 1.6rem);
     line-height: 1.12;

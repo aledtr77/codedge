@@ -132,7 +132,7 @@
   text-transform: uppercase;
 }
 
-.accessible-preview h4 {
+.accessible-preview h3 {
   color: var(--text-color);
   font-size: clamp(1.55rem, 3vw, 2.35rem);
   line-height: 1.15;

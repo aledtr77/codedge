@@ -232,12 +232,12 @@ body > main .learning-shell {
   vertical-align: -0.12em;
 }
 
-.learning-card h4,
+.learning-card h2,
 .learning-card p {
   text-align: left;
 }
 
-.learning-card h4 {
+.learning-card h2 {
   font-size: clamp(1.24rem, 1.6vw, 1.5rem);
   line-height: 1.2;
   margin-bottom: 0.72rem;
@@ -500,7 +500,7 @@ body > main .learning-shell {
     border-radius: 14px;
   }
 
-  .learning-card h4 {
+  .learning-card h2 {
     font-size: clamp(1.12rem, 4.8vw, 1.32rem);
     line-height: 1.18;
     margin-bottom: 0.55rem;
@@ -563,7 +563,7 @@ body > main .learning-shell {
     padding: 0.9rem 0.82rem;
   }
 
-  .learning-card h4 {
+  .learning-card h2 {
     font-size: 1.16rem;
   }
 

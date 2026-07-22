@@ -58,7 +58,7 @@
   <main id="main-content" class="ui-detail">
     <a href="/componenti-ui/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti i componenti</a>
     <section class="ui-hero" aria-labelledby="reading-progress-title">
-      <h2 id="reading-progress-title">Indice di lettura con progress bar</h2>
+      <h1 id="reading-progress-title">Indice di lettura con progress bar</h1>
       <p class="ui-hero__lead">
         Un pattern pensato per guide e documentazione: mostra quanto manca alla fine, evidenzia la sezione corrente e
         offre un ritorno rapido all'inizio del contenuto.
@@ -74,7 +74,7 @@
     <section class="ui-demo-panel" aria-labelledby="reading-demo-title">
       <div class="ui-demo-panel__header">
         <div>
-          <h3 id="reading-demo-title">Demo guida lunga</h3>
+          <h2 id="reading-demo-title">Demo guida lunga</h2>
           <p>Scorri il contenuto interno: la barra avanza e l'indice aggiorna la sezione attiva.</p>
         </div>
         <div class="reading-progress__meta" aria-label="Caratteristiche">
@@ -105,28 +105,28 @@
 
             <section id="reading-intro" data-reading-section>
               <p class="reading-progress__eyebrow">Capitolo 1</p>
-              <h4>Contesto</h4>
+              <h3>Contesto</h3>
               <p>In una guida lunga l'utente deve capire dove si trova senza perdere il filo. Un indice laterale aiuta a orientarsi e riduce il bisogno di tornare continuamente in cima.</p>
               <p>La barra di avanzamento non sostituisce i titoli, ma aggiunge un feedback immediato sulla distanza dalla fine.</p>
             </section>
 
             <section id="reading-setup" data-reading-section>
               <p class="reading-progress__eyebrow">Capitolo 2</p>
-              <h4>Setup</h4>
+              <h3>Setup</h3>
               <p>Il markup separa indice, contenuto e progress bar. Il JavaScript legge le sezioni disponibili e mantiene sincronizzati link attivo e percentuale di scroll.</p>
               <p>Su pagine reali puoi collegarlo al documento intero oppure a un contenitore scrollabile, come in questa demo.</p>
             </section>
 
             <section id="reading-checks" data-reading-section>
               <p class="reading-progress__eyebrow">Capitolo 3</p>
-              <h4>Controlli</h4>
+              <h3>Controlli</h3>
               <p>Il componente deve restare leggibile, non coprire contenuti e funzionare anche senza animazioni complesse. I link dell'indice usano anchor normali e restano comprensibili.</p>
               <p>Il pulsante torna su e utile quando il contenuto e molto lungo o quando l'indice diventa sticky nella pagina finale.</p>
             </section>
 
             <section id="reading-next" data-reading-section>
               <p class="reading-progress__eyebrow">Capitolo 4</p>
-              <h4>Prossimi passi</h4>
+              <h3>Prossimi passi</h3>
               <p>Puoi aggiungere sottosezioni, contatori, stato completato o integrazione con il layout delle guide Codedge. La base rimane piccola e facile da mantenere.</p>
               <p>Il punto non e decorare lo scroll: e dare orientamento a chi legge.</p>
             </section>
@@ -136,6 +136,7 @@
     </section>
 
     <section class="ui-notes-grid" aria-label="Note sul componente">
+        <h2 class="sr-only">Note sul componente</h2>
       <article class="ui-note">
         <h3>Quando usarlo</h3>
         <p>Per guide lunghe, documentazione, changelog articolati e pagine tutorial con molte sezioni.</p>

@@ -21,7 +21,7 @@
   text-transform: uppercase;
 }
 
-.ui-hero h2 {
+.ui-hero h1 {
   color: var(--text-color);
   font-family: var(--heading-font);
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -78,7 +78,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.ui-demo-panel__header h3 {
+.ui-demo-panel__header h2 {
   color: var(--text-color);
   font-family: var(--heading-font);
   font-size: clamp(1.25rem, 2vw, 1.65rem);
