@@ -56,6 +56,7 @@ const STRINGS = {
     'playground.iframeTitle': 'Anteprima playground',
     'playground.tryLive': 'Prova Live',
     'playground.closeLive': 'Chiudi Live',
+    'playground.externalLinksOff': 'I collegamenti esterni sono disattivati nell’anteprima.',
 
     'code.copied': 'Copiato',
     'code.copiedBang': 'Copiato!',
@@ -189,6 +190,7 @@ const STRINGS = {
     'playground.iframeTitle': 'Playground preview',
     'playground.tryLive': 'Try it live',
     'playground.closeLive': 'Close live',
+    'playground.externalLinksOff': 'External links are disabled in the preview.',
 
     'code.copied': 'Copied',
     'code.copiedBang': 'Copied!',

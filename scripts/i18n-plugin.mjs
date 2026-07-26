@@ -197,9 +197,10 @@ export function chromeI18nPlugin() {
 
 /**
  * Normalizes the language signals that are derivable from the route — <html
- * lang> and og:locale — and injects the reciprocal hreflang set. Pages without
- * a translated twin get no hreflang at all, which is what search engines
- * expect: the tag must only ever point at a real equivalent.
+ * lang>, og:locale and the web app manifest — and injects the reciprocal
+ * hreflang set. Pages without a translated twin get no hreflang at all, which
+ * is what search engines expect: the tag must only ever point at a real
+ * equivalent.
  */
 export function hreflangPlugin() {
   const projectRoot = process.cwd();
@@ -244,6 +245,17 @@ export function hreflangPlugin() {
           /(<meta\b[^>]*property=["']og:locale["'][^>]*content=)(?:"[^"]*"|'[^']*')/i,
           `$1"${OG_LOCALE[lang]}"`
         );
+
+        // The manifest carries a name, a description and a start_url, all of
+        // which are language-specific, so each tree points at its own. The two
+        // declare different ids, so installing from an English page yields an
+        // app that opens at /en/ rather than relabelling the Italian one.
+        if (lang === 'en') {
+          updated = updated.replace(
+            /(<link\b[^>]*rel=["']manifest["'][^>]*href=)(?:"[^"]*"|'[^']*')/i,
+            `$1"/site.en.webmanifest"`
+          );
+        }
 
         if (!twin) return updated;
 

@@ -10,28 +10,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/critical.css" />
-  <title>Git pratico senza panico | Guida base | Codedge</title>
+  <title>Git without panic | Beginner's guide | Codedge</title>
   <meta
     name="description"
-    content="Guida pratica a Git per iniziare da zero: workflow quotidiano, commit chiari, branch, merge, remoti e recupero errori senza panico.">
-  <!-- i18n: translation pending — this page still holds the Italian source text.
-       Remove this block (robots meta included) once the page is translated. -->
-  <meta name="robots" content="noindex,follow">
+    content="A practical guide to Git from scratch: a daily workflow, clear commits, branches, merges, remotes and recovering from mistakes without panic.">
   <link rel="canonical" href="https://codedge.it/en/tutorials/git-without-panic/">
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Git pratico senza panico | Guida base | Codedge" />
-  <meta property="og:description" content="Guida pratica a Git per iniziare da zero: workflow quotidiano, commit chiari, branch, merge, remoti e recupero errori senza panico." />
+  <meta property="og:title" content="Git without panic | Beginner's guide | Codedge" />
+  <meta property="og:description" content="A practical guide to Git from scratch: a daily workflow, clear commits, branches, merges, remotes and recovering from mistakes without panic." />
   <meta property="og:url" content="https://codedge.it/en/tutorials/git-without-panic/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Anteprima guida Git pratico senza panico" />
+  <meta property="og:image:alt" content="Git without panic guide preview" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Git pratico senza panico | Guida base | Codedge" />
-  <meta name="twitter:description" content="Guida pratica a Git per iniziare da zero: workflow quotidiano, commit chiari, branch, merge, remoti e recupero errori senza panico." />
+  <meta name="twitter:title" content="Git without panic | Beginner's guide | Codedge" />
+  <meta name="twitter:description" content="A practical guide to Git from scratch: a daily workflow, clear commits, branches, merges, remotes and recovering from mistakes without panic." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
@@ -53,563 +50,563 @@
     <nav class="navbar" aria-label="Main navigation">
       <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
            (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
-      <span class="navbar-title resize-text"><i class="fab fa-git-alt guide-title-icon" aria-hidden="true"></i>Git pratico senza panico</span>
+      <span class="navbar-title resize-text"><i class="fab fa-git-alt guide-title-icon" aria-hidden="true"></i>Git without panic</span>
     </nav>
   </header>
 
   <main id="main-content">
-    <h1 class="sr-only" id="git-guide-title">Git pratico senza panico</h1>
+    <h1 class="sr-only" id="git-guide-title">Git without panic</h1>
     <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
     <section class="section git-guide-shell" aria-labelledby="git-guide-title">
       <div class="guide-layout">
-        <aside class="guide-toc" aria-label="Indice navigabile guida Git">
+        <aside class="guide-toc" aria-label="Navigable index for the Git guide">
           <h2>Guide contents</h2>
           <ol class="guide-toc-list">
-            <li><a href="#chapter-01">1. Prima di iniziare e storia di Git</a></li>
-            <li><a href="#chapter-02">2. Perché Git e GitHub</a></li>
-            <li><a href="#chapter-03">3. Modello mentale e aree di lavoro</a></li>
-            <li><a href="#chapter-04">4. Setup iniziale e primo repository</a></li>
-            <li><a href="#chapter-05">5. Workflow quotidiano e commit puliti</a></li>
-            <li><a href="#chapter-06">6. Branch merge e remoti</a></li>
-            <li><a href="#chapter-07">7. Recupero errori e reflog</a></li>
-            <li><a href="#chapter-08">8. Laboratorio guidato</a></li>
-            <li><a href="#chapter-09">9. Checklist e glossario</a></li>
-            <li><a href="#chapter-10">10. Git + AI in assistenza</a></li>
-            <li><a href="#chapter-11">11. Nota finale</a></li>
-            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">13. Sfida pratica: Mettiti alla prova</a></li>
-            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-01">1. Before we start, and where Git came from</a></li>
+            <li><a href="#chapter-02">2. Why Git and GitHub</a></li>
+            <li><a href="#chapter-03">3. The mental model and the working areas</a></li>
+            <li><a href="#chapter-04">4. Initial setup and your first repository</a></li>
+            <li><a href="#chapter-05">5. The daily workflow and clean commits</a></li>
+            <li><a href="#chapter-06">6. Branches, merges and remotes</a></li>
+            <li><a href="#chapter-07">7. Recovering from mistakes, and the reflog</a></li>
+            <li><a href="#chapter-08">8. Guided lab</a></li>
+            <li><a href="#chapter-09">9. Checklist and glossary</a></li>
+            <li><a href="#chapter-10">10. Git + AI as an assistant</a></li>
+            <li><a href="#chapter-11">11. Final note</a></li>
+            <li><a href="#chapter-cheatsheet">12. Quick reference (cheat sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Practical challenge: put yourself to the test</a></li>
+            <li><a href="#chapter-quiz">14. Check what you have learned (quiz)</a></li>
           </ol>
         </aside>
 
-        <article class="guide-content" aria-label="Contenuto guida Git">
+        <article class="guide-content" aria-label="Git guide content">
           <section id="chapter-01" class="guide-block guide-chapter">
             <div class="guide-intro-layout">
               <div class="guide-intro-copy">
-                <p class="guide-intro-kicker">Guida essenziale per iniziare da zero</p>
-                <h2>1. Prima di iniziare e storia di Git</h2>
+                <p class="guide-intro-kicker">The essential guide for starting from scratch</p>
+                <h2>1. Before we start, and where Git came from</h2>
               <section class="guide-subchapter">
-                <h3>Prima di iniziare davvero</h3>
-                <p>Questa guida è pensata per chi parte da zero e vuole iniziare subito a usare Git in modo semplice, pratico e senza farsi schiacciare da spiegazioni troppo tecniche.</p>
-                <p>L’obiettivo non è trasformarti in un esperto in pochi giorni. L’obiettivo è molto più concreto: capire come funziona Git, iniziare a usarlo davvero in un progetto, evitare gli errori più comuni e costruire da subito un metodo di lavoro più ordinato.</p>
-                <p>Qui troverai i concetti fondamentali, i comandi davvero utili all’inizio e un piccolo percorso pratico per prendere confidenza con Git senza panico.</p>
-                <p>Per comprendere Git più a fondo esistono testi più completi, documentazioni ufficiali e molti altri strumenti validi. Ma soprattutto serve una cosa: pratica sul campo. Git si capisce davvero quando lo usi, sbagli, controlli, correggi e riprovi.</p>
-                <p>Se questa guida riuscirà a farti passare dal caos dei file sparsi a un modo di lavorare più chiaro e consapevole, allora avrà fatto il suo lavoro.</p>
+                <h3>Before we really start</h3>
+                <p>This guide is written for anyone starting from scratch who wants to begin using Git straight away — simply, practically, and without being crushed by overly technical explanations.</p>
+                <p>The goal is not to turn you into an expert in a few days. It is far more concrete: to understand how Git works, start genuinely using it on a project, avoid the most common mistakes and build a tidier way of working from the outset.</p>
+                <p>Here you will find the fundamental concepts, the commands that are genuinely useful at the beginning, and a short practical path for getting comfortable with Git without panic.</p>
+                <p>To understand Git more deeply there are fuller books, official documentation and plenty of other good tools. But above all one thing is needed: practice in the field. You really understand Git when you use it, get it wrong, check, fix and try again.</p>
+                <p>If this guide takes you from a mess of scattered files to a clearer, more deliberate way of working, it will have done its job.</p>
               </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
-                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/copertina-editoriale.webp" alt="Illustrazione di apertura della guida Git pratico senza panico" decoding="async" width="864" height="1080">
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/copertina-editoriale.webp" alt="Opening illustration for the Git without panic guide" decoding="async" width="864" height="1080">
               </figure>
             </div>
             <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/panoramica-git-pratica.svg" alt="Panoramica del percorso Git con i blocchi fondamentali" loading="lazy" decoding="async" width="1200" height="520">
-              <figcaption>Panoramica rapida del percorso: dalla storia fino all'uso con AI in assistenza.</figcaption>
+              <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/panoramica-git-pratica.svg" alt="Overview of the Git path with its core building blocks" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>A quick overview of the path: from the history of Git through to using it with AI assistance.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <h3>Da dove arriva Git</h3>
-              <p>Git nasce nel 2005 durante lo sviluppo del kernel Linux.</p>
-              <p>Il progetto Linux era enorme, distribuito e con una quantità enorme di modifiche continue. Serviva un sistema veloce, affidabile e robusto per gestire il lavoro.</p>
-              <p>Linus Torvalds, il creatore del kernel Linux, sviluppò Git con alcuni obiettivi molto chiari:</p>
+              <h3>Where Git comes from</h3>
+              <p>Git was born in 2005, during the development of the Linux kernel.</p>
+              <p>The Linux project was enormous, distributed, and subject to a huge volume of continuous changes. It needed a fast, reliable, robust system for managing the work.</p>
+              <p>Linus Torvalds, the creator of the Linux kernel, built Git with a few very clear goals:</p>
               <ul class="guide-list">
-                <li>velocità;</li>
-                <li>integrità dei dati;</li>
-                <li>capacità di lavorare bene anche su progetti molto grandi;</li>
-                <li>affidabilità.</li>
+                <li>speed;</li>
+                <li>data integrity;</li>
+                <li>the ability to work well even on very large projects;</li>
+                <li>reliability.</li>
               </ul>
-              <p>Questa origine spiega una cosa importante: Git non nasce come strumento pensato per coccolare il principiante. Nasce per reggere lavoro serio.</p>
-              <p>Ecco perché all’inizio può sembrare un po’ ruvido. Non perché sia fatto male, ma perché è stato progettato con priorità molto pratiche.</p>
-              <p>La buona notizia è che tu non hai bisogno di conoscere ogni angolo di Git per usarlo bene. Ti basta costruire un buon modello mentale e imparare bene il nucleo essenziale.</p>
-              <p>Oggi Git è lo standard di fatto nel controllo di versione. Viene usato da freelance, team, startup, grandi aziende e progetti open source giganteschi.</p>
-              <p>Impararlo non è tempo perso su uno strumento di nicchia. È una competenza centrale nel lavoro di sviluppo.</p>
+              <p>That origin explains something important: Git was not designed to coddle beginners. It was designed to hold up under serious work.</p>
+              <p>Which is why it can feel a little rough at first. Not because it is badly made, but because it was designed around very practical priorities.</p>
+              <p>The good news is that you do not need to know every corner of Git to use it well. You just need a good mental model and a firm grasp of the essential core.</p>
+              <p>Today Git is the de facto standard in version control. It is used by freelancers, teams, startups, large companies and gigantic open source projects.</p>
+              <p>Learning it is not time wasted on a niche tool. It is a central skill in development work.</p>
             </section>
           </section>
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>2. Perché Git e GitHub</h2>
+            <h2>2. Why Git and GitHub</h2>
             <section class="guide-subchapter">
-              <h3>Perché Git ti cambia il modo di lavorare</h3>
-              <p>Git è un sistema che tiene traccia delle modifiche fatte ai file di un progetto nel tempo.</p>
-              <p>Detto così sembra una definizione da manuale. In pratica significa questo: Git ti aiuta a lavorare senza perderti.</p>
-              <p>Quando non usi Git, spesso succede sempre la stessa scena. Crei una cartella progetto, poi ne fai una copia chiamata progetto-finale, poi una seconda chiamata progetto-finale-vero, poi magari progetto-finale-vero-definitivo. Dopo qualche giorno non sai più quale versione è quella giusta. Se qualcosa si rompe, non sai bene quando è successo. Se vuoi tornare indietro, ti arrangi come puoi.</p>
-              <p>Git nasce proprio per evitare questo caos.</p>
-              <p>Con Git il progetto non è più una massa confusa di file. Diventa una storia fatta di tappe. Ogni tappa importante può essere salvata con un commit. Ogni commit ha un messaggio che spiega cosa hai fatto. In questo modo non stai più lavorando alla cieca: stai costruendo una cronologia leggibile.</p>
-              <p>Git è utile anche se lavori da solo. Anzi, spesso all’inizio è utilissimo proprio per chi lavora da solo, perché mentre impari fai molte prove, sbagli, cambi idea, sistemi, rompi, ricostruisci. Avere uno strumento che ti permette di salvare tappe sensate e di recuperare una situazione stabile è una mano enorme.</p>
-              <p>Git ti dà soprattutto tre cose:</p>
+              <h3>Why Git changes the way you work</h3>
+              <p>Git is a system that tracks the changes made to a project's files over time.</p>
+              <p>Put like that it sounds like a textbook definition. In practice it means this: Git helps you work without losing your way.</p>
+              <p>When you do not use Git, the same scene tends to play out. You create a project folder, then a copy called project-final, then a second one called project-final-real, then perhaps project-final-real-definitive. A few days later you no longer know which version is the right one. If something breaks, you have no idea when it happened. If you want to go back, you improvise.</p>
+              <p>Git exists precisely to avoid that mess.</p>
+              <p>With Git a project is no longer a confused mass of files. It becomes a story made of stages. Every important stage can be saved with a commit. Every commit carries a message explaining what you did. That way you are no longer working blind: you are building a readable history.</p>
+              <p>Git is useful even when you work alone. In fact it is often at its most useful for solo work early on, because while you are learning you experiment a lot, get things wrong, change your mind, fix, break, rebuild. Having a tool that lets you save sensible checkpoints and get back to a stable state is an enormous help.</p>
+              <p>Git gives you three things above all:</p>
               <ul class="guide-list">
-                <li>sicurezza, perché puoi recuperare molto più spesso di quanto immagini;</li>
-                <li>ordine, perché le modifiche vengono registrate con senso;</li>
-                <li>libertà, perché puoi sperimentare senza la paura costante di distruggere tutto.</li>
+                <li>safety, because you can recover far more often than you would think;</li>
+                <li>order, because changes are recorded meaningfully;</li>
+                <li>freedom, because you can experiment without the constant fear of destroying everything.</li>
               </ul>
-              <p>La cosa importante da capire fin da subito è questa: Git non è solo una collezione di comandi. È un modo di pensare il progetto nel tempo.</p>
+              <p>The important thing to grasp right away is this: Git is not just a collection of commands. It is a way of thinking about a project over time.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Git e GitHub non sono la stessa cosa</h3>
-              <p>Questa è una delle confusioni più comuni.</p>
-              <p>Git e GitHub non sono la stessa cosa.</p>
-              <p>Git è il programma che lavora sul tuo computer e gestisce la cronologia del progetto.</p>
-              <p>GitHub è una piattaforma online che ospita repository Git e aggiunge funzioni come condivisione, backup remoto, collaborazione, pull request e visibilità pubblica.</p>
-              <p>Una metafora semplice può essere questa:</p>
+              <h3>Git and GitHub are not the same thing</h3>
+              <p>This is one of the most common points of confusion.</p>
+              <p>Git and GitHub are not the same thing.</p>
+              <p>Git is the program that runs on your computer and manages the project's history.</p>
+              <p>GitHub is an online platform that hosts Git repositories and adds features such as sharing, remote backup, collaboration, pull requests and public visibility.</p>
+              <p>A simple metaphor might be this:</p>
               <div class="guide-compare-grid">
                 <article class="guide-compare-card">
                   <h4>Git</h4>
-                  <p>Git è il motore.</p>
+                  <p>Git is the engine.</p>
                 </article>
                 <article class="guide-compare-card">
                   <h4>GitHub</h4>
-                  <p>GitHub è il garage online.</p>
+                  <p>GitHub is the garage online.</p>
                 </article>
               </div>
               <figure class="guide-figure guide-figure--teaching">
-                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/git-vs-github-chiaro.svg" alt="Confronto semplice tra Git locale e GitHub remoto" loading="lazy" decoding="async" width="1200" height="560">
-                <figcaption>Visuale rapida: Git gestisce la storia sul tuo computer, GitHub la ospita e la sincronizza online.</figcaption>
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/git-vs-github-chiaro.svg" alt="A simple comparison between local Git and remote GitHub" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>At a glance: Git manages the history on your computer, GitHub hosts and syncs it online.</figcaption>
               </figure>
-              <p>Con Git puoi inizializzare un repository, creare commit, fare branch, fare merge e vedere la storia del progetto anche senza internet.</p>
-              <p>Con GitHub puoi pubblicare quella storia online, avere una copia remota, collaborare con altre persone e usare il repository anche come portfolio.</p>
-              <p>Questa distinzione è importante perché ti aiuta anche a capire meglio i problemi.</p>
-              <p>Se il problema riguarda i commit, la cronologia, i branch o i file locali, stai parlando di Git.</p>
-              <p>Se il problema riguarda sincronizzazione, push, pull, repository remoto o permessi, probabilmente stai parlando di GitHub o comunque di una piattaforma remota simile.</p>
-              <p>All’inizio la cosa migliore è questa: prima impari Git bene, poi GitHub diventa molto più semplice. Quando vuoi fare il passaggio alla parte online puoi continuare con la guida <a href="/en/tutorials/github-in-practice/">GitHub operativo</a>.</p>
+              <p>With Git you can initialise a repository, create commits, make branches, merge and browse the project's history without any internet connection.</p>
+              <p>With GitHub you can publish that history online, keep a remote copy, collaborate with other people and use the repository as a portfolio too.</p>
+              <p>This distinction matters because it also helps you understand problems better.</p>
+              <p>If the problem is about commits, history, branches or local files, you are talking about Git.</p>
+              <p>If it is about syncing, push, pull, the remote repository or permissions, you are probably talking about GitHub, or at least a similar remote platform.</p>
+              <p>At the beginning the best approach is this: learn Git properly first, and GitHub becomes far simpler afterwards. When you want to move to the online side, carry on with the <a href="/en/tutorials/github-in-practice/">GitHub in practice</a> guide.</p>
             </section>
           </section>
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>3. Modello mentale e aree di lavoro</h2>
+            <h2>3. The mental model and the working areas</h2>
             <section class="guide-subchapter">
-              <h3>Il modello mentale giusto: snapshot, commit, hash e HEAD</h3>
+              <h3>The right mental model: snapshot, commit, hash and HEAD</h3>
               <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/modello-mentale-git.svg" alt="Schema visuale dei concetti Snapshot Commit Hash e HEAD" loading="lazy" decoding="async" width="1200" height="520">
-<figcaption>Mappa visiva dei concetti base: snapshot, commit, hash, HEAD.</figcaption>
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/modello-mentale-git.svg" alt="Visual diagram of the Snapshot, Commit, Hash and HEAD concepts" loading="lazy" decoding="async" width="1200" height="520">
+<figcaption>A visual map of the basics: snapshot, commit, hash, HEAD.</figcaption>
 </figure>
-              <p>Per capire Git bene, devi prima capire quattro parole chiave.</p>
+              <p>To understand Git well, you first need to understand four key words.</p>
               <h4>Snapshot</h4>
-              <p>Git ragiona per snapshot.</p>
-              <p>Detto nel modo piu semplice possibile: lo snapshot è il contenuto dei file in un certo momento.</p>
-              <p>In pratica risponde a una domanda sola: adesso, in questo istante, com&#x27;è fatto il progetto?</p>
-              <p>Se in quel momento <code>index.html</code> contiene una hero nuova, <code>style.css</code> ha padding diversi e <code>main.js</code> non è cambiato, lo snapshot è esattamente quello stato dei file.</p>
+              <p>Git thinks in snapshots.</p>
+              <p>Put as simply as possible: a snapshot is the content of the files at a given moment.</p>
+              <p>In practice it answers one question: right now, at this instant, what does the project look like?</p>
+              <p>If at that moment <code>index.html</code> contains a new hero, <code>style.css</code> has different padding and <code>main.js</code> is unchanged, the snapshot is exactly that state of the files.</p>
               <h4>Commit</h4>
-              <p>Il commit è l&#x27;evento storico che salva quello snapshot nella cronologia di Git.</p>
-              <p>Quindi snapshot e commit sono collegati, ma non sono la stessa cosa.</p>
-              <p>Lo snapshot è il contenuto. Il commit è il salvataggio ufficiale di quel contenuto nella storia del progetto, con messaggio, autore, data e hash.</p>
-              <p>Quando fai un commit, Git prende lo stato che hai preparato nello staging e lo registra come nuova tappa della cronologia.</p>
-              <p>Per esempio:</p>
+              <p>A commit is the historical event that saves that snapshot into Git's history.</p>
+              <p>So snapshots and commits are connected, but they are not the same thing.</p>
+              <p>The snapshot is the content. The commit is the official saving of that content into the project's story, with a message, an author, a date and a hash.</p>
+              <p>When you make a commit, Git takes the state you prepared in staging and records it as a new stage in the history.</p>
+              <p>For example:</p>
               <ul class="guide-list">
-                <li>Aggiunge la sezione servizi nella home</li>
-                <li>Corregge il menu mobile</li>
-                <li>Migliora il layout della hero su mobile</li>
+                <li>Add the services section to the home page</li>
+                <li>Fix the mobile menu</li>
+                <li>Improve the hero layout on mobile</li>
               </ul>
-              <p>La distinzione pratica è questa:</p>
+              <p>The practical distinction is this:</p>
               <ul class="guide-list">
-                <li>snapshot = il contenuto dei file;</li>
-                <li>commit = l&#x27;evento storico che salva quel contenuto.</li>
+                <li>snapshot = the content of the files;</li>
+                <li>commit = the historical event that saves that content.</li>
               </ul>
-              <p>Ed ecco il punto che all&#x27;inizio confonde quasi tutti: uno snapshot non lo tocchi quasi mai come oggetto separato.</p>
-              <p>Tu, nella pratica, tocchi i file, lo staging e i commit.</p>
-              <p>Per esempio:</p>
+              <p>And here is the part that confuses almost everyone at the start: you hardly ever touch a snapshot as a separate object.</p>
+              <p>In practice, what you touch is the files, the staging area and the commits.</p>
+              <p>For example:</p>
               <ul class="guide-list">
-                <li>modifichi i file nel working tree;</li>
-                <li>metti nello staging quello che vuoi salvare;</li>
-                <li>fai un commit per registrare quello stato nella cronologia.</li>
+                <li>you edit files in the working tree;</li>
+                <li>you stage what you want to save;</li>
+                <li>you commit to record that state in the history.</li>
               </ul>
-              <p>In strumenti come VS Code, le righe colorate e le lettere sui file non sono lo snapshot: sono il modo con cui l&#x27;editor ti mostra le differenze e lo stato delle modifiche.</p>
-              <p>Se fai commit piccoli e chiari, la storia diventa leggibile.</p>
+              <p>In tools like VS Code, the coloured lines and the letters next to files are not the snapshot: they are how the editor shows you the differences and the state of your changes.</p>
+              <p>If you make small, clear commits, the story becomes readable.</p>
               <h4>Hash</h4>
-              <p>Ogni commit ha un identificatore univoco chiamato hash.</p>
-              <p>Non devi impararlo a memoria. Ti basta sapere che Git usa questo codice per riferirsi in modo preciso a un commit specifico.</p>
+              <p>Every commit has a unique identifier called a hash.</p>
+              <p>You do not need to memorise it. It is enough to know that Git uses this code to refer precisely to a specific commit.</p>
               <h4>HEAD</h4>
-              <p>HEAD è un puntatore. In parole semplici, indica dove ti trovi adesso nella cronologia.</p>
-              <p>Se sei sull’ultimo commit del branch main, HEAD punta lì.</p>
-              <p>Se fai un nuovo commit, HEAD si sposta avanti.</p>
-              <p>Se cambi branch, HEAD segue il branch su cui ti trovi.</p>
-              <h4>Riassunto semplice</h4>
+              <p>HEAD is a pointer. In plain terms, it says where you are right now in the history.</p>
+              <p>If you are on the latest commit of the main branch, HEAD points there.</p>
+              <p>If you make a new commit, HEAD moves forward.</p>
+              <p>If you switch branch, HEAD follows the branch you are on.</p>
+              <h4>A simple recap</h4>
               <ul class="guide-list">
-                <li>snapshot = contenuto dei file fotografato in quel momento;</li>
-                <li>commit = salvataggio storico che registra quello snapshot;</li>
-                <li>hash = identificatore del commit;</li>
-                <li>HEAD = punto in cui ti trovi adesso.</li>
+                <li>snapshot = the content of the files photographed at that moment;</li>
+                <li>commit = the historical save that records that snapshot;</li>
+                <li>hash = the commit's identifier;</li>
+                <li>HEAD = where you are right now.</li>
               </ul>
-              <p>Quando questi concetti iniziano a essere chiari, Git smette di sembrare magia nera.</p>
+              <p>Once these concepts start to click, Git stops feeling like black magic.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Working tree, staging area e repository</h3>
+              <h3>Working tree, staging area and repository</h3>
               <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/aree-git-workflow.svg" alt="Diagramma del flusso Working tree Staging area Repository" loading="lazy" decoding="async" width="1200" height="500">
-<figcaption>Flusso pratico: dal file modificato al commit.</figcaption>
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/aree-git-workflow.svg" alt="Diagram of the Working tree, Staging area and Repository flow" loading="lazy" decoding="async" width="1200" height="500">
+<figcaption>The practical flow: from an edited file to a commit.</figcaption>
 </figure>
-              <p>Uno dei punti più importanti per un principiante è capire che in Git esistono tre zone.</p>
+              <p>One of the most important things for a beginner is understanding that Git has three zones.</p>
               <h4>Working tree</h4>
-              <p>Il working tree è la tua cartella di lavoro reale. È il posto dove modifichi i file.</p>
-              <p>Per esempio:</p>
+              <p>The working tree is your actual working folder. It is where you edit the files.</p>
+              <p>For example:</p>
               <ul class="guide-list">
                 <li>index.html</li>
                 <li>style.css</li>
                 <li>main.js</li>
               </ul>
               <h4>Staging area</h4>
-              <p>La staging area è una zona intermedia.</p>
-              <p>Qui prepari le modifiche che vuoi inserire nel prossimo commit.</p>
-              <p>È come un vassoio dove metti solo le cose pronte per essere spedite.</p>
+              <p>The staging area is an intermediate zone.</p>
+              <p>Here you prepare the changes you want to put into the next commit.</p>
+              <p>It is like a tray where you place only the things ready to be shipped.</p>
               <h4>Repository</h4>
-              <p>Il repository è la cronologia vera e propria dei commit già salvati.</p>
-              <h4>Perché la staging area è importante</h4>
-              <p>All’inizio può sembrare una complicazione inutile. In realtà è uno dei superpoteri di Git.</p>
-              <p>Ti permette di decidere con precisione cosa entra nel prossimo commit.</p>
-              <p>Esempio molto realistico:</p>
-              <p>Hai modificato style.css per sistemare la hero. Hai anche toccato main.js, ma lì stai ancora facendo una prova che non funziona bene.</p>
-              <p>Con Git puoi mettere in staging solo style.css e fare un commit pulito sul layout. main.js resta fuori finché non è pronto.</p>
-              <p>Questo ti permette di fare commit più chiari e una cronologia molto più leggibile.</p>
-              <h4>Immagine mentale utile</h4>
-              <p>Pensa così:</p>
+              <p>The repository is the actual history of the commits already saved.</p>
+              <h4>Why the staging area matters</h4>
+              <p>At first it can seem like a pointless complication. In reality it is one of Git's superpowers.</p>
+              <p>It lets you decide precisely what goes into the next commit.</p>
+              <p>A very realistic example:</p>
+              <p>You edited style.css to sort out the hero. You also touched main.js, but there you are still trying something that does not quite work.</p>
+              <p>With Git you can stage only style.css and make a clean commit about the layout. main.js stays out until it is ready.</p>
+              <p>That lets you make clearer commits and produces a much more readable history.</p>
+              <h4>A useful mental image</h4>
+              <p>Think of it this way:</p>
               <ul class="guide-list">
-                <li>working tree = scrivania;</li>
-                <li>staging area = vassoio prima della spedizione;</li>
-                <li>repository = archivio.</li>
+                <li>working tree = your desk;</li>
+                <li>staging area = the tray before shipping;</li>
+                <li>repository = the archive.</li>
               </ul>
-              <p>Se questa immagine ti entra bene in testa, metà della confusione iniziale sparisce.</p>
+              <p>If that image sticks, half the initial confusion disappears.</p>
             </section>
           </section>
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>4. Setup iniziale e primo repository</h2>
+            <h2>4. Initial setup and your first repository</h2>
             <section class="guide-subchapter">
-              <h3>Installazione e configurazione iniziale</h3>
-              <p>Installare Git oggi è abbastanza semplice.</p>
-              <p>Su Windows puoi usare Git for Windows.</p>
-              <p>Su macOS puoi usare Homebrew o gli strumenti Apple.</p>
-              <p>Su Linux lo trovi quasi sempre nei repository della distribuzione.</p>
-              <p>La prima cosa da fare dopo l’installazione è controllare che Git funzioni.</p>
+              <h3>Installing and configuring Git</h3>
+              <p>Installing Git today is fairly simple.</p>
+              <p>On Windows you can use Git for Windows.</p>
+              <p>On macOS you can use Homebrew or Apple's tools.</p>
+              <p>On Linux you will almost always find it in your distribution's repositories.</p>
+              <p>The first thing to do after installing is to check that Git works.</p>
               <pre><code class="language-bash">git --version</code></pre>
-              <p>Poi conviene impostare almeno nome ed email, perché Git userà questi dati nei commit.</p>
-              <pre><code class="language-bash">git config --global user.name &quot;Il Tuo Nome&quot;
-git config --global user.email &quot;tuamail@example.com&quot;
+              <p>Then it is worth setting at least your name and email, because Git uses them in commits.</p>
+              <pre><code class="language-bash">git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;
 git config --global init.defaultBranch main</code></pre>
-              <p>Se usi Visual Studio Code, può essere utile anche impostarlo come editor predefinito:</p>
+              <p>If you use Visual Studio Code, setting it as the default editor can be handy too:</p>
               <pre><code class="language-bash">git config --global core.editor &quot;code --wait&quot;</code></pre>
-              <p>Per vedere la configurazione corrente:</p>
+              <p>To see the current configuration:</p>
               <pre><code class="language-bash">git config --list</code></pre>
-              <p>Questa fase è semplice ma importante. Meglio fare queste cose subito invece di arrivare al primo commit e scoprire che Git si lamenta perché mancano nome ed email.</p>
+              <p>This stage is simple but important. Better to do it now than to reach your first commit and find Git complaining that your name and email are missing.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Il primo repository da zero</h3>
-              <p>Qui iniziamo davvero.</p>
-              <p>Immagina di avere una cartella con un piccolo progetto, magari un sito statico.</p>
-              <p>Entri nella cartella e inizializzi Git.</p>
-              <pre><code class="language-bash">cd mio-progetto
+              <h3>Your first repository from scratch</h3>
+              <p>Here is where it really begins.</p>
+              <p>Imagine you have a folder with a small project, perhaps a static site.</p>
+              <p>You go into the folder and initialise Git.</p>
+              <pre><code class="language-bash">cd my-project
 git init</code></pre>
-              <p>Da quel momento quella cartella non è più solo una cartella. È diventata un repository Git.</p>
-              <p>Subito dopo conviene controllare lo stato:</p>
+              <p>From that moment the folder is no longer just a folder. It has become a Git repository.</p>
+              <p>Straight afterwards it is worth checking the status:</p>
               <h4>git status</h4>
-              <p>Questo comando è uno dei più importanti in assoluto. Ti dice:</p>
+              <p>This is one of the most important commands there is. It tells you:</p>
               <ul class="guide-list">
-                <li>su quale branch sei;</li>
-                <li>quali file sono nuovi;</li>
-                <li>quali sono modificati;</li>
-                <li>quali sono pronti per il commit.</li>
+                <li>which branch you are on;</li>
+                <li>which files are new;</li>
+                <li>which have been modified;</li>
+                <li>which are ready to commit.</li>
               </ul>
-              <p>Poi puoi aggiungere i file e fare il primo commit:</p>
+              <p>Then you can add the files and make your first commit:</p>
               <pre><code class="language-bash">git add .
-git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></pre>
-              <h4>Cosa hai fatto davvero</h4>
-              <p>Hai fatto quattro cose fondamentali:</p>
+git commit -m &quot;First commit: initial project structure&quot;</code></pre>
+              <h4>What you actually did</h4>
+              <p>You did four fundamental things:</p>
               <ul class="guide-list">
-                <li>hai creato un repository locale;</li>
-                <li>hai controllato lo stato iniziale del progetto;</li>
-                <li>hai messo nello staging la versione attuale dei file che vuoi salvare;</li>
-                <li>hai creato il primo commit, che registra il primo snapshot del progetto nella cronologia.</li>
+                <li>you created a local repository;</li>
+                <li>you checked the project's initial state;</li>
+                <li>you staged the current version of the files you want to save;</li>
+                <li>you created the first commit, which records the project's first snapshot in the history.</li>
               </ul>
               <figure class="guide-figure guide-figure--teaching">
-                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/primo-repository-passi.svg" alt="Sequenza dei passaggi per creare il primo repository Git" loading="lazy" decoding="async" width="1200" height="480">
-                <figcaption>Sequenza minima da memorizzare: repository, controllo stato, staging, primo commit.</figcaption>
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/primo-repository-passi.svg" alt="The sequence of steps for creating your first Git repository" loading="lazy" decoding="async" width="1200" height="480">
+                <figcaption>The minimal sequence worth memorising: repository, status check, staging, first commit.</figcaption>
               </figure>
-              <p>Questo passaggio va capito bene, perché lo ripeterai in ogni progetto futuro.</p>
+              <p>Understand this step well, because you will repeat it on every future project.</p>
             </section>
           </section>
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>5. Workflow quotidiano e commit puliti</h2>
+            <h2>5. The daily workflow and clean commits</h2>
             <section class="guide-subchapter">
-              <h3>Il flusso pratico per fare un commit pulito</h3>
-              <p>La maggior parte del lavoro quotidiano con Git gira attorno a pochi comandi.</p>
-              <p>Se impari bene questi, hai già il cuore dell’uso pratico.</p>
+              <h3>The practical flow for making a clean commit</h3>
+              <p>Most day-to-day work with Git revolves around a handful of commands.</p>
+              <p>Learn these well and you already have the heart of practical use.</p>
               <h4>git status</h4>
-              <p>Ti mostra la situazione attuale.</p>
-              <p>È il comando che ti impedisce di lavorare bendato.</p>
-              <p>Usalo spesso.</p>
+              <p>It shows you the current situation.</p>
+              <p>It is the command that stops you working blindfolded.</p>
+              <p>Use it often.</p>
               <h4>git diff</h4>
               <pre><code class="language-bash">git diff</code></pre>
-              <p>Ti mostra le righe cambiate nei file non ancora staged. È il controllo più pratico prima di decidere cosa mettere nel commit.</p>
+              <p>It shows you the lines that changed in files not yet staged. It is the most practical check before deciding what goes into the commit.</p>
               <h4>git add</h4>
               <pre><code class="language-bash">git add style.css</code></pre>
-              <p>Serve a mettere nello staging la versione attuale dei file che vuoi includere nel prossimo commit.</p>
-              <p>Puoi usarlo su file specifici oppure, se ha senso, su tutto il progetto.</p>
+              <p>It stages the current version of the files you want to include in the next commit.</p>
+              <p>You can use it on specific files or, when that makes sense, on the whole project.</p>
               <pre><code class="language-bash">git add .</code></pre>
-              <p>Ma attenzione: git add . non è il male assoluto, però usato sempre senza pensare può mischiare modifiche che sarebbe meglio tenere separate.</p>
+              <p>But be careful: git add . is not pure evil, yet using it every time without thinking can mix together changes that would be better kept apart.</p>
               <h4>git commit</h4>
-              <pre><code class="language-bash">git commit -m &quot;Migliora il layout mobile della hero&quot;</code></pre>
-              <p>Crea un commit nella cronologia usando quello che hai preparato in staging.</p>
-              <p>In altre parole: prende lo stato staged dei file, ne registra uno snapshot e lo salva come nuova tappa della storia.</p>
-              <h4>git log quando devi ricostruire la storia</h4>
+              <pre><code class="language-bash">git commit -m &quot;Improve the hero's mobile layout&quot;</code></pre>
+              <p>It creates a commit in the history using what you prepared in staging.</p>
+              <p>In other words: it takes the staged state of the files, records a snapshot of it and saves it as a new stage in the story.</p>
+              <h4>git log, when you need to reconstruct the story</h4>
               <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
-              <p>Non è un passaggio obbligatorio dopo ogni commit. È utile quando vuoi capire come si è evoluto il progetto o ritrovare una tappa precisa.</p>
-              <h4>Il flusso mentale giusto</h4>
+              <p>It is not a required step after every commit. It is useful when you want to see how the project evolved or track down a specific stage.</p>
+              <h4>The right mental flow</h4>
               <div class="guide-qa-card">
-                <p class="guide-question">Prima di fare add, chiediti: Quali modifiche voglio davvero salvare in questo commit?</p>
-                <p class="guide-question">Prima di fare commit, chiediti: Il messaggio racconta una cosa chiara?</p>
+                <p class="guide-question">Before you add, ask yourself: which changes do I really want to save in this commit?</p>
+                <p class="guide-question">Before you commit, ask yourself: does the message tell one clear thing?</p>
               </div>
               <figure class="guide-figure guide-figure--teaching">
-                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/workflow-quotidiano-git.svg" alt="Checklist visuale per preparare un commit Git pulito" loading="lazy" decoding="async" width="1200" height="560">
-                <figcaption>Mini procedura pratica: controlla lo stato, guarda il diff, aggiungi solo i file pronti e salva una tappa chiara.</figcaption>
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/workflow-quotidiano-git.svg" alt="Visual checklist for preparing a clean Git commit" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>A short practical procedure: check the status, read the diff, add only the files that are ready and save one clear stage.</figcaption>
               </figure>
-              <p>Questa piccola abitudine cambia moltissimo la qualità del lavoro.</p>
+              <p>This small habit makes an enormous difference to the quality of the work.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Come scrivere messaggi di commit che abbiano senso</h3>
-              <p>Il messaggio di commit è l’etichetta della tappa che stai aggiungendo alla cronologia.</p>
-              <p>Se il messaggio è chiaro, il futuro te capirà subito cosa hai fatto. Se è vago, la cronologia diventa un pantano.</p>
-              <h4>Messaggi buoni</h4>
+              <h3>How to write commit messages that make sense</h3>
+              <p>A commit message is the label on the stage you are adding to the history.</p>
+              <p>If the message is clear, future you will immediately understand what you did. If it is vague, the history turns into a swamp.</p>
+              <h4>Good messages</h4>
               <ul class="guide-list guide-list-good">
-                <li>Aggiunge la sezione servizi nella home</li>
-                <li>Corregge il bug del menu mobile</li>
-                <li>Migliora il contrasto dei pulsanti nel footer</li>
-                <li>Riorganizza i file della navbar</li>
+                <li>Add the services section to the home page</li>
+                <li>Fix the mobile menu bug</li>
+                <li>Improve button contrast in the footer</li>
+                <li>Reorganise the navbar files</li>
               </ul>
-              <h4>Messaggi deboli</h4>
+              <h4>Weak messages</h4>
               <ul class="guide-list guide-list-bad">
                 <li>update</li>
                 <li>fix</li>
-                <li>varie cose</li>
-                <li>tentativo</li>
-                <li>boh</li>
+                <li>various things</li>
+                <li>attempt</li>
+                <li>dunno</li>
               </ul>
-              <h4>Regola pratica</h4>
-              <p>Un commit dovrebbe raccontare una sola intenzione.</p>
-              <p>Se per descriverlo ti viene da dire “ho fatto un po’ di tutto”, probabilmente hai accumulato troppe modifiche insieme.</p>
-              <p>Commit più piccoli e più chiari quasi sempre battono commit enormi e confusi.</p>
+              <h4>A practical rule</h4>
+              <p>A commit should tell one single intention.</p>
+              <p>If describing it makes you want to say “I did a bit of everything”, you have probably piled up too many changes at once.</p>
+              <p>Smaller, clearer commits almost always beat huge, muddled ones.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>.gitignore spiegato bene</h3>
-              <p>.gitignore è il file in cui dici a Git quali file o cartelle ignorare.</p>
-              <p>Non tutto deve entrare nella cronologia.</p>
-              <p>In un progetto frontend tipico, spesso conviene ignorare cose come:</p>
+              <h3>.gitignore, properly explained</h3>
+              <p>.gitignore is the file where you tell Git which files or folders to ignore.</p>
+              <p>Not everything belongs in the history.</p>
+              <p>In a typical front-end project it is usually worth ignoring things like:</p>
               <pre><code class="language-text">node_modules/
 dist/
 .env
 .DS_Store
 Thumbs.db
 .vscode/</code></pre>
-              <h4>Perché è importante</h4>
-              <p>Un buon .gitignore:</p>
+              <h4>Why it matters</h4>
+              <p>A good .gitignore:</p>
               <ul class="guide-list">
-                <li>tiene pulita la cronologia;</li>
-                <li>evita rumore inutile;</li>
-                <li>riduce i rischi;</li>
-                <li>impedisce di versionare file sensibili per sbaglio.</li>
+                <li>keeps the history clean;</li>
+                <li>avoids pointless noise;</li>
+                <li>reduces risk;</li>
+                <li>stops you accidentally versioning sensitive files.</li>
               </ul>
-              <h4>Attenzione importante</h4>
-              <p>Se un file è già stato tracciato, aggiungerlo dopo a .gitignore non basta a farlo sparire dal repository.</p>
-              <p>In quel caso devi prima rimuoverlo dall’indice:</p>
-              <pre><code class="language-bash">git rm --cached nomefile</code></pre>
-              <p>Poi fai un commit.</p>
-              <p>Questo punto confonde tantissimi principianti.</p>
+              <h4>An important caveat</h4>
+              <p>If a file is already tracked, adding it to .gitignore afterwards is not enough to make it disappear from the repository.</p>
+              <p>In that case you first have to remove it from the index:</p>
+              <pre><code class="language-bash">git rm --cached filename</code></pre>
+              <p>Then you commit.</p>
+              <p>This point confuses an awful lot of beginners.</p>
             </section>
           </section>
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>6. Branch merge e remoti</h2>
+            <h2>6. Branches, merges and remotes</h2>
             <section class="guide-subchapter">
-              <h3>Branch: cosa sono davvero</h3>
+              <h3>Branches: what they really are</h3>
               <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/branch-merge-git.svg" alt="Schema branch e merge" loading="lazy" decoding="async" width="1200" height="500">
-<figcaption>Branch e merge: lavori separato, integri quando pronto.</figcaption>
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/branch-merge-git.svg" alt="Diagram of branching and merging" loading="lazy" decoding="async" width="1200" height="500">
+<figcaption>Branch and merge: you work separately, and integrate when it is ready.</figcaption>
 </figure>
-              <p>Un branch è una linea di lavoro separata.</p>
-              <p>Ti permette di sviluppare una modifica senza sporcare subito il branch principale, che di solito si chiama main.</p>
-              <p>Per esempio, se vuoi provare una nuova navbar mobile, invece di lavorare direttamente su main puoi creare un branch dedicato.</p>
+              <p>A branch is a separate line of work.</p>
+              <p>It lets you develop a change without immediately messing up the main branch, which is usually called main.</p>
+              <p>For example, if you want to try a new mobile navbar, instead of working directly on main you can create a dedicated branch.</p>
               <pre><code class="language-bash">git switch -c feature/navbar-mobile</code></pre>
-              <p>Da quel momento lavori lì dentro.</p>
-              <h4>Perché servono</h4>
-              <p>I branch ti permettono di:</p>
+              <p>From then on you work in there.</p>
+              <h4>Why they matter</h4>
+              <p>Branches let you:</p>
               <ul class="guide-list">
-                <li>sperimentare senza caos;</li>
-                <li>separare meglio il lavoro;</li>
-                <li>tenere main più pulito;</li>
-                <li>unire il risultato solo quando è pronto.</li>
+                <li>experiment without chaos;</li>
+                <li>separate work more clearly;</li>
+                <li>keep main tidier;</li>
+                <li>merge the result only once it is ready.</li>
               </ul>
-              <h4>Nomi utili per i branch</h4>
+              <h4>Useful branch names</h4>
               <ul class="guide-list">
                 <li><code>feature/navbar-mobile</code></li>
                 <li><code>fix/footer-link</code></li>
                 <li><code>refactor/cards-layout</code></li>
                 <li><code>docs/setup-guide</code></li>
               </ul>
-              <p>Evita nomi confusi tipo prova, test2, nuovo, boh.</p>
-              <h4>Una cosa utile da sapere</h4>
-              <p>I branch non sono copie pesanti del progetto. Sono puntatori intelligenti alla storia. Per questo crearli è leggero e normale.</p>
+              <p>Avoid confusing names like test, test2, new, dunno.</p>
+              <h4>Something useful to know</h4>
+              <p>Branches are not heavy copies of the project. They are clever pointers into the history. That is why creating them is cheap and perfectly normal.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Merge e conflitti senza panico</h3>
-              <p>Quando hai finito di lavorare su un branch, puoi unirlo a main.</p>
-              <p>Questo si chiama merge.</p>
+              <h3>Merges and conflicts without panic</h3>
+              <p>When you have finished working on a branch, you can merge it into main.</p>
+              <p>This is called a merge.</p>
               <pre><code class="language-bash">git switch main
 git merge feature/navbar-mobile</code></pre>
-              <p>Se Git riesce a combinare tutto da solo, il merge fila via tranquillo.</p>
-              <p>Se invece due linee di lavoro hanno modificato la stessa parte di uno stesso file in modi incompatibili, nasce un conflitto.</p>
-              <h4>Il conflitto non è una tragedia</h4>
-              <p>Il conflitto non è Git che si rompe.</p>
-              <p>È Git che ti dice:</p>
-              <p>Qui non posso decidere da solo. Dimmi tu quale versione tenere.</p>
-              <p>Nel file vedrai marcatori di questo tipo:</p>
+              <p>If Git can combine everything on its own, the merge goes through quietly.</p>
+              <p>If instead two lines of work changed the same part of the same file in incompatible ways, you get a conflict.</p>
+              <h4>A conflict is not a disaster</h4>
+              <p>A conflict is not Git breaking.</p>
+              <p>It is Git telling you:</p>
+              <p>I cannot decide this on my own. Tell me which version to keep.</p>
+              <p>In the file you will see markers like this:</p>
               <pre><code class="language-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 &lt;nav class=&quot;main-nav dark&quot;&gt;
 =======
 &lt;nav class=&quot;main-nav glass&quot;&gt;
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/header-style</code></pre>
-              <p>Tu devi leggere, capire le due versioni e scegliere cosa tenere oppure combinarle manualmente.</p>
-              <p>Poi salvi il file, lo aggiungi di nuovo e completi il processo:</p>
+              <p>You have to read them, understand the two versions and choose which to keep, or combine them by hand.</p>
+              <p>Then you save the file, add it again and complete the process:</p>
               <pre><code class="language-bash">git add index.html
 git commit</code></pre>
               <figure class="guide-figure guide-figure--teaching">
-                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/conflitto-merge-risoluzione.svg" alt="Conflitto Git tra branch main e branch alternativo sulla stessa riga" loading="lazy" decoding="async" width="1200" height="560">
-                <figcaption>Idea semplice: branch main e branch alternativo hanno cambiato la stessa riga; scegli una versione finale pulita e completi il commit.</figcaption>
+                <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/conflitto-merge-risoluzione.svg" alt="A Git conflict between the main branch and another branch on the same line" loading="lazy" decoding="async" width="1200" height="560">
+                <figcaption>The simple idea: the main branch and another branch changed the same line; you pick one clean final version and complete the commit.</figcaption>
               </figure>
             </section>
             <section class="guide-subchapter">
-              <h3>Remoti: clone, fetch, pull e push</h3>
-              <p>Un remoto è una copia del repository ospitata altrove, per esempio su GitHub.</p>
-              <p>Il nome convenzionale del remoto principale è spesso origin.</p>
-              <h4>Collegare un repository locale a GitHub</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/tuonome/nome-repo.git
+              <h3>Remotes: clone, fetch, pull and push</h3>
+              <p>A remote is a copy of the repository hosted elsewhere, on GitHub for instance.</p>
+              <p>The conventional name for the main remote is usually origin.</p>
+              <h4>Connecting a local repository to GitHub</h4>
+              <pre><code class="language-bash">git remote add origin https://github.com/yourname/repo-name.git
 git remote -v
 git push -u origin main</code></pre>
-              <h4>I quattro verbi da capire bene</h4>
+              <h4>The four verbs worth understanding</h4>
               <h4>clone</h4>
-              <pre><code class="language-bash">git clone https://github.com/utente/progetto.git</code></pre>
-              <p>Scarica in locale un repository remoto già esistente.</p>
+              <pre><code class="language-bash">git clone https://github.com/user/project.git</code></pre>
+              <p>Downloads an existing remote repository to your machine.</p>
               <h4>fetch</h4>
               <pre><code class="language-bash">git fetch origin</code></pre>
-              <p>Aggiorna le informazioni dal remoto, ma senza integrare automaticamente nel branch corrente.</p>
-              <p>È molto utile perché ti fa vedere prima e decidere poi.</p>
+              <p>Updates the information from the remote, without automatically integrating it into the current branch.</p>
+              <p>Very useful, because it lets you look first and decide afterwards.</p>
               <h4>pull</h4>
               <pre><code class="language-bash">git pull origin main</code></pre>
-              <p>Scarica e integra nel branch corrente.</p>
-              <p>Nella configurazione più comune equivale a fetch più merge. In alcuni workflow può integrare usando rebase, quindi è bene sapere come è configurato il tuo ambiente.</p>
+              <p>Downloads and integrates into the current branch.</p>
+              <p>In the most common configuration it is equivalent to fetch plus merge. In some workflows it may integrate using rebase, so it is worth knowing how your environment is set up.</p>
               <h4>push</h4>
               <pre><code class="language-bash">git push origin main</code></pre>
-              <p>Pubblica sul remoto i commit che hai fatto in locale.</p>
+              <p>Publishes the commits you made locally to the remote.</p>
               <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Schema repository locale e remoto" loading="lazy" decoding="async" width="1200" height="500">
-<figcaption>Schema riassuntivo dopo i verbi: push manda online, fetch controlla il remoto, pull scarica e integra.</figcaption>
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Diagram of the local and remote repositories" loading="lazy" decoding="async" width="1200" height="500">
+<figcaption>A summary of the verbs: push sends things online, fetch checks the remote, pull downloads and integrates.</figcaption>
 </figure>
-              <h4>Consiglio pratico</h4>
-              <p>All’inizio non usare pull come un pulsante automatico premuto a occhi chiusi. Meglio capire cosa stai facendo. A volte fetch prima di integrare ti dà più controllo e meno ansia.</p>
+              <h4>A practical tip</h4>
+              <p>Early on, do not treat pull as an automatic button pressed with your eyes shut. Better to understand what you are doing. Sometimes fetching before integrating gives you more control and less anxiety.</p>
             </section>
           </section>
           <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>7. Recupero errori e reflog</h2>
+            <h2>7. Recovering from mistakes, and the reflog</h2>
             <section class="guide-subchapter">
-              <h3>Tornare indietro: restore, reset e revert</h3>
-              <p>Questa è una delle zone che spaventa di più i principianti.</p>
-              <p>In realtà basta capire che questi tre comandi non fanno la stessa cosa.</p>
+              <h3>Going back: restore, reset and revert</h3>
+              <p>This is one of the areas that frightens beginners most.</p>
+              <p>In reality you just need to understand that these three commands do different things.</p>
               <h4>restore</h4>
-              <p>Serve soprattutto a scartare modifiche locali o a ripristinare un file.</p>
+              <p>Mainly used to discard local changes or restore a file.</p>
               <pre><code class="language-bash">git restore style.css</code></pre>
-              <p>Se hai pasticciato un file e vuoi annullare le modifiche locali non ancora committate, restore è spesso la scelta più semplice.</p>
-              <p>Di default <code>git restore style.css</code> riporta il file allo stato attualmente registrato nell'index. Se non hai nulla in staging, per un principiante questo di solito coincide con l'ultimo commit. Se vuoi essere esplicito puoi anche indicare la sorgente:</p>
+              <p>If you have made a mess of a file and want to undo local changes that are not yet committed, restore is often the simplest choice.</p>
+              <p>By default <code>git restore style.css</code> returns the file to the state currently recorded in the index. If you have nothing staged, for a beginner that usually coincides with the last commit. If you want to be explicit, you can also name the source:</p>
               <pre><code class="language-bash">git restore --source=HEAD -- style.css</code></pre>
               <h4>reset</h4>
-              <p>reset è più potente e più delicato.</p>
-              <p>Può spostare il puntatore della cronologia e, a seconda dell’opzione usata, influenzare staging area e working tree.</p>
+              <p>reset is more powerful and more delicate.</p>
+              <p>It can move the history pointer and, depending on the option used, affect the staging area and the working tree.</p>
               <pre><code class="language-bash">git reset --soft HEAD~1
 git reset --hard HEAD~1</code></pre>
               <ul class="guide-list">
-                <li><code>--soft</code> torna indietro nella cronologia ma mantiene le modifiche nello staging;</li>
-                <li><code>--hard</code> riallinea cronologia, staging e working tree in modo drastico e può eliminare modifiche non salvate.</li>
+                <li><code>--soft</code> steps back in the history but keeps the changes in staging;</li>
+                <li><code>--hard</code> realigns history, staging and working tree drastically, and can wipe out unsaved changes.</li>
               </ul>
-              <p>Quindi: utile, ma da usare con cervello.</p>
+              <p>So: useful, but to be used with your brain switched on.</p>
               <h4>revert</h4>
-              <p>revert è diverso.</p>
-              <p>Non cancella un commit dalla storia. Crea un nuovo commit che annulla l’effetto del commit scelto.</p>
+              <p>revert is different.</p>
+              <p>It does not delete a commit from the history. It creates a new commit that undoes the effect of the chosen one.</p>
               <pre><code class="language-bash">git revert abc1234</code></pre>
-              <p>Per questo è spesso la scelta più sicura quando la cronologia è già stata pubblicata.</p>
-              <h4>Schema mentale rapido</h4>
+              <p>Which is why it is often the safest choice once the history has already been published.</p>
+              <h4>A quick mental model</h4>
               <ul class="guide-list">
-                <li>restore = scarto o ripristino file;</li>
-                <li>reset = riposiziono la cronologia;</li>
-                <li>revert = annullo un commit senza riscrivere il passato.</li>
+                <li>restore = discard or restore files;</li>
+                <li>reset = reposition the history;</li>
+                <li>revert = undo a commit without rewriting the past.</li>
               </ul>
               <figure class="guide-figure">
-<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/recupero-errori-git.svg" alt="Confronto restore reset revert" loading="lazy" decoding="async" width="1200" height="520">
-<figcaption>Riassunto dopo la spiegazione: restore lavora sui file, reset sposta la cronologia, revert crea un commit di annullamento.</figcaption>
+<img src="/images/percorsi-apprendimento/git-pratico-senza-panico/recupero-errori-git.svg" alt="Comparison of restore, reset and revert" loading="lazy" decoding="async" width="1200" height="520">
+<figcaption>A recap: restore works on files, reset moves the history, revert creates an undo commit.</figcaption>
 </figure>
             </section>
             <section class="guide-subchapter">
-              <h3>Reflog: il paracadute nascosto</h3>
-              <p>git reflog è uno dei comandi più rassicuranti di Git.</p>
-              <p>Registra i movimenti di HEAD e di altri riferimenti. In pratica ti aiuta a ritrovare punti della cronologia che sembravano spariti.</p>
-              <p>Molte volte quando uno dice “ho perso tutto”, Git risponde: “forse no”.</p>
-              <h4>Esempio</h4>
+              <h3>The reflog: the hidden parachute</h3>
+              <p>git reflog is one of Git's most reassuring commands.</p>
+              <p>It records the movements of HEAD and other references. In practice it helps you find points in the history that looked lost.</p>
+              <p>Plenty of times when someone says “I've lost everything”, Git answers: “maybe not”.</p>
+              <h4>Example</h4>
               <pre><code class="language-bash">git reflog
 git reset --hard HEAD@{2}</code></pre>
-              <p>Con reflog guardi i movimenti recenti. Poi puoi decidere di tornare a un punto precedente.</p>
-              <p>Non è magia eterna e non sostituisce il buon senso, ma sapere che esiste cambia tantissimo il rapporto psicologico con Git.</p>
+              <p>With reflog you look at recent movements. Then you can decide to go back to an earlier point.</p>
+              <p>It is not eternal magic and it does not replace common sense, but knowing it exists completely changes your psychological relationship with Git.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Errori classici dei principianti</h3>
-              <p>Chi inizia con Git inciampa spesso negli stessi punti.</p>
+              <h3>Classic beginner mistakes</h3>
+              <p>People starting out with Git tend to trip over the same things.</p>
               <ol class="guide-number-list">
-                <li><strong>Fare commit giganteschi.</strong> Se in un solo commit metti HTML, CSS, JavaScript, immagini, prove e cambiamenti scollegati, poi capire o correggere diventa molto più difficile.</li>
-                <li><strong>Usare messaggi vaghi.</strong> update non racconta niente.</li>
-                <li><strong>Lavorare sempre su main.</strong> Per modifiche piccole può anche capitare, ma come regola generale è molto meglio usare branch sensati.</li>
-                <li><strong>Dimenticare .gitignore.</strong> Poi ti ritrovi a tracciare roba inutile o sensibile.</li>
-                <li><strong>Usare pull senza capire.</strong> Meglio sapere almeno mentalmente che cosa sta entrando nel tuo progetto.</li>
-                <li><strong>Usare reset --hard con leggerezza.</strong> Quel comando non è una caramella.</li>
-                <li><strong>Andare nel panico davanti a un conflitto.</strong> Il conflitto non è la fine del mondo. È una scelta manuale che Git ti chiede.</li>
-                <li><strong>Non controllare status.</strong> git status è il tuo cruscotto. Se lo ignori, lavori mezzo bendato.</li>
+                <li><strong>Making giant commits.</strong> If you put HTML, CSS, JavaScript, images, experiments and unrelated changes into one commit, understanding or fixing it later becomes far harder.</li>
+                <li><strong>Using vague messages.</strong> update tells you nothing.</li>
+                <li><strong>Always working on main.</strong> For small changes it happens, but as a general rule sensible branches are much better.</li>
+                <li><strong>Forgetting .gitignore.</strong> Then you end up tracking useless or sensitive material.</li>
+                <li><strong>Using pull without understanding it.</strong> Better to know, at least roughly, what is coming into your project.</li>
+                <li><strong>Reaching for reset --hard casually.</strong> That command is not a sweet.</li>
+                <li><strong>Panicking at a conflict.</strong> A conflict is not the end of the world. It is a manual choice Git is asking you to make.</li>
+                <li><strong>Not checking status.</strong> git status is your dashboard. Ignore it and you are working half-blindfolded.</li>
               </ol>
             </section>
           </section>
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>8. Laboratorio guidato</h2>
+            <h2>8. Guided lab</h2>
             <section class="guide-subchapter">
-              <h3>Mini laboratorio guidato</h3>
-              <p>Facciamo un piccolo percorso realistico.</p>
-              <p>Immagina di avere una cartella con questi file:</p>
+              <h3>A short guided lab</h3>
+              <p>Let's walk through a small, realistic path.</p>
+              <p>Imagine you have a folder with these files:</p>
               <ul class="guide-list">
                 <li>index.html</li>
                 <li>style.css</li>
                 <li>main.js</li>
                 <li>images/</li>
               </ul>
-              <h4>Passo 1: inizializza Git</h4>
-              <pre><code class="language-bash">cd sito-vetrina
+              <h4>Step 1: initialise Git</h4>
+              <pre><code class="language-bash">cd showcase-site
 git init
 git status</code></pre>
-              <h4>Passo 2: crea .gitignore se serve</h4>
-              <p>Per esempio, se è un progetto con build o dipendenze:</p>
+              <h4>Step 2: create a .gitignore if you need one</h4>
+              <p>For instance, if this is a project with a build or dependencies:</p>
               <pre><code class="language-text">node_modules/
 dist/
 .env</code></pre>
-              <h4>Passo 3: primo commit</h4>
+              <h4>Step 3: first commit</h4>
               <pre><code class="language-bash">git add .
-git commit -m &quot;Primo commit: struttura iniziale del sito&quot;</code></pre>
-              <h4>Passo 4: fai una modifica mirata</h4>
-              <p>Immagina di migliorare il titolo hero e il padding della navbar.</p>
-              <p>Controlla cosa è cambiato:</p>
+git commit -m &quot;First commit: initial site structure&quot;</code></pre>
+              <h4>Step 4: make one focused change</h4>
+              <p>Imagine improving the hero title and the navbar's padding.</p>
+              <p>Check what changed:</p>
               <pre><code class="language-bash">git status
 git diff</code></pre>
-              <p>Se tutto è coerente:</p>
+              <p>If it all hangs together:</p>
               <pre><code class="language-bash">git add index.html style.css
-git commit -m &quot;Aggiorna hero e migliora spacing della navbar&quot;</code></pre>
-              <h4>Passo 5: crea un branch per una nuova funzione</h4>
+git commit -m &quot;Update the hero and improve navbar spacing&quot;</code></pre>
+              <h4>Step 5: create a branch for a new feature</h4>
               <pre><code class="language-bash">git switch -c feature/testimonials</code></pre>
-              <p>Aggiungi una nuova sezione e fai un commit dedicato:</p>
+              <p>Add a new section and make a dedicated commit:</p>
               <pre><code class="language-bash">git add index.html
-git commit -m &quot;Aggiunge markup sezione testimonials&quot;</code></pre>
-              <p>Poi magari aggiungi lo stile:</p>
+git commit -m &quot;Add testimonials section markup&quot;</code></pre>
+              <p>Then perhaps add the styling:</p>
               <pre><code class="language-bash">git add style.css
-git commit -m &quot;Aggiunge stile responsive per testimonials&quot;</code></pre>
-              <h4>Passo 6: torna su main e fai merge</h4>
+git commit -m &quot;Add responsive styling for testimonials&quot;</code></pre>
+              <h4>Step 6: go back to main and merge</h4>
               <pre><code class="language-bash">git switch main
 git merge feature/testimonials</code></pre>
-              <h4>Passo 7: collega GitHub e fai push</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/utente/sito-vetrina.git
+              <h4>Step 7: connect GitHub and push</h4>
+              <pre><code class="language-bash">git remote add origin https://github.com/user/showcase-site.git
 git push -u origin main</code></pre>
-              <h4>Cosa hai fatto davvero</h4>
-              <p>Hai già usato il cuore pratico di Git:</p>
+              <h4>What you actually did</h4>
+              <p>You have already used the practical heart of Git:</p>
               <ul class="guide-list">
                 <li>init;</li>
                 <li>status;</li>
@@ -619,205 +616,205 @@ git push -u origin main</code></pre>
                 <li>merge;</li>
                 <li>push.</li>
               </ul>
-              <p>Se rifai questo laboratorio due o tre volte su progetti piccoli, inizi davvero a sentirti meno spaesato.</p>
+              <p>Run through this lab two or three times on small projects and you will genuinely start to feel less lost.</p>
             </section>
           </section>
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>9. Checklist e glossario</h2>
+            <h2>9. Checklist and glossary</h2>
             <section class="guide-subchapter">
-              <h3>Checklist di sopravvivenza</h3>
-              <h4>Prima di fare commit</h4>
+              <h3>A survival checklist</h3>
+              <h4>Before committing</h4>
               <ul class="guide-checklist">
-                <li>Ho capito quali modifiche voglio davvero salvare.</li>
-                <li>Questo commit racconta una sola intenzione.</li>
-                <li>Il messaggio è chiaro.</li>
-                <li>Non sto includendo file inutili o sensibili.</li>
-                <li>Ho controllato git status o git diff.</li>
+                <li>I know which changes I actually want to save.</li>
+                <li>This commit tells one single intention.</li>
+                <li>The message is clear.</li>
+                <li>I am not including useless or sensitive files.</li>
+                <li>I checked git status or git diff.</li>
               </ul>
-              <h4>Prima di fare push</h4>
+              <h4>Before pushing</h4>
               <ul class="guide-checklist">
-                <li>Sto lavorando sul branch giusto.</li>
-                <li>La cronologia è sensata.</li>
-                <li>Non sto pubblicando roba rotta per sbaglio.</li>
-                <li>So cosa sto mandando sul remoto.</li>
+                <li>I am working on the right branch.</li>
+                <li>The history makes sense.</li>
+                <li>I am not accidentally publishing something broken.</li>
+                <li>I know what I am sending to the remote.</li>
               </ul>
-              <h4>Quando qualcosa va storto</h4>
+              <h4>When something goes wrong</h4>
               <ul class="guide-checklist">
-                <li>Non panico.</li>
-                <li>Leggo git status.</li>
-                <li>Cerco di capire dove sono: working tree, staging, repository o remoto.</li>
-                <li>Se ho paura di perdere qualcosa, controllo reflog.</li>
-                <li>Se la cronologia è già pubblica, valuto revert prima di fare danni peggiori.</li>
+                <li>I do not panic.</li>
+                <li>I read git status.</li>
+                <li>I work out where I am: working tree, staging, repository or remote.</li>
+                <li>If I am afraid of losing something, I check the reflog.</li>
+                <li>If the history is already public, I consider revert before doing worse damage.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
-              <h3>Glossario essenziale</h3>
+              <h3>Essential glossary</h3>
               <dl class="guide-glossary">
-                <div><dt>Repository</dt><dd>il progetto con la sua cronologia Git.</dd></div>
-                <div><dt>Commit</dt><dd>una tappa salvata nella storia.</dd></div>
-                <div><dt>Branch</dt><dd>una linea di sviluppo separata.</dd></div>
-                <div><dt>Merge</dt><dd>unione di due linee di lavoro.</dd></div>
-                <div><dt>Remote</dt><dd>copia del repository ospitata altrove.</dd></div>
-                <div><dt>Origin</dt><dd>nome convenzionale del remoto principale.</dd></div>
-                <div><dt>HEAD</dt><dd>puntatore alla posizione attuale nella cronologia.</dd></div>
-                <div><dt>Hash</dt><dd>identificatore univoco di un commit.</dd></div>
-                <div><dt>Staging area</dt><dd>zona intermedia tra modifiche locali e commit.</dd></div>
-                <div><dt>Working tree</dt><dd>i file reali su cui stai lavorando.</dd></div>
+                <div><dt>Repository</dt><dd>the project together with its Git history.</dd></div>
+                <div><dt>Commit</dt><dd>a stage saved in the story.</dd></div>
+                <div><dt>Branch</dt><dd>a separate line of development.</dd></div>
+                <div><dt>Merge</dt><dd>the joining of two lines of work.</dd></div>
+                <div><dt>Remote</dt><dd>a copy of the repository hosted elsewhere.</dd></div>
+                <div><dt>Origin</dt><dd>the conventional name for the main remote.</dd></div>
+                <div><dt>HEAD</dt><dd>a pointer to your current position in the history.</dd></div>
+                <div><dt>Hash</dt><dd>a commit's unique identifier.</dd></div>
+                <div><dt>Staging area</dt><dd>the intermediate zone between local changes and a commit.</dd></div>
+                <div><dt>Working tree</dt><dd>the real files you are working on.</dd></div>
               </dl>
             </section>
           </section>
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>10. Git + AI in assistenza</h2>
+            <h2>10. Git + AI as an assistant</h2>
             <section class="guide-subchapter">
-              <h3>Metodo pratico: manuale con criterio + AI in assistenza</h3>
-              <p>Il punto non è lasciare tutto in mano all&#x27;AI. Il punto è usare l&#x27;AI come copilota operativo, mentre tu tieni la direzione: intenzione del commit, confini, rischi, ordine logico.</p>
-              <p>Regola semplice: prima chiedi analisi e proposta, poi approvi azione. Così eviti commit sporchi, push impulsivi e correzioni dolorose.</p>
+              <h3>A practical method: deliberate manual work + AI as an assistant</h3>
+              <p>The point is not to hand everything over to the AI. The point is to use the AI as an operational copilot while you keep hold of the direction: the commit's intention, its boundaries, the risks, the logical order.</p>
+              <p>A simple rule: ask for analysis and a proposal first, then approve the action. That way you avoid dirty commits, impulsive pushes and painful corrections.</p>
 
-              <h4>Schema operativo: cosa fai tu e cosa delegi</h4>
+              <h4>An operational split: what you do and what you delegate</h4>
               <div class="guide-ai-grid">
                 <article class="guide-ai-card">
-                  <h5>Lo decidi tu</h5>
+                  <h5>You decide</h5>
                   <ul>
-                    <li>Obiettivo del lavoro (cosa vuoi davvero consegnare).</li>
-                    <li>Scope del commit (quali file dentro e quali fuori).</li>
-                    <li>Momento del push (solo dopo verifica rischi).</li>
+                    <li>The goal of the work (what you actually want to deliver).</li>
+                    <li>The commit's scope (which files are in and which are out).</li>
+                    <li>When to push (only after checking the risks).</li>
                   </ul>
                 </article>
                 <article class="guide-ai-card">
-                  <h5>Lo fa bene l&#x27;AI</h5>
+                  <h5>The AI is good at</h5>
                   <ul>
-                    <li>Leggere lo stato e riassumere il contesto.</li>
-                    <li>Preparare staging selettivo e diff leggibile.</li>
-                    <li>Guidarti su conflitti e checklist pre-push.</li>
+                    <li>Reading the state and summarising the context.</li>
+                    <li>Preparing selective staging and a readable diff.</li>
+                    <li>Walking you through conflicts and a pre-push checklist.</li>
                   </ul>
                 </article>
               </div>
 
-              <h4>Workflow completo su progetto reale</h4>
+              <h4>A full workflow on a real project</h4>
               <ol class="guide-ai-steps">
                 <li>
-                  <strong>Imposta il progetto:</strong> fai inizializzazione e verifica stato iniziale.
-                  <pre><code class="language-text">Inizializza il repository Git in questa cartella, configura main se necessario e spiegami in modo sintetico cosa hai fatto.</code></pre>
+                  <strong>Set the project up:</strong> initialise and check the starting state.
+                  <pre><code class="language-text">Initialise the Git repository in this folder, set up main if needed and briefly explain what you did.</code></pre>
                 </li>
                 <li>
-                  <strong>Separa i lavori per argomento:</strong> prima capire, poi toccare staging.
-                  <pre><code class="language-text">Analizza le modifiche e dividile per blocchi: contenuti guida, stile, script, altro.</code></pre>
+                  <strong>Separate the work by topic:</strong> understand first, touch staging afterwards.
+                  <pre><code class="language-text">Analyse the changes and split them into blocks: guide content, styling, scripts, other.</code></pre>
                 </li>
                 <li>
-                  <strong>Prepara commit pulito:</strong> un intento unico, niente rumore.
-                  <pre><code class="language-text">Prepara un commit solo dei file legati alla guida Git, escludi il resto, poi mostrami file staged, diff staged e messaggio commit proposto.</code></pre>
+                  <strong>Prepare a clean commit:</strong> one intention, no noise.
+                  <pre><code class="language-text">Prepare a commit containing only the files related to the Git guide, leave the rest out, then show me the staged files, the staged diff and the commit message you propose.</code></pre>
                 </li>
                 <li>
-                  <strong>Gestisci conflitti in sicurezza:</strong> mai scorciatoie distruttive.
-                  <pre><code class="language-text">Guidami nella risoluzione dei conflitti mantenendo le parti utili. Non usare reset --hard o comandi distruttivi.</code></pre>
+                  <strong>Handle conflicts safely:</strong> never take destructive shortcuts.
+                  <pre><code class="language-text">Walk me through resolving the conflicts while keeping the useful parts. Do not use reset --hard or any destructive command.</code></pre>
                 </li>
                 <li>
-                  <strong>Fai quality gate prima del push:</strong> solo se tutto è coerente.
-                  <pre><code class="language-text">Prima del push fai checklist rischi: branch corretto, commit sensati, diff pulito, nessun file sensibile, working tree pulito. Mostrami il riepilogo e aspetta conferma prima di procedere.</code></pre>
+                  <strong>Run a quality gate before pushing:</strong> only if everything hangs together.
+                  <pre><code class="language-text">Before pushing, run a risk checklist: correct branch, sensible commits, clean diff, no sensitive files, clean working tree. Show me the summary and wait for confirmation before going ahead.</code></pre>
                 </li>
               </ol>
 
-              <h4>Esempio concreto: dal manuale all&#x27;AI</h4>
-              <p>Manuale classico: <code>git status</code> -> <code>git add -p</code> -> <code>git diff --staged</code> -> <code>git commit</code> -> <code>git push</code>.</p>
-              <p>Versione assistita: chiedi lo stesso flusso in linguaggio naturale, ma imponi sempre vincoli chiari su scope e sicurezza.</p>
+              <h4>A concrete example: from manual to AI-assisted</h4>
+              <p>The classic manual flow: <code>git status</code> -> <code>git add -p</code> -> <code>git diff --staged</code> -> <code>git commit</code> -> <code>git push</code>.</p>
+              <p>The assisted version: ask for the same flow in plain language, but always impose clear constraints on scope and safety.</p>
 
-              <h4>Prompt pratici da usare subito</h4>
-              <pre><code class="language-text">Controlla lo stato Git del progetto e riassumilo in 3 righe.</code></pre>
-              <pre><code class="language-text">Prepara un commit solo dei file della guida Git, escludi tutto il resto e mostrami il diff.</code></pre>
-              <pre><code class="language-text">Guidami nella risoluzione di questo conflitto senza usare comandi distruttivi.</code></pre>
-              <pre><code class="language-text">Prima di pushare fammi checklist rischi, mostrami cosa stai per inviare e aspetta la mia conferma.</code></pre>
+              <h4>Practical prompts you can use straight away</h4>
+              <pre><code class="language-text">Check the project's Git status and summarise it in three lines.</code></pre>
+              <pre><code class="language-text">Prepare a commit with only the Git guide's files, leave everything else out and show me the diff.</code></pre>
+              <pre><code class="language-text">Walk me through resolving this conflict without using destructive commands.</code></pre>
+              <pre><code class="language-text">Before pushing, give me a risk checklist, show me what you are about to send and wait for my confirmation.</code></pre>
 
-              <p>Regola d&#x27;oro finale: delega velocità e ripetizione, non la comprensione. Se resti tu a guidare la logica, l&#x27;AI ti fa lavorare meglio, non a caso.</p>
+              <p>The golden rule: delegate speed and repetition, not understanding. As long as you keep steering the logic, the AI makes you work better rather than at random.</p>
             </section>
           </section>
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>11. Nota finale</h2>
+            <h2>11. Final note</h2>
             <section class="guide-subchapter">
-              <h3>Nota finale</h3>
-              <p>Arrivato qui non hai visto tutto Git, e va bene così.</p>
-              <p>Hai visto la parte più utile per iniziare davvero: capire la logica di Git, usare il flusso base, fare commit più puliti, lavorare con più ordine, evitare alcuni errori classici e recuperare con più calma quando qualcosa va storto.</p>
-              <p>Per andare più a fondo esistono argomenti che qui sono stati solo accennati o lasciati fuori, come rebase, stash, cherry-pick, tag, pull request avanzate e altri strumenti più specialistici. Sono utili, ma non servono per muovere i primi passi in modo solido.</p>
-              <p>La verità è semplice: Git non si impara leggendo una volta sola. Si impara usandolo. Più farai piccoli esperimenti su progetti veri, più i concetti ti sembreranno naturali. E più i comandi smetteranno di sembrare magia nera e inizieranno a diventare strumenti normali di lavoro.</p>
-              <p>Non serve sapere tutto subito. Serve iniziare bene. E iniziare bene, con Git, vuol dire meno confusione, meno panico e molto più controllo su quello che stai costruendo.</p>
-              <p>Questa guida vuole fare esattamente questo: darti una base pratica, chiara e umana da cui partire.</p>
-              <p>Adesso il passo successivo non è rileggere tutto dieci volte. È aprire un progetto, inizializzare Git e cominciare a usarlo davvero.</p>
-              <h3>Guide correlate</h3>
+              <h3>Final note</h3>
+              <p>Having got this far, you have not seen all of Git, and that is fine.</p>
+              <p>You have seen the part that is most useful for genuinely getting started: understanding Git's logic, using the basic flow, making cleaner commits, working more tidily, avoiding some classic mistakes and recovering more calmly when something goes wrong.</p>
+              <p>To go deeper there are topics only touched on here or left out entirely, such as rebase, stash, cherry-pick, tags, advanced pull requests and other more specialised tools. They are useful, but you do not need them to take your first steps solidly.</p>
+              <p>The truth is simple: you do not learn Git by reading about it once. You learn it by using it. The more small experiments you run on real projects, the more natural the concepts will feel. And the more the commands will stop looking like black magic and start becoming ordinary working tools.</p>
+              <p>You do not need to know everything straight away. You need to start well. And starting well, with Git, means less confusion, less panic and far more control over what you are building.</p>
+              <p>That is exactly what this guide is for: to give you a practical, clear, human foundation to work from.</p>
+              <p>The next step now is not to reread all of this ten times. It is to open a project, initialise Git and start actually using it.</p>
+              <h3>Related guides</h3>
               <ul class="guide-list">
-                <li><a href="/en/tutorials/github-in-practice/">GitHub operativo</a>: repository remoti, push/pull, pull request, issue e workflow collaborativo.</li>
-                <li><a href="/en/tutorials/">Tutti i tutorial</a>: elenco aggiornato delle guide disponibili.</li>
+                <li><a href="/en/tutorials/github-in-practice/">GitHub in practice</a>: remote repositories, push/pull, pull requests, issues and a collaborative workflow.</li>
+                <li><a href="/en/tutorials/">All tutorials</a>: an up-to-date list of the available guides.</li>
               </ul>
             </section>
           </section>
-        
+
           <!-- SEZIONE QUIZ INTERATTIVO -->
-          
+
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>12. Quick reference (cheat sheet)</h2>
             <section class="guide-subchapter">
-              
-              <p>Ecco l'elenco dei comandi Git locali fondamentali da tenere sempre a mente:</p>
+
+              <p>Here are the fundamental local Git commands worth keeping in mind:</p>
               <div class="table-wrapper">
                 <table class="guide-table">
                   <thead>
                     <tr>
-                      <th>Comando</th>
-                      <th class="is-accent">Cosa fa</th>
-                      <th>Quando usarlo</th>
+                      <th>Command</th>
+                      <th class="is-accent">What it does</th>
+                      <th>When to use it</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td class="is-code is-strong">git init</td>
-                      <td>Inizializza un nuovo repository Git locale.</td>
-                      <td>All'avvio di un nuovo progetto da tracciare.</td>
+                      <td>Initialises a new local Git repository.</td>
+                      <td>At the start of a new project you want to track.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">git status</td>
-                      <td>Mostra lo stato corrente di working directory e staging area.</td>
-                      <td>Costantemente, prima di ogni add o commit.</td>
+                      <td>Shows the current state of the working directory and the staging area.</td>
+                      <td>Constantly, before every add or commit.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">git add .</td>
-                      <td>Sposta tutte le modifiche correnti nella Staging Area.</td>
-                      <td>Quando le modifiche sono pronte per essere committate.</td>
+                      <td>Moves all current changes into the staging area.</td>
+                      <td>When the changes are ready to be committed.</td>
                     </tr>
                     <tr>
                       <td class="is-code is-strong">git commit -m "msg"</td>
-                      <td>Salva definitivamente lo snapshot in staging nella cronologia.</td>
-                      <td>Dopo aver aggiunto i file in staging area.</td>
+                      <td>Permanently saves the staged snapshot into the history.</td>
+                      <td>After adding your files to the staging area.</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-    
+
             </section>
           </section>
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>13. Sfida pratica: Mettiti alla prova</h2>
+            <h2>13. Practical challenge: put yourself to the test</h2>
             <section class="guide-subchapter">
-              
-              <p>Apri il tuo terminale ed esegui i passaggi per creare un flusso di lavoro pulito:</p>
+
+              <p>Open your terminal and run through the steps for building a clean workflow:</p>
               <div class="alert alert--note">
                 <strong>Challenge goal:</strong>
-                <p>Crea un repository Git locale, crea un branch di sviluppo parallelo ed esegui un commit pulito di un nuovo file.</p>
+                <p>Create a local Git repository, create a parallel development branch and make one clean commit of a new file.</p>
                 <strong>Step-by-step instructions:</strong>
                 <ol>
-                  <li>Apri la cartella del tuo progetto nel terminale integrato e digita <code class="language-bash">git init</code>.</li>
-                  <li>Crea un nuovo branch di sviluppo con il comando <code class="language-bash">git checkout -b feature/prova-sfida</code>.</li>
-                  <li>Crea un file di testo <code class="language-text">sfida.txt</code> al cui interno scrivi "Sfida completata".</li>
-                  <li>Digita <code class="language-bash">git status</code>, poi sposta il file in staging con <code class="language-bash">git add sfida.txt</code> ed effettua il commit scrivendo il messaggio in lingua inglese.</li>
+                  <li>Open your project folder in the integrated terminal and type <code class="language-bash">git init</code>.</li>
+                  <li>Create a new development branch with <code class="language-bash">git checkout -b feature/challenge-test</code>.</li>
+                  <li>Create a text file called <code class="language-text">challenge.txt</code> and write "Challenge complete" inside it.</li>
+                  <li>Type <code class="language-bash">git status</code>, then stage the file with <code class="language-bash">git add challenge.txt</code> and commit it with a clear, specific message.</li>
                 </ol>
               </div>
-    
+
             </section>
           </section>
 
           <section id="chapter-quiz" data-quiz-id="git-pratico-senza-panico" class="guide-block guide-chapter quiz-section">
-            <h2>14. Verifica la tua preparazione (Quiz)</h2>
-            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
+            <h2>14. Check what you have learned (quiz)</h2>
+            <p class="quiz-intro">Test what you have learned in this guide with a quick 10-question multiple-choice quiz.</p>
             <div id="quiz-wrapper"></div>
           </section>
 
@@ -827,11 +824,11 @@ git push -u origin main</code></pre>
               <i class="fa-solid fa-code-branch"></i>
             </div>
             <div class="guide-next-step__content">
-              <h2 id="next-step-title" class="guide-next-step__title">Vuoi vedere questi comandi su un progetto vero?</h2>
+              <h2 id="next-step-title" class="guide-next-step__title">Want to see these commands on a real project?</h2>
               <p class="guide-next-step__text">
-                Invece di fare prove su file vuoti, dai un'occhiata ai miei template pronti all'uso.
-                Sono progetti reali con una history Git pulita: puoi studiarli per capire branch e commit,
-                o acquistarli direttamente per saltare la configurazione iniziale.
+                Instead of practising on empty files, take a look at my ready-to-use templates.
+                They are real projects with a clean Git history: you can study them to understand branches and commits,
+                or buy them outright and skip the initial setup.
               </p>
               <a href="/en/templates/" class="button-simple guide-next-step__cta">Explore the templates</a>
             </div>

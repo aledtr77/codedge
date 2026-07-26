@@ -10,28 +10,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/critical.css" />
-  <title>Deploy base | Guida pratica | Codedge</title>
+  <title>Deployment basics | Practical guide | Codedge</title>
   <meta
     name="description"
-    content="Guida pratica al deploy base: build, hosting, dominio, variabili ambiente, controlli finali ed errori comuni per pubblicare senza confusione.">
-  <!-- i18n: translation pending — this page still holds the Italian source text.
-       Remove this block (robots meta included) once the page is translated. -->
-  <meta name="robots" content="noindex,follow">
+    content="A practical guide to deployment basics: build, hosting, domain, environment variables, final checks and the common mistakes to avoid when publishing.">
   <link rel="canonical" href="https://codedge.it/en/tutorials/deployment-basics/">
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Deploy base | Guida pratica | Codedge" />
-  <meta property="og:description" content="Guida pratica al deploy base: build, hosting, dominio, variabili ambiente, controlli finali ed errori comuni per pubblicare senza confusione." />
+  <meta property="og:title" content="Deployment basics | Practical guide | Codedge" />
+  <meta property="og:description" content="A practical guide to deployment basics: build, hosting, domain, environment variables, final checks and the common mistakes to avoid when publishing." />
   <meta property="og:url" content="https://codedge.it/en/tutorials/deployment-basics/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Anteprima guida Deploy base" />
+  <meta property="og:image:alt" content="Deployment basics guide preview" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Deploy base | Guida pratica | Codedge" />
-  <meta name="twitter:description" content="Guida pratica al deploy base: build, hosting, dominio, variabili ambiente, controlli finali ed errori comuni per pubblicare senza confusione." />
+  <meta name="twitter:title" content="Deployment basics | Practical guide | Codedge" />
+  <meta name="twitter:description" content="A practical guide to deployment basics: build, hosting, domain, environment variables, final checks and the common mistakes to avoid when publishing." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
@@ -59,336 +56,336 @@
     <nav class="navbar" aria-label="Main navigation">
       <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
            (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
-      <span class="navbar-title resize-text"><i class="fas fa-rocket guide-title-icon" aria-hidden="true"></i>Deploy base</span>
+      <span class="navbar-title resize-text"><i class="fas fa-rocket guide-title-icon" aria-hidden="true"></i>Deployment basics</span>
     </nav>
   </header>
 
   <main id="main-content">
-    <h1 class="sr-only" id="deploy-guide-title">Deploy base</h1>
+    <h1 class="sr-only" id="deploy-guide-title">Deployment basics</h1>
     <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
     <section class="section git-guide-shell" aria-labelledby="deploy-guide-title">
       <div class="guide-layout">
-        <aside class="guide-toc" aria-label="Indice navigabile guida Deploy base">
+        <aside class="guide-toc" aria-label="Navigable index for the Deployment basics guide">
           <h2>Guide contents</h2>
           <ol class="guide-toc-list">
-            <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Cos’è davvero il deploy</a></li>
-            <li><a href="#chapter-03">2. Cosa ti serve prima di pubblicare</a></li>
-            <li><a href="#chapter-04">3. Build, output e cartella finale</a></li>
-            <li><a href="#chapter-05">4. Hosting statico: il punto di partenza migliore</a></li>
-            <li><a href="#chapter-06">5. Workflow base con GitHub + hosting</a></li>
-            <li><a href="#chapter-07">6. Dominio, DNS e HTTPS</a></li>
-            <li><a href="#chapter-08">7. Variabili ambiente e dati sensibili</a></li>
-            <li><a href="#chapter-09">8. Errori comuni dopo il deploy</a></li>
-            <li><a href="#chapter-10">9. Checklist prima di andare live</a></li>
-            <li><a href="#chapter-11">10. Da qui in poi</a></li>
-            <li><a href="#chapter-cheatsheet">11. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">12. Sfida pratica: Mettiti alla prova</a></li>
-            <li><a href="#chapter-quiz">13. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-01">Before we start</a></li>
+            <li><a href="#chapter-02">1. What deployment actually is</a></li>
+            <li><a href="#chapter-03">2. What you need before publishing</a></li>
+            <li><a href="#chapter-04">3. Build, output and the final folder</a></li>
+            <li><a href="#chapter-05">4. Static hosting: the best place to start</a></li>
+            <li><a href="#chapter-06">5. A basic workflow with GitHub + hosting</a></li>
+            <li><a href="#chapter-07">6. Domain, DNS and HTTPS</a></li>
+            <li><a href="#chapter-08">7. Environment variables and sensitive data</a></li>
+            <li><a href="#chapter-09">8. Common problems after a deploy</a></li>
+            <li><a href="#chapter-10">9. A checklist before going live</a></li>
+            <li><a href="#chapter-11">10. Where to go from here</a></li>
+            <li><a href="#chapter-cheatsheet">11. Quick reference (cheat sheet)</a></li>
+            <li><a href="#chapter-challenge">12. Practical challenge: put yourself to the test</a></li>
+            <li><a href="#chapter-quiz">13. Check what you have learned (quiz)</a></li>
           </ol>
         </aside>
 
-        <article class="guide-content" aria-label="Contenuto guida Deploy base">
+        <article class="guide-content" aria-label="Deployment basics guide content">
           <section id="chapter-01" class="guide-block guide-chapter">
             <div class="guide-intro-layout">
               <div class="guide-intro-copy">
-                <p class="guide-intro-kicker">Guida pratica per pubblicare i primi progetti</p>
-                <h2>Nota iniziale</h2>
+                <p class="guide-intro-kicker">A practical guide to publishing your first projects</p>
+                <h2>Before we start</h2>
               <section class="guide-subchapter">
-                <p>Quando un progetto funziona in locale, prima o poi arriva una domanda molto semplice: come lo pubblico davvero online?</p>
-                <p>Questa guida parte da qui. L’idea è rendere più chiaro il passaggio tra progetto locale e versione pubblicata, senza complicarlo inutilmente e senza farlo sembrare più misterioso di quanto sia.</p>
-                <p>Non è una guida pensata per coprire ogni caso possibile. È una base pratica per capire cosa significa deploy, quali passaggi contano davvero all’inizio e quali errori conviene evitare nei primi tentativi.</p>
+                <p>Once a project works locally, sooner or later a very simple question comes up: how do I actually put this online?</p>
+                <p>This guide starts there. The idea is to make the step from local project to published version clearer, without complicating it unnecessarily and without making it sound more mysterious than it is.</p>
+                <p>It is not meant to cover every possible case. It is a practical foundation for understanding what deployment means, which steps really matter at the beginning and which mistakes are worth avoiding on your first attempts.</p>
               </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
-                <img src="/images/percorsi-apprendimento/deploy-base/copertina-editoriale.webp" alt="Illustrazione di apertura della guida Deploy base" decoding="async" width="864" height="1080">
+                <img src="/images/percorsi-apprendimento/deploy-base/copertina-editoriale.webp" alt="Opening illustration for the Deployment basics guide" decoding="async" width="864" height="1080">
               </figure>
             </div>
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Cos’è davvero il deploy</h2>
+            <h2>1. What deployment actually is</h2>
             <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/deploy-base/panoramica-deploy-base.svg" alt="Panoramica visuale dei passaggi principali di un deploy base" loading="lazy" decoding="async" width="1200" height="520">
-              <figcaption>Dal progetto locale all’URL pubblico: file, build, hosting e controlli finali.</figcaption>
+              <img src="/images/percorsi-apprendimento/deploy-base/panoramica-deploy-base.svg" alt="Visual overview of the main steps in a basic deployment" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>From local project to public URL: files, build, hosting and final checks.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <p>Deploy significa portare un progetto dal tuo computer a un ambiente accessibile online.</p>
-              <p>Detto in modo più pratico: smetti di avere un sito o un’app che funziona solo in locale e inizi ad avere un URL che puoi aprire da browser e condividere con altre persone.</p>
-              <p>In mezzo però c’è quasi sempre un passaggio tecnico importante:</p>
+              <p>Deploying means taking a project from your computer to somewhere it can be reached online.</p>
+              <p>Put more practically: you stop having a site or an app that only runs locally and start having a URL you can open in a browser and share with other people.</p>
+              <p>In between, though, there is almost always one important technical step:</p>
               <ul class="guide-list">
-                <li>in locale lavori su file sorgente;</li>
-                <li>online spesso pubblichi una build pronta per essere servita;</li>
-                <li>l’hosting prende quei file e li espone sul web.</li>
+                <li>locally you work on source files;</li>
+                <li>online you usually publish a build that is ready to be served;</li>
+                <li>the hosting takes those files and exposes them on the web.</li>
               </ul>
-              <p>Capire questo ti evita uno degli equivoci più comuni: pensare che deploy significhi solo “caricare una cartella”. A volte è così, ma spesso prima devi generare l’output giusto.</p>
+              <p>Understanding this saves you from one of the most common misconceptions: thinking that deploying just means “uploading a folder”. Sometimes it is, but often you have to generate the right output first.</p>
             </section>
           </section>
 
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Cosa ti serve prima di pubblicare</h2>
+            <h2>2. What you need before publishing</h2>
             <section class="guide-subchapter">
-              <p>Prima del deploy, conviene fare un controllo molto semplice ma serio. Il progetto dovrebbe essere già stabile in locale.</p>
+              <p>Before deploying, it is worth running a very simple but serious check. The project should already be stable locally.</p>
               <ul class="guide-checklist">
-                <li>la build deve completarsi senza errori;</li>
-                <li>le pagine principali devono aprirsi correttamente;</li>
-                <li>asset, immagini e font devono avere path coerenti;</li>
-                <li>non dovresti avere segreti dentro al repository;</li>
-                <li>la base Git dovrebbe essere pulita e comprensibile.</li>
+                <li>the build should complete without errors;</li>
+                <li>the main pages should open correctly;</li>
+                <li>assets, images and fonts should have consistent paths;</li>
+                <li>there should be no secrets inside the repository;</li>
+                <li>the Git history should be clean and readable.</li>
               </ul>
-              <p>Se qualcosa è fragile in locale, online tende a peggiorare, non a migliorare.</p>
-              <p>Se stai ancora sistemando il workflow quotidiano di progetto, la guida <a href="/en/tutorials/vscode-essentials/">VSCode essenziale</a> aiuta molto a tenere ordinati terminale, task e debug, mentre <a href="/en/tutorials/github-in-practice/">GitHub operativo</a> ti torna utile per la parte di repository e pubblicazione del codice.</p>
+              <p>If something is fragile locally, going online tends to make it worse, not better.</p>
+              <p>If you are still sorting out your day-to-day project workflow, the <a href="/en/tutorials/vscode-essentials/">VS Code essentials</a> guide helps a lot with keeping the terminal, tasks and debugging tidy, while <a href="/en/tutorials/github-in-practice/">GitHub in practice</a> is useful for the repository and code-publishing side.</p>
             </section>
           </section>
 
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Build, output e cartella finale</h2>
+            <h2>3. Build, output and the final folder</h2>
             <section class="guide-subchapter">
-              <p>Qui conviene fare una distinzione importante: non tutti i deploy funzionano allo stesso modo.</p>
-              <p>Nel caso più semplice puoi avere file già pronti, magari HTML, CSS e JavaScript, e caricarli manualmente sul server o nel pannello dell’hosting. In scenari del genere può anche esistere una cartella separata con file già minificati o preparati a mano, senza una pipeline automatica vera e propria.</p>
-              <p>Su molti progetti moderni invece non pubblichi direttamente i file sorgente. Pubblici il risultato della build.</p>
-              <p>Nei progetti che usano tool come Vite, Webpack, Parcel o altri builder, la pubblicazione non è solo una compressione finale fatta all’ultimo momento. Il progetto nasce già con una struttura pensata per passare attraverso una build.</p>
-              <p>Questo significa che il progetto ha già una certa organizzazione di partenza: file sorgente, dipendenze, script, configurazioni, cartelle di lavoro e un comando che sa come trasformare tutto in una versione finale pronta per il deploy.</p>
-              <p>In pratica il working tree contiene spesso materiale che online non deve andare così com’è:</p>
+              <p>Here it is worth drawing an important distinction: not every deployment works the same way.</p>
+              <p>In the simplest case you may already have finished files — plain HTML, CSS and JavaScript — and upload them by hand to the server or through the hosting panel. In scenarios like that there may even be a separate folder holding files that were minified or prepared manually, with no real automated pipeline.</p>
+              <p>On many modern projects, though, you do not publish the source files directly. You publish the result of the build.</p>
+              <p>In projects that use tools like Vite, Webpack, Parcel or other bundlers, publishing is not just a last-minute compression step. The project is set up from the start to go through a build.</p>
+              <p>That means the project already has a certain shape to begin with: source files, dependencies, scripts, configuration, working folders and a command that knows how to turn all of it into a final version ready to deploy.</p>
+              <p>In practice the working tree often contains material that should not go online as it is:</p>
               <ul class="guide-list">
-                <li>file sorgente pensati per essere trasformati;</li>
-                <li>dipendenze e tooling di sviluppo;</li>
-                <li>configurazioni del builder;</li>
-                <li>asset che verranno ottimizzati o riscritti durante la build.</li>
+                <li>source files meant to be transformed;</li>
+                <li>dependencies and development tooling;</li>
+                <li>bundler configuration;</li>
+                <li>assets that will be optimised or rewritten during the build.</li>
               </ul>
-              <p>La build è il processo che prepara il progetto per la distribuzione: ottimizza gli asset, minifica il codice, risolve le dipendenze e genera i file finali dentro una cartella di output come <code>dist</code>, <code>build</code> o simili.</p>
-              <p>Questo approccio ha un costo iniziale in più, perché il progetto è più strutturato, ma porta vantaggi molto concreti: automazione, meno passaggi manuali, output più coerente, minori errori ripetitivi e un deploy più facile da rifare ogni volta nello stesso modo.</p>
-              <p>Per questo, prima di parlare di comandi o hosting, conviene capire che tipo di progetto hai davanti e quale strada ha più senso seguire per pubblicarlo, ad esempio:</p>
+              <p>The build is the process that prepares the project for distribution: it optimises assets, minifies the code, resolves dependencies and generates the final files inside an output folder such as <code>dist</code>, <code>build</code> or similar.</p>
+              <p>This approach costs a little more up front, because the project is more structured, but the benefits are very concrete: automation, fewer manual steps, more consistent output, fewer repeated mistakes and a deployment that is easier to redo the same way every time.</p>
+              <p>So before talking about commands or hosting, it is worth working out what kind of project you have in front of you and which route makes most sense for publishing it. For example:</p>
               <ul class="guide-list">
-                <li>un sito molto semplice, in cui i file da mettere online sono già pronti e puoi caricarli direttamente;</li>
-                <li>un lavoro in cui prepari prima una versione finale separata, come una cartella con file minificati o sistemati a mano, e pubblichi quella;</li>
-                <li>una base moderna costruita per usare un builder come Vite, che genera automaticamente i file finali a partire dai sorgenti.</li>
+                <li>a very simple site, where the files to put online are already finished and you can upload them directly;</li>
+                <li>a setup where you prepare a separate final version first — a folder with minified or hand-tidied files — and publish that;</li>
+                <li>a modern codebase built around a bundler like Vite, which generates the final files from the sources automatically.</li>
               </ul>
-              <p>Se prendiamo uno scenario oggi molto diffuso nel front-end moderno, il quadro è questo: repository Git, builder locale come Vite e hosting collegato al repository, così il deploy può diventare quasi una conseguenza naturale del push.</p>
-              <p>Non è l’unico modello possibile, ma per siti statici e molte applicazioni front-end è diventato uno standard di fatto perché tiene insieme automazione, ottimizzazione e ripetibilità.</p>
-              <p>In questo tipo di setup, il punto centrale non è ricordarsi tanti comandi a memoria. Il punto centrale è sapere quale passaggio genera davvero la versione finale del progetto e quale cartella contiene i file che devono andare online.</p>
-              <p>Di solito questa versione finale viene prodotta dalla build e finisce in una cartella come <code>dist</code>, <code>build</code> o simili, in base a come il progetto è configurato.</p>
-              <p>Questa distinzione serve perché, quando colleghi il repository a un hosting automatico, la piattaforma deve sapere con precisione tre cose:</p>
+              <p>If we take a scenario that is very common in modern front-end work, the picture looks like this: a Git repository, a local bundler such as Vite, and hosting connected to the repository, so that deployment becomes an almost natural consequence of a push.</p>
+              <p>It is not the only possible model, but for static sites and many front-end applications it has become a de facto standard, because it brings automation, optimisation and repeatability together.</p>
+              <p>In this kind of setup, the point is not to memorise a long list of commands. The point is knowing which step actually produces the final version of the project, and which folder holds the files that need to go online.</p>
+              <p>Usually that final version is produced by the build and ends up in a folder like <code>dist</code>, <code>build</code> or similar, depending on how the project is configured.</p>
+              <p>This distinction matters because, when you connect a repository to automated hosting, the platform needs to know exactly three things:</p>
               <ul class="guide-list">
-                <li>quale repository o cartella devono leggere;</li>
-                <li>quale comando devono eseguire per fare la build;</li>
-                <li>quale cartella finale devono pubblicare.</li>
+                <li>which repository or folder it should read;</li>
+                <li>which command it should run to build;</li>
+                <li>which final folder it should publish.</li>
               </ul>
-              <p>Quando questi dati sono impostati bene, il vantaggio è molto concreto: fai push, la piattaforma ricostruisce il progetto e pubblica l’output corretto senza dover ripetere ogni volta lo stesso lavoro a mano.</p>
-              <p>Se invece stai caricando i file manualmente, il principio non cambia: devi comunque capire quali file sono i sorgenti e quali sono quelli finali da pubblicare. Se questa distinzione resta confusa, il deploy si rompe o si configura male molto facilmente.</p>
+              <p>When those are set correctly, the benefit is tangible: you push, the platform rebuilds the project and publishes the right output, with no need to repeat the same work by hand each time.</p>
+              <p>If instead you are uploading files manually, the principle does not change: you still have to know which files are the sources and which are the final ones to publish. If that distinction stays fuzzy, the deployment breaks or gets misconfigured very easily.</p>
             </section>
           </section>
 
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Hosting statico: il punto di partenza migliore</h2>
+            <h2>4. Static hosting: the best place to start</h2>
             <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/deploy-base/workflow-deploy-statico.svg" alt="Workflow base di deploy statico con repository build e hosting" loading="lazy" decoding="async" width="1200" height="500">
-              <figcaption>Versione molto semplice del deploy moderno: push, build e pubblicazione online.</figcaption>
+              <img src="/images/percorsi-apprendimento/deploy-base/workflow-deploy-statico.svg" alt="Basic static deployment workflow with repository, build and hosting" loading="lazy" decoding="async" width="1200" height="500">
+              <figcaption>A very simple version of modern deployment: push, build and publish online.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <p>Qui la cosa importante da capire non è tanto l’etichetta, ma il meccanismo pratico.</p>
-              <p>In questo caso tu arrivi ad avere una serie di file finali già pronti, per esempio le pagine del sito, i CSS, gli script, le immagini e i font.</p>
-              <p>A quel punto la piattaforma prende quei file e li pubblica online così come sono, senza chiederti di gestire da solo una macchina, un server complesso o configurazioni più pesanti.</p>
-              <p>Per chi inizia, questa è spesso la strada più semplice e sensata. Va benissimo per siti HTML/CSS/JS, landing page, portfolio, documentazione e molti progetti front-end compilati.</p>
-              <p>I vantaggi iniziali sono concreti:</p>
+              <p>What matters here is not so much the label, but the practical mechanism.</p>
+              <p>In this case you end up with a set of finished files — the site's pages, the CSS, the scripts, the images and the fonts.</p>
+              <p>At that point the platform takes those files and publishes them online as they are, without asking you to manage a machine, a complex server or heavier configuration on your own.</p>
+              <p>For someone starting out, this is often the simplest and most sensible route. It works perfectly well for HTML/CSS/JS sites, landing pages, portfolios, documentation and many compiled front-end projects.</p>
+              <p>The early benefits are concrete:</p>
               <ul class="guide-list">
-                <li>configurazione più semplice;</li>
-                <li>costi spesso nulli o molto bassi;</li>
-                <li>HTTPS e CDN già inclusi su molte piattaforme;</li>
-                <li>integrazione comoda con GitHub.</li>
+                <li>simpler configuration;</li>
+                <li>costs that are often zero or very low;</li>
+                <li>HTTPS and a CDN already included on many platforms;</li>
+                <li>convenient GitHub integration.</li>
               </ul>
-              <p>Qui strumenti come Vercel, Netlify, Cloudflare e GitHub Pages sono molto utili perché riducono parecchio l’attrito: colleghi il repository, fai push del codice, il servizio esegue la build e pubblica il risultato.</p>
-              <p>Per iniziare, questo approccio è quasi sempre più chiaro che partire subito da server complessi, VPS, container o configurazioni troppo manuali.</p>
+              <p>Tools like Vercel, Netlify, Cloudflare and GitHub Pages are very useful here because they remove a lot of friction: you connect the repository, push your code, and the service runs the build and publishes the result.</p>
+              <p>To get started, this approach is almost always clearer than jumping straight into complex servers, VPSs, containers or heavily manual configuration.</p>
             </section>
           </section>
 
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Workflow base con GitHub + hosting</h2>
+            <h2>5. A basic workflow with GitHub + hosting</h2>
             <section class="guide-subchapter">
-              <p>Il flusso più utile da interiorizzare all’inizio è questo:</p>
+              <p>The flow that is most useful to internalise early on is this:</p>
               <ol class="guide-number-list">
-                <li>lavori in locale;</li>
-                <li>controlli che il progetto funzioni;</li>
-                <li>fai commit e push su GitHub;</li>
-                <li>il provider rileva la modifica;</li>
-                <li>parte una nuova build;</li>
-                <li>se tutto va bene, il sito aggiornato va online.</li>
+                <li>you work locally;</li>
+                <li>you check that the project works;</li>
+                <li>you commit and push to GitHub;</li>
+                <li>the provider detects the change;</li>
+                <li>a new build starts;</li>
+                <li>if all goes well, the updated site goes live.</li>
               </ol>
-              <p>Questo modello è prezioso perché separa bene le responsabilità:</p>
+              <p>This model is valuable because it separates responsibilities cleanly:</p>
               <ul class="guide-list">
-                <li>tu curi codice e configurazione;</li>
-                <li>GitHub conserva e versiona il progetto;</li>
-                <li>l’hosting gestisce pubblicazione e distribuzione.</li>
+                <li>you look after the code and the configuration;</li>
+                <li>GitHub stores and versions the project;</li>
+                <li>the hosting handles publishing and distribution.</li>
               </ul>
-              <p>È anche il motivo per cui Git e GitHub diventano così utili prima del deploy: se la cronologia è ordinata, anche capire cosa ha rotto una build diventa molto più semplice.</p>
+              <p>It is also why Git and GitHub become so useful before deployment: if the history is tidy, working out what broke a build gets far simpler too.</p>
             </section>
             <section class="guide-subchapter">
-              <h3>Un esempio minimo da tenere in testa</h3>
-              <p>Quando colleghi il repository a un provider, in genere ti verranno chiesti pochi dati:</p>
+              <h3>A minimal example worth remembering</h3>
+              <p>When you connect a repository to a provider, you will generally be asked for only a few details:</p>
               <ul class="guide-list">
-                <li>repository GitHub da usare;</li>
-                <li>branch da pubblicare, spesso <code>main</code>;</li>
-                <li>comando di build, per esempio <code>npm run build</code>;</li>
-                <li>directory pubblica finale, per esempio <code>dist</code>.</li>
+                <li>the GitHub repository to use;</li>
+                <li>the branch to publish, often <code>main</code>;</li>
+                <li>the build command, for example <code>npm run build</code>;</li>
+                <li>the final public directory, for example <code>dist</code>.</li>
               </ul>
-              <p>Da lì in poi ogni push sul branch scelto genera un nuovo deploy automatico.</p>
+              <p>From then on, every push to the chosen branch triggers a new automatic deployment.</p>
             </section>
           </section>
 
           <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Dominio, DNS e HTTPS</h2>
+            <h2>6. Domain, DNS and HTTPS</h2>
             <section class="guide-subchapter">
-              <p>All’inizio puoi vivere bene anche con un URL generato dal provider, ma prima o poi vorrai collegare un dominio tuo.</p>
-              <p>Qui entrano in gioco i DNS: sono le impostazioni che dicono al dominio dove deve puntare.</p>
-              <p>Non serve diventare esperti subito, ma conviene fissare tre idee:</p>
+              <p>At first you can live perfectly well with the URL the provider generates, but sooner or later you will want to connect a domain of your own.</p>
+              <p>This is where DNS comes in: the settings that tell a domain where it should point.</p>
+              <p>You do not need to become an expert straight away, but three ideas are worth fixing in your mind:</p>
               <ul class="guide-list">
-                <li>il dominio lo compri da un registrar;</li>
-                <li>l’hosting ti dice quali record DNS configurare;</li>
-                <li>HTTPS di solito viene emesso automaticamente dopo il collegamento corretto.</li>
+                <li>you buy the domain from a registrar;</li>
+                <li>the hosting tells you which DNS records to configure;</li>
+                <li>HTTPS is usually issued automatically once the connection is correct.</li>
               </ul>
-              <p>Una delle prime fonti di ansia qui è la propagazione DNS. Non sempre il cambio è istantaneo: a volte servono minuti, a volte qualche ora.</p>
+              <p>One of the first sources of anxiety here is DNS propagation. The change is not always instant: sometimes it takes minutes, sometimes a few hours.</p>
             </section>
           </section>
 
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. Variabili ambiente e dati sensibili</h2>
+            <h2>7. Environment variables and sensitive data</h2>
             <section class="guide-subchapter">
-              <p>Uno degli errori più pericolosi è mettere chiavi API, password o token direttamente nei file tracciati da Git.</p>
-              <p>In un progetto serio, i dati sensibili vanno gestiti con variabili ambiente, per esempio tramite file <code>.env</code> in locale e impostazioni dedicate lato provider.</p>
-              <p>Il principio è semplice:</p>
+              <p>One of the most dangerous mistakes is putting API keys, passwords or tokens directly into files tracked by Git.</p>
+              <p>In a serious project, sensitive data is handled with environment variables — through a <code>.env</code> file locally, for instance, and dedicated settings on the provider's side.</p>
+              <p>The principle is simple:</p>
               <ul class="guide-list">
-                <li>in locale usi valori non committati;</li>
-                <li>online inserisci gli stessi valori nel pannello del servizio di hosting;</li>
-                <li>il codice li legge senza esporli nel repository.</li>
+                <li>locally you use values that are never committed;</li>
+                <li>online you enter the same values in the hosting service's panel;</li>
+                <li>the code reads them without exposing them in the repository.</li>
               </ul>
-              <p>Attenzione però: se stai facendo puro front-end statico, alcune variabili finiscono comunque nel bundle client e quindi non sono davvero segrete. Questo è un punto che conviene capire presto.</p>
+              <p>One caveat, though: if you are building a purely static front-end, some variables end up in the client bundle anyway and so are not really secret. That is worth understanding early.</p>
             </section>
           </section>
 
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Errori comuni dopo il deploy</h2>
+            <h2>8. Common problems after a deploy</h2>
             <section class="guide-subchapter">
-              <p>Quando il sito “in locale va” ma online no, spesso il problema rientra in pochi casi ricorrenti.</p>
+              <p>When a site “works locally” but not online, the problem usually falls into a handful of recurring cases.</p>
               <ul class="guide-list">
-                <li>Path asset sbagliati: immagini, CSS o JS puntano a percorsi che online cambiano.</li>
-                <li>Build fallita: il provider non riesce a completare il comando di build.</li>
-                <li>Variabili ambiente mancanti: in locale c’erano, online no.</li>
-                <li>Routing SPA non gestito: refreshando una pagina interna compare 404.</li>
-                <li>Dipendenze o versioni Node incoerenti tra locale e hosting.</li>
+                <li>Wrong asset paths: images, CSS or JS pointing at paths that change once online.</li>
+                <li>Failed build: the provider cannot complete the build command.</li>
+                <li>Missing environment variables: they were there locally, but not online.</li>
+                <li>Unhandled SPA routing: refreshing an inner page returns a 404.</li>
+                <li>Dependencies or Node versions that differ between local and hosting.</li>
               </ul>
-              <p>La cosa utile da imparare non è indovinare. È andare a leggere i log della build e isolare il punto esatto in cui il processo si rompe.</p>
-              <p>Molto spesso il deploy non fallisce “a caso”: sta dicendo qualcosa, solo che bisogna imparare a leggere quel messaggio con calma.</p>
+              <p>The useful skill to learn is not guessing. It is reading the build logs and isolating the exact point where the process breaks.</p>
+              <p>Very often a deployment does not fail “at random”: it is telling you something, you just have to learn to read that message calmly.</p>
             </section>
           </section>
 
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. Checklist prima di andare live</h2>
+            <h2>9. A checklist before going live</h2>
             <section class="guide-subchapter">
-              <p>Prima di considerare un deploy davvero pronto, vale la pena passare da una checklist molto pratica.</p>
+              <p>Before considering a deployment genuinely ready, it is worth running through a very practical checklist.</p>
               <ul class="guide-checklist">
-                <li>la build locale completa senza errori;</li>
-                <li>non ci sono file sensibili nel repository;</li>
-                <li>favicon, title e meta base sono presenti;</li>
-                <li>link e navigazione funzionano su mobile e desktop;</li>
-                <li>404 o route principali sono gestite correttamente;</li>
-                <li>il dominio, se presente, punta al posto giusto;</li>
-                <li>il certificato HTTPS è attivo;</li>
-                <li>hai controllato almeno una volta la versione pubblicata vera, non solo la preview.</li>
+                <li>the local build completes without errors;</li>
+                <li>there are no sensitive files in the repository;</li>
+                <li>favicon, title and basic meta tags are in place;</li>
+                <li>links and navigation work on mobile and desktop;</li>
+                <li>the 404 page and the main routes are handled correctly;</li>
+                <li>the domain, if you have one, points to the right place;</li>
+                <li>the HTTPS certificate is active;</li>
+                <li>you have checked the real published version at least once, not just the preview.</li>
               </ul>
             </section>
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Da qui in poi</h2>
+            <h2>10. Where to go from here</h2>
             <section class="guide-subchapter">
-              <p>Una volta capito il deploy base, il passo successivo non è per forza complicare tutto. Spesso basta rendere più solido il workflow:</p>
+              <p>Once you understand basic deployment, the next step is not necessarily to complicate everything. Usually it is enough to make the workflow sturdier:</p>
               <ul class="guide-list">
-                <li>preview deploy per testare prima del merge;</li>
-                <li>branch strategy più chiara;</li>
-                <li>controlli automatici di build;</li>
-                <li>gestione migliore di dominio, analytics e performance.</li>
+                <li>preview deployments for testing before a merge;</li>
+                <li>a clearer branch strategy;</li>
+                <li>automated build checks;</li>
+                <li>better handling of the domain, analytics and performance.</li>
               </ul>
-              <p>La parte importante è che da questo punto in poi il progetto non resta più chiuso nel computer. Entra in una dimensione reale: si visita, si testa, si condivide e si migliora con più criterio.</p>
-              <p>Se vuoi consolidare il percorso, queste guide si incastrano bene:</p>
+              <p>The important part is that from this point on the project no longer lives shut inside your computer. It enters the real world: it gets visited, tested, shared and improved with more purpose.</p>
+              <p>If you want to consolidate what you have learned, these guides fit together well:</p>
               <ul class="guide-list">
-                <li><a href="/en/tutorials/git-without-panic/">Git pratico senza panico</a>: per la parte locale, commit, branch e recupero errori.</li>
-                <li><a href="/en/tutorials/github-in-practice/">GitHub operativo</a>: per repository, push/pull e pubblicazione del codice.</li>
-                <li><a href="/en/tutorials/vscode-essentials/">VSCode essenziale</a>: per build, terminale, debug e routine di lavoro più pulita.</li>
-                <li><a href="/en/tutorials/technical-seo-basics/">SEO tecnico base</a>: per controllare title, sitemap, robots.txt, Search Console e segnali tecnici dopo il deploy.</li>
-                <li><a href="/en/tutorials/">Tutti i tutorial</a>: per seguire gli altri contenuti disponibili.</li>
+                <li><a href="/en/tutorials/git-without-panic/">Git without panic</a>: for the local side, commits, branches and recovering from mistakes.</li>
+                <li><a href="/en/tutorials/github-in-practice/">GitHub in practice</a>: for repositories, push/pull and publishing your code.</li>
+                <li><a href="/en/tutorials/vscode-essentials/">VS Code essentials</a>: for builds, the terminal, debugging and a cleaner working routine.</li>
+                <li><a href="/en/tutorials/technical-seo-basics/">Technical SEO basics</a>: for checking titles, sitemap, robots.txt, Search Console and the technical signals after a deploy.</li>
+                <li><a href="/en/tutorials/">All tutorials</a>: to follow the other content available.</li>
               </ul>
             </section>
           </section>
-        
+
           <!-- SEZIONE QUIZ INTERATTIVO -->
-          
+
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>11. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>11. Quick reference (cheat sheet)</h2>
             <section class="guide-subchapter">
-              
-              <p>Ecco la checklist operativa da seguire prima e durante il caricamento del sito:</p>
+
+              <p>Here is the practical checklist to follow before and during the upload of your site:</p>
               <div class="table-wrapper">
                 <table class="guide-table">
                   <thead>
                     <tr>
-                      <th>Fase</th>
-                      <th class="is-accent">Cosa verificare</th>
-                      <th>Azione richiesta</th>
+                      <th>Stage</th>
+                      <th class="is-accent">What to check</th>
+                      <th>Action required</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="is-strong">1. Compilazione</td>
-                      <td>Verificare che la build locale compili senza errori.</td>
-                      <td>Eseguire 'npm run build' e controllare i log di terminale.</td>
+                      <td class="is-strong">1. Compilation</td>
+                      <td>Check that the local build compiles without errors.</td>
+                      <td>Run 'npm run build' and read the terminal logs.</td>
                     </tr>
                     <tr>
-                      <td class="is-strong">2. Cartella dist/</td>
-                      <td>Verificare la presenza di index.html nella root di output.</td>
-                      <td>I server di hosting statico cercano index.html per mostrare la Home.</td>
+                      <td class="is-strong">2. dist/ folder</td>
+                      <td>Check that index.html exists at the root of the output.</td>
+                      <td>Static hosting servers look for index.html to serve the home page.</td>
                     </tr>
                     <tr>
-                      <td class="is-strong">3. DNS / Dominio</td>
-                      <td>Configurare correttamente i puntamenti dei server DNS.</td>
-                      <td>Aggiungere CNAME o A Record forniti dall'hosting nel tuo registrar.</td>
+                      <td class="is-strong">3. DNS / Domain</td>
+                      <td>Configure the DNS records correctly.</td>
+                      <td>Add the CNAME or A records supplied by your host at your registrar.</td>
                     </tr>
                     <tr>
                       <td class="is-strong">4. SSL / HTTPS</td>
-                      <td>Verificare che il certificato SSL sia attivo.</td>
-                      <td>Tutte le connessioni devono essere crittografate su protocollo protetto.</td>
+                      <td>Check that the SSL certificate is active.</td>
+                      <td>Every connection must be encrypted over a secure protocol.</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-    
+
             </section>
           </section>
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>12. Sfida pratica: Mettiti alla prova</h2>
+            <h2>12. Practical challenge: put yourself to the test</h2>
             <section class="guide-subchapter">
-              
-              <p>Pubblica il tuo codice per la prima volta su una piattaforma di hosting gratuito:</p>
+
+              <p>Publish your code for the first time on a free hosting platform:</p>
               <div class="alert alert--note">
                 <strong>Challenge goal:</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Genera i file ottimizzati di produzione ed effettua un caricamento manuale drag-and-drop su Netlify o Vercel.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Generate the optimised production files and upload them manually, drag-and-drop, to Netlify or Vercel.</p>
                 <strong>Step-by-step instructions:</strong>
                 <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
-                  <li>Esegui il comando di compilazione nel terminale del tuo progetto: <code class="language-bash">npm run build</code>.</li>
-                  <li>Accertati che sia comparsa la cartella di output <code class="language-text">dist/</code> (o <code class="language-text">build/</code>) nella directory principale.</li>
-                  <li>Apri il browser ed accedi alla piattaforma Netlify (sezione *Netlify Drop*) o Vercel.</li>
-                  <li>Trascina l'intera cartella <code class="language-text">dist/</code> nella zona di rilascio. Attendi qualche istante e visita l'URL pubblico generato assicurandoti che si carichi correttamente in HTTPS.</li>
+                  <li>Run the build command in your project's terminal: <code class="language-bash">npm run build</code>.</li>
+                  <li>Make sure the output folder <code class="language-text">dist/</code> (or <code class="language-text">build/</code>) has appeared in the root directory.</li>
+                  <li>Open your browser and go to Netlify (the *Netlify Drop* section) or Vercel.</li>
+                  <li>Drag the whole <code class="language-text">dist/</code> folder into the drop zone. Wait a moment, then visit the public URL it generates and check that it loads correctly over HTTPS.</li>
                 </ol>
               </div>
-    
+
             </section>
           </section>
 
           <section id="chapter-quiz" data-quiz-id="deploy-base" class="guide-block guide-chapter quiz-section">
-            <h2>13. Verifica la tua preparazione (Quiz)</h2>
-            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
+            <h2>13. Check what you have learned (quiz)</h2>
+            <p class="quiz-intro">Test what you have learned in this guide with a quick 10-question multiple-choice quiz.</p>
             <div id="quiz-wrapper"></div>
           </section>
 
@@ -398,11 +395,11 @@
               <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
             <div class="guide-next-step__content">
-              <h2 id="next-step-title" class="guide-next-step__title">Template e modelli pronti</h2>
+              <h2 id="next-step-title" class="guide-next-step__title">Ready-made templates</h2>
               <p class="guide-next-step__text">
-                Se non ti va di partire da un file vuoto, qui trovi i template che ho preparato io.
-                Dagli un'occhiata: se ti piacciono puoi acquistarli, altrimenti usali come esempio
-                da copiare per il tuo progetto.
+                If you'd rather not start from an empty file, here are the templates I've put together.
+                Take a look: if you like them you can buy them, and if not, use them as an example
+                to copy for your own project.
               </p>
               <a href="/en/templates/" class="button-simple guide-next-step__cta">Explore the templates</a>
             </div>

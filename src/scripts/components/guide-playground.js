@@ -1,8 +1,12 @@
 import { t } from "@/i18n/ui.js";
 // Injects interactive playgrounds (editor + sandboxed iframe preview) into
-// HTML and CSS code blocks. Inside .snippet-box the single "Prova Live"
+// HTML and CSS code blocks. Inside .snippet-box the single "try it live"
 // button lives in the title-box; outside, a per-block toolbar is built.
 
+// The helper script is a string that runs inside the sandboxed iframe, so it
+// cannot import from the i18n module: its one visible string is baked in at
+// srcdoc-generation time instead. That happens on every preview refresh, so it
+// always carries the language in force when the preview was last rendered.
 const injectHelperScript = (html) => {
   const helperStyle = `
   <style>
@@ -79,7 +83,7 @@ const injectHelperScript = (html) => {
         toast = document.createElement('div');
         toast.id = 'sandbox-toast';
         toast.className = 'sandbox-toast';
-        toast.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>I collegamenti esterni sono disattivati nell\\'anteprima.</span>';
+        toast.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>' + ${JSON.stringify(t("playground.externalLinksOff"))} + '</span>';
         document.body.appendChild(toast);
       }
       
