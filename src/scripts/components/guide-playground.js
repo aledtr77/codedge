@@ -1,3 +1,4 @@
+import { t } from "@/i18n/ui.js";
 // Injects interactive playgrounds (editor + sandboxed iframe preview) into
 // HTML and CSS code blocks. Inside .snippet-box the single "Prova Live"
 // button lives in the title-box; outside, a per-block toolbar is built.
@@ -324,8 +325,8 @@ export default function initGuidePlayground() {
   };
 
   const playButtonLabel = (open) => open
-    ? `<i class="fas fa-times"></i> Chiudi Live`
-    : `<i class="fas fa-play"></i> Prova Live`;
+    ? `<i class="fas fa-times"></i> ${t("playground.closeLive")}`
+    : `<i class="fas fa-play"></i> ${t("playground.tryLive")}`;
 
   // Sync the box "Prova Live" button with the playground state
   const syncPlayButtons = (scope, open) => {
@@ -361,14 +362,14 @@ export default function initGuidePlayground() {
       const copyBtn = document.createElement("button");
       copyBtn.type = "button";
       copyBtn.className = "code-btn";
-      copyBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
+      copyBtn.innerHTML = `<i class="fas fa-copy"></i> ${t("playground.copy")}`;
       toolbar.appendChild(copyBtn);
 
       if (lang === "html" || lang === "css") {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.className = "code-btn";
-        editBtn.innerHTML = `<i class="fas fa-play"></i> Prova Live`;
+        editBtn.innerHTML = `<i class="fas fa-play"></i> ${t("playground.tryLive")}`;
         toolbar.appendChild(editBtn);
       }
 
@@ -397,7 +398,7 @@ export default function initGuidePlayground() {
     const inSnippetBox = Boolean(wrapper.closest(".snippet-box"));
     const closeBtnHtml = inSnippetBox
       ? ""
-      : `<button type="button" class="playground-btn btn-close" title="Chiudi playground"><i class="fas fa-times"></i> <span>Chiudi</span></button>`;
+      : `<button type="button" class="playground-btn btn-close" title="${t("playground.closeTitle")}"><i class="fas fa-times"></i> <span>${t("playground.close")}</span></button>`;
 
     const playground = document.createElement("div");
     // Mobile starts on the preview tab; on desktop both panels stay stacked
@@ -408,25 +409,25 @@ export default function initGuidePlayground() {
     playground.innerHTML = `
       <div class="playground-header">
         <div class="playground-title">
-          <i class="fas fa-terminal"></i> Playground Live (${lang.toUpperCase()})
+          <i class="fas fa-terminal"></i> ${t("playground.title", { lang: lang.toUpperCase() })}
         </div>
         <div class="playground-actions">
-          <button type="button" class="playground-btn btn-reset" title="Ripristina codice iniziale"><i class="fas fa-undo"></i> <span>Ripristina</span></button>
-          <button type="button" class="playground-btn btn-copy" title="Copia codice"><i class="fas fa-copy"></i> <span class="btn-text">Copia Codice</span></button>
+          <button type="button" class="playground-btn btn-reset" title="${t("playground.resetTitle")}"><i class="fas fa-undo"></i> <span>${t("playground.reset")}</span></button>
+          <button type="button" class="playground-btn btn-copy" title="${t("playground.copyCodeTitle")}"><i class="fas fa-copy"></i> <span class="btn-text">${t("playground.copyCode")}</span></button>
           ${closeBtnHtml}
         </div>
       </div>
-      <div class="playground-tabs" role="tablist" aria-label="Vista playground">
-        <button type="button" class="playground-tab active" data-pane="preview" role="tab" aria-selected="true">Anteprima</button>
-        <button type="button" class="playground-tab" data-pane="editor" role="tab" aria-selected="false">Editor</button>
+      <div class="playground-tabs" role="tablist" aria-label="${t("playground.tabsLabel")}">
+        <button type="button" class="playground-tab active" data-pane="preview" role="tab" aria-selected="true">${t("playground.preview")}</button>
+        <button type="button" class="playground-tab" data-pane="editor" role="tab" aria-selected="false">${t("playground.editor")}</button>
       </div>
       <div class="playground-body">
         <div class="playground-editor-pane">
-          <textarea class="playground-editor" spellcheck="false" aria-label="Editor di codice"></textarea>
+          <textarea class="playground-editor" spellcheck="false" aria-label="${t("playground.editorLabel")}"></textarea>
           <div class="playground-lang-tag">${lang}</div>
         </div>
         <div class="playground-preview-pane">
-          <iframe class="playground-iframe" sandbox="allow-scripts" title="Anteprima playground"></iframe>
+          <iframe class="playground-iframe" sandbox="allow-scripts" title="${t("playground.iframeTitle")}"></iframe>
         </div>
       </div>
     `;
@@ -524,13 +525,13 @@ export default function initGuidePlayground() {
       if (wrapper) {
         const codeEl = wrapper.querySelector("pre code");
         if (codeEl) {
-          const isCopy = codeBtn.innerHTML.includes("Copia");
+          const isCopy = codeBtn.innerHTML.includes(t("playground.copy"));
           const lang = (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) ? "html" : "css";
           if (isCopy) {
             navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
-              codeBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> Copiato`;
+              codeBtn.innerHTML = `<i class="fas fa-check" style="color: #2ed573"></i> ${t("code.copied")}`;
               setTimeout(() => {
-                codeBtn.innerHTML = `<i class="fas fa-copy"></i> Copia`;
+                codeBtn.innerHTML = `<i class="fas fa-copy"></i> ${t("playground.copy")}`;
               }, 2000);
             });
           } else {
@@ -603,7 +604,7 @@ export default function initGuidePlayground() {
               iconEl.style.color = "#2ed573";
             }
             if (textSpan) {
-              textSpan.textContent = "Copiato!";
+              textSpan.textContent = t("code.copiedBang");
             }
 
             setTimeout(() => {
@@ -612,7 +613,7 @@ export default function initGuidePlayground() {
                 iconEl.style.color = "";
               }
               if (textSpan) {
-                textSpan.textContent = "Copia Codice";
+                textSpan.textContent = t("playground.copyCode");
               }
             }, 1500);
           });
@@ -634,4 +635,44 @@ export default function initGuidePlayground() {
       });
     }, 150);
   });
+}
+
+// The playground's chrome is built in JavaScript, so it is absent from the
+// markup the language switch copies across. Relabel it in place instead of
+// rebuilding it — rebuilding would throw away the user's edited code.
+function relocalizePlaygrounds() {
+  document.querySelectorAll(".code-playground").forEach((pg) => {
+    const lang = (pg.querySelector(".playground-lang-tag")?.textContent || "").toUpperCase();
+    const set = (sel, prop, value) => {
+      const el = pg.querySelector(sel);
+      if (el) el[prop] = value;
+    };
+    set(".playground-title", "innerHTML", `<i class="fas fa-terminal"></i> ${t("playground.title", { lang })}`);
+    set(".btn-reset span", "textContent", t("playground.reset"));
+    set(".btn-copy .btn-text", "textContent", t("playground.copyCode"));
+    set(".btn-close span", "textContent", t("playground.close"));
+    set('.playground-tab[data-pane="preview"]', "textContent", t("playground.preview"));
+    set('.playground-tab[data-pane="editor"]', "textContent", t("playground.editor"));
+
+    const attr = (sel, name, value) => pg.querySelector(sel)?.setAttribute(name, value);
+    attr(".btn-reset", "title", t("playground.resetTitle"));
+    attr(".btn-copy", "title", t("playground.copyCodeTitle"));
+    attr(".btn-close", "title", t("playground.closeTitle"));
+    attr(".playground-tabs", "aria-label", t("playground.tabsLabel"));
+    attr(".playground-editor", "aria-label", t("playground.editorLabel"));
+    attr(".playground-iframe", "title", t("playground.iframeTitle"));
+  });
+
+  // "Try it live" / "Close live" toggles live outside the playground element.
+  document.querySelectorAll(".play-btn").forEach((btn) => {
+    const open = btn.getAttribute("aria-expanded") === "true";
+    btn.innerHTML = open
+      ? `<i class="fas fa-times"></i> ${t("playground.closeLive")}`
+      : `<i class="fas fa-play"></i> ${t("playground.tryLive")}`;
+  });
+}
+
+if (typeof window !== "undefined" && !window.__playgroundLangHook) {
+  window.__playgroundLangHook = true;
+  window.addEventListener("codedge:lang-changed", relocalizePlaygrounds);
 }

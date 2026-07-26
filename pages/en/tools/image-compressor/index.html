@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Online image compressor | JPG, PNG, WebP and AVIF | Codedge</title>
+  <meta name="description"
+    content="Online image compressor for JPG, PNG, WebP and AVIF: cut file weight and optimize your images for faster websites.">
+  <link rel="canonical" href="https://codedge.it/en/tools/image-compressor/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Online image compressor | JPG, PNG, WebP and AVIF | Codedge" />
+  <meta property="og:description"
+    content="Online image compressor for JPG, PNG, WebP and AVIF: cut file weight and optimize your images for faster websites." />
+  <meta property="og:url" content="https://codedge.it/en/tools/image-compressor/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online image compressor | JPG, PNG, WebP and AVIF | Codedge" />
+  <meta name="twitter:description"
+    content="Online image compressor for JPG, PNG, WebP and AVIF: cut file weight and optimize your images for faster websites." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-compress-arrows-alt" aria-hidden="true"></i> Online Image Compressor </span>
+    </nav>
+  </header>
+
+  <main class="compressor-page">
+    <a href="/en/tools/" class="back-link"><i class="fas fa-chevron-left"></i> All tools</a>
+    <section class="compressor-shell" aria-labelledby="compressor-workspace-title">
+      <div class="compressor-shell__header">
+        <div>
+          <p class="compressor-eyebrow">Image optimization</p>
+          <h1 id="compressor-workspace-title">Online Image Compressor</h1>
+        </div>
+        <p class="compressor-shell__note">Simple, fast and private: everything is processed entirely in your browser.</p>
+      </div>
+
+      <!-- Workspace centrale -->
+      <div class="compressor-workspace-centered">
+        <!-- Area di Upload Drag & Drop -->
+        <button class="upload-area" id="uploadArea" type="button" aria-controls="fileInput">
+          <div class="upload-area__empty" id="uploadAreaEmpty">
+            <span class="upload-area__icon"><i class="fas fa-cloud-arrow-up" aria-hidden="true"></i></span>
+            <span class="upload-area__title">Select or drag an image</span>
+            <span class="upload-area__subtitle">Supports JPG, PNG, WebP and AVIF</span>
+          </div>
+        </button>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif">
+
+        <!-- Pannello Impostazioni (Sempre visibile di base) -->
+        <div id="advanced-settings-panel" class="advanced-settings-panel">
+          <div class="control-block">
+            <div class="control-block__head">
+              <h2>Quick presets</h2>
+              <p>Preset optimization strategies:</p>
+            </div>
+            <div class="preset-grid" role="group" aria-label="Compression presets">
+              <button type="button" class="preset-chip is-active" data-preset="balanced">Balanced</button>
+              <button type="button" class="preset-chip" data-preset="light">Light</button>
+              <button type="button" class="preset-chip" data-preset="strong">Aggressive</button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <div class="control-block__head">
+              <h2>Manual configuration</h2>
+            </div>
+            
+            <div class="settings-grid-fields">
+              <div class="field-group">
+                <label for="outputFormat" class="field-label">Output format</label>
+                <select id="outputFormat" class="field-select">
+                  <option value="webp">WebP (recommended)</option>
+                  <option value="avif">AVIF</option>
+                  <option value="jpeg">JPEG</option>
+                  <option value="png">PNG</option>
+                  <option value="original">Original format</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <div class="field-row">
+                  <label for="quality" class="field-label">Compression quality</label>
+                  <input id="qualityValue" class="value-input" value="72%">
+                </div>
+                <div class="slider-wrapper">
+                  <input type="range" id="quality" class="slider" min="35" max="95" value="72" step="1">
+                  <div class="slider-fill" id="qualityFill"></div>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <div class="field-row">
+                  <label for="maxWidth" class="field-label">Maximum width</label>
+                  <input id="maxWidthValue" class="value-input" value="1600px">
+                </div>
+                <div class="slider-wrapper">
+                  <input type="range" id="maxWidth" class="slider" min="640" max="2560" value="1600" step="20">
+                  <div class="slider-fill" id="maxWidthFill"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="settings-strategy-banner">
+              <span class="strategy-label">Active strategy:</span>
+              <span id="strategySummary">Convert to WebP at medium quality with a maximum width of 1600 px.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner di stato generale -->
+        <div id="result" class="result-banner" aria-live="polite" style="display: none;"></div>
+
+        <!-- Lista dei File Risultati (Mostrata solo se ci sono file caricati) -->
+        <div id="results-container" class="results-container" style="display: none;">
+          <h2>Files being processed</h2>
+          <div id="results-list" class="results-list">
+            <!-- File rows are inserted here dynamically by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="section" aria-labelledby="seo-title-compressore">
+      <h2 id="seo-title-compressore">Why optimizing and compressing images matters for your website</h2>
+      <div class="seo-text-content">
+        <p>
+          In modern web design, how fast a page loads is a decisive factor for both user experience (UX) and search engine rankings (SEO). Unoptimized images often account for more than 60% of a web page's total weight, slowing down loading and dragging down <strong>Google Core Web Vitals</strong> metrics such as Largest Contentful Paint (LCP). An effective <strong>online image compressor</strong> lets you cut file sizes dramatically with no visible loss of quality.
+        </p>
+        <p>
+          This tool runs the compression directly inside your browser. That means your personal files are never uploaded to a remote server, which guarantees maximum privacy and instant processing. By optimizing images into next-generation formats such as <strong>WebP</strong> or <strong>AVIF</strong>, you can cut weight by up to 80% compared with traditional JPEG or PNG, while preserving the color detail and transparency your design or e-commerce projects need.
+        </p>
+        <p>
+          For the best balance between weight and quality, combine data compression with resizing the resolution. Cameras and design mockups often produce files over 4000 pixels wide, which is entirely wasted on most monitors and smartphones. Reducing the maximum width to 1600 or 1920 pixels and applying balanced compression (quality around 70–80%) is the best strategy for serving lightning-fast pages that improve conversion rates and user satisfaction.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-compressore-title">Quick FAQ about the image compressor</h3>
+      <div class="faq-content">
+        <h4>When should you choose WebP or AVIF?</h4>
+        <p>
+          For photos, mockups and general images, WebP and AVIF cut file weight dramatically. WebP is currently the format best supported across all modern browsers; AVIF offers even better compression ratios than WebP, but takes slightly longer to process and is a little less compatible with very old browsers.
+        </p>
+        <h4>Why does the file size sometimes barely drop?</h4>
+        <p>
+          Some PNG files, and images that were already optimized at source, leave very little room for further compression. In those cases, the way to bring the size down is to reduce the maximum width (to 1280px, for instance) or force conversion to WebP as the output format.
+        </p>
+        <h4>Are my files uploaded anywhere?</h4>
+        <p>
+          No, never. The whole image-processing pipeline runs locally, inside your browser's sandboxed memory. No data or sensitive file is transmitted to our servers or to third parties, so your privacy is preserved completely.
+        </p>
+        <h4>Other useful tools</h4>
+        <p>
+          If you want to enrich your brand's design system, try the
+          <a href="/en/tools/palette-extractor/">Color Palette Extractor</a> to pull color codes out of photos, or the
+          <a href="/en/tools/color-generator/">Color Palette Generator</a> to build balanced color combinations on the fly.
+        </p>
+      </div>
+    </section>
+
+    <script type="module" src="/src/scripts/pages/strumenti/compressore-immagini/main.js"></script>
+  </main>
+</body>
+
+</html>

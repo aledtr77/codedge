@@ -1,5 +1,7 @@
 // Marks the static navbar as ready and applies the current-page link state.
 
+import initLangSwitch from "./lang-switch.js";
+
 !(function () {
   "use strict";
 
@@ -11,6 +13,8 @@
     placeholderSelector: "#nav-menu",
     enableLog: false,
   };
+  // Labels are already correct in the markup (the build fills the partial per
+  // language); this map only restores them if a script has emptied the link.
   const navLabels = {
     "/": { text: "Home", ariaLabel: "Home" },
     "/risorse": { text: "Risorse", ariaLabel: "Risorse" },
@@ -18,6 +22,12 @@
     "/componenti-ui": { text: "Componenti UI", ariaLabel: "Componenti UI" },
     "/tutorial": { text: "Tutorial", ariaLabel: "Tutorial" },
     "/template": { text: "Template", ariaLabel: "Template" },
+    "/en": { text: "Home", ariaLabel: "Home" },
+    "/en/resources": { text: "Resources", ariaLabel: "Resources" },
+    "/en/tools": { text: "Tools", ariaLabel: "Tools" },
+    "/en/ui-components": { text: "UI Components", ariaLabel: "UI Components" },
+    "/en/tutorials": { text: "Tutorials", ariaLabel: "Tutorials" },
+    "/en/templates": { text: "Templates", ariaLabel: "Templates" },
   };
 
   function log(...args) {
@@ -110,6 +120,7 @@
       placeholder.dataset.partialLoaded = "true";
       applyNavLabels(placeholder);
       markCurrent(placeholder);
+      initLangSwitch();
       markReady();
       return;
     }

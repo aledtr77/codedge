@@ -1,12 +1,27 @@
 // Data-driven quiz engine (questions come from quizzes-db.js).
-import { quizzesData } from "@/scripts/data/quizzes-db.js";
+// The two language banks are loaded dynamically so a page only ever downloads
+// the questions it can actually show, instead of both banks at once.
+import { t, currentLang } from "@/i18n/ui.js";
 
-export default function initGuideQuiz() {
+async function loadQuizzes() {
+  const bank = currentLang() === "en"
+    ? await import("@/scripts/data/quizzes-db.en.js")
+    : await import("@/scripts/data/quizzes-db.js");
+  return bank.quizzesData;
+}
+
+export default async function initGuideQuiz() {
   const container = document.getElementById("chapter-quiz");
   if (!container) return;
 
   const quizId = container.dataset.quizId;
-  if (!quizId || !quizzesData[quizId]) {
+  if (!quizId) {
+    container.classList.add("is-hidden");
+    return;
+  }
+
+  const quizzesData = await loadQuizzes();
+  if (!quizzesData[quizId]) {
     console.warn(`[guide-quiz] Nessun quiz trovato per ID: ${quizId}`);
     container.classList.add("is-hidden");
     return;
@@ -54,8 +69,8 @@ export default function initGuideQuiz() {
       <div class="quiz-card" data-question="${index + 1}">
         <div class="quiz-header">
           <div class="quiz-meta">
-            <span class="quiz-step-label">Domanda ${index + 1} di ${questions.length}</span>
-            <span class="quiz-score-live">Punti: ${score}</span>
+            <span class="quiz-step-label">${t("quiz.step", { current: index + 1, total: questions.length })}</span>
+            <span class="quiz-score-live">${t("quiz.score", { score })}</span>
           </div>
           <div class="quiz-progress-container">
             <div class="quiz-progress-bar" style="width: ${progressPercent}%;"></div>
@@ -72,10 +87,10 @@ export default function initGuideQuiz() {
         
         <div class="quiz-actions">
           <button type="button" class="quiz-submit-btn button-simple" disabled>
-            Verifica risposta
+            ${t("quiz.submit")}
           </button>
           <button type="button" class="quiz-next-btn button-simple is-hidden">
-            ${index === questions.length - 1 ? 'Vedi Risultati' : 'Prossima domanda'} <i class="fas fa-chevron-right"></i>
+            ${index === questions.length - 1 ? t("quiz.results") : t("quiz.next")} <i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
@@ -118,7 +133,7 @@ export default function initGuideQuiz() {
 
       if (isCorrect) {
         score++;
-        card.querySelector(".quiz-score-live").textContent = `Punti: ${score}`;
+        card.querySelector(".quiz-score-live").textContent = t("quiz.score", { score });
         feedbackBox.textContent = qData.feedback.correct;
         feedbackBox.className = "quiz-feedback-box is-correct";
       } else {
@@ -144,7 +159,7 @@ export default function initGuideQuiz() {
     let msg = "";
     let confettiHtml = "";
     if (score === 10) {
-      msg = "Perfetto! Hai risposto correttamente a tutte le 10 domande. Sei ufficialmente un esperto di questo capitolo!";
+      msg = t("quiz.msgPerfect");
       
       confettiHtml = '<div class="quiz-confetti-container">';
       const colors = ["#7cf5c4", "#66d9ff", "#e5c158", "#ff6b6b"];
@@ -156,20 +171,20 @@ export default function initGuideQuiz() {
       }
       confettiHtml += '</div>';
     } else if (score >= 8) {
-      msg = "Ottimo lavoro! Hai risposto correttamente a " + score + " domande su 10. Hai una comprensione molto solida di questo capitolo!";
+      msg = t("quiz.msgGreat", { score });
     } else if (score >= 6) {
-      msg = "Sufficiente! Hai totalizzato " + score + " punti su 10. Hai superato il test, ma rileggi i concetti in cui hai sbagliato per consolidarli.";
+      msg = t("quiz.msgPass", { score });
     } else {
-      msg = "Hai risposto correttamente solo a " + score + " domande su 10. Ti consigliamo di rileggere con attenzione la guida e ripetere il test.";
+      msg = t("quiz.msgFail", { score });
     }
 
     wrapper.innerHTML = `
       <div class="quiz-results-card">
         ${confettiHtml}
-        <h3 style="position: relative; z-index: 1;">Test completato!</h3>
-        <p class="quiz-results-score" style="position: relative; z-index: 1;">Punteggio: <span id="quiz-final-score">${score}</span> / 10</p>
+        <h3 style="position: relative; z-index: 1;">${t("quiz.completed")}</h3>
+        <p class="quiz-results-score" style="position: relative; z-index: 1;">${t("quiz.finalScore")} <span id="quiz-final-score">${score}</span> / 10</p>
         <p id="quiz-results-message" style="position: relative; z-index: 1;">${msg}</p>
-        <button type="button" id="btn-restart-quiz" class="button-simple" style="position: relative; z-index: 1;">Ricomincia il test</button>
+        <button type="button" id="btn-restart-quiz" class="button-simple" style="position: relative; z-index: 1;">${t("quiz.restart")}</button>
       </div>
     `;
 
@@ -191,4 +206,13 @@ export default function initGuideQuiz() {
   };
 
   renderQuestion(0);
+}
+
+// The language switch swaps the page's text in place, but these questions are
+// rendered from a JS bank that is not in the markup — so re-render them.
+if (typeof window !== "undefined" && !window.__quizLangHook) {
+  window.__quizLangHook = true;
+  window.addEventListener("codedge:lang-changed", () => {
+    if (document.getElementById("chapter-quiz")) initGuideQuiz();
+  });
 }

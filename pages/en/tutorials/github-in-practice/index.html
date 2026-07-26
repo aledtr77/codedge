@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>GitHub operativo | Guida pratica | Codedge</title>
+  <meta
+    name="description"
+    content="Guida pratica a GitHub per lavorare meglio su repository, push/pull, pull request, issue e workflow collaborativo quotidiano.">
+  <!-- i18n: translation pending — this page still holds the Italian source text.
+       Remove this block (robots meta included) once the page is translated. -->
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://codedge.it/en/tutorials/github-in-practice/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="GitHub operativo | Guida pratica | Codedge" />
+  <meta property="og:description" content="Guida pratica a GitHub per lavorare meglio su repository, push/pull, pull request, issue e workflow collaborativo quotidiano." />
+  <meta property="og:url" content="https://codedge.it/en/tutorials/github-in-practice/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida GitHub operativo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GitHub operativo | Guida pratica | Codedge" />
+  <meta name="twitter:description" content="Guida pratica a GitHub per lavorare meglio su repository, push/pull, pull request, issue e workflow collaborativo quotidiano." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p {
+      max-width: 72ch;
+      line-height: 1.75;
+      margin: 0 0 1rem;
+    }
+
+    .guide-content .guide-subchapter ul,
+    .guide-content .guide-subchapter ol {
+      margin: 0 0 1rem 1.25rem;
+      line-height: 1.7;
+    }
+
+    .guide-content .guide-subchapter li + li {
+      margin-top: 0.35rem;
+    }
+
+    .guide-content .guide-subchapter h4 {
+      margin-top: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .guide-content .guide-subchapter pre {
+      margin: 0.9rem 0 1rem;
+      padding: 0.85rem 1rem;
+      overflow: auto;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fab fa-github guide-title-icon" aria-hidden="true"></i>GitHub operativo</span>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1 class="sr-only" id="github-guide-title">GitHub operativo</h1>
+    <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
+    <section class="section git-guide-shell" aria-labelledby="github-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida GitHub">
+          <h2>Guide contents</h2>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Nota iniziale</a></li>
+            <li><a href="#chapter-02">1. Cos’è GitHub</a></li>
+            <li><a href="#chapter-03">2. Git vs GitHub</a></li>
+            <li><a href="#chapter-04">3. Perché usarlo anche da solo</a></li>
+            <li><a href="#chapter-05">4. Creare un account GitHub</a></li>
+            <li><a href="#chapter-06">5. Cos’è un repository</a></li>
+            <li><a href="#chapter-08">6. Schermata del repository</a></li>
+            <li><a href="#chapter-09">7. Creare un repository da GitHub</a></li>
+            <li><a href="#chapter-10">8. Collegare il progetto locale</a></li>
+            <li><a href="#chapter-11">9. Push e Pull</a></li>
+            <li><a href="#chapter-12">10. Pull Request</a></li>
+            <li><a href="#chapter-13">11. README e Markdown</a></li>
+            <li><a href="#chapter-15">12. Branch</a></li>
+            <li><a href="#chapter-17">13. Commit e cronologia</a></li>
+            <li><a href="#chapter-18">14. Modificare dal browser</a></li>
+            <li><a href="#chapter-20">15. Clone e Fork</a></li>
+            <li><a href="#chapter-22">16. Funzioni extra di GitHub</a></li>
+            <li><a href="#chapter-23">17. Conclusioni</a></li>
+            <li><a href="#chapter-cheatsheet">18. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">19. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">20. Verifica la preparazione (Quiz)</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida GitHub">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">Guida pratica per chi parte da zero</p>
+                <h2>Nota iniziale</h2>
+              <section class="guide-subchapter">
+                <p>Questa guida nasce con un obiettivo molto semplice: aiutare chi parte da zero a capire GitHub in modo chiaro, senza perdersi tra termini tecnici e spiegazioni confuse.</p>
+                <p>Non è un manuale completo su tutto ciò che GitHub può fare, e non pretende di esserlo.</p>
+                <p>È una guida pratica, pensata per chi vuole capire le basi davvero utili, iniziare a usare GitHub con un minimo di sicurezza e costruire un piccolo workflow semplice ma sensato.</p>
+                <p>Se in futuro vorrai approfondire argomenti più avanzati, potrai farlo consultando la documentazione ufficiale, corsi completi e strumenti più tecnici. Ma per iniziare bene, nella maggior parte dei casi, non serve sapere tutto. Serve capire le cose giuste.</p>
+              </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/github-operativo/copertina-editoriale.webp" alt="Illustrazione di apertura della guida GitHub operativo" decoding="async" width="864" height="1080">
+              </figure>
+            </div>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. Cos’è GitHub</h2>
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/github-operativo/panoramica-github-operativo.svg" alt="Panoramica visuale dei blocchi principali della guida GitHub" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Panoramica della guida: basi, repository, workflow e uso quotidiano.</figcaption>
+              </figure>
+            <section class="guide-subchapter">
+              <p>GitHub è una piattaforma online che lavora insieme a Git.</p>
+              <p>La prima distinzione da fissare è questa: Git e GitHub non sono la stessa cosa.</p>
+              <p>Se prima vuoi consolidare bene le basi di Git lato locale, puoi passare anche dalla guida <a href="/en/tutorials/git-without-panic/">Git pratico senza panico</a>.</p>
+              <p>Git è lo strumento di versionamento che lavora sui file del tuo progetto. GitHub invece è un servizio online che ti permette di pubblicare, salvare, condividere e gestire quei progetti in rete.</p>
+              <p>In sintesi:</p>
+              <ul class="guide-list">
+                <li>Git è lo strumento.</li>
+                <li>GitHub è il posto online dove puoi mettere i progetti Git.</li>
+              </ul>
+              <p>In pratica: Git gestisce la cronologia del progetto, GitHub lo ospita online e facilita la collaborazione.</p>
+              <p>GitHub viene usato per molti motivi:</p>
+              <ul class="guide-list">
+                <li>tenere una copia online dei progetti</li>
+                <li>mostrare il proprio lavoro</li>
+                <li>collaborare con altre persone</li>
+                <li>organizzare codice, documentazione e file</li>
+                <li>creare una sorta di portfolio tecnico</li>
+              </ul>
+              <p>GitHub è utile anche da solo, senza team e senza progetti enormi. Anche un progetto semplice può trarre vantaggio da GitHub.</p>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Git e GitHub: differenza chiara una volta per tutte</h2>
+            <section class="guide-subchapter">
+              <p>Molti all’inizio dicono “sto usando GitHub” quando in realtà stanno usando Git nel terminale. Oppure pensano che GitHub sia obbligatorio per usare Git. Non è così.</p>
+              <p>Puoi usare Git anche senza GitHub. Puoi avere un progetto locale sul tuo computer, usare commit, vedere la cronologia e lavorare tranquillamente senza mai pubblicarlo online.</p>
+              <p>GitHub entra in gioco quando vuoi:</p>
+              <ul class="guide-list">
+                <li>avere un backup online</li>
+                <li>sincronizzare il progetto tra più computer</li>
+                <li>condividere il repository</li>
+                <li>pubblicare il lavoro</li>
+                <li>collaborare</li>
+              </ul>
+              <p>Il modo piu semplice per non confonderti è questo: Git lavora prima di tutto sul tuo computer. GitHub lavora prima di tutto online.</p>
+              <h3 class="sr-only">Git e GitHub a confronto</h3>
+              <h4>Git</h4>
+              <p>Lavora sul tuo computer. Qui modifichi i file, fai commit, cambi branch e controlli la cronologia locale.</p>
+              <h4>GitHub</h4>
+              <p>Lavora online. Qui pubblichi il repository remoto, vedi branch e commit su web, apri Pull Request, leggi issue e collabori.</p>
+              <p>Detto ancora piu terra-terra:</p>
+              <ul class="guide-list">
+                <li>se stai modificando file, facendo commit o usando <code>git status</code>, stai lavorando con Git;</li>
+                <li>se stai guardando il repository nel browser, aprendo una PR o gestendo issue, stai lavorando con GitHub.</li>
+              </ul>
+              <p>GitHub non è solo “hosting del codice”: aggiunge anche strumenti operativi che userai nel lavoro quotidiano, tra cui:</p>
+              <ul class="guide-list">
+                <li>Issues</li>
+                <li>Pull Request</li>
+                <li>Actions</li>
+                <li>Wiki</li>
+                <li>Projects</li>
+              </ul>
+              <p>Capire questa differenza all’inizio ti evita molti fraintendimenti nei passaggi successivi.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Perché GitHub è utile anche se lavori da solo</h2>
+            <section class="guide-subchapter">
+              <p>Uno degli errori più comuni è pensare che GitHub serva solo ai team o agli sviluppatori già esperti.</p>
+              <p>In realtà GitHub è utilissimo anche se lavori da solo, soprattutto se stai imparando.</p>
+              <p>Perché?</p>
+              <h3>3.1 Ti dà una copia online del progetto</h3>
+              <p>Se il computer ha problemi, avere il repository online può salvarti il lavoro.</p>
+              <p>Non è una magia automatica: funziona bene se fai push con regolarità e non lasci tutto solo in locale per giorni.</p>
+              <h3>3.2 Ti aiuta a presentarti meglio</h3>
+              <p>Se un giorno vuoi mostrare i tuoi progetti, GitHub è uno dei primi posti dove molte persone guardano.</p>
+              <h3>3.3 Ti abitua a un workflow reale</h3>
+              <p>Anche se fai piccoli progetti personali, usare GitHub ti avvicina a un metodo di lavoro molto comune.</p>
+              <h3>3.4 Ti costringe a essere un po’ più ordinato</h3>
+              <p>README, nomi dei repository, commit, struttura dei file: tutte cose che ti spingono a lavorare con più criterio.</p>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Creare un account GitHub</h2>
+            <section class="guide-subchapter">
+              <p>Aprire un account GitHub è semplice, ma ci sono alcune piccole scelte che conviene fare con attenzione.</p>
+              <p>Quando crei l’account, cerca di scegliere:</p>
+              <ul class="guide-list">
+                <li>un nome utente pulito e credibile</li>
+                <li>un’email che userai davvero</li>
+                <li>una password sicura</li>
+              </ul>
+              <p>Se l’account sarà anche parte della tua presenza online, il nome utente conta. Non serve essere super istituzionali, ma evitare nomi troppo casuali può aiutare.</p>
+              <p>Dopo la registrazione puoi completare alcune informazioni:</p>
+              <ul class="guide-list">
+                <li>foto profilo</li>
+                <li>bio breve</li>
+                <li>link sito personale</li>
+                <li>località</li>
+              </ul>
+              <p>Non è obbligatorio riempire tutto subito, ma un profilo minimo ordinato fa già una buona impressione.</p>
+              <p><strong>Consiglio operativo:</strong> attiva subito la verifica a due fattori (2FA). È una delle impostazioni più importanti per proteggere l’account.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Cos’è un repository</h2>
+            <section class="guide-subchapter">
+              <p>Su GitHub il contenitore principale di un progetto si chiama repository, spesso abbreviato in repo.</p>
+              <p>Un repository contiene:</p>
+              <ul class="guide-list">
+                <li>file del progetto</li>
+                <li>cartelle</li>
+                <li>cronologia dei commit</li>
+                <li>eventuali branch</li>
+                <li>informazioni sul progetto</li>
+                <li>README e altri documenti</li>
+              </ul>
+              <p>Puoi pensarlo come la casa del tuo progetto.</p>
+              <p>Se hai un piccolo progetto, un esercizio, una guida o un’applicazione semplice, ogni progetto può avere il suo repository.</p>
+              <p>Quando crei un repository devi scegliere anche la visibilità: pubblico o privato.</p>
+              <h3 class="sr-only">Tipi di repository</h3>
+              <h4>Repository pubblico</h4>
+              <p>Chiunque può vedere il contenuto. È utile per:</p>
+              <ul class="guide-list">
+                <li>portfolio</li>
+                <li>progetti dimostrativi</li>
+                <li>codice che vuoi condividere</li>
+                <li>esercizi che vuoi rendere visibili</li>
+              </ul>
+              <h4>Repository privato</h4>
+              <p>In generale è visibile solo a te e alle persone che hanno accesso. Nei repository di organizzazione i permessi possono dipendere anche da team, ruoli e impostazioni interne.</p>
+              <p>È utile per:</p>
+              <ul class="guide-list">
+                <li>progetti in lavorazione</li>
+                <li>esperimenti ancora disordinati</li>
+                <li>materiale non pronto</li>
+                <li>contenuti che non vuoi rendere pubblici</li>
+              </ul>
+              <p>Essere pubblici non è obbligatorio. All’inizio è meglio un progetto privato ma ordinato, piuttosto che un progetto pubblico poco curato.</p>
+              <p><strong>Consiglio operativo:</strong> assegna a ogni repository uno scopo preciso. Evita contenitori generici con progetti diversi mescolati: rendono più difficile orientarsi, collaborare e mantenere il lavoro nel tempo.</p>
+              <p><strong>Nota di sicurezza:</strong> non caricare mai segreti nel repository (token, password, file <code>.env</code>). Anche in repo privato è una buona abitudine trattarli come dati sensibili.</p>
+            </section>
+          </section>
+
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>6. La schermata principale di un repository</h2>
+            <section class="guide-subchapter">
+              <p>Quando apri un repository su GitHub, trovi diverse aree importanti.</p>
+              <h3 class="sr-only">Elementi della schermata del repository</h3>
+              <h4>Nome del repository</h4>
+              <p>È il nome del progetto. Cerca di mantenerlo chiaro.</p>
+              <h4>Tab dei file</h4>
+              <p>Qui vedi cartelle e file presenti nel progetto.</p>
+              <h4>README</h4>
+              <p>Se presente, appare spesso in basso nella home del repository ed è una delle prime cose che si leggono.</p>
+              <h4>Commit recenti</h4>
+              <p>Ti mostrano gli ultimi cambiamenti registrati.</p>
+              <h4>Branch</h4>
+              <p>Ti fanno vedere se stai guardando il ramo principale o un altro ramo del progetto.</p>
+              <h4>Insights, settings e altre sezioni</h4>
+              <p>Sono sezioni utili, ma all’inizio conviene concentrarsi prima sulle basi.</p>
+              <p><strong>Consiglio operativo:</strong> quando apri un repository, controlla subito branch selezionato e ultimo commit visibile in alto: ti evita modifiche sul ramo sbagliato.</p>
+            </section>
+          </section>
+
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>7. Creare un repository da GitHub</h2>
+            <section class="guide-subchapter">
+              <p>Puoi creare un repository direttamente dal sito di GitHub.</p>
+              <p>I passaggi tipici sono questi:</p>
+              <ol class="guide-list">
+                <li>clic su “New repository”</li>
+                <li>scegli un nome</li>
+                <li>aggiungi una descrizione facoltativa</li>
+                <li>scegli se pubblico o privato</li>
+                <li>decidi se inizializzarlo con README</li>
+              </ol>
+              <p>Per chi inizia, il nome del repository conta molto perché aiuta a mantenere ordine nel tempo.</p>
+              <ul class="guide-list">
+                <li>se hai un solo progetto, un nome semplice e chiaro è sufficiente</li>
+                <li>se prevedi più progetti, conviene usare una convenzione coerente fin da subito</li>
+              </ul>
+              <p>Esempi semplici di convenzione:</p>
+              <ul class="guide-list">
+                <li><code>landing-page-studio</code>, <code>portfolio-frontend</code>, <code>api-prenotazioni</code></li>
+                <li><code>00-setup-ambiente</code>, <code>01-sito-vetrina</code>, <code>02-dashboard-admin</code></li>
+              </ul>
+              <p>La numerazione non è obbligatoria, ma può aiutare se stai costruendo un percorso progressivo o una serie di progetti collegati.</p>
+              <p>La regola pratica è: scegli una struttura e mantienila costante su tutti i repository.</p>
+              <ul class="guide-list">
+                <li>nomi brevi, leggibili e senza ambiguità</li>
+                <li>niente spazi, meglio trattini (<code>-</code>)</li>
+                <li>descrizione repository compilata con una frase utile</li>
+                <li>README iniziale quasi sempre attivo</li>
+              </ul>
+              <p>Se stai partendo da zero e vuoi un progetto semplice, inizializzarlo con README è spesso la scelta migliore.</p>
+              <p>Se invece hai già il progetto sul tuo computer e vuoi collegarlo dopo, puoi creare il repository vuoto e aggiungere i file dal locale.</p>
+            </section>
+          </section>
+
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>8. Collegare un progetto locale a GitHub</h2>
+            <section class="guide-subchapter">
+              <p>Per collegare un progetto locale a GitHub, prendiamo in esame i due casi più utili.</p>
+              <p><strong>Caso A: usi solo Git.</strong> In questo caso il repository su GitHub deve essere già stato creato.</p>
+              <pre><code class="language-text">git init
+git add .
+git commit -m "Primo commit"
+git branch -M main
+git remote add origin https://github.com/USERNAME/NOME-REPO.git
+git push -u origin main</code></pre>
+              <p><strong>Caso B: fai tutto da terminale.</strong> Se non vuoi aprire il sito GitHub, devi usare GitHub CLI (<code>gh</code>) per creare il repository remoto.</p>
+              <pre><code class="language-text">gh auth login
+gh repo create NOME-REPO --private --source=. --remote=origin --push</code></pre>
+              <p>Se vuoi un repository pubblico, usa <code>--public</code> al posto di <code>--private</code>.</p>
+              <p>Questo comando presuppone che la cartella corrente sia già un repository Git locale o che tu voglia inizializzarlo nel flusso guidato della CLI. Se non hai ancora preparato il progetto in locale, conviene prima sistemare repository, commit iniziale e file da pubblicare.</p>
+              <p><strong>Consiglio operativo:</strong> pensa così: <code>git</code> gestisce il progetto locale, <code>gh</code> crea il repository su GitHub da terminale.</p>
+              <p>La sequenza mentale giusta è questa:</p>
+              <ul class="guide-list">
+                <li>prima esiste il progetto locale;</li>
+                <li>poi lo colleghi a un repository remoto su GitHub;</li>
+                <li>poi fai <code>push</code> per mandare online i commit.</li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>9. Push e Pull: sincronizzare locale e remoto</h2>
+            <section class="guide-subchapter">
+              <h3>Push: mandare online i cambiamenti</h3>
+              <p>La parola push significa inviare i commit locali al repository remoto.</p>
+              <p>Detto nel modo piu semplice possibile: hai gia salvato il lavoro in locale con un commit, e con <code>push</code> lo mandi anche su GitHub.</p>
+              <ul class="guide-list">
+                <li>fai modifiche sul computer</li>
+                <li>le salvi con un commit</li>
+                <li>fai push</li>
+                <li>i cambiamenti arrivano su GitHub</li>
+              </ul>
+              <p>Molti principianti credono che salvare un file o fare commit significhi già aver aggiornato GitHub. Non è così.</p>
+              <p>Il commit salva il lavoro nella cronologia locale. Il push manda quei commit anche online.</p>
+              <p>Esempio tipico:</p>
+              <pre><code class="language-text">git add .
+git commit -m &quot;Aggiorna sezione contatti&quot;
+git push</code></pre>
+              <p><strong>Consiglio operativo:</strong> prima di fare push usa sempre <code>git status</code>. Ti aiuta a evitare file involontari nei commit.</p>
+              <h3>Pull: portare in locale i cambiamenti online</h3>
+              <p>Il comando complementare a push è pull.</p>
+              <p>Con pull porti sul tuo computer i cambiamenti che nel frattempo sono arrivati su GitHub.</p>
+              <p>È utile quando:</p>
+              <ul class="guide-list">
+                <li>lavori da due computer diversi</li>
+                <li>collabori con qualcuno</li>
+                <li>hai fatto modifiche online e vuoi ritrovarle sul computer</li>
+              </ul>
+              <p>Comando base:</p>
+              <pre><code class="language-text">git pull</code></pre>
+              <p>Qui c&#x27;è il punto che spesso frega chi inizia: <code>pull</code> non vuol dire solo “scarica”.</p>
+              <p><code>pull</code> scarica e prova anche a integrare quei cambiamenti nel branch su cui sei adesso.</p>
+              <p>Nella configurazione più comune equivale a <code>fetch</code> + <code>merge</code>. In alcuni workflow può usare <code>rebase</code>. Per questo non va trattato come un pulsante innocuo da premere a caso.</p>
+              <p><strong>Consiglio operativo:</strong> se lavori da solo e vuoi una cronologia più lineare, valuta <code>git pull --rebase</code> invece di <code>git pull</code>.</p>
+              <p>Riassunto secco:</p>
+              <ul class="guide-list">
+                <li><code>push</code> = dal tuo computer a GitHub;</li>
+                <li><code>pull</code> = da GitHub al tuo computer.</li>
+              </ul>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/github-operativo/workflow-github-quotidiano.svg" alt="Workflow quotidiano di sincronizzazione locale e remoto con Git e GitHub" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Rappresentazione del flusso bidirezionale tra il tuo ambiente locale (push) e il server GitHub (pull).</figcaption>
+              </figure>
+            </section>
+          </section>
+
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>10. Pull Request: il flusso pratico da capire davvero</h2>
+            <section class="guide-subchapter">
+              <p>La Pull Request, spesso abbreviata in PR, è uno dei punti centrali di GitHub.</p>
+              <p>In parole semplici, una PR è una richiesta per dire: ho finito questa modifica in un branch, adesso voglio confrontarla con un altro branch e decidere se unirla.</p>
+              <p>Non è utile solo nei grandi team. Serve anche da solo, perché ti costringe a separare meglio il lavoro, rileggere il diff e fare un minimo di controllo qualità prima di unire tutto nel branch principale.</p>
+              <h3>Il flusso base più comune</h3>
+              <ol class="guide-list">
+                <li>crei un branch per una modifica specifica</li>
+                <li>fai commit locali</li>
+                <li>pushi il branch su GitHub</li>
+                <li>apri una Pull Request</li>
+                <li>rivedi differenze, commenti e stato dei controlli</li>
+                <li>fai merge quando è tutto a posto</li>
+              </ol>
+              <h3>Esempio semplice</h3>
+              <pre><code class="language-text">git switch -c feature/faq-home
+git add .
+git commit -m "aggiunge sezione FAQ in home"
+git push -u origin feature/faq-home</code></pre>
+              <p>A quel punto su GitHub puoi aprire una PR da <code>feature/faq-home</code> verso <code>main</code>.</p>
+              <p>La cosa pratica da capire è questa: la PR non modifica da sola il codice del branch principale. La PR apre un confronto e una proposta di merge.</p>
+              <h3>Cosa guardare dentro una PR</h3>
+              <ul class="guide-list">
+                <li>titolo chiaro</li>
+                <li>descrizione sintetica di cosa cambia</li>
+                <li>diff dei file modificati</li>
+                <li>eventuali commenti o review</li>
+                <li>stato dei controlli automatici, se presenti</li>
+              </ul>
+              <p>La PR non è solo un pulsante per fare merge. È un momento di controllo: guardi se le modifiche hanno senso, se il branch è quello giusto e se stai unendo davvero quello che volevi unire.</p>
+              <h3>Una distinzione utile</h3>
+              <p>Branch e Pull Request non sono la stessa cosa.</p>
+              <ul class="guide-list">
+                <li>il branch è la linea di lavoro separata</li>
+                <li>la Pull Request è la proposta di unire quella linea in un altro branch</li>
+              </ul>
+              <p>Detto ancora piu secco:</p>
+              <ul class="guide-list">
+                <li>il branch è dove lavori;</li>
+                <li>la PR è dove controlli e proponi l&#x27;unione.</li>
+              </ul>
+              <p><strong>Consiglio operativo:</strong> anche se lavori da solo, aprire una PR per modifiche medio-grandi ti aiuta a ragionare meglio prima del merge.</p>
+            </section>
+          </section>
+
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>11. README e Markdown: base essenziale</h2>
+            <section class="guide-subchapter">
+              <p>Il file README.md è uno degli elementi più importanti di un repository.</p>
+              <p>Molti lo ignorano all’inizio, ma è un errore. Un buon README rende il progetto più chiaro, più presentabile e più utile anche a te stesso.</p>
+              <p>Dentro un README puoi scrivere:</p>
+              <ul class="guide-list">
+                <li>cos’è il progetto</li>
+                <li>a cosa serve</li>
+                <li>tecnologie usate</li>
+                <li>come avviarlo</li>
+                <li>struttura base</li>
+                <li>eventuali note importanti</li>
+              </ul>
+              <p>Per un progetto piccolo non serve un README lungo: bastano informazioni chiare e utili.</p>
+              <p>Un esempio minimale potrebbe contenere:</p>
+              <ul class="guide-list">
+                <li>titolo del progetto</li>
+                <li>breve descrizione</li>
+                <li>stack usato</li>
+                <li>istruzioni rapide</li>
+                <li>stato del progetto</li>
+              </ul>
+              <p>Il README si scrive quasi sempre in Markdown, un formato semplice che ti permette di creare titoli, elenchi, link e blocchi di codice.</p>
+              <pre><code class="language-text"># Titolo principale
+## Sottotitolo
+**testo in grassetto**
+- elemento lista
+- altro elemento</code></pre>
+              <p>Markdown resta leggibile anche mentre scrivi e non richiede sintassi complicata.</p>
+              <p><strong>Consiglio operativo:</strong> aggiungi sempre una sezione “Avvio rapido” con 2-3 comandi. È la parte che chi legge cerca per prima.</p>
+            </section>
+          </section>
+
+          <section id="chapter-15" class="guide-block guide-chapter">
+            <h2>12. I branch: cosa sono e quando usarli</h2>
+            <section class="guide-subchapter">
+              <p>Un branch è un ramo del progetto.</p>
+              <p>Il branch principale oggi si chiama spesso main.</p>
+              <p>Per capire il concetto senza tecnicismi, pensa così: un branch è una linea di lavoro separata.</p>
+              <ul class="guide-list">
+                <li>il branch principale è la versione principale del progetto</li>
+                <li>un branch secondario è uno spazio dove puoi fare prove o sviluppare una modifica senza toccare subito la versione principale</li>
+              </ul>
+              <p>Su micro-progetti personali può capitare di lavorare direttamente su main, soprattutto all’inizio.</p>
+              <p>Però appena il lavoro cresce un po’, o vuoi fare modifiche più rischiose, conviene passare a branch dedicati.</p>
+              <p>Il vantaggio pratico è questo: puoi lavorare a una modifica senza sporcare subito <code>main</code>.</p>
+              <p>Sono utili, ad esempio, quando vuoi:</p>
+              <ul class="guide-list">
+                <li>rifare una sezione del sito</li>
+                <li>testare una nuova feature</li>
+                <li>provare un refactor</li>
+                <li>tenere separata una demo dalla versione base</li>
+              </ul>
+              <p>Non serve creare branch per cambiare una virgola. Ma in certi casi aiutano parecchio.</p>
+              <p>Esempi pratici:</p>
+              <ul class="guide-list">
+                <li>vuoi rifare tutta la navbar</li>
+                <li>stai lavorando a una nuova pagina</li>
+                <li>vuoi preparare una versione demo</li>
+                <li>vuoi fare modifiche grosse senza sporcare subito il main</li>
+              </ul>
+              <p>L’idea non è complicarti la vita, ma proteggere il progetto principale mentre lavori.</p>
+              <p><strong>Consiglio operativo:</strong> usa nomi branch descrittivi, ad esempio <code>feature/navbar-mobile</code>, <code>fix/form-validation</code>, <code>docs/readme-update</code>.</p>
+            </section>
+          </section>
+
+          <section id="chapter-17" class="guide-block guide-chapter">
+            <h2>13. Commit e cronologia su GitHub</h2>
+            <section class="guide-subchapter">
+              <p>Un commit è un salvataggio tracciato del progetto nella cronologia Git.</p>
+              <p>Finché resta solo in locale, lo vedi sul tuo computer. Quando fai push, quel commit arriva anche su GitHub e diventa visibile nella cronologia del repository.</p>
+              <p>La cronologia serve perché ti fa capire con chiarezza:</p>
+              <ul class="guide-list">
+                <li>cosa è cambiato</li>
+                <li>quando è cambiato</li>
+                <li>con quale messaggio</li>
+                <li>chi ha fatto la modifica</li>
+              </ul>
+              <p>Anche se lavori da solo è fondamentale: dopo qualche giorno potresti non ricordare più cosa hai toccato e perché.</p>
+              <p>Flusso base:</p>
+              <pre><code class="language-text">git add .
+git commit -m "aggiorna sezione contatti"
+git push</code></pre>
+              <p>La parte più importante è il messaggio del commit: deve spiegare in una riga cosa hai cambiato.</p>
+              <p>Regola semplice: <strong>verbo + oggetto della modifica</strong>.</p>
+              <p>Messaggi vaghi da evitare:</p>
+              <ul class="guide-list">
+                <li>update</li>
+                <li>fix</li>
+                <li>prova</li>
+                <li>wip</li>
+              </ul>
+              <p>Messaggi chiari:</p>
+              <ul class="guide-list">
+                <li>aggiunge sezione FAQ</li>
+                <li>aggiorna layout pagina contatti</li>
+                <li>rimuove componenti non più usati</li>
+                <li>migliora struttura del footer</li>
+              </ul>
+              <p>Se in un commit metti modifiche diverse (esempio: navbar + form + README), la cronologia diventa difficile da leggere.</p>
+              <p><strong>Consiglio operativo:</strong> fai commit piccoli e coerenti: una modifica chiara per ogni commit.</p>
+            </section>
+          </section>
+
+          <section id="chapter-18" class="guide-block guide-chapter">
+            <h2>14. Modificare e caricare file dal browser</h2>
+            <section class="guide-subchapter">
+              <p>GitHub permette anche di modificare piccoli file direttamente dal browser.</p>
+              <p>Questa funzione può essere utile per:</p>
+              <ul class="guide-list">
+                <li>correggere un README</li>
+                <li>aggiungere una nota</li>
+                <li>sistemare piccoli dettagli testuali</li>
+              </ul>
+              <p>Puoi anche caricare file direttamente da GitHub tramite interfaccia web.</p>
+              <p>Ci sono però due limiti pratici da sapere subito:</p>
+              <ul class="guide-list">
+                <li>se il branch è protetto, GitHub può impedirti di modificare o caricare file direttamente lì dal browser;</li>
+                <li>l’upload via web non è pensato per file grandi o per flussi strutturati di sviluppo.</li>
+              </ul>
+              <p>Modificare e caricare dal browser è utile per interventi rapidi, ma non dovrebbe diventare il flusso principale.</p>
+              <p>Per un workflow ordinato è meglio:</p>
+              <ul class="guide-list">
+                <li>lavorare in locale</li>
+                <li>usare Git</li>
+                <li>fare commit</li>
+                <li>fare push</li>
+              </ul>
+              <p>Per modifiche grandi o strutturali è meglio lavorare in locale: dal browser diventa presto scomodo e confuso.</p>
+              <p><strong>Consiglio operativo:</strong> usa il browser per micro-fix veloci, non per sviluppo completo.</p>
+            </section>
+          </section>
+
+          <section id="chapter-20" class="guide-block guide-chapter">
+            <h2>15. Clone e Fork: differenza e uso</h2>
+            <section class="guide-subchapter">
+              <p>Clone e fork sembrano simili, ma servono a cose diverse.</p>
+              <h3 class="sr-only">Clone e Fork a confronto</h3>
+              <h4>Clone</h4>
+              <p>Il comando clone serve a scaricare un repository esistente sul tuo computer.</p>
+              <p>Esempio:</p>
+              <pre><code class="language-text">git clone URL_DEL_REPOSITORY</code></pre>
+              <p>È utile quando:</p>
+              <ul class="guide-list">
+                <li>vuoi lavorare a un repository già presente su GitHub</li>
+                <li>stai passando su un altro computer</li>
+                <li>vuoi scaricare un tuo progetto online</li>
+              </ul>
+              <p>Clone crea una copia locale completa del repository.</p>
+              <h4>Fork</h4>
+              <p>Il fork è una copia di un repository dentro il tuo account GitHub.</p>
+              <p>In breve:</p>
+              <ul class="guide-list">
+                <li>clone = copia sul tuo computer</li>
+                <li>fork = copia nel tuo account GitHub</li>
+              </ul>
+              <p>Questa è la differenza che conta davvero: il clone lavora sul piano locale, il fork lavora sul piano online.</p>
+              <p>Il fork è utile soprattutto quando vuoi partire da un progetto pubblico esistente o contribuire a un repository che non controlli direttamente.</p>
+              <p>In molti casi il fork è associato al flusso “fork -> clone -> branch -> commit -> push -> pull request” usato quando non hai permessi diretti di scrittura sul repository originale.</p>
+              <p><strong>Consiglio operativo:</strong> se il repository è tuo, nella maggior parte dei casi ti basta fare clone. Usa fork quando lavori su repository di altri.</p>
+            </section>
+          </section>
+
+          <section id="chapter-22" class="guide-block guide-chapter">
+            <h2>16. Funzioni extra di GitHub</h2>
+            <section class="guide-subchapter">
+              <p>In questo punto vediamo meglio cosa sono le funzioni extra principali di GitHub, una per una.</p>
+              <h3 class="sr-only">Le funzioni extra di GitHub</h3>
+              <h4>Issues</h4>
+              <p>Una issue è una scheda di lavoro: serve a descrivere una cosa da fare, un problema da risolvere o un miglioramento.</p>
+              <p>In pratica ti aiuta a non perdere pezzi e a capire cosa manca nel progetto.</p>
+              <h4>Pull Request</h4>
+              <p>È una richiesta di integrazione: proponi modifiche fatte in un branch e chiedi di unirle nel branch principale.</p>
+              <p>Serve per review, confronto e controllo qualità prima del merge.</p>
+              <h4>Actions</h4>
+              <p>Sono automazioni eseguite da GitHub: test automatici, build, deploy e controlli sul codice.</p>
+              <p>Detto semplice: sono lavori che GitHub esegue da solo quando succede qualcosa, per esempio un push o una Pull Request.</p>
+              <p>Ti aiutano a ridurre errori manuali e a standardizzare il flusso.</p>
+              <h4>Wiki</h4>
+              <p>È uno spazio di documentazione interna del repository.</p>
+              <p>Utile per guide, procedure e note tecniche più lunghe del README.</p>
+              <h4>Projects</h4>
+              <p>È una bacheca organizzativa (stile Kanban) per pianificare e tracciare attività.</p>
+              <p>Ti aiuta a vedere cosa è da fare, cosa è in corso e cosa è completato.</p>
+            </section>
+          </section>
+
+          <section id="chapter-23" class="guide-block guide-chapter">
+            <h2>18. Conclusioni</h2>
+            <section class="guide-subchapter">
+              <ul class="guide-list">
+                <li><strong>Errori comuni da evitare:</strong> non confondere Git con GitHub, non lavorare solo da browser, non fare commit vaghi, non trattare pull e PR come passaggi automatici da fare senza controllo.</li>
+                <li><strong>Workflow base semplice e sano:</strong> aggiorni il contesto, lavori in locale o in branch, fai commit chiari, pushi, controlli su GitHub e usi PR quando serve.</li>
+                <li><strong>Un esempio pratico completo:</strong> modifica file, <code>git add</code>, <code>git commit</code>, <code>git push</code>, controllo finale online.</li>
+                <li><strong>Cosa non serve sapere subito:</strong> automazioni avanzate, permessi complessi e strategie sofisticate possono aspettare.</li>
+                <li><strong>GitHub e crescita personale nel proprio percorso:</strong> ti aiuta a lavorare con più ordine, tracciabilità e continuità.</li>
+              </ul>
+              <p>Se applichi questi punti con costanza, GitHub diventa uno strumento operativo chiaro e affidabile.</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/github-operativo/routine-github-pratica.svg" alt="Routine di lavoro quotidiano consigliata con GitHub" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>Riepilogo delle buone abitudini quotidiane per mantenere allineati repository locale e remoto senza conflitti.</figcaption>
+              </figure>
+
+              <h3>Guide correlate</h3>
+              <ul class="guide-list">
+                <li><a href="/en/tutorials/git-without-panic/">Git pratico senza panico</a>: basi operative locali, commit, branch, merge e recupero errori.</li>
+                <li><a href="/en/tutorials/">Tutti i tutorial</a>: elenco aggiornato delle guide disponibili.</li>
+              </ul>
+            </section>
+          </section>
+        
+          <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>18. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo dei comandi chiave per lavorare in remoto con GitHub:</p>
+              <div class="table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>Comando</th>
+                      <th class="is-accent">Cosa fa</th>
+                      <th>Quando usarlo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="is-code is-strong">git clone &lt;url&gt;</td>
+                      <td>Crea una copia locale completa di un repository ospitato su GitHub.</td>
+                      <td>All'inizio di un nuovo progetto partendo da un repo esistente online.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">git remote add origin</td>
+                      <td>Collega il tuo repository locale a un server remoto su GitHub.</td>
+                      <td>Dopo aver creato un nuovo repository locale ed un repo vuoto online.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">git push -u origin main</td>
+                      <td>Invia i commit locali al server remoto agganciando il tracciamento del branch.</td>
+                      <td>Al primo push del branch locale. Successivamente basterà scrivere 'git push'.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">git pull</td>
+                      <td>Scarica ed integra le modifiche remote nel branch locale attivo.</td>
+                      <td>All'inizio della sessione di lavoro o per allineare il computer locale.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>19. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Metti in rete il tuo codice pubblicando una pagina personale su GitHub Pages:</p>
+              <div class="alert alert--note">
+                <strong>Challenge goal:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un repository remoto su GitHub, collega il tuo codice locale, effettua il push e pubblica la tua pagina statica su internet.</p>
+                <strong>Step-by-step instructions:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Accedi al tuo account GitHub e crea un nuovo repository pubblico dal nome <code class="language-text">sito-vetrina</code> (lascialo vuoto, senza README o .gitignore).</li>
+                  <li>Nel terminale del tuo progetto locale, scrivi <code class="language-bash">git remote add origin https://github.com/TUO-UTENTE/sito-vetrina.git</code>.</li>
+                  <li>Effettua il push del tuo branch main con il comando <code class="language-bash">git push -u origin main</code>.</li>
+                  <li>Entra in *Settings -> Pages* del repository su GitHub, seleziona la sorgente *Deploy from a branch* indicando il branch *main* e verifica dopo qualche minuto l'indirizzo pubblico del sito.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
+          <section id="chapter-quiz" data-quiz-id="github-operativo" class="guide-block guide-chapter quiz-section">
+            <h2>20. Verifica la tua preparazione (Quiz)</h2>
+            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
+            <div id="quiz-wrapper"></div>
+          </section>
+
+          <!-- Invito ai template a fine guida (stile pulito .guide-next-step, condiviso) -->
+          <aside class="guide-next-step" aria-labelledby="next-step-title">
+            <div class="guide-next-step__icon" aria-hidden="true">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="guide-next-step__content">
+              <h2 id="next-step-title" class="guide-next-step__title">Vuoi vedere tutto questo su un repository vero?</h2>
+              <p class="guide-next-step__text">
+                Invece di fermarti agli esercizi teorici, dai un'occhiata ai miei template pronti all'uso.
+                Sono progetti reali e completi, perfetti per vedere come strutturare un repository vero.
+                Puoi usarli per studiare l'organizzazione del codice o acquistarli per partire subito con una base solida.
+              </p>
+              <a href="/en/templates/" class="button-simple guide-next-step__cta">Explore the templates</a>
+            </div>
+          </aside>
+</article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/github-operativo/main.js"></script>
+</body>
+
+</html>

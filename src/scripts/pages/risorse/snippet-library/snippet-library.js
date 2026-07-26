@@ -1,5 +1,6 @@
 // initSnippets() - class-only sidebar + robust copy feedback & event delegation
 import { scrollBehavior } from "@/scripts/utils/motion.js";
+import { t } from "@/i18n/ui.js";
 
 export function initSnippets() {
   // Copy-to-clipboard with visual and screen-reader feedback
@@ -83,11 +84,11 @@ export function initSnippets() {
           live.style.overflow = 'hidden';
           document.body.appendChild(live);
         }
-        live.textContent = ok ? 'Copiato' : 'Copia fallita';
+        live.textContent = ok ? t('code.copied') : t('code.copyFailed');
 
         if (!btn.dataset._origHtml) btn.dataset._origHtml = btn.innerHTML;
         const iconHTML = btn.querySelector('i') ? btn.querySelector('i').outerHTML : '';
-        btn.innerHTML = iconHTML + ' Copiato!';
+        btn.innerHTML = iconHTML + ' ' + t('code.copiedBang');
         btn.setAttribute('data-copied', 'true');
 
         setTimeout(() => {
@@ -133,7 +134,7 @@ export function initSnippets() {
     const toggleBtn = document.createElement('button');
     toggleBtn.className = 'toggle-code-btn';
     toggleBtn.setAttribute('aria-expanded', 'false');
-    toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+    toggleBtn.innerHTML = `<i class="fas fa-code"></i> ${t('code.showCode')}`;
     // Before "Prova Live" when present: on mobile the row order stays
     // [Copia] [Vedi Codice] with the "Prova Live" bar last.
     const playBtn = titleBox.querySelector('.play-btn');
@@ -184,9 +185,9 @@ export function initSnippets() {
         toggleBtn.classList.toggle('active', isExpanded);
 
         if (isExpanded) {
-          toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Nascondi';
+          toggleBtn.innerHTML = `<i class="fas fa-eye-slash"></i> ${t('code.hideCode')}`;
         } else {
-          toggleBtn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+          toggleBtn.innerHTML = `<i class="fas fa-code"></i> ${t('code.showCode')}`;
         }
       }
       return;
@@ -231,7 +232,7 @@ export function initSnippets() {
         const btn = box.querySelector('.toggle-code-btn');
         if (btn) {
           btn.classList.remove('active');
-          btn.innerHTML = '<i class="fas fa-code"></i> Vedi Codice';
+          btn.innerHTML = `<i class="fas fa-code"></i> ${t('code.showCode')}`;
         }
       });
     } else {

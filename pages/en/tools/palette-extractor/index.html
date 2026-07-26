@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<title>Palette extractor from images | Codedge</title>
+  <meta name="description"
+    content="Extract a palette from any image: colors, contrast ratios, gradients, CSS variables and exportable JSON, straight from a photo.">
+  <link rel="canonical" href="https://codedge.it/en/tools/palette-extractor/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Palette extractor from images | Codedge" />
+  <meta property="og:description" content="Extract a palette from any image: colors, contrast ratios, gradients, CSS variables and exportable JSON, straight from a photo." />
+  <meta property="og:url" content="https://codedge.it/en/tools/palette-extractor/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Palette extractor from images | Codedge" />
+  <meta name="twitter:description" content="Extract a palette from any image: colors, contrast ratios, gradients, CSS variables and exportable JSON, straight from a photo." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Estrattore Palette colore - Codedge",
+      "url": "https://codedge.it/en/tools/palette-extractor/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Carica un'immagine ed estrai palette dominanti, gradienti e variabili CSS o JSON."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come funziona l estrattore palette?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Carichi una foto, il tool analizza i colori dominanti e propone palette, ruoli UI e suggerimenti di contrasto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I dati vengono inviati a server esterni?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, l analisi e client-side nel browser e puoi esportare CSS o JSON localmente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso usare subito i colori nel mio progetto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, puoi copiare variabili CSS, JSON e gradienti pronti da integrare nel tuo design system."
+          }
+        }
+      ]
+    }
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-eye-dropper"></i> Palette Extractor </span>
+    </nav>
+
+  </header>
+  <main class="palette-tool-shell">
+    <a href="/en/tools/" class="back-link"><i class="fas fa-chevron-left"></i> All tools</a>
+    <section class="palette-tool-hero">
+      <div>
+        <p class="tool-eyebrow">Codedge Palette Extractor</p>
+        <h1>From photo to UI palette, with clean, reusable colors.</h1>
+        <p>
+          Upload a photo, extract the dominant colors and generate UI roles, contrast
+          ratios, CSS variables and JSON. The analysis runs locally in your browser.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button class="tool-button secondary" id="demoBtn" type="button">Demo</button>
+        <button class="tool-button secondary" id="resetBtn" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="input-panel">
+        <label class="dropzone" id="dropzone" for="fileInput" role="button" tabindex="0">
+          <input
+            class="file-input"
+            id="fileInput"
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif,image/bmp"
+            aria-describedby="dropMeta"
+          />
+          <span class="drop-icon" aria-hidden="true"><i class="fas fa-upload"></i></span>
+          <span class="drop-title">Upload or drag a photo</span>
+          <span class="drop-meta" id="dropMeta">Analyzed locally in your browser. Nothing is uploaded.</span>
+        </label>
+
+        <div class="source-actions">
+          <button class="tool-button secondary" id="cameraBtn" type="button">
+            <i class="fas fa-camera" aria-hidden="true"></i>
+            <span>Camera</span>
+          </button>
+        </div>
+
+        <div class="preview-frame" id="previewFrame">
+          <div class="empty-preview" aria-hidden="true"><i class="fas fa-image"></i></div>
+        </div>
+
+        <div class="camera-actions" id="cameraActions" hidden>
+          <button class="tool-button primary" id="captureBtn" type="button">
+            <i class="fas fa-camera" aria-hidden="true"></i>
+            <span>Capture</span>
+          </button>
+          <button class="tool-button secondary" id="closeCameraBtn" type="button">
+            <i class="fas fa-times" aria-hidden="true"></i>
+            <span>Close</span>
+          </button>
+        </div>
+
+        <div class="control-row">
+          <label for="paletteSize">Colors</label>
+          <output id="paletteSizeValue">8</output>
+        </div>
+        <input class="range" id="paletteSize" type="range" min="4" max="10" value="8" />
+
+        <button class="tool-button primary analyze-button" id="analyzeBtn" type="button">
+          <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+          <span>Extract palette</span>
+        </button>
+
+        <div class="metrics">
+          <div>
+            <span>Image</span>
+            <strong id="imageSize">-</strong>
+          </div>
+          <div>
+            <span>Average</span>
+            <strong id="averageColor">-</strong>
+          </div>
+          <div>
+            <span>Pixels read</span>
+            <strong id="pixelCount">-</strong>
+          </div>
+        </div>
+      </aside>
+
+      <section class="results">
+        <div class="section-head">
+          <div>
+            <h2>Dominant palette</h2>
+            <p>Ordered by perceptual relevance, not just by raw pixel count.</p>
+          </div>
+          <div class="sr-only" id="status" role="status" aria-live="polite">Ready</div>
+        </div>
+
+        <div class="palette-grid" id="paletteGrid">
+          <div class="empty-state">Upload an image or start the demo.</div>
+        </div>
+
+        <div class="detail-grid">
+          <section class="tool-panel roles-panel">
+            <div class="section-head compact">
+              <div>
+                <h2>UI roles</h2>
+                <p>Colors ready for theming, text and CTAs.</p>
+              </div>
+            </div>
+            <div class="roles-list" id="rolesList"></div>
+            <div class="contrast-card" id="contrastCard"></div>
+          </section>
+
+          <section class="tool-panel export-panel">
+            <div class="section-head compact">
+              <div>
+                <h2>Export</h2>
+                <p>CSS variables and JSON generated from the current palette.</p>
+              </div>
+            </div>
+            <div class="export-actions">
+              <button class="tool-button secondary" id="copyCssBtn" type="button">CSS</button>
+              <button class="tool-button secondary" id="copyJsonBtn" type="button">JSON</button>
+              <button class="tool-button secondary" id="downloadCssBtn" type="button">.css</button>
+              <button class="tool-button secondary" id="downloadJsonBtn" type="button">.json</button>
+            </div>
+            <pre id="codePreview">:root {
+  --color-1: ...
+}</pre>
+          </section>
+        </div>
+      </section>
+    </section>
+
+    <section class="faq-panel" aria-labelledby="seo-title-palette">
+      <h2 id="seo-title-palette" class="faq-section-title">Color Palette Extractor from Images</h2>
+      <div class="seo-text-content">
+        <p>
+          Extracting colors from an image is a fundamental step in defining the visual identity of a web project. This <strong>online color palette extractor</strong> lets you upload any photograph or screenshot and process it locally in the browser, identifying the dominant tones scientifically. Using color quantization algorithms in the CIE L*a*b* color space, the tool does more than count similar pixels: it calculates the perceptual relevance of every shade to give you a balanced, coherent palette.
+        </p>
+        <p>
+          Once the colors are extracted, the tool organizes them for you by assigning strategic UI roles: a background color, a primary shade for dominant elements, an accent color for calls to action and a text tone — with the WCAG contrast ratio calculated in real time. That way you can design inclusive, accessible interfaces from the very first moment.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <div class="faq-content">
+        <h3 id="faq-estrattore-title">Frequently Asked Questions (FAQ)</h3>
+        
+        <h4>How are the dominant colors calculated?</h4>
+        <p>
+          The image is analyzed pixel by pixel, reducing its palette through quantization (Median Cut). The resulting colors are then converted and ordered by their percentage coverage and their contrast against surrounding shades, to keep the palette harmonious.
+        </p>
+
+        <h4>Can I download the extracted colors?</h4>
+        <p>
+          Yes. You can copy CSS variables ready for your stylesheet, export the whole palette as JSON, or download the configuration files (.css and .json) directly to drop into your design system or into Tailwind.
+        </p>
+
+        <h4>Are my images kept private?</h4>
+        <p>
+          Absolutely. The entire image-processing pipeline runs 100% inside your web browser (client-side) through the Canvas API. No photo is ever uploaded to an external server or stored in a third-party database.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
+       type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
+  <script type="module" src="/src/scripts/pages/strumenti/estrattore-palette/main.js"></script>
+
+</body>
+
+</html>

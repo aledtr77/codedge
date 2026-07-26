@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Browsers and DevTools | Practical guide | Codedge</title>
+  <meta
+    name="description"
+    content="A practical guide to browsers and DevTools: inspector, console, Sources, Network, storage, Performance, Memory, Lighthouse and a front-end debugging routine.">
+  <link rel="canonical" href="https://codedge.it/en/tutorials/browser-devtools/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Browsers and DevTools | Practical guide | Codedge" />
+  <meta property="og:description" content="A practical guide to browsers and DevTools: inspector, console, Sources, Network, storage, Performance, Memory, Lighthouse and a front-end debugging routine." />
+  <meta property="og:url" content="https://codedge.it/en/tutorials/browser-devtools/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Browsers and DevTools guide preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Browsers and DevTools | Practical guide | Codedge" />
+  <meta name="twitter:description" content="A practical guide to browsers and DevTools: inspector, console, Sources, Network, storage, Performance, Memory, Lighthouse and a front-end debugging routine." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 74ch;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fas fa-laptop-code guide-title-icon" aria-hidden="true"></i>Browsers and DevTools</span>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1 class="sr-only" id="browser-guide-title">Browsers and DevTools</h1>
+    <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
+    <section class="section git-guide-shell" aria-labelledby="browser-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Navigable index for the Browsers and DevTools guide">
+          <h2>Guide contents</h2>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Before we start</a></li>
+            <li><a href="#chapter-02">1. The browser is not a black box</a></li>
+            <li><a href="#chapter-03">2. Inspector: the real HTML and CSS</a></li>
+            <li><a href="#chapter-04">3. Console: errors and quick experiments</a></li>
+            <li><a href="#chapter-05">4. Network: requests, assets and APIs</a></li>
+            <li><a href="#chapter-06">5. Application: storage and cache</a></li>
+            <li><a href="#chapter-07">6. Sources, Performance, Memory and Lighthouse</a></li>
+            <li><a href="#chapter-08">7. A minimum debugging routine</a></li>
+            <li><a href="#chapter-09">8. Where to go from here</a></li>
+            <li><a href="#chapter-cheatsheet">9. Quick reference (cheat sheet)</a></li>
+            <li><a href="#chapter-challenge">10. Practical challenge: put yourself to the test</a></li>
+            <li><a href="#chapter-quiz">11. Check what you have learned (quiz)</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Browsers and DevTools guide content">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">A practical guide to reading what happens in the front-end</p>
+                <h2>Before we start</h2>
+              <section class="guide-subchapter">
+                <p>When a page doesn't behave the way you expect, the temptation is to change code at random until something falls back into place.</p>
+                <p>DevTools exist precisely to avoid working that way. They let you watch the browser as it interprets HTML, CSS, JavaScript, images, network requests and stored data.</p>
+                <p>This guide isn't trying to cover every panel in depth. The goal is to give you a simple routine for working out where to look when layout, scripts, images, API calls or performance go wrong.</p>
+              </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/browser-devtools/copertina-editoriale.webp" alt="Opening illustration for the Browsers and DevTools guide" decoding="async" width="864" height="1080">
+              </figure>
+            </div>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. The browser is not a black box</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/browser-devtools/panoramica-browser-devtools.svg" alt="Overview of the main browser DevTools panels" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>The main panels exist to separate problems: structure, style, scripts, requests, local data and performance.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>A web page isn't just the file you wrote. In the browser it becomes a living combination of DOM, computed CSS, executed JavaScript, loaded assets and session state.</p>
+              <p>That's why DevTools matter so much: they show the version the browser is actually using, not just the one you think you built in your project.</p>
+              <p>To begin with, knowing these panels well is enough:</p>
+              <ul class="guide-list">
+                <li><strong>Elements</strong>: HTML structure, classes, attributes and applied CSS.</li>
+                <li><strong>Console</strong>: JavaScript errors, warnings and quick experiments.</li>
+                <li><strong>Sources</strong>: loaded files, breakpoints and step-by-step debugging.</li>
+                <li><strong>Network</strong>: loaded files, API requests, status codes and timings.</li>
+                <li><strong>Application</strong>: localStorage, sessionStorage, cookies, cache and service workers.</li>
+                <li><strong>Performance, Memory and Lighthouse</strong>: more targeted analysis of speed, memory and overall quality.</li>
+              </ul>
+              <p>You don't need to open everything every time. You need to know which panel answers the question in your head.</p>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Inspector: the real HTML and CSS</h2>
+            <section class="guide-subchapter">
+              <p>The Elements panel is the starting point when something looks wrong: spacing, color, alignment, fonts, sizes, hover states, missing classes.</p>
+              <p>The most important thing to understand is this: you aren't looking at the original HTML file, but at the DOM after the browser and JavaScript have built it.</p>
+              <p>Use it to answer very concrete questions:</p>
+              <ul class="guide-checklist">
+                <li>does the element actually exist on the page?</li>
+                <li>does it have the class I expect?</li>
+                <li>which CSS rule is winning?</li>
+                <li>is a property struck through because it was overridden?</li>
+                <li>does the box model explain the odd margins, padding or sizes?</li>
+              </ul>
+              <p>A good habit: inspect the element first, then temporarily tweak CSS and classes in DevTools. Once you've worked out the fix, carry it back into the real file.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Console: errors and quick experiments</h2>
+            <section class="guide-subchapter">
+              <p>The Console is where the browser talks to you most directly. When JavaScript breaks, the first serious clue is usually there.</p>
+              <p>Don't just read it as "red = panic". Look at three things: the message, the file involved and the line number. Together they are already a small map.</p>
+              <p>You can also use it for quick experiments:</p>
+              <pre><code>document.querySelector("h1")
+document.querySelector(".button-simple")?.textContent
+localStorage.getItem("theme")</code></pre>
+              <p>These experiments don't replace your project code, but they help you check whether a selector is right, whether an element exists, or whether a value really was stored.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>When an error looks cryptic</h3>
+              <p>Start from the type of error, not from the fear it triggers.</p>
+              <dl class="guide-glossary">
+                <div>
+                  <dt>ReferenceError</dt>
+                  <dd>you are using a name JavaScript doesn't know at that point.</dd>
+                </div>
+                <div>
+                  <dt>TypeError</dt>
+                  <dd>you are performing an operation on a value of the wrong type — often <code>null</code> or <code>undefined</code>.</dd>
+                </div>
+                <div>
+                  <dt>SyntaxError</dt>
+                  <dd>the code isn't written in a valid form: brackets, commas, quotes or structure.</dd>
+                </div>
+              </dl>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Network: requests, assets and APIs</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/browser-devtools/workflow-network-browser.svg" alt="Diagram of a request travelling from browser to server and back" loading="lazy" decoding="async" width="1200" height="500">
+              <figcaption>Network shows what is requested, what the server answers and how long it takes.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>When images, CSS, scripts or data don't arrive, the Network panel is often more useful than the Console.</p>
+              <p>Here you can see every request the page makes: static files, fonts, images, fetches to APIs, JSON responses, redirects and failures.</p>
+              <p>There are only a few checks that really matter:</p>
+              <ul class="guide-list">
+                <li><strong>Status</strong>: <code>200</code> ok, <code>404</code> not found, <code>500</code> server error, <code>403</code> access denied.</li>
+                <li><strong>Type</strong>: tells you whether it is a document, script, stylesheet, image, fetch or something else.</li>
+                <li><strong>Preview/Response</strong>: shows you what actually came back.</li>
+                <li><strong>Headers</strong>: useful for the URL, method, content type, caching and authorization.</li>
+              </ul>
+              <p>If an API call "doesn't work", first check whether it is even being sent. Then look at the URL, the status code and the response. Only after that does going back to the code make sense.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Application: storage and cache</h2>
+            <section class="guide-subchapter">
+              <p>Some problems aren't in the code you just wrote, but in the state the browser is holding on to.</p>
+              <p>The Application panel helps you check:</p>
+              <ul class="guide-list">
+                <li><code>localStorage</code>: data that survives closing the browser;</li>
+                <li><code>sessionStorage</code>: data that lasts only for the current session;</li>
+                <li>cookies: often used for preferences, sessions and tracking;</li>
+                <li>cache and service workers: they can serve stale files when misconfigured.</li>
+              </ul>
+              <p>If a change seems to be ignored, try reloading without the cache, or check whether a service worker is still serving an earlier version.</p>
+            </section>
+          </section>
+
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Sources, Performance, Memory and Lighthouse</h2>
+            <section class="guide-subchapter">
+              <p>These panels are very useful, but they aren't always the first place to open. Think of them as targeted tools, for when your question is more precise.</p>
+              <dl class="guide-glossary">
+                <div>
+                  <dt>Sources</dt>
+                  <dd>lets you see the files the browser loaded, set breakpoints, pause JavaScript and follow the code step by step.</dd>
+                </div>
+                <div>
+                  <dt>Performance</dt>
+                  <dd>is what you want when a page feels slow: it records loading, rendering, heavy scripts, layout work and the moments the main thread is busy.</dd>
+                </div>
+                <div>
+                  <dt>Memory</dt>
+                  <dd>becomes useful when you suspect abnormal consumption, leaks, or objects lingering in memory long after they should be gone.</dd>
+                </div>
+                <div>
+                  <dt>Lighthouse</dt>
+                  <dd>runs a quick audit on performance, accessibility, best practices and SEO. It is a compass, not a final verdict.</dd>
+                </div>
+              </dl>
+              <p>To start well, the priority is still understanding Elements, Console and Network. These panels then help you level up when the problem is no longer just "it doesn't work" but "why is it slow", "where does it hang" or "what can I improve".</p>
+            </section>
+          </section>
+
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. A minimum debugging routine</h2>
+            <section class="guide-subchapter">
+              <p>When something is broken, one simple routine is worth more than ten random attempts.</p>
+              <ol class="guide-number-list">
+                <li>Reproduce the problem with one precise step.</li>
+                <li>Open the Console and check for errors or warnings.</li>
+                <li>If it is a visual problem, inspect the element in Elements.</li>
+                <li>If data or assets are missing, move to Network.</li>
+                <li>If JavaScript is behaving oddly, use Sources with a breakpoint.</li>
+                <li>If the page is slow, look at Performance or Lighthouse.</li>
+                <li>If the problem seems "stuck in the past", check the cache, storage and service workers.</li>
+                <li>Make one small change, verify it, then move on to the next.</li>
+              </ol>
+              <p>This method doesn't magically make bugs easy, but it stops you mixing too many problems together.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>A quick checklist</h3>
+              <ul class="guide-checklist">
+                <li>is the page loading the right CSS?</li>
+                <li>does the JS selector actually find the element?</li>
+                <li>is the API request sent, and does it get a response?</li>
+                <li>is the asset URL correct online too?</li>
+                <li>does a breakpoint in Sources confirm the expected flow?</li>
+                <li>is Lighthouse flagging real problems or just polish?</li>
+                <li>is the cache showing an old version?</li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Where to go from here</h2>
+            <section class="guide-subchapter">
+              <p>DevTools become genuinely useful once you stop seeing them as a technical panel and start using them as a reading instrument.</p>
+              <p>Every time something doesn't add up, the browser already holds plenty of clues: the real HTML, computed CSS, errors, requests, timings, stored data, loaded files and metrics.</p>
+              <p>To consolidate the path, these guides fit together well:</p>
+              <ul class="guide-list">
+                <li><a href="/en/tutorials/vscode-essentials/">VS Code essentials</a>: to connect debugging, terminal and local project.</li>
+                <li><a href="/en/tutorials/deployment-basics/">Deployment basics</a>: to understand what changes once the page goes online.</li>
+                <li><a href="/en/tutorials/git-without-panic/">Git without panic</a>: to save your progress and roll back when you need to.</li>
+                <li><a href="/en/tutorials/">All tutorials</a>: to follow the rest of the available content.</li>
+              </ul>
+            </section>
+          </section>
+        
+          <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>9. Quick reference (cheat sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Here are the main diagnostic panels and when to use them:</p>
+              <div class="table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>Panel</th>
+                      <th class="is-accent">What it analyzes</th>
+                      <th>Main use case</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="is-strong">Elements</td>
+                      <td>HTML structure (DOM) and active CSS styles.</td>
+                      <td>Tweaking CSS colors or alignment in real time before writing the source code.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-strong">Console</td>
+                      <td>Errors, warnings and JS execution.</td>
+                      <td>Checking for blocking load errors or undefined variables.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-strong">Network</td>
+                      <td>HTTP requests for all of the site's resources.</td>
+                      <td>Spotting broken images (404 errors) or heavy resources slowing the page down.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-strong">Application</td>
+                      <td>LocalStorage, SessionStorage, cookies.</td>
+                      <td>Inspecting the data the site stores, or clearing session cookies to test login.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>10. Practical challenge: put yourself to the test</h2>
+            <section class="guide-subchapter">
+              
+              <p>Put your inspection skills into practice using your favourite browser:</p>
+              <div class="alert alert--note">
+                <strong>Challenge goal:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Do a visual debug by temporarily changing a CSS rule, then analyze the active network calls.</p>
+                <strong>Step-by-step instructions:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Open the developer tools (<code class="language-text">F12</code>) on this page.</li>
+                  <li>Turn on the element picker and highlight the guide's main heading.</li>
+                  <li>In the CSS styles side panel, add a temporary <code class="language-css">color: red;</code> rule and watch the style change on screen immediately.</li>
+                  <li>Move to the *Network* panel, select the *Img* filter and reload the page (<code class="language-text">F5</code>) to check how every image on the page loads, along with its size.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
+          <section id="chapter-quiz" data-quiz-id="browser-devtools" class="guide-block guide-chapter quiz-section">
+            <h2>11. Check what you have learned (quiz)</h2>
+            <p class="quiz-intro">Test what you have learned in this guide with a quick 10-question multiple-choice quiz.</p>
+            <div id="quiz-wrapper"></div>
+          </section>
+</article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/browser-devtools/main.js"></script>
+</body>
+
+</html>

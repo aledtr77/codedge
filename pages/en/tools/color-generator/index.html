@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<title>Online Color Palette Generator - Build combinations | Codedge</title>
+  <meta name="description"
+    content="Online color palette generator. Build harmonious color combinations (pastel, neon, analogous, complementary), lock the shades you like and copy HEX/RGB/HSL codes.">
+  <link rel="canonical" href="https://codedge.it/en/tools/color-generator/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Online Color Palette Generator - Build combinations | Codedge" />
+  <meta property="og:description" content="Online color palette generator. Build harmonious color combinations (pastel, neon, analogous, complementary), lock the shades you like and copy HEX/RGB/HSL codes." />
+  <meta property="og:url" content="https://codedge.it/en/tools/color-generator/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Generatore colori online HEX, RGB e HSL | Codedge" />
+  <meta name="twitter:description" content="Crea palette e colori singoli, copia i codici HEX/RGB/HSL e salva le combinazioni. Strumento gratuito e veloce per designer e sviluppatori." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Generatore colori online HEX, RGB e HSL | Codedge",
+      "url": "https://codedge.it/en/tools/color-generator/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Generatore online per creare palette, analizzare colori e copiare codici HEX RGB HSL."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come usare il generatore colori?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scegli un colore dal picker o inserisci un codice HEX, poi genera la palette e copia i valori utili per il progetto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso copiare codici HEX, RGB e HSL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si. Lo strumento mostra i formati principali e puoi usarli subito nel tuo CSS o nel design system."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Il tool e gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, e utilizzabile gratis direttamente dal browser senza installazione."
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-palette"></i>Color generator </span>
+    </nav>
+
+  </header>
+  <main>
+    <a href="/en/tools/" class="back-link"><i class="fas fa-chevron-left"></i> All tools</a>
+    <h1 class="sub-title">Color Palette Generator</h1>
+    
+    <!-- Workspace del generatore -->
+    <section class="section">
+      <div class="palette-generator-app">
+        <!-- Barra di controllo superiore -->
+        <div class="control-bar">
+          <div class="control-group">
+            <label for="generation-mode">Harmony style:</label>
+            <select id="generation-mode">
+              <option value="random">Balanced random</option>
+              <option value="pastel">Soft pastel</option>
+              <option value="neon">Neon / vibrant</option>
+              <option value="monochromatic">Monochromatic</option>
+              <option value="analogous">Analogous colors</option>
+              <option value="complementary">Complementary</option>
+              <option value="triadic">Triadic</option>
+            </select>
+          </div>
+          
+          <button id="btn-generate" class="button-simple main-gen-btn">
+            <i class="fas fa-sync-alt" aria-hidden="true"></i> Generate new <kbd class="spacebar-kbd">Space</kbd>
+          </button>
+          
+          <div class="export-group">
+            <button id="btn-copy-css" class="button-simple" title="Copy CSS variables">
+              <i class="fab fa-css3-alt" aria-hidden="true"></i> CSS
+            </button>
+            <button id="btn-copy-json" class="button-simple" title="Copy as a JSON array">
+              <i class="fas fa-code" aria-hidden="true"></i> JSON
+            </button>
+            <button id="btn-copy-link" class="button-simple" title="Copy a link to the current palette">
+              <i class="fas fa-link" aria-hidden="true"></i> Share
+            </button>
+          </div>
+        </div>
+
+        <!-- Layout Griglia: Palette + Live Mockup -->
+        <div class="generator-workspace">
+          <!-- Griglia delle 5 schede colore -->
+          <div id="palette-cards-container" class="palette-cards">
+            <!-- Cards are inserted dynamically by JavaScript -->
+          </div>
+
+          <!-- Live Mockup UI -->
+          <div class="mockup-ui-sidebar">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot-btn"></span>
+              <span class="mockup-dot-btn"></span>
+              <span class="mockup-dot-btn"></span>
+              <span class="mockup-title-url">site-preview.com</span>
+            </div>
+            <div id="live-mockup-body" class="mockup-body">
+              <div id="mockup-nav" class="mockup-navbar">
+                <span class="mockup-logo">Codedge.</span>
+                <div class="mockup-nav-links">
+                  <span class="mockup-link">Home</span>
+                  <span class="mockup-link">Services</span>
+                </div>
+              </div>
+              <div class="mockup-hero-section">
+                <div id="mockup-hero-title" class="mockup-hero-title">Build Big Ideas</div>
+                <p id="mockup-hero-text">Combine your favourite colors and see how they behave in a real web interface.</p>
+                <button id="mockup-hero-btn" class="mockup-button">Get started</button>
+              </div>
+              <div class="mockup-card-container">
+                <div id="mockup-card-body" class="mockup-card">
+                  <span id="mockup-card-badge" class="mockup-badge">Tag</span>
+                  <div class="mockup-card-title">Web interface</div>
+                  <p>Preview the components.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tavolozze consigliate / Presets -->
+    <section class="section">
+      <h2>Recommended palettes</h2>
+      <div id="presets-container" class="presets-grid">
+        <!-- Loaded dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Verifica del contrasto (WCAG 2.1) -->
+    <section class="section">
+      <h2>Contrast check (WCAG)</h2>
+      <div class="contrast-checker-container">
+        <div class="contrast-selectors">
+          <div class="selector-item">
+            <label for="contrast-bg-select">Background:</label>
+            <select id="contrast-bg-select">
+              <!-- Filled dynamically -->
+            </select>
+          </div>
+          <div class="selector-item">
+            <label for="contrast-text-select">Text:</label>
+            <select id="contrast-text-select">
+              <!-- Filled dynamically -->
+            </select>
+          </div>
+        </div>
+        
+        <div id="contrast-preview-box" class="contrast-preview-box">
+          <span class="preview-text">Sample text for checking readability in real time.</span>
+        </div>
+        
+        <div id="contrast-score-details" class="contrast-score-details">
+          <!-- Filled dynamically with the contrast calculation results -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="section" aria-labelledby="seo-title-colori">
+      <h2 id="seo-title-colori">How to choose the perfect color palette for your website</h2>
+      <div class="seo-text-content">
+        <p>
+          Choosing a color combination is one of the most important steps in building a digital interface. Colors aren't just decorative: they guide the user through the layout, define the visual hierarchy and express the brand's identity. This <strong>online color palette generator</strong> lets you find harmonious, ready-to-use combinations in a few clicks.
+        </p>
+        <p>
+          To build a solid, balanced design system, it's worth following the 60-30-10 rule: 60% of the space goes to a dominant color (usually neutral, or the background), 30% to a secondary shade (giving structure and contrast) and 10% to an accent color, ideal for drawing attention to call-to-action buttons or interactive elements.
+        </p>
+        <p>
+          With this tool you can test the accessibility of your combinations in real time against the <strong>WCAG 2.1</strong> guidelines, making sure the contrast ratio between background and text (AA or AAA) is high enough for comfortable reading by everyone, including users with visual impairments. You can export your palette straight to CSS variables to paste into your stylesheet, speeding up the jump from prototyping to actual development.
+        </p>
+      </div>
+      
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-colori-title">Quick FAQ about the color palette generator</h3>
+      <div class="faq-content">
+        <h4>How does automatic generation work?</h4>
+        <p>
+          You can generate a new color combination by clicking the <strong>Generate new</strong> button or pressing the <strong>Space</strong> bar. The tool picks harmonious shades based on the style you've set (analogous, complementary or pastel colors, for instance).
+        </p>
+        <h4>How do I lock a color I like?</h4>
+        <p>
+          Hover over one of the colored blocks in the palette and click the <strong>padlock</strong> button. Once locked, that color stays put and won't change on subsequent generations, letting you hunt for the ideal surrounding colors.
+        </p>
+        <h4>How do I edit or enter a color manually?</h4>
+        <p>
+          Every color card has an adjust button (the controls/palette icon) that opens your operating system's native color picker. You can also click the HEX code under the card to copy it to the clipboard.
+        </p>
+        <h4>Other web design tools</h4>
+        <p>
+          If you want to round out how you manage your brand's colors, try the
+          <a href="/en/tools/palette-extractor/">Palette Extractor from Images</a> to pull colors out of a photo, or the
+          <a href="/en/tools/gradient-generator/">CSS Gradient Generator</a> to build ready-to-use gradient transitions.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
+       type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
+  <script type="module" src="/src/scripts/pages/strumenti/generatore-colori/main.js"></script>
+
+</body>
+
+</html>

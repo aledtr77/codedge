@@ -1,3 +1,4 @@
+import { t } from "@/i18n/ui.js";
 const MAX_FILE_SIZE = 12 * 1024 * 1024;
 const MAX_ANALYSIS_SIDE = 760;
 const MAX_BUCKETS = 12000;
@@ -92,7 +93,7 @@ export function initPaletteExtractor() {
   refs.closeCameraBtn?.addEventListener("click", () => {
     stopCamera();
     if (!currentSource) renderEmptyPreview();
-    setStatus("Fotocamera chiusa");
+    setStatus(t("tool.cameraClosed"));
   });
   refs.analyzeBtn.addEventListener("click", () => runAnalysis());
   refs.demoBtn?.addEventListener("click", async () => {
@@ -111,12 +112,12 @@ export function initPaletteExtractor() {
     const target = event.target.closest("[data-copy]");
     if (!target || !refs.paletteGrid.contains(target) && !refs.rolesList.contains(target)) return;
     const ok = await copyText(target.dataset.copy);
-    setStatus(ok ? `${target.dataset.copy.toUpperCase()} copiato` : "Copia non disponibile");
+    setStatus(ok ? t("tool.somethingCopied", { what: target.dataset.copy.toUpperCase() }) : t("tool.copyUnavailable"));
   });
 
   async function runAnalysis() {
     if (!currentSource) {
-      setStatus(cameraStream ? "Scatta prima una foto" : "Carica prima una foto");
+      setStatus(cameraStream ? t("tool.takePhotoFirst") : t("tool.uploadPhotoFirst"));
       return;
     }
 
@@ -131,7 +132,7 @@ export function initPaletteExtractor() {
       setStatus("Palette pronta");
     } catch (error) {
       console.error(error);
-      setStatus("Errore analisi");
+      setStatus(t("tool.analysisError"));
     } finally {
       refs.analyzeBtn.disabled = false;
     }
@@ -159,7 +160,7 @@ export function initPaletteExtractor() {
           type="button"
           style="background:${color.hex};color:${textColor}"
           data-copy="${color.hex}"
-          aria-label="Copia ${color.hex}"
+          aria-label="${t("tool.copyValue", { value: color.hex })}"
         >
           <span>${String(index + 1).padStart(2, "0")}</span>
           <strong>${coverage}%</strong>
@@ -186,7 +187,7 @@ export function initPaletteExtractor() {
       .map(([label, color]) => {
         const hex = color.hex.toUpperCase();
         return `
-          <button class="role-item" type="button" data-copy="${color.hex}" aria-label="Copia ${label} ${hex}">
+          <button class="role-item" type="button" data-copy="${color.hex}" aria-label="${t("tool.copyLabelled", { label, hex })}">
             <span class="role-dot" style="background:${color.hex}" aria-hidden="true"></span>
             <span>
               <strong>${label}</strong>
@@ -206,7 +207,7 @@ export function initPaletteExtractor() {
 
     return `
       <div class="contrast-preview" style="background:${roles.background.hex};color:${roles.text.hex}">
-        <span>Anteprima tema</span>
+        <span>${t("tool.themePreview")}</span>
         <strong>Primary ${primaryRatio.toFixed(1)}:1</strong>
         <button type="button" style="background:${roles.primary.hex};color:${readableTextColor(roles.primary).hex}">
           CTA
@@ -226,19 +227,19 @@ export function initPaletteExtractor() {
     currentSource = source;
     currentObjectUrl = options.objectUrl ? source : null;
     renderImagePreview(source);
-    setStatus("Immagine caricata");
+    setStatus(t("tool.imageLoaded"));
   }
 
   function isValidImageFile(file) {
     if (!ACCEPTED_IMAGE_TYPES.has(file.type)) {
       refs.fileInput.value = "";
-      setStatus("Formato immagine non supportato");
+      setStatus(t("tool.unsupportedFormat"));
       return false;
     }
 
     if (file.size > MAX_FILE_SIZE) {
       refs.fileInput.value = "";
-      setStatus("Immagine troppo pesante");
+      setStatus(t("tool.imageTooHeavy"));
       return false;
     }
 
@@ -248,7 +249,7 @@ export function initPaletteExtractor() {
   function renderImagePreview(source) {
     const image = document.createElement("img");
     image.src = source;
-    image.alt = "Anteprima immagine caricata";
+    image.alt = t("tool.imagePreviewLoaded");
     image.decoding = "async";
     refs.previewFrame.replaceChildren(image);
   }
@@ -261,19 +262,19 @@ export function initPaletteExtractor() {
 
   async function startCamera() {
     if (!navigator.mediaDevices?.getUserMedia) {
-      setStatus("Fotocamera non disponibile");
+      setStatus(t("tool.cameraUnavailable"));
       return;
     }
 
     stopCamera();
     revokeCurrentObjectUrl();
     refs.cameraBtn.disabled = true;
-    setStatus("Apro la fotocamera");
+    setStatus(t("tool.openingCamera"));
 
     try {
       const hasCamera = await hasVideoInput();
       if (hasCamera === false) {
-        setStatus("Fotocamera non rilevata");
+        setStatus(t("tool.cameraNotDetected"));
         return;
       }
 
@@ -293,12 +294,12 @@ export function initPaletteExtractor() {
       video.autoplay = true;
       video.muted = true;
       video.playsInline = true;
-      video.setAttribute("aria-label", "Anteprima fotocamera");
+      video.setAttribute("aria-label", t("tool.cameraPreview"));
       refs.previewFrame.replaceChildren(video);
       video.srcObject = cameraStream;
       await video.play();
       refs.cameraActions.hidden = false;
-      setStatus("Fotocamera attiva");
+      setStatus(t("tool.cameraActive"));
     } catch (error) {
       console.error(error);
       stopCamera();
@@ -322,24 +323,24 @@ export function initPaletteExtractor() {
 
   function cameraErrorMessage(error) {
     if (error?.name === "NotFoundError" || error?.name === "OverconstrainedError") {
-      return "Fotocamera non rilevata";
+      return t("tool.cameraNotDetected");
     }
 
     if (error?.name === "NotAllowedError" || error?.name === "SecurityError") {
-      return "Permesso fotocamera negato";
+      return t("tool.cameraDenied");
     }
 
     if (error?.name === "NotReadableError") {
-      return "Fotocamera gia in uso";
+      return t("tool.cameraInUse");
     }
 
-    return "Fotocamera non disponibile";
+    return t("tool.cameraUnavailable");
   }
 
   function captureFromCamera() {
     const video = document.querySelector("#cameraPreview");
     if (!video || !video.videoWidth || !video.videoHeight) {
-      setStatus("Fotocamera non pronta");
+      setStatus(t("tool.cameraNotReady"));
       return;
     }
 
@@ -351,7 +352,7 @@ export function initPaletteExtractor() {
     const source = canvas.toDataURL("image/jpeg", 0.92);
     stopCamera();
     setSource(source);
-    setStatus("Scatto pronto");
+    setStatus(t("tool.shotReady"));
   }
 
   function stopCamera() {
@@ -386,14 +387,14 @@ export function initPaletteExtractor() {
     currentResult = null;
     refs.fileInput.value = "";
     renderEmptyPreview();
-    refs.paletteGrid.innerHTML = `<div class="empty-state">Carica un'immagine o avvia la demo.</div>`;
+    refs.paletteGrid.innerHTML = `<div class="empty-state">${t("tool.emptyPalette")}</div>`;
     refs.imageSize.textContent = "-";
     refs.averageColor.textContent = "-";
     refs.averageColor.style.color = "";
     refs.pixelCount.textContent = "-";
     refs.codePreview.textContent = ":root {\\n  --color-1: ...\\n}";
     resetRoles();
-    setStatus("Pronto");
+    setStatus(t("tool.ready"));
   }
 
   function renderEmptyPreview() {
@@ -427,17 +428,17 @@ export function initPaletteExtractor() {
   async function copyExport(type) {
     const text = type === "css" ? getCss() : getJson();
     if (!text) {
-      setStatus("Genera prima la palette");
+      setStatus(t("tool.generatePaletteFirst"));
       return;
     }
 
     const ok = await copyText(text);
-    setStatus(ok ? `${type.toUpperCase()} copiato` : "Copia non disponibile");
+    setStatus(ok ? t("tool.somethingCopied", { what: type.toUpperCase() }) : t("tool.copyUnavailable"));
   }
 
   function downloadExport(filename, text) {
     if (!text) {
-      setStatus("Genera prima la palette");
+      setStatus(t("tool.generatePaletteFirst"));
       return;
     }
 

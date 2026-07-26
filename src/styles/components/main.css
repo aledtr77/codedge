@@ -1,5 +1,16 @@
 
 
+/* Style sentinel. The reveal script (vite.config.js) keeps the body hidden
+   until this property is computable, so unstyled markup can never paint: in
+   production this file arrives as a render-blocking <link>, on the dev server
+   it is injected by the JS module graph and lands later. Every page entry
+   imports this file (directly or through another entry), so the sentinel is
+   trustworthy site-wide. The cross-document view-transition opt-in lives in
+   public/critical.css so both documents are opted in at parse time in dev too. */
+:root {
+  --codedge-css-ready: 1;
+}
+
 :root {
   /* Dark theme for native browser UI too (Firefox scrollbars, form controls,
      popups). */

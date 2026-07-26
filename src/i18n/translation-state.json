@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "routes": {
+    "/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "130b2fefea43",
+        "page": "48ad2f631e5e"
+      }
+    },
+    "/chi-sono/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "a7e15776de23",
+        "page": "496cf8143b78"
+      }
+    },
+    "/contatti/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "abf1430c637e",
+        "page": "b33335c2ad80"
+      }
+    },
+    "/privacy-policy/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "bae63ca5873f",
+        "page": "904f01af5fb1"
+      }
+    },
+    "/termini-servizio/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "7dc95a46b88f",
+        "page": "d5b170c94e51"
+      }
+    },
+    "/template/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "9f23bd10b20d",
+        "page": "327b5bb30bf8"
+      }
+    },
+    "/risorse/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "5dff28ffa1b0",
+        "page": "42cc5c666ff5"
+      }
+    },
+    "/strumenti/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "bcde5334cc56",
+        "page": "1ebb76befcc2"
+      }
+    },
+    "/strumenti/compressore-immagini/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "e4478b819db6",
+        "page": "2b0bebeeb1ed"
+      }
+    },
+    "/strumenti/estrattore-palette/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "163f3ea1e82c",
+        "page": "c3ae8318d41f"
+      }
+    },
+    "/strumenti/generatore-colori/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "00df1965e9a2",
+        "page": "42da28eda6a3"
+      }
+    },
+    "/strumenti/generatore-gradienti/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "112884d0a8d0",
+        "page": "c6950b2d337b"
+      }
+    },
+    "/componenti-ui/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "ef038fcf9e26",
+        "page": "b6a45dd166fe"
+      }
+    },
+    "/componenti-ui/card-interattive/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "0075c1c71bf8",
+        "page": "8b781e046a81"
+      }
+    },
+    "/componenti-ui/form/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "bc0697c9eeed",
+        "page": "d6f4acef3158"
+      }
+    },
+    "/componenti-ui/minimal-navbar/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "6decf5e60783",
+        "page": "5f62647dacf6"
+      }
+    },
+    "/componenti-ui/scroll-indicator/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "4c6917ef643b",
+        "page": "3d8c5edfe291"
+      }
+    },
+    "/tutorial/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "51d62012ea35",
+        "page": "1cfd5deb7057"
+      }
+    },
+    "/tutorial/browser-devtools/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "40bc1bc28f6f",
+        "chapter-01": "bf31c5373a9e",
+        "chapter-02": "5bae69972725",
+        "chapter-03": "89dbf4c80382",
+        "chapter-04": "acd061f41bbe",
+        "chapter-05": "8cdb059decb9",
+        "chapter-06": "395e05eaf8b6",
+        "chapter-07": "16bdd00c3bfe",
+        "chapter-08": "cdd657878fd9",
+        "chapter-09": "6d6ca4635ff4",
+        "chapter-cheatsheet": "e2225c508dc0",
+        "chapter-challenge": "2cfcc18a8302",
+        "chapter-quiz": "fc130398afb8"
+      }
+    },
+    "/tutorial/css-fondamentali/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "c181512aa1bb",
+        "chapter-01": "b758c6f581f1",
+        "chapter-02": "f2b558e35413",
+        "chapter-03": "27507cf29154",
+        "chapter-04": "e2b5960c8007",
+        "chapter-05": "021bd91364e0",
+        "chapter-06": "bb59bf9da915",
+        "chapter-07": "a7f927963e7c",
+        "chapter-08": "060e3d9d489d",
+        "chapter-09": "14ba579101f7",
+        "chapter-10": "b927c99127cd",
+        "chapter-11": "dfda0df41cb6",
+        "chapter-12": "3e82a2c1a864",
+        "chapter-13": "fa00f49ed62c",
+        "chapter-14": "3729200ead2f",
+        "chapter-cheatsheet": "22fe76499959",
+        "chapter-challenge": "d397164ce32a",
+        "chapter-15": "b11f70d98464",
+        "chapter-quiz": "67880e1cadcd"
+      }
+    },
+    "/tutorial/npm-vite-struttura-progetto/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "6bc361f754f6",
+        "chapter-01": "f531588607fa",
+        "chapter-02": "5afab8f43abc",
+        "chapter-03": "0a7857d93aef",
+        "chapter-04": "131eafecbf8a",
+        "chapter-05": "5ad6495dc4b5",
+        "chapter-06": "afb0d2ca29ef",
+        "chapter-07": "4e667e7b4805",
+        "chapter-08": "d5ab7d12cea9",
+        "chapter-09": "ac2afb4f1f03",
+        "chapter-10": "aaf19972a365",
+        "chapter-cheatsheet": "e7f8778f4a1d",
+        "chapter-challenge": "9a8a0f70609b",
+        "chapter-quiz": "6516c68ca665"
+      }
+    },
+    "/tutorial/javascript-fondamentali/": {
+      "translatedAt": "2026-07-26",
+      "units": {
+        "meta": "2b7f762807d2",
+        "chapter-01": "f3333088bee4",
+        "chapter-02": "8095b6f621c9",
+        "chapter-03": "1c871e2b04de",
+        "chapter-04": "15899847c181",
+        "chapter-05": "7c5929996238",
+        "chapter-06": "18e29e487971",
+        "chapter-07": "41a2f253635c",
+        "chapter-08": "9718ddf0c3af",
+        "chapter-09": "a7bd62eaaf68",
+        "chapter-10": "7b6500c1ee14",
+        "chapter-11": "aae4fc85608a",
+        "chapter-12": "ddbda21423dd",
+        "chapter-13": "11cdae0f907b",
+        "chapter-14": "4ce7a1cdfb4a",
+        "chapter-cheatsheet": "6a295fb02aa6",
+        "chapter-challenge": "7fecc34930f2",
+        "chapter-15": "bfef66550d8b",
+        "chapter-quiz": "67880e1cadcd"
+      }
+    }
+  }
+}

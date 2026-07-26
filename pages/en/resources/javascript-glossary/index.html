@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Codifica caratteri usata da questa pagina -->
+    <meta charset="UTF-8">
+    <!-- Impostazioni responsive: la pagina si adatta alla larghezza del dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<!-- Titolo mostrato nella scheda del browser -->
+    <title>Glossario JavaScript completo con esempi pratici | Codedge</title>
+    <!-- Descrizione usata dai motori di ricerca -->
+    <meta name="description"
+        content="Glossario JavaScript dalla A alla Z: definizioni semplici con esempi rapidi per capire sintassi, metodi e concetti chiave.">
+    <!-- URL canonico della pagina (evita duplicati SEO) -->
+  <!-- i18n: translation pending — this page still holds the Italian source text.
+       Remove this block (robots meta included) once the page is translated. -->
+  <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="https://codedge.it/en/resources/javascript-glossary/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Glossario JavaScript completo con esempi pratici | Codedge" />
+  <meta property="og:description" content="Glossario JavaScript dalla A alla Z: definizioni semplici con esempi rapidi per capire sintassi, metodi e concetti chiave." />
+  <meta property="og:url" content="https://codedge.it/en/resources/javascript-glossary/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glossario JavaScript completo con esempi pratici | Codedge" />
+  <meta name="twitter:description" content="Glossario JavaScript dalla A alla Z: definizioni semplici con esempi rapidi per capire sintassi, metodi e concetti chiave." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+</head>
+
+<body>
+    <header>
+        <!-- Barra di navigazione principale -->
+        <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fab fa-js-square" aria-hidden="true"></i> Glossario JS</span>
+    </nav>
+
+        <!-- Contenitore vuoto dove il breadcrumb runtime verrà inserito -->
+
+        <!-- Area di ricerca del glossario -->
+        <div class="search-container">
+            <!-- Input di ricerca; gli script filtrano/collegano i risultati a questo campo -->
+            <input type="text" id="search" placeholder="Cerca un tag...">
+            <!-- Sottotitolo della pagina -->
+            <h1 class="glossari_resize">Definizioni chiare con esempi rapidi</h1>
+        </div>
+    </header>
+    <div class="glossary-scroll-wrapper">
+
+    <div class="breadcrumb-container">
+        <a href="/en/resources/" class="back-link"><i class="fas fa-chevron-left"></i> All resources</a>
+    </div>
+
+    <main class="main-content">
+
+        <aside>
+            <div class="aside-content">
+                <!-- Indice / sommario del glossario: struttura ad elenco per navigare i concetti -->
+                <!-- Le classi "clickable-item" probabilmente sono legate a script che filtrano o saltano ai contenuti -->
+                <ul class="concept-list">
+                    <ul>
+                        <li>1. Variabili</li>
+                        <ul>
+                            <li class="clickable-item">Var</li>
+                            <li class="clickable-item">Let</li>
+                            <li class="clickable-item">Const</li>
+                        </ul>
+                        <li>2. Tipi di Dati</li>
+                        <ul>
+                            <li class="clickable-item">Number</li>
+                            <li class="clickable-item">BigInt</li>
+                            <li class="clickable-item">String</li>
+                            <li class="clickable-item">Boolean</li>
+                            <li class="clickable-item">null</li>
+                            <li class="clickable-item">undefined</li>
+                            <li class="clickable-item">Symbol</li>
+                            <li class="clickable-item">Object</li>
+                            <li class="clickable-item">Function</li>
+                            <li class="clickable-item">Array</li>
+                            <li class="clickable-item">Map</li>
+                            <li class="clickable-item">Set</li>
+                            <li class="clickable-item">Date</li>
+                            <li class="clickable-item">RegExp</li>
+                            <li class="clickable-item">WeakMap</li>
+                            <li class="clickable-item">WeakSet</li>
+                            <li class="clickable-item">Template literals</li>
+                            <li class="clickable-item">split()</li>
+                            <li class="clickable-item">replace()</li>
+                            <li class="clickable-item">trim()</li>
+                            <li class="clickable-item">toUpperCase() e toLowerCase()</li>
+                            <li class="clickable-item">startsWith() e endsWith()</li>
+                            <li class="clickable-item">parseInt() e parseFloat()</li>
+                            <li class="clickable-item">Number(), String() e Boolean()</li>
+                            <li class="clickable-item">Math</li>
+                        </ul>
+                        <li>3. Operatori</li>
+                        <ul>
+                            <li class="clickable-item">Addizione</li>
+                            <li class="clickable-item">Sottrazione</li>
+                            <li class="clickable-item">Moltiplicazione</li>
+                            <li class="clickable-item">Divisione</li>
+                            <li class="clickable-item">Modulo</li>
+                            <li class="clickable-item">Esponenziazione</li>
+                            <li class="clickable-item">Incremento</li>
+                            <li class="clickable-item">Decremento</li>
+                            <li class="clickable-item">Assegnamento</li>
+                            <li class="clickable-item">Uguaglianza non stretta</li>
+                            <li class="clickable-item">Uguaglianza stretta</li>
+                            <li class="clickable-item">Disuguaglianza non stretta</li>
+                            <li class="clickable-item">Disuguaglianza stretta</li>
+                            <li class="clickable-item">AND logico</li>
+                            <li class="clickable-item">OR logico</li>
+                            <li class="clickable-item">NOT logico</li>
+                            <li class="clickable-item">Operatore ternario</li>
+                            <li class="clickable-item">Operatore di concatenazione opzionale</li>
+                            <li class="clickable-item">Operatore di coalescenza nulla</li>
+                            <li class="clickable-item">Operatore di diffusione (spread)</li>
+                            <li class="clickable-item">Operatore typeof</li>
+                            <li class="clickable-item">Operatore instanceof</li>
+                            <li class="clickable-item">Operatore delete</li>
+                            <li class="clickable-item">Operatore in</li>
+                        </ul>
+                        <li>4. Controllo del Flusso</li>
+                        <ul>
+                            <li class="clickable-item">if</li>
+                            <li class="clickable-item">else</li>
+                            <li class="clickable-item">else if</li>
+                            <li class="clickable-item">switch</li>
+                            <li class="clickable-item">break</li>
+                            <li class="clickable-item">continue</li>
+                            <li class="clickable-item">return</li>
+                        </ul>
+                        <li>5. Cicli</li>
+                        <ul>
+                            <li class="clickable-item">for</li>
+                            <li class="clickable-item">while</li>
+                            <li class="clickable-item">do...while</li>
+                            <li class="clickable-item">for...in</li>
+                            <li class="clickable-item">for...of</li>
+                        </ul>
+                        <li>6. Funzioni</li>
+                        <ul>
+                            <li class="clickable-item">Arrow function</li>
+                            <li class="clickable-item">Callback</li>
+                            <li class="clickable-item">IIFE</li>
+                            <li class="clickable-item">Closure</li>
+                            <li class="clickable-item">Parametri di default</li>
+                            <li class="clickable-item">Rest parameters</li>
+                            <li class="clickable-item">function* (generator)</li>
+                            <li class="clickable-item">yield</li>
+                            <li class="clickable-item">bind()</li>
+                            <li class="clickable-item">call()</li>
+                            <li class="clickable-item">apply()</li>
+                        </ul>
+                        <li>7. Oggetti</li>
+                        <ul>
+                            <li class="clickable-item">this</li>
+                            <li class="clickable-item">Object.create()</li>
+                            <li class="clickable-item">Object.assign()</li>
+                            <li class="clickable-item">Object.keys()</li>
+                            <li class="clickable-item">Object.values()</li>
+                            <li class="clickable-item">Object.entries()</li>
+                            <li class="clickable-item">Object.freeze()</li>
+                            <li class="clickable-item">Object.seal()</li>
+                            <li class="clickable-item">Object.hasOwn()</li>
+                            <li class="clickable-item">Destructuring</li>
+                            <li class="clickable-item">Shorthand property names</li>
+                            <li class="clickable-item">Computed property names</li>
+                            <li class="clickable-item">class</li>
+                            <li class="clickable-item">constructor</li>
+                            <li class="clickable-item">extends</li>
+                            <li class="clickable-item">super</li>
+                            <li class="clickable-item">new</li>
+                            <li class="clickable-item">static</li>
+                            <li class="clickable-item">get e set</li>
+                            <li class="clickable-item">JSON.stringify()</li>
+                            <li class="clickable-item">JSON.parse()</li>
+                        </ul>
+                        <li>8. Array</li>
+                        <ul>
+                            <li class="clickable-item">push()</li>
+                            <li class="clickable-item">pop()</li>
+                            <li class="clickable-item">shift()</li>
+                            <li class="clickable-item">unshift()</li>
+                            <li class="clickable-item">slice()</li>
+                            <li class="clickable-item">splice()</li>
+                            <li class="clickable-item">map()</li>
+                            <li class="clickable-item">filter()</li>
+                            <li class="clickable-item">reduce()</li>
+                            <li class="clickable-item">forEach()</li>
+                            <li class="clickable-item">find()</li>
+                            <li class="clickable-item">findIndex()</li>
+                            <li class="clickable-item">some()</li>
+                            <li class="clickable-item">every()</li>
+                            <li class="clickable-item">includes()</li>
+                            <li class="clickable-item">sort()</li>
+                            <li class="clickable-item">reverse()</li>
+                            <li class="clickable-item">join()</li>
+                            <li class="clickable-item">concat()</li>
+                            <li class="clickable-item">flat()</li>
+                            <li class="clickable-item">indexOf()</li>
+                            <li class="clickable-item">Array.from()</li>
+                            <li class="clickable-item">Array.isArray()</li>
+                        </ul>
+                        <li>9. Errori</li>
+                        <ul>
+                            <li class="clickable-item">try...catch</li>
+                            <li class="clickable-item">throw</li>
+                            <li class="clickable-item">finally</li>
+                            <li class="clickable-item">Error</li>
+                        </ul>
+                        <li>10. Asincronia</li>
+                        <ul>
+                            <li class="clickable-item">setTimeout()</li>
+                            <li class="clickable-item">setInterval()</li>
+                            <li class="clickable-item">Promise</li>
+                            <li class="clickable-item">async</li>
+                            <li class="clickable-item">await</li>
+                            <li class="clickable-item">fetch()</li>
+                            <li class="clickable-item">Promise.all()</li>
+                            <li class="clickable-item">Promise.race()</li>
+                            <li class="clickable-item">Promise.allSettled()</li>
+                        </ul>
+                        <li>11. Eventi</li>
+                        <ul>
+                            <li class="clickable-item">addEventListener()</li>
+                            <li class="clickable-item">removeEventListener()</li>
+                            <li class="clickable-item">click</li>
+                            <li class="clickable-item">keydown</li>
+                            <li class="clickable-item">submit</li>
+                            <li class="clickable-item">Event object</li>
+                            <li class="clickable-item">Event bubbling</li>
+                            <li class="clickable-item">Event delegation</li>
+                            <li class="clickable-item">preventDefault()</li>
+                            <li class="clickable-item">stopPropagation()</li>
+                            <li class="clickable-item">input</li>
+                            <li class="clickable-item">change</li>
+                        </ul>
+                        <li>12. DOM (Document Object Model)</li>
+                        <ul>
+                            <li class="clickable-item">getElementById()</li>
+                            <li class="clickable-item">querySelector()</li>
+                            <li class="clickable-item">querySelectorAll()</li>
+                            <li class="clickable-item">innerHTML</li>
+                            <li class="clickable-item">textContent</li>
+                            <li class="clickable-item">createElement()</li>
+                            <li class="clickable-item">appendChild()</li>
+                            <li class="clickable-item">removeChild()</li>
+                            <li class="clickable-item">setAttribute()</li>
+                            <li class="clickable-item">classList</li>
+                            <li class="clickable-item">getAttribute()</li>
+                            <li class="clickable-item">removeAttribute()</li>
+                            <li class="clickable-item">dataset</li>
+                            <li class="clickable-item">closest()</li>
+                            <li class="clickable-item">remove()</li>
+                        </ul>
+                        <li>13. Moduli</li>
+                        <ul>
+                            <li class="clickable-item">import</li>
+                            <li class="clickable-item">export</li>
+                            <li class="clickable-item">default export</li>
+                            <li class="clickable-item">named export</li>
+                        </ul>
+                        <li>14. Altri concetti</li>
+                        <ul>
+                            <li class="clickable-item">Strict mode</li>
+                            <li class="clickable-item">Hoisting</li>
+                            <li class="clickable-item">Temporal Dead Zone (TDZ)</li>
+                            <li class="clickable-item">Garbage collection</li>
+                            <li class="clickable-item">Prototype chain</li>
+                            <li class="clickable-item">localStorage</li>
+                            <li class="clickable-item">sessionStorage</li>
+                            <li class="clickable-item">console</li>
+                        </ul>
+                    </ul>
+
+                </ul>
+      </div>
+        </aside>
+
+        <div>
+            <section>
+                <!-- Dettaglio di un termine del glossario: pannello espandibile -->
+                <!-- <summary> mostra l'etichetta e una breve descrizione -->
+                <details>
+                    <summary>var<span class="tag-description" aria-label="descrizione tag">Variabile
+                            con scoping a livello di funzione.</span>
+                        <!-- Tag di categoria visibile nel summary -->
+                        <div class="tag-group" aria-label="gruppo">1. Variabile</div>
+                    </summary>
+
+                    <!-- Lista ordinata che descrive il termine: usata dal contenuto del glossario -->
+                    
+                    <ol>
+                        <li>Cos'è: La keyword "var" in JavaScript è utilizzata per dichiarare una variabile con scoping a livello di funzione o globale.</li>
+                        <li>A cosa serve: Viene utilizzata per creare e inizializzare variabili in JavaScript, permettendo di allocare spazio in memoria per memorizzare valori.</li>
+                        <li>Quando usarlo: Può essere usato per dichiarare variabili, ma in JavaScript moderno è generalmente preferibile utilizzare "let" o "const" per un migliore controllo dello scope.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>let<span class="tag-description" aria-label="descrizione tag">Variabile
+                            con scoping a livello di blocco.</span>
+                        <div class="tag-group" aria-label="gruppo">1. Variabile</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La keyword "let" in JavaScript è utilizzata per dichiarare una variabile con scoping a livello di blocco.</li>
+                        <li>A cosa serve: Viene utilizzata per dichiarare variabili in JavaScript che sono limitate allo scope del blocco in cui vengono dichiarate (ad esempio, dentro un ciclo o un'istruzione...</li>
+                        <li>Quando usarlo: Utilizza "let" quando hai bisogno di dichiarare una variabile che può essere riassegnata e che deve essere visibile solo all'interno di un determinato blocco di codice.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>const<span class="tag-description" aria-label="descrizione tag">Variabile
+                            con scoping a livello di blocco e valore costante.</span>
+                        <div class="tag-group" aria-label="gruppo">1. Variabile</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La keyword "const" in JavaScript viene utilizzata per dichiarare variabili il cui valore non può essere riassegnato dopo l'inizializzazione.</li>
+                        <li>A cosa serve: Viene utilizzata per dichiarare variabili con scoping di blocco, il cui valore è costante e non può essere cambiato una volta assegnato.</li>
+                        <li>Quando usarlo: Utilizza "const" quando hai bisogno di dichiarare variabili che non devono essere riassegnate, come costanti o riferimenti a oggetti e array che non cambiano di...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>number<span class="tag-description" aria-label="descrizione tag">Tipo di dato numerico che
+                            rappresenta sia interi che numeri in virgola mobile.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: "number" in JavaScript è un tipo di dato primitivo che rappresenta valori numerici, inclusi interi e numeri in virgola mobile.</li>
+                        <li>A cosa serve: Viene utilizzato per rappresentare e manipolare valori numerici in JavaScript, permettendo calcoli matematici e operazioni aritmetiche.</li>
+                        <li>Quando usarlo: Si usa quando si ha bisogno di lavorare con qualsiasi tipo di valore numerico, sia esso intero o decimale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>String<span class="tag-description" aria-label="descrizione tag">Rappresenta
+                            una sequenza di caratteri testuali, immutabile, utilizzata per gestire testi.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il tipo di dato `String` in JavaScript rappresenta una sequenza di caratteri testuali.</li>
+                        <li>A cosa serve: Le stringhe vengono utilizzate per rappresentare e manipolare testo.</li>
+                        <li>Quando usarlo: Si utilizza il tipo `String` ogni volta che è necessario lavorare con dati testuali, come nomi, descrizioni, frasi o parole.</li>
+                    </ol>
+                </details>
+
+
+                <details>
+                    <summary>boolean<span class="tag-description" aria-label="descrizione tag">Tipo di dato booleano,
+                            con due valori possibili: vero o falso.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un tipo di dato boolean in JavaScript rappresenta un valore logico che può essere solo "true" (vero) o "false" (falso).</li>
+                        <li>A cosa serve: Viene utilizzato per rappresentare valori binari (vero o falso), tipicamente in operazioni logiche, condizionali, cicli, e altre strutture di controllo.</li>
+                        <li>Quando usarlo: Il tipo di dato boolean è usato ogni volta che è necessario verificare una condizione, come nei controlli condizionali (if, else, while, ecc.), o per rappresentare lo...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>object<span class="tag-description" aria-label="descrizione tag">Tipo di dato complesso che
+                            rappresenta collezioni di proprietà.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: In JavaScript, un "object" è un tipo di dato complesso che consente di memorizzare collezioni di proprietà e valori.</li>
+                        <li>A cosa serve: Gli oggetti sono usati per rappresentare strutture complesse di dati, come modelli di entità, record di database, o configurazioni.</li>
+                        <li>Quando usarlo: Gli oggetti sono utilizzati quando si desidera rappresentare collezioni di proprietà correlate o modelli di dati complessi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>array<span class="tag-description" aria-label="descrizione tag">Tipo di dato complesso per
+                            memorizzare una collezione ordinata di elementi</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un array in JavaScript è un tipo di dato complesso che permette di memorizzare una collezione ordinata di elementi, che possono essere di qualsiasi tipo (numeri, stringhe,...</li>
+                        <li>A cosa serve: Gli array vengono utilizzati per gestire liste di elementi o dati correlati, come elenchi di nomi, numeri o oggetti, facilitando l'accesso e la manipolazione di questi dati...</li>
+                        <li>Quando usarlo: Gli array sono usati quando è necessario lavorare con un insieme di dati ordinati o una sequenza di elementi, dove ciascun elemento può essere identificato tramite un...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Function<span class="tag-description" aria-label="descrizione tag">Tipo di
+                            dato che rappresenta una funzione, ovvero un blocco di codice eseguibile che può essere
+                            richiamato.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: In JavaScript, il tipo di dato `function` rappresenta una funzione, ovvero un blocco di codice che può essere definito e successivamente richiamato per eseguire un'operazione...</li>
+                        <li>A cosa serve: Le funzioni vengono utilizzate per organizzare il codice, rendendolo riutilizzabile e modulare.</li>
+                        <li>Quando usarlo: Le funzioni si utilizzano quando si ha bisogno di eseguire un'operazione specifica o un gruppo di operazioni in modo ripetibile, o quando è necessario astrarre e...</li>
+                    </ol>
+                </details>
+
+
+                <details>
+                    <summary>undefined<span class="tag-description" aria-label="descrizione tag">Valore predefinito per
+                            variabili non inizializzate o assenti.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `undefined` è un tipo di dato primitivo in JavaScript, che rappresenta il valore di una variabile che è stata dichiarata ma non inizializzata o di una proprietà inesistente.</li>
+                        <li>A cosa serve: Viene utilizzato per indicare l'assenza di un valore iniziale in una variabile o per segnalare che un oggetto o una proprietà non esiste.</li>
+                        <li>Quando usarlo: `undefined` viene automaticamente assegnato alle variabili dichiarate ma non inizializzate, oppure può essere restituito quando si tenta di accedere a proprietà non...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>null<span class="tag-description" aria-label="descrizione tag">Valore intenzionale che
+                            rappresenta l'assenza di un oggetto o di un valore.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `null` è un tipo di dato primitivo in JavaScript che rappresenta intenzionalmente l'assenza di un valore o di un oggetto.</li>
+                        <li>A cosa serve: Viene utilizzato per indicare esplicitamente che una variabile o proprietà non ha alcun valore assegnato o che un oggetto è vuoto.</li>
+                        <li>Quando usarlo: Usa `null` quando vuoi indicare esplicitamente che un oggetto o un valore è assente, ad esempio quando cancelli un riferimento a un oggetto o quando un valore non è...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>symbol<span class="tag-description" aria-label="descrizione tag">Tipo di dato primitivo
+                            utilizzato per identificatori unici.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `symbol` è un tipo di dato primitivo introdotto in ECMAScript 6 (ES6), che rappresenta un identificatore unico.</li>
+                        <li>A cosa serve: I `symbol` vengono utilizzati principalmente come chiavi uniche per le proprietà di un oggetto, evitando conflitti con altre proprietà o chiavi, soprattutto quando si lavora con...</li>
+                        <li>Quando usarlo: Usa i `symbol` quando hai bisogno di identificatori unici per le proprietà di un oggetto o quando vuoi evitare collisioni tra le chiavi degli oggetti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>BigInt<span class="tag-description" aria-label="descrizione tag">Tipo di dato per
+                            rappresentare numeri interi di grandi dimensioni.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `BigInt` è un tipo di dato primitivo introdotto in ECMAScript 2020 (ES11) che permette di rappresentare numeri interi più grandi di quelli che possono essere rappresentati con il...</li>
+                        <li>A cosa serve: Viene utilizzato quando sono necessari numeri interi più grandi di 2 53 -1, il limite massimo per il tipo `Number` in JavaScript.</li>
+                        <li>Quando usarlo: Usa `BigInt` quando devi lavorare con numeri interi molto grandi o molto piccoli, oltre il limite di sicurezza dei `Number` (±2 53 -1).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Map<span class="tag-description" aria-label="descrizione tag">Struttura dati
+                            che memorizza coppie chiave-valore, dove le chiavi possono essere di qualsiasi tipo.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il tipo di dato `Map` in JavaScript è una struttura dati che memorizza coppie chiave-valore.</li>
+                        <li>A cosa serve: Le `Map` vengono utilizzate per memorizzare dati associati a chiavi in modo più potente rispetto agli oggetti.</li>
+                        <li>Quando usarlo: Si utilizza una `Map` quando è necessario gestire una collezione di dati con chiavi che possono essere di qualsiasi tipo, oppure quando si vuole mantenere l'ordine di...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Set<span class="tag-description" aria-label="descrizione tag">Struttura dati che memorizza
+                            valori unici, senza consentire duplicati.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il tipo di dato `Set` in JavaScript è una struttura dati che consente di memorizzare **valori unici** di qualsiasi tipo, senza duplicati.</li>
+                        <li>A cosa serve: Un `Set` è utile quando è necessario memorizzare una collezione di valori unici, evitando duplicati.</li>
+                        <li>Quando usarlo: Si utilizza un `Set` quando è necessario mantenere una collezione di elementi senza duplicati, oppure quando si vogliono eliminare i duplicati da una struttura come un...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Date<span class="tag-description" aria-label="descrizione tag">Tipo di dato
+                            utilizzato per lavorare con date e orari in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il tipo di dato `Date` in JavaScript è un oggetto utilizzato per rappresentare e gestire **date e orari**.</li>
+                        <li>A cosa serve: L'oggetto `Date` viene utilizzato per creare, manipolare e formattare date e orari.</li>
+                        <li>Quando usarlo: Si utilizza il tipo `Date` quando è necessario lavorare con informazioni legate a data e ora, come la gestione di calendari, pianificazioni di eventi, calcoli di...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>RegExp<span class="tag-description" aria-label="descrizione tag">Rappresenta
+                            un'espressione regolare, utilizzata per la ricerca e manipolazione di pattern
+                            testuali.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il tipo di dato `RegExp` in JavaScript rappresenta un'espressione regolare, una sequenza di caratteri che definisce un pattern di ricerca.</li>
+                        <li>A cosa serve: Le espressioni regolari servono a cercare, validare e manipolare pattern all'interno di stringhe.</li>
+                        <li>Quando usarlo: Si utilizza il tipo `RegExp` quando è necessario identificare o operare su pattern testuali complessi, come cercare ripetizioni di caratteri, validare input dell'utente...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>WeakMap<span class="tag-description" aria-label="descrizione tag">Struttura
+                            dati simile a `Map`, con alcune differenze.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `WeakMap` è una struttura dati in JavaScript che memorizza coppie chiave-valore, dove le chiavi devono essere oggetti e i riferimenti a tali chiavi sono deboli.</li>
+                        <li>A cosa serve: `WeakMap` viene utilizzato quando si vuole associare informazioni supplementari ad oggetti senza impedire che questi vengano rimossi dalla memoria quando non sono più utilizzati...</li>
+                        <li>Quando usarlo: Si utilizza `WeakMap` quando si vuole memorizzare dati legati ad oggetti senza influire sulla loro gestione di memoria.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>WeakSet<span class="tag-description" aria-label="descrizione tag">Struttura
+                            dati simile a `Set`, che memorizza solo oggetti come valori e con riferimenti deboli.</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `WeakSet` è una struttura dati in JavaScript simile a `Set`, ma memorizza esclusivamente oggetti come valori e i riferimenti a tali oggetti sono deboli.</li>
+                        <li>A cosa serve: `WeakSet` viene utilizzato per memorizzare oggetti in modo che possano essere automaticamente rimossi dalla memoria quando non più utilizzati.</li>
+                        <li>Quando usarlo: Si utilizza `WeakSet` quando si ha bisogno di un insieme di oggetti in cui la gestione della memoria è automatica.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Template literals<span class="tag-description" aria-label="descrizione tag">Stringhe con backtick e interpolazione</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: I template literal sono stringhe delimitate dagli apici inversi (backtick) che permettono di inserire variabili e di scrivere testo su più righe.</li>
+                        <li>A cosa serve: Servono a comporre stringhe dinamiche in modo leggibile, inserendo espressioni con la sintassi `${espressione}` invece di concatenare con il `+`.</li>
+                        <li>Quando usarlo: Quando devi costruire testo che contiene variabili o espressioni, oppure stringhe su più righe.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>split()<span class="tag-description" aria-label="descrizione tag">Divide una stringa in un array</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `split()` delle stringhe divide una stringa in un array di sottostringhe, usando un separatore.</li>
+                        <li>A cosa serve: Serve a spezzare un testo in parti, ad esempio separando le parole di una frase o i valori di una riga CSV.</li>
+                        <li>Quando usarlo: Quando devi trasformare una stringa in una lista, ad esempio `"a,b,c".split(",")`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>replace()<span class="tag-description" aria-label="descrizione tag">Sostituisce parte di una stringa</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `replace()` delle stringhe restituisce una nuova stringa in cui una porzione di testo (o un pattern) viene sostituita.</li>
+                        <li>A cosa serve: Serve a modificare il contenuto di una stringa; con un'espressione regolare e il flag `g` sostituisce tutte le occorrenze.</li>
+                        <li>Quando usarlo: Quando devi correggere o trasformare parti di un testo; per sostituire tutte le occorrenze in modo semplice c'è anche `replaceAll()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>trim()<span class="tag-description" aria-label="descrizione tag">Rimuove gli spazi ai bordi</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `trim()` delle stringhe restituisce una nuova stringa senza gli spazi iniziali e finali.</li>
+                        <li>A cosa serve: Serve a ripulire l'input dell'utente da spazi superflui prima di confrontarlo o salvarlo.</li>
+                        <li>Quando usarlo: Quando elabori testo digitato in un form, per evitare errori dovuti a spazi accidentali.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>toUpperCase() e toLowerCase()<span class="tag-description" aria-label="descrizione tag">Cambiano maiuscole e minuscole</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: I metodi `toUpperCase()` e `toLowerCase()` restituiscono la stringa convertita rispettivamente tutta in maiuscolo o tutta in minuscolo.</li>
+                        <li>A cosa serve: Servono a uniformare il testo, ad esempio per confronti che non devono distinguere maiuscole e minuscole.</li>
+                        <li>Quando usarlo: Quando confronti o normalizzi stringhe come email o parole chiave.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>startsWith() e endsWith()<span class="tag-description" aria-label="descrizione tag">Verificano inizio o fine di una stringa</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: I metodi `startsWith()` e `endsWith()` restituiscono `true` o `false` a seconda che una stringa inizi o finisca con un certo testo.</li>
+                        <li>A cosa serve: Servono a controllare prefissi e suffissi in modo leggibile.</li>
+                        <li>Quando usarlo: Ad esempio per verificare l'estensione di un file o se un URL inizia con `https`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>parseInt() e parseFloat()<span class="tag-description" aria-label="descrizione tag">Convertono una stringa in numero</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Le funzioni `parseInt()` e `parseFloat()` leggono una stringa e ne estraggono rispettivamente un numero intero o un numero con la virgola.</li>
+                        <li>A cosa serve: Servono a convertire in numero un testo, ad esempio un valore preso da un input.</li>
+                        <li>Quando usarlo: Quando ricevi numeri sotto forma di stringa; se la conversione fallisce restituiscono `NaN` (Not a Number).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Number(), String() e Boolean()<span class="tag-description" aria-label="descrizione tag">Conversione esplicita di tipo</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Le funzioni `Number()`, `String()` e `Boolean()` convertono in modo esplicito un valore rispettivamente in numero, stringa o booleano.</li>
+                        <li>A cosa serve: Servono a controllare la conversione di tipo invece di affidarsi a quella implicita, e talvolta imprevedibile, di JavaScript.</li>
+                        <li>Quando usarlo: Quando vuoi essere certo del tipo di un valore, ad esempio `Number("42")` o `Boolean(0)`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Math<span class="tag-description" aria-label="descrizione tag">Oggetto con funzioni matematiche</span>
+                        <div class="tag-group" aria-label="gruppo">2. Tipo di Dato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: `Math` è un oggetto integrato che raccoglie costanti e funzioni matematiche, come `Math.round()`, `Math.random()` e `Math.max()`.</li>
+                        <li>A cosa serve: Serve a eseguire calcoli comuni: arrotondamenti, valori casuali, potenze, minimo e massimo.</li>
+                        <li>Quando usarlo: Quando ti servono operazioni matematiche, ad esempio `Math.floor(Math.random() * 10)` per un numero casuale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Addizione<span class="tag-description" aria-label="descrizione tag">Operatore che somma due
+                            operandi o concatena stringhe.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di addizione (`+`) in JavaScript è utilizzato per sommare due numeri o per concatenare due stringhe.</li>
+                        <li>A cosa serve: Viene utilizzato per eseguire operazioni aritmetiche su numeri o per concatenare stringhe.</li>
+                        <li>Quando usarlo: Usa l'operatore di addizione per sommare numeri o per unire (concatenare) stringhe.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Sottrazione<span class="tag-description" aria-label="descrizione tag">Operatore
+                            aritmetico per la sottrazione di valori numerici.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di sottrazione (-) in JavaScript è un operatore aritmetico binario che sottrae il secondo operando dal primo.</li>
+                        <li>A cosa serve: Viene utilizzato per eseguire operazioni di sottrazione tra numeri, calcolare differenze e gestire operazioni matematiche in generale.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario calcolare la differenza tra due numeri, decrementare valori in combinazione con l'assegnazione, effettuare calcoli matematici complessi o...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Moltiplicazione<span class="tag-description" aria-label="descrizione tag">Operatore
+                            aritmetico per la moltiplicazione di valori numerici.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di moltiplicazione (*) in JavaScript è un operatore aritmetico binario che moltiplica due operandi, restituendo il loro prodotto.</li>
+                        <li>A cosa serve: Viene utilizzato per eseguire operazioni di moltiplicazione tra numeri, calcolare prodotti e gestire calcoli matematici che richiedono moltiplicazione.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario calcolare il prodotto tra due o più numeri, scalare valori come nei calcoli percentuali, effettuare calcoli matematici complessi o...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Divisione<span class="tag-description" aria-label="descrizione tag">Operatore
+                            aritmetico per la divisione di valori numerici.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di divisione (/) in JavaScript è un operatore aritmetico binario che divide il primo operando (dividendo) per il secondo operando (divisore).</li>
+                        <li>A cosa serve: Viene utilizzato per eseguire operazioni di divisione tra numeri, calcolare quozienti e gestire operazioni matematiche che richiedono divisione.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario calcolare il risultato della divisione tra due numeri, convertire unità di misura, calcolare proporzioni e rapporti, effettuare scaling...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Modulo<span class="tag-description" aria-label="descrizione tag">Operatore aritmetico
+                            per il calcolo del resto della divisione tra due numeri.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore modulo (%) in JavaScript restituisce il resto della divisione tra due numeri.</li>
+                        <li>A cosa serve: Viene utilizzato per calcolare il resto di una divisione, verificare se un numero è pari o dispari, implementare cicli circolari, limitare numeri entro un range e creare pattern...</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario determinare la divisibilità tra numeri, implementare algoritmi ciclici, gestire rotazioni e cicli, creare distribuzioni uniformi o...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Esponenziazione<span class="tag-description" aria-label="descrizione tag">Operatore
+                            aritmetico per il calcolo della potenza di un numero.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di esponenziazione (**) in JavaScript è un operatore aritmetico binario che eleva il primo operando (base) alla potenza del secondo operando (esponente).</li>
+                        <li>A cosa serve: Viene utilizzato per calcolare potenze di numeri, implementare formule matematiche, calcolare crescite esponenziali, eseguire calcoli geometrici e implementare algoritmi...</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario calcolare quadrati, cubi e altre potenze, implementare formule matematiche complesse, calcolare crescite composte, eseguire calcoli...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Incremento<span class="tag-description" aria-label="descrizione tag">Operatore aritmetico
+                            per aumentare il valore di una variabile di una unità.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di incremento (++) in JavaScript è un operatore unario che aumenta il valore di una variabile di una unità.</li>
+                        <li>A cosa serve: L'operatore viene utilizzato per incrementare contatori, gestire cicli iterativi, implementare sequenze numeriche, aggiornare indici di array e gestire progressioni aritmetiche.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario incrementare variabili in cicli `for`, gestire conteggi progressivi, implementare contatori, aggiornare posizioni in strutture dati e...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Decremento<span class="tag-description" aria-label="descrizione tag">Operatore unario che
+                            diminuisce di una unità il valore di una
+                            variabile numerica.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di decremento (--), in JavaScript, è un operatore unario che riduce il valore di una variabile numerica di 1.</li>
+                        <li>A cosa serve: Viene utilizzato per ridurre il valore di una variabile di un'unità.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario diminuire progressivamente il valore di una variabile, specialmente in contesti come cicli, iterazioni o conteggi alla rovescia.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Assegnamento<span class="tag-description" aria-label="descrizione tag">Operatore che
+                            assegna un valore a una variabile.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di assegnamento (=) in JavaScript è un operatore che assegna un valore a una variabile.</li>
+                        <li>A cosa serve: Viene utilizzato per assegnare valori a variabili.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario dare un valore iniziale a una variabile o aggiornare il valore di una variabile esistente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Uguaglianza non stretta<span class="tag-description" aria-label="descrizione tag">Confronta
+                            due valori verificandone l'uguaglianza dopo la
+                            conversione implicita di tipo.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di uguaglianza non stretta (==) in JavaScript è un operatore di confronto che verifica se due valori sono uguali, applicando una conversione implicita di tipo...</li>
+                        <li>A cosa serve: Viene utilizzato per confrontare due valori e verificare se sono considerati equivalenti dal punto di vista del contenuto, anche se appartengono a tipi diversi.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario confrontare valori che potrebbero essere di tipi diversi, ma si desidera comunque sapere se il loro contenuto è equivalente dopo la...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Uguaglianza Stretta<span class="tag-description" aria-label="descrizione tag">Confronta sia
+                            il valore che il tipo dei due operandi senza
+                            applicare la coercizione implicita.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di uguaglianza stretta (`===`) in JavaScript è un operatore di confronto che verifica se due valori sono identici, senza applicare la coercizione di tipo.</li>
+                        <li>A cosa serve: Viene utilizzato per confrontare due valori verificando sia il loro contenuto che il loro tipo.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario confrontare valori in modo rigoroso, assicurandosi che i due operandi abbiano lo stesso valore **e** lo stesso tipo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Disuguaglianza non stretta<span class="tag-description"
+                            aria-label="descrizione tag">Verifica se due valori sono diversi, applicando la conversione
+                            implicita di tipo se necessario.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di disuguaglianza non stretta (`!=`) in JavaScript confronta due valori e verifica se **non sono uguali**, applicando la **coercizione di tipo** se necessario.</li>
+                        <li>A cosa serve: Viene utilizzato per verificare se due valori sono diversi tra loro, anche se appartengono a tipi differenti.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario verificare la disuguaglianza tra valori di tipi diversi, oppure quando si vuole ottenere una risposta flessibile, permettendo al...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Disuguaglianza Stretta<span class="tag-description" aria-label="descrizione tag">Confronta
+                            sia il valore che il tipo.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di disuguaglianza stretta (`!==`) in JavaScript confronta due valori verificando se **non sono uguali** sia nel valore che nel tipo, senza applicare la coercizione di...</li>
+                        <li>A cosa serve: Viene utilizzato per confrontare due valori in modo rigoroso, assicurandosi che siano considerati disuguali se differiscono sia per valore che per tipo.</li>
+                        <li>Quando usarlo: Si utilizza quando è necessario un confronto preciso tra due valori, garantendo che il confronto verifichi sia il valore che il tipo dei due operandi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>AND Logico<span class="tag-description" aria-label="descrizione tag">Valuta le
+                            espressioni e restituisce il primo valore falsy o l'ultimo valore truthy.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore AND logico (`&amp;&amp;`) in JavaScript è utilizzato per valutare due o più espressioni.</li>
+                        <li>A cosa serve: Serve a eseguire operazioni logiche, verificando se più condizioni sono tutte vere.</li>
+                        <li>Quando usarlo: Utilizzalo quando devi verificare che tutte le condizioni siano vere per eseguire una determinata operazione, come ad esempio controllare che un utente sia autenticato e...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>OR Logico<span class="tag-description" aria-label="descrizione tag">Valuta le
+                            espressioni e restituisce il primo valore truthy o l'ultimo valore falsy.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore OR logico (`||`) in JavaScript è utilizzato per valutare due o più espressioni.</li>
+                        <li>A cosa serve: Serve a verificare se almeno una tra le condizioni è vera.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi che un'operazione venga eseguita se almeno una tra le condizioni è vera, come ad esempio verificare se un utente ha inserito almeno una delle...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>NOT Logico<span class="tag-description" aria-label="descrizione tag">Inverte il
+                            valore di verità di un'espressione.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore NOT logico (`!`) in JavaScript è utilizzato per invertire il valore di verità di un'espressione.</li>
+                        <li>A cosa serve: Serve a verificare la negazione di una condizione.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi negare una condizione o verificare se un valore non soddisfa una determinata condizione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore Ternario<span class="tag-description" aria-label="descrizione tag">Esegue
+                            un'operazione in base a una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore ternario (`?</li>
+                        <li>A cosa serve: Serve a scrivere espressioni condizionali compatte, simili a un'istruzione `if-else`, ma in una sola riga di codice.</li>
+                        <li>Quando usarlo: Utilizzalo quando hai bisogno di una semplice valutazione condizionale che può essere espressa in una singola riga.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore di Concatenazione Opzionale<span class="tag-description"
+                            aria-label="descrizione tag">Accesso sicuro a proprietà annidate senza causare
+                            errori.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di concatenazione opzionale (`?.`) in JavaScript consente di accedere in modo sicuro a proprietà di oggetti annidati.</li>
+                        <li>A cosa serve: Serve a prevenire errori durante l'accesso a proprietà annidate di oggetti che potrebbero non esistere, fornendo un modo sicuro per verificare la presenza di una proprietà prima...</li>
+                        <li>Quando usarlo: Utilizzalo quando lavori con oggetti annidati o strutture di dati complesse in cui una o più proprietà potrebbero non essere definite.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore di Coalescenza Nulla<span class="tag-description"
+                            aria-label="descrizione tag">Restituisce il primo operando che non è null o
+                            undefined.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di coalescenza nulla (`??`) in JavaScript restituisce il primo operando che non è `null` o `undefined`.</li>
+                        <li>A cosa serve: Serve a gestire valori opzionali, evitando che espressioni restituiscano `null` o `undefined` in caso di assenza di un valore.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi assegnare un valore di default solo se una variabile è `null` o `undefined`, senza sostituire valori "falsy" come `0`, `false`, o stringhe vuote.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore di Diffusione (Spread)<span class="tag-description"
+                            aria-label="descrizione tag">Espande elementi di array o proprietà di oggetti.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore di diffusione (`...`) in JavaScript permette di espandere elementi di array o proprietà di oggetti.</li>
+                        <li>A cosa serve: Serve a lavorare con array e oggetti in modo più conciso.</li>
+                        <li>Quando usarlo: Utilizzalo quando hai bisogno di copiare array o oggetti, concatenare array, aggiungere elementi a un array o unire oggetti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore typeof<span class="tag-description" aria-label="descrizione tag">Restituisce il
+                            tipo di dato di un'espressione.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore `typeof` in JavaScript restituisce una stringa che indica il tipo di dato di un'espressione o variabile.</li>
+                        <li>A cosa serve: Serve a determinare il tipo di una variabile o di un'espressione.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi verificare il tipo di una variabile per garantire che il codice funzioni correttamente con dati di tipi diversi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore instanceof<span class="tag-description" aria-label="descrizione tag">Verifica se
+                            un oggetto è un'istanza di una determinata classe o costruttore.</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'operatore `instanceof` in JavaScript verifica se un oggetto è un'istanza di una determinata classe o è stato creato tramite una funzione costruttore specifica.</li>
+                        <li>A cosa serve: Serve a controllare se un oggetto è un'istanza di una classe specifica, inclusi oggetti creati tramite funzioni costruttore personalizzate o classi native di JavaScript.</li>
+                        <li>Quando usarlo: Utilizzalo quando hai bisogno di verificare se un oggetto appartiene a una gerarchia di classi o è stato creato tramite un costruttore specifico.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore delete<span class="tag-description" aria-label="descrizione tag">Rimuove una proprietà da un oggetto</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: L'operatore `delete` rimuove una proprietà da un oggetto.</li>
+                        <li>A cosa serve: Serve a eliminare una coppia chiave-valore da un oggetto, non a liberare memoria manualmente.</li>
+                        <li>Quando usarlo: Quando devi togliere una proprietà da un oggetto; per gli array è meglio usare metodi come `splice()` per non lasciare "buchi".</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Operatore in<span class="tag-description" aria-label="descrizione tag">Verifica se una proprietà esiste</span>
+                        <div class="tag-group" aria-label="gruppo">3. Operatore</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: L'operatore `in` restituisce `true` se una determinata proprietà esiste in un oggetto o nella sua catena di prototipi.</li>
+                        <li>A cosa serve: Serve a controllare la presenza di una chiave in un oggetto prima di usarla.</li>
+                        <li>Quando usarlo: Ad esempio `"nome" in persona` per verificare se l'oggetto ha la proprietà `nome`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>if<span class="tag-description" aria-label="descrizione tag">Esegue un blocco di codice
+                            solo se una condizione è vera.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `if` in JavaScript permette di eseguire un blocco di codice solo se una determinata condizione è vera.</li>
+                        <li>A cosa serve: Serve a controllare il flusso del programma, eseguendo determinate operazioni solo quando una condizione specifica è soddisfatta.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi eseguire codice solo se una determinata condizione è vera.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>else<span class="tag-description" aria-label="descrizione tag">Esegue un blocco
+                            di codice se la condizione dell'if è falsa.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `else` viene utilizzata per eseguire un blocco di codice quando la condizione di un'istruzione `if` è falsa.</li>
+                        <li>A cosa serve: Serve a gestire situazioni in cui una condizione `if` non è vera, fornendo un percorso alternativo nel flusso del programma.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi definire un comportamento di default che viene eseguito se le condizioni specificate non sono soddisfatte.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>else if<span class="tag-description" aria-label="descrizione tag">Verifica condizioni
+                            aggiuntive se le precedenti sono false.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `else if` consente di specificare condizioni aggiuntive che vengono verificate solo se le precedenti sono false.</li>
+                        <li>A cosa serve: Serve a gestire situazioni in cui esistono più condizioni possibili.</li>
+                        <li>Quando usarlo: Utilizzalo quando hai bisogno di gestire più di due percorsi condizionali nel flusso del programma.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>switch<span class="tag-description" aria-label="descrizione tag">Esegue un
+                            blocco di codice in base al valore di un'espressione.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `switch` consente di eseguire blocchi di codice diversi in base al valore di un'espressione.</li>
+                        <li>A cosa serve: Serve a sostituire lunghe catene di `else if` quando si desidera confrontare il valore di una variabile con diversi casi possibili.</li>
+                        <li>Quando usarlo: Utilizzalo quando hai più condizioni basate sullo stesso valore e desideri gestire casi multipli in modo organizzato.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>break<span class="tag-description" aria-label="descrizione tag">Interrompe un
+                            ciclo o una struttura di controllo del flusso.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `break` in JavaScript viene utilizzata per interrompere immediatamente l'esecuzione di un ciclo (`for`, `while`, `do...while`) o di una struttura di controllo del...</li>
+                        <li>A cosa serve: Serve a interrompere l'esecuzione di un ciclo o blocco quando una determinata condizione è soddisfatta.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi uscire da un ciclo in risposta a una condizione specifica o per interrompere l'esecuzione di un blocco `switch` una volta trovato un caso...</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>continue<span class="tag-description" aria-label="descrizione tag">Salta
+                            l'iterazione corrente di un ciclo e passa alla successiva.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `continue` in JavaScript viene utilizzata per interrompere l'iterazione corrente di un ciclo (`for`, `while`, `do...while`) e passare immediatamente all'iterazione...</li>
+                        <li>A cosa serve: Serve a saltare l'esecuzione di una parte di un ciclo quando una condizione è soddisfatta, evitando il resto delle istruzioni nell'iterazione corrente.</li>
+                        <li>Quando usarlo: Utilizzalo quando vuoi saltare una determinata iterazione di un ciclo, continuando con le successive.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>return<span class="tag-description" aria-label="descrizione tag">Termina
+                            l'esecuzione di una funzione e restituisce un valore.</span>
+                        <div class="tag-group" aria-label="gruppo">4. Controllo del Flusso</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'istruzione `return` in JavaScript termina immediatamente l'esecuzione di una funzione e restituisce un valore specificato al chiamante.</li>
+                        <li>A cosa serve: Serve a uscire da una funzione e restituire un valore al chiamante.</li>
+                        <li>Quando usarlo: Utilizzalo per interrompere l'esecuzione di una funzione quando hai ottenuto il risultato desiderato o quando una condizione specifica è soddisfatta.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>for<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo per ripetere
+                            un blocco di codice un numero definito di volte.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il ciclo `for` in JavaScript è una struttura di controllo che permette di eseguire ripetutamente un blocco di codice finché una condizione è vera.</li>
+                        <li>A cosa serve: Viene utilizzato per iterare su array, numeri o altre strutture dati quando si conosce il numero di ripetizioni o si vuole controllare manualmente l'indice.</li>
+                        <li>Quando usarlo: Si usa quando è necessario ripetere un'operazione più volte con un contatore o un indice definito, oppure quando si deve iterare su elementi di una collezione con un...</li>
+                    </ol>
+                </details>
+
+
+
+
+                <details>
+                    <summary>while<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo che
+                            continua finché la condizione è vera.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il ciclo `while` in JavaScript esegue un blocco di codice ripetutamente finché la condizione specificata è vera.</li>
+                        <li>A cosa serve: Serve a ripetere operazioni quando non si conosce a priori il numero di iterazioni, ma si vuole continuare fino a quando una certa condizione rimane vera.</li>
+                        <li>Quando usarlo: Si usa quando il numero di ripetizioni dipende da eventi dinamici o dati in ingresso, e non da un contatore predeterminato.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>do...while<span class="tag-description" aria-label="descrizione tag">Ciclo iterativo che
+                            esegue il blocco di codice almeno una volta e poi continua finché la condizione è
+                            vera.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il ciclo `do...while` in JavaScript è simile a `while`, ma garantisce che il blocco di codice venga eseguito almeno una volta, prima di valutare la condizione.</li>
+                        <li>A cosa serve: Serve quando si vuole assicurare almeno un'esecuzione del blocco, e poi continuare finché la condizione è vera.</li>
+                        <li>Quando usarlo: Utile quando l'operazione deve essere eseguita almeno una volta, come chiedere input all'utente o inizializzare variabili.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>for...in<span class="tag-description" aria-label="descrizione tag">Ciclo per iterare sulle
+                            proprietà enumerabili di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il ciclo `for...in` in JavaScript permette di iterare sulle **proprietà enumerabili** di un oggetto (inclusi gli array, anche se non è il suo uso consigliato).</li>
+                        <li>A cosa serve: Serve per scorrere tutte le chiavi di un oggetto, accedendo sia ai nomi delle proprietà che ai loro valori.</li>
+                        <li>Quando usarlo: Si usa quando si vuole iterare su tutte le proprietà di un oggetto senza sapere in anticipo i nomi delle chiavi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>for...of<span class="tag-description" aria-label="descrizione tag">Ciclo per iterare sui
+                            valori di oggetti iterabili.</span>
+                        <div class="tag-group" aria-label="gruppo">5. Cicli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il ciclo `for...of` in JavaScript permette di iterare **direttamente sui valori** di un oggetto iterabile (array, stringhe, mappe, insiemi, ecc.).</li>
+                        <li>A cosa serve: Serve per scorrere in modo semplice i valori di collezioni iterabili senza dover gestire indici o chiavi.</li>
+                        <li>Quando usarlo: Si usa quando si vuole leggere direttamente il valore di ogni elemento di una struttura dati iterabile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>arrow function<span class="tag-description" aria-label="descrizione tag">Sintassi compatta
+                            per definire funzioni anonime.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un'`arrow function` è una sintassi introdotta in ES6 per scrivere funzioni anonime in modo più conciso rispetto alla sintassi tradizionale.</li>
+                        <li>A cosa serve: Serve a creare funzioni più brevi, spesso utilizzate come funzioni di callback o per operazioni inline.</li>
+                        <li>Quando usarlo: Si usa quando serve una funzione semplice, soprattutto quando non si vuole modificare il contesto (`this`) della funzione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>callback<span class="tag-description" aria-label="descrizione tag">Funzione passata come
+                            argomento ad un'altra funzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Una `callback` è una funzione passata come argomento a un'altra funzione e invocata in un momento successivo, di solito quando un'operazione è completata.</li>
+                        <li>A cosa serve: Serve a eseguire codice dopo un certo evento o azione, come la risposta di una richiesta HTTP o il completamento di un'operazione asincrona.</li>
+                        <li>Quando usarlo: Quando si vuole personalizzare il comportamento di una funzione o reagire a eventi/risultati futuri.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>IIFE<span class="tag-description" aria-label="descrizione tag">Funzione eseguita
+                            immediatamente dopo la sua definizione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un'`IIFE` (Immediately Invoked Function Expression) è una funzione JavaScript che viene definita ed eseguita immediatamente, senza essere richiamata esplicitamente in un secondo...</li>
+                        <li>A cosa serve: Serve a creare uno scope isolato per variabili e funzioni, evitando di inquinare lo scope globale.</li>
+                        <li>Quando usarlo: Utile quando si vogliono eseguire operazioni subito senza lasciare variabili o funzioni disponibili all'esterno.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>closure<span class="tag-description" aria-label="descrizione tag">Funzione che mantiene
+                            accesso alle variabili del proprio scope anche dopo la sua esecuzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Una `closure` è una funzione che ricorda e può accedere alle variabili del proprio scope di dichiarazione, anche dopo che lo scope esterno è stato eseguito.</li>
+                        <li>A cosa serve: Serve per mantenere uno stato privato, creare funzioni personalizzate e gestire dati senza esporli allo scope globale.</li>
+                        <li>Quando usarlo: Quando si vogliono memorizzare informazioni in una funzione e mantenerle disponibili tra diverse esecuzioni.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>parametri di default<span class="tag-description" aria-label="descrizione tag">Valori
+                            predefiniti assegnati ai parametri di una funzione.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I `parametri di default` sono valori predefiniti che una funzione utilizza se un parametro non viene fornito o è `undefined` al momento della chiamata.</li>
+                        <li>A cosa serve: Serve a rendere le funzioni più flessibili e robuste, evitando errori dovuti a parametri mancanti.</li>
+                        <li>Quando usarlo: Quando un parametro può avere un valore di default sensato in caso non venga passato dall’utente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>rest parameters<span class="tag-description" aria-label="descrizione tag">Raccoglie un
+                            numero variabile di argomenti in un array.</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I `rest parameters` permettono a una funzione di accettare un numero indefinito di argomenti, raccogliendoli in un array.</li>
+                        <li>A cosa serve: Serve a gestire funzioni che devono accettare un numero variabile di valori, senza dover definire parametri singoli uno per uno.</li>
+                        <li>Quando usarlo: Quando non si conosce in anticipo quanti argomenti saranno passati alla funzione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>function* (generator)<span class="tag-description" aria-label="descrizione tag">Funzione che può mettersi in pausa</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Una `function*` (funzione generatrice) è una funzione speciale che può interrompere e riprendere la propria esecuzione, restituendo più valori nel tempo.</li>
+                        <li>A cosa serve: Serve a produrre sequenze di valori su richiesta (in modo "lazy"), restituiti uno alla volta con `yield`.</li>
+                        <li>Quando usarlo: Quando devi generare sequenze potenzialmente infinite o iterare valori in modo controllato.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>yield<span class="tag-description" aria-label="descrizione tag">Restituisce un valore da un generator</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La keyword `yield` è usata dentro una funzione generatrice per restituire un valore e mettere in pausa l'esecuzione fino alla chiamata successiva.</li>
+                        <li>A cosa serve: Serve a produrre i valori di un generator uno alla volta, mantenendo lo stato tra una chiamata e l'altra.</li>
+                        <li>Quando usarlo: All'interno di una `function*`, ogni volta che vuoi emettere un valore della sequenza.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>bind()<span class="tag-description" aria-label="descrizione tag">Fissa il valore di this in una funzione</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `bind()` crea una nuova funzione con il valore di `this` (ed eventuali argomenti) fissato in modo permanente.</li>
+                        <li>A cosa serve: Serve a garantire che una funzione usi sempre un certo contesto, tipicamente nei callback e negli event handler.</li>
+                        <li>Quando usarlo: Quando passi un metodo come callback e vuoi che `this` resti quello dell'oggetto di origine.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>call()<span class="tag-description" aria-label="descrizione tag">Invoca una funzione con un this scelto</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `call()` invoca subito una funzione specificando il valore di `this` e passando gli argomenti separati da virgola.</li>
+                        <li>A cosa serve: Serve a eseguire una funzione con un contesto scelto al momento della chiamata.</li>
+                        <li>Quando usarlo: Quando vuoi riutilizzare una funzione su un oggetto diverso, ad esempio `saluta.call(persona, "ciao")`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>apply()<span class="tag-description" aria-label="descrizione tag">Come call(), ma con argomenti in array</span>
+                        <div class="tag-group" aria-label="gruppo">6. Funzioni</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `apply()` è come `call()`, ma riceve gli argomenti sotto forma di array.</li>
+                        <li>A cosa serve: Serve a invocare una funzione con un `this` scelto, passando gli argomenti già raccolti in un array.</li>
+                        <li>Quando usarlo: Quando gli argomenti sono già in un array; oggi spesso si preferisce l'operatore spread (`...`).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>this<span class="tag-description" aria-label="descrizione tag">Riferimento al contesto di
+                            esecuzione corrente.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: In JavaScript, `this` è una parola chiave che fa riferimento all'oggetto su cui viene eseguita la funzione corrente, e il suo valore dipende da come la funzione viene chiamata.</li>
+                        <li>A cosa serve: Serve per accedere a proprietà e metodi dell'oggetto corrente all’interno di una funzione o di un metodo.</li>
+                        <li>Quando usarlo: Quando si lavora con metodi di oggetti o quando si vuole che una funzione sia dinamicamente legata al contesto di chiamata.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.create()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo
+                            oggetto con un prototipo specificato.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.create()` crea un nuovo oggetto, utilizzando un oggetto esistente come prototipo del nuovo oggetto.</li>
+                        <li>A cosa serve: Serve per creare oggetti che ereditano proprietà e metodi da un altro oggetto.</li>
+                        <li>Quando usarlo: Quando si vuole impostare manualmente la catena dei prototipi o creare oggetti con ereditarietà personalizzata.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.assign()<span class="tag-description" aria-label="descrizione tag">Copia le
+                            proprietà enumerabili da uno o più oggetti in un oggetto target.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.assign()` copia tutte le proprietà enumerabili di uno o più oggetti sorgente in un oggetto target e restituisce quest’ultimo.</li>
+                        <li>A cosa serve: Serve per unire più oggetti in uno, o per clonare oggetti superficiali.</li>
+                        <li>Quando usarlo: Quando si vuole combinare dati da più oggetti o fare copie di oggetti esistenti senza modificarli direttamente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.keys()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array con le chiavi enumerabili di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.keys()` restituisce un array contenente i nomi (stringhe) delle proprietà enumerabili di un oggetto.</li>
+                        <li>A cosa serve: Serve a ottenere rapidamente tutte le chiavi di un oggetto per iterarle o analizzarle.</li>
+                        <li>Quando usarlo: Quando si ha bisogno di conoscere o scorrere tutte le chiavi di un oggetto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.values()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array con i valori delle proprietà enumerabili di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.values()` restituisce un array contenente i valori delle proprietà enumerabili di un oggetto.</li>
+                        <li>A cosa serve: Serve a ottenere tutti i valori di un oggetto in un array, utile per iterazioni e trasformazioni.</li>
+                        <li>Quando usarlo: Quando si vuole lavorare direttamente con i valori di un oggetto senza le chiavi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.entries()<span class="tag-description" aria-label="descrizione tag">Restituisce un
+                            array di coppie chiave-valore di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.entries()` restituisce un array contenente coppie `[chiave, valore]` per ogni proprietà enumerabile di un oggetto.</li>
+                        <li>A cosa serve: Serve a trasformare un oggetto in un array di coppie chiave-valore, utile per iterazioni e conversioni in altre strutture dati.</li>
+                        <li>Quando usarlo: Quando si vuole iterare contemporaneamente su chiavi e valori in modo semplice.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.freeze()<span class="tag-description" aria-label="descrizione tag">Rende un oggetto
+                            immutabile.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.freeze()` impedisce qualsiasi modifica a un oggetto: non è possibile aggiungere, rimuovere o cambiare proprietà.</li>
+                        <li>A cosa serve: Serve a proteggere oggetti che non devono essere alterati, garantendo che il loro stato rimanga costante.</li>
+                        <li>Quando usarlo: Quando si vuole assicurare l'immutabilità di un oggetto dopo la sua creazione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.seal()<span class="tag-description" aria-label="descrizione tag">Blocca l’aggiunta o
+                            la rimozione di proprietà di un oggetto.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.seal()` impedisce di aggiungere o rimuovere proprietà da un oggetto, ma permette di modificare i valori delle proprietà esistenti.</li>
+                        <li>A cosa serve: Serve per proteggere la struttura di un oggetto senza bloccare la possibilità di aggiornare i suoi dati.</li>
+                        <li>Quando usarlo: Quando la forma dell'oggetto deve rimanere fissa, ma i valori possono variare.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object.hasOwn()<span class="tag-description" aria-label="descrizione tag">Verifica se un
+                            oggetto possiede una proprietà come propria.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `Object.hasOwn()` verifica se un oggetto possiede una determinata proprietà come propria e non ereditata dal prototipo.</li>
+                        <li>A cosa serve: Serve a distinguere tra proprietà dirette di un oggetto e quelle ereditate dalla catena dei prototipi.</li>
+                        <li>Quando usarlo: Quando si iterano le proprietà di un oggetto e si vuole filtrare solo quelle definite direttamente su di esso.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Destructuring<span class="tag-description" aria-label="descrizione tag">Sintassi per
+                            estrarre valori da array o proprietà da oggetti in variabili separate.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il `destructuring` è una sintassi che consente di estrarre valori da array o proprietà da oggetti e assegnarli a variabili in modo conciso.</li>
+                        <li>A cosa serve: Serve a semplificare l’assegnazione di variabili quando si lavora con array o oggetti complessi.</li>
+                        <li>Quando usarlo: Quando si vogliono prelevare uno o più valori da un oggetto o array senza doverli accedere manualmente uno per uno.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Shorthand property names<span class="tag-description" aria-label="descrizione tag">Sintassi
+                            abbreviata per creare proprietà di oggetti.</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le `shorthand property names` sono una sintassi che consente di creare proprietà di oggetti usando direttamente il nome della variabile quando corrisponde al nome della proprietà.</li>
+                        <li>A cosa serve: Serve a scrivere oggetti in modo più conciso ed evitare ripetizioni inutili.</li>
+                        <li>Quando usarlo: Quando il nome della proprietà e quello della variabile da assegnare coincidono.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Computed property names<span class="tag-description" aria-label="descrizione tag">Sintassi
+                            per definire nomi di proprietà calcolati dinamicamente</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le `computed property names` permettono di definire i nomi delle proprietà di un oggetto in modo dinamico, utilizzando un'espressione tra parentesi quadre.</li>
+                        <li>A cosa serve: Serve a creare proprietà i cui nomi dipendono da variabili o calcoli effettuati al momento della creazione dell’oggetto.</li>
+                        <li>Quando usarlo: Quando il nome della proprietà non è noto in anticipo e deve essere calcolato a runtime.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>class<span class="tag-description" aria-label="descrizione tag">Sintassi per definire una classe</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La keyword `class` introduce la sintassi per definire una classe, un modello da cui creare oggetti con proprietà e metodi.</li>
+                        <li>A cosa serve: Serve a organizzare il codice orientato agli oggetti in modo leggibile; è "zucchero sintattico" sopra il sistema di prototipi di JavaScript.</li>
+                        <li>Quando usarlo: Quando devi creare più oggetti dello stesso tipo con comportamento condiviso.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>constructor<span class="tag-description" aria-label="descrizione tag">Metodo di inizializzazione di una classe</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il `constructor` è un metodo speciale di una classe, chiamato automaticamente quando si crea una nuova istanza con `new`.</li>
+                        <li>A cosa serve: Serve a inizializzare le proprietà dell'oggetto appena creato.</li>
+                        <li>Quando usarlo: Dentro una `class`, per impostare lo stato iniziale a partire dagli argomenti ricevuti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>extends<span class="tag-description" aria-label="descrizione tag">Eredita da un'altra classe</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La keyword `extends` crea una classe figlia che eredita proprietà e metodi da una classe genitore.</li>
+                        <li>A cosa serve: Serve a riutilizzare ed estendere il comportamento di una classe esistente (ereditarietà).</li>
+                        <li>Quando usarlo: Quando una classe è una specializzazione di un'altra, ad esempio `class Cane extends Animale`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>super<span class="tag-description" aria-label="descrizione tag">Richiama la classe genitore</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La keyword `super` permette di richiamare il costruttore o i metodi della classe genitore da una classe figlia.</li>
+                        <li>A cosa serve: Serve a inizializzare la parte ereditata (`super(...)` nel constructor) o a estendere un metodo del genitore.</li>
+                        <li>Quando usarlo: All'interno di una classe che usa `extends`, tipicamente come prima istruzione del constructor.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>new<span class="tag-description" aria-label="descrizione tag">Crea un'istanza da una classe</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: L'operatore `new` crea una nuova istanza a partire da una classe o da una funzione costruttrice.</li>
+                        <li>A cosa serve: Serve a costruire oggetti, eseguendo il constructor e collegando il prototipo corretto.</li>
+                        <li>Quando usarlo: Quando vuoi creare un oggetto da una classe, ad esempio `new Persona("Ada")`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>static<span class="tag-description" aria-label="descrizione tag">Membro della classe, non delle istanze</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La keyword `static` definisce metodi o proprietà che appartengono alla classe stessa e non alle singole istanze.</li>
+                        <li>A cosa serve: Serve a creare funzioni di utilità legate al concetto della classe, richiamabili senza creare un oggetto.</li>
+                        <li>Quando usarlo: Per metodi di supporto come factory o helper, ad esempio `Persona.daJSON(dati)`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>get e set<span class="tag-description" aria-label="descrizione tag">Proprietà calcolate (getter e setter)</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Le keyword `get` e `set` definiscono getter e setter, cioè metodi che si usano con la sintassi di una normale proprietà.</li>
+                        <li>A cosa serve: Servono a leggere o modificare un valore eseguendo del codice dietro le quinte, come validazioni o calcoli.</li>
+                        <li>Quando usarlo: Quando vuoi esporre una proprietà "intelligente" senza cambiare il modo in cui la si legge o scrive.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>JSON.stringify()<span class="tag-description" aria-label="descrizione tag">Converte un oggetto in stringa JSON</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `JSON.stringify()` converte un valore JavaScript (oggetto, array...) in una stringa in formato JSON.</li>
+                        <li>A cosa serve: Serve a serializzare i dati per salvarli o inviarli, ad esempio in una richiesta di rete o in `localStorage`.</li>
+                        <li>Quando usarlo: Quando devi trasformare un oggetto in testo, ad esempio prima di inviarlo a un server.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>JSON.parse()<span class="tag-description" aria-label="descrizione tag">Converte una stringa JSON in oggetto</span>
+                        <div class="tag-group" aria-label="gruppo">7. Oggetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `JSON.parse()` converte una stringa in formato JSON nel corrispondente valore JavaScript.</li>
+                        <li>A cosa serve: Serve a leggere dati ricevuti come testo (da un server o dallo storage) trasformandoli in oggetti utilizzabili.</li>
+                        <li>Quando usarlo: Quando ricevi una risposta JSON e devi accedere ai suoi campi come oggetto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>push()<span class="tag-description" aria-label="descrizione tag">Aggiunge uno o più
+                            elementi alla fine di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `push()` aggiunge uno o più elementi alla fine di un array e ne restituisce la nuova lunghezza.</li>
+                        <li>A cosa serve: Serve per estendere un array aggiungendo elementi alla sua fine.</li>
+                        <li>Quando usarlo: Quando si vuole aggiungere dati in coda a un array in modo semplice.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>pop()<span class="tag-description" aria-label="descrizione tag">Rimuove l’ultimo elemento
+                            di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `pop()` rimuove l’ultimo elemento da un array e lo restituisce.</li>
+                        <li>A cosa serve: Serve per togliere rapidamente l’ultimo elemento di un array.</li>
+                        <li>Quando usarlo: Quando si vuole rimuovere l’elemento finale da una lista ordinata.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>shift()<span class="tag-description" aria-label="descrizione tag">Rimuove il primo elemento
+                            di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `shift()` rimuove il primo elemento da un array e lo restituisce.</li>
+                        <li>A cosa serve: Serve per togliere rapidamente l’elemento iniziale di un array.</li>
+                        <li>Quando usarlo: Quando si vuole lavorare su una lista come fosse una coda (FIFO).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>unshift()<span class="tag-description" aria-label="descrizione tag">Aggiunge uno o più
+                            elementi all’inizio di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `unshift()` aggiunge uno o più elementi all’inizio di un array e restituisce la nuova lunghezza.</li>
+                        <li>A cosa serve: Serve per inserire elementi in testa a un array.</li>
+                        <li>Quando usarlo: Quando si lavora su una lista in cui l’ordine d’inserimento è importante e si vuole aggiungere in testa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>slice()<span class="tag-description" aria-label="descrizione tag">Restituisce una copia
+                            parziale di un array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il metodo `slice()` restituisce una copia superficiale di una porzione di un array in un nuovo array, senza modificare l’originale.</li>
+                        <li>A cosa serve: Serve per estrarre una parte di un array in base a indici specificati.</li>
+                        <li>Quando usarlo: Quando serve ottenere una sezione di un array senza alterare l’originale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>splice()<span class="tag-description" aria-label="descrizione tag">Aggiunge/rimuove
+                            elementi modificando l’array originale.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `splice()` consente di rimuovere, sostituire o inserire elementi in un array **modificando l’array originale**.</li>
+                        <li>A cosa serve: Serve per operazioni di editing “chirurgico” su un array: taglia, sostituisci, inserisci.</li>
+                        <li>Quando usarlo: Quando vuoi cambiare l’array in-place (senza crearne uno nuovo).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>map()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo array
+                            trasformando ogni elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `map()` applica una funzione a **ogni elemento** dell’array e restituisce **un nuovo array** con i risultati.</li>
+                        <li>A cosa serve: Serve a trasformare dati (es.</li>
+                        <li>Quando usarlo: Quando vuoi la stessa lunghezza, ma con elementi trasformati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>filter()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo array con
+                            gli elementi che passano un test.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `filter()` restituisce un nuovo array con **solo** gli elementi per cui la callback ritorna `true`.</li>
+                        <li>A cosa serve: A selezionare un sottoinsieme di elementi (es.</li>
+                        <li>Quando usarlo: Quando devi **filtrare** senza trasformare e senza toccare l’originale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>reduce()<span class="tag-description" aria-label="descrizione tag">Riduce l’array a un
+                            singolo valore accumulando risultati.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `reduce()` applica una funzione “accumulatore” agli elementi dell’array per ottenere **un unico risultato** (numero, stringa, oggetto, ecc.).</li>
+                        <li>A cosa serve: Somme, medie, raggruppamenti, conteggi, trasformazioni complesse in un solo passaggio.</li>
+                        <li>Quando usarlo: Quando devi “condensare” l’array in un valore finale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>forEach()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione su
+                            ogni elemento dell’array.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `forEach()` esegue una funzione callback su ogni elemento di un array, in ordine, senza restituire un nuovo array.</li>
+                        <li>A cosa serve: Per eseguire operazioni o effetti collaterali su tutti gli elementi di un array.</li>
+                        <li>Quando usarlo: Quando vuoi iterare un array per compiere azioni, ma non devi trasformarlo o filtrarlo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>find()<span class="tag-description" aria-label="descrizione tag">Restituisce il primo
+                            elemento che soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `find()` restituisce il primo elemento dell’array che soddisfa la condizione definita nella callback, oppure `undefined` se non lo trova.</li>
+                        <li>A cosa serve: Per cercare un singolo elemento in base a un criterio.</li>
+                        <li>Quando usarlo: Quando vuoi solo il primo match, non tutti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>findIndex()<span class="tag-description" aria-label="descrizione tag">Restituisce l’indice
+                            del primo elemento che soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `findIndex()` restituisce l’indice del primo elemento che soddisfa la condizione, oppure `-1` se nessun elemento è idoneo.</li>
+                        <li>A cosa serve: Per sapere dove si trova un elemento nell’array.</li>
+                        <li>Quando usarlo: Quando ti serve l’indice, non il valore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>some()<span class="tag-description" aria-label="descrizione tag">Verifica se almeno un
+                            elemento soddisfa una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `some()` restituisce `true` se almeno un elemento dell’array soddisfa la condizione nella callback, altrimenti `false`.</li>
+                        <li>A cosa serve: Per controllare se esiste almeno un elemento che rispetta un criterio.</li>
+                        <li>Quando usarlo: Quando la presenza di un match è sufficiente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>every()<span class="tag-description" aria-label="descrizione tag">Verifica se tutti gli
+                            elementi soddisfano una condizione.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `every()` restituisce `true` se tutti gli elementi dell’array soddisfano la condizione nella callback, altrimenti `false`.</li>
+                        <li>A cosa serve: Per verificare che un array rispetti completamente un requisito.</li>
+                        <li>Quando usarlo: Quando serve una condizione globale “tutti devono essere...”.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>includes()<span class="tag-description" aria-label="descrizione tag">Verifica se un array
+                            contiene un certo elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `includes()` restituisce `true` se l’array contiene un elemento specifico, altrimenti `false`.</li>
+                        <li>A cosa serve: Per controllare la presenza di un valore in un array in modo semplice e leggibile.</li>
+                        <li>Quando usarlo: Quando vuoi verificare rapidamente la presenza di un elemento.</li>
+                    </ol>
+                </details>
+
+
+                <details>
+                    <summary>sort()<span class="tag-description" aria-label="descrizione tag">Ordina gli elementi di un array</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `sort()` ordina gli elementi di un array e restituisce lo stesso array ordinato, modificandolo.</li>
+                        <li>A cosa serve: Serve a mettere in ordine i dati; per i numeri va passata una funzione di confronto, altrimenti li ordina come stringhe.</li>
+                        <li>Quando usarlo: Ad esempio `numeri.sort((a, b) => a - b)` per ordinare i numeri in modo crescente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>reverse()<span class="tag-description" aria-label="descrizione tag">Inverte l'ordine di un array</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `reverse()` inverte l'ordine degli elementi di un array, modificandolo.</li>
+                        <li>A cosa serve: Serve a ribaltare una sequenza, ad esempio per mostrare gli elementi più recenti per primi.</li>
+                        <li>Quando usarlo: Quando devi invertire l'ordine di una lista, spesso in combinazione con `sort()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>join()<span class="tag-description" aria-label="descrizione tag">Unisce gli elementi in una stringa</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `join()` unisce tutti gli elementi di un array in un'unica stringa, separati da un carattere a scelta.</li>
+                        <li>A cosa serve: Serve a trasformare una lista in testo, ad esempio per mostrarla o salvarla.</li>
+                        <li>Quando usarlo: Ad esempio `["a", "b", "c"].join(", ")` produce `"a, b, c"`; è l'inverso di `split()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>concat()<span class="tag-description" aria-label="descrizione tag">Unisce due o più array</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `concat()` restituisce un nuovo array formato unendo l'array di partenza con altri array o valori.</li>
+                        <li>A cosa serve: Serve a combinare più array senza modificare quelli originali.</li>
+                        <li>Quando usarlo: Quando vuoi unire liste; in alternativa puoi usare l'operatore spread, ad esempio `[...a, ...b]`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>flat()<span class="tag-description" aria-label="descrizione tag">Appiattisce array annidati</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `flat()` crea un nuovo array in cui gli array annidati vengono "appiattiti" fino a una certa profondità.</li>
+                        <li>A cosa serve: Serve a trasformare array di array in un unico array a un solo livello.</li>
+                        <li>Quando usarlo: Quando hai dati annidati da rendere piatti, ad esempio `[[1, 2], [3]].flat()` produce `[1, 2, 3]`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>indexOf()<span class="tag-description" aria-label="descrizione tag">Trova la posizione di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `indexOf()` restituisce l'indice della prima occorrenza di un valore in un array, oppure `-1` se non lo trova.</li>
+                        <li>A cosa serve: Serve a sapere se e dove un elemento è presente in un array.</li>
+                        <li>Quando usarlo: Quando ti serve la posizione di un elemento; se vuoi solo sapere se esiste, `includes()` è più leggibile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Array.from()<span class="tag-description" aria-label="descrizione tag">Crea un array da un iterabile</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `Array.from()` crea un nuovo array a partire da un iterabile o da un oggetto simile a un array (come una NodeList).</li>
+                        <li>A cosa serve: Serve a convertire in un vero array elementi che array non sono, per poter usare metodi come `map()`.</li>
+                        <li>Quando usarlo: Ad esempio per trasformare in array il risultato di `querySelectorAll()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Array.isArray()<span class="tag-description" aria-label="descrizione tag">Verifica se un valore è un array</span>
+                        <div class="tag-group" aria-label="gruppo">8. Array</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `Array.isArray()` restituisce `true` se il valore passato è un array, altrimenti `false`.</li>
+                        <li>A cosa serve: Serve a controllare il tipo in modo affidabile, dato che `typeof` restituisce `"object"` anche per gli array.</li>
+                        <li>Quando usarlo: Quando devi distinguere un array da un altro oggetto prima di elaborarlo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>try...catch<span class="tag-description" aria-label="descrizione tag">Gestisce errori
+                            durante l'esecuzione del codice.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La struttura `try...catch` permette di eseguire un blocco di codice (`try`) e catturare eventuali errori generati (`catch`) senza interrompere l’esecuzione del programma.</li>
+                        <li>A cosa serve: Serve per gestire in modo sicuro errori previsti o imprevisti durante l'esecuzione.</li>
+                        <li>Quando usarlo: Quando del codice potrebbe generare eccezioni (es.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>throw<span class="tag-description" aria-label="descrizione tag">Genera un'eccezione in
+                            JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L’istruzione `throw` consente di generare manualmente un’eccezione, interrompendo l’esecuzione corrente e passando il controllo al blocco `catch` più vicino.</li>
+                        <li>A cosa serve: Serve per segnalare un errore o una condizione anomala all’interno del codice.</li>
+                        <li>Quando usarlo: Quando una funzione o un’operazione incontra un input o stato non valido.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>finally<span class="tag-description" aria-label="descrizione tag">Esegue sempre un blocco
+                            di codice dopo try/catch.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il blocco `finally` viene eseguito dopo `try` e `catch`, indipendentemente dal fatto che si sia verificato un errore o meno.</li>
+                        <li>A cosa serve: Per eseguire codice di pulizia o chiusura (es.</li>
+                        <li>Quando usarlo: Quando devi garantire che un’operazione venga eseguita sempre, anche in caso di errore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Error<span class="tag-description" aria-label="descrizione tag">Oggetto base per
+                            rappresentare errori in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">9. Errori</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `Error` è il costruttore base per creare oggetti errore in JavaScript, con proprietà come `message` e `name`.</li>
+                        <li>A cosa serve: A rappresentare errori in modo standardizzato e fornire informazioni utili al debug.</li>
+                        <li>Quando usarlo: Quando lanci errori personalizzati con `throw`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>setTimeout()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione
+                            dopo un certo intervallo di tempo.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `setTimeout()` esegue una funzione o un blocco di codice dopo un ritardo specificato in millisecondi.</li>
+                        <li>A cosa serve: Per pianificare l'esecuzione di codice in futuro, ad esempio ritardare un'animazione o un messaggio.</li>
+                        <li>Quando usarlo: Quando vuoi posticipare un’azione senza bloccare il resto del programma.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>setInterval()<span class="tag-description" aria-label="descrizione tag">Esegue una funzione
+                            ripetutamente a intervalli regolari.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `setInterval()` esegue una funzione o un blocco di codice a intervalli regolari, specificati in millisecondi.</li>
+                        <li>A cosa serve: Per compiti che si ripetono, come aggiornare un orologio o effettuare controlli periodici.</li>
+                        <li>Quando usarlo: Quando vuoi ripetere un’azione più volte a intervalli fissi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise<span class="tag-description" aria-label="descrizione tag">Oggetto che rappresenta
+                            il risultato futuro di un'operazione asincrona.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Una `Promise` è un oggetto che rappresenta un valore che potrebbe essere disponibile ora, in futuro, o mai, come risultato di un'operazione asincrona.</li>
+                        <li>A cosa serve: Per gestire codice asincrono in modo più ordinato rispetto alle callback annidate.</li>
+                        <li>Quando usarlo: Quando lavori con operazioni che richiedono tempo (API, file, timer) e vuoi gestire successi e fallimenti in modo chiaro.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>async<span class="tag-description" aria-label="descrizione tag">Dichiara una funzione che
+                            restituisce sempre una Promise.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `async` è una keyword che, messa davanti a una funzione, la rende asincrona e fa sì che restituisca sempre una `Promise`.</li>
+                        <li>A cosa serve: A scrivere codice asincrono in modo più leggibile, senza dover usare `then()` manualmente.</li>
+                        <li>Quando usarlo: Quando vuoi usare `await` all'interno di una funzione o quando una funzione deve restituire una `Promise`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>await<span class="tag-description" aria-label="descrizione tag">Attende il completamento di
+                            una Promise all'interno di una funzione async.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `await` è una keyword che sospende l'esecuzione di una funzione `async` finché una `Promise` non è risolta o rigettata.</li>
+                        <li>A cosa serve: Per scrivere codice asincrono in stile sincrono, migliorando leggibilità e manutenzione.</li>
+                        <li>Quando usarlo: Dentro funzioni `async` quando devi aspettare il risultato di una `Promise`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>fetch()<span class="tag-description" aria-label="descrizione tag">Effettua richieste HTTP e
+                            restituisce una Promise.</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `fetch()` è una funzione nativa che permette di effettuare richieste HTTP e restituisce una `Promise` che si risolve con un oggetto `Response`.</li>
+                        <li>A cosa serve: Per recuperare dati da server o API web.</li>
+                        <li>Quando usarlo: Quando devi leggere o inviare dati via rete in JavaScript.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise.all()<span class="tag-description" aria-label="descrizione tag">Attende più promise in parallelo</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `Promise.all()` accetta un elenco di promise e restituisce una promise che si risolve quando tutte sono completate.</li>
+                        <li>A cosa serve: Serve a eseguire più operazioni asincrone in parallelo e attendere che finiscano tutte.</li>
+                        <li>Quando usarlo: Quando devi lanciare più richieste insieme; se una fallisce, l'intera `Promise.all()` viene rifiutata.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise.race()<span class="tag-description" aria-label="descrizione tag">Si risolve con la prima promise pronta</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `Promise.race()` restituisce una promise che si risolve o si rifiuta appena la prima promise dell'elenco lo fa.</li>
+                        <li>A cosa serve: Serve a reagire al risultato più veloce tra più operazioni.</li>
+                        <li>Quando usarlo: Ad esempio per aggiungere un timeout a una richiesta, mettendola "in gara" con un timer.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise.allSettled()<span class="tag-description" aria-label="descrizione tag">Attende tutte, senza fallire in blocco</span>
+                        <div class="tag-group" aria-label="gruppo">10. Asincronia</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `Promise.allSettled()` attende che tutte le promise si concludano e restituisce l'esito di ciascuna (completata o rifiutata).</li>
+                        <li>A cosa serve: Serve a raccogliere tutti i risultati anche quando alcune operazioni falliscono, senza interrompere le altre.</li>
+                        <li>Quando usarlo: Quando vuoi gestire più operazioni indipendenti e sapere singolarmente quali sono riuscite.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>addEventListener()<span class="tag-description" aria-label="descrizione tag">Assegna un
+                            listener per un evento specifico a un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `addEventListener()` è un metodo degli elementi DOM che permette di ascoltare eventi specifici e di eseguire una funzione quando questi avvengono.</li>
+                        <li>A cosa serve: Per associare codice a eventi come `click`, `keydown`, `submit` e molti altri.</li>
+                        <li>Quando usarlo: Quando vuoi reagire a un’azione dell’utente o a un evento generato dal browser.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>removeEventListener()<span class="tag-description" aria-label="descrizione tag">Rimuove un
+                            listener precedentemente assegnato.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `removeEventListener()` è un metodo che permette di rimuovere un evento precedentemente associato con `addEventListener()`.</li>
+                        <li>A cosa serve: Per evitare che una funzione venga eseguita dopo che non serve più.</li>
+                        <li>Quando usarlo: Quando un listener è temporaneo o può causare problemi se lasciato attivo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>click<span class="tag-description" aria-label="descrizione tag">Evento di attivazione
+                            tramite puntatore o tastiera.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `click` è un evento che si attiva quando un elemento viene “cliccato”: pressione e rilascio del tasto primario del mouse, tocco su dispositivi touch, oppure attivazione via...</li>
+                        <li>A cosa serve: Per reagire alle interazioni più comuni dell’utente (apri modali, invia azioni, cambia stato UI).</li>
+                        <li>Quando usarlo: Quando vuoi eseguire un’azione in risposta a un’“attivazione” generica dell’utente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>keydown<span class="tag-description" aria-label="descrizione tag">Evento alla pressione di
+                            un tasto (prima del rilascio).</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `keydown` si attiva quando un tasto viene premuto (prima del rilascio).</li>
+                        <li>A cosa serve: Per scorciatoie da tastiera, navigazione, chiusura con `Esc`, etc.</li>
+                        <li>Quando usarlo: Quando vuoi reagire immediatamente alla pressione di un tasto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>submit<span class="tag-description" aria-label="descrizione tag">Evento di invio di un
+                            form.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `submit` si attiva quando un `form` viene inviato (tasto di invio o `Enter` in un input).</li>
+                        <li>A cosa serve: Per validare, prevenire il redirect e inviare dati via fetch/AJAX.</li>
+                        <li>Quando usarlo: Quando gestisci form in modo client-side o SPA.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Event object<span class="tag-description" aria-label="descrizione tag">L’oggetto passato ai
+                            listener con info e controlli sull’evento.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L’`Event object` (spesso `event` o `e`) è il parametro che il browser passa ai listener, contenente dati e metodi dell’evento.</li>
+                        <li>A cosa serve: Per capire cosa è successo (`type`, `target`, tasto premuto, coordinate, ecc.) e controllare il flusso (`preventDefault()`, `stopPropagation()`).</li>
+                        <li>Quando usarlo: Praticamente sempre, appena devi leggere dettagli o modificare il comportamento di default.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Event bubbling<span class="tag-description" aria-label="descrizione tag">Propagazione
+                            dell’evento dal nodo figlio verso gli antenati.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il `bubbling` è la fase in cui un evento, dopo aver raggiunto il target, risale la gerarchia DOM fino al `document`.</li>
+                        <li>A cosa serve: Permette di intercettare eventi a un livello superiore (utile per analitiche, delegazione, comportamenti globali).</li>
+                        <li>Quando usarlo: Quando vuoi reagire a eventi dei figli senza aggiungere listener a ogni singolo nodo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Event delegation<span class="tag-description" aria-label="descrizione tag">Gestire molti
+                            eventi figli con un solo listener sul genitore.</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La `delegation` consiste nell’attaccare un singolo listener su un antenato e distinguere i target veri all’interno del callback.</li>
+                        <li>A cosa serve: Per gestire liste dinamiche, molti elementi, contenuti generati dopo il load.</li>
+                        <li>Quando usarlo: Quando il numero di nodi è grande o cambia nel tempo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>preventDefault()<span class="tag-description" aria-label="descrizione tag">Blocca l'azione predefinita di un evento</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `preventDefault()` dell'oggetto evento impedisce il comportamento predefinito del browser per quell'evento.</li>
+                        <li>A cosa serve: Serve a evitare azioni automatiche, come l'invio di un form o il seguire un link.</li>
+                        <li>Quando usarlo: Ad esempio nel gestore del `submit` di un form, per validarlo con JavaScript prima dell'invio.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>stopPropagation()<span class="tag-description" aria-label="descrizione tag">Ferma la propagazione di un evento</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `stopPropagation()` dell'oggetto evento impedisce che l'evento continui a propagarsi verso gli elementi antenati (bubbling).</li>
+                        <li>A cosa serve: Serve a evitare che un evento su un elemento faccia scattare anche i gestori dei suoi contenitori.</li>
+                        <li>Quando usarlo: Quando un click interno non deve attivare, ad esempio, la chiusura di un pannello gestita sul contenitore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>input<span class="tag-description" aria-label="descrizione tag">Evento di modifica di un campo</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: L'evento `input` scatta ogni volta che il valore di un campo di testo (o simile) cambia, mentre l'utente digita.</li>
+                        <li>A cosa serve: Serve a reagire in tempo reale a ciò che l'utente scrive.</li>
+                        <li>Quando usarlo: Per ricerche istantanee, contatori di caratteri o validazioni "live" mentre si digita.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>change<span class="tag-description" aria-label="descrizione tag">Evento a modifica confermata</span>
+                        <div class="tag-group" aria-label="gruppo">11. Eventi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: L'evento `change` scatta quando il valore di un campo cambia ed è considerato "confermato" (ad esempio quando il campo perde il focus o si sceglie un'opzione).</li>
+                        <li>A cosa serve: Serve a reagire al valore finale di un input, di una select o di una checkbox.</li>
+                        <li>Quando usarlo: Per select e checkbox, o quando ti interessa il valore definitivo e non ogni singola battitura.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>getElementById()<span class="tag-description" aria-label="descrizione tag">Seleziona un
+                            elemento tramite il suo id univoco.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `getElementById()` è un metodo del `document` che restituisce l’elemento con l’attributo `id` corrispondente.</li>
+                        <li>A cosa serve: A ottenere rapidamente un singolo nodo noto e univoco nel DOM.</li>
+                        <li>Quando usarlo: Quando conosci l’`id` e vuoi la via più veloce e chiara per recuperare quell’elemento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>querySelector()<span class="tag-description" aria-label="descrizione tag">Seleziona il
+                            primo elemento che corrisponde a un selettore CSS.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `querySelector()` restituisce il primo elemento nel DOM che corrisponde al selettore CSS fornito.</li>
+                        <li>A cosa serve: A selezionare elementi in modo flessibile usando qualsiasi selettore CSS valido.</li>
+                        <li>Quando usarlo: Quando ti basta il primo match o vuoi una sintassi CSS coerente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>querySelectorAll()<span class="tag-description" aria-label="descrizione tag">Seleziona
+                            tutti gli elementi che corrispondono a un selettore CSS (NodeList).</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `querySelectorAll()` restituisce una `NodeList` statica di tutti gli elementi che corrispondono al selettore.</li>
+                        <li>A cosa serve: A ottenere collezioni di nodi su cui iterare (mappe, toggle classi, ecc.).</li>
+                        <li>Quando usarlo: Quando devi agire su più elementi in una volta.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>innerHTML<span class="tag-description" aria-label="descrizione tag">Legge o imposta il
+                            markup HTML interno di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `innerHTML` è una proprietà che ritorna o imposta l’HTML interno di un nodo come stringa.</li>
+                        <li>A cosa serve: A aggiornare rapidamente porzioni di UI generando markup via stringhe.</li>
+                        <li>Quando usarlo: Quando devi inserire blocchi di HTML completi e controlli la fonte dei dati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>textContent<span class="tag-description" aria-label="descrizione tag">Legge o imposta il
+                            testo (non HTML) di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `textContent` è una proprietà che gestisce il contenuto testuale puro di un nodo.</li>
+                        <li>A cosa serve: A impostare/ottenere testo sicuro senza interpretare HTML.</li>
+                        <li>Quando usarlo: Quando devi mostrare dati utente o testo dinamico non formattato.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>createElement()<span class="tag-description" aria-label="descrizione tag">Crea un nuovo
+                            nodo elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `createElement()` crea un nuovo elemento DOM del tipo specificato.</li>
+                        <li>A cosa serve: A costruire interfacce dinamicamente senza passare da stringhe HTML.</li>
+                        <li>Quando usarlo: Quando vuoi controllo fine e sicurezza nella generazione dei nodi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>appendChild()<span class="tag-description" aria-label="descrizione tag">Inserisce un nodo
+                            come ultimo figlio di un altro nodo.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `appendChild()` aggiunge un nodo esistente o nuovo alla fine dei figli di un nodo padre.</li>
+                        <li>A cosa serve: A costruire/aggiornare la struttura DOM in modo esplicito.</li>
+                        <li>Quando usarlo: Quando devi inserire un singolo nodo in coda ai figli.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>removeChild()<span class="tag-description" aria-label="descrizione tag">Rimuove un nodo
+                            figlio da un nodo padre.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `removeChild()` elimina un nodo figlio specifico dal suo genitore.</li>
+                        <li>A cosa serve: A rimuovere elementi dalla pagina e liberare risorse collegate.</li>
+                        <li>Quando usarlo: Quando conosci il riferimento al figlio da togliere.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>setAttribute()<span class="tag-description" aria-label="descrizione tag">Imposta o aggiorna
+                            un attributo su un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `setAttribute()` definisce o modifica il valore di un attributo HTML su un elemento.</li>
+                        <li>A cosa serve: A gestire attributi generici come `src`, `href`, `aria-*`, `data-*`, ecc.</li>
+                        <li>Quando usarlo: Quando l’attributo non ha una proprietà DOM diretta, o vuoi coerenza esplicita.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>classList<span class="tag-description" aria-label="descrizione tag">API per gestire le
+                            classi CSS di un elemento.</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `classList` è un’API dell’elemento che fornisce metodi per aggiungere, rimuovere, alternare e verificare classi CSS.</li>
+                        <li>A cosa serve: A manipolare le classi in modo semplice senza stringhe manuali.</li>
+                        <li>Quando usarlo: Quasi sempre quando cambi classi dinamicamente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>getAttribute()<span class="tag-description" aria-label="descrizione tag">Legge un attributo HTML</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `getAttribute()` restituisce il valore di un attributo HTML di un elemento.</li>
+                        <li>A cosa serve: Serve a leggere attributi standard o personalizzati direttamente dal markup.</li>
+                        <li>Quando usarlo: Quando ti serve il valore di un attributo, ad esempio `elemento.getAttribute("href")`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>removeAttribute()<span class="tag-description" aria-label="descrizione tag">Rimuove un attributo HTML</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `removeAttribute()` elimina un attributo da un elemento HTML.</li>
+                        <li>A cosa serve: Serve a togliere attributi, ad esempio `disabled` per riabilitare un pulsante.</li>
+                        <li>Quando usarlo: Quando devi rimuovere uno stato o una configurazione espressa da un attributo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>dataset<span class="tag-description" aria-label="descrizione tag">Accesso agli attributi data-*</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà `dataset` di un elemento dà accesso in lettura e scrittura ai suoi attributi personalizzati `data-*`.</li>
+                        <li>A cosa serve: Serve a leggere e impostare dati personalizzati salvati nell'HTML, senza usare attributi non standard.</li>
+                        <li>Quando usarlo: Ad esempio un attributo `data-id` si legge con `elemento.dataset.id`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>closest()<span class="tag-description" aria-label="descrizione tag">Trova l'antenato più vicino</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `closest()` risale l'albero del DOM e restituisce l'antenato più vicino (incluso l'elemento stesso) che corrisponde a un selettore CSS.</li>
+                        <li>A cosa serve: Serve a trovare il contenitore rilevante a partire da un elemento, molto utile nella event delegation.</li>
+                        <li>Quando usarlo: Ad esempio, dal bottone cliccato risalire alla card che lo contiene con `e.target.closest(".card")`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>remove()<span class="tag-description" aria-label="descrizione tag">Rimuove un elemento dal DOM</span>
+                        <div class="tag-group" aria-label="gruppo">12. DOM</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Il metodo `remove()` elimina un elemento dal documento.</li>
+                        <li>A cosa serve: Serve a togliere un elemento dalla pagina in modo diretto, senza passare dal nodo genitore.</li>
+                        <li>Quando usarlo: Quando devi eliminare un elemento, ad esempio la chiusura di un messaggio con `messaggio.remove()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>import<span class="tag-description" aria-label="descrizione tag">Include
+                            funzioni/variabili/classi da altri moduli.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `import` è la sintassi degli ES Modules per usare codice esportato da un altro file (modulo).</li>
+                        <li>A cosa serve: A dividere il codice in file riutilizzabili, mantenendo dipendenze chiare.</li>
+                        <li>Quando usarlo: Quando vuoi organizzare il progetto per feature, evitare variabili globali e abilitare il tree-shaking.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>export<span class="tag-description" aria-label="descrizione tag">Rende elementi del modulo
+                            disponibili ad altri file.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: `export` espone funzioni, costanti, classi o valori dal modulo corrente.</li>
+                        <li>A cosa serve: A condividere API tra file mantenendo un encapsulamento naturale.</li>
+                        <li>Quando usarlo: Quando vuoi riutilizzare codice o isolare responsabilità in più file.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>default export<span class="tag-description" aria-label="descrizione tag">Esporta il “valore
+                            principale” del modulo.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il `default export` è l’esportazione di default di un modulo: ce n’è al massimo una per file.</li>
+                        <li>A cosa serve: A indicare un’uscita “principale” (es.</li>
+                        <li>Quando usarlo: Quando il modulo ruota attorno a una singola entità.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>named export<span class="tag-description" aria-label="descrizione tag">Esporta uno o più
+                            simboli nominati.</span>
+                        <div class="tag-group" aria-label="gruppo">13. Moduli</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I `named export` espongono più simboli con nome (funzioni, costanti, classi) dallo stesso modulo.</li>
+                        <li>A cosa serve: A fornire un set di utilità importabili selettivamente.</li>
+                        <li>Quando usarlo: Quando il modulo contiene più funzioni correlate o una piccola libreria.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Strict mode<span class="tag-description" aria-label="descrizione tag">Modalità che abilita
+                            regole più restrittive in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Lo `Strict mode` è una modalità che rende JavaScript più rigoroso, attivando controlli e limitazioni che aiutano a evitare errori comuni.</li>
+                        <li>A cosa serve: A prevenire comportamenti impliciti e ambigui, migliorando la sicurezza e la compatibilità futura del codice.</li>
+                        <li>Quando usarlo: Sempre nei file o funzioni moderne; molti strumenti lo attivano automaticamente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Hoisting<span class="tag-description" aria-label="descrizione tag">Comportamento che sposta
+                            dichiarazioni in cima allo scope.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L’`Hoisting` è il comportamento per cui le dichiarazioni (non le assegnazioni) vengono “spostate” in cima allo scope durante la fase di compilazione.</li>
+                        <li>A cosa serve: A permettere di usare variabili o funzioni dichiarate più in basso nel codice (ma con differenze tra `var`, `let`, `const`).</li>
+                        <li>Quando usarlo: Non va “usato”, ma conosciuto per capire perché certe cose funzionano o generano errori.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Temporal Dead Zone (TDZ)<span class="tag-description" aria-label="descrizione tag">Periodo
+                            tra hoisting e inizializzazione in cui la variabile non è accessibile.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La `TDZ` è l’intervallo tra l’inizio dello scope e la dichiarazione effettiva di una variabile `let` o `const` in cui accedervi genera errore.</li>
+                        <li>A cosa serve: A prevenire l’uso di variabili non inizializzate, rendendo il codice più sicuro.</li>
+                        <li>Quando usarlo: Non è una feature da usare, ma un comportamento da conoscere per evitare ReferenceError.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Garbage collection<span class="tag-description" aria-label="descrizione tag">Processo
+                            automatico che libera memoria non più usata.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il `Garbage collection` è il meccanismo del motore JavaScript che rimuove dalla memoria gli oggetti non più raggiungibili.</li>
+                        <li>A cosa serve: A prevenire sprechi di memoria e rallentamenti dovuti a variabili inutilizzate.</li>
+                        <li>Quando usarlo: Sempre: è automatico e non richiede codice esplicito.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Prototype chain<span class="tag-description" aria-label="descrizione tag">Meccanismo di
+                            ereditarietà tra oggetti in JavaScript.</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La `Prototype chain` è la catena di prototipi usata da JavaScript per cercare proprietà/metodi non presenti direttamente in un oggetto.</li>
+                        <li>A cosa serve: A implementare ereditarietà e condivisione di metodi tra oggetti.</li>
+                        <li>Quando usarlo: Sempre: ogni oggetto in JS (tranne `Object.create(null)`) ha un prototipo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>localStorage<span class="tag-description" aria-label="descrizione tag">Memoria persistente nel browser</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: `localStorage` è uno spazio di archiviazione del browser che conserva coppie chiave-valore (come stringhe) senza scadenza.</li>
+                        <li>A cosa serve: Serve a salvare dati lato client che devono restare disponibili anche dopo la chiusura del browser, come preferenze o tema.</li>
+                        <li>Quando usarlo: Per dati non sensibili da conservare tra le sessioni; memorizza solo stringhe, quindi per gli oggetti usa `JSON.stringify()` e `JSON.parse()`.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>sessionStorage<span class="tag-description" aria-label="descrizione tag">Memoria temporanea della sessione</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: `sessionStorage` è simile a `localStorage`, ma i dati durano solo per la sessione della scheda del browser.</li>
+                        <li>A cosa serve: Serve a conservare dati temporanei che devono sparire alla chiusura della scheda.</li>
+                        <li>Quando usarlo: Per stati temporanei, come i passi di un modulo a più fasi, che non servono più dopo aver chiuso la scheda.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>console<span class="tag-description" aria-label="descrizione tag">Strumenti di logging e debug</span>
+                        <div class="tag-group" aria-label="gruppo">14. Altri concetti</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: `console` è un oggetto che offre metodi per scrivere messaggi nella console degli strumenti per sviluppatori, come `console.log()`.</li>
+                        <li>A cosa serve: Serve soprattutto per il debug, mostrando valori, avvisi (`console.warn`) ed errori (`console.error`).</li>
+                        <li>Quando usarlo: Durante lo sviluppo per ispezionare il funzionamento del codice; è buona norma rimuovere i log superflui in produzione.</li>
+                    </ol>
+                </details>
+
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="/src/scripts/pages/risorse/glossario-js/main.js"></script>
+
+    </div>
+</body>
+
+</html>

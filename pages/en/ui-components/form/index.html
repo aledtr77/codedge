@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Contact form with accessible validation | Codedge</title>
+  <meta name="description"
+    content="A contact form with accessible validation, error messages, a loading state, success feedback and HTML/CSS/JS markup ready to adapt.">
+  <link rel="canonical" href="https://codedge.it/en/ui-components/form/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Contact form with accessible validation | Codedge" />
+  <meta property="og:description"
+    content="A contact form with accessible validation, error messages, a loading state, success feedback and HTML/CSS/JS markup ready to adapt." />
+  <meta property="og:url" content="https://codedge.it/en/ui-components/form/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact form with accessible validation | Codedge" />
+  <meta name="twitter:description"
+    content="A contact form with accessible validation, error messages, a loading state, success feedback and HTML/CSS/JS markup ready to adapt." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-list-check" aria-hidden="true"></i> Validated form </span>
+    </nav>
+  </header>
+
+  <main id="main-content" class="ui-detail">
+    <a href="/en/ui-components/" class="back-link"><i class="fas fa-chevron-left"></i> All components</a>
+    <section class="ui-hero" aria-labelledby="contact-form-title">
+      <h1 id="contact-form-title">Contact form with accessible validation</h1>
+      <p class="ui-hero__lead">
+        A compact form for contacts or enquiries: explicit labels, errors wired to their fields, client-side validation,
+        a submit state and a final message inside an announceable region.
+      </p>
+      <div class="ui-hero__actions">
+        <a href="/risorse/snippet-library/#validated-contact-form" class="button-simple">
+          <i class="fas fa-code" aria-hidden="true"></i> Code in the Snippet Library
+        </a>
+        <a href="/en/ui-components/" class="ui-secondary-link">All components</a>
+      </div>
+    </section>
+
+    <section class="ui-demo-panel" aria-labelledby="form-demo-title">
+      <div class="ui-demo-panel__header">
+        <div>
+          <h2 id="form-demo-title">Form demo</h2>
+          <p>Simulated submission: try empty fields, an invalid email and a message that is too short.</p>
+        </div>
+        <div class="contact-demo-meta" aria-label="Features">
+          <span>Validation</span>
+          <span>Errors</span>
+          <span>Status</span>
+        </div>
+      </div>
+
+      <div class="ui-demo-panel__body">
+        <div class="contact-demo">
+          <div class="contact-demo__intro">
+            <p class="contact-demo__eyebrow">Project enquiry</p>
+            <h3>Collect useful data without leaving the user guessing.</h3>
+            <p>Every error has its own text and stays tied to its field through <code>aria-describedby</code>.</p>
+          </div>
+
+          <form class="contact-form" data-contact-form novalidate>
+            <div class="contact-field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required minlength="2"
+                data-validate="name" aria-describedby="contact-name-error" aria-invalid="false">
+              <p class="contact-field__error" id="contact-name-error"></p>
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required data-validate="email"
+                aria-describedby="contact-email-error" aria-invalid="false">
+              <p class="contact-field__error" id="contact-email-error"></p>
+            </div>
+
+            <div class="contact-field">
+              <label for="contact-topic">Topic</label>
+              <select id="contact-topic" name="topic" required data-validate="topic"
+                aria-describedby="contact-topic-error" aria-invalid="false">
+                <option value="">Select</option>
+                <option>New website</option>
+                <option>Template</option>
+                <option>Front-end consulting</option>
+              </select>
+              <p class="contact-field__error" id="contact-topic-error"></p>
+            </div>
+
+            <div class="contact-field contact-field--full">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" rows="5" required minlength="12" data-validate="message"
+                aria-describedby="contact-message-error" aria-invalid="false"></textarea>
+              <p class="contact-field__error" id="contact-message-error"></p>
+            </div>
+
+            <button class="contact-form__submit button-simple" type="submit" data-submit-button>
+              Send enquiry
+            </button>
+            <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui-notes-grid" aria-label="Component notes">
+        <h2 class="sr-only">Component notes</h2>
+      <article class="ui-note">
+        <h3>When to use it</h3>
+        <p>For contacts, quotes, short sign-ups or any flow where field-level feedback genuinely matters.</p>
+      </article>
+      <article class="ui-note">
+        <h3>What it solves</h3>
+        <p>It avoids generic errors and invisible states: every field says clearly what is missing and what is valid.</p>
+      </article>
+      <article class="ui-note">
+        <h3>How to adapt it</h3>
+        <p>Wire the submit to your own API or a form service. The demo keeps markup, styling and validation separate.</p>
+      </article>
+    </section>
+
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-form">
+      <h2 id="seo-title-form">A guide to building accessible contact forms with real-time validation</h2>
+      <div class="seo-text-content">
+        <p>
+          Contact forms are the main communication channel between users and a web application. Badly designed or inaccessible validation is one of the leading causes of user frustration, and often leads people to abandon the form entirely. A correct implementation therefore has to combine client-side validation (for immediate feedback) with robust HTML that respects the accessibility guidelines (WCAG).
+        </p>
+        <p>
+          This form uses explicit labels through the <code>&lt;label&gt;</code> tag, tied directly to their input fields via the <code>for</code> attribute. That guarantees that clicking the label moves focus to the text field, and that screen readers read the field's name correctly as the user navigates to it. Real-time validation checks format correctness (for email, say) or minimum text length as the user types or when the field loses focus (the blur event).
+        </p>
+        <p>
+          Error handling is the most critical part: when a field is invalid, the <code>aria-invalid</code> attribute is set to <code>true</code> and the ID of the specific error message is linked to the field through <code>aria-describedby</code>. That way a screen reader user hears the error immediately on moving to the affected field. Finally, the submit state and the final success message go inside a container with <code>role="status"</code> or <code>aria-live="polite"</code>, so the outcome is announced to the user without reloading the page or forcibly moving focus.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-form-title">Quick FAQ about validated forms</h3>
+      <div class="faq-content">
+        <h4>How are error messages linked to input fields?</h4>
+        <p>
+          Through the <code>aria-describedby</code> attribute on the input, whose value matches the ID of the paragraph holding the error. This creates a semantic link that screen readers announce automatically when the input receives focus.
+        </p>
+        <h4>Do you still need server-side validation if client-side validation is in place?</h4>
+        <p>
+          Yes. Client-side validation exists to improve the user experience with immediate feedback, but it is trivially bypassed (by disabling JavaScript or sending direct HTTP requests). Server-side validation is always mandatory for security and data integrity.
+        </p>
+        <h4>Can I customize the browser's native error messages?</h4>
+        <p>
+          Yes — by turning off native validation with the <code>novalidate</code> attribute on the <code>&lt;form&gt;</code> tag and handling custom messages in JavaScript, as this component does. That keeps you in full control of both the visual design and the tone of voice of your errors.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="/src/scripts/pages/componenti-ui/form/main.js"></script>
+</body>
+
+</html>

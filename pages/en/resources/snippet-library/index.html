@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Codifica caratteri della pagina -->
+  <meta charset="UTF-8">
+  <!-- Imposta la pagina per dispositivi mobili (responsive) -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
+  <title>Snippet HTML, CSS e JavaScript pronti da copiare | Codedge</title>
+  <!-- Descrizione usata nelle anteprime dei motori di ricerca -->
+  <meta name="description"
+    content="Snippet HTML, CSS e JavaScript pronti da copiare, adattare e riusare per velocizzare lo sviluppo senza ripartire ogni volta da zero.">
+  <!-- URL preferito per questa pagina (previene problemi di contenuto duplicato) -->
+  <!-- i18n: translation pending — this page still holds the Italian source text.
+       Remove this block (robots meta included) once the page is translated. -->
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://codedge.it/en/resources/snippet-library/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Snippet HTML, CSS e JavaScript pronti da copiare | Codedge" />
+  <meta property="og:description" content="Snippet HTML, CSS e JavaScript pronti da copiare, adattare e riusare per velocizzare lo sviluppo senza ripartire ogni volta da zero." />
+  <meta property="og:url" content="https://codedge.it/en/resources/snippet-library/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Snippet HTML, CSS e JavaScript pronti da copiare | Codedge" />
+  <meta name="twitter:description" content="Snippet HTML, CSS e JavaScript pronti da copiare, adattare e riusare per velocizzare lo sviluppo senza ripartire ogni volta da zero." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <!-- ICONS (in public/icons/) -->
+  <!-- Favicon / icone in formati diversi per browser e dispositivi -->
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona per quando l'utente aggiunge il sito alla Home su iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: definisce risorse e impostazioni per l'installazione come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Mask icon per Safari pinned tabs (colore specificato) -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore dell'interfaccia del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Abilita comportamento da web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <!-- Barra di navigazione principale -->
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <!-- Icona decorativa; aria-hidden=true indica che gli screen reader la ignorano --> <i class="fas fa-code" aria-hidden="true"></i> Snippet Library HTML/CSS/JS </span>
+    </nav>
+  </header>
+
+  <div class="snippet-scroll-wrapper">
+  <div class="breadcrumb-container">
+    <a href="/en/resources/" class="back-link"><i class="fas fa-chevron-left"></i> All resources</a>
+  </div>
+
+  <div class="content-wrapper snippet-container">
+    <!-- Selettore Categorie su Mobile -->
+    <div class="mobile-category-selector">
+      <button class="category-pill active" data-target="html-snippets">HTML</button>
+      <button class="category-pill" data-target="css-snippets">CSS</button>
+      <button class="category-pill" data-target="javascript-snippets">JavaScript</button>
+      <button class="category-pill" data-target="ui-snippets">UI Components</button>
+    </div>
+
+    <!-- Sidebar che contiene l'indice degli snippet -->
+    <aside class="snippet-sidebar">
+      <nav class="snippet-nav">
+        <details open>
+          <summary class="list-menu">
+            <span class="type-group">HTML</span>
+          </summary>
+          <ul class="tune-list">
+            <li><a href="#html-boilerplate" class="clickable-item">1. HTML5 Boilerplate</a></li>
+            <li><a href="#semantic-layout" class="clickable-item">2. Layout Semantico</a></li>
+            <li><a href="#contact-form" class="clickable-item">3. Form di Contatto</a></li>
+            <li><a href="#responsive-media" class="clickable-item">4. Media Responsive</a></li>
+            <li><a href="#responsive-embed" class="clickable-item">5. Embed Responsivi</a></li>
+          </ul>
+        </details>
+        <details open>
+          <summary class="list-menu">
+            <span class="type-group">CSS</span>
+          </summary>
+          <ul class="tune-list">
+            <li><a href="#reset-css" class="clickable-item">1. Modern Reset</a></li>
+            <li><a href="#flexbox-layout" class="clickable-item">2. Layout Flexbox</a></li>
+            <li><a href="#grid-layout" class="clickable-item">3. Griglia Autoreattiva</a></li>
+            <li><a href="#css-variables" class="clickable-item">4. CSS Variables & Scheme</a></li>
+            <li><a href="#hover-animations" class="clickable-item">5. Hover & Micro-animations</a></li>
+            <li><a href="#scroll-snap" class="clickable-item">6. Scroll Snap Carousel</a></li>
+            <li><a href="#text-ellipsis" class="clickable-item">7. Truncate Testo</a></li>
+          </ul>
+        </details>
+        <details open>
+          <summary class="list-menu">
+            <span class="type-group">JavaScript</span>
+          </summary>
+          <ul class="tune-list">
+            <li><a href="#event-delegation" class="clickable-item">1. Event Delegation</a></li>
+            <li><a href="#debounce-throttle" class="clickable-item">2. Debounce & Throttle</a></li>
+            <li><a href="#fetch-api" class="clickable-item">3. Fetch API & Async</a></li>
+            <li><a href="#local-storage" class="clickable-item">4. LocalStorage JSON Helper</a></li>
+            <li><a href="#intersection-observer" class="clickable-item">5. Intersection Observer</a></li>
+          </ul>
+        </details>
+        <details open>
+          <summary class="list-menu">
+            <span class="type-group">UI Components</span>
+          </summary>
+          <ul class="tune-list">
+            <li>
+              <a href="#reading-progress-nav" class="clickable-item">1. Indice lettura + progress</a>
+            </li>
+            <li>
+              <a href="#content-card-pattern" class="clickable-item">2. Card contenuto</a>
+            </li>
+            <li>
+              <a href="#accessible-header" class="clickable-item">3. Header accessibile</a>
+            </li>
+            <li>
+              <a href="#validated-contact-form" class="clickable-item">4. Form validato</a>
+            </li>
+          </ul>
+        </details>
+      </nav>
+    </aside>
+
+    <!-- Area principale dove vengono mostrati gli snippet -->
+    <main class="snippet-main">
+      <h1 class="sr-only">Snippet Library HTML/CSS/JS</h1>
+      <section id="html-snippets" class="snippet-section">
+        <h2 class="sr-only">Snippet HTML</h2>
+        <div id="html-boilerplate" class="snippet-box">
+          <div class="title-box">
+            <h3>1. Struttura di base HTML5 Moderno</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="it"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="referrer" content="strict-origin-when-cross-origin"&gt;
+  &lt;title&gt;Titolo Ottimizzato SEO&lt;/title&gt;
+  &lt;meta name="description" content="Descrizione accattivante per i risultati di ricerca."&gt;
+  &lt;link rel="canonical" href="https://example.com/pagina"&gt;
+  
+  &lt;!-- Preconnessione ai font esterni --&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  
+  &lt;!-- Stili --&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main&gt;
+    &lt;h1&gt;Contenuto Principale&lt;/h1&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+        </div>
+
+        <div id="semantic-layout" class="snippet-box">
+          <div class="title-box">
+            <h3>2. Layout Semantico e Accessibile</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;header role="banner"&gt;
+  &lt;nav aria-label="Main navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/en/" aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/servizi"&gt;Servizi&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="main-content" role="main"&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Titolo dell'Articolo&lt;/h1&gt;
+      &lt;p&gt;Pubblicato il &lt;time datetime="2026-07-04"&gt;4 Luglio 2026&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    
+    &lt;section aria-labelledby="sec-intro"&gt;
+      &lt;h2 id="sec-intro"&gt;Introduzione&lt;/h2&gt;
+      &lt;p&gt;Contenuto descrittivo...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+  
+  &lt;aside aria-label="Risorse correlate"&gt;
+    &lt;h3&gt;Link utili&lt;/h3&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer role="contentinfo"&gt;
+  &lt;p&gt;&amp;copy; 2026 Codedge. Tutti i diritti riservati.&lt;/p&gt;
+&lt;/footer&gt;
+          </code></pre>
+        </div>
+
+        <div id="contact-form" class="snippet-box">
+          <div class="title-box">
+            <h3>3. Form di Contatto Strutturato</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;form action="/submit" method="POST" class="form-container" novalidate&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="user-name"&gt;Nome Completo&lt;/label&gt;
+    &lt;input type="text" id="user-name" name="name" required minlength="3" autocomplete="name"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;label for="user-email"&gt;Indirizzo Email&lt;/label&gt;
+    &lt;input type="email" id="user-email" name="email" required autocomplete="email"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;label for="user-message"&gt;Messaggio&lt;/label&gt;
+    &lt;textarea id="user-message" name="message" rows="5" required minlength="10" placeholder="Scrivi qui..."&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit" class="submit-btn"&gt;Invia Richiesta&lt;/button&gt;
+&lt;/form&gt;
+          </code></pre>
+        </div>
+
+        <div id="responsive-media" class="snippet-box">
+          <div class="title-box">
+            <h3>4. Immagine Responsive con Picture e WebP</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;picture&gt;
+  &lt;!-- Schermi grandi (desktop) fallback WebP --&gt;
+  &lt;source media="(min-width: 1024px)" srcset="image-large.webp" type="image/webp"&gt;
+  &lt;source media="(min-width: 1024px)" srcset="image-large.jpg" type="image/jpeg"&gt;
+  
+  &lt;!-- Schermi piccoli (mobile) fallback WebP --&gt;
+  &lt;source srcset="image-small.webp" type="image/webp"&gt;
+  
+  &lt;!-- Immagine di fallback standard --&gt;
+  &lt;img src="image-small.jpg" alt="Descrizione dell'immagine" loading="lazy" decoding="async" width="600" height="400"&gt;
+&lt;/picture&gt;
+          </code></pre>
+        </div>
+
+        <div id="responsive-embed" class="snippet-box">
+          <div class="title-box">
+            <h3>5. Iframe Video Responsivo (Anti-CLS)</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;div class="video-container"&gt;
+  &lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+          title="Video di esempio" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen 
+          loading="lazy"&gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Risolve il problema del CLS senza padding-top hack */
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+&lt;/style&gt;
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="css-snippets" class="snippet-section">
+        <h2 class="sr-only">Snippet CSS</h2>
+        <div id="reset-css" class="snippet-box">
+          <div class="title-box">
+            <h3>1. Reset CSS Moderno</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Reset basato sulle best practice moderne */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  text-rendering: optimizeLegibility;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+          </code></pre>
+        </div>
+
+        <div id="flexbox-layout" class="snippet-box">
+          <div class="title-box">
+            <h3>2. Centratura e Allineamento Flexbox</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Centratura perfetta in un contenitore */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Row flessibile e responsiva con gap */
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Forza la colonna flex su piccoli schermi */
+@media (max-width: 640px) {
+  .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+          </code></pre>
+        </div>
+
+        <div id="grid-layout" class="snippet-box">
+          <div class="title-box">
+            <h3>3. Griglia Auto-Responsive (Senza Media Queries)</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Genera colonne dinamiche in base allo spazio disponibile */
+.auto-grid {
+  display: grid;
+  /* Minimo 280px, massimo 1 parte dello spazio rimanente */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Griglia per layout asimmetrici (Sidebar 300px + Main flessibile) */
+.layout-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+          </code></pre>
+        </div>
+
+        <div id="css-variables" class="snippet-box">
+          <div class="title-box">
+            <h3>4. Variabili CSS e Dark Mode nativa</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Root per tema chiaro di base */
+:root {
+  --primary-color: #007bf0;
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --border-color: #e5e7eb;
+}
+
+/* Attivazione dark mode nativa del sistema */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #3b82f6;
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+    --border-color: #374151;
+  }
+}
+
+/* Utilizzo pratico delle custom properties */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+          </code></pre>
+        </div>
+
+        <div id="hover-animations" class="snippet-box">
+          <div class="title-box">
+            <h3>5. Hover ed Effetti UI</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Effetto bottone lucido con transizione smooth */
+.btn-interactive {
+  position: relative;
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color, #007bf0);
+  color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 123, 240, 0.25);
+  background-color: #0060be;
+}
+
+.btn-interactive:active {
+  transform: translateY(1px);
+}
+          </code></pre>
+        </div>
+
+        <div id="scroll-snap" class="snippet-box">
+          <div class="title-box">
+            <h3>6. Carosello CSS con Scroll Snap</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Contenitore a scorrimento orizzontale magnetico */
+.carousel-snap {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Singolo elemento del carosello */
+.carousel-item {
+  flex: 0 0 80%; /* 80% della larghezza del parent */
+  scroll-snap-align: center;
+  border-radius: 8px;
+  background: #2a2a2a;
+}
+          </code></pre>
+        </div>
+
+        <div id="text-ellipsis" class="snippet-box">
+          <div class="title-box">
+            <h3>7. Troncamento Testo Multilinea</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-css">
+/* Limita il testo a un numero esatto di righe con ellissi (...) */
+.truncate-lines-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Numero massimo di righe */
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Singolo troncatore classico su una sola riga */
+.single-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="javascript-snippets" class="snippet-section">
+        <h2 class="sr-only">Snippet JavaScript</h2>
+        <div id="event-delegation" class="snippet-box">
+          <div class="title-box">
+            <h3>1. Event Delegation su elementi dinamici</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-javascript">
+// Ascolta i click sull'intero container per intercettare bottoni generati al volo
+const container = document.querySelector('.dynamic-list');
+
+container.addEventListener('click', (event) => {
+  // Trova l'elemento target con classe specifica
+  const deleteBtn = event.target.closest('.btn-delete');
+  
+  if (deleteBtn) {
+    const item = deleteBtn.closest('.list-item');
+    item.remove(); // Rimuove l'elemento corrispondente
+  }
+});
+          </code></pre>
+        </div>
+
+        <div id="debounce-throttle" class="snippet-box">
+          <div class="title-box">
+            <h3>2. Ottimizzazioni Debounce e Throttle</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-javascript">
+// Debounce: esegue la funzione solo dopo N millisecondi di inattività
+function debounce(fn, delay) {
+  let timer = null;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+// Throttle: esegue la funzione al massimo una volta ogni N millisecondi
+function throttle(fn, limit) {
+  let inThrottle = false;
+  return function (...args) {
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Esempio: throttle sullo scroll o debounce sulla ricerca input
+window.addEventListener('scroll', throttle(() => console.log('Scrolled!'), 200));
+          </code></pre>
+        </div>
+
+        <div id="fetch-api" class="snippet-box">
+          <div class="title-box">
+            <h3>3. Chiamata Fetch API con Async/Await</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-javascript">
+async function fetchData(url = '') {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Errore HTTP: status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Errore durante la chiamata fetch:', error);
+    return null;
+  }
+}
+          </code></pre>
+        </div>
+
+        <div id="local-storage" class="snippet-box">
+          <div class="title-box">
+            <h3>4. LocalStorage JSON Helper</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-javascript">
+const storage = {
+  // Salva un oggetto convertendolo in stringa JSON
+  set(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (e) {
+      console.error('Errore scrittura LocalStorage:', e);
+      return false;
+    }
+  },
+
+  // Recupera l'oggetto deserializzandolo
+  get(key) {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : null;
+    } catch (e) {
+      console.error('Errore lettura LocalStorage:', e);
+      return null;
+    }
+  }
+};
+          </code></pre>
+        </div>
+
+        <div id="intersection-observer" class="snippet-box">
+          <div class="title-box">
+            <h3>5. Intersection Observer per Lazy/Animations</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-javascript">
+// Crea un observer per monitorare la visibilità degli elementi nello schermo
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible'); // Aggiunge la classe per avviare transizioni CSS
+      observer.unobserve(entry.target); // Smette di osservare l'elemento una volta attivato
+    }
+  });
+}, {
+  threshold: 0.15, // Attiva l'azione al 15% di visibilità dell'elemento
+  rootMargin: '0px 0px -50px 0px' // Margine inferiore per anticipare l'azione
+});
+
+// Avvia l'osservatore su tutti i target stabiliti
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="ui-snippets" class="snippet-section">
+        <h2 class="sr-only">Snippet UI</h2>
+        <div id="reading-progress-nav" class="snippet-box">
+          <div class="title-box">
+            <h3>1. Indice lettura con progress bar</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;div class="reading-progress" data-reading-progress&gt;
+  &lt;aside class="reading-progress__toc" aria-label="Indice contenuto"&gt;
+    &lt;a href="#intro" data-reading-link class="is-active"&gt;Introduzione&lt;/a&gt;
+    &lt;a href="#setup" data-reading-link&gt;Setup&lt;/a&gt;
+    &lt;a href="#checks" data-reading-link&gt;Controlli&lt;/a&gt;
+    &lt;button type="button" data-reading-top&gt;Torna su&lt;/button&gt;
+  &lt;/aside&gt;
+
+  &lt;article class="reading-progress__content" data-reading-scroller tabindex="0"&gt;
+    &lt;div class="reading-progress__bar" aria-hidden="true"&gt;
+      &lt;span data-reading-bar&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;section id="intro" data-reading-section&gt;&lt;h2&gt;Introduzione&lt;/h2&gt;&lt;p&gt;Primo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="setup" data-reading-section&gt;&lt;h2&gt;Setup&lt;/h2&gt;&lt;p&gt;Secondo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="checks" data-reading-section&gt;&lt;h2&gt;Controlli&lt;/h2&gt;&lt;p&gt;Terzo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+  &lt;/article&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.reading-progress {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reading-progress__toc {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1rem;
+  background: #f7f9fc;
+}
+.reading-progress__toc a,
+.reading-progress__toc button {
+  border-radius: 6px;
+  padding: .6rem .7rem;
+  text-align: left;
+}
+.reading-progress__toc a.is-active {
+  background: #e8f3ff;
+  color: #075985;
+  font-weight: 700;
+}
+.reading-progress__toc button {
+  border: 1px solid #0f766e;
+  background: #123743;
+  color: #f8fbff;
+  cursor: pointer;
+  font-weight: 800;
+  margin-top: auto;
+}
+.reading-progress__toc button:hover,
+.reading-progress__toc button:focus-visible {
+  background: #a8f0df;
+  border-color: #0f766e;
+  color: #10201f;
+}
+.reading-progress__content {
+  max-height: 480px;
+  overflow: auto;
+  position: relative;
+}
+.reading-progress__bar {
+  position: sticky;
+  top: 0;
+  height: 6px;
+  background: #e5e7eb;
+}
+.reading-progress__bar span {
+  display: block;
+  height: 100%;
+  background: #0ea5e9;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.reading-progress__content section {
+  min-height: 340px;
+  padding: 1.5rem;
+}
+@media (max-width: 760px) {
+  .reading-progress { grid-template-columns: 1fr; }
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+function initReadingProgress(rootSelector = '[data-reading-progress]') {
+  const root = document.querySelector(rootSelector);
+  if (!root) return;
+
+  const scroller = root.querySelector('[data-reading-scroller]');
+  const bar = root.querySelector('[data-reading-bar]');
+  const links = [...root.querySelectorAll('[data-reading-link]')];
+  const sections = [...root.querySelectorAll('[data-reading-section]')];
+
+  function sectionTop(section) {
+    return section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+  }
+
+  function update() {
+    const max = Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+    bar.style.transform = 'scaleX(' + scroller.scrollTop / max + ')';
+
+    let active = sections[0];
+    const readingLine = scroller.scrollTop + scroller.clientHeight * 0.45;
+
+    sections.forEach((section) =&gt; {
+      if (sectionTop(section) &lt;= readingLine) active = section;
+    });
+
+    if (scroller.scrollTop &gt;= max - 2) active = sections[sections.length - 1];
+
+    links.forEach((link) =&gt; {
+      link.classList.toggle('is-active', link.getAttribute('href') === '#' + active.id);
+    });
+  }
+
+  links.forEach((link) =&gt; {
+    link.addEventListener('click', (event) =&gt; {
+      const target = root.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      scroller.scrollTo({ top: sectionTop(target) - 12, behavior: 'smooth' });
+    });
+  });
+
+  root.querySelector('[data-reading-top]')?.addEventListener('click', () =&gt; {
+    scroller.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  scroller.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+initReadingProgress();
+&lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <div id="content-card-pattern" class="snippet-box">
+          <div class="title-box">
+            <h3>2. Card contenuto riusabile</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;article class="content-card" data-content-card&gt;
+  &lt;div class="content-card__topline"&gt;
+    &lt;span class="content-card__badge"&gt;Guida&lt;/span&gt;
+    &lt;button class="content-card__save" type="button" data-card-save aria-pressed="false"&gt;
+      Salva
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;h2&gt;Accessibilita web base&lt;/h2&gt;
+  &lt;p&gt;Checklist essenziale per focus, testi alternativi, contrasto e navigazione da tastiera.&lt;/p>
+
+  &lt;dl class="content-card__meta"&gt;
+    &lt;div&gt;&lt;dt&gt;Tempo&lt;/dt&gt;&lt;dd&gt;18 min&lt;/dd&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;dt&gt;Livello&lt;/dt&gt;&lt;dd&gt;Base&lt;/dd&gt;&lt;/div&gt;
+  &lt;/dl&gt;
+
+  &lt;a class="content-card__link" href="#"&gt;Apri risorsa&lt;/a&gt;
+&lt;/article&gt;
+
+&lt;style&gt;
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 360px;
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  border-top: 4px solid #14b8a6;
+  border-radius: 8px;
+  background: #fff;
+  color: #172033;
+}
+.content-card__topline {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  align-items: center;
+}
+.content-card__badge {
+  color: #64748b;
+  font-size: .75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.content-card__save {
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  padding: .45rem .7rem;
+}
+.content-card__save[aria-pressed="true"] {
+  background: #fff7ed;
+  border-color: #fb923c;
+  color: #c2410c;
+}
+.content-card h2 { margin: 0; font-size: 1.35rem; line-height: 1.2; }
+.content-card p { margin: 0; color: #475569; line-height: 1.6; }
+.content-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
+  margin: auto 0 0;
+}
+.content-card__meta div { background: #f8fafc; border-radius: 6px; padding: .7rem; }
+.content-card__meta dt { color: #64748b; font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+.content-card__meta dd { margin: .2rem 0 0; font-weight: 800; }
+.content-card__link {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid #0f766e;
+  background: #123743;
+  color: #f8fbff;
+  font-weight: 800;
+  padding: .75rem .9rem;
+  text-decoration: none;
+}
+.content-card__link:hover,
+.content-card__link:focus-visible {
+  background: #a8f0df;
+  border-color: #0f766e;
+  color: #10201f;
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+document.querySelectorAll('[data-card-save]').forEach((button) =&gt; {
+  button.addEventListener('click', () =&gt; {
+    const active = button.getAttribute('aria-pressed') === 'true';
+    button.setAttribute('aria-pressed', String(!active));
+  });
+});
+&lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <div id="accessible-header" class="snippet-box">
+          <div class="title-box">
+            <h3>3. Header responsive accessibile</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;nav class="site-header" data-accessible-header aria-label="Main navigation"&gt;
+  &lt;a class="site-header__brand" href="/en/"&gt;Brand&lt;/a&gt;
+
+  &lt;button class="site-header__toggle" type="button" data-header-toggle
+    aria-controls="site-header-menu" aria-expanded="false"&gt;
+    Menu
+  &lt;/button&gt;
+
+  &lt;ul class="site-header__menu" id="site-header-menu" data-header-menu&gt;
+    &lt;li&gt;&lt;a href="/en/" data-header-link aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/en/resources/" data-header-link&gt;Risorse&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/progetti/" data-header-link&gt;Progetti&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/en/contact/" data-header-link&gt;Contatti&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+  padding: .85rem 1rem;
+  background: #172033;
+  color: #fff;
+}
+.site-header__brand,
+.site-header__menu a {
+  color: inherit;
+  text-decoration: none;
+}
+.site-header__brand { font-weight: 900; }
+.site-header__menu {
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-header__menu a {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: .55rem .75rem;
+  font-weight: 700;
+}
+.site-header__menu a:hover,
+.site-header__menu a:focus-visible,
+.site-header__menu a[aria-current="page"] {
+  background: rgba(255, 255, 255, .12);
+}
+.site-header__toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: .55rem .75rem;
+}
+.site-header a:focus-visible,
+.site-header button:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+@media (max-width: 720px) {
+  .site-header { flex-wrap: wrap; }
+  .site-header__toggle { display: inline-flex; }
+  .site-header__menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: .75rem;
+  }
+  .site-header.is-open .site-header__menu { display: flex; }
+  .site-header__menu a { border-radius: 6px; width: 100%; }
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+function initAccessibleHeader(selector = '[data-accessible-header]') {
+  const header = document.querySelector(selector);
+  if (!header) return;
+
+  const toggle = header.querySelector('[data-header-toggle]');
+  const links = [...header.querySelectorAll('[data-header-link]')];
+
+  function setOpen(open) {
+    header.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  toggle.addEventListener('click', (event) =&gt; {
+    event.stopPropagation();
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  links.forEach((link) =&gt; link.addEventListener('click', () =&gt; setOpen(false)));
+  document.addEventListener('click', (event) =&gt; {
+    if (!header.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) =&gt; {
+    if (event.key === 'Escape') setOpen(false);
+  });
+}
+
+initAccessibleHeader();
+&lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <div id="validated-contact-form" class="snippet-box">
+          <div class="title-box">
+            <h3>4. Form contatto con validazione</h3>
+            <button class="copy-btn">
+              <i class="fas fa-copy"></i> Copia
+            </button>
+          </div>
+          <pre><code class="language-html">
+&lt;form class="contact-form" data-contact-form novalidate&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="name"&gt;Nome&lt;/label&gt;
+    &lt;input id="name" name="name" required minlength="2" data-validate="name"
+      aria-describedby="name-error" aria-invalid="false"&gt;
+    &lt;p class="error" id="name-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required data-validate="email"
+      aria-describedby="email-error" aria-invalid="false"&gt;
+    &lt;p class="error" id="email-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;label for="message"&gt;Messaggio&lt;/label&gt;
+    &lt;textarea id="message" name="message" required minlength="12" data-validate="message"
+      aria-describedby="message-error" aria-invalid="false"&gt;&lt;/textarea&gt;
+    &lt;p class="error" id="message-error"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit" data-submit-button&gt;Invia richiesta&lt;/button&gt;
+  &lt;p class="status" data-form-status role="status" aria-live="polite"&gt;&lt;/p&gt;
+&lt;/form&gt;
+
+&lt;style&gt;
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  border-radius: 8px;
+}
+.field { display: grid; gap: .4rem; }
+.field label { font-weight: 800; }
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  padding: .75rem .8rem;
+}
+.field textarea { min-height: 8rem; resize: vertical; }
+.field input:focus,
+.field textarea:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, .18);
+  outline: 0;
+}
+.field [aria-invalid="true"] { border-color: #ef4444; }
+.error { min-height: 1.2rem; margin: 0; color: #b91c1c; font-size: .9rem; }
+.status { margin: 0; color: #047857; font-weight: 700; }
+button[type="submit"] {
+  border: 0;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: .8rem 1rem;
+}
+button[disabled] { cursor: wait; opacity: .7; }
+&lt;/style&gt;
+
+&lt;script&gt;
+function initValidatedContactForm(selector = '[data-contact-form]') {
+  const form = document.querySelector(selector);
+  if (!form) return;
+
+  const fields = [...form.querySelectorAll('[data-validate]')];
+  const status = form.querySelector('[data-form-status]');
+  const submit = form.querySelector('[data-submit-button]');
+
+  function getMessage(field) {
+    const value = field.value.trim();
+    if (field.required &amp;&amp; !value) return 'Campo obbligatorio.';
+    if (field.type === 'email' &amp;&amp; !field.validity.valid) return 'Inserisci una email valida.';
+    if (field.minLength &gt; 0 &amp;&amp; value.length &lt; field.minLength) {
+      return 'Inserisci almeno ' + field.minLength + ' caratteri.';
+    }
+    return '';
+  }
+
+  function validate(field) {
+    const error = document.getElementById(field.id + '-error');
+    const message = getMessage(field);
+    field.setAttribute('aria-invalid', message ? 'true' : 'false');
+    if (error) error.textContent = message;
+    return !message;
+  }
+
+  fields.forEach((field) =&gt; {
+    field.addEventListener('input', () =&gt; validate(field));
+    field.addEventListener('blur', () =&gt; validate(field));
+  });
+
+  form.addEventListener('submit', (event) =&gt; {
+    event.preventDefault();
+    const valid = fields.map(validate).every(Boolean);
+    if (!valid) {
+      fields.find((field) =&gt; field.getAttribute('aria-invalid') === 'true')?.focus();
+      status.textContent = 'Controlla i campi evidenziati.';
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Invio in corso';
+    status.textContent = "Messaggio pronto per l'invio.";
+  });
+}
+
+initValidatedContactForm();
+&lt;/script&gt;
+            </code></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+  </div>
+
+  <!-- entry Vite per questa pagina -->
+  <script type="module" src="/src/scripts/pages/risorse/snippet-library/main.js"></script>
+
+</body>
+
+</html>

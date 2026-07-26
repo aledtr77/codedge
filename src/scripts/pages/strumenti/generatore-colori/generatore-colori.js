@@ -1,3 +1,4 @@
+import { t, currentLang } from "@/i18n/ui.js";
 let palette = [
   { hex: "#264653", locked: false },
   { hex: "#2A9D8F", locked: false },
@@ -7,46 +8,46 @@ let palette = [
 ];
 
 const COLOR_NAMES = [
-  { name: "Rosso Fuoco", r: 231, g: 76, b: 60 },
-  { name: "Rosso Corallo", r: 230, g: 126, b: 34 },
-  { name: "Arancio Sole", r: 243, g: 156, b: 18 },
-  { name: "Pesca Calda", r: 244, g: 162, b: 97 },
-  { name: "Rosso Terracotta", r: 231, g: 111, b: 81 },
-  { name: "Giallo Zafferano", r: 233, g: 196, b: 106 },
-  { name: "Giallo Miele", r: 241, g: 196, b: 15 },
-  { name: "Verde Smeraldo", r: 46, g: 204, b: 113 },
-  { name: "Verde Menta", r: 46, g: 204, b: 113 },
-  { name: "Verde Caraibi", r: 42, g: 157, b: 143 },
-  { name: "Verde Petrolio", r: 38, g: 70, b: 83 },
-  { name: "Turchese Vivace", r: 26, g: 188, b: 156 },
-  { name: "Blu Oceano", r: 0, g: 63, b: 92 },
-  { name: "Blu Oltremare", r: 41, g: 128, b: 185 },
-  { name: "Blu Notte", r: 15, g: 23, b: 42 },
-  { name: "Viola Ametista", r: 155, g: 89, b: 182 },
-  { name: "Malva", r: 142, g: 68, b: 173 },
-  { name: "Rosa Pastello", r: 255, g: 183, b: 178 },
-  { name: "Rosa Salmone", r: 255, g: 204, b: 188 },
-  { name: "Verde Erba Pastello", r: 181, g: 234, b: 215 },
-  { name: "Celeste Polvere", r: 199, g: 206, b: 234 },
-  { name: "Nero Carbone", r: 24, g: 23, b: 23 },
-  { name: "Grigio Ardesia", r: 46, g: 52, b: 64 },
-  { name: "Grigio Chiaro", r: 216, g: 222, b: 233 },
-  { name: "Bianco Ghiaccio", r: 248, g: 249, b: 250 },
-  { name: "Lavanda Dolce", r: 118, g: 120, b: 237 },
-  { name: "Blu Elettrico", r: 33, g: 118, b: 255 },
-  { name: "Giallo Ocra", r: 253, g: 202, b: 64 },
-  { name: "Arancio Zucca", r: 247, g: 152, b: 36 }
+  { name: "Rosso Fuoco", nameEn: "Fire Red", r: 231, g: 76, b: 60 },
+  { name: "Rosso Corallo", nameEn: "Coral Red", r: 230, g: 126, b: 34 },
+  { name: "Arancio Sole", nameEn: "Sun Orange", r: 243, g: 156, b: 18 },
+  { name: "Pesca Calda", nameEn: "Warm Peach", r: 244, g: 162, b: 97 },
+  { name: "Rosso Terracotta", nameEn: "Terracotta Red", r: 231, g: 111, b: 81 },
+  { name: "Giallo Zafferano", nameEn: "Saffron Yellow", r: 233, g: 196, b: 106 },
+  { name: "Giallo Miele", nameEn: "Honey Yellow", r: 241, g: 196, b: 15 },
+  { name: "Verde Smeraldo", nameEn: "Emerald Green", r: 46, g: 204, b: 113 },
+  { name: "Verde Menta", nameEn: "Mint Green", r: 46, g: 204, b: 113 },
+  { name: "Verde Caraibi", nameEn: "Caribbean Green", r: 42, g: 157, b: 143 },
+  { name: "Verde Petrolio", nameEn: "Teal Green", r: 38, g: 70, b: 83 },
+  { name: "Turchese Vivace", nameEn: "Vivid Turquoise", r: 26, g: 188, b: 156 },
+  { name: "Blu Oceano", nameEn: "Ocean Blue", r: 0, g: 63, b: 92 },
+  { name: "Blu Oltremare", nameEn: "Ultramarine Blue", r: 41, g: 128, b: 185 },
+  { name: "Blu Notte", nameEn: "Midnight Blue", r: 15, g: 23, b: 42 },
+  { name: "Viola Ametista", nameEn: "Amethyst Purple", r: 155, g: 89, b: 182 },
+  { name: "Malva", nameEn: "Mauve", r: 142, g: 68, b: 173 },
+  { name: "Rosa Pastello", nameEn: "Pastel Pink", r: 255, g: 183, b: 178 },
+  { name: "Rosa Salmone", nameEn: "Salmon Pink", r: 255, g: 204, b: 188 },
+  { name: "Verde Erba Pastello", nameEn: "Pastel Grass Green", r: 181, g: 234, b: 215 },
+  { name: "Celeste Polvere", nameEn: "Dusty Sky Blue", r: 199, g: 206, b: 234 },
+  { name: "Nero Carbone", nameEn: "Charcoal Black", r: 24, g: 23, b: 23 },
+  { name: "Grigio Ardesia", nameEn: "Slate Grey", r: 46, g: 52, b: 64 },
+  { name: "Grigio Chiaro", nameEn: "Light Grey", r: 216, g: 222, b: 233 },
+  { name: "Bianco Ghiaccio", nameEn: "Ice White", r: 248, g: 249, b: 250 },
+  { name: "Lavanda Dolce", nameEn: "Soft Lavender", r: 118, g: 120, b: 237 },
+  { name: "Blu Elettrico", nameEn: "Electric Blue", r: 33, g: 118, b: 255 },
+  { name: "Giallo Ocra", nameEn: "Ochre Yellow", r: 253, g: 202, b: 64 },
+  { name: "Arancio Zucca", nameEn: "Pumpkin Orange", r: 247, g: 152, b: 36 }
 ];
 
 const PRESETS = [
-  { name: "Sogno Pastello", colors: ["#FFB7B2", "#FFDAC1", "#E2F0CB", "#B5EAD7", "#C7CEEA"] },
-  { name: "Tramonto Caldo", colors: ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51"] },
-  { name: "Ardesia Nordica", colors: ["#2E3440", "#3B4252", "#434C5E", "#4C566A", "#D8DEE9"] },
-  { name: "Cyberpunk Neon", colors: ["#0B0C10", "#1F2833", "#C5C6C7", "#66FCF1", "#45A29E"] },
-  { name: "Brezza Marina", colors: ["#003F5C", "#2F5C73", "#587A8C", "#8099A6", "#A8B9C2"] },
-  { name: "Sabbie Calde", colors: ["#EAE2B7", "#FCBF49", "#F77F00", "#D62828", "#003049"] },
-  { name: "Foresta Profonda", colors: ["#14362E", "#335C4E", "#608066", "#8EB295", "#CFE0C3"] },
-  { name: "Dolce Lavanda", colors: ["#3D348B", "#7678ED", "#F7B801", "#F18701", "#F35B04"] }
+  { name: "Sogno Pastello", nameEn: "Pastel Dream", colors: ["#FFB7B2", "#FFDAC1", "#E2F0CB", "#B5EAD7", "#C7CEEA"] },
+  { name: "Tramonto Caldo", nameEn: "Warm Sunset", colors: ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51"] },
+  { name: "Ardesia Nordica", nameEn: "Nordic Slate", colors: ["#2E3440", "#3B4252", "#434C5E", "#4C566A", "#D8DEE9"] },
+  { name: "Cyberpunk Neon", nameEn: "Cyberpunk Neon", colors: ["#0B0C10", "#1F2833", "#C5C6C7", "#66FCF1", "#45A29E"] },
+  { name: "Brezza Marina", nameEn: "Sea Breeze", colors: ["#003F5C", "#2F5C73", "#587A8C", "#8099A6", "#A8B9C2"] },
+  { name: "Sabbie Calde", nameEn: "Warm Sands", colors: ["#EAE2B7", "#FCBF49", "#F77F00", "#D62828", "#003049"] },
+  { name: "Foresta Profonda", nameEn: "Deep Forest", colors: ["#14362E", "#335C4E", "#608066", "#8EB295", "#CFE0C3"] },
+  { name: "Dolce Lavanda", nameEn: "Sweet Lavender", colors: ["#3D348B", "#7678ED", "#F7B801", "#F18701", "#F35B04"] }
 ];
 
 let _initialized = false;
@@ -167,9 +168,10 @@ export function initColorGenerator() {
 
   function getColorName(hex) {
     const rgb = hexToRgb(hex);
-    if (!rgb) return "Sconosciuto";
+    if (!rgb) return t("tool.unknownColor");
     let minDistance = Infinity;
-    let closestName = "Colore";
+    let closestName = t("tool.genericColor");
+    const useEn = currentLang() === "en";
     for (const item of COLOR_NAMES) {
       const d = Math.sqrt(
         Math.pow(rgb.r - item.r, 2) +
@@ -178,7 +180,7 @@ export function initColorGenerator() {
       );
       if (d < minDistance) {
         minDistance = d;
-        closestName = item.name;
+        closestName = useEn ? item.nameEn : item.name;
       }
     }
     return closestName;
@@ -303,19 +305,19 @@ export function initColorGenerator() {
 
       card.innerHTML = `
         <div class="color-card-actions">
-          <button class="card-action-btn lock-btn ${color.locked ? "is-locked" : ""}" title="${color.locked ? "Sblocca colore" : "Blocca colore"}">
+          <button class="card-action-btn lock-btn ${color.locked ? "is-locked" : ""}" title="${color.locked ? t("tool.unlockColor") : t("tool.lockColor")}">
             <i class="fas ${color.locked ? "fa-lock" : "fa-lock-open"}" aria-hidden="true"></i>
           </button>
           
-          <button class="card-action-btn copy-btn" title="Copia HEX">
+          <button class="card-action-btn copy-btn" title="${t("tool.copyHex")}">
             <i class="far fa-copy" aria-hidden="true"></i>
           </button>
 
-          <button class="card-action-btn shades-btn" title="Vedi sfumature">
+          <button class="card-action-btn shades-btn" title="${t("tool.seeShades")}">
             <i class="fas fa-th" aria-hidden="true"></i>
           </button>
           
-          <div class="color-picker-wrapper card-action-btn" title="Regola colore">
+          <div class="color-picker-wrapper card-action-btn" title="${t("tool.adjustColor")}">
             <i class="fas fa-sliders-h" aria-hidden="true"></i>
             <input type="color" class="color-picker-input" value="${color.hex}">
           </div>
@@ -351,18 +353,18 @@ export function initColorGenerator() {
         if (color.locked) {
           lockBtn.classList.add("is-locked");
           icon.className = "fas fa-lock";
-          lockBtn.title = "Sblocca colore";
+          lockBtn.title = t("tool.unlockColor");
         } else {
           lockBtn.classList.remove("is-locked");
           icon.className = "fas fa-lock-open";
-          lockBtn.title = "Blocca colore";
+          lockBtn.title = t("tool.lockColor");
         }
       });
 
       function copyHexAction(e) {
         e.stopPropagation();
         navigator.clipboard.writeText(color.hex)
-          .then(() => showTooltip(card, "Copiato!", 1200))
+          .then(() => showTooltip(card, t("tool.copied"), 1200))
           .catch(err => console.error(err));
       }
       copyBtn.addEventListener("click", copyHexAction);
@@ -448,7 +450,7 @@ export function initColorGenerator() {
       `).join("");
 
       presetCard.innerHTML = `
-        <span class="preset-name">${preset.name}</span>
+        <span class="preset-name">${currentLang() === "en" ? preset.nameEn : preset.name}</span>
         <div class="preset-colors-row">
           ${barsHtml}
         </div>
@@ -522,12 +524,12 @@ export function initColorGenerator() {
     palette.forEach((color, idx) => {
       const optBg = document.createElement("option");
       optBg.value = color.hex;
-      optBg.textContent = `Colore ${idx + 1} (${color.hex.toUpperCase()})`;
+      optBg.textContent = t("tool.colorN", { n: idx + 1, hex: color.hex.toUpperCase() });
       bgSelect.appendChild(optBg);
 
       const optText = document.createElement("option");
       optText.value = color.hex;
-      optText.textContent = `Colore ${idx + 1} (${color.hex.toUpperCase()})`;
+      optText.textContent = t("tool.colorN", { n: idx + 1, hex: color.hex.toUpperCase() });
       textSelect.appendChild(optText);
     });
 
@@ -592,7 +594,7 @@ export function initColorGenerator() {
       })
       .catch(err => {
         console.error(err);
-        showTooltip(button, "Errore!", 1500);
+        showTooltip(button, t("tool.copyError"), 1500);
       });
   }
 
@@ -604,16 +606,16 @@ export function initColorGenerator() {
   btnCopyCss.addEventListener("click", () => {
     const cssVars = palette.map((col, idx) => `  --color-${idx + 1}: ${col.hex};`).join("\n");
     const output = `:root {\n${cssVars}\n}`;
-    copyTextToClipboard(output, btnCopyCss, "CSS Copiato!");
+    copyTextToClipboard(output, btnCopyCss, t("tool.cssCopied"));
   });
 
   btnCopyJson.addEventListener("click", () => {
     const jsonOutput = JSON.stringify(palette.map(c => c.hex), null, 2);
-    copyTextToClipboard(jsonOutput, btnCopyJson, "JSON Copiato!");
+    copyTextToClipboard(jsonOutput, btnCopyJson, t("tool.jsonCopied"));
   });
 
   btnCopyLink.addEventListener("click", () => {
-    copyTextToClipboard(window.location.href, btnCopyLink, "Link Copiato!");
+    copyTextToClipboard(window.location.href, btnCopyLink, t("tool.linkCopied"));
   });
 
   document.addEventListener("keydown", (e) => {

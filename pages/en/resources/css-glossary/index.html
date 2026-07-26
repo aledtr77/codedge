@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- UTF-8: definisce la codifica dei caratteri per gestire accentate e simboli -->
+    <meta charset="UTF-8">
+    <!-- Viewport: obbligatorio per il comportamento responsive sui dispositivi mobili -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<!-- Titolo della pagina mostrato nella scheda del browser -->
+    <title>Glossario CSS completo con esempi pratici | Codedge</title>
+    <!-- Descrizione usata dai motori di ricerca e nelle anteprime -->
+    <meta name="description"
+        content="Glossario CSS: proprietà, selettori e layout spiegati semplice, con esempi brevi e note pratiche per usarli subito.">
+    <!-- URL canonico per indicare la versione "ufficiale" di questa pagina -->
+  <!-- i18n: translation pending — this page still holds the Italian source text.
+       Remove this block (robots meta included) once the page is translated. -->
+  <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="https://codedge.it/en/resources/css-glossary/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Glossario CSS completo con esempi pratici | Codedge" />
+  <meta property="og:description" content="Glossario CSS: proprietà, selettori e layout spiegati semplice, con esempi brevi e note pratiche per usarli subito." />
+  <meta property="og:url" content="https://codedge.it/en/resources/css-glossary/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glossario CSS completo con esempi pratici | Codedge" />
+  <meta name="twitter:description" content="Glossario CSS: proprietà, selettori e layout spiegati semplice, con esempi brevi e note pratiche per usarli subito." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+    <!-- ICONS (in public/icons/) -->
+    <!-- Favicon e vari formati per browser e dispositivi -->
+    <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+    <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+    <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+    <!-- fallback per browser che cercano /favicon.ico -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <!-- Icona usata quando l'utente salva il sito sulla home di iOS -->
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+    <!-- Manifest: definisce metadati per comportamento PWA (installazione, splash, ecc.) -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Mask icon: per pinned tabs di Safari; il colore è applicato alla maschera -->
+    <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+    <!-- Tema colore usato in alcune UI del browser e su Android -->
+    <meta name="theme-color" content="#00A8FF" />
+    <!-- Indicano che la pagina può comportarsi come web app su dispositivi mobili -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body>
+    <header>
+        <!-- Navigazione principale: struttura della barra superiore -->
+        <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fab fa-css3" aria-hidden="true"></i> Glossario CSS</span>
+    </nav>
+
+        <!-- Placeholder per breadcrumb: il loader inserisce qui la traccia di navigazione -->
+
+        <!-- Campo di ricerca locale per filtrare il glossario -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Cerca un tag...">
+            <!-- Sottotitolo che descrive rapidamente il contenuto della pagina -->
+            <h1 class="glossari_resize">Proprietà, selettori e layout spiegati in modo semplice</h1>
+        </div>
+    </header>
+    <div class="glossary-scroll-wrapper">
+
+    <div class="breadcrumb-container">
+        <a href="/en/resources/" class="back-link"><i class="fas fa-chevron-left"></i> All resources</a>
+    </div>
+
+    <main class="main-content">
+
+            <aside>
+                <div class="aside-content">
+                <!-- Elenco dei concetti del glossario; elementi .clickable-item gestiti via JS per il filtraggio/navigazione -->
+                <ul class="concept-list">
+                    <li>1. Concetti</li>
+                    <ul>
+                        <li class="clickable-item">CSS</li>
+                        <li class="clickable-item">Selectors</li>
+                        <li class="clickable-item">Color</li>
+                        <li class="clickable-item">Background</li>
+                        <li class="clickable-item">Font-family</li>
+                        <li class="clickable-item">Text-align</li>
+                        <li class="clickable-item">Margin</li>
+                        <li class="clickable-item">Padding</li>
+                        <li class="clickable-item">Border</li>
+                        <li class="clickable-item">Border-radius</li>
+                        <li class="clickable-item">Box Model</li>
+                        <li class="clickable-item">Box-sizing</li>
+                        <li class="clickable-item">Width</li>
+                        <li class="clickable-item">Height</li>
+                        <li class="clickable-item">Min-width</li>
+                        <li class="clickable-item">Max-width</li>
+                        <li class="clickable-item">Min-height</li>
+                        <li class="clickable-item">Max-height</li>
+                        <li class="clickable-item">Specificity</li>
+                        <li class="clickable-item">Inheritance</li>
+                        <li class="clickable-item">Cascade</li>
+                        <li class="clickable-item">Units of measurement</li>
+                        <li class="clickable-item">Shorthand properties</li>
+                        <li class="clickable-item">Custom Properties</li>
+                        <li class="clickable-item">CSS Variables</li>
+                        <li class="clickable-item">Calc()</li>
+                        <li class="clickable-item">Clamp()</li>
+                        <li class="clickable-item">Min() e Max()</li>
+                        <li class="clickable-item">!important</li>
+                    </ul>
+                    <li>2. Selectors e Combinators</li>
+                    <ul>
+                        <li class="clickable-item">Element selector</li>
+                        <li class="clickable-item">Class selector</li>
+                        <li class="clickable-item">ID selector</li>
+                        <li class="clickable-item">Descendant selector</li>
+                        <li class="clickable-item">Pseudo-classes</li>
+                        <li class="clickable-item">Pseudo-elements</li>
+                        <li class="clickable-item">Combinators</li>
+                        <li class="clickable-item">Attribute selectors</li>
+                        <li class="clickable-item">:Not()</li>
+                        <li class="clickable-item">:root</li>
+                    </ul>
+                    <li>3. Layout e Positioning</li>
+                    <ul>
+                        <li class="clickable-item">Display</li>
+                        <li class="clickable-item">Block</li>
+                        <li class="clickable-item">Inline</li>
+                        <li class="clickable-item">Inline-block</li>
+                        <li class="clickable-item">None</li>
+                        <li class="clickable-item">Position</li>
+                        <li class="clickable-item">Static</li>
+                        <li class="clickable-item">Relative</li>
+                        <li class="clickable-item">Absolute</li>
+                        <li class="clickable-item">Fixed</li>
+                        <li class="clickable-item">Sticky</li>
+                        <li class="clickable-item">Float</li>
+                        <li class="clickable-item">Clear</li>
+                        <li class="clickable-item">Z-index</li>
+                        <li class="clickable-item">Flexbox</li>
+                        <li class="clickable-item">Flex container</li>
+                        <li class="clickable-item">Flex item</li>
+                        <li class="clickable-item">Main axis</li>
+                        <li class="clickable-item">Cross axis</li>
+                        <li class="clickable-item">Flex-direction</li>
+                        <li class="clickable-item">Flex-wrap</li>
+                        <li class="clickable-item">Justify-content</li>
+                        <li class="clickable-item">Align-items</li>
+                        <li class="clickable-item">Align-content</li>
+                        <li class="clickable-item">Align-self</li>
+                        <li class="clickable-item">Flex-grow</li>
+                        <li class="clickable-item">Flex-shrink</li>
+                        <li class="clickable-item">Flex-basis</li>
+                        <li class="clickable-item">Order</li>
+                        <li class="clickable-item">Grid Layout</li>
+                        <li class="clickable-item">Grid container</li>
+                        <li class="clickable-item">Grid items</li>
+                        <li class="clickable-item">FR unit</li>
+                        <li class="clickable-item">Repeat function</li>
+                        <li class="clickable-item">Gap</li>
+                        <li class="clickable-item">Grid-template-columns</li>
+                        <li class="clickable-item">Grid-template-rows</li>
+                        <li class="clickable-item">Grid-template-areas</li>
+                        <li class="clickable-item">Grid-column</li>
+                        <li class="clickable-item">Grid-row</li>
+                        <li class="clickable-item">Minmax()</li>
+                        <li class="clickable-item">Place-items</li>
+                        <li class="clickable-item">Auto-fit e Auto-fill</li>
+                        <li class="clickable-item">Object-fit</li>
+                        <li class="clickable-item">Aspect-ratio</li>
+                    </ul>
+                    <li>4. Tipografia e Testo</li>
+                    <ul>
+                        <li class="clickable-item">Font-size</li>
+                        <li class="clickable-item">Font-weight</li>
+                        <li class="clickable-item">Font-style</li>
+                        <li class="clickable-item">Line-height</li>
+                        <li class="clickable-item">Text-decoration</li>
+                        <li class="clickable-item">Text-transform</li>
+                        <li class="clickable-item">Letter-spacing</li>
+                        <li class="clickable-item">Word-spacing</li>
+                        <li class="clickable-item">White-space</li>
+                        <li class="clickable-item">Text-shadow</li>
+                        <li class="clickable-item">@font-face</li>
+                        <li class="clickable-item">Font-display</li>
+                        <li class="clickable-item">List-style</li>
+                        <li class="clickable-item">Vertical-align</li>
+                    </ul>
+                    <li>5. Colori e Sfondi</li>
+                    <ul>
+                        <li class="clickable-item">RGB</li>
+                        <li class="clickable-item">HEX</li>
+                        <li class="clickable-item">Named colors</li>
+                        <li class="clickable-item">HSL</li>
+                        <li class="clickable-item">Opacity</li>
+                        <li class="clickable-item">RGBA/HSLA</li>
+                        <li class="clickable-item">Gradient</li>
+                        <li class="clickable-item">Background-blend-mode</li>
+                    </ul>
+                    <li>6. Responsive Design</li>
+                    <ul>
+                        <li class="clickable-item">Viewport</li>
+                        <li class="clickable-item">Media Queries</li>
+                        <li class="clickable-item">Mobile First</li>
+                        <li class="clickable-item">Responsive Images</li>
+                        <li class="clickable-item">Container queries</li>
+                        <li class="clickable-item">@supports</li>
+                    </ul>
+                    <li>7. Trasformazioni e Animazioni</li>
+                    <ul>
+                        <li class="clickable-item">Transition</li>
+                        <li class="clickable-item">Transform</li>
+                        <li class="clickable-item">Animation</li>
+                        <li class="clickable-item">Keyframes</li>
+                        <li class="clickable-item">3D Transforms</li>
+                        <li class="clickable-item">Animation timing functions</li>
+                    </ul>
+                    <li>8. Accessibilità e User Experience</li>
+                    <ul>
+                        <li class="clickable-item">Visibility</li>
+                        <li class="clickable-item">Cursor</li>
+                        <li class="clickable-item">Focus Styles</li>
+                        <li class="clickable-item">User-select</li>
+                        <li class="clickable-item">Pointer-events</li>
+                        <li class="clickable-item">Outline</li>
+                        <li class="clickable-item">Scroll-behavior</li>
+                    </ul>
+                    <li>9. Tecniche Avanzate e Ottimizzazione</li>
+                    <ul>
+                        <li class="clickable-item">Vendor prefixes</li>
+                        <li class="clickable-item">Fallback values</li>
+                        <li class="clickable-item">Normalize.css</li>
+                        <li class="clickable-item">Reset CSS</li>
+                        <li class="clickable-item">Critical CSS</li>
+                        <li class="clickable-item">Minificazione</li>
+                    </ul>
+                    <li>10. Preprocessori e Framework</li>
+                    <ul>
+                        <li class="clickable-item">Sass/SCSS</li>
+                        <li class="clickable-item">Less</li>
+                        <li class="clickable-item">Bootstrap</li>
+                        <li class="clickable-item">Tailwind CSS</li>
+                    </ul>
+                    <li>11. Effetti Visivi e Funzionalità Speciali</li>
+                    <ul>
+                        <li class="clickable-item">Box-shadow</li>
+                        <li class="clickable-item">Text-overflow</li>
+                        <li class="clickable-item">Overflow</li>
+                        <li class="clickable-item">Clip-path</li>
+                        <li class="clickable-item">Filter</li>
+                        <li class="clickable-item">Backdrop-filter</li>
+                        <li class="clickable-item">Mask</li>
+                    </ul>
+                    <li>12. API CSS e Integrazione</li>
+                    <ul>
+                        <li class="clickable-item">CSS Houdini</li>
+                        <li class="clickable-item">CSS-in-JS</li>
+                        <li class="clickable-item">CSS Modules</li>
+                    </ul>
+                </ul>
+                </div>
+            </aside>
+            <div>
+                <section>
+                <!-- Dettaglio espandibile che contiene la definizione iniziale del glossario -->
+                <details>
+                    <!-- Summary: titolo breve visibile, include una breve descrizione (span) -->
+                    <summary>CSS<span class="tag-description"
+                            aria-label="descrizione concetto">Linguaggio per stilizzare pagine web</span>
+                        <!-- tag-group indica la categoria della voce; utile per styling/JS -->
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    <!-- Elenco numerato con definizione, scopo, esempi e best practice -->
+                    
+                    <ol>
+                        <li>Cos'è: CSS (Cascading Style Sheets) è un linguaggio di stile utilizzato per descrivere la presentazione di un documento scritto in HTML o XML.</li>
+                        <li>A cosa serve: Serve a separare il contenuto (HTML) dalla presentazione, permettendo di controllare layout, colori, font e altri aspetti visivi di una pagina web.</li>
+                        <li>Quando usarlo: Quando devi definire lo stile e il layout di pagine web.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Selectors<span class="tag-description" aria-label="descrizione concetto">Linguaggio
+                            per stilizzare pagine web</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I selettori CSS sono pattern utilizzati per selezionare e stilizzare uno o più elementi HTML in una pagina web.</li>
+                        <li>A cosa serve: Servono a identificare specifici elementi HTML a cui applicare regole di stile, permettendo una personalizzazione precisa e mirata del layout e dell'aspetto della pagina.</li>
+                        <li>Quando usarlo: Quando devi selezionare elementi specifici per l'applicazione di stili.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Color<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire il colore degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'color' definisce il colore del testo e di alcuni bordi decorativi degli elementi HTML.</li>
+                        <li>A cosa serve: Serve a controllare l'aspetto cromatico del contenuto testuale e di alcuni elementi decorativi, migliorando la leggibilità e l'estetica della pagina web.</li>
+                        <li>Quando usarlo: Quando devi definire il colore del testo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Background<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire lo sfondo degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'background' è una shorthand che permette di definire tutti gli aspetti dello sfondo di un elemento in un'unica dichiarazione.</li>
+                        <li>A cosa serve: Serve a controllare l'aspetto dello sfondo degli elementi HTML, permettendo di creare design visivamente accattivanti e migliorare l'estetica complessiva della pagina web.</li>
+                        <li>Quando usarlo: Quando devi impostare colori di sfondo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Font-Family<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire i caratteri tipografici</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'font-family' specifica la famiglia di caratteri (o una lista prioritizzata di famiglie) da utilizzare per un elemento selezionato.</li>
+                        <li>A cosa serve: Serve a controllare l'aspetto tipografico del testo, influenzando la leggibilità, lo stile e l'atmosfera complessiva del design di una pagina web.</li>
+                        <li>Quando usarlo: Quando devi definire il tipo di carattere principale per il testo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Text-Align<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            allineare il testo orizzontalmente</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'text-align' specifica l'allineamento orizzontale del testo all'interno di un elemento blocco o di una cella di tabella.</li>
+                        <li>A cosa serve: Serve a controllare la disposizione orizzontale del testo, migliorando la leggibilità e l'organizzazione visiva del contenuto all'interno di un elemento.</li>
+                        <li>Quando usarlo: Quando devi allineare il testo a sinistra, a destra, al centro o giustificarlo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Margin<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire lo
+                            spazio esterno agli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'margin' controlla lo spazio esterno attorno a un elemento, creando una distanza tra il bordo dell'elemento e gli elementi adiacenti.</li>
+                        <li>A cosa serve: Serve a gestire la spaziatura e il layout degli elementi in una pagina, permettendo di creare una separazione visiva e migliorare la leggibilità e l'organizzazione del contenuto.</li>
+                        <li>Quando usarlo: Quando devi creare spazio tra elementi adiacenti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Padding<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire
+                            lo spazio interno agli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'padding' controlla lo spazio interno di un elemento, creando una distanza tra il contenuto dell'elemento e il suo bordo.</li>
+                        <li>A cosa serve: Serve a gestire la spaziatura interna degli elementi, migliorando la leggibilità del contenuto e l'estetica complessiva del layout.</li>
+                        <li>Quando usarlo: Quando devi creare spazio attorno al contenuto all'interno di un elemento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Border<span class="tag-description" aria-label="descrizione concetto">Proprietà per
+                            definire i
+                            bordi degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'border' è una shorthand che permette di definire lo stile, la larghezza e il colore del bordo di un elemento in un'unica dichiarazione.</li>
+                        <li>A cosa serve: Serve a creare e personalizzare i bordi degli elementi, migliorando l'aspetto visivo, definendo confini e creando separazioni tra elementi diversi.</li>
+                        <li>Quando usarlo: Quando devi definire visivamente i confini di un elemento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Border-radius<span class="tag-description" aria-label="descrizione concetto">Arrotonda gli angoli di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'border-radius' arrotonda gli angoli del box di un elemento.</li>
+                        <li>A cosa serve: Serve a creare angoli smussati o forme circolari; impostando un raggio pari alla metà di un quadrato si ottiene un cerchio.</li>
+                        <li>Quando usarlo: Quando vuoi bottoni, card o avatar con angoli arrotondati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Box Model<span class="tag-description" aria-label="descrizione concetto">Modello di layout
+                            per
+                            elementi HTML</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il CSS Box Model è un concetto fondamentale che descrive come gli elementi HTML sono rappresentati come box rettangolari, composti da content, padding, border e margin.</li>
+                        <li>A cosa serve: Serve a definire la struttura e il layout degli elementi in una pagina web, controllando le dimensioni, lo spazio interno ed esterno, e i bordi di ogni elemento.</li>
+                        <li>Quando usarlo: Quando devi calcolare le dimensioni effettive degli elementi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Box-sizing<span class="tag-description" aria-label="descrizione concetto">Come si calcolano larghezza e altezza</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'box-sizing' definisce se 'width' e 'height' includono o meno padding e bordo nel calcolo delle dimensioni.</li>
+                        <li>A cosa serve: Con il valore 'border-box' la dimensione dichiarata comprende anche padding e bordo, rendendo i layout molto più prevedibili rispetto al 'content-box' predefinito.</li>
+                        <li>Quando usarlo: Praticamente sempre; è consuetudine impostare 'box-sizing: border-box' su tutti gli elementi all'inizio del foglio di stile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Width<span class="tag-description" aria-label="descrizione concetto">Larghezza di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'width' definisce la larghezza dell'area del contenuto di un elemento.</li>
+                        <li>A cosa serve: Serve a controllare quanto spazio orizzontale occupa un elemento; accetta valori in px, %, em, rem o la parola chiave 'auto'.</li>
+                        <li>Quando usarlo: Quando devi dare a un elemento una larghezza precisa invece di lasciarla determinare al contenuto o al contenitore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Height<span class="tag-description" aria-label="descrizione concetto">Altezza di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'height' definisce l'altezza dell'area del contenuto di un elemento.</li>
+                        <li>A cosa serve: Serve a controllare lo spazio verticale occupato da un elemento; il valore 'auto' lascia che sia il contenuto a determinarla.</li>
+                        <li>Quando usarlo: Quando devi fissare un'altezza precisa; spesso è meglio lasciare 'auto' per evitare che il contenuto trabocchi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min-width<span class="tag-description" aria-label="descrizione concetto">Larghezza minima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'min-width' imposta la larghezza minima che un elemento può assumere.</li>
+                        <li>A cosa serve: Serve a impedire che un elemento diventi più stretto di un certo valore, anche quando lo spazio si riduce.</li>
+                        <li>Quando usarlo: Nei layout responsive, per evitare che colonne o bottoni si comprimano troppo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Max-width<span class="tag-description" aria-label="descrizione concetto">Larghezza massima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'max-width' imposta la larghezza massima che un elemento può raggiungere.</li>
+                        <li>A cosa serve: Serve a limitare la crescita di un elemento; è molto usata per mantenere leggibili i blocchi di testo su schermi larghi.</li>
+                        <li>Quando usarlo: Per contenitori centrali (es. 'max-width: 1200px') o per rendere fluide le immagini con 'max-width: 100%'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min-height<span class="tag-description" aria-label="descrizione concetto">Altezza minima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'min-height' imposta l'altezza minima di un elemento.</li>
+                        <li>A cosa serve: Serve a garantire un'altezza minima anche con poco contenuto, lasciando comunque crescere l'elemento se serve.</li>
+                        <li>Quando usarlo: Per sezioni a tutta pagina (es. 'min-height: 100vh') o per uniformare l'altezza minima di più blocchi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Max-height<span class="tag-description" aria-label="descrizione concetto">Altezza massima</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'max-height' imposta l'altezza massima che un elemento può raggiungere.</li>
+                        <li>A cosa serve: Serve a limitare l'altezza di un elemento; combinata con 'overflow' permette di rendere scorrevoli i contenuti troppo lunghi.</li>
+                        <li>Quando usarlo: Per pannelli a comparsa, aree scrollabili o transizioni di apertura e chiusura.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Specificity<span class="tag-description" aria-label="descrizione concetto">Meccanismo di
+                            priorità dei selettori CSS</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La specificità in CSS è un algoritmo che determina quale regola di stile viene applicata a un elemento quando più regole competono per lo stesso.</li>
+                        <li>A cosa serve: Serve a risolvere conflitti tra regole CSS sovrapposte, garantendo che le proprietà più specifiche o importanti abbiano la precedenza.</li>
+                        <li>Quando usarlo: Quando devi determinare quale stile viene applicato in caso di conflitto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Inheritance<span class="tag-description" aria-label="descrizione concetto">Meccanismo di
+                            trasmissione delle proprietà CSS</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'ereditarietà in CSS è un meccanismo attraverso il quale le proprietà di un elemento genitore vengono trasmesse ai suoi elementi figli, a meno che non siano esplicitamente...</li>
+                        <li>A cosa serve: Serve a semplificare la scrittura del CSS, permettendo di definire stili a livello più alto nella gerarchia del DOM e lasciando che questi si propaghino naturalmente agli elementi...</li>
+                        <li>Quando usarlo: Quando devi applicare stili coerenti a gruppi di elementi correlati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Cascade<span class="tag-description" aria-label="descrizione concetto">Algoritmo di
+                            risoluzione
+                            dei conflitti CSS</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La cascata in CSS è l'algoritmo che determina quali regole di stile vengono applicate a un elemento quando esistono più regole in conflitto.</li>
+                        <li>A cosa serve: Serve a risolvere conflitti tra dichiarazioni CSS multiple, stabilendo un ordine di priorità basato su origine, specificità e ordine di apparizione delle regole.</li>
+                        <li>Quando usarlo: Quando devi determinare quale stile viene applicato in caso di regole sovrapposte.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Units of Measurement<span class="tag-description" aria-label="descrizione concetto">Unità
+                            per
+                            esprimere dimensioni e valori in CSS</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le unità di misura in CSS sono valori utilizzati per specificare dimensioni, distanze e altre proprietà numeriche degli elementi in una pagina web.</li>
+                        <li>A cosa serve: Servono a definire in modo preciso e flessibile le dimensioni e le proporzioni degli elementi, consentendo layout responsivi e adattabili a diversi dispositivi e contesti di...</li>
+                        <li>Quando usarlo: Quando devi definire dimensioni di elementi (larghezza, altezza, margini, padding).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Shorthand Properties<span class="tag-description"
+                            aria-label="descrizione concetto">Proprietà
+                            CSS che combinano più valori in una singola dichiarazione</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le proprietà abbreviate (shorthand properties) in CSS sono proprietà che permettono di impostare i valori di più proprietà correlate in un'unica dichiarazione, semplificando e...</li>
+                        <li>A cosa serve: Servono a rendere il codice CSS più conciso, leggibile e facile da mantenere, riducendo la ripetizione e permettendo una rapida definizione di stili complessi.</li>
+                        <li>Quando usarlo: Quando devi definire rapidamente stili per bordi, margini, padding e font.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Custom Properties<span class="tag-description" aria-label="descrizione concetto">Variabili
+                            definite dall'utente per valori CSS riutilizzabili</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le Custom Properties, anche note come variabili CSS, sono entità definite dall'utente che contengono valori specifici da riutilizzare all'interno di un documento CSS.</li>
+                        <li>A cosa serve: Servono a creare valori riutilizzabili in CSS, migliorando la manutenibilità, la coerenza e la flessibilità del codice, permettendo anche modifiche dinamiche attraverso JavaScript.</li>
+                        <li>Quando usarlo: Quando devi definire colori, dimensioni e altri valori riutilizzabili.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>CSS Variables<span class="tag-description" aria-label="descrizione concetto">Variabili
+                            native
+                            di CSS per valori riutilizzabili e dinamici</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le CSS Variables, ufficialmente chiamate Custom Properties, sono entità che permettono di memorizzare valori specifici da riutilizzare in tutto un documento CSS, offrendo...</li>
+                        <li>A cosa serve: Servono a creare codice CSS più manutenibile, modulare e dinamico, permettendo di definire valori una volta e riutilizzarli in tutto il foglio di stile, con la possibilità di...</li>
+                        <li>Quando usarlo: Quando devi centralizzare la definizione di colori, dimensioni e altri valori ripetuti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Calc()<span class="tag-description" aria-label="descrizione concetto">Funzione CSS per
+                            calcoli
+                            dinamici di valori</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La funzione calc() in CSS permette di eseguire calcoli matematici per determinare valori di proprietà CSS, consentendo l'uso di operazioni aritmetiche con unità di misura diverse.</li>
+                        <li>A cosa serve: Serve a creare layout flessibili e responsivi, combinando unità di misura diverse e permettendo calcoli dinamici che non sarebbero possibili con valori statici.</li>
+                        <li>Quando usarlo: Quando devi combinare unità di misura diverse (es.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Clamp()<span class="tag-description" aria-label="descrizione concetto">Valore fluido tra un minimo e un massimo</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La funzione CSS 'clamp()' restituisce un valore vincolato tra un minimo e un massimo, partendo da un valore preferito centrale: clamp(minimo, ideale, massimo).</li>
+                        <li>A cosa serve: Serve a creare dimensioni fluide (tipografia, spaziature, larghezze) che si adattano al viewport senza mai uscire dai limiti definiti.</li>
+                        <li>Quando usarlo: Per la tipografia responsive, ad esempio 'font-size: clamp(1rem, 2.5vw, 1.5rem)', evitando molte media query.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Min() e Max()<span class="tag-description" aria-label="descrizione concetto">Scelgono il valore minore o maggiore</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Avanzati</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: Le funzioni CSS 'min()' e 'max()' restituiscono rispettivamente il più piccolo e il più grande tra i valori passati come argomenti.</li>
+                        <li>A cosa serve: Servono a creare valori adattivi combinando unità diverse, ad esempio limitando una larghezza fluida.</li>
+                        <li>Quando usarlo: Ad esempio 'width: min(100%, 600px)' per una larghezza che non superi mai 600px ma si riduca sugli schermi piccoli.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>!important<span class="tag-description" aria-label="descrizione concetto">Forza la priorità di una regola</span>
+                        <div class="tag-group" aria-label="gruppo">1. Concetti Intermedi</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: '!important' è un'annotazione che si aggiunge a una dichiarazione CSS per darle la massima priorità, scavalcando la normale specificità.</li>
+                        <li>A cosa serve: Serve a forzare l'applicazione di una regola anche quando altre più specifiche entrerebbero in conflitto.</li>
+                        <li>Quando usarlo: Il meno possibile: solo come ultima risorsa o per sovrascrivere stili di terze parti, perché rende il CSS difficile da mantenere.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Element Selector<span class="tag-description" aria-label="descrizione concetto">Selettore
+                            CSS
+                            per il target di elementi HTML specifici</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un selettore di elemento in CSS è un tipo di selettore per il target di tutti gli elementi HTML di un tipo specifico in un documento.</li>
+                        <li>A cosa serve: Serve a applicare stili a tutti gli elementi di un determinato tipo HTML, fornendo una base per la formattazione generale del documento.</li>
+                        <li>Quando usarlo: Quando devi definire stili di base per elementi HTML comuni.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Class Selector<span class="tag-description" aria-label="descrizione concetto">Selettore CSS
+                            per
+                            il target degli elementi con una classe specifica</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un selettore di classe in CSS è un tipo di selettore per il target di elementi HTML che hanno un attributo class specifico.</li>
+                        <li>A cosa serve: Serve a applicare stili a gruppi specifici di elementi, indipendentemente dal loro tipo HTML, permettendo una maggiore flessibilità e riusabilità nel design.</li>
+                        <li>Quando usarlo: Quando devi applicare stili a gruppi specifici di elementi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>ID Selector<span class="tag-description" aria-label="descrizione concetto">Selettore CSS
+                            per il
+                            target di un elemento con un ID specifico</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un selettore di ID in CSS è un tipo di selettore per il target di un elemento HTML specifico e unico che ha un attributo id corrispondente.</li>
+                        <li>A cosa serve: Serve a applicare stili a un elemento unico e specifico all'interno di una pagina HTML, permettendo una personalizzazione mirata e ad alta specificità.</li>
+                        <li>Quando usarlo: Quando devi stilizzare elementi unici come header, footer, o sidebar.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Descendant Selector<span class="tag-description"
+                            aria-label="descrizione concetto">Selettore
+                            CSS per il target di elementi annidati all'interno di altri elementi</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un selettore discendente in CSS è un tipo di selettore per il target di elementi che sono discendenti (figli, nipoti, ecc.) di un altro elemento specificato, indipendentemente dal...</li>
+                        <li>A cosa serve: Serve a applicare stili a elementi specifici basandosi sulla loro posizione nella struttura del documento HTML, permettendo una maggiore precisione e controllo nella stilizzazione.</li>
+                        <li>Quando usarlo: Quando devi stilizzare elementi all'interno di contenitori specifici.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Pseudo-classes<span class="tag-description" aria-label="descrizione concetto">Selettori CSS
+                            per
+                            il target di elementi in stati o condizioni specifiche</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le pseudo-classi in CSS sono parole chiave che possono essere aggiunte ai selettori per specificare uno stato particolare o una relazione degli elementi selezionati.</li>
+                        <li>A cosa serve: Servono a applicare stili a elementi in condizioni specifiche o stati particolari, permettendo una maggiore interattività e dinamicità senza la necessità di modificare il markup...</li>
+                        <li>Quando usarlo: Quando devi stilizzare elementi in stati di interazione (hover, focus, active).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Pseudo-elements<span class="tag-description" aria-label="descrizione concetto">Selettori
+                            CSS
+                            per il target di parti specifiche di un elemento o per la creazione di contenuti
+                            virtuali</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Intermedi</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I pseudo-elementi in CSS sono parole chiave che possono essere aggiunte ai selettori per stilizzare parti specifiche di un elemento o per creare contenuti virtuali senza...</li>
+                        <li>A cosa serve: Servono a manipolare e stilizzare parti di un elemento che non sono direttamente accessibili tramite il DOM, o per aggiungere contenuti decorativi senza alterare la struttura HTML.</li>
+                        <li>Quando usarlo: Quando devi stilizzare la prima lettera o riga di un elemento di testo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Combinators<span class="tag-description" aria-label="descrizione concetto">Selettori CSS
+                            per il
+                            target di elementi basato sulla loro relazione nel DOM</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I combinatori in CSS sono simboli speciali utilizzati per esprimere relazioni tra selettori, permettendo di selezionare elementi in base alla loro posizione nel Document Object...</li>
+                        <li>A cosa serve: Servono a creare selettori più precisi e potenti, consentendo di applicare stili a elementi basati sulla loro relazione strutturale con altri elementi, senza la necessità di...</li>
+                        <li>Quando usarlo: Quando devi selezionare elementi figli diretti di un elemento genitore.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Attribute Selectors<span class="tag-description"
+                            aria-label="descrizione concetto">Selettori
+                            CSS per il target di elementi basato sui loro attributi HTML</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I selettori di attributo in CSS sono selettori speciali che permettono di selezionare elementi HTML basandosi sulla presenza o sul valore dei loro attributi.</li>
+                        <li>A cosa serve: Servono a applicare stili a elementi con attributi specifici o valori di attributi particolari, offrendo una maggiore flessibilità e precisione nella selezione degli elementi...</li>
+                        <li>Quando usarlo: Quando devi selezionare elementi con attributi specifici.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>:Not()<span class="tag-description" aria-label="descrizione concetto">Pseudo-classe CSS per
+                            il
+                            target di elementi che non corrispondono a un selettore specifico</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Avanzati</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: not() è una pseudo-classe in CSS che seleziona elementi che non corrispondono a un selettore o a una lista di selettori specificati come argomento.</li>
+                        <li>A cosa serve: Serve a escludere elementi specifici da una selezione, permettendo di applicare stili a tutti gli elementi tranne quelli che soddisfano determinati criteri.</li>
+                        <li>Quando usarlo: Quando devi applicare stili a tutti gli elementi tranne quelli specificati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>:root<span class="tag-description" aria-label="descrizione concetto">Selettore della radice del documento</span>
+                        <div class="tag-group" aria-label="gruppo">2. Selettori e Combinatori Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La pseudo-classe ':root' seleziona l'elemento radice del documento, che in HTML corrisponde all'elemento &lt;html&gt;.</li>
+                        <li>A cosa serve: Serve soprattutto a dichiarare le variabili CSS (custom properties) in un punto globale accessibile da tutta la pagina.</li>
+                        <li>Quando usarlo: Quando vuoi definire un tema o valori riutilizzabili, ad esempio ':root { --colore-primario: #00A8FF; }'.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Display<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per il
+                            controllo del comportamento di rendering degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Posizionamento Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà display in CSS determina come un elemento deve essere visualizzato nel layout di una pagina, definendo il suo comportamento di rendering e il suo ruolo nel flusso del...</li>
+                        <li>A cosa serve: Serve a controllare il tipo di box di rendering generato da un elemento, influenzando il suo posizionamento, la sua interazione con altri elementi e il suo comportamento nel...</li>
+                        <li>Quando usarlo: Quando devi definire se un elemento è trattato come blocco o inline.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Block<span class="tag-description" aria-label="descrizione concetto">Valore della proprietà
+                            display per la creazione di box a livello di blocco</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Posizionamento Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Block è un valore della proprietà display in CSS che crea un box a livello di blocco, occupando tutto lo spazio orizzontale disponibile e iniziando su una nuova riga.</li>
+                        <li>A cosa serve: Serve a creare elementi che formano blocchi distinti nel layout, controllando il flusso del documento e fornendo una base per la strutturazione del contenuto della pagina.</li>
+                        <li>Quando usarlo: Quando devi creare sezioni distinte nel layout della pagina.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Inline<span class="tag-description" aria-label="descrizione concetto">Valore della
+                            proprietà
+                            display per la creazione di elementi in linea con il testo</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Posizionamento Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Inline è un valore della proprietà display in CSS che crea un box inline, permettendo all'elemento di fluire con il testo circostante e di occupare solo lo spazio necessario al...</li>
+                        <li>A cosa serve: Serve a creare elementi che si comportano come parte del flusso del testo, consentendo di incorporare contenuti all'interno di paragrafi o altri blocchi di testo senza...</li>
+                        <li>Quando usarlo: Quando devi incorporare elementi all'interno di linee di testo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Inline-block<span class="tag-description" aria-label="descrizione concetto">Valore della
+                            proprietà display che combina caratteristiche di elementi inline e block</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Posizionamento Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Inline-block è un valore della proprietà display in CSS che crea un box che è inline (scorre con il testo circostante) ma si comporta come un elemento block in termini di...</li>
+                        <li>A cosa serve: Serve a creare elementi che fluiscono come testo inline ma mantengono le caratteristiche di formattazione dei blocchi, permettendo layout flessibili e il controllo preciso delle...</li>
+                        <li>Quando usarlo: Quando devi creare layout orizzontali con elementi dimensionabili.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>None<span class="tag-description" aria-label="descrizione concetto">Valore della proprietà
+                            display per nascondere completamente un elemento dal rendering</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Posizionamento Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: None è un valore della proprietà display in CSS che rimuove completamente l'elemento dal flusso del documento, facendo sì che non venga renderizzato e non occupi spazio nella...</li>
+                        <li>A cosa serve: Serve a nascondere elementi dalla visualizzazione e dal layout della pagina, permettendo di controllare dinamicamente la visibilità dei contenuti senza rimuoverli dal DOM.</li>
+                        <li>Quando usarlo: Quando devi nascondere elementi temporaneamente o condizionalmente.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Position<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            controllare il metodo di posizionamento degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà position in CSS determina il metodo di posizionamento utilizzato per un elemento all'interno del suo contesto di formattazione.</li>
+                        <li>A cosa serve: Serve a controllare come un elemento è posizionato nel layout della pagina, permettendo posizionamenti precisi, sovrapposti o relativi ad altri elementi.</li>
+                        <li>Quando usarlo: Quando devi creare layout complessi e sovrapposti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Static<span class="tag-description" aria-label="descrizione concetto">Valore predefinito
+                            della
+                            proprietà position per il posizionamento normale nel flusso del documento</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Static è il valore predefinito della proprietà position in CSS, che posiziona gli elementi secondo il normale flusso del documento, senza alcun posizionamento speciale.</li>
+                        <li>A cosa serve: Serve a mantenere gli elementi nel loro ordine naturale all'interno del flusso del documento, senza alcuna manipolazione di posizione.</li>
+                        <li>Quando usarlo: Quando devi mantenere il layout predefinito della pagina.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Relative<span class="tag-description" aria-label="descrizione concetto">Valore della
+                            proprietà
+                            position per il posizionamento relativo alla posizione normale dell'elemento</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Relative è un valore della proprietà position in CSS che posiziona un elemento relativamente alla sua posizione normale nel flusso del documento, permettendo spostamenti senza...</li>
+                        <li>A cosa serve: Serve a spostare un elemento dalla sua posizione originale mantenendo il suo spazio nel layout, creando un contesto per elementi figli con posizione assoluta e permettendo...</li>
+                        <li>Quando usarlo: Quando devi spostare leggermente elementi dalla loro posizione originale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Absolute<span class="tag-description" aria-label="descrizione concetto">Valore della
+                            proprietà
+                            position per il posizionamento assoluto rispetto all'antenato posizionato più vicino</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Absolute è un valore della proprietà position in CSS che rimuove l'elemento dal flusso normale del documento e lo posiziona in relazione al suo antenato posizionato più vicino o...</li>
+                        <li>A cosa serve: Serve a posizionare elementi con precisione all'interno di un contesto specifico, permettendo sovrapposizioni, layout complessi e posizionamenti indipendenti dal flusso del...</li>
+                        <li>Quando usarlo: Quando devi creare elementi sovrapposti come modal, tooltip, o menu a discesa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Fixed<span class="tag-description" aria-label="descrizione concetto">Valore della proprietà
+                            position per il posizionamento fisso rispetto al viewport</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Fixed è un valore della proprietà position in CSS che posiziona un elemento in modo fisso rispetto al viewport, mantenendolo nella stessa posizione anche durante lo scorrimento...</li>
+                        <li>A cosa serve: Serve a creare elementi che rimangono sempre visibili e in una posizione specifica sullo schermo, indipendentemente dallo scorrimento della pagina, utile per elementi di...</li>
+                        <li>Quando usarlo: Quando devi creare barre di navigazione fisse in cima o in fondo alla pagina.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Sticky<span class="tag-description" aria-label="descrizione concetto">Valore della
+                            proprietà
+                            position per il posizionamento ibrido tra relative e fixed</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Sticky è un valore della proprietà position in CSS che permette a un elemento di alternare tra posizionamento relativo e fisso, a seconda della posizione di scorrimento del...</li>
+                        <li>A cosa serve: Serve a creare elementi che rimangono nella loro posizione normale fino a raggiungere un punto specifico durante lo scorrimento, dopodiché si comportano come elementi fissi fino a...</li>
+                        <li>Quando usarlo: Quando devi creare intestazioni di sezione che rimangono visibili durante lo scorrimento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Float<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            posizionare elementi a sinistra o a destra del loro contenitore</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Float è una proprietà CSS che rimuove un elemento dal normale flusso del documento e lo posiziona a sinistra o a destra del suo contenitore, permettendo al contenuto circostante...</li>
+                        <li>A cosa serve: Serve principalmente a creare layout multi-colonna, posizionare immagini all'interno del testo, e implementare design che richiedono elementi affiancati con testo che li circonda.</li>
+                        <li>Quando usarlo: Quando devi creare layout a colonne senza l'uso di tabelle.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Clear<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            controllare il comportamento degli elementi rispetto agli elementi flottanti</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Clear è una proprietà CSS che specifica se un elemento può essere posizionato accanto a elementi flottanti che lo precedono, o se deve essere spostato sotto di essi (cioè "pulito"...</li>
+                        <li>A cosa serve: Serve a controllare il flusso del layout in presenza di elementi flottanti, prevenendo sovrapposizioni indesiderate e gestendo correttamente il posizionamento degli elementi non...</li>
+                        <li>Quando usarlo: Quando devi prevenire che elementi si affianchino a elementi flottanti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Z-index<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            controllare l'ordine di sovrapposizione degli elementi</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Z-index è una proprietà CSS che specifica l'ordine di impilamento di un elemento lungo l'asse Z (profondità) rispetto ad altri elementi sovrapposti all'interno dello stesso...</li>
+                        <li>A cosa serve: Serve a controllare quale elemento appare sopra gli altri quando si sovrappongono, permettendo di creare layout complessi con elementi sovrapposti e gestire la visibilità di...</li>
+                        <li>Quando usarlo: Quando devi gestire la sovrapposizione di elementi posizionati (non static).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flexbox<span class="tag-description" aria-label="descrizione concetto">Modulo di layout CSS
+                            per
+                            la creazione di design flessibili e responsivi</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Flexbox, o Flexible Box Layout, è un modulo di layout CSS progettato per facilitare la creazione di design flessibili e efficienti, distribuendo lo spazio e allineando gli...</li>
+                        <li>A cosa serve: Serve a creare layout responsivi e adattabili, semplificando la distribuzione dello spazio tra elementi, l'allineamento e l'ordinamento degli elementi, e la gestione di dimensioni...</li>
+                        <li>Quando usarlo: Quando devi creare layout a una dimensione (riga o colonna).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex Container<span class="tag-description" aria-label="descrizione concetto">Elemento
+                            genitore
+                            che definisce un contesto flex per i suoi figli diretti</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un Flex Container è un elemento HTML che ha la proprietà display impostata su flex o inline-flex, creando un contesto di formattazione flex per i suoi elementi figli diretti, noti...</li>
+                        <li>A cosa serve: Serve a creare un ambiente di layout flessibile in cui gli elementi figli possono essere organizzati e dimensionati dinamicamente, permettendo una disposizione e un allineamento...</li>
+                        <li>Quando usarlo: Quando devi creare layout a una dimensione (riga o colonna).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex Item<span class="tag-description" aria-label="descrizione concetto">Elemento figlio
+                            diretto di un flex container che partecipa al layout flex</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un Flex Item è un elemento figlio diretto di un flex container che partecipa automaticamente al layout flex, adattandosi e ridimensionandosi in base alle proprietà del container e...</li>
+                        <li>A cosa serve: Serve a creare elementi flessibili all'interno di un layout Flexbox, permettendo un controllo preciso sulla loro crescita, riduzione, allineamento e ordine, indipendentemente...</li>
+                        <li>Quando usarlo: Quando devi creare elementi che si adattano dinamicamente allo spazio disponibile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Main Axis<span class="tag-description" aria-label="descrizione concetto">Asse principale
+                            lungo
+                            il quale vengono disposti i flex items in un flex container</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il Main Axis in Flexbox è l'asse primario lungo il quale vengono disposti i flex items all'interno di un flex container.</li>
+                        <li>A cosa serve: Serve a definire la direzione principale del layout in un flex container, determinando come i flex items vengono posizionati e come lo spazio viene distribuito tra di essi.</li>
+                        <li>Quando usarlo: Quando devi definire l'orientamento principale del layout (orizzontale o verticale).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Cross Axis<span class="tag-description" aria-label="descrizione concetto">Asse
+                            perpendicolare
+                            al main axis in un flex container</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il Cross Axis in Flexbox è l'asse perpendicolare al main axis all'interno di un flex container.</li>
+                        <li>A cosa serve: Serve a definire l'allineamento e il posizionamento secondario dei flex items, permettendo il controllo della disposizione degli elementi perpendicolarmente alla direzione...</li>
+                        <li>Quando usarlo: Quando devi allineare i flex items perpendicolarmente alla direzione principale del layout.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-direction<span class="tag-description" aria-label="descrizione concetto">Direzione degli elementi in un flex container</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-direction' definisce la direzione dell'asse principale di un flex container, cioè come vengono disposti i suoi figli.</li>
+                        <li>A cosa serve: Serve a scegliere se gli elementi si dispongono in riga ('row') o in colonna ('column'), eventualmente in ordine inverso.</li>
+                        <li>Quando usarlo: Quando devi impostare l'orientamento di un layout flessibile, ad esempio una navbar in riga o una lista in colonna.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-wrap<span class="tag-description" aria-label="descrizione concetto">Manda gli elementi a capo su più righe</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-wrap' stabilisce se i flex item devono restare su una sola riga o andare a capo su più righe.</li>
+                        <li>A cosa serve: Serve a evitare che gli elementi si comprimano troppo, permettendo loro di scorrere su nuove righe quando lo spazio finisce.</li>
+                        <li>Quando usarlo: Con 'flex-wrap: wrap' per griglie fluide di card o tag che devono adattarsi alla larghezza disponibile.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Justify-content<span class="tag-description" aria-label="descrizione concetto">Allineamento lungo l'asse principale</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'justify-content' allinea i flex item lungo l'asse principale del container.</li>
+                        <li>A cosa serve: Serve a distribuire lo spazio lungo l'asse principale con valori come 'center', 'space-between' e 'space-around'.</li>
+                        <li>Quando usarlo: Quando devi centrare gli elementi o distribuire lo spazio tra di essi, ad esempio in una barra di navigazione.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-items<span class="tag-description" aria-label="descrizione concetto">Allineamento lungo l'asse trasversale</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-items' allinea i flex item lungo l'asse trasversale, perpendicolare a quello principale.</li>
+                        <li>A cosa serve: Serve a controllare l'allineamento trasversale (in un layout in riga, quello verticale) con valori come 'center', 'flex-start' e 'stretch'.</li>
+                        <li>Quando usarlo: Quando devi allineare elementi di altezze diverse, ad esempio centrarli con 'align-items: center'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-content<span class="tag-description" aria-label="descrizione concetto">Allinea più righe di flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-content' distribuisce lo spazio tra le righe di un flex container quando gli elementi occupano più righe.</li>
+                        <li>A cosa serve: Serve ad allineare l'insieme delle righe lungo l'asse trasversale; ha effetto solo con 'flex-wrap: wrap' e più righe presenti.</li>
+                        <li>Quando usarlo: Quando un container flessibile ha più righe e vuoi controllarne la spaziatura complessiva.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Align-self<span class="tag-description" aria-label="descrizione concetto">Allineamento del singolo flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'align-self' permette a un singolo flex item di sovrascrivere l'allineamento trasversale definito da 'align-items'.</li>
+                        <li>A cosa serve: Serve a dare a un elemento specifico un allineamento diverso dagli altri del container.</li>
+                        <li>Quando usarlo: Quando un solo elemento deve comportarsi diversamente, ad esempio con 'align-self: flex-end'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-grow<span class="tag-description" aria-label="descrizione concetto">Fattore di crescita di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-grow' definisce quanto un flex item può crescere rispetto agli altri per occupare lo spazio libero.</li>
+                        <li>A cosa serve: Serve a distribuire lo spazio disponibile in proporzione: un valore più alto fa crescere di più quell'elemento.</li>
+                        <li>Quando usarlo: Quando vuoi che un elemento occupi tutto lo spazio rimanente (es. 'flex-grow: 1'); fa parte della shorthand 'flex'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-shrink<span class="tag-description" aria-label="descrizione concetto">Fattore di restringimento di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-shrink' definisce quanto un flex item può restringersi quando lo spazio non basta.</li>
+                        <li>A cosa serve: Serve a controllare quali elementi si comprimono e in che misura; con valore '0' un elemento non si restringe mai.</li>
+                        <li>Quando usarlo: Quando vuoi impedire o consentire la compressione di un elemento in spazi ristretti; fa parte della shorthand 'flex'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Flex-basis<span class="tag-description" aria-label="descrizione concetto">Dimensione iniziale di un flex item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'flex-basis' definisce la dimensione di base di un flex item prima che lo spazio venga distribuito.</li>
+                        <li>A cosa serve: Serve a impostare la dimensione di partenza dell'elemento lungo l'asse principale, prima dell'effetto di grow e shrink.</li>
+                        <li>Quando usarlo: Quando vuoi una dimensione di partenza precisa nella shorthand 'flex' (es. 'flex: 1 1 200px').</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Order<span class="tag-description" aria-label="descrizione concetto">Ordine di visualizzazione degli item</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'order' cambia l'ordine in cui i flex (o grid) item vengono visualizzati, senza modificare l'ordine nell'HTML.</li>
+                        <li>A cosa serve: Serve a riordinare visivamente gli elementi; il valore predefinito è 0 e valori più bassi appaiono prima.</li>
+                        <li>Quando usarlo: Con parsimonia, per riordinare elementi nei layout responsive; attenzione perché disallinea l'ordine visivo da quello di lettura e accessibilità.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid Layout<span class="tag-description" aria-label="descrizione concetto">Sistema di
+                            layout
+                            bidimensionale per creare strutture complesse e responsive</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: CSS Grid Layout è un sistema di layout bidimensionale che permette di creare griglie complesse di righe e colonne, offrendo un controllo preciso sul posizionamento e...</li>
+                        <li>A cosa serve: Serve a creare layout web complessi e responsivi, permettendo di definire aree di contenuto in modo flessibile e di gestire efficacemente lo spazio sia in orizzontale che in...</li>
+                        <li>Quando usarlo: Quando devi creare layout di pagina complessi e responsive.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid Container<span class="tag-description" aria-label="descrizione concetto">Elemento che
+                            definisce una griglia CSS e contiene gli elementi della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un Grid Container è un elemento HTML che ha la proprietà display impostata su grid o inline-grid, creando un contesto di formattazione grid per i suoi elementi figli diretti, noti...</li>
+                        <li>A cosa serve: Serve a stabilire una griglia bidimensionale in cui posizionare e allineare gli elementi figli, permettendo la creazione di layout complessi e responsivi con un controllo preciso...</li>
+                        <li>Quando usarlo: Quando devi creare layout di pagina strutturati e flessibili.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid Items<span class="tag-description" aria-label="descrizione concetto">Elementi figli
+                            diretti di un grid container che partecipano al layout della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I Grid Items sono gli elementi figli diretti di un grid container che partecipano automaticamente al layout della griglia CSS, posizionandosi e dimensionandosi in base alle...</li>
+                        <li>A cosa serve: Servono a organizzare e strutturare il contenuto all'interno di una griglia CSS, permettendo un controllo preciso sul posizionamento, dimensionamento e allineamento degli elementi...</li>
+                        <li>Quando usarlo: Quando devi posizionare elementi specifici in celle o aree della griglia.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>FR Unit<span class="tag-description" aria-label="descrizione concetto">Unità di misura
+                            flessibile per la distribuzione dello spazio in CSS Grid</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: L'unità FR (Fraction) in CSS Grid è un'unità di misura flessibile che rappresenta una frazione dello spazio disponibile all'interno di un grid container, permettendo la...</li>
+                        <li>A cosa serve: Serve a creare layout flessibili e responsivi in CSS Grid, permettendo di distribuire lo spazio disponibile in modo proporzionale tra colonne e righe, senza la necessità di...</li>
+                        <li>Quando usarlo: Quando devi definire colonne o righe flessibili in una griglia CSS.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Repeat Function<span class="tag-description" aria-label="descrizione concetto">Funzione CSS
+                            per
+                            ripetere pattern di tracce in una griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La funzione repeat() in CSS Grid è un'utilità che permette di ripetere un pattern di tracce (colonne o righe) un numero specifico di volte o in base allo spazio disponibile,...</li>
+                        <li>A cosa serve: Serve a creare layout di griglia flessibili e responsivi in modo più conciso, permettendo di definire facilmente strutture ripetitive e adattabili senza dover specificare...</li>
+                        <li>Quando usarlo: Quando devi creare griglie con un numero fisso di colonne o righe identiche.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Gap<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            definire
+                            lo spazio tra righe e colonne in Grid e Flexbox</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà gap in CSS è una shorthand che definisce lo spazio tra le righe e le colonne in un layout Grid o Flexbox, permettendo di controllare facilmente la spaziatura tra gli...</li>
+                        <li>A cosa serve: Serve a creare spazi uniformi e coerenti tra gli elementi in layout Grid e Flexbox, semplificando la gestione della spaziatura e migliorando la leggibilità e l'estetica del design.</li>
+                        <li>Quando usarlo: Quando devi definire spazi uniformi tra righe e colonne in Grid.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-columns<span class="tag-description" aria-label="descrizione concetto">Definisce le colonne della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-columns' definisce numero e dimensione delle colonne di una griglia.</li>
+                        <li>A cosa serve: Serve a impostare la struttura orizzontale della griglia, usando px, %, unità 'fr' o funzioni come 'repeat()' e 'minmax()'.</li>
+                        <li>Quando usarlo: Su un grid container, per stabilire quante colonne creare e come dimensionarle.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-rows<span class="tag-description" aria-label="descrizione concetto">Definisce le righe della griglia</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-rows' definisce numero e dimensione delle righe di una griglia.</li>
+                        <li>A cosa serve: Serve a impostare la struttura verticale della griglia; se non specificata, le righe si creano automaticamente in base al contenuto.</li>
+                        <li>Quando usarlo: Quando vuoi righe di altezze precise anziché lasciarle dimensionare al contenuto.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-template-areas<span class="tag-description" aria-label="descrizione concetto">Layout tramite aree nominate</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-template-areas' definisce il layout di una griglia assegnando dei nomi alle aree, disegnandolo con delle stringhe.</li>
+                        <li>A cosa serve: Serve a posizionare gli elementi per nome (tramite 'grid-area'), rendendo il layout molto leggibile.</li>
+                        <li>Quando usarlo: Per layout di pagina strutturati (header, sidebar, main, footer) facili da riorganizzare nelle media query.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-column<span class="tag-description" aria-label="descrizione concetto">Posiziona un item tra le colonne</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-column' è una shorthand che indica su quali linee di colonna inizia e finisce un grid item.</li>
+                        <li>A cosa serve: Serve a posizionare ed estendere un elemento su una o più colonne (es. 'grid-column: 1 / 3' oppure 'grid-column: span 2').</li>
+                        <li>Quando usarlo: Quando un elemento deve occupare più colonne o partire da una colonna precisa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Grid-row<span class="tag-description" aria-label="descrizione concetto">Posiziona un item tra le righe</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'grid-row' è una shorthand che indica su quali linee di riga inizia e finisce un grid item.</li>
+                        <li>A cosa serve: Serve a posizionare ed estendere un elemento su una o più righe (es. 'grid-row: 1 / 3' oppure 'grid-row: span 2').</li>
+                        <li>Quando usarlo: Quando un elemento deve occupare più righe o partire da una riga precisa.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Minmax()<span class="tag-description" aria-label="descrizione concetto">Intervallo di dimensione per le tracce</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La funzione CSS 'minmax()' definisce un intervallo di dimensione, con un valore minimo e uno massimo, per una traccia di griglia.</li>
+                        <li>A cosa serve: Serve a creare colonne o righe che restano tra due limiti, ad esempio 'minmax(200px, 1fr)'.</li>
+                        <li>Quando usarlo: Nelle griglie responsive, tipicamente dentro 'repeat()' per colonne fluide ma con una larghezza minima.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Place-items<span class="tag-description" aria-label="descrizione concetto">Shorthand per align-items e justify-items</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'place-items' è una shorthand che imposta insieme 'align-items' e 'justify-items' in un grid container.</li>
+                        <li>A cosa serve: Serve ad allineare gli elementi contemporaneamente sui due assi con una sola dichiarazione.</li>
+                        <li>Quando usarlo: Per centrare rapidamente il contenuto delle celle, ad esempio con 'place-items: center'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Auto-fit e Auto-fill<span class="tag-description" aria-label="descrizione concetto">Colonne di griglia che si adattano da sole</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Avanzato</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: 'auto-fit' e 'auto-fill' sono parole chiave usate dentro 'repeat()' per creare automaticamente il numero di tracce che entrano nello spazio disponibile.</li>
+                        <li>A cosa serve: Servono a costruire griglie responsive senza media query; 'auto-fill' mantiene le tracce vuote, 'auto-fit' le collassa.</li>
+                        <li>Quando usarlo: Con 'repeat(auto-fit, minmax(200px, 1fr))' per griglie di card che si riorganizzano da sole.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Object-fit<span class="tag-description" aria-label="descrizione concetto">Come un'immagine riempie il suo box</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'object-fit' definisce come un contenuto sostituito (come un'immagine o un video) si adatta al proprio box.</li>
+                        <li>A cosa serve: Serve a controllare il ridimensionamento evitando deformazioni, con valori come 'cover' (riempie ritagliando) e 'contain' (mostra tutto).</li>
+                        <li>Quando usarlo: Per immagini e video di dimensioni fisse che devono riempire un contenitore senza distorcersi, spesso con 'object-fit: cover'.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Aspect-ratio<span class="tag-description" aria-label="descrizione concetto">Mantiene un rapporto tra larghezza e altezza</span>
+                        <div class="tag-group" aria-label="gruppo">3. Layout e Positionamento Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'aspect-ratio' definisce il rapporto tra larghezza e altezza di un elemento.</li>
+                        <li>A cosa serve: Serve a mantenere proporzioni costanti (es. '16 / 9') senza dover calcolare manualmente l'altezza.</li>
+                        <li>Quando usarlo: Per box di video, immagini o anteprime che devono conservare un rapporto fisso al variare della larghezza.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Font-size<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            definire la dimensione del carattere del testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà font-size in CSS definisce la dimensione del carattere per il testo di un elemento, controllando la grandezza con cui il contenuto testuale viene visualizzato.</li>
+                        <li>A cosa serve: Serve a controllare la leggibilità, l'enfasi e la gerarchia visiva del testo all'interno di un documento web, permettendo di adattare le dimensioni del testo per diversi...</li>
+                        <li>Quando usarlo: Quando devi definire la dimensione base del testo per il documento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Font-weight<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            definire lo spessore o la grassezza del carattere</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà font-weight in CSS specifica lo spessore o la grassezza dei caratteri del testo, controllando quanto "bold" o leggero appare il testo all'interno di un elemento.</li>
+                        <li>A cosa serve: Serve a creare contrasto e gerarchia visiva nel testo, enfatizzare parti specifiche del contenuto, e migliorare la leggibilità e l'estetica complessiva della tipografia in un...</li>
+                        <li>Quando usarlo: Quando devi definire lo spessore del testo per diversi elementi (titoli, paragrafi, link).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Font-style<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            definire lo stile del carattere, principalmente per il corsivo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà font-style in CSS specifica lo stile del carattere per il testo, principalmente utilizzata per applicare o rimuovere lo stile corsivo (italic) ai caratteri.</li>
+                        <li>A cosa serve: Serve a controllare l'aspetto stilistico del testo, permettendo di enfatizzare parti del contenuto, creare distinzioni visive, e migliorare l'espressività tipografica all'interno...</li>
+                        <li>Quando usarlo: Quando devi applicare lo stile corsivo a elementi di testo specifici.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Line-height<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            definire l'altezza delle linee di testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà line-height in CSS specifica l'altezza minima di una casella di linea all'interno di un elemento.</li>
+                        <li>A cosa serve: Serve a controllare la spaziatura verticale del testo, migliorando la leggibilità, l'aspetto estetico e la struttura visiva del contenuto testuale in un design web.</li>
+                        <li>Quando usarlo: Quando devi migliorare la leggibilità del testo, specialmente per blocchi di testo lunghi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Text-decoration<span class="tag-description" aria-label="descrizione concetto">Proprietà
+                            CSS
+                            per aggiungere o rimuovere decorazioni al testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà text-decoration in CSS specifica le decorazioni da aggiungere al testo, come sottolineature, linee sopra il testo o barrature.</li>
+                        <li>A cosa serve: Serve a migliorare l'aspetto visivo del testo, enfatizzare parti specifiche del contenuto, e fornire indicazioni visive sullo stato o la funzione di elementi testuali, come i link.</li>
+                        <li>Quando usarlo: Quando devi aggiungere o rimuovere sottolineature dai link.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Text-transform<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare la capitalizzazione del testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà text-transform in CSS controlla la capitalizzazione del testo, permettendo di modificare l'aspetto delle lettere senza alterare il contenuto HTML sottostante.</li>
+                        <li>A cosa serve: Serve a modificare la presentazione visiva del testo, migliorando la leggibilità, enfatizzando parti specifiche del contenuto, e mantenendo la coerenza tipografica senza la...</li>
+                        <li>Quando usarlo: Quando devi convertire il testo in maiuscolo o minuscolo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Letter-spacing<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare lo spazio tra i caratteri del testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà letter-spacing in CSS controlla lo spazio orizzontale tra i caratteri del testo, permettendo di aumentare o diminuire la distanza tra le lettere di un elemento...</li>
+                        <li>A cosa serve: Serve a migliorare la leggibilità, l'aspetto estetico e l'impatto visivo del testo, consentendo un controllo fine sulla composizione tipografica e sull'aspetto complessivo del...</li>
+                        <li>Quando usarlo: Quando devi migliorare la leggibilità di testi piccoli o densi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Word-spacing<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare lo spazio tra le parole nel testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà word-spacing in CSS controlla lo spazio aggiuntivo tra le parole all'interno di un elemento, permettendo di aumentare o diminuire la distanza tra le parole rispetto...</li>
+                        <li>A cosa serve: Serve a migliorare la leggibilità, l'estetica e la composizione del testo, consentendo un controllo fine sulla distribuzione delle parole e sull'aspetto complessivo dei paragrafi...</li>
+                        <li>Quando usarlo: Quando devi migliorare la leggibilità di testi densi o compatti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>White-space<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare la gestione degli spazi bianchi e dei ritorni a capo nel testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà white-space in CSS controlla come vengono gestiti gli spazi bianchi (spazi, tabulazioni, ritorni a capo) all'interno di un elemento, influenzando il modo in cui il...</li>
+                        <li>A cosa serve: Serve a definire come il browser deve interpretare e renderizzare gli spazi bianchi nel testo, permettendo un controllo preciso sulla formattazione e sull'aspetto del contenuto...</li>
+                        <li>Quando usarlo: Quando devi preservare la formattazione originale del testo, inclusi ritorni a capo e spazi multipli.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Text-shadow<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            aggiungere ombre o effetti di bagliore al testo</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà text-shadow in CSS permette di aggiungere una o più ombre al testo, creando effetti di profondità, bagliore o enfasi visiva sui caratteri.</li>
+                        <li>A cosa serve: Serve a migliorare la leggibilità del testo su diversi sfondi, creare effetti decorativi, enfatizzare elementi testuali e aggiungere profondità visiva al design della pagina.</li>
+                        <li>Quando usarlo: Quando devi migliorare il contrasto tra testo e sfondo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>@font-face<span class="tag-description" aria-label="descrizione concetto">Regola CSS per
+                            definire e incorporare font personalizzati in una pagina web</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La regola @font-face in CSS permette di definire e caricare font personalizzati da utilizzare in una pagina web, consentendo l'uso di caratteri non standard o non installati sul...</li>
+                        <li>A cosa serve: Serve a espandere le opzioni tipografiche disponibili per i web designer, permettendo l'uso di font personalizzati e migliorando la coerenza visiva tra diversi dispositivi e...</li>
+                        <li>Quando usarlo: Quando devi incorporare font personalizzati in un sito web.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Font-display<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare il comportamento di rendering dei font personalizzati durante il
+                            caricamento</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà font-display specifica come un font personalizzato deve essere visualizzato durante il suo caricamento e quando il caricamento fallisce, controllando il comportamento...</li>
+                        <li>A cosa serve: Serve a migliorare l'esperienza utente durante il caricamento dei font personalizzati, bilanciando la velocità di visualizzazione del contenuto con la coerenza visiva, e gestendo...</li>
+                        <li>Quando usarlo: Quando devi ottimizzare la visualizzazione del testo durante il caricamento dei font.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>List-style<span class="tag-description" aria-label="descrizione concetto">Aspetto dei marcatori di lista</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'list-style' è una shorthand che controlla tipo, posizione ed eventuale immagine del marcatore degli elementi di una lista.</li>
+                        <li>A cosa serve: Serve a cambiare o rimuovere i pallini e i numeri delle liste (es. 'list-style: none') e a personalizzarne l'aspetto.</li>
+                        <li>Quando usarlo: Quando devi stilizzare o azzerare l'aspetto di 'ul' e 'ol', ad esempio per menu e navigazioni.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Vertical-align<span class="tag-description" aria-label="descrizione concetto">Allineamento verticale di elementi inline</span>
+                        <div class="tag-group" aria-label="gruppo">4. Tipografia e Testo Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'vertical-align' definisce l'allineamento verticale di un elemento inline, inline-block o di una cella di tabella.</li>
+                        <li>A cosa serve: Serve ad allineare testo e immagini sulla stessa riga (es. 'middle', 'baseline', 'top') o il contenuto delle celle.</li>
+                        <li>Quando usarlo: Quando devi allineare verticalmente elementi inline; nota che non ha effetto sugli elementi block (per quelli usa Flexbox o Grid).</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>RGB<span class="tag-description" aria-label="descrizione concetto">Modello di colore
+                            additivo
+                            utilizzato in CSS per definire i colori</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: RGB (Red, Green, Blue) è un modello di colore additivo che crea colori combinando diverse intensità di rosso, verde e blu, utilizzato in CSS per definire i colori degli elementi...</li>
+                        <li>A cosa serve: Serve a rappresentare una vasta gamma di colori in modo digitale, permettendo ai web designer di specificare con precisione i colori desiderati per vari elementi dell'interfaccia...</li>
+                        <li>Quando usarlo: Quando devi definire colori per testo, sfondi, bordi e altri elementi CSS.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>HEX<span class="tag-description" aria-label="descrizione concetto">Formato di notazione
+                            esadecimale per specificare i colori in CSS</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il formato HEX (esadecimale) in CSS è un metodo per specificare i colori utilizzando una notazione a sei cifre (o tre cifre in forma abbreviata) che rappresenta i valori di rosso,...</li>
+                        <li>A cosa serve: Serve a fornire un modo conciso e ampiamente supportato per definire i colori nel web design, permettendo una rappresentazione precisa di una vasta gamma di colori con una...</li>
+                        <li>Quando usarlo: Quando devi definire colori per testo, sfondi, bordi e altri elementi CSS.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Named Colors<span class="tag-description" aria-label="descrizione concetto">Parole chiave
+                            predefinite per specificare colori comuni in CSS</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I Named Colors in CSS sono parole chiave predefinite che rappresentano colori specifici, permettendo di utilizzare nomi in linguaggio naturale invece di valori numerici o codici...</li>
+                        <li>A cosa serve: Servono a fornire un modo intuitivo e facilmente memorizzabile per specificare colori comuni nel CSS, semplificando il processo di styling e migliorando la leggibilità del codice,...</li>
+                        <li>Quando usarlo: Quando devi definire rapidamente colori comuni senza ricordare codici specifici.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>HSL<span class="tag-description" aria-label="descrizione concetto">Modello di colore basato
+                            su
+                            tonalità, saturazione e luminosità per definire colori in CSS</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Base intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: HSL (Hue, Saturation, Lightness) è un modello di colore in CSS che rappresenta i colori utilizzando tre componenti: tonalità, saturazione e luminosità, offrendo un approccio più...</li>
+                        <li>A cosa serve: Serve a fornire un metodo più naturale e logico per specificare e manipolare i colori nel web design, facilitando la creazione di schemi di colore coerenti e l'adattamento dei...</li>
+                        <li>Quando usarlo: Quando devi definire colori in modo più intuitivo rispetto a RGB o HEX.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Opacity<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            controllare la trasparenza di un elemento e del suo contenuto</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà opacity in CSS controlla il livello di trasparenza di un elemento e di tutto il suo contenuto, determinando quanto l'elemento è visibile o invisibile rispetto allo...</li>
+                        <li>A cosa serve: Serve a creare effetti di trasparenza, sfumature e sovrapposizioni, migliorando l'estetica del design, creando gerarchie visive e facilitando la creazione di interfacce utente più...</li>
+                        <li>Quando usarlo: Quando devi creare effetti di dissolvenza per elementi dell'interfaccia.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>RGBA/HSLA<span class="tag-description" aria-label="descrizione concetto">Modelli di colore
+                            in
+                            CSS che includono il controllo dell'opacità</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: RGBA (Red, Green, Blue, Alpha) e HSLA (Hue, Saturation, Lightness, Alpha) sono estensioni dei modelli di colore RGB e HSL che includono un canale alpha per controllare l'opacità...</li>
+                        <li>A cosa serve: Servono a definire colori con trasparenza variabile, permettendo la creazione di effetti di sovrapposizione, sfumature e transizioni di colore più sofisticate, migliorando la...</li>
+                        <li>Quando usarlo: Quando devi creare overlay semi-trasparenti su immagini o sfondi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Gradient<span class="tag-description" aria-label="descrizione concetto">Funzione CSS per
+                            creare
+                            transizioni graduali tra due o più colori</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Un gradient in CSS è una funzione che crea una transizione graduale tra due o più colori, permettendo di generare sfondi e effetti visivi complessi senza l'uso di immagini.</li>
+                        <li>A cosa serve: Serve a creare effetti visivi sofisticati, migliorare l'estetica del design, aggiungere profondità e dimensione agli elementi, e ottimizzare le prestazioni utilizzando CSS invece...</li>
+                        <li>Quando usarlo: Quando devi creare sfondi sfumati per elementi o intere pagine.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Background-blend-mode<span class="tag-description"
+                            aria-label="descrizione concetto">Proprietà
+                            CSS per definire come gli sfondi multipli di un elemento si fondono tra loro</span>
+                        <div class="tag-group" aria-label="gruppo">5. Colori e Sfondi Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Background-blend-mode è una proprietà CSS che specifica come le immagini di sfondo multiple e/o il colore di sfondo di un elemento devono fondersi tra loro, creando effetti visivi...</li>
+                        <li>A cosa serve: Serve a creare effetti visivi avanzati combinando sfondi multipli, permettendo di realizzare composizioni grafiche sofisticate direttamente in CSS senza ricorrere a software di...</li>
+                        <li>Quando usarlo: Quando devi creare effetti di sovrapposizione tra immagini e colori di sfondo.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Viewport<span class="tag-description" aria-label="descrizione concetto">Area visibile di
+                            una
+                            pagina web su un dispositivo</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Il viewport è l'area visibile di una pagina web all'interno della finestra del browser o del dispositivo dell'utente.</li>
+                        <li>A cosa serve: Serve come riferimento per il layout e il dimensionamento degli elementi in una pagina web, permettendo di creare design responsivi che si adattano a diverse dimensioni di schermo...</li>
+                        <li>Quando usarlo: Quando devi definire il layout responsivo per diversi dispositivi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Media Queries<span class="tag-description" aria-label="descrizione concetto">Tecnica CSS
+                            per
+                            applicare stili in base alle caratteristiche del dispositivo o del browser</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le Media Queries sono una tecnica CSS che permette di applicare stili diversi in base alle caratteristiche del dispositivo o del browser, come la larghezza dello schermo,...</li>
+                        <li>A cosa serve: Servono a creare layout e design responsivi che si adattano a diversi dispositivi e condizioni di visualizzazione, migliorando l'esperienza utente su una vasta gamma di schermi e...</li>
+                        <li>Quando usarlo: Quando devi adattare il layout per diverse dimensioni di schermo (desktop, tablet, mobile).</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Mobile First<span class="tag-description" aria-label="descrizione concetto">Approccio di
+                            design
+                            che prioritizza l'esperienza mobile nel processo di sviluppo web</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Mobile First è un approccio di design e sviluppo web che inizia progettando per i dispositivi mobili come priorità, per poi adattare progressivamente il layout a schermi più...</li>
+                        <li>A cosa serve: Serve a ottimizzare l'esperienza utente su dispositivi mobili, migliorare le prestazioni, focalizzarsi sui contenuti essenziali e creare una base solida per un design responsivo...</li>
+                        <li>Quando usarlo: Quando devi progettare interfacce utente ottimizzate per schermi piccoli.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Responsive Images<span class="tag-description" aria-label="descrizione concetto">Tecniche
+                            per
+                            ottimizzare le immagini in base alle caratteristiche del dispositivo</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le Responsive Images sono tecniche e strumenti CSS e HTML che permettono di fornire immagini ottimizzate in base alle caratteristiche del dispositivo, come dimensioni dello...</li>
+                        <li>A cosa serve: Migliorare le prestazioni, ridurre il consumo di dati e garantire una visualizzazione ottimale delle immagini su diversi dispositivi e connessioni.</li>
+                        <li>Quando usarlo: Quando devi adattare le dimensioni e la risoluzione delle immagini al dispositivo.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Container Queries<span class="tag-description" aria-label="descrizione concetto">Tecnica
+                            CSS
+                            per applicare stili in base alle dimensioni del contenitore padre</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le Container Queries sono una tecnica CSS emergente che permette di applicare stili a un elemento in base alle dimensioni del suo contenitore padre, piuttosto che alle dimensioni...</li>
+                        <li>A cosa serve: Fornire un controllo più granulare e modulare sul layout e lo stile dei componenti, permettendo loro di adattarsi in modo responsivo al contesto in cui sono inseriti,...</li>
+                        <li>Quando usarlo: Quando devi applicare stili in base alle dimensioni del contenitore padre.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>@supports<span class="tag-description" aria-label="descrizione concetto">Applica stili solo se una feature è supportata</span>
+                        <div class="tag-group" aria-label="gruppo">6. Responsive Design Intermedio</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La regola CSS '@supports' (feature query) applica un blocco di stili solo se il browser supporta una determinata proprietà o valore.</li>
+                        <li>A cosa serve: Serve a fornire miglioramenti progressivi, usando funzionalità moderne solo dove disponibili e mantenendo un fallback altrove.</li>
+                        <li>Quando usarlo: Ad esempio '@supports (display: grid) { ... }' per applicare regole solo ai browser che supportano Grid.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Transition<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            creare transizioni fluide tra stati di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le CSS Transitions sono un insieme di proprietà che permettono di definire transizioni fluide e graduali tra diversi stati di un elemento HTML, creando animazioni semplici senza...</li>
+                        <li>A cosa serve: Migliorare l'esperienza utente creando interfacce più dinamiche e interattive, fornendo feedback visivi sulle azioni dell'utente e rendendo i cambiamenti di stato degli elementi...</li>
+                        <li>Quando usarlo: Quando devi creare transizioni fluide tra stati di un elemento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Transform<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            modificare la posizione, la scala, la rotazione e l'inclinazione di un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS transform permette di modificare la posizione, la scala, la rotazione e l'inclinazione di un elemento nel spazio 2D o 3D, senza influenzare il flusso del...</li>
+                        <li>A cosa serve: Consentire manipolazioni visive complesse degli elementi HTML in modo efficiente e flessibile, supportando animazioni fluide e layout dinamici senza alterare la struttura del DOM.</li>
+                        <li>Quando usarlo: Quando devi modificare la posizione, la scala, la rotazione e l'inclinazione di un elemento.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Animation<span class="tag-description" aria-label="descrizione concetto">Tecnica CSS per
+                            creare animazioni complesse senza l'uso di JavaScript</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le CSS Animations sono un insieme di proprietà che permettono di creare animazioni complesse e controllate direttamente in CSS, senza l'uso di JavaScript, definendo una sequenza...</li>
+                        <li>A cosa serve: Fornire un metodo potente e performante per creare animazioni web, migliorando l'interattività e l'esperienza utente, e riducendo la dipendenza da script per effetti visivi...</li>
+                        <li>Quando usarlo: Quando devi creare animazioni complesse senza l'uso di JavaScript.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Keyframes<span class="tag-description" aria-label="descrizione concetto">Regola at-rule per
+                            definire gli stati di un'animazione CSS</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I CSS Keyframes sono una regola at-rule (@keyframes) che definisce gli stati intermedi di un'animazione CSS, specificando come gli stili di un elemento dovrebbero cambiare in...</li>
+                        <li>A cosa serve: Permettere agli sviluppatori di creare animazioni complesse e multi-stato in CSS, definendo precisamente come le proprietà di un elemento cambiano nel corso del tempo, senza la...</li>
+                        <li>Quando usarlo: Quando devi definire gli stati di un'animazione CSS.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>3D Transforms<span class="tag-description" aria-label="descrizione concetto">Tecniche CSS
+                            per manipolare elementi nello spazio tridimensionale</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: CSS 3D Transforms sono un insieme di proprietà e funzioni che permettono di manipolare elementi HTML nello spazio tridimensionale, consentendo rotazioni, traslazioni e scalature...</li>
+                        <li>A cosa serve: Creare effetti visivi tridimensionali e interattivi direttamente nel browser, migliorando l'esperienza utente e consentendo la creazione di interfacce più coinvolgenti senza l'uso...</li>
+                        <li>Quando usarlo: Quando devi manipolare elementi nello spazio tridimensionale.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Animation Timing Functions<span class="tag-description"
+                            aria-label="descrizione concetto">Funzioni CSS che controllano la progressione di
+                            un'animazione
+                            nel tempo</span>
+                        <div class="tag-group" aria-label="gruppo">7. Trasformazioni e Animazioni Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Le Animation Timing Functions in CSS sono funzioni che determinano come un'animazione progredisce nel tempo, controllando la velocità dell'animazione in diversi punti della sua...</li>
+                        <li>A cosa serve: Migliorare la qualità e la naturalezza delle animazioni CSS, permettendo agli sviluppatori di creare movimenti più realistici o espressivi che si adattano meglio al contesto e...</li>
+                        <li>Quando usarlo: Quando devi controllare la progressione di un'animazione nel tempo.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Visibility<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS che
+                            controlla la visibilità di un elemento senza alterare il layout</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS `visibility` controlla se un elemento è visibile o meno, senza modificare il layout della pagina.</li>
+                        <li>A cosa serve: Permettere agli sviluppatori di nascondere o mostrare elementi senza influenzare il flusso del documento, utile per creare interfacce dinamiche, gestire contenuti temporanei o...</li>
+                        <li>Quando usarlo: Quando devi controllare la visibilità di un elemento senza alterare il layout.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Cursor<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS che
+                            controlla l'aspetto del cursore del mouse su un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS `cursor` specifica il tipo di cursore da visualizzare quando il puntatore del mouse si trova sopra un elemento.</li>
+                        <li>A cosa serve: Migliorare l'usabilità e l'esperienza utente fornendo indicazioni visive sulle azioni possibili o lo stato degli elementi dell'interfaccia, aumentando l'intuitività e la chiarezza...</li>
+                        <li>Quando usarlo: Quando devi indicare elementi cliccabili (bottoni, link) con cursor: pointer.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Focus Styles<span class="tag-description" aria-label="descrizione concetto">Stili CSS
+                            applicati agli elementi quando ricevono il focus</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I Focus Styles in CSS sono stili applicati agli elementi interattivi quando ricevono il focus, sia attraverso l'interazione con il mouse che tramite la navigazione da tastiera.</li>
+                        <li>A cosa serve: Migliorare l'accessibilità e l'usabilità del sito web, fornendo indicazioni visive chiare su quale elemento ha il focus, essenziale per la navigazione da tastiera e per utenti che...</li>
+                        <li>Quando usarlo: Quando vuoi rendere chiaro quale elemento ha il focus.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>User-select<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            che controlla la selezione del testo da parte dell'utente</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS `user-select` controlla se e come il testo di un elemento può essere selezionato dall'utente.</li>
+                        <li>A cosa serve: Migliorare l'esperienza utente controllando la selezionabilità del testo, prevenire selezioni accidentali, proteggere contenuti sensibili e ottimizzare l'interazione con elementi...</li>
+                        <li>Quando usarlo: Quando devi disabilitare la selezione su elementi dell'interfaccia come pulsanti o menu.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Pointer-events<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            che controlla come gli elementi rispondono agli eventi del puntatore</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS `pointer-events` specifica in che circostanze (se del caso) un particolare elemento grafico può diventare il target di eventi del puntatore.</li>
+                        <li>A cosa serve: Permette di controllare l'interattività degli elementi, disabilitando o abilitando la loro risposta agli eventi del puntatore.</li>
+                        <li>Quando usarlo: Quando devi creare overlay trasparenti che non interferiscono con gli elementi sottostanti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Outline<span class="tag-description" aria-label="descrizione concetto">Contorno di un elemento, spesso per il focus</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'outline' disegna una linea attorno a un elemento, all'esterno del bordo, senza occupare spazio nel layout.</li>
+                        <li>A cosa serve: Serve soprattutto a indicare quale elemento ha il focus da tastiera, un requisito importante per l'accessibilità.</li>
+                        <li>Quando usarlo: Per personalizzare l'anello di focus; non rimuoverlo senza fornire un'alternativa visibile, perché serve alla navigazione da tastiera.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Scroll-behavior<span class="tag-description" aria-label="descrizione concetto">Scorrimento fluido della pagina</span>
+                        <div class="tag-group" aria-label="gruppo">8. Accessibilità e User Experience Base</div>
+                    </summary>
+
+                    <ol>
+                        <li>Cos'è: La proprietà CSS 'scroll-behavior' definisce se lo scorrimento verso una posizione avviene in modo istantaneo o animato.</li>
+                        <li>A cosa serve: Serve a rendere fluido lo scorrimento, ad esempio quando si clicca su un link verso un'ancora interna.</li>
+                        <li>Quando usarlo: Con 'scroll-behavior: smooth' sull'elemento radice; valuta di rispettare la preferenza 'prefers-reduced-motion' per l'accessibilità.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Vendor Prefixes<span class="tag-description" aria-label="descrizione concetto">Prefissi
+                            utilizzati per implementare funzionalità CSS sperimentali o specifiche del browser</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I Vendor Prefixes sono prefissi speciali aggiunti alle proprietà CSS, ai valori o alle regole at-rule per implementare funzionalità sperimentali o specifiche del browser.</li>
+                        <li>A cosa serve: Consentire agli sviluppatori di utilizzare nuove funzionalità CSS in fase di sviluppo o standardizzazione, mantenendo la compatibilità tra diversi browser e versioni.</li>
+                        <li>Quando usarlo: Quando devi implementare funzionalità CSS sperimentali o specifiche del browser.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Fallback Values<span class="tag-description" aria-label="descrizione concetto">Valori
+                            alternativi utilizzati quando una proprietà o un valore CSS non è supportato</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: I Fallback values in CSS sono valori alternativi forniti per proprietà o funzionalità CSS che potrebbero non essere supportate da tutti i browser.</li>
+                        <li>A cosa serve: Assicurare una degradazione graduale (graceful degradation) dell'aspetto di un sito web su browser meno recenti o meno capaci, mantenendo la funzionalità e l'estetica di base,...</li>
+                        <li>Quando usarlo: Quando devi prevedere fallback per proprietà o valori non supportati.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Normalize.css<span class="tag-description" aria-label="descrizione concetto">Foglio di
+                            stile
+                            CSS che normalizza gli stili predefiniti tra diversi browser</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Normalize.css è un piccolo foglio di stile CSS moderno e pronto all'uso che fornisce una migliore coerenza cross-browser negli stili predefiniti degli elementi HTML.</li>
+                        <li>A cosa serve: Normalizzare gli stili tra diversi browser per ridurre le inconsistenze, mantenendo gli stili utili predefiniti del browser.</li>
+                        <li>Quando usarlo: Quando devi normalizzare gli stili predefiniti tra diversi browser.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Reset CSS<span class="tag-description" aria-label="descrizione concetto">Tecnica CSS per
+                            rimuovere gli stili predefiniti del browser</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Reset CSS è una tecnica che consiste nell'utilizzare un foglio di stile che rimuove o "resetta" tutti gli stili predefiniti del browser applicati agli elementi HTML.</li>
+                        <li>A cosa serve: Eliminare le inconsistenze tra i diversi browser riguardo gli stili predefiniti, fornendo agli sviluppatori un punto di partenza uniforme per applicare i propri stili.</li>
+                        <li>Quando usarlo: Quando devi rimuovere gli stili predefiniti del browser.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Critical CSS<span class="tag-description" aria-label="descrizione concetto">Tecnica di
+                            ottimizzazione che estrae e inserisce gli stili CSS essenziali per il rendering iniziale
+                            della
+                            pagina</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Critical CSS è una tecnica di ottimizzazione delle prestazioni che consiste nell'identificare e inserire inline gli stili CSS essenziali per il rendering della parte visibile...</li>
+                        <li>A cosa serve: Migliorare significativamente i tempi di caricamento percepiti e le metriche di prestazione come First Contentful Paint (FCP) e Largest Contentful Paint (LCP), fornendo agli...</li>
+                        <li>Quando usarlo: Per estrarre e inserire gli stili CSS essenziali per il rendering iniziale della pagina.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Minificazione<span class="tag-description" aria-label="descrizione concetto">Processo di
+                            ottimizzazione che riduce la dimensione dei file di codice sorgente</span>
+                        <div class="tag-group" aria-label="gruppo">9. Tecniche Avanzate e Ottimizzazione Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La minificazione è un processo di ottimizzazione che consiste nel ridurre la dimensione dei file di codice sorgente (come CSS, JavaScript e HTML) rimuovendo tutti i caratteri non...</li>
+                        <li>A cosa serve: Migliorare le prestazioni di caricamento e di esecuzione delle pagine web riducendo la quantità di dati che devono essere trasferiti dal server al client, risultando in tempi di...</li>
+                        <li>Quando usarlo: Per ridurre la dimensione dei file di codice sorgente.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Sass/SCSS<span class="tag-description" aria-label="descrizione concetto">Preprocessore CSS
+                            che
+                            estende le funzionalità del CSS standard</span>
+                        <div class="tag-group" aria-label="gruppo">10. Preprocessori e Framework Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Sass (Syntactically Awesome Style Sheets) è un preprocessore CSS che estende le funzionalità del CSS standard, offrendo caratteristiche come variabili, nesting, mixin, e funzioni.</li>
+                        <li>A cosa serve: Migliorare l'efficienza e la manutenibilità del codice CSS, fornendo strumenti per scrivere stili più modulari, riutilizzabili e organizzati.</li>
+                        <li>Quando usarlo: Quando devi estendere le funzionalità del CSS standard.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Less<span class="tag-description" aria-label="descrizione concetto">Preprocessore CSS che
+                            estende le funzionalità del CSS standard</span>
+                        <div class="tag-group" aria-label="gruppo">10. Preprocessori e Framework Intermedio</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Less (Leaner Style Sheets) è un preprocessore CSS dinamico che estende le funzionalità del CSS standard, offrendo caratteristiche come variabili, nesting, mixin, operazioni e...</li>
+                        <li>A cosa serve: Migliorare l'efficienza e la manutenibilità del codice CSS, fornendo strumenti per scrivere stili più modulari, riutilizzabili e organizzati.</li>
+                        <li>Quando usarlo: Quando devi estendere le funzionalità del CSS standard.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Bootstrap<span class="tag-description" aria-label="descrizione concetto">Framework CSS e
+                            JavaScript per lo sviluppo di siti web responsivi e mobile-first</span>
+                        <div class="tag-group" aria-label="gruppo">10. Preprocessori e Framework Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Bootstrap è un framework CSS e JavaScript open-source, creato originariamente da Twitter, per lo sviluppo di siti web e applicazioni web responsivi e mobile-first.</li>
+                        <li>A cosa serve: Semplificare e accelerare il processo di sviluppo front-end, fornendo un sistema di griglia flessibile, componenti riutilizzabili e plugin JavaScript.</li>
+                        <li>Quando usarlo: Per lo sviluppo di siti web responsivi e mobile-first.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Tailwind CSS<span class="tag-description" aria-label="descrizione concetto">Framework CSS
+                            utility-first per la creazione rapida di design personalizzati</span>
+                        <div class="tag-group" aria-label="gruppo">10. Preprocessori e Framework Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Tailwind CSS è un framework CSS utility-first che fornisce classi di utilità a basso livello per costruire design personalizzati direttamente nel markup HTML.</li>
+                        <li>A cosa serve: Permettere agli sviluppatori di creare design completamente personalizzati senza lasciare l'HTML, accelerando il processo di sviluppo e riducendo la necessità di scrivere CSS...</li>
+                        <li>Quando usarlo: Per la creazione rapida di design personalizzati.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>Box-shadow<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            aggiungere ombre a elementi HTML</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Box-shadow è una proprietà CSS che permette di aggiungere effetti ombra a elementi HTML.</li>
+                        <li>A cosa serve: Serve ad aggiungere profondità e separazione visiva agli elementi.</li>
+                        <li>Quando usarlo: Quando devi aggiungere profondità a elementi UI come pulsanti o card.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Text-overflow<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS
+                            per
+                            controllare come il testo in eccesso viene visualizzato</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Text-overflow è una proprietà CSS che specifica come il contenuto testuale in eccesso, che non rientra nel box del suo contenitore, deve essere segnalato all'utente.</li>
+                        <li>A cosa serve: Serve a controllare come il testo in eccesso viene visualizzato.</li>
+                        <li>Quando usarlo: Per titoli lunghi in card o liste.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Overflow<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            controllare il contenuto che eccede i limiti del suo contenitore</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Intermedio
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Overflow è una proprietà CSS che controlla come il contenuto che eccede le dimensioni del suo contenitore (in altezza o larghezza) deve essere gestito.</li>
+                        <li>A cosa serve: Serve a gestire il contenuto che supera i limiti del suo contenitore.</li>
+                        <li>Quando usarlo: Quando devi creare aree di contenuto scrollabile in layout fissi.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Clip-path<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            creare forme complesse ritagliando un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Avanzato
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Clip-path è una proprietà CSS che crea una regione di ritaglio che definisce quale parte di un elemento dovrebbe essere visibile.</li>
+                        <li>A cosa serve: Serve a creare forme complesse ritagliando un elemento.</li>
+                        <li>Quando usarlo: Quando devi creare bottoni e elementi UI con forme non rettangolari.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Filter<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            applicare effetti visivi a elementi</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Avanzato
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS filter applica effetti grafici come sfocatura o alterazione del colore a un elemento.</li>
+                        <li>A cosa serve: Serve ad applicare effetti visivi come blur, contrasto o saturazione.</li>
+                        <li>Quando usarlo: Per migliorare o alterare l'aspetto di immagini e componenti.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Backdrop-filter<span class="tag-description" aria-label="descrizione concetto">Proprietà
+                            CSS
+                            per applicare effetti visivi all'area dietro un elemento</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Avanzato
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: Backdrop-filter è una proprietà CSS che permette di applicare effetti grafici all'area dietro un elemento, anziché all'elemento stesso.</li>
+                        <li>A cosa serve: Serve ad applicare effetti visivi allo sfondo visibile dietro un elemento.</li>
+                        <li>Quando usarlo: Per creare overlay semi-trasparenti, modali o pannelli con effetto vetro.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Mask<span class="tag-description" aria-label="descrizione concetto">Proprietà CSS per
+                            nascondere parti di un elemento usando immagini o forme</span>
+                        <div class="tag-group" aria-label="gruppo">11. Effetti Visivi e Funzionalità Speciali Avanzato
+                        </div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: La proprietà CSS mask permette di nascondere parti di un elemento applicando una maschera, che può essere un'immagine, un gradiente, o una forma SVG.</li>
+                        <li>A cosa serve: Serve a nascondere parti di un elemento usando immagini o forme.</li>
+                        <li>Quando usarlo: Quando devi creare effetti di dissolvenza su immagini o testo.</li>
+                    </ol>
+                </details>
+            </section>
+
+            <section>
+                <details>
+                    <summary>CSS Houdini<span class="tag-description" aria-label="descrizione concetto">Set di API
+                            low-level
+                            per estendere le capacità di CSS</span>
+                        <div class="tag-group" aria-label="gruppo">12. API CSS e Integrazione Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: CSS Houdini è un set di API low-level che permettono agli sviluppatori di accedere al motore di rendering CSS del browser, consentendo di creare nuove funzionalità CSS senza...</li>
+                        <li>A cosa serve: Serve a estendere le capacità di CSS con funzionalità personalizzate.</li>
+                        <li>Quando usarlo: Quando devi estendere le capacità di CSS.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>CSS-in-JS<span class="tag-description" aria-label="descrizione concetto">Approccio per
+                            scrivere
+                            CSS direttamente in JavaScript</span>
+                        <div class="tag-group" aria-label="gruppo">12. API CSS e Integrazione Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: CSS-in-JS è un approccio allo styling in applicazioni web che prevede la scrittura di CSS direttamente all'interno del codice JavaScript.</li>
+                        <li>A cosa serve: Serve a scrivere CSS direttamente in JavaScript.</li>
+                        <li>Quando usarlo: Quando devi scrivere CSS direttamente in JavaScript.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>CSS Modules<span class="tag-description" aria-label="descrizione concetto">Approccio per
+                            scrivere CSS con scope locale in applicazioni modulari</span>
+                        <div class="tag-group" aria-label="gruppo">12. API CSS e Integrazione Avanzato</div>
+                    </summary>
+                    
+                    <ol>
+                        <li>Cos'è: CSS Modules è una tecnica di styling che permette di scrivere CSS con scope locale per default.</li>
+                        <li>A cosa serve: Serve a scrivere CSS con scope locale in applicazioni modulari.</li>
+                        <li>Quando usarlo: Quando devi scrivere CSS con scope locale in applicazioni modulari.</li>
+                    </ol>
+                </details>
+            </section>
+        </div>
+    </main>
+    <!-- entry Vite per questa pagina -->
+    <script type="module" src="/src/scripts/pages/risorse/glossario-css/main.js"></script>
+    </div>
+</body>
+
+</html>

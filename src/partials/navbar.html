@@ -1,28 +1,28 @@
-<nav class="navbar" aria-label="Navigazione principale">
+<nav class="navbar" aria-label="{{NAV_ARIA}}">
   <div class="navbar-container">
-    <a href="/" class="logo-link"><img src="/icons/codedge-logo.svg" alt="Logo codedge" class="logo" width="80" height="35"></a><span class="navbar-title resize-text">{{TITLE}}</span>
+    <a href="{{HOME_HREF}}" class="logo-link"><img src="/icons/codedge-logo.svg" alt="{{LOGO_ALT}}" class="logo" width="80" height="35"></a><a href="{{SWITCH_HREF}}" class="lang-switch" data-active="{{LANG_ACTIVE}}" hreflang="{{SWITCH_LANG}}" lang="{{SWITCH_LANG}}" aria-label="{{SWITCH_LABEL}}" title="{{SWITCH_TITLE}}"{{SWITCH_EXTRA}}><span class="lang-switch-thumb" aria-hidden="true"></span><span class="lang-switch-code" data-lang="it">IT</span><span class="lang-switch-code" data-lang="en">EN</span></a><span class="navbar-title resize-text">{{TITLE}}</span>
     <div class="menu-icon">
       <span class="bar"></span> <span class="bar"></span>
       <span class="bar"></span>
     </div>
     <ul id="nav-menu" class="nav-menu">
       <li class="nav-item">
-        <a href="/" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>Home</a>
+        <a href="{{HOME_HREF}}" class="nav-link"><i class="fas fa-home" aria-hidden="true"></i>{{NAV_HOME}}</a>
       </li>
       <li class="nav-item">
-        <a href="/risorse/" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>Risorse</a>
+        <a href="{{RESOURCES_HREF}}" class="nav-link"><i class="fas fa-book" aria-hidden="true"></i>{{NAV_RESOURCES}}</a>
       </li>
       <li class="nav-item">
-        <a href="/strumenti/" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>Strumenti</a>
+        <a href="{{TOOLS_HREF}}" class="nav-link"><i class="fas fa-tools" aria-hidden="true"></i>{{NAV_TOOLS}}</a>
       </li>
       <li class="nav-item">
-        <a href="/componenti-ui/" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>Componenti UI</a>
+        <a href="{{COMPONENTS_HREF}}" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i>{{NAV_COMPONENTS}}</a>
       </li>
       <li class="nav-item">
-        <a href="/tutorial/" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Tutorial</a>
+        <a href="{{TUTORIALS_HREF}}" class="nav-link"><i class="fas fa-graduation-cap" aria-hidden="true"></i>{{NAV_TUTORIALS}}</a>
       </li>
       <li class="nav-item">
-        <a href="/template/" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>Template</a>
+        <a href="{{TEMPLATES_HREF}}" class="nav-link"><i class="fas fa-store" aria-hidden="true"></i>{{NAV_TEMPLATES}}</a>
       </li>
     </ul>
   </div>

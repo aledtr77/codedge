@@ -2,14 +2,14 @@
   <div class="footer-content">
     <div class="footer-links">
       <div class="footer-copyright">
-        © 2025-2026 Codedge. Tutti i diritti riservati.
+        {{FOOTER_COPYRIGHT}}
       </div>
-      <a href="/privacy-policy/">Privacy Policy</a>
-      <a href="/termini-servizio/">Termini di Servizio</a>
-      <a href="/contatti/">Contatti</a>
-      <a href="/chi-sono/">Chi Sono</a>
-      <a href="https://github.com/aledtr77/01-codedge/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">Segnala un bug</a>
-      <a href="https://fontawesome.com/">Icone di Font Awesome</a>
+      <a href="{{PRIVACY_HREF}}">{{FOOTER_PRIVACY}}</a>
+      <a href="{{TERMS_HREF}}">{{FOOTER_TERMS}}</a>
+      <a href="{{CONTACT_HREF}}">{{FOOTER_CONTACT}}</a>
+      <a href="{{ABOUT_HREF}}">{{FOOTER_ABOUT}}</a>
+      <a href="https://github.com/aledtr77/01-codedge/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">{{FOOTER_BUG}}</a>
+      <a href="https://fontawesome.com/">{{FOOTER_ICONS}}</a>
     </div>
     <div class="footer-social">
       <a
@@ -17,7 +17,7 @@
         class="footer-social-link footer-social-link-youtube"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Canale YouTube Tasto Destro"
+        aria-label="{{FOOTER_YT_ARIA}}"
         title="YouTube Tasto Destro"
       >
         <i class="footer-youtube-icon" aria-hidden="true">
@@ -67,7 +67,7 @@
         class="footer-social-link footer-social-link-github"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="GitHub Codedge"
+        aria-label="{{FOOTER_GH_ARIA}}"
         title="GitHub Codedge"
       >
         <i class="fa-brands fa-github" aria-hidden="true"></i>

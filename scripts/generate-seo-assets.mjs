@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
+import { counterpartOf, langOf, routeFromSourceDir } from '../src/i18n/routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -50,8 +51,7 @@ function walkIndexFiles(dir) {
 
 function routeFromFile(filePath) {
   const relativeDir = path.relative(pagesRoot, path.dirname(filePath)).split(path.sep).join('/');
-  if (!relativeDir) return '/';
-  return `/${relativeDir}/`;
+  return routeFromSourceDir(relativeDir);
 }
 
 function gitRelativePath(filePath) {
@@ -84,22 +84,50 @@ function lastModifiedForFile(filePath) {
   }
 }
 
+// Priority and ordering are language-independent: an English page inherits the
+// weight of its Italian twin, so /en/tools/ ranks like /strumenti/.
+function canonicalShape(route) {
+  const itRoute = langOf(route) === 'en' ? counterpartOf(route) : route;
+  return itRoute || route;
+}
+
 function priorityForRoute(route) {
-  if (route === '/') return '1.0';
-  if (/^\/(risorse|strumenti|componenti-ui)\/$/.test(route)) return '0.9';
-  if (route === '/tutorial/' || route === '/template/') return '0.8';
-  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\/$/.test(route)) return '0.3';
+  const shape = canonicalShape(route);
+  if (shape === '/') return '1.0';
+  if (/^\/(risorse|strumenti|componenti-ui)\/$/.test(shape)) return '0.9';
+  if (shape === '/tutorial/' || shape === '/template/') return '0.8';
+  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\/$/.test(shape)) return '0.3';
   return '0.7';
 }
 
 function sortWeight(route) {
-  if (route === '/') return 0;
-  if (/^\/(risorse|strumenti|componenti-ui|tutorial|template)\//.test(route)) return 1;
-  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\//.test(route)) return 3;
+  const shape = canonicalShape(route);
+  if (shape === '/') return 0;
+  if (/^\/(risorse|strumenti|componenti-ui|tutorial|template)\//.test(shape)) return 1;
+  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\//.test(shape)) return 3;
   return 2;
 }
 
+// Every URL declares the full set it belongs to, itself included: that is what
+// the protocol asks for, and it is how Google pairs the two versions.
+function alternateLinks(route, knownRoutes) {
+  const twin = counterpartOf(route);
+  if (!twin || !knownRoutes.has(twin)) return [];
+
+  const lang = langOf(route);
+  const itRoute = lang === 'it' ? route : twin;
+  const enRoute = lang === 'it' ? twin : route;
+
+  return [
+    `    <xhtml:link rel="alternate" hreflang="it" href="${baseUrl}${itRoute}"/>`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}${enRoute}"/>`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${itRoute}"/>`
+  ];
+}
+
 function buildSitemapXml(entries) {
+  const knownRoutes = new Set(entries.map(({ route }) => route));
+
   const body = entries
     .map(({ route, lastmod, priority }) => {
       return [
@@ -107,6 +135,7 @@ function buildSitemapXml(entries) {
         `    <loc>${baseUrl}${route}</loc>`,
         `    <lastmod>${lastmod}</lastmod>`,
         `    <priority>${priority}</priority>`,
+        ...alternateLinks(route, knownRoutes),
         '  </url>'
       ].join('\n');
     })
@@ -114,7 +143,7 @@ function buildSitemapXml(entries) {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     body,
     '</urlset>',
     ''
@@ -132,7 +161,7 @@ const entries = walkIndexFiles(pagesRoot)
       lastmod: lastModifiedForFile(filePath)
     };
   })
-  .filter(({ route, noindex }) => !excludedRoutes.has(route) && !noindex)
+  .filter(({ route, noindex }) => route && !excludedRoutes.has(route) && !noindex)
   .sort((a, b) => {
     const weightDiff = sortWeight(a.route) - sortWeight(b.route);
     if (weightDiff !== 0) return weightDiff;

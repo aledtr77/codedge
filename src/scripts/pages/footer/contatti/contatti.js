@@ -1,3 +1,4 @@
+import { t } from "@/i18n/ui.js";
 // Contact form module. Works with EmailJS from either the CDN
 // (window.emailjs) or the npm package (@emailjs/browser).
 
@@ -42,7 +43,7 @@ export async function initContactForm({
   minimumFillMs = 3000,
   cooldownMs = 60000,
   cooldownStorageKey = "codedge:contact-form:last-send",
-  loadingMessage = "Invio in corso...",
+  loadingMessage = t("form.sending"),
   feedbackDuration = 4000,
 } = {}) {
   if (_initialized) return;
@@ -158,12 +159,12 @@ export async function initContactForm({
       (typeof performance !== "undefined" ? performance.now() : Date.now()) - initTime;
 
     if (elapsedMs < minimumFillMs) {
-      return "Attendi qualche secondo prima di inviare il messaggio.";
+      return t("form.tooFast");
     }
 
     const cooldownRemaining = getCooldownRemaining();
     if (cooldownRemaining > 0) {
-      return `Attendi ${Math.ceil(cooldownRemaining / 1000)} secondi prima di inviare un altro messaggio.`;
+      return t("form.cooldown", { seconds: Math.ceil(cooldownRemaining / 1000) });
     }
 
     return "";
@@ -173,7 +174,7 @@ export async function initContactForm({
     ev.preventDefault();
 
     if (!validateForm()) {
-      showFeedback("Compila i campi obbligatori.");
+      showFeedback(t("form.requiredFields"));
       return;
     }
 
@@ -204,11 +205,11 @@ export async function initContactForm({
     try {
       await emailjs.send(serviceId, templateId, templateParams);
       setCooldown();
-      showFeedback("Messaggio inviato con successo!");
+      showFeedback(t("form.sent"));
       resetForm();
     } catch (err) {
       console.error("[contatti] send error:", err);
-      showFeedback("Errore durante l'invio. Riprova.");
+      showFeedback(t("form.sendError"));
     } finally {
       if (button) button.disabled = false;
       if (button) button.removeAttribute("aria-busy");

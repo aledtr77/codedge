@@ -1,4 +1,5 @@
 import { scrollBehavior } from "@/scripts/utils/motion.js";
+import { t } from "@/i18n/ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const search = document.getElementById("search");
@@ -411,10 +412,10 @@ document.addEventListener("DOMContentLoaded", () => {
         textarea.remove();
       }
 
-      button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copiato';
+      button.innerHTML = `<i class="fas fa-check" aria-hidden="true"></i> ${t("code.copied")}`;
     } catch (error) {
       console.warn("[glossario] copia fallita:", error);
-      button.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Errore';
+      button.innerHTML = `<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> ${t("code.error")}`;
     }
 
     setTimeout(() => {

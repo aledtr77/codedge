@@ -9,9 +9,11 @@
 import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
-import { formatSegment } from '../src/scripts/components/breadcrumb-vocabulary.js';
+import { formatSegment, LANG_PREFIX_SEGMENTS } from '../src/scripts/components/breadcrumb-vocabulary.js';
+import { langOf, routeFromSourceDir } from '../src/i18n/routes.mjs';
 
 const DEFAULT_OG_IMAGE = '/og/opengraph-1200x630.jpg';
+const IN_LANGUAGE = { it: 'it-IT', en: 'en-US' };
 
 function readBaseUrl(projectRoot) {
   try {
@@ -66,21 +68,26 @@ function gitDate(projectRoot, filePath, { first = false } = {}) {
   }
 }
 
-function breadcrumbLd(baseUrl, route) {
-  const segments = route.split('/').filter(Boolean);
+// Must produce the same trail as the runtime breadcrumb (breadcrumb.js):
+// the /en prefix stays in the URLs but is not a level of its own.
+function breadcrumbLd(baseUrl, route, lang) {
+  const allSegments = route.split('/').filter(Boolean);
+  const prefix = LANG_PREFIX_SEGMENTS.has(allSegments[0]) ? `/${allSegments[0]}` : '';
+  const segments = prefix ? allSegments.slice(1) : allSegments;
+
   const items = [{
     '@type': 'ListItem',
     position: 1,
     name: 'Home',
-    item: `${baseUrl}/`
+    item: `${baseUrl}${prefix}/`
   }];
-  let acc = '';
+  let acc = prefix;
   segments.forEach((segment, i) => {
     acc += `/${segment}`;
     items.push({
       '@type': 'ListItem',
       position: i + 2,
-      name: formatSegment(segment),
+      name: formatSegment(segment, lang),
       item: `${baseUrl}${acc}/`
     });
   });
@@ -91,7 +98,7 @@ function breadcrumbLd(baseUrl, route) {
   };
 }
 
-function techArticleLd(baseUrl, route, html, filePath, projectRoot) {
+function techArticleLd(baseUrl, route, html, filePath, projectRoot, lang) {
   const headline = getTitleHeadline(html);
   const description = getMetaDescription(html);
   if (!headline || !description) return null;
@@ -108,7 +115,7 @@ function techArticleLd(baseUrl, route, html, filePath, projectRoot) {
     description,
     author: { '@type': 'Person', name: 'Alessandro' },
     publisher: { '@type': 'Organization', name: 'CODEDGE', url: `${baseUrl}/` },
-    inLanguage: 'it-IT',
+    inLanguage: IN_LANGUAGE[lang],
     url,
     mainEntityOfPage: url,
     image
@@ -118,7 +125,7 @@ function techArticleLd(baseUrl, route, html, filePath, projectRoot) {
   return ld;
 }
 
-function glossaryLd(baseUrl, route, html) {
+function glossaryLd(baseUrl, route, html, lang) {
   const terms = [];
   const entryRegex = /<summary>\s*([\s\S]*?)<span class="tag-description"[^>]*>([\s\S]*?)<\/span>/gi;
   let m;
@@ -132,10 +139,10 @@ function glossaryLd(baseUrl, route, html) {
   return {
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
-    name: getTitleHeadline(html) || formatSegment(route.split('/').filter(Boolean).pop()),
+    name: getTitleHeadline(html) || formatSegment(route.split('/').filter(Boolean).pop(), lang),
     description: getMetaDescription(html) || undefined,
     url: getCanonical(html) || `${baseUrl}${route}`,
-    inLanguage: 'it-IT',
+    inLanguage: IN_LANGUAGE[lang],
     hasDefinedTerm: terms
   };
 }
@@ -158,20 +165,26 @@ export default function seoJsonLdPlugin() {
         if (/<meta\b[^>]*name\s*=\s*["']robots["'][^>]*noindex/i.test(html)) return html;
 
         const relDir = path.relative(pagesRoot, path.dirname(filename)).split(path.sep).join('/');
-        const route = relDir === '' ? '/' : `/${relDir}/`;
+        const route = routeFromSourceDir(relDir);
+        if (!route) return html;
+        const lang = langOf(route);
 
         const blocks = [];
 
-        if (route !== '/' && !html.includes('"BreadcrumbList"')) {
-          blocks.push(breadcrumbLd(baseUrl, route));
+        // Both language homes are roots, so neither gets a breadcrumb.
+        const isLanguageHome = route === '/' || route === '/en/';
+        if (!isLanguageHome && !html.includes('"BreadcrumbList"')) {
+          blocks.push(breadcrumbLd(baseUrl, route, lang));
         }
 
-        if (/^\/tutorial\/[^/]+\/$/.test(route) && !html.includes('"TechArticle"')) {
-          blocks.push(techArticleLd(baseUrl, route, html, filename, projectRoot));
+        const isTutorial = /^\/tutorial\/[^/]+\/$/.test(route) || /^\/en\/tutorials\/[^/]+\/$/.test(route);
+        if (isTutorial && !html.includes('"TechArticle"')) {
+          blocks.push(techArticleLd(baseUrl, route, html, filename, projectRoot, lang));
         }
 
-        if (/^\/risorse\/glossario-[^/]+\/$/.test(route) && !html.includes('"DefinedTermSet"')) {
-          blocks.push(glossaryLd(baseUrl, route, html));
+        const isGlossary = /^\/risorse\/glossario-[^/]+\/$/.test(route) || /^\/en\/resources\/[^/]+-glossary\/$/.test(route);
+        if (isGlossary && !html.includes('"DefinedTermSet"')) {
+          blocks.push(glossaryLd(baseUrl, route, html, lang));
         }
 
         const valid = blocks.filter(Boolean);

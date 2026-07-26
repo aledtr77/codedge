@@ -160,6 +160,99 @@ header.header-scrolled {
   display: none;
 }
 
+/* Language switch: a static link to the twin page in the other language.
+   Sits next to the logo, styled as a compact segmented toggle — the current
+   language reads as selected, the other as the destination. */
+/* A two-position lever. The codes never move: a knob slides between them, and
+   the knob carries a view-transition-name so the slide keeps going across the
+   document swap instead of restarting on the new page. */
+.lang-switch {
+  --lang-seg-w: 2.05rem;
+  --lang-seg-h: 1.72rem;
+  --lang-gap: 0.14rem;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: var(--lang-gap);
+  margin-left: -22px;
+  padding: 0.14rem;
+  border: 1px solid rgba(0, 132, 255, 0.28);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 12px 26px -24px rgba(0, 0, 0, 0.82),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  line-height: 1;
+  transition: border-color 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-switch-thumb {
+  position: absolute;
+  top: 0.14rem;
+  left: 0.14rem;
+  width: var(--lang-seg-w);
+  height: var(--lang-seg-h);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-three), var(--color-one));
+  box-shadow:
+    0 12px 24px -16px rgba(0, 132, 255, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  /* Overshoots slightly on arrival, the way a physical switch snaps. */
+  transition: transform 0.38s cubic-bezier(0.34, 1.42, 0.64, 1);
+  view-transition-name: lang-switch-thumb;
+  pointer-events: none;
+}
+
+.lang-switch[data-active="en"] .lang-switch-thumb {
+  transform: translateX(calc(var(--lang-seg-w) + var(--lang-gap)));
+}
+
+.lang-switch-code {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--lang-seg-w);
+  height: var(--lang-seg-h);
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.28s ease;
+}
+
+.lang-switch[data-active="it"] .lang-switch-code[data-lang="it"],
+.lang-switch[data-active="en"] .lang-switch-code[data-lang="en"] {
+  color: #ffffff;
+}
+
+/* Hovering lights up the destination, so the control reads as "go to EN". */
+.lang-switch:hover .lang-switch-code,
+.lang-switch:focus-visible .lang-switch-code {
+  color: #ffffff;
+}
+
+.lang-switch:focus-visible {
+  outline: none;
+  border-color: rgba(0, 132, 255, 0.6);
+  box-shadow:
+    0 0 0 3px rgba(0, 132, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-switch-thumb {
+    transition: none;
+    view-transition-name: none;
+  }
+}
+
 @media screen and (max-width: 1230px) {
   h1 {
     font-size: calc(1.2em + 0.8vw);
@@ -286,6 +379,25 @@ header.header-scrolled {
     box-shadow: none;
     outline: none;
     text-decoration: none;
+  }
+
+  /* Stays beside the logo on mobile too: it sits outside the dropdown, so the
+     language is switchable without opening the menu. The negative margin pulls
+     it back out of the container's 40px gap, which is far too wide here. */
+  .lang-switch {
+    --lang-seg-w: 1.9rem;
+    --lang-seg-h: 1.68rem;
+
+    margin-left: -28px;
+  }
+
+  .lang-switch-code {
+    font-size: 0.76rem;
+  }
+
+  .lang-switch-code {
+    padding: 0.26rem 0.5rem;
+    font-size: 0.7rem;
   }
 
   .sidebar-toggle {

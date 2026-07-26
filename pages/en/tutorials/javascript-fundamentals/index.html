@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>JavaScript: the fundamentals | Practical basics and mistakes to avoid | Codedge</title>
+  <meta
+    name="description"
+    content="A practical, in-depth guide to JavaScript: scoping, variables, equality, functions, the DOM, events and asynchrony with async/await. The things other tutorials don't explain clearly.">
+  <link rel="canonical" href="https://codedge.it/en/tutorials/javascript-fundamentals/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="JavaScript: the fundamentals | Practical basics and mistakes to avoid | Codedge" />
+  <meta property="og:description" content="A practical, in-depth guide to JavaScript: scoping, variables, equality, functions, the DOM, events and asynchrony with async/await. The things other tutorials don't explain clearly." />
+  <meta property="og:url" content="https://codedge.it/en/tutorials/javascript-fundamentals/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="JavaScript fundamentals guide preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JavaScript: the fundamentals | Practical basics and mistakes to avoid | Codedge" />
+  <meta name="twitter:description" content="A practical, in-depth guide to JavaScript: scoping, variables, equality, functions, the DOM, events and asynchrony with async/await. The things other tutorials don't explain clearly." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 74ch;
+    }
+    .guide-content {
+      --guide-pre-border: rgba(250, 196, 100, 0.18);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fab fa-js-square guide-title-icon" aria-hidden="true" style="color: #f7df1e;"></i> JavaScript: the fundamentals </span>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1 class="sr-only" id="js-guide-title">JavaScript: the fundamentals</h1>
+    <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
+    <section class="section git-guide-shell" aria-labelledby="js-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Navigable index for the JavaScript: the fundamentals guide">
+          <h2>Guide contents</h2>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Before we start</a></li>
+            <li><a href="#chapter-02">1. The browser's mind: what JS is and how it works</a></li>
+            <li><a href="#chapter-03">2. The script tag: async vs defer</a></li>
+            <li><a href="#chapter-04">3. Variables, scope and a final goodbye to var</a></li>
+            <li><a href="#chapter-05">4. Data types, references and the equality of clones</a></li>
+            <li><a href="#chapter-06">5. Functions: classic vs arrow (and the mystery of this)</a></li>
+            <li><a href="#chapter-07">6. Objects, arrays and modern operators</a></li>
+            <li><a href="#chapter-08">7. DOM manipulation: the interface wakes up</a></li>
+            <li><a href="#chapter-09">8. Catching clicks: handling events</a></li>
+            <li><a href="#chapter-10">9. Asynchrony explained for humans: async/await</a></li>
+            <li><a href="#chapter-11">10. Avoiding self-destruction: try/catch</a></li>
+            <li><a href="#chapter-12">11. Web Storage: saving the user's preferences</a></li>
+            <li><a href="#chapter-13">12. JavaScript's wildest behaviours (and how to survive them)</a></li>
+            <li><a href="#chapter-14">13. Professional debugging: beyond console.log</a></li>
+            <li><a href="#chapter-cheatsheet">14. Quick reference (cheat sheet)</a></li>
+            <li><a href="#chapter-challenge">15. Practical challenge: put yourself to the test</a></li>
+            <li><a href="#chapter-15">16. Where to go next</a></li>
+            <li><a href="#chapter-quiz">17. Check what you have learned (quiz)</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="JavaScript: the fundamentals guide content">
+
+          <!-- CAPITOLO 01 — NOTA INIZIALE -->
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">Dynamic programming for the web</p>
+                <h2>Before we start</h2>
+                <section class="guide-subchapter">
+                  <p>If HTML is the skeleton and CSS the visual appearance, JavaScript is the page's logical mind and its muscles. It is the tool that turns a static text document into a living application, able to react to the mouse, send and receive information from the server in the background, and change its appearance dynamically.</p>
+                  <p>In this guide I won't drown you in abstract syntax and purely academic exercises. We'll work on building solid mental models instead: understanding how the browser engine reasons, how to tame the asynchrony of web requests, and how to manage the user interface cleanly and safely.</p>
+                  <p>Open the developer tools console and let's start writing the logic of our code.</p>
+                </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/javascript-fondamentali/copertina-editoriale.webp" alt="Opening illustration for the JavaScript fundamentals guide" decoding="async" width="1024" height="1024">
+              </figure>
+            </div>
+          </section>
+
+          <!-- CAPITOLO 02 — COS'È JS E COME FUNZIONA -->
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. The browser's mind: what JS is and how it works</h2>
+            <section class="guide-subchapter">
+              <p>A piece of history worth knowing for job interviews: <strong>JavaScript has nothing to do with Java</strong>. They share only their first four letters, purely for marketing reasons dating back to the mid-1990s. JS was born to run directly in browsers, making pages interactive.</p>
+              <p>Modern browsers run JavaScript at supersonic speed thanks to complex engines like **V8** (used by Chrome, Edge and Node.js). These engines perform a compilation called **JIT (Just-In-Time)**: they convert source code into highly optimized machine code a fraction of a second before running it.</p>
+              
+              <h3>The one-chef kitchen metaphor (single thread and the event loop)</h3>
+              <p>The most important concept to hold on to is that JavaScript is **single-threaded**: it has one line of execution, which means it can only do one thing at a time.</p>
+              <p>Picture that line of execution as a **kitchen with a single chef**. If a customer orders a steak that needs 20 minutes on the grill (a network request, or waiting for a file from the server), the chef can't just stand frozen in front of the grill doing nothing else — the kitchen (your site) would seize up and the customers would storm out.</p>
+              <p>Here is how JavaScript solves the problem:</p>
+              <ul class="guide-list">
+                <li>The chef puts the steak on the grill and sets a timer.</li>
+                <li>Meanwhile, the chef carries on preparing starters and salads for the other orders (synchronous code keeps running).</li>
+                <li>Watching the cooking is delegated to an assistant outside the kitchen (the browser's **Web APIs**).</li>
+                <li>When the timer rings, the assistant puts the cooked steak on a conveyor belt running to the kitchen door (the **callback queue**).</li>
+                <li>The chef constantly checks whether the main counter is free. As soon as the current orders are done (thanks to the **event loop**), they take the steak off the belt and plate it up.</li>
+              </ul>
+              <p>This lets JavaScript handle very long operations without ever freezing the user interface.</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/javascript-fondamentali/event-loop.svg" alt="JavaScript event loop diagram" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>A representation of the asynchronous cycle the event loop controls, connecting the call stack, Web APIs and callback queue.</figcaption>
+              </figure>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 03 — COLLEGAMENTO -->
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. The script tag: async vs defer</h2>
+            <section class="guide-subchapter">
+              <p>To attach a JavaScript file to an HTML page we use the `&lt;script src="script.js"&gt;&lt;/script&gt;` tag. But where should that tag go? By default, when the browser meets a script while parsing HTML it stops building the page to download and run the file, which dramatically slows down visual loading.</p>
+              <p>To solve this, modern developers put the tag in the page head using two magic attributes:</p>
+              <pre><code>&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --&gt;
+&lt;script src="statistiche.js" async&gt;&lt;/script&gt;
+
+&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --&gt;
+&lt;script src="app-logica.js" defer&gt;&lt;/script&gt;</code></pre>
+              <h3>Which one to choose?</h3>
+              <ul class="guide-list">
+                <li><strong>`async`</strong>: perfect for external scripts that don't depend on other files and don't need to interact with the page immediately (Google Analytics or Facebook tracking pixels, say). Execution order is not guaranteed.</li>
+                <li><strong>`defer`</strong>: the standard for your own logic files. It guarantees scripts run in exactly the order they appear in the HTML, and only once the page structure is fully ready — which avoids errors where code tries to modify tags that don't exist yet.</li>
+              </ul>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 04 — VARIABILI E SCOPE -->
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Variables, scope and a final goodbye to var</h2>
+            <section class="guide-subchapter">
+              <p>In JavaScript, **scope** defines the region of code where a variable is visible and usable. There are three levels of scope:</p>
+              <ul class="guide-list">
+                <li><strong>Global scope</strong>: visible everywhere in the file.</li>
+                <li><strong>Function scope</strong>: visible only inside the function where it was declared.</li>
+                <li><strong>Block scope</strong>: visible only inside a pair of curly braces `{ ... }` (as in a `for` loop or an `if` statement).</li>
+              </ul>
+              <h3>The problem with var, and the stability of let/const</h3>
+              <p>JavaScript used to have only `var`. But `var` **completely ignores block scope**, "escaping" out of loops and conditionals and creating silent bugs that are hard to track down. Modern JavaScript introduces `let` and `const`, which respect block scope strictly:</p>
+              <pre><code>if (true) {
+  var scappa = "Sono visibile fuori!";
+  let protetta = "Rimango qui dentro.";
+}
+console.log(scappa);    // Stampa "Sono visibile fuori!"
+console.log(protetta);  // ReferenceError! (Corretto e sicuro)</code></pre>
+              <h3>const locks the reference, not the object</h3>
+              <p>Many developers wrongly believe that declaring an object with `const` makes it immutable. It doesn't: `const` prevents you from **reassigning the variable** to another object, but it still lets you **change the object's internal properties**:</p>
+              <pre><code>const utente = { nome: "Chiara" };
+utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
+
+// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</code></pre>
+              <p><strong>Rule of thumb</strong>: always reach for `const` first. Switch to `let` only when you know that variable's value will have to be reassigned (loop counters, for instance). Banish `var` from your code for good.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 05 — DATA TYPES E UGUAGLIANZA -->
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Data types, references and the equality of clones</h2>
+            <section class="guide-subchapter">
+              <p>JavaScript's data types fall into two broad logical categories:</p>
+              <ul class="guide-list">
+                <li><strong>Primitive types</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): passed **by value**. Copy a variable and you create a completely independent clone.</li>
+                <li><strong>Reference types</strong> (Object, Array, Function): passed **by reference** (a memory address). Copying an object only copies the key that opens it in memory: change the copy and you change the original.</li>
+              </ul>
+              <pre><code>let nome1 = "Alice";
+let nome2 = nome1; // Copia il valore
+nome2 = "Bob";
+console.log(nome1); // "Alice" (Rimane intatta)
+
+let array1 = [1, 2];
+let array2 = array1; // Copia il riferimento in memoria
+array2.push(3);
+console.log(array1); // [1, 2, 3] (Modificata anche l'originale!)</code></pre>
+              <h3>Loose equality (==) vs strict equality (===)</h3>
+              <p>Never use the loose equality operator `==`. It tries to convert differing types automatically before comparing them, producing nonsense like `"" == 0` (true) or `0 == false` (true).</p>
+              <p>**Always** use strict equality `===` (and its opposite `!==`), which checks both value and type without any conversion:</p>
+              <pre><code>console.log(5 == "5");  // true (Conversione automatica di tipo)
+console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 06 — FUNZIONI -->
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. Functions: classic vs arrow (and the mystery of this)</h2>
+            <section class="guide-subchapter">
+              <p>Functions wrap up reusable blocks of code. Alongside classic functions, modern JavaScript makes heavy use of arrow functions.</p>
+              <p>Classic functions enjoy **hoisting**: you can call them earlier in the file than the line where you declared them, because the browser loads them into memory when the script starts. Arrow functions don't have this property, and offer ultra-compact syntax:</p>
+              <pre><code>const quadrato = x => x * x; // Ritorno implicito ad una riga</code></pre>
+              <h3>The great 'this' dilemma</h3>
+              <p>The fundamental difference lies in how the `this` keyword behaves:</p>
+              <ul class="guide-list">
+                <li>In **classic functions**, `this` refers to *whoever calls the function* at runtime (dynamic context).</li>
+                <li>In **arrow functions**, `this` is **lexical**: it inherits the value from the surrounding context where the function was written, regardless of who calls it.</li>
+              </ul>
+              <pre><code>const carrello = {
+  prodotti: ["Libro", "Penna"],
+  stampa() {
+    // Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)
+    this.prodotti.forEach(prodotto => {
+      console.log(this); // Stampa l'oggetto carrello
+    });
+  }
+};</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 07 — ARRAY ED OGGETTI -->
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Objects, arrays and modern operators</h2>
+            <section class="guide-subchapter">
+              <p>To write elegant, clean code you need to know the syntactic shortcuts introduced in recent years.</p>
+              <h3>Destructuring</h3>
+              <p>It lets you pull properties out of objects, or elements out of arrays, and store them in dedicated variables in one go:</p>
+              <pre><code>const impostazioni = { tema: "dark", volume: 80 };
+const { tema, volume } = impostazioni; // Estratti in variabili indipendenti</code></pre>
+              <h3>The spread operator (...)</h3>
+              <p>Written as three dots, it "spreads" an array's elements or an object's properties into a new container. It is the standard way to clone or merge data safely without mutating the source:</p>
+              <pre><code>const votiMatematica = [7, 8];
+const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clonato)</code></pre>
+              <h3>Avoiding manual loops</h3>
+              <p>Don't use manual `for` loops to transform array data. JavaScript offers ready-made functional methods: `.map()` to change every element, `.filter()` to keep only the elements matching a condition, and `.reduce()` to accumulate values.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 08 — DOM MANIPULATION -->
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. DOM manipulation: the interface wakes up</h2>
+            <section class="guide-subchapter">
+              <p>The DOM (Document Object Model) is the tree structure the browser builds to represent your page. JavaScript queries and modifies it in real time.</p>
+              <h3>Selecting elements with querySelector</h3>
+              <p>Use the modern methods based on CSS selectors, and nothing else:</p>
+              <ul class="guide-list">
+                <li><strong>`document.querySelector(".class")`</strong>: returns the *first* element matching the class.</li>
+                <li><strong>`document.querySelectorAll(".class")`</strong>: returns an iterable collection of *every* matching element.</li>
+              </ul>
+              <h3>Changing styles safely</h3>
+              <p>Never write CSS properties directly in JavaScript (`element.style.color = "red"`). It is a bad practice that makes maintenance extremely difficult.</p>
+              <p>The correct approach is to **define the visual states in CSS** (create an `.is-active` class with its rules, for instance) and use JavaScript purely to **add or remove that class** in the DOM:</p>
+              <pre><code>const popup = document.querySelector(".popup");
+popup.classList.add("is-active");
+popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code></pre>
+              <h3>textContent vs innerHTML: XSS safety</h3>
+              <p>If you have to print user-supplied text onto a page, always use `textContent`. Avoid `innerHTML`, since it interprets HTML tags and could let attackers inject malicious scripts into your site (a Cross-Site Scripting, or XSS, attack).</p>
+
+              <figure class="guide-figure">
+                <img src="/images/percorsi-apprendimento/javascript-fondamentali/dom-manipulation.svg" alt="DOM manipulation diagram" loading="lazy" decoding="async" width="1200" height="520">
+                <figcaption>A representation of how JavaScript selects elements in the HTML tree and dynamically alters their properties and content.</figcaption>
+              </figure>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 09 — EVENTI -->
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Catching clicks: handling events</h2>
+            <section class="guide-subchapter">
+              <p>The browser fires an event every time something happens: a click, mouse movement, a keystroke, or loading finishing.</p>
+              <p>You bind behaviour to an event by attaching a listener directly from JavaScript:</p>
+              <pre><code>const pulsante = document.querySelector("#btn-invia");
+
+function gestisciInvio(event) {
+  event.preventDefault(); // Blocca l'invio del form e il ricaricamento della pagina!
+  console.log("Dati inviati in modo asincrono.");
+}
+
+pulsante.addEventListener("click", gestisciInvio);</code></pre>
+              <p>Using `event.preventDefault()` is crucial in forms: it stops the browser's default behaviour so we can handle submission in the background with JavaScript.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 10 — ASINCRONIA -->
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. Asynchrony explained for humans: async/await</h2>
+            <section class="guide-subchapter">
+              <p>When you query an external server to download data, you can't know how long the response will take. JavaScript handles that waiting through **promises**.</p>
+              <p>A promise can be in one of three states: `Pending`, `Fulfilled` (resolved successfully) or `Rejected` (failed with an error).</p>
+              <h3>The simplicity of async/await</h3>
+              <p>To avoid messy code built on complex constructs, we use the modern `async/await` syntax. It lets you write asynchronous code with the same linear, line-by-line structure as synchronous code:</p>
+              <pre><code>// Contrassegniamo la funzione come asincrona
+async function caricaDati() {
+  console.log("Caricamento avviato...");
+  
+  // Il browser aspetta la risposta della fetch senza bloccare il resto della pagina
+  const risposta = await fetch("https://api.esempio.com/prodotti");
+  const prodotti = await risposta.json();
+  
+  console.log("Prodotti ricevuti:", prodotti);
+}
+
+caricaDati();
+console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!");</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 11 — TRY/CATCH -->
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>10. Avoiding self-destruction: try/catch</h2>
+            <section class="guide-subchapter">
+              <p>If JavaScript hits an unrecoverable error (an API call that fails because the network is down, or malformed JSON), it stops execution abruptly. In that state, all of your scripts stop working.</p>
+              <p>To avoid catastrophic crashes, wrap risky code in a `try/catch` block and handle the error gracefully:</p>
+              <pre><code>async function scaricaProfilo() {
+  try {
+    const risposta = await fetch("https://api.esempio.com/profilo");
+    const dati = await risposta.json();
+    console.log("Profilo caricato:", dati.nome);
+  } catch (errore) {
+    // Eseguito solo in caso di errore nel blocco try
+    console.error("Non è stato possibile caricare il profilo:", errore.message);
+    mostraMessaggioDiErroreAllUtente();
+  } finally {
+    // Eseguito sempre, a prescindere dal successo o dal fallimento
+    nascondiSpinnerCaricamento();
+  }
+}</code></pre>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 12 — WEB STORAGE -->
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>11. Web Storage: saving the user's preferences</h2>
+            <section class="guide-subchapter">
+              <p>If a user switches your site to dark mode, you want that choice to persist even after they close the browser and come back the next day. That's what localStorage is for.</p>
+              <h3>localStorage vs sessionStorage</h3>
+              <p>Both store key-value pairs in the browser as strings, but their lifetimes differ:</p>
+              <ul class="guide-list">
+                <li><strong>`localStorage`</strong>: the data never expires and stays in the browser until it is cleared by code or by the user.</li>
+                <li><strong>`sessionStorage`</strong>: the data is lost the moment the browser tab is closed.</li>
+              </ul>
+              <pre><code>// Salvare un dato
+localStorage.setItem("temaScuro", "true");
+
+// Leggere un dato
+const tema = localStorage.getItem("temaScuro");
+
+// Rimuovere un dato
+localStorage.removeItem("temaScuro");</code></pre>
+              <h3>Storing complex objects</h3>
+              <p>Because localStorage only accepts **strings**, trying to store an object directly turns it into the useless text `"[object Object]"`. To store complex structures (objects or arrays) you first have to convert them to JSON strings with `JSON.stringify`, and convert them back on retrieval with `JSON.parse`:</p>
+              <pre><code>const carrello = ["Scarpe", "Zaino"];
+
+// Salvataggio (conversione in stringa JSON)
+localStorage.setItem("carrello_utente", JSON.stringify(carrello));
+
+// Estrazione (conversione in array utilizzabile)
+const datiSalvati = localStorage.getItem("dati_utente");
+const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
+              <p><strong>Security warning</strong>: never store passwords, authentication tokens or sensitive personal data in localStorage. Any JavaScript running on the page can read it freely, which makes it an easy target in an XSS attack.</p>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 13 — COMPORTAMENTI FOLLI -->
+          <section id="chapter-13" class="guide-block guide-chapter">
+            <h2>12. JavaScript's wildest behaviours (and how to survive them)</h2>
+            <section class="guide-subchapter">
+              <p>JavaScript was written in a hurry in the early 1990s and still carries a few historical quirks that make developers smile and beginners despair. Here are the four most famous, and how to deal with them:</p>
+
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This isn't a JavaScript bug but a consequence of how computers convert decimal numbers into binary fractions. To compare prices in an e-commerce site without stray microscopic fractions, always round decimals with `toFixed()`, or work with whole numbers (convert to cents before doing the maths):</p>
+                <pre style="margin-top: 0.5rem;"><code>const totale = (0.1 * 10 + 0.2 * 10) / 10; // Restituisce esattamente 0.3!</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>2. typeof null === "object"</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This is a genuine historical bug in the original 1995 JavaScript engine. It can't be removed or fixed, because doing so would break millions of websites currently live on the internet. To check whether a variable really is an object while excluding `null`, do a double check:</p>
+                <pre style="margin-top: 0.5rem;"><code>if (variabile &amp;&amp; typeof variabile === "object") { ... }</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>3. NaN !== NaN (Not-a-Number is not equal to itself)</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` represents the result of an invalid mathematical operation (`"hello" * 5`, say). In JavaScript, `NaN` is the only value in the world that isn't equal to itself when compared with `===`. To test whether a value is `NaN`, use the native method:</p>
+                <pre style="margin-top: 0.5rem;"><code>Number.isNaN(valore); // Restituisce true o false in modo affidabile</code></pre>
+              </div>
+
+              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
+                <strong>4. Bizarre automatic type coercion</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Add an empty array to another empty array (`[] + []`) and you get an empty string `""`. Add an empty array to an empty object (`[] + {}`) and you get the string `"[object Object]"`. To avoid these silent bugs, always use strict equality `===` and never add variables of different types without converting them explicitly first (with `Number()` or `String()`).</p>
+              </div>
+            </section>
+          </section>
+
+          <!-- CAPITOLO 14 — DEBUGGING -->
+          <section id="chapter-14" class="guide-block guide-chapter">
+            <h2>13. Professional debugging: beyond console.log</h2>
+            <section class="guide-subchapter">
+              <p>Sprinkling `console.log()` everywhere is the quickest but messiest way to debug. Browsers offer far better tools for inspecting the state of your code.</p>
+              <ul class="guide-list">
+                <li><strong>`console.table()`</strong>: give it an array of objects and it formats them into a beautiful sortable table in the console.</li>
+                <li><strong>`console.dir()`</strong>: shows a DOM object's property list as a pure JavaScript object rather than printing its HTML.</li>
+              </ul>
+              <h3>The power of the debugger statement</h3>
+              <p>Put the **`debugger;`** keyword in your script and keep the browser's developer tools open, and execution freezes instantly at that exact point:</p>
+              <pre><code>function calcolaPrezzo(base) {
+  const tasse = 1.22;
+  debugger; // Il browser congela la pagina ed evidenzia questa riga nei DevTools
+  return base * tasse;
+}</code></pre>
+              <p>You can then inspect the current value of every variable at that millisecond and step through line by line, finding problems without littering the code with throwaway logs.</p>
+            </section>
+          </section>
+
+          <!-- SEZIONE QUIZ INTERATTIVO PILOTA -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>14. Quick reference (cheat sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Here is a quick recap of the main ways to query and modify the DOM:</p>
+              <div class="table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th class="is-accent">Parameter / usage</th>
+                      <th>What it does</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="is-code is-strong">querySelector()</td>
+                      <td class="is-code">'.class' | '#id'</td>
+                      <td>Selects the first element matching the given CSS selector.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">addEventListener()</td>
+                      <td class="is-code">'click', callback</td>
+                      <td>Attaches a listener that runs JavaScript in response to the event.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">classList.add()</td>
+                      <td class="is-code">'is-active'</td>
+                      <td>Adds a CSS class to the element to change its visual state safely.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">textContent</td>
+                      <td class="is-code">'Plain text'</td>
+                      <td>Reads or writes the text inside the element (safe against XSS attacks).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>15. Practical challenge: put yourself to the test</h2>
+            <section class="guide-subchapter">
+              
+              <p>Put the DOM and event logic into practice in JavaScript:</p>
+              <div class="alert alert--note">
+                <strong>Challenge goal:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Build a live character counter for a text box (textarea) that changes color (turning red, for instance) once the character limit is exceeded.</p>
+                <strong>Step-by-step instructions:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Select the textarea with <code class="language-javascript">document.querySelector('.message')</code> and the counter with <code class="language-javascript">document.querySelector('.counter')</code>.</li>
+                  <li>Add an event listener for the <code class="language-javascript">'input'</code> event on your text box.</li>
+                  <li>Inside the listener's callback, read the current length of the typed text.</li>
+                  <li>Update the counter's <code class="language-javascript">textContent</code> property to show the current count (for example <code class="language-javascript">msgLen + " / 100"</code>).</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- CAPITOLO 15 — DOVE CONTINUARE -->
+          <section id="chapter-15" class="guide-block guide-chapter">
+            <h2>16. Where to go next</h2>
+            <section class="guide-subchapter">
+              <p>You've taken your first big steps into programming logic for the web. Here is where to point your next reading to build on these skills:</p>
+              <ul class="guide-list">
+                <li><a href="/en/tutorials/npm-vite-project-structure/">NPM and Vite</a>: the essential tutorial for organizing complex projects by splitting code into self-contained files (import/export modules) instead of writing one enormous script.</li>
+                <li><a href="/en/tutorials/browser-devtools/">Browser DevTools</a>: go deeper into the Network panel and the source code inspector.</li>
+                <li><a href="/en/tutorials/web-accessibility-basics/">Web accessibility basics</a>: find out how to make sure your JavaScript doesn't get in the way of keyboard or screen reader navigation.</li>
+                <li><a href="/en/tutorials/">All tutorials</a>: back to the guide index to keep learning.</li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section">
+            <h2>17. Check what you have learned (quiz)</h2>
+            <p class="quiz-intro">Test what you have learned in this guide with a quick 10-question multiple-choice quiz.</p>
+            <div id="quiz-wrapper"></div>
+          </section>
+
+          <!-- Invito ai template a fine guida (stile pulito .guide-next-step, condiviso) -->
+          <aside class="guide-next-step" aria-labelledby="next-step-title">
+            <div class="guide-next-step__icon" aria-hidden="true">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="guide-next-step__content">
+              <h2 id="next-step-title" class="guide-next-step__title">Ready-made templates</h2>
+              <p class="guide-next-step__text">
+                If you'd rather not start from an empty file, here are the templates I've put together.
+                Take a look: if you like them you can buy them, and if not, use them as an example
+                to copy for your own project.
+              </p>
+              <a href="/en/templates/" class="button-simple guide-next-step__cta">Explore the templates</a>
+            </div>
+          </aside>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/javascript-fondamentali/main.js"></script>
+</body>
+
+</html>

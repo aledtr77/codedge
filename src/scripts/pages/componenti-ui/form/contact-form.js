@@ -1,3 +1,5 @@
+import { t } from "@/i18n/ui.js";
+
 export function initValidatedContactForm(selector = "[data-contact-form]") {
   const form = document.querySelector(selector);
   if (!form) return;
@@ -7,10 +9,10 @@ export function initValidatedContactForm(selector = "[data-contact-form]") {
   const status = form.querySelector("[data-form-status]");
 
   const messages = {
-    name: "Inserisci almeno 2 caratteri.",
-    email: "Inserisci un indirizzo email valido.",
-    topic: "Scegli un argomento.",
-    message: "Scrivi un messaggio di almeno 12 caratteri.",
+    name: t("demoForm.name"),
+    email: t("demoForm.email"),
+    topic: t("demoForm.topic"),
+    message: t("demoForm.message"),
   };
 
   const setError = (field, message = "") => {
@@ -22,7 +24,7 @@ export function initValidatedContactForm(selector = "[data-contact-form]") {
   const getMessage = (field) => {
     const key = field.dataset.validate;
     const value = field.value.trim();
-    if (field.required && !value) return messages[key] || "Campo obbligatorio.";
+    if (field.required && !value) return messages[key] || t("demoForm.required");
     if (field.type === "email" && !field.validity.valid) return messages.email;
     if (field.minLength > 0 && value.length < field.minLength) return messages[key];
     return "";
@@ -45,24 +47,24 @@ export function initValidatedContactForm(selector = "[data-contact-form]") {
     const isValid = fields.map(validateField).every(Boolean);
     if (!isValid) {
       fields.find((field) => field.getAttribute("aria-invalid") === "true")?.focus();
-      if (status) status.textContent = "Controlla i campi evidenziati.";
+      if (status) status.textContent = t("demoForm.checkFields");
       return;
     }
 
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.dataset.originalText = submitButton.textContent;
-      submitButton.textContent = "Invio in corso";
+      submitButton.textContent = t("demoForm.sending");
     }
-    if (status) status.textContent = "Messaggio pronto per l'invio.";
+    if (status) status.textContent = t("demoForm.ready");
 
     window.setTimeout(() => {
-      if (status) status.textContent = "Demo completata: dati validi e stato di successo mostrato.";
+      if (status) status.textContent = t("demoForm.done");
       form.reset();
       fields.forEach((field) => setError(field));
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = submitButton.dataset.originalText || "Invia richiesta";
+        submitButton.textContent = submitButton.dataset.originalText || t("demoForm.submit");
       }
     }, 700);
   });

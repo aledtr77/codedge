@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>SEO tecnico base senza panico | Guida pratica | Codedge</title>
+  <meta
+    name="description"
+    content="Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console.">
+  <!-- i18n: translation pending — this page still holds the Italian source text.
+       Remove this block (robots meta included) once the page is translated. -->
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://codedge.it/en/tutorials/technical-seo-basics/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="SEO tecnico base senza panico | Guida pratica | Codedge" />
+  <meta property="og:description" content="Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console." />
+  <meta property="og:url" content="https://codedge.it/en/tutorials/technical-seo-basics/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima guida SEO tecnico base" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SEO tecnico base senza panico | Guida pratica | Codedge" />
+  <meta name="twitter:description" content="Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "SEO tecnico base senza panico",
+    "description": "Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console.",
+    "author": {
+      "@type": "Person",
+      "name": "Alessandro"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CODEDGE",
+      "url": "https://codedge.it/"
+    },
+    "inLanguage": "it-IT",
+    "url": "https://codedge.it/en/tutorials/technical-seo-basics/",
+    "image": "https://codedge.it/og/opengraph-1200x630.jpg",
+    "datePublished": "2026-06-25",
+    "dateModified": "2026-06-25"
+  }
+  </script>
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    .guide-content .guide-subchapter p,
+    .guide-content .guide-subchapter li {
+      max-width: 76ch;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"><i class="fas fa-chart-line guide-title-icon" aria-hidden="true"></i>SEO tecnico base</span>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1 class="sr-only" id="seo-guide-title">SEO tecnico base</h1>
+    <a href="/en/tutorials/" class="back-link"><i class="fas fa-chevron-left"></i> All tutorials</a>
+    <section class="section git-guide-shell" aria-labelledby="seo-guide-title">
+      <div class="guide-layout">
+        <aside class="guide-toc" aria-label="Indice navigabile guida SEO tecnico base">
+          <h2>Guide contents</h2>
+          <ol class="guide-toc-list">
+            <li><a href="#chapter-01">Nota iniziale</a></li>
+            <li><a href="#chapter-02">1. Cos'è la SEO tecnica</a></li>
+            <li><a href="#chapter-03">2. Come ragiona Google</a></li>
+            <li><a href="#chapter-04">3. Contenuto e intento</a></li>
+            <li><a href="#chapter-05">4. Head HTML essenziale</a></li>
+            <li><a href="#chapter-06">5. URL e link interni</a></li>
+            <li><a href="#chapter-07">6. Sitemap, robots e noindex</a></li>
+            <li><a href="#chapter-08">7. Canonical e duplicati</a></li>
+            <li><a href="#chapter-09">8. Immagini, mobile e performance</a></li>
+            <li><a href="#chapter-10">9. Dati strutturati e social</a></li>
+            <li><a href="#chapter-11">10. Search Console</a></li>
+            <li><a href="#chapter-12">11. Checklist finale</a></li>
+            <li><a href="#chapter-cheatsheet">12. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">13. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-quiz">14. Verifica la preparazione (Quiz)</a></li>
+          </ol>
+        </aside>
+
+        <article class="guide-content" aria-label="Contenuto guida SEO tecnico base">
+          <section id="chapter-01" class="guide-block guide-chapter">
+            <div class="guide-intro-layout">
+              <div class="guide-intro-copy">
+                <p class="guide-intro-kicker">Guida pratica per rendere un sito piu leggibile da persone e motori di ricerca</p>
+                <h2>Nota iniziale</h2>
+              <section class="guide-subchapter">
+                <p>La SEO puo sembrare una materia infinita: keyword, contenuti, tecnica, performance, dati, link, reputazione, aggiornamenti degli algoritmi e mille opinioni diverse.</p>
+                <p>Questa guida non prova a comprimere tutta la SEO in una pagina. Sarebbe impossibile e anche poco utile. L'obiettivo e piu concreto: costruire una base tecnica solida per capire cosa controllare quando pubblichi un sito, una pagina, un tutorial o un piccolo progetto front-end.</p>
+                <p>Se parti da zero, qui trovi i concetti essenziali. Se qualcosa gia lo sai, questa guida dovrebbe aiutarti a rimettere ordine: cosa conta davvero, cosa e solo un segnale di supporto, cosa non garantisce nulla e cosa invece evita errori banali ma pesanti.</p>
+                <p>La promessa giusta non e "arrivi primo su Google". La promessa giusta e: dopo questa guida saprai pubblicare pagine piu chiare, piu controllabili e meno confuse per browser, utenti, crawler e Search Console.</p>
+              </section>
+              </div>
+              <figure class="guide-figure guide-figure--editorial">
+                <img src="/images/percorsi-apprendimento/seo-tecnico-base/copertina-editoriale.webp" alt="Illustrazione di apertura della guida SEO tecnico base" decoding="async" width="864" height="1080">
+              </figure>
+            </div>
+          </section>
+
+          <section id="chapter-02" class="guide-block guide-chapter">
+            <h2>1. Cos'è la SEO tecnica</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/seo-tecnico-base/panoramica-seo-tecnico-base.svg" alt="Panoramica SEO tecnica con pagina, crawl, indice, risultato e controllo Search Console" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>SEO tecnica: togliere ostacoli e rendere leggibile il percorso tra pagina pubblicata, crawler, indice e risultato.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <p>La SEO tecnica e la parte della SEO che si occupa di rendere un sito accessibile, comprensibile e monitorabile dai motori di ricerca.</p>
+              <p>Non e magia. Non e un trucco. Non sostituisce contenuti utili, esperienza reale, chiarezza editoriale o qualita del progetto.</p>
+              <p>Detta in modo pratico, la SEO tecnica risponde a domande come:</p>
+              <ul class="guide-list">
+                <li>questa pagina esiste davvero online e risponde correttamente?</li>
+                <li>Google puo raggiungerla tramite link o sitemap?</li>
+                <li>il contenuto principale e leggibile nell'HTML?</li>
+                <li>title, description, H1 e URL raccontano la stessa cosa?</li>
+                <li>la pagina giusta e quella canonica o ci sono duplicati confusi?</li>
+                <li>la versione mobile e usabile?</li>
+                <li>Search Console segnala problemi di scansione o indicizzazione?</li>
+              </ul>
+              <p>La SEO tecnica non serve a forzare un motore di ricerca. Serve a non mettergli i bastoni tra le ruote e a dare segnali coerenti.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Il punto da ricordare</h3>
+              <p>Una pagina puo essere tecnicamente perfetta e comunque non posizionarsi bene se il contenuto non risponde a una ricerca reale, se e superficiale, se copia cose gia presenti ovunque o se non offre valore.</p>
+              <p>Allo stesso tempo, una pagina utile puo perdere opportunita se ha title confuso, link rotti, canonical sbagliato, sitemap non aggiornata, contenuto caricato male o problemi mobile evidenti.</p>
+              <p>La SEO tecnica e quindi una base: non vince da sola, ma rende possibile lavorare meglio su tutto il resto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-03" class="guide-block guide-chapter">
+            <h2>2. Come ragiona Google: crawl, index, result</h2>
+            <section class="guide-subchapter">
+              <p>Per non perdersi, conviene partire dal modello mentale piu semplice. Google Search lavora in tre grandi fasi: scoperta e scansione, indicizzazione, restituzione dei risultati.</p>
+              <ol class="guide-number-list">
+                <li><strong>Crawling:</strong> Googlebot scopre URL e scarica risorse come HTML, immagini, CSS e script quando puo accedervi.</li>
+                <li><strong>Indexing:</strong> Google analizza la pagina, cerca di capirne contenuto, struttura, segnali tecnici e URL rappresentativo.</li>
+                <li><strong>Serving:</strong> quando qualcuno cerca qualcosa, Google sceglie risultati che ritiene pertinenti e li mostra con title link, snippet e altri elementi.</li>
+              </ol>
+              <p>Non tutte le pagine arrivano a tutte le fasi. Una pagina puo essere online ma non scoperta, scoperta ma non indicizzata, indicizzata ma non mostrata spesso, oppure mostrata con un title diverso da quello che ti aspettavi.</p>
+              <p>Questa distinzione e fondamentale: quando qualcosa non funziona, devi capire in quale fase si rompe.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>La domanda giusta cambia tutto</h3>
+              <p>Invece di dire solo "Google non mi trova", prova a chiederti:</p>
+              <ul class="guide-checklist">
+                <li>l'URL risponde con stato 200?</li>
+                <li>ci sono link interni che portano a quella pagina?</li>
+                <li>la pagina e nella sitemap?</li>
+                <li>robots.txt o meta robots stanno bloccando qualcosa?</li>
+                <li>Search Console vede la pagina come indicizzabile?</li>
+                <li>il contenuto principale e davvero presente e comprensibile?</li>
+              </ul>
+              <p>Questa e gia SEO tecnica buona: non indovinare, isolare il punto del flusso.</p>
+            </section>
+          </section>
+
+          <section id="chapter-04" class="guide-block guide-chapter">
+            <h2>3. Contenuto e intento: la parte tecnica parte da qui</h2>
+            <section class="guide-subchapter">
+              <p>Prima dei tag, della sitemap e dei dati strutturati, devi avere una pagina che sa cosa vuole fare.</p>
+              <p>Una pagina forte ha un tema principale chiaro. Non deve parlare di tutto. Deve aiutare una persona a risolvere un dubbio, scegliere, imparare, confrontare o completare un'azione.</p>
+              <p>Per una guida tecnica, per esempio, l'intento puo essere:</p>
+              <ul class="guide-list">
+                <li>capire un concetto di base;</li>
+                <li>seguire una procedura;</li>
+                <li>evitare errori comuni;</li>
+                <li>avere una checklist riutilizzabile;</li>
+                <li>orientarsi tra strumenti simili.</li>
+              </ul>
+              <p>Se l'intento e confuso, anche i segnali tecnici diventano confusi. Il title promette una cosa, l'H1 ne dice un'altra, la description prova a vendere tutto e il contenuto non chiude davvero il bisogno.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Una struttura semplice che funziona</h3>
+              <p>Per iniziare, puoi pensare a ogni pagina come a una piccola risposta organizzata:</p>
+              <ol class="guide-number-list">
+                <li><strong>H1:</strong> dice il tema principale senza giri strani.</li>
+                <li><strong>Introduzione:</strong> spiega per chi e la pagina e quale problema risolve.</li>
+                <li><strong>Sezioni H2:</strong> dividono i passaggi o i sotto-temi importanti.</li>
+                <li><strong>Esempi:</strong> rendono il contenuto applicabile, non solo teorico.</li>
+                <li><strong>Checklist o sintesi:</strong> aiuta chi deve agire subito.</li>
+              </ol>
+              <p>Questa struttura aiuta le persone, ma aiuta anche i crawler a capire gerarchia e contesto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-05" class="guide-block guide-chapter">
+            <h2>4. Head HTML essenziale</h2>
+            <section class="guide-subchapter">
+              <p>La sezione <code>&lt;head&gt;</code> non si vede nella pagina, ma contiene segnali importanti. All'inizio non serve riempirla di roba: serve curare bene pochi elementi.</p>
+              <pre><code>&lt;title&gt;SEO tecnico base senza panico | Guida pratica | Codedge&lt;/title&gt;
+&lt;meta name="description" content="Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console."&gt;
+&lt;link rel="canonical" href="https://codedge.it/en/tutorials/technical-seo-basics/"&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</code></pre>
+              <p>Questo piccolo blocco non risolve tutto, ma crea una base pulita.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Title</h3>
+              <p>Il <code>&lt;title&gt;</code> e uno dei segnali principali usati per capire e mostrare una pagina nei risultati. Deve essere descrittivo, specifico e coerente con il contenuto visibile.</p>
+              <ul class="guide-list guide-list-good">
+                <li><code>SEO tecnico base senza panico | Guida pratica | Codedge</code></li>
+                <li><code>Deploy base: build, hosting e dominio | Codedge</code></li>
+              </ul>
+              <ul class="guide-list guide-list-bad">
+                <li><code>Home</code></li>
+                <li><code>Articolo nuovo</code></li>
+                <li><code>SEO SEO SEO guida SEO completa migliore gratis 2026</code></li>
+              </ul>
+              <p>Non devi contare caratteri in modo ossessivo. Devi evitare title vaghi, gonfiati, duplicati o scollegati dalla pagina.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Meta description</h3>
+              <p>La meta description non e una bacchetta magica per il ranking. Serve soprattutto a riassumere la pagina e puo essere usata come snippet nei risultati, anche se Google puo riscriverla quando lo ritiene piu utile.</p>
+              <p>Una buona description dice cosa trova l'utente e perche dovrebbe aprire la pagina. Non deve ripetere keyword a caso.</p>
+              <pre><code>&lt;meta name="description" content="Guida pratica a Git per iniziare da zero: commit, branch, merge, remoti e recupero errori senza panico."&gt;</code></pre>
+            </section>
+            <section class="guide-subchapter">
+              <h3>H1 e title non sono la stessa cosa</h3>
+              <p>Il title vive nel browser e nei segnali della pagina. L'H1 e il titolo principale visibile nel contenuto.</p>
+              <p>Possono essere simili, ma non devono per forza essere identici. La cosa importante e che raccontino la stessa pagina.</p>
+              <ul class="guide-list">
+                <li><strong>Title:</strong> <code>SEO tecnico base senza panico | Guida pratica | Codedge</code></li>
+                <li><strong>H1:</strong> <code>SEO tecnico base</code></li>
+              </ul>
+              <p>Questo e coerente: uno e piu completo per la scheda/risultato, l'altro e piu asciutto per la pagina.</p>
+            </section>
+          </section>
+
+          <section id="chapter-06" class="guide-block guide-chapter">
+            <h2>5. URL puliti e link interni</h2>
+            <section class="guide-subchapter">
+              <p>Un URL buono non deve essere creativo. Deve essere stabile, leggibile e coerente con la pagina.</p>
+              <ul class="guide-list guide-list-good">
+                <li><code>/tutorial/seo-tecnico-base/</code></li>
+                <li><code>/strumenti/compressore-immagini/</code></li>
+                <li><code>/risorse/glossario-css/</code></li>
+              </ul>
+              <ul class="guide-list guide-list-bad">
+                <li><code>/post?id=123&amp;cat=9</code></li>
+                <li><code>/nuova-pagina-finale-vera/</code></li>
+                <li><code>/seo_tecnico_base_definitivo2/</code></li>
+              </ul>
+              <p>Non cambiare URL senza motivo. Ogni cambio puo creare vecchi link rotti, redirect da gestire e segnali da ricostruire.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Link interni: la mappa che le persone usano davvero</h3>
+              <p>La sitemap aiuta, ma i link interni restano fondamentali. Se una pagina importante non e linkata da nessuna parte, stai dicendo al sito stesso che quella pagina e isolata.</p>
+              <p>Un buon link interno ha tre caratteristiche:</p>
+              <ul class="guide-checklist">
+                <li>usa un vero elemento <code>&lt;a href="..."&gt;</code>;</li>
+                <li>ha un testo comprensibile, non solo "clicca qui";</li>
+                <li>collega pagine che hanno senso nello stesso percorso.</li>
+              </ul>
+              <p>Esempio: da una guida sul deploy ha senso linkare una guida SEO tecnica, perche dopo la pubblicazione arriva il momento di controllare sitemap, Search Console e anteprima della pagina.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Anchor text pratico</h3>
+              <p>Il testo del link deve spiegare dove porta.</p>
+              <ul class="guide-list guide-list-good">
+                <li><code>&lt;a href="/en/tutorials/deployment-basics/"&gt;Deploy base&lt;/a&gt;</code></li>
+                <li><code>&lt;a href="/en/tutorials/github-in-practice/"&gt;GitHub operativo&lt;/a&gt;</code></li>
+              </ul>
+              <ul class="guide-list guide-list-bad">
+                <li><code>&lt;a href="/en/tutorials/deployment-basics/"&gt;leggi qui&lt;/a&gt;</code></li>
+                <li><code>&lt;a href="/en/tutorials/github-in-practice/"&gt;pagina interessante&lt;/a&gt;</code></li>
+              </ul>
+            </section>
+          </section>
+
+          <section id="chapter-07" class="guide-block guide-chapter">
+            <h2>6. Sitemap, robots.txt e noindex</h2>
+            <section class="guide-subchapter">
+              <h3>Sitemap XML</h3>
+              <p>La sitemap e un file che elenca gli URL che vuoi far scoprire ai motori di ricerca. Non garantisce indicizzazione, ma e un segnale utile, soprattutto quando il sito cresce o quando alcune pagine sono nuove.</p>
+              <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://codedge.it/tutorial/seo-tecnico-base/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-06-25T00:00:00.000Z&lt;/lastmod&gt;
+    &lt;priority&gt;0.7&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+              <p>La cosa piu importante: metti in sitemap gli URL canonici, indicizzabili e pubblici. Non usarla come cestino di tutti gli URL possibili.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>robots.txt</h3>
+              <p><code>robots.txt</code> dice ai crawler quali percorsi possono o non possono scansionare. Serve soprattutto a gestire il crawl, non a nascondere informazioni private.</p>
+              <pre><code>User-agent: *
+Allow: /
+
+Sitemap: https://codedge.it/sitemap.xml</code></pre>
+              <p>Errore classico: usare <code>robots.txt</code> per togliere una pagina da Google. Non e lo strumento giusto. Se una pagina non deve essere indicizzata, usa <code>noindex</code> o proteggila davvero se contiene dati privati.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>noindex</h3>
+              <p><code>noindex</code> dice ai motori di ricerca di non indicizzare una pagina.</p>
+              <pre><code>&lt;meta name="robots" content="noindex,follow"&gt;</code></pre>
+              <p>Usalo per pagine tecniche, duplicati intenzionali, pagine interne non utili in ricerca o contenuti temporanei. Non usarlo per pagine che vuoi posizionare.</p>
+              <p>Attenzione: se blocchi una pagina via <code>robots.txt</code>, Google potrebbe non leggere il meta <code>noindex</code> dentro quella pagina. I segnali vanno scelti con coerenza.</p>
+            </section>
+          </section>
+
+          <section id="chapter-08" class="guide-block guide-chapter">
+            <h2>7. Canonical e duplicati</h2>
+            <section class="guide-subchapter">
+              <p>La canonical serve a indicare quale URL consideri la versione principale di un contenuto.</p>
+              <pre><code>&lt;link rel="canonical" href="https://codedge.it/en/tutorials/technical-seo-basics/"&gt;</code></pre>
+              <p>Questo e utile quando contenuti uguali o molto simili possono essere raggiunti da piu URL.</p>
+              <p>Esempi comuni:</p>
+              <ul class="guide-list">
+                <li><code>/tutorial/seo-tecnico-base/</code> e <code>/tutorial/seo-tecnico-base/index.html</code>;</li>
+                <li>versioni con parametri di tracking;</li>
+                <li>pagine filtrate o ordinate in modo diverso;</li>
+                <li>HTTP e HTTPS, con o senza <code>www</code>, se non gestiti bene.</li>
+              </ul>
+              <p>La canonical non e un ordine assoluto: e un segnale. Google puo scegliere un'altra canonical se i segnali complessivi sono incoerenti.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Regola semplice</h3>
+              <ul class="guide-checklist">
+                <li>ogni pagina importante dovrebbe avere una canonical assoluta e coerente;</li>
+                <li>la sitemap dovrebbe contenere gli stessi URL canonici;</li>
+                <li>i link interni dovrebbero puntare alla versione canonica;</li>
+                <li>redirect, canonical e sitemap non dovrebbero raccontare storie diverse.</li>
+              </ul>
+              <p>Quando questi segnali sono allineati, stai rendendo piu facile capire quale URL conta davvero.</p>
+            </section>
+          </section>
+
+          <section id="chapter-09" class="guide-block guide-chapter">
+            <h2>8. Immagini, mobile e performance</h2>
+            <section class="guide-subchapter">
+              <h3>Immagini</h3>
+              <p>Le immagini non sono solo decorazione. Possono appesantire la pagina, migliorare la comprensione del contenuto o creare problemi se gestite male.</p>
+              <p>Una buona base:</p>
+              <ul class="guide-checklist">
+                <li>usa immagini compresse e dimensionate in modo sensato;</li>
+                <li>aggiungi <code>width</code> e <code>height</code> quando puoi;</li>
+                <li>usa <code>loading="lazy"</code> sulle immagini non critiche;</li>
+                <li>scrivi alt text utile quando l'immagine porta informazione;</li>
+                <li>lascia <code>alt=""</code> solo per immagini puramente decorative.</li>
+              </ul>
+              <pre><code>&lt;img
+  src="/images/tutorial/schema-seo.svg"
+  alt="Schema dei passaggi SEO: crawl, indice e risultato"
+  loading="lazy"
+  decoding="async"
+  width="1200"
+  height="520"&gt;</code></pre>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Mobile</h3>
+              <p>Oggi non puoi trattare il mobile come una versione secondaria. Se la pagina e ingestibile su telefono, hai un problema reale: per utenti, conversioni, leggibilita e controllo qualitativo.</p>
+              <p>Controlla almeno:</p>
+              <ul class="guide-list">
+                <li>testo leggibile senza zoom;</li>
+                <li>bottoni e link facili da toccare;</li>
+                <li>layout che non esce dallo schermo;</li>
+                <li>immagini che non schiacciano il contenuto;</li>
+                <li>header, menu e footer usabili.</li>
+              </ul>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Performance</h3>
+              <p>La performance non e solo un numero da tool. E esperienza: quanto velocemente la pagina diventa leggibile, stabile e usabile.</p>
+              <p>Per una base pratica, concentrati su poche cose:</p>
+              <ul class="guide-checklist">
+                <li>immagini ottimizzate;</li>
+                <li>CSS e JavaScript non inutilmente pesanti;</li>
+                <li>font caricati con criterio;</li>
+                <li>niente layout shift evidenti;</li>
+                <li>controllo reale su mobile, non solo desktop.</li>
+              </ul>
+              <p>Non serve inseguire il punteggio perfetto in ogni situazione. Serve capire se la pagina e abbastanza veloce e stabile per essere usata bene.</p>
+            </section>
+          </section>
+
+          <section id="chapter-10" class="guide-block guide-chapter">
+            <h2>9. Dati strutturati e anteprime social</h2>
+            <section class="guide-subchapter">
+              <h3>Dati strutturati</h3>
+              <p>I dati strutturati aiutano a descrivere in modo piu esplicito il tipo di contenuto: articolo, prodotto, FAQ, organizzazione, breadcrumb, ricetta, corso e cosi via.</p>
+              <p>Non vanno aggiunti a caso. Devono rappresentare contenuti realmente presenti nella pagina.</p>
+              <p>Per molti siti, il formato piu pratico e JSON-LD:</p>
+              <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "SEO tecnico base senza panico",
+  "description": "Guida essenziale alla SEO tecnica per siti statici e progetti front-end.",
+  "author": {
+    "@type": "Person",
+    "name": "Alessandro"
+  }
+}
+&lt;/script&gt;</code></pre>
+              <p>Questo non garantisce un risultato speciale in SERP, ma rende il contenuto piu esplicito quando il markup e supportato e coerente.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Open Graph e Twitter card</h3>
+              <p>Open Graph non e "SEO Google" in senso stretto. Serve soprattutto per controllare come una pagina appare quando viene condivisa su social, chat e piattaforme che generano anteprime.</p>
+              <pre><code>&lt;meta property="og:title" content="SEO tecnico base senza panico"&gt;
+&lt;meta property="og:description" content="Una guida essenziale per capire la SEO tecnica davvero utile."&gt;
+&lt;meta property="og:url" content="https://codedge.it/en/tutorials/technical-seo-basics/"&gt;
+&lt;meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg"&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;</code></pre>
+              <p>Per un sito curato, queste anteprime contano: non migliorano automaticamente il ranking, ma migliorano la presentazione quando il link viaggia fuori dal sito.</p>
+            </section>
+          </section>
+
+          <section id="chapter-11" class="guide-block guide-chapter">
+            <h2>10. Search Console: il pannello che ti dice cosa succede</h2>
+            <section class="guide-subchapter">
+              <p>Google Search Console e uno strumento fondamentale per chi pubblica contenuti indicizzabili. Non serve solo quando hai traffico: serve anche quando stai imparando a capire come Google vede il sito.</p>
+              <p>All'inizio, le aree piu utili sono:</p>
+              <ul class="guide-list">
+                <li><strong>Sitemap:</strong> invii la sitemap e controlli se Google riesce a leggerla.</li>
+                <li><strong>Controllo URL:</strong> verifichi una pagina specifica, la versione indicizzata e la versione live.</li>
+                <li><strong>Indicizzazione pagine:</strong> vedi pagine indicizzate, escluse e motivazioni principali.</li>
+                <li><strong>Rendimento:</strong> capisci query, impression, click, CTR e posizione media.</li>
+              </ul>
+              <p>Non guardare Search Console come un giudice da temere. Guardala come un cruscotto: non risolve i problemi da sola, ma ti fa vedere segnali che altrimenti resteresti a immaginare.</p>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Una routine minima</h3>
+              <ol class="guide-number-list">
+                <li>Pubblica la pagina.</li>
+                <li>Controlla che risponda online con URL canonico corretto.</li>
+                <li>Verifica che sia presente in sitemap se deve essere indicizzata.</li>
+                <li>Invia o aggiorna la sitemap in Search Console.</li>
+                <li>Ispeziona l'URL principale.</li>
+                <li>Dopo qualche giorno, controlla se compaiono impression, errori o motivi di esclusione.</li>
+              </ol>
+              <p>Ricorda: inviare una sitemap o richiedere scansione non garantisce indicizzazione immediata. E un segnale, non un contratto.</p>
+            </section>
+          </section>
+
+          <section id="chapter-12" class="guide-block guide-chapter">
+            <h2>11. Checklist finale prima e dopo il deploy</h2>
+            <figure class="guide-figure">
+              <img src="/images/percorsi-apprendimento/seo-tecnico-base/workflow-seo-post-deploy.svg" alt="Workflow SEO dopo il deploy: build, head, sitemap, Search Console e miglioramento" loading="lazy" decoding="async" width="1200" height="500">
+              <figcaption>Una routine breve batte mille controlli fatti a caso: pubblica, verifica, segnala, osserva, migliora.</figcaption>
+            </figure>
+            <section class="guide-subchapter">
+              <h3>Prima del deploy</h3>
+              <ul class="guide-checklist">
+                <li>la pagina ha un tema principale chiaro;</li>
+                <li>title, H1 e description sono coerenti;</li>
+                <li>l'URL e pulito e stabile;</li>
+                <li>i link interni portano alla nuova pagina;</li>
+                <li>la pagina e usabile su mobile;</li>
+                <li>immagini e asset sono ottimizzati;</li>
+                <li>canonical assoluta presente e corretta;</li>
+                <li>niente <code>noindex</code> involontari;</li>
+                <li>la build passa senza errori.</li>
+              </ul>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Dopo il deploy</h3>
+              <ul class="guide-checklist">
+                <li>l'URL pubblico risponde correttamente;</li>
+                <li>la sitemap include la pagina se deve essere indicizzata;</li>
+                <li><code>robots.txt</code> punta alla sitemap;</li>
+                <li>Open Graph e anteprima social sono sensati;</li>
+                <li>Search Console legge la sitemap;</li>
+                <li>il controllo URL non mostra blocchi evidenti;</li>
+                <li>non ci sono 404 interni o asset mancanti;</li>
+                <li>dopo qualche giorno controlli impression, query ed eventuali esclusioni.</li>
+              </ul>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Errori da evitare</h3>
+              <ul class="guide-list guide-list-bad">
+                <li>cambiare URL spesso senza redirect;</li>
+                <li>mettere tutto in sitemap, anche pagine noindex o duplicate;</li>
+                <li>bloccare pagine importanti con robots.txt;</li>
+                <li>scrivere title diversi dal contenuto reale;</li>
+                <li>usare dati strutturati che promettono contenuti non presenti;</li>
+                <li>controllare solo desktop e dimenticare mobile;</li>
+                <li>pensare che Search Console aggiorni tutto in tempo reale.</li>
+              </ul>
+            </section>
+            <section class="guide-subchapter">
+              <h3>Da qui in poi</h3>
+              <p>Se hai capito questa base, hai gia un vantaggio enorme: smetti di vedere la SEO come una lista di trucchetti e inizi a vederla come qualita tecnica, chiarezza editoriale e controllo dopo la pubblicazione.</p>
+              <p>Il passo successivo puo essere approfondire contenuti, keyword research, accessibilita, performance avanzata, dati strutturati specifici o analisi Search Console. Ma senza questa base, tutto il resto resta piu fragile.</p>
+              <p>Per continuare il percorso, queste guide si incastrano bene:</p>
+              <ul class="guide-list">
+                <li><a href="/en/tutorials/deployment-basics/">Deploy base</a>: per capire build, hosting, dominio e pubblicazione.</li>
+                <li><a href="/en/tutorials/web-accessibility-basics/">Accessibilita web base</a>: per rendere pagine e componenti piu usabili con HTML semantico, focus, tastiera, form e contrasto.</li>
+                <li><a href="/en/tutorials/browser-devtools/">Browser e DevTools</a>: per controllare rete, DOM, console e asset caricati.</li>
+                <li><a href="/en/tutorials/npm-vite-project-structure/">NPM, Vite e struttura progetto</a>: per capire build, cartelle e workflow locale.</li>
+                <li><a href="/en/tutorials/github-in-practice/">GitHub operativo</a>: per repository, deploy automatici e controllo del progetto pubblicato.</li>
+                <li><a href="/en/tutorials/">Tutti i tutorial</a>: per seguire gli altri contenuti disponibili.</li>
+              </ul>
+              <p>Fonti utili da consultare quando vuoi andare oltre: <a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener noreferrer">SEO Starter Guide di Google</a>, <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" target="_blank" rel="noopener noreferrer">documentazione Google sulle sitemap</a>, <a href="https://developers.google.com/search/docs/crawling-indexing/robots/intro" target="_blank" rel="noopener noreferrer">guida Google a robots.txt</a> e <a href="https://developers.google.com/search/docs/monitor-debug/search-console-start" target="_blank" rel="noopener noreferrer">introduzione a Search Console</a>.</p>
+            </section>
+          </section>
+        
+          <!-- SEZIONE QUIZ INTERATTIVO -->
+          
+          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
+            <h2>12. Sintassi rapida (Cheat Sheet)</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ecco un riepilogo dei meta tag SEO più importanti da compilare in ogni pagina:</p>
+              <div class="table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>Tag / File</th>
+                      <th class="is-accent">Struttura sintattica</th>
+                      <th>Consigli SEO utili</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="is-code is-strong">&lt;title&gt;</td>
+                      <td class="is-code">&lt;title&gt;Titolo Pagina | Codedge&lt;/title&gt;</td>
+                      <td>Mantieni la lunghezza sotto i 60 caratteri inserendo la parola chiave principale in testa.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">meta description</td>
+                      <td class="is-code">&lt;meta name="description" content="..."&gt;</td>
+                      <td>Massimo 155-160 caratteri. Deve contenere una sintesi attraente del contenuto per indurre al click.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">canonical</td>
+                      <td class="is-code">&lt;link rel="canonical" href="..."&gt;</td>
+                      <td>Indica l'URL ufficiale preferito per evitare penalizzazioni dovute a contenuti duplicati.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">robots.txt</td>
+                      <td class="is-code">User-agent: * Disallow: /admin/</td>
+                      <td>Fornisce regole ai motori di ricerca su quali aree del sito non scansionare.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+            </section>
+          </section>
+
+          <!-- SEZIONE SFIDA PRATICA -->
+          <section id="chapter-challenge" class="guide-block guide-chapter">
+            <h2>13. Sfida pratica: Mettiti alla prova</h2>
+            <section class="guide-subchapter">
+              
+              <p>Ottimizza il tuo primo file HTML reale applicando le regole di SEO tecnico:</p>
+              <div class="alert alert--note">
+                <strong>Challenge goal:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Scrivi i tag SEO corretti nell'head del tuo sito ed imposta un file robots.txt per escludere file e cartelle riservati.</p>
+                <strong>Step-by-step instructions:</strong>
+                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                  <li>Apri un file di codice HTML nel tuo editor ed inserisci un tag canonical che punti all'indirizzo URL ufficiale della pagina.</li>
+                  <li>Configura un tag <code class="language-html">&lt;meta name="description" ...&gt;</code> inserendo un riepilogo accattivante di esattamente 150 caratteri.</li>
+                  <li>Crea un file di testo dal nome <code class="language-text">robots.txt</code> posizionato nella cartella principale del progetto.</li>
+                  <li>All'interno di robots.txt, scrivi le regole per consentire l'accesso a tutti i bot robot ma vietare l'indicizzazione della cartella di amministrazione <code class="language-text">/private/</code>.</li>
+                </ol>
+              </div>
+    
+            </section>
+          </section>
+
+          <section id="chapter-quiz" data-quiz-id="seo-tecnico-base" class="guide-block guide-chapter quiz-section">
+            <h2>14. Verifica la tua preparazione (Quiz)</h2>
+            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
+            <div id="quiz-wrapper"></div>
+          </section>
+
+          <!-- Invito ai template a fine guida (stile pulito .guide-next-step, condiviso) -->
+          <aside class="guide-next-step" aria-labelledby="next-step-title">
+            <div class="guide-next-step__icon" aria-hidden="true">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="guide-next-step__content">
+              <h2 id="next-step-title" class="guide-next-step__title">Template e modelli pronti</h2>
+              <p class="guide-next-step__text">
+                Se non ti va di partire da un file vuoto, qui trovi i template che ho preparato io.
+                Dagli un'occhiata: se ti piacciono puoi acquistarli, altrimenti usali come esempio
+                da copiare per il tuo progetto.
+              </p>
+              <a href="/en/templates/" class="button-simple guide-next-step__cta">Explore the templates</a>
+            </div>
+          </aside>
+</article>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/scripts/pages/percorsi-apprendimento/seo-tecnico-base/main.js"></script>
+</body>
+
+</html>

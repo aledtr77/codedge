@@ -4,6 +4,8 @@ import fs from 'fs';
 import { minify } from 'html-minifier-terser';
 import { imagetools } from 'vite-imagetools';
 import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
+import { chromeI18nPlugin, hreflangPlugin } from './scripts/i18n-plugin.mjs';
+import { LANG_DIR, sourceDirForRoute } from './src/i18n/routes.mjs';
 
 const ENTRY_DIR = 'pages';
 
@@ -46,6 +48,9 @@ const antiFoucCss = [
   'html{background:#0d111a;color:#f2f2f2;color-scheme:dark}',
   'html.js:root body[data-css-ready="pending"]{opacity:0}',
   'html.js:root body[data-css-ready="ready"]{opacity:1;transition:opacity 0.25s ease}',
+  // Revealed inside a view transition: the transition already animates the
+  // swap, so fading the body on top of it would double up.
+  'html.js:root body[data-css-ready="instant"]{opacity:1}',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
@@ -67,22 +72,41 @@ const indexRedirectScript = [
   '})();'
 ].join('');
 
+// Holds the body hidden only until the page can paint fully styled, then
+// reveals it. Two paths:
+//   fade    - cold loads: wait for stylesheets, fonts and the style sentinel,
+//             then fade in (the pre-existing behaviour);
+//   instant - language switch, bfcache, view transitions: no fade, but the
+//             body stays hidden until the full stylesheet is actually applied,
+//             so unstyled markup can never paint. This matters on the dev
+//             server, where bundle CSS is injected by JS instead of arriving
+//             as a render-blocking link.
+// The sentinel is --codedge-css-ready, declared in src/styles/components/main.css.
 const antiFoucRevealScript = [
   '(function(){',
-  'function reveal(){var body=document.body;if(!body||body.getAttribute("data-css-ready")==="ready")return;requestAnimationFrame(function(){body.setAttribute("data-css-ready","ready");});}',
+  'var K="codedge:instant-reveal";',
+  'function state(){var b=document.body;return b?b.getAttribute("data-css-ready"):null}',
+  'function styled(){try{return getComputedStyle(document.documentElement).getPropertyValue("--codedge-css-ready").indexOf("1")>-1}catch(e){return false}}',
+  'function instant(){var b=document.body;if(!b||state()==="instant")return;b.setAttribute("data-css-ready","instant")}',
+  'function fade(){var s=state();if(s==="ready"||s==="instant"||!document.body)return;requestAnimationFrame(function(){if(state()!=="instant"&&document.body)document.body.setAttribute("data-css-ready","ready")})}',
+  'function whenStyled(cb,cap){var n=0;(function t(){if(styled()||n>cap)return cb();n+=1;requestAnimationFrame(t)})()}',
+  'function fontsSettled(ms){if(!document.fonts||!document.fonts.ready)return Promise.resolve();return Promise.race([document.fonts.ready,new Promise(function(r){setTimeout(r,ms)})])}',
+  'function swallow(vt){if(!vt)return;if(vt.ready&&vt.ready.catch)vt.ready.catch(function(){});if(vt.finished&&vt.finished.catch)vt.finished.catch(function(){})}',
+  'var nav=false;try{if(sessionStorage.getItem(K)){sessionStorage.removeItem(K);nav=true}}catch(e){}',
+  'if(nav){whenStyled(function(){fontsSettled(350).then(instant)},240)}',
+  'window.addEventListener("pagereveal",function(e){if(!e||!e.viewTransition)return;swallow(e.viewTransition);whenStyled(instant,20)});',
+  'window.addEventListener("pageswap",function(e){if(e)swallow(e.viewTransition)});',
   'function waitForStyles(){return new Promise(function(resolve){var links=Array.prototype.slice.call(document.querySelectorAll(\'link[rel="stylesheet"]\'));var pending=0;',
   'function done(){pending=Math.max(0,pending-1);if(pending===0)resolve();}',
   'links.forEach(function(link){if(link.sheet)return;pending+=1;link.addEventListener("load",done,{once:true});link.addEventListener("error",done,{once:true});});',
   'if(pending===0)resolve();});}',
-  'function waitForFonts(){if(!document.fonts||!document.fonts.ready)return Promise.resolve();return Promise.race([document.fonts.ready,new Promise(function(resolve){setTimeout(resolve,1200);})]);}',
-  'function waitForFlagOrEvent(flag,eventName,timeout){if(window[flag])return Promise.resolve();return new Promise(function(resolve){var done=false;function finish(){if(done)return;done=true;window.removeEventListener(eventName,finish);resolve();}window.addEventListener(eventName,finish,{once:true});setTimeout(finish,timeout||1200);});}',
-  'Promise.all([waitForStyles(),waitForFonts(),waitForFlagOrEvent("__navReady","codedge:nav-ready",1200),waitForFlagOrEvent("__footerReady","codedge:footer-ready",1200)]).finally(reveal);',
-  'window.addEventListener("pageshow",reveal,{once:true});',
-  'setTimeout(reveal,1200);',
+  'Promise.all([waitForStyles(),fontsSettled(1200),new Promise(function(r){whenStyled(r,240)})]).then(fade,fade);',
+  'window.addEventListener("pageshow",function(e){if(e&&e.persisted)instant();else fade()},{once:true});',
+  'setTimeout(fade,1600);',
   '})();'
 ].join('');
 
-function antiFoucHtmlPlugin() {
+function antiFoucHtmlPlugin(isServe) {
   const criticalStyleRegex = /<style\b[^>]*data-critical-base[^>]*>[\s\S]*?<\/style>\s*/i;
   const criticalScriptRegex = /<script\b[^>]*data-css-ready[^>]*>[\s\S]*?<\/script>\s*/i;
   const noScriptRegex = /<noscript\b[^>]*data-critical-base[^>]*>[\s\S]*?<\/noscript>\s*/i;
@@ -142,57 +166,26 @@ function antiFoucHtmlPlugin() {
           (match) => `${match}<script data-css-ready>${antiFoucRevealScript}</script>`
         );
 
+        // Dev only: page CSS arrives through the JS module graph, so let first
+        // paint wait for it. This makes dev paint fully styled like prod and
+        // lets cross-document view transitions snapshot a finished page.
+        // Browsers that ignore blocking="render" just fall back to the
+        // sentinel-gated reveal above.
+        if (isServe) {
+          updated = updated.replace(
+            /<script type="module" src="(\/src\/[^"]+)"><\/script>/i,
+            '<script type="module" blocking="render" src="$1"></script>'
+          );
+        }
+
         return updated;
       }
     }
   };
 }
 
-function staticFooterHtmlPlugin() {
-  const footerTemplatePath = path.resolve(process.cwd(), 'src/partials/footer.html');
-
-  return {
-    name: 'static-footer-html',
-    transformIndexHtml: {
-      order: 'pre',
-      handler(html) {
-        if (/<footer\b/i.test(html)) return html;
-        const footerMarkup = fs.readFileSync(footerTemplatePath, 'utf8').trim();
-        return html.replace(/<\/body>/i, `${footerMarkup}\n</body>`);
-      }
-    }
-  };
-}
-
-function staticNavbarHtmlPlugin() {
-  const navbarTemplatePath = path.resolve(process.cwd(), 'src/partials/navbar.html');
-  const navbarRegex = /<nav\b[^>]*class=["']navbar["'][^>]*>([\s\S]*?)<\/nav>/i;
-  const titleRegex = /<span\b[^>]*class=["']navbar-title[^"']*["'][^>]*>([\s\S]*?)<\/span>/i;
-
-  return {
-    name: 'static-navbar-html',
-    transformIndexHtml: {
-      order: 'pre',
-      handler(html) {
-        if (!navbarRegex.test(html)) return html;
-
-        let navbarTemplate = fs.readFileSync(navbarTemplatePath, 'utf8').trim();
-
-        const navMatch = html.match(navbarRegex);
-        if (navMatch) {
-          const navContent = navMatch[1];
-          const titleMatch = navContent.match(titleRegex);
-          const title = titleMatch ? titleMatch[1].trim() : '';
-
-          navbarTemplate = navbarTemplate.replace('{{TITLE}}', title);
-          return html.replace(navbarRegex, navbarTemplate);
-        }
-
-        return html;
-      }
-    }
-  };
-}
+// The navbar and footer are injected by chromeI18nPlugin (scripts/i18n-plugin.mjs),
+// which fills the partials with the strings and hrefs of the page's language.
 
 // Dev only: serves /@imagetools/<id> from the plugin's own disk cache when its
 // in-memory map doesn't have the id yet (e.g. a tab left open across a server
@@ -258,13 +251,13 @@ function devPagesRewrite() {
         // no rewrite for explicit file requests (e.g. /robots.txt)
         if (path.extname(pathname)) return next();
 
-        const cleanPath = pathname.replace(/^\/+/, '').replace(/\/+$/, '');
-        const candidate = cleanPath === ''
-          ? path.join(process.cwd(), ENTRY_DIR, 'index.html')
-          : path.join(process.cwd(), ENTRY_DIR, cleanPath, 'index.html');
+        // URL -> source directory: Italian is served from the root but lives in
+        // pages/it/, English keeps its /en/ prefix in both places.
+        const sourceDir = sourceDirForRoute(pathname);
+        const candidate = path.join(process.cwd(), ENTRY_DIR, sourceDir, 'index.html');
 
         if (fs.existsSync(candidate)) {
-          const rewritten = cleanPath === '' ? '/pages/index.html' : `/pages/${cleanPath}/index.html`;
+          const rewritten = `/${ENTRY_DIR}/${sourceDir}/index.html`;
           req.url = query ? `${rewritten}?${query}` : rewritten;
         }
 
@@ -274,7 +267,9 @@ function devPagesRewrite() {
   };
 }
 
-// Build: hoists dist/pages/* to dist/* so URLs match the page tree
+// Build: maps the symmetric source tree onto the published URL shape.
+//   dist/pages/it/**  ->  dist/**      (Italian is the default language: root)
+//   dist/pages/en/**  ->  dist/en/**   (English keeps its prefix)
 function movePagesToRootPlugin(outDir) {
   return {
     name: 'move-pages-to-root',
@@ -285,7 +280,13 @@ function movePagesToRootPlugin(outDir) {
       if (!fs.existsSync(pagesRoot)) return;
 
       try {
-        fs.cpSync(pagesRoot, distRoot, { recursive: true });
+        for (const [dir, target] of [
+          [LANG_DIR.it, distRoot],
+          [LANG_DIR.en, path.join(distRoot, LANG_DIR.en)]
+        ]) {
+          const source = path.join(pagesRoot, dir);
+          if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true });
+        }
         fs.rmSync(pagesRoot, { recursive: true, force: true });
       } catch (e) {
         this.error(`[move-pages] errore durante lo spostamento: ${e.message}`);
@@ -327,10 +328,10 @@ export default defineConfig(({ command }) => {
   const plugins = [];
   plugins.push(imagetoolsCacheFallback());
   plugins.push(imagetools());
-  plugins.push(staticNavbarHtmlPlugin());
-  plugins.push(staticFooterHtmlPlugin());
+  plugins.push(chromeI18nPlugin());
+  plugins.push(hreflangPlugin());
   plugins.push(seoJsonLdPlugin());
-  plugins.push(antiFoucHtmlPlugin());
+  plugins.push(antiFoucHtmlPlugin(command === 'serve'));
   if (command === 'serve') {
     plugins.push(devPagesRewrite());
   }

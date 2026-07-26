@@ -364,3 +364,25 @@ html.js:root body[data-css-ready="ready"] {
   white-space: nowrap;
   border: 0;
 }
+
+/* Cross-document view transitions: the two language versions are real
+   documents, so switching language is a navigation. Declared here — this file
+   is a render-blocking link in dev and prod alike — so BOTH documents are
+   opted in before first paint; declaring it in the bundled CSS was too late on
+   the dev server, where bundle CSS arrives via JS. The language knob
+   (view-transition-name in navbar.css) glides across the swap. Browsers
+   without support simply navigate. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<title>Online CSS gradient generator - Codedge</title>
+  <meta name="description"
+    content="Build gradient backgrounds easily with our online CSS generator. Copy ready-to-use code straight into your web projects.">
+  <link rel="canonical" href="https://codedge.it/en/tools/gradient-generator/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Online CSS gradient generator - Codedge" />
+  <meta property="og:description" content="Build gradient backgrounds easily with our online CSS generator. Copy ready-to-use code straight into your web projects." />
+  <meta property="og:url" content="https://codedge.it/en/tools/gradient-generator/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online CSS gradient generator - Codedge" />
+  <meta name="twitter:description" content="Build gradient backgrounds easily with our online CSS generator. Copy ready-to-use code straight into your web projects." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
+  <meta name="theme-color" content="#00A8FF" />
+  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Online CSS gradient generator - Codedge",
+      "url": "https://codedge.it/en/tools/gradient-generator/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "description": "Tool online per creare gradienti CSS personalizzati e copiare il codice pronto all'uso."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Come creare un gradiente CSS con questo tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scegli tipo lineare o radiale, imposta angolo e stop colore, poi copia il CSS generato."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso aggiungere piu di due colori?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, puoi aggiungere stop multipli per creare sfumature piu complesse e personalizzate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Il codice e pronto per essere incollato?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si, il CSS prodotto e pronto da incollare in classi, componenti o sezioni hero."
+          }
+        }
+      ]
+    }
+  </script>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-tint"></i> CSS Gradient Generator </span>
+    </nav>
+  </header>
+  
+  <main class="gradient-page">
+    <a href="/en/tools/" class="back-link"><i class="fas fa-chevron-left"></i> All tools</a>
+    <section class="gradient-shell" aria-labelledby="gradient-workspace-title">
+      <div class="gradient-shell__header">
+        <div>
+          <p class="gradient-eyebrow">Visual Designer</p>
+          <h1 id="gradient-workspace-title">CSS Gradient Generator</h1>
+        </div>
+        <p class="gradient-shell__note">Linear and radial gradients ready to copy into stylesheets and Tailwind.</p>
+      </div>
+
+      <div class="gradient-workspace">
+        <!-- Colonna Controlli (Sinistra - 60%) -->
+        <div class="controls-panel">
+          <!-- Blocco 1: Tipo & Orientamento -->
+          <div class="control-block">
+            <h2>Type &amp; orientation</h2>
+            
+            <div class="type-angle-row">
+              <!-- Scelta Lineare / Radiale -->
+              <div class="type-group">
+                <span class="label-heading">Gradient style</span>
+                <div class="gradient-type-buttons">
+                  <button type="button" class="btn-type-toggle active" data-type="linear" id="btn-linear">Linear</button>
+                  <button type="button" class="btn-type-toggle" data-type="radial" id="btn-radial">Radial</button>
+                </div>
+              </div>
+
+              <!-- Bussola e Slider Angolo (Disattivato per Radial) -->
+              <div class="angle-group active" id="angleGroupContainer">
+                <span class="label-heading">Angle</span>
+                <div class="angle-slider-control">
+                  <div class="angle-compass" id="angleCompass" title="Drag the needle to rotate">
+                    <div class="angle-compass-dial">
+                      <div class="angle-compass-hand" id="angleCompassHand"></div>
+                    </div>
+                  </div>
+                  <div class="angle-inputs-details">
+                    <input type="range" id="angleRange" min="0" max="360" value="90" class="angle-slider-range">
+                    <div class="angle-numeric-box">
+                      <label for="angleNum" class="sr-only">Angle value</label>
+                      <input type="number" id="angleNum" min="0" max="360" value="90" class="angle-num-field">
+                      <span class="deg-symbol">°</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blocco 2: Timeline e Lista Colori -->
+          <div class="control-block">
+            <h2>Your colors</h2>
+            
+            <!-- Timeline Track per visualizzare e trascinare handles -->
+            <div class="gradient-timeline-wrapper">
+              <div id="gradient-timeline-track" class="gradient-timeline-track" title="Click the bar to add a color">
+                <div class="timeline-track-overlay-label"><i class="fas fa-plus"></i> Click to add</div>
+              </div>
+              <div id="gradient-handles-container" class="gradient-handles-container">
+                <!-- Handles injected by JS -->
+              </div>
+            </div>
+
+            <!-- Lista verticale degli stop colore -->
+            <div id="stops-list" class="stops-list">
+              <!-- Color rows injected by JS -->
+            </div>
+
+            <button type="button" id="btn-add-stop" class="btn-add-stop-main">
+              <i class="fas fa-plus"></i> Add another color
+            </button>
+          </div>
+        </div>
+
+        <!-- Colonna Anteprima & Esportazione (Destra - 40%) -->
+        <div class="preview-panel">
+          <!-- Blocco 3: Anteprima Live -->
+          <div class="control-block">
+            <h2>Live preview</h2>
+            <div class="preview-card">
+              <div class="preview-box" id="previewBox">
+                <!-- Mockup Card interfaccia -->
+                <div class="mockup-ui-card">
+                  <span class="mockup-tag">Interface</span>
+                  <div class="mockup-ui-title">Box preview</div>
+                  <p>This mockup simulates the real visual impact of your background gradient on web components.</p>
+                  <button class="mockup-btn" type="button">Test button</button>
+                </div>
+              </div>
+              <div class="preview-card-footer">
+                <button type="button" id="btn-toggle-mockup" class="btn-toggle-mockup">
+                  <i class="fas fa-eye" aria-hidden="true"></i> Show/hide UI mockup
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blocco 4: Copia Codice -->
+          <div class="control-block">
+            <h2>Export code</h2>
+            <div class="code-export-block">
+              <div class="export-tabs">
+                <button type="button" class="export-tab-btn active" data-format="css">Standard CSS</button>
+                <button type="button" class="export-tab-btn" data-format="tailwind">Tailwind CSS</button>
+              </div>
+              <div class="code-output-container">
+                <pre><code id="cssCode">background: linear-gradient(90deg, #3b82f6 0%, #ef4444 100%);</code></pre>
+                <button type="button" class="btn-copy-code" id="btn-copy-code" title="Copy code">
+                  <i class="far fa-copy" aria-hidden="true"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blocco 5: Combinazioni Consigliate -->
+          <div class="control-block">
+            <h2>Recommended combinations</h2>
+            <div class="preset-gradients" id="preset-gradients-grid">
+              <!-- Presets injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="section" aria-labelledby="seo-title-gradienti">
+      <h2 id="seo-title-gradienti">How to use CSS gradients to improve your site’s design</h2>
+      <div class="seo-text-content">
+        <p>
+          CSS gradients are one of the most powerful and flexible design tools available to modern front-end developers. They let you create dynamic, eye-catching color transitions directly in code, removing the need to load heavy background images. This <strong>online CSS gradient generator</strong> lets you compose linear or radial gradients visually and immediately, exporting code ready to drop into your stylesheets or Tailwind configuration.
+        </p>
+        <p>
+          Using gradients with restraint can make a real difference to the layout of a landing page or a web application. A well-calibrated linear gradient, running diagonally or vertically, works as a hero section background to add visual depth, or as an overlay to improve text readability over images. To keep the composition professional and elegant, avoid pairing colors that sit too far apart on the spectrum — they tend to create grey or "muddy" zones halfway through the blend — and prefer analogous shades or brightness variations of the same color.
+        </p>
+        <p>
+          This tool supports <strong>multiple color stops</strong> and precise angle adjustment across a full 360 degrees. To make it easy to slot into modern development workflows, the generator instantly produces both standard CSS and the equivalent <strong>Tailwind CSS</strong> syntax, so you can prototype extremely quickly straight in your HTML or React files.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-gradienti-title">Quick FAQ about the gradient generator</h3>
+      <div class="faq-content">
+        <h4>How do I create a CSS gradient with this tool?</h4>
+        <p>
+          Start by picking the type of gradient you want (linear or radial). Add color stops by clicking on the gradient timeline bar and set the shades you're after. Drag the stops to fine-tune their positions, or rotate the needle on the angle dial to orient a linear gradient however you like. Finally, click "Copy" to grab the code.
+        </p>
+        <h4>Can I add more than two colors to the gradient?</h4>
+        <p>
+          Yes — add as many colors as you like by clicking on the timeline bar. A new control handle appears, which you can drag sideways to adjust the transition.
+        </p>
+        <h4>Which code formats can I copy?</h4>
+        <p>
+          The tool lets you grab both classic CSS (`background: linear-gradient(...)` or `radial-gradient(...)`) and the equivalent Tailwind CSS class (for example `bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500`), which makes it easy to use in modern projects.
+        </p>
+        <h4>Other useful tools</h4>
+        <p>
+          To round out your set of design tools, try the
+          <a href="/en/tools/color-generator/">Color Palette Generator</a> for pairing harmonious shades, or the
+          <a href="/en/tools/palette-extractor/">Color Palette Extractor</a> to capture colors from photographs.
+        </p>
+      </div>
+    </section>
+  </main>
+ 
+ <!-- Entry JS: file module che inizializza comportamenti della pagina (nav, breadcrumb, handlers).
+       type="module" abilita import/export e strict mode. Non rimuoverlo se vuoi i loader attivi. -->
+  <script type="module" src="/src/scripts/pages/strumenti/generatore-gradienti/main.js"></script>
+
+</body>
+
+</html>

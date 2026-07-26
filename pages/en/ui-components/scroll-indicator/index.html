@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <!-- Preconnect Google Fonts per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/critical.css" />
+  <title>Reading index with a progress bar | Codedge</title>
+  <meta name="description"
+    content="A reading index with a progress bar, active-section highlighting and a back-to-top button: useful for long guides, articles and documentation.">
+  <link rel="canonical" href="https://codedge.it/en/ui-components/scroll-indicator/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="Reading index with a progress bar | Codedge" />
+  <meta property="og:description"
+    content="A reading index with a progress bar, active-section highlighting and a back-to-top button: useful for long guides, articles and documentation." />
+  <meta property="og:url" content="https://codedge.it/en/ui-components/scroll-indicator/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Reading index with a progress bar | Codedge" />
+  <meta name="twitter:description"
+    content="A reading index with a progress bar, active-section highlighting and a back-to-top button: useful for long guides, articles and documentation." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <span class="navbar-title resize-text"> <i class="fas fa-list-ul" aria-hidden="true"></i> Reading index </span>
+    </nav>
+  </header>
+
+  <main id="main-content" class="ui-detail">
+    <a href="/en/ui-components/" class="back-link"><i class="fas fa-chevron-left"></i> All components</a>
+    <section class="ui-hero" aria-labelledby="reading-progress-title">
+      <h1 id="reading-progress-title">Reading index with a progress bar</h1>
+      <p class="ui-hero__lead">
+        A pattern built for guides and documentation: it shows how much is left, highlights the current section and
+        offers a quick way back to the top of the content.
+      </p>
+      <div class="ui-hero__actions">
+        <a href="/risorse/snippet-library/#reading-progress-nav" class="button-simple">
+          <i class="fas fa-code" aria-hidden="true"></i> Code in the Snippet Library
+        </a>
+        <a href="/en/ui-components/" class="ui-secondary-link">All components</a>
+      </div>
+    </section>
+
+    <section class="ui-demo-panel" aria-labelledby="reading-demo-title">
+      <div class="ui-demo-panel__header">
+        <div>
+          <h2 id="reading-demo-title">Long-guide demo</h2>
+          <p>Scroll the inner content: the bar advances and the index updates the active section.</p>
+        </div>
+        <div class="reading-progress__meta" aria-label="Features">
+          <span>Progress</span>
+          <span>TOC</span>
+          <span>Active</span>
+        </div>
+      </div>
+
+      <div class="ui-demo-panel__body">
+        <div class="reading-progress" data-reading-progress>
+          <aside class="reading-progress__toc" aria-label="Demo index">
+            <p>Contents</p>
+            <a href="#reading-intro" data-reading-link class="is-active">Context</a>
+            <a href="#reading-setup" data-reading-link>Setup</a>
+            <a href="#reading-checks" data-reading-link>Checks</a>
+            <a href="#reading-next" data-reading-link>Next steps</a>
+            <button type="button" data-reading-top>
+              <i class="fas fa-arrow-up" aria-hidden="true"></i>
+              Back to top
+            </button>
+          </aside>
+
+          <article class="reading-progress__content" data-reading-scroller tabindex="0" aria-label="Demo content">
+            <div class="reading-progress__bar" aria-hidden="true">
+              <span data-reading-bar></span>
+            </div>
+
+            <section id="reading-intro" data-reading-section>
+              <p class="reading-progress__eyebrow">Chapter 1</p>
+              <h3>Context</h3>
+              <p>In a long guide the reader needs to know where they are without losing the thread. A side index helps with orientation and reduces the need to keep scrolling back to the top.</p>
+              <p>The progress bar doesn't replace the headings, but it adds immediate feedback about how far the end is.</p>
+            </section>
+
+            <section id="reading-setup" data-reading-section>
+              <p class="reading-progress__eyebrow">Chapter 2</p>
+              <h3>Setup</h3>
+              <p>The markup separates index, content and progress bar. The JavaScript reads the available sections and keeps the active link and the scroll percentage in sync.</p>
+              <p>On real pages you can hook it to the whole document or to a scrollable container, as in this demo.</p>
+            </section>
+
+            <section id="reading-checks" data-reading-section>
+              <p class="reading-progress__eyebrow">Chapter 3</p>
+              <h3>Checks</h3>
+              <p>The component has to stay readable, must not cover content and should work even without complex animations. The index links use plain anchors and remain understandable.</p>
+              <p>The back-to-top button is useful when the content is very long or when the index becomes sticky on the final page.</p>
+            </section>
+
+            <section id="reading-next" data-reading-section>
+              <p class="reading-progress__eyebrow">Chapter 4</p>
+              <h3>Next steps</h3>
+              <p>You can add subsections, counters, a completed state, or integration with the Codedge guide layout. The base stays small and easy to maintain.</p>
+              <p>The point isn't to decorate the scroll: it's to orient the reader.</p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ui-notes-grid" aria-label="Component notes">
+        <h2 class="sr-only">Component notes</h2>
+      <article class="ui-note">
+        <h3>When to use it</h3>
+        <p>For long guides, documentation, detailed changelogs and tutorial pages with many sections.</p>
+      </article>
+      <article class="ui-note">
+        <h3>What it solves</h3>
+        <p>It makes position, progress and a quick way back visible, without relying on a plain fixed button.</p>
+      </article>
+      <article class="ui-note">
+        <h3>How to adapt it</h3>
+        <p>Use it with the whole document or with a scrollable container. You can make the index sticky on desktop.</p>
+      </article>
+    </section>
+
+    <!-- Contenuto SEO descrittivo e FAQ -->
+    <section class="seo-section" aria-labelledby="seo-title-scroll">
+      <h2 id="seo-title-scroll">Improving the UX of long guides and articles with a reading index and progress bar</h2>
+      <div class="seo-text-content">
+        <p>
+          When people read long articles, technical documentation or detailed guides, they can easily lose their bearings or underestimate the effort needed to finish. An interactive reading index (a table of contents, or TOC) paired with a visual scroll progress bar noticeably improves the user experience, encouraging readers to finish and offering quick anchor points for jumping between sections.
+        </p>
+        <p>
+          This component uses a split layout: a side panel acting as the index and a main container for the text. Using JavaScript and the Intersection Observer API (or by watching the scroll event), the script detects which section is on screen and applies a state class (such as <code>is-active</code>) to the matching link in the index. At the same time, the horizontal progress bar at the top fills according to how far the text has been scrolled inside the container.
+        </p>
+        <p>
+          From an accessibility standpoint, the side index sits inside an <code>&lt;aside&gt;</code> tag with a descriptive <code>aria-label="Guide index"</code>, letting screen readers identify it as a quick navigation area. The index links point to the internal anchors of the section headings through unique IDs. There is also an accessible "Back to top" button, which quickly returns the view to the start of the document — ideal for avoiding long manual scrolling, especially on mobile.
+        </p>
+      </div>
+
+      <div class="seo-faq-divider"></div>
+
+      <h3 id="faq-scroll-title">Quick FAQ about the reading index</h3>
+      <div class="faq-content">
+        <h4>How is the progress bar percentage calculated?</h4>
+        <p>
+          JavaScript calculates the ratio between the distance already scrolled (<code>scrollTop</code>) and the total scrollable distance (<code>scrollHeight - clientHeight</code>) of the scroll container, converting it into a percentage that dynamically updates the progress bar's inline width.
+        </p>
+        <h4>Is Intersection Observer better than the scroll event for detecting the active section?</h4>
+        <p>
+          Yes. Intersection Observer performs far better because it doesn't hammer the main thread with constant calculations on every single scrolled pixel. The script only fires when the defined sections enter or leave the viewport at the configured thresholds.
+        </p>
+        <h4>How does the 'Back to top' button work for accessibility?</h4>
+        <p>
+          The button scrolls smoothly to the top via JavaScript and — importantly — restores logical focus to the start of the document or to the main container, so keyboard and screen reader users can pick up navigation immediately.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="/src/scripts/pages/componenti-ui/scroll-indicator/main.js"></script>
+</body>
+
+</html>

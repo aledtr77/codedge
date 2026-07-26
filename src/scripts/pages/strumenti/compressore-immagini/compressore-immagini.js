@@ -1,28 +1,29 @@
 import Compressor from "compressorjs";
+import { t } from "@/i18n/ui.js";
 
 let initialized = false;
 
 const PRESETS = {
   balanced: {
-    label: "Bilanciata",
+    get label() { return t("tool.presetBalanced"); },
     quality: 72,
     maxWidth: 1600,
     format: "webp",
-    summary: "Converti in WebP con qualita media e larghezza massima da 1600 px."
+    get summary() { return t("tool.summaryBalanced"); }
   },
   light: {
-    label: "Leggera",
+    get label() { return t("tool.presetLight"); },
     quality: 82,
     maxWidth: 2200,
     format: "webp",
-    summary: "Mantieni piu dettaglio: WebP, qualita alta e ridimensionamento minimo."
+    get summary() { return t("tool.summaryLight"); }
   },
   strong: {
-    label: "Spinta",
+    get label() { return t("tool.presetStrong"); },
     quality: 58,
     maxWidth: 1280,
     format: "webp",
-    summary: "Punta a ridurre di piu peso e dimensioni, utile per immagini molto pesanti."
+    get summary() { return t("tool.summaryStrong"); }
   }
 };
 
@@ -146,12 +147,12 @@ export function initImageCompressor() {
     }
 
     elements.strategySummary.textContent =
-      `Converti in ${format}, qualità ${quality}% e larghezza max ${maxWidth}px.`;
+      t("tool.summaryManual", { format, quality, maxWidth });
   }
 
   async function handleSelectedFile(file) {
     if (!file.type.startsWith("image/")) {
-      setStatus("Seleziona un file immagine valido.", "error");
+      setStatus(t("tool.invalidImage"), "error");
       return;
     }
 
@@ -228,12 +229,12 @@ export function initImageCompressor() {
           setTimeout(() => URL.revokeObjectURL(link.href), 2000);
         });
 
-        setStatus(`Immagine "${file.name}" compressa con successo!`, "success");
+        setStatus(t("tool.compressOk", { name: file.name }), "success");
       } catch (err) {
         console.error(err);
         const middleEl = rowEl.querySelector(".file-row-middle");
-        middleEl.innerHTML = `<span class="savings-badge" style="background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #ef4444;">Errore</span>`;
-        setStatus(`Errore nella compressione di ${file.name}: ${err.message}`, "error");
+        middleEl.innerHTML = `<span class="savings-badge" style="background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #ef4444;">${t("tool.error")}</span>`;
+        setStatus(t("tool.compressError", { name: file.name, message: err.message }), "error");
       }
     }, 200);
   }

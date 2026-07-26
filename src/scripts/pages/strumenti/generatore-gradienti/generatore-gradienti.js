@@ -1,3 +1,4 @@
+import { t } from "@/i18n/ui.js";
 let initialized = false;
 
 export default function initGeneratorGradienti() {
@@ -294,7 +295,7 @@ export default function initGeneratorGradienti() {
           <span class="row-position-val">${stop.position}%</span>
         </div>
         <div class="stop-row-right">
-          <button type="button" class="btn-delete-row-stop" title="Elimina questo colore">
+          <button type="button" class="btn-delete-row-stop" title=t("tool.deleteColor")>
             <i class="fas fa-trash-alt" aria-hidden="true"></i>
           </button>
         </div>
@@ -431,7 +432,7 @@ export default function initGeneratorGradienti() {
       container.className = "tooltip-container";
       tooltip = document.createElement("span");
       tooltip.className = "tooltip";
-      tooltip.textContent = "Codice copiato!";
+      tooltip.textContent = t("tool.codeCopied");
       container.appendChild(tooltip);
       elements.previewBox.appendChild(container);
     }
