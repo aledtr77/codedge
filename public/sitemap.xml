@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://codedge.it/en/resources/css-glossary/</loc>
-    <lastmod>2026-07-26T03:19:52.000Z</lastmod>
+    <lastmod>2026-07-26T13:27:11.000Z</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://codedge.it/risorse/glossario-css/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://codedge.it/en/resources/css-glossary/"/>
@@ -74,11 +74,19 @@
   </url>
   <url>
     <loc>https://codedge.it/en/resources/html-glossary/</loc>
-    <lastmod>2026-07-26T06:34:24.000Z</lastmod>
+    <lastmod>2026-07-26T13:27:11.000Z</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="it" href="https://codedge.it/risorse/glossario-html/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://codedge.it/en/resources/html-glossary/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://codedge.it/risorse/glossario-html/"/>
+  </url>
+  <url>
+    <loc>https://codedge.it/en/resources/javascript-glossary/</loc>
+    <lastmod>2026-07-26T13:27:11.000Z</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codedge.it/risorse/glossario-js/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codedge.it/en/resources/javascript-glossary/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codedge.it/risorse/glossario-js/"/>
   </url>
   <url>
     <loc>https://codedge.it/en/resources/snippet-library/</loc>
@@ -306,8 +314,11 @@
   </url>
   <url>
     <loc>https://codedge.it/risorse/glossario-js/</loc>
-    <lastmod>2026-07-26T03:19:52.000Z</lastmod>
+    <lastmod>2026-07-26T13:27:11.000Z</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://codedge.it/risorse/glossario-js/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://codedge.it/en/resources/javascript-glossary/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://codedge.it/risorse/glossario-js/"/>
   </url>
   <url>
     <loc>https://codedge.it/risorse/snippet-library/</loc>

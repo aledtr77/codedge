@@ -84,9 +84,13 @@ function visibleSnippets(html) {
 
 function italianHits(snippet) {
   const words = snippet.toLowerCase().match(/[a-zàèéìòùA-Z]+/g) || [];
-  const hits = words.filter((w) => MARKER_SET.has(w));
+  const hits = [...new Set(words.filter((w) => MARKER_SET.has(w)))];
   const strong = hits.filter((w) => STRONG.has(w));
-  return strong.length > 0 || hits.length >= 2 ? [...new Set(hits)] : [];
+  // Count *distinct* markers, not occurrences: several words that are Italian
+  // and English alike ("file", "guide", "come") repeating in one correct
+  // English sentence must not add up to a hit. Real Italian prose trips this
+  // anyway, because it brings several different markers at once.
+  return strong.length > 0 || hits.length >= 2 ? hits : [];
 }
 
 const filter = process.argv.slice(2).find((a) => !a.startsWith('--'));

@@ -93,11 +93,34 @@ const FOOTER_HREFS = {
 const escapeAttr = (value) =>
   String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
+const NOINDEX = /<meta\b[^>]*name\s*=\s*["']robots["'][^>]*noindex/i;
+
+/**
+ * A twin only counts once it exists and is actually translated: the scaffold
+ * carries a noindex marker until then. Both the language switch and the
+ * hreflang set read this, so a half-finished translation is never presented as
+ * the other language's version of a page — to a crawler or to a reader.
+ */
+function twinIsPublishable(route) {
+  const file = path.resolve(process.cwd(), ENTRY_DIR, sourceDirForRoute(route), 'index.html');
+  try {
+    return !NOINDEX.test(fs.readFileSync(file, 'utf8'));
+  } catch {
+    return false;
+  }
+}
+
+/** The twin to link to, or null when there is none worth linking. */
+function publishableCounterpart(route) {
+  const twin = counterpartOf(route);
+  return twin && twinIsPublishable(twin) ? twin : null;
+}
+
 /** Placeholder values for the navbar template, for one page. */
 function navbarTokens(route, lang) {
   const s = STRINGS[lang];
   const other = lang === 'it' ? 'en' : 'it';
-  const twin = counterpartOf(route);
+  const twin = publishableCounterpart(route);
   const fallbackHome = other === 'it' ? '/' : '/en/';
 
   return {
@@ -205,19 +228,6 @@ export function chromeI18nPlugin() {
 export function hreflangPlugin() {
   const projectRoot = process.cwd();
   const baseUrl = readBaseUrl(projectRoot);
-  const pagesRoot = path.resolve(projectRoot, ENTRY_DIR);
-  const NOINDEX = /<meta\b[^>]*name\s*=\s*["']robots["'][^>]*noindex/i;
-
-  // A twin only counts once it exists and is actually translated: an Italian
-  // page must not advertise an English version that is still Italian.
-  const twinIsPublishable = (route) => {
-    const file = path.join(pagesRoot, sourceDirForRoute(route), 'index.html');
-    try {
-      return !NOINDEX.test(fs.readFileSync(file, 'utf8'));
-    } catch {
-      return false;
-    }
-  };
 
   return {
     name: 'codedge-hreflang',
