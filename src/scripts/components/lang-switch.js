@@ -23,6 +23,12 @@ import { t } from "@/i18n/ui.js";
 
 const SELECTOR = "a.lang-switch";
 const LANG_CHANGED = "codedge:lang-changed";
+// Fired before the swap, for components that rewrote the server-rendered
+// markup at load time. The walk below matches text nodes by position, so a
+// component that split one text node into several makes its own text
+// untranslatable; on this signal it puts the original shape back, and restores
+// its own on LANG_CHANGED once the text has been replaced.
+const LANG_WILL_CHANGE = "codedge:lang-will-change";
 
 // Attributes that carry human-readable text.
 const TEXT_ATTRS = ["alt", "title", "aria-label", "placeholder"];
@@ -160,6 +166,10 @@ async function swapTo(href, control, { push = true } = {}) {
   const doc = await fetchTwin(href);
   if (!doc.body) throw new Error("no body in twin document");
 
+  // Let DOM-rewriting components hand back the server-rendered shape, so the
+  // positional walk can actually reach their text.
+  window.dispatchEvent(new CustomEvent(LANG_WILL_CHANGE));
+
   applyTranslation(document.body, doc.body);
   applyHead(doc);
   applySwitch(control, doc);
@@ -218,4 +228,4 @@ export default function initLangSwitch() {
   });
 }
 
-export { LANG_CHANGED, t };
+export { LANG_CHANGED, LANG_WILL_CHANGE, t };

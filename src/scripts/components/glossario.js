@@ -31,9 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
       .trim();
   }
 
+  // The enhancement below rewrites each definition: it splits the single text
+  // node the server sent into a <span class="glossary-label"> plus several
+  // text nodes. The language switch matches text nodes by position, so once a
+  // definition has been enhanced its text can no longer be translated in
+  // place. We therefore keep the original markup and hand it back just before
+  // a swap, re-applying the enhancement once the new text is in.
+  const pristine = new WeakMap();
+
+  function definitionItems() {
+    return entries.flatMap((entry) => Array.from(entry.querySelectorAll("ol > li")));
+  }
+
+  function restorePristine() {
+    definitionItems().forEach((item) => {
+      const html = pristine.get(item);
+      if (html !== undefined) item.innerHTML = html;
+    });
+  }
+
   function enhanceGlossaryLabels() {
     entries.forEach((entry) => {
       entry.querySelectorAll("ol > li").forEach((item) => {
+        if (!pristine.has(item)) pristine.set(item, item.innerHTML);
         // 1. Process markdown formatting safely on text nodes to avoid parsing escaped HTML tags as actual DOM elements
         const childNodes = Array.from(item.childNodes);
         childNodes.forEach((node) => {
@@ -427,6 +447,17 @@ document.addEventListener("DOMContentLoaded", () => {
   prepareSearchData();
   syncHeaderOffset();
   setupAsideGroups();
+
+  // The language switch replaces text in place without touching structure, so
+  // it needs the definitions back in their server-rendered shape first, and
+  // the search index rebuilt afterwards — it caches the localised title,
+  // description and category on each entry's dataset.
+  window.addEventListener("codedge:lang-will-change", restorePristine);
+  window.addEventListener("codedge:lang-changed", () => {
+    enhanceGlossaryLabels();
+    prepareSearchData();
+    filterEntries(false);
+  });
 
   if ("ResizeObserver" in window && header) {
     new ResizeObserver(syncHeaderOffset).observe(header);
