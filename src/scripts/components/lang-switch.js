@@ -40,6 +40,8 @@ const LANG_WILL_CHANGE = "codedge:lang-will-change";
 // Attributes that carry human-readable text.
 const TEXT_ATTRS = ["alt", "title", "aria-label", "placeholder"];
 
+const LD_JSON = 'script[type="application/ld+json"]';
+
 // Containers whose content is prose written in the page source, and the inline
 // markup that may appear inside it. Together they identify an element whose
 // markup no component ever assembles — see the fallback in applyTranslation.
@@ -244,7 +246,12 @@ function applyHead(doc) {
     ['meta[property="og:description"]', "content"],
     ['meta[property="og:url"]', "content"],
     ['meta[property="og:locale"]', "content"],
+    ['meta[property="og:locale:alternate"]', "content"],
     ['meta[property="og:image:alt"]', "content"],
+    // Not metadata but the installable app itself: each language has its own
+    // manifest, with its own start_url and description. Leave it behind and a
+    // reader who installs after switching gets the other language's app.
+    ['link[rel="manifest"]', "href"],
     ['meta[name="twitter:title"]', "content"],
     ['meta[name="twitter:description"]', "content"]
   ];
@@ -253,6 +260,16 @@ function applyHead(doc) {
     const from = doc.querySelector(selector);
     const to = document.querySelector(selector);
     if (from && to) to.setAttribute(attr, from.getAttribute(attr));
+  }
+
+  // Structured data describes the page, so it has to describe the new one:
+  // breadcrumb trail, article headline, glossary terms. These blocks are
+  // build-time output that nothing reads at runtime and the browser never
+  // executes, so swapping the whole set is both safe and the only way to keep
+  // them consistent when the two languages carry a different number of them.
+  for (const stale of document.head.querySelectorAll(LD_JSON)) stale.remove();
+  for (const block of doc.head.querySelectorAll(LD_JSON)) {
+    document.head.appendChild(document.importNode(block, true));
   }
 }
 

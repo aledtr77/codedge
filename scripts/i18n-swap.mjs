@@ -78,7 +78,37 @@ function readVisibleSlots() {
     }
   }
 
+  // The head is not visible, but it is the half of the page search engines and
+  // share sheets actually read — and it goes stale in exactly the same way.
   slots.push(['<title>', document.title]);
+  slots.push(['<html lang>', document.documentElement.lang]);
+
+  const headBits = [
+    ['meta[name="description"]', 'content'],
+    ['link[rel="canonical"]', 'href'],
+    ['link[rel="manifest"]', 'href'],
+    ['meta[property="og:title"]', 'content'],
+    ['meta[property="og:description"]', 'content'],
+    ['meta[property="og:url"]', 'content'],
+    ['meta[property="og:locale"]', 'content'],
+    ['meta[property="og:locale:alternate"]', 'content'],
+    ['meta[property="og:image:alt"]', 'content'],
+    ['meta[name="twitter:title"]', 'content'],
+    ['meta[name="twitter:description"]', 'content']
+  ];
+  for (const [selector, attr] of headBits) {
+    const el = document.head.querySelector(selector);
+    if (el) slots.push([`head ${selector}`, el.getAttribute(attr) || '']);
+  }
+
+  document.head.querySelectorAll('script[type="application/ld+json"]').forEach((node, i) => {
+    // Re-serialised, so formatting differences between the two builds cannot
+    // masquerade as a difference in what the page claims about itself.
+    let text = node.textContent.trim();
+    try { text = JSON.stringify(JSON.parse(text)); } catch { /* leave as written */ }
+    slots.push([`head ld+json:${i}`, text]);
+  });
+
   return slots;
 }
 
