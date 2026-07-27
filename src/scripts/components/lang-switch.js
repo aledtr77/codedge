@@ -9,15 +9,22 @@
 //
 // So with JavaScript available we don't navigate at all. We fetch the twin
 // page and copy across *only text node values and translatable attributes*,
-// never adding or removing a single node. Nothing is destroyed, so every
-// listener and every initialised component (colour generator, playground,
-// quiz) survives untouched — and there is no unstyled or empty state to flash,
-// because nothing is ever re-rendered.
+// leaving the tree itself alone. Nothing is destroyed, so every listener and
+// every initialised component (colour generator, playground, quiz) survives
+// untouched — and there is no unstyled or empty state to flash, because
+// nothing is ever re-rendered.
+//
+// The one exception is a paragraph whose inline markup the two languages
+// arrange differently, where copying by position cannot work at all; there the
+// markup is replaced outright, and only where nothing but prose can live.
 //
 // This is safe because the two trees are structurally identical by
 // construction: English pages are scaffolded from the Italian ones. Where they
 // do diverge — JS-generated content such as a rendered quiz — the walk simply
 // stops descending that branch instead of corrupting it.
+//
+// scripts/i18n-swap.mjs drives this in a browser over every pair and compares
+// the result against the real page; run it after touching anything here.
 
 import { t } from "@/i18n/ui.js";
 
@@ -32,6 +39,47 @@ const LANG_WILL_CHANGE = "codedge:lang-will-change";
 
 // Attributes that carry human-readable text.
 const TEXT_ATTRS = ["alt", "title", "aria-label", "placeholder"];
+
+// Containers whose content is prose written in the page source, and the inline
+// markup that may appear inside it. Together they identify an element whose
+// markup no component ever assembles — see the fallback in applyTranslation.
+const PROSE_CONTAINERS = new Set([
+  "P", "LI", "DD", "DT", "TD", "TH", "CAPTION", "FIGCAPTION", "BLOCKQUOTE",
+  "H1", "H2", "H3", "H4", "H5", "H6", "SUMMARY", "LABEL", "LEGEND"
+]);
+
+const INLINE_TAGS = new Set([
+  "A", "ABBR", "B", "BDI", "BDO", "BR", "CITE", "CODE", "DEL", "DFN", "EM",
+  "I", "INS", "KBD", "MARK", "Q", "S", "SAMP", "SMALL", "SPAN", "STRONG",
+  "SUB", "SUP", "TIME", "U", "VAR", "WBR"
+]);
+
+// An in-page anchor is a scroll target components take over (guide TOC, scroll
+// indicator); replacing it would drop the click handler with it.
+const isScrollTarget = (el) =>
+  el.tagName === "A" && (el.getAttribute("href") || "").startsWith("#");
+
+/** True when everything below `el` is text and inline text markup. */
+function isProse(el) {
+  for (const child of el.children) {
+    if (!INLINE_TAGS.has(child.tagName)) return false;
+    if (isScrollTarget(child)) return false;
+    if (!isProse(child)) return false;
+  }
+  return true;
+}
+
+/**
+ * True when `el` carries nothing but prose, so its markup can be replaced
+ * outright. Inline elements count too: a translation often moves a <code> in or
+ * out of the <strong> around it, and the mismatch surfaces there rather than on
+ * the paragraph.
+ */
+function isReplaceableProse(el) {
+  if (!PROSE_CONTAINERS.has(el.tagName) && !INLINE_TAGS.has(el.tagName)) return false;
+  if (isScrollTarget(el)) return false;
+  return isProse(el);
+}
 
 function prefetch(href) {
   if (!href || document.querySelector(`link[rel="prefetch"][href="${href}"]`)) return;
@@ -55,35 +103,93 @@ function applyTranslation(live, src) {
   const href = src.getAttribute("href");
   if (href && href.startsWith("/")) live.setAttribute("href", href);
 
-  // Direct text children, matched by position. A different count means this
-  // element was rewritten by JavaScript, so its text is left alone.
+  // Direct text children, matched by position.
   const liveText = [];
   const srcText = [];
   for (const node of live.childNodes) if (node.nodeType === Node.TEXT_NODE) liveText.push(node);
   for (const node of src.childNodes) if (node.nodeType === Node.TEXT_NODE) srcText.push(node);
+
   if (liveText.length === srcText.length) {
     for (let i = 0; i < srcText.length; i += 1) liveText[i].nodeValue = srcText[i].nodeValue;
+  } else if (isReplaceableProse(live) && isReplaceableProse(src)) {
+    // A different count usually means JavaScript rewrote this element, and
+    // then its text must be left alone. But a translation that moves an inline
+    // <code> or <strong> also changes how the sentence splits into text nodes
+    // — "the <code>x</code> flag does…" against "<code>x</code> serve a…" —
+    // and positional copying would leave the whole sentence untranslated.
+    // Inside a prose container nothing is component-generated, so replacing
+    // the markup outright is safe and translates the sentence whatever shape
+    // the two languages gave it.
+    live.innerHTML = src.innerHTML;
+    return;
   }
 
   alignChildren(live.children, src.children);
 }
 
-/** Two elements are the same slot if their tag and id agree. */
+/**
+ * Two elements are the same slot if their tag and id agree — and, when both
+ * carry classes, if they share at least one.
+ *
+ * Tag and id alone are too coarse. breadcrumb.js deletes the static
+ * `.breadcrumb-container` from the live tree, so its bare <div> in the source
+ * lines up with whatever bare <div> follows here and the walk descends into a
+ * branch that has nothing to do with it — taking every translation below it
+ * down with it. Classes are consulted only when both sides have them, so a
+ * component that adds a class to an unclassed element still pairs; and one
+ * class in common is enough, so a runtime state class ("active", "open") does
+ * not break the pairing either.
+ */
 function corresponds(a, b) {
-  return a.tagName === b.tagName && a.id === b.id;
+  if (a.tagName !== b.tagName || a.id !== b.id) return false;
+  if (a.classList.length === 0 || b.classList.length === 0) return true;
+  for (const cls of a.classList) if (b.classList.contains(cls)) return true;
+  return false;
+}
+
+const LOOKAHEAD = 8;
+const PEEL_DEPTH = 2;
+
+/** Index of `target`'s twin in `kids` at or after `from`, or -1. */
+function findAhead(kids, from, target) {
+  const limit = Math.min(kids.length, from + LOOKAHEAD);
+  for (let k = from; k < limit; k += 1) {
+    if (corresponds(kids[k], target)) return k;
+  }
+  return -1;
+}
+
+/**
+ * `live`, or something it wraps, matching `src`.
+ *
+ * Components do not only insert siblings — they also wrap the markup that was
+ * already there: the playground moves every <pre> inside a `.code-wrapper` of
+ * its own, alongside a toolbar. The source knows nothing about that wrapper, so
+ * a walk that only ever looks at siblings stops dead at it and the code block
+ * keeps the language it was served in.
+ */
+function peel(live, src, depth = PEEL_DEPTH) {
+  if (corresponds(live, src)) return live;
+  if (depth <= 0) return null;
+  for (const child of live.children) {
+    const found = peel(child, src, depth - 1);
+    if (found) return found;
+  }
+  return null;
 }
 
 /**
  * Pairs live children with source children.
  *
- * The live tree usually has *extra* elements the fetched markup knows nothing
- * about — playgrounds built from code blocks, a rendered quiz. So a mismatch
- * must not abort the walk (that would leave every later sibling untranslated);
- * it means the live tree has an interloper, and we look ahead a few slots to
- * find the real counterpart and carry on.
+ * Neither list is authoritative. The live tree gains elements the fetched
+ * markup knows nothing about — playgrounds built from code blocks, a rendered
+ * quiz — and loses others the source still carries, because breadcrumb.js
+ * deletes the static breadcrumb its runtime bar replaces. So a mismatch must
+ * never abort the walk (that would leave every later sibling untranslated): it
+ * means one side has an interloper, and we look ahead on *both* to find the
+ * real counterpart, resyncing on whichever twin is nearer.
  */
 function alignChildren(liveKids, srcKids) {
-  const LOOKAHEAD = 8;
   let li = 0;
   let si = 0;
 
@@ -98,22 +204,30 @@ function alignChildren(liveKids, srcKids) {
       continue;
     }
 
-    // Skip over JS-injected elements to reach this source element's twin.
-    let found = -1;
-    for (let k = li + 1; k < Math.min(liveKids.length, li + 1 + LOOKAHEAD); k += 1) {
-      if (corresponds(liveKids[k], src)) {
-        found = k;
-        break;
-      }
-    }
+    const aheadInLive = findAhead(liveKids, li + 1, src);
+    const aheadInSrc = findAhead(srcKids, si + 1, live);
 
-    if (found >= 0) {
-      applyTranslation(liveKids[found], src);
-      li = found + 1;
+    if (aheadInLive >= 0 && (aheadInSrc < 0 || aheadInLive - li <= aheadInSrc - si)) {
+      // Extra elements on this page: skip them to reach the source's twin.
+      applyTranslation(liveKids[aheadInLive], src);
+      li = aheadInLive + 1;
       si += 1;
+    } else if (aheadInSrc >= 0) {
+      // Extra elements in the source: skip them to reach this element's twin.
+      applyTranslation(live, srcKids[aheadInSrc]);
+      li += 1;
+      si = aheadInSrc + 1;
     } else {
-      // No counterpart on this page: leave the live tree alone and move on.
-      si += 1;
+      // Nothing alongside: last resort, the twin may have been wrapped.
+      const wrapped = peel(live, src);
+      if (wrapped) {
+        applyTranslation(wrapped, src);
+        li += 1;
+        si += 1;
+      } else {
+        // No counterpart within reach at all: leave the live tree alone.
+        si += 1;
+      }
     }
   }
 }
@@ -174,7 +288,10 @@ async function swapTo(href, control, { push = true } = {}) {
   applyHead(doc);
   applySwitch(control, doc);
 
-  if (push) history.pushState({ codedgeLang: true }, "", href);
+  // The switch's href is a bare path, but the query and the fragment belong to
+  // the reader, not to the language: a pinned palette or the anchor they were
+  // reading at must survive the swap, and above all stay in the URL they copy.
+  if (push) history.pushState({ codedgeLang: true }, "", href + location.search + location.hash);
 
   // Content rendered by JavaScript (quiz questions, playground chrome) is not
   // in the fetched markup, so it re-localises itself from this signal.

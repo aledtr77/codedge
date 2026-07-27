@@ -1,5 +1,6 @@
 import "@/scripts/components/pwa.js";
 import "@/scripts/components/breadcrumb.js";
+import { t } from "@/i18n/ui.js";
 
 function markPageReady() {
   if (document.documentElement.dataset.pageReady === "true") return;
@@ -19,7 +20,7 @@ if (menuIcon && navMenu) {
   // Set accessibility attributes dynamically to pass Lighthouse A11y audit
   menuIcon.setAttribute("role", "button");
   menuIcon.setAttribute("tabindex", "0");
-  menuIcon.setAttribute("aria-label", "Menu di navigazione");
+  menuIcon.setAttribute("aria-label", t("nav.menuAria"));
   menuIcon.setAttribute("aria-expanded", "false");
 
   menuIcon.addEventListener("click", (e) => {
@@ -38,6 +39,11 @@ if (menuIcon && navMenu) {
       e.preventDefault();
       menuIcon.click();
     }
+  });
+
+  // The label is set here, not in the markup, so the switch has nothing to copy.
+  window.addEventListener("codedge:lang-changed", () => {
+    menuIcon.setAttribute("aria-label", t("nav.menuAria"));
   });
 
   document.addEventListener("click", (e) => {

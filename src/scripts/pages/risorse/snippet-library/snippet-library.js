@@ -248,6 +248,17 @@ export function initSnippets() {
     }
   }
 
+  // These buttons are built here, so the language switch has no markup to copy
+  // them from: they re-label themselves, each according to its own state.
+  window.addEventListener('codedge:lang-changed', () => {
+    document.querySelectorAll('.toggle-code-btn').forEach(btn => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.innerHTML = expanded
+        ? `<i class="fas fa-eye-slash"></i> ${t('code.hideCode')}`
+        : `<i class="fas fa-code"></i> ${t('code.showCode')}`;
+    });
+  });
+
   if (pills.length || boxes.length) {
     if (typeof mobileQuery.addEventListener === 'function') {
       mobileQuery.addEventListener('change', handleQueryChange);

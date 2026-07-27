@@ -21,7 +21,7 @@ function getBreadcrumbTitle(path, lang) {
   return formatSegment(lastSegment, lang);
 }
 
-function initBreadcrumbs() {
+function renderBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   const lang = currentLang();
   // The language prefix is not a navigation level: /en/ is the English home,
@@ -31,8 +31,6 @@ function initBreadcrumbs() {
 
   if (isHomepage) return;
 
-  if (document.querySelector(".codedge-breadcrumbs-bar")) return;
-
   const headerEl = document.querySelector("header");
   if (!headerEl) return;
 
@@ -41,7 +39,7 @@ function initBreadcrumbs() {
 
   const nav = document.createElement("nav");
   nav.className = "codedge-breadcrumbs-bar";
-  nav.setAttribute("aria-label", "Breadcrumbs");
+  nav.setAttribute("aria-label", t("breadcrumb.ariaLabel"));
 
   const listEl = document.createElement("ol");
   listEl.className = "breadcrumb-list";
@@ -97,6 +95,19 @@ function initBreadcrumbs() {
   oldBackLinks.forEach(link => link.remove());
 }
 
+function initBreadcrumbs() {
+  if (document.querySelector(".codedge-breadcrumbs-bar")) return;
+  renderBreadcrumbs();
+}
+
+// The trail is derived from the URL and the vocabulary, not from markup the
+// language switch can copy across — so when the switch swaps both underneath
+// it, the only way to follow is to build it again.
+function refreshBreadcrumbs() {
+  document.querySelectorAll(".codedge-breadcrumbs-bar").forEach((bar) => bar.remove());
+  renderBreadcrumbs();
+}
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initBreadcrumbs);
 } else {
@@ -104,3 +115,4 @@ if (document.readyState === "loading") {
 }
 
 window.addEventListener("pageshow", initBreadcrumbs);
+window.addEventListener("codedge:lang-changed", refreshBreadcrumbs);

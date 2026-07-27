@@ -363,9 +363,13 @@ export default function initGuidePlayground() {
       const toolbar = document.createElement("div");
       toolbar.className = "code-toolbar";
 
+      // The role is an attribute, not the label: the click handler used to tell
+      // the two apart by reading their text, which stops working the moment the
+      // language changes underneath them.
       const copyBtn = document.createElement("button");
       copyBtn.type = "button";
       copyBtn.className = "code-btn";
+      copyBtn.dataset.role = "copy";
       copyBtn.innerHTML = `<i class="fas fa-copy"></i> ${t("playground.copy")}`;
       toolbar.appendChild(copyBtn);
 
@@ -373,6 +377,7 @@ export default function initGuidePlayground() {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.className = "code-btn";
+        editBtn.dataset.role = "live";
         editBtn.innerHTML = `<i class="fas fa-play"></i> ${t("playground.tryLive")}`;
         toolbar.appendChild(editBtn);
       }
@@ -529,7 +534,7 @@ export default function initGuidePlayground() {
       if (wrapper) {
         const codeEl = wrapper.querySelector("pre code");
         if (codeEl) {
-          const isCopy = codeBtn.innerHTML.includes(t("playground.copy"));
+          const isCopy = codeBtn.dataset.role !== "live";
           const lang = (codeEl.classList.contains("language-html") || codeEl.classList.contains("lang-html")) ? "html" : "css";
           if (isCopy) {
             navigator.clipboard.writeText(codeEl.textContent.trim()).then(() => {
@@ -665,6 +670,14 @@ function relocalizePlaygrounds() {
     attr(".playground-tabs", "aria-label", t("playground.tabsLabel"));
     attr(".playground-editor", "aria-label", t("playground.editorLabel"));
     attr(".playground-iframe", "title", t("playground.iframeTitle"));
+  });
+
+  // The toolbar under every guide code block, which exists whether or not a
+  // playground was ever opened.
+  document.querySelectorAll(".code-toolbar .code-btn").forEach((btn) => {
+    btn.innerHTML = btn.dataset.role === "live"
+      ? `<i class="fas fa-play"></i> ${t("playground.tryLive")}`
+      : `<i class="fas fa-copy"></i> ${t("playground.copy")}`;
   });
 
   // "Try it live" / "Close live" toggles live outside the playground element.

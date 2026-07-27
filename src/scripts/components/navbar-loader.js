@@ -141,5 +141,15 @@ import initLangSwitch from "./lang-switch.js";
     loadNav();
   });
 
+  // Both passes below key off the link hrefs, and the language switch rewrites
+  // those in place: without this the labels stay in the old language and
+  // aria-current still points at the route we came from.
+  window.addEventListener("codedge:lang-changed", () => {
+    const placeholder = document.querySelector(config.placeholderSelector);
+    if (!placeholder || !hasNavLinks(placeholder)) return;
+    applyNavLabels(placeholder);
+    markCurrent(placeholder);
+  });
+
   window.navLoader = { load: loadNav, config };
 })();

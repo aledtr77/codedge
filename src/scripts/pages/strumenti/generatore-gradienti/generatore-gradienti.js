@@ -58,6 +58,13 @@ export default function initGeneratorGradienti() {
   bindEvents();
   updateUI();
 
+  // The stop list is labelled from t(), and the code box holds a value this
+  // tool computes — which the language switch overwrites with the placeholder
+  // the page was served with, because both sides look like plain text to it.
+  // Redrawing from state puts the reader's own gradient back, in the new
+  // language.
+  window.addEventListener("codedge:lang-changed", updateUI);
+
   function initUI() {
     if (elements.presetContainer) {
       elements.presetContainer.innerHTML = "";

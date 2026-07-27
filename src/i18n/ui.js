@@ -16,6 +16,7 @@ const STRINGS = {
     'nav.switchTo': 'English version',
     'nav.switchLabel': 'Passa alla versione inglese',
     'nav.ariaMain': 'Navigazione principale',
+    'nav.menuAria': 'Menu di navigazione',
     'nav.logoAlt': 'Logo codedge',
 
     'footer.copyright': '© 2025-2026 Codedge. Tutti i diritti riservati.',
@@ -66,6 +67,7 @@ const STRINGS = {
     'code.hideCode': 'Nascondi',
 
     'breadcrumb.home': 'Home',
+    'breadcrumb.ariaLabel': 'Percorso di navigazione',
 
     'form.sending': 'Invio in corso...',
     'form.requiredFields': 'Compila i campi obbligatori.',
@@ -96,6 +98,10 @@ const STRINGS = {
     'tool.seeShades': 'Vedi sfumature',
     'tool.adjustColor': 'Regola colore',
     'tool.colorN': 'Colore {n} ({hex})',
+    'tool.contrastNormal': 'Testo Normale',
+    'tool.contrastLarge': 'Testo Grande',
+    'tool.contrastPass': 'Passa',
+    'tool.contrastFail': 'Fallisce',
     'tool.unknownColor': 'Sconosciuto',
     'tool.genericColor': 'Colore',
     'tool.deleteColor': 'Elimina questo colore',
@@ -150,6 +156,7 @@ const STRINGS = {
     'nav.switchTo': 'Versione italiana',
     'nav.switchLabel': 'Switch to the Italian version',
     'nav.ariaMain': 'Main navigation',
+    'nav.menuAria': 'Navigation menu',
     'nav.logoAlt': 'Codedge logo',
 
     'footer.copyright': '© 2025-2026 Codedge. All rights reserved.',
@@ -200,6 +207,7 @@ const STRINGS = {
     'code.hideCode': 'Hide',
 
     'breadcrumb.home': 'Home',
+    'breadcrumb.ariaLabel': 'Breadcrumbs',
 
     'form.sending': 'Sending...',
     'form.requiredFields': 'Please fill in the required fields.',
@@ -230,6 +238,10 @@ const STRINGS = {
     'tool.seeShades': 'View shades',
     'tool.adjustColor': 'Adjust color',
     'tool.colorN': 'Color {n} ({hex})',
+    'tool.contrastNormal': 'Normal text',
+    'tool.contrastLarge': 'Large text',
+    'tool.contrastPass': 'Passes',
+    'tool.contrastFail': 'Fails',
     'tool.unknownColor': 'Unknown',
     'tool.genericColor': 'Color',
     'tool.deleteColor': 'Delete this color',

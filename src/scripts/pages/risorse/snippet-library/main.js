@@ -38,5 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if ('requestIdleCallback' in window) requestIdleCallback(runPrism);
   else setTimeout(runPrism, 0);
+
+  // Highlighting shreds each block into <span> tokens, and the code samples
+  // carry translated comments and strings — so the language switch finds a
+  // shape it cannot map and leaves the whole sample in the old language. Hand
+  // back the plain text it was served with, then highlight the new one.
+  window.addEventListener('codedge:lang-will-change', () => {
+    document.querySelectorAll('pre > code').forEach(code => {
+      if (!code.firstElementChild) return;
+      code.replaceChildren(document.createTextNode(code.textContent));
+    });
+  });
+
+  window.addEventListener('codedge:lang-changed', runPrism);
 });
 

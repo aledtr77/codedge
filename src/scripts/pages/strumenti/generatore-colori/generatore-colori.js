@@ -556,33 +556,24 @@ export function initColorGenerator() {
     const aaLarge = ratio >= 3.0;
     const aaaLarge = ratio >= 4.5;
 
+    const level = (label, grade, passes) => `
+        <div class="level-item">
+          ${label} (${grade}):
+          <span class="${passes ? "level-pass" : "level-fail"}">
+            <i class="fas ${passes ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${passes ? t("tool.contrastPass") : t("tool.contrastFail")}
+          </span>
+        </div>`;
+
+    const normal = t("tool.contrastNormal");
+    const large = t("tool.contrastLarge");
+
     scoreDetails.innerHTML = `
       <span class="contrast-ratio-badge">${ratio.toFixed(2)}:1</span>
       <div class="contrast-level-badge">
-        <div class="level-item">
-          Testo Normale (AA): 
-          <span class="${aaNormal ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaNormal ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaNormal ? "Passa" : "Fallisce"}
-          </span>
-        </div>
-        <div class="level-item">
-          Testo Normale (AAA): 
-          <span class="${aaaNormal ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaaNormal ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaaNormal ? "Passa" : "Fallisce"}
-          </span>
-        </div>
-        <div class="level-item">
-          Testo Grande (AA): 
-          <span class="${aaLarge ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaLarge ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaLarge ? "Passa" : "Fallisce"}
-          </span>
-        </div>
-        <div class="level-item">
-          Testo Grande (AAA): 
-          <span class="${aaaLarge ? "level-pass" : "level-fail"}">
-            <i class="fas ${aaaLarge ? "fa-check-circle" : "fa-times-circle"}" aria-hidden="true"></i> ${aaaLarge ? "Passa" : "Fallisce"}
-          </span>
-        </div>
+${level(normal, "AA", aaNormal)}
+${level(normal, "AAA", aaaNormal)}
+${level(large, "AA", aaLarge)}
+${level(large, "AAA", aaaLarge)}
       </div>
     `;
   }
@@ -628,6 +619,15 @@ export function initColorGenerator() {
       e.preventDefault();
       generateRandomPalette();
     }
+  });
+
+  // Swatch names, action tooltips and preset names all come from t(), so the
+  // language switch has no markup to copy them from. Both renderers work off
+  // state the swap does not touch, so running them again relabels everything
+  // without disturbing the palette on screen.
+  window.addEventListener("codedge:lang-changed", () => {
+    renderPalette();
+    renderPresets();
   });
 
   loadPaletteFromUrl();
