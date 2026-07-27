@@ -13,22 +13,22 @@ const sitemapPath = path.join(publicRoot, 'sitemap.xml');
 
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const baseUrl = String(packageJson.homepage || 'https://codedge.it/').replace(/\/+$/, '');
-const excludedRoutes = new Set([
-  '/percorsi-apprendimento/',
-  '/percorsi-apprendimento/github-senza-panico/',
-  '/percorsi-apprendimento/git-pratico-senza-panico/',
-  '/percorsi-apprendimento/visual-studio-code-senza-panico/',
-  '/tutorial/visual-studio-code-senza-panico/',
-  '/shop-template/',
-  '/footer/chi-sono/',
-  '/footer/contatti/',
-  '/footer/privacy-policy/',
-  '/footer/termini-servizio/'
-]);
-
 function hasNoindexMeta(filePath) {
   const html = fs.readFileSync(filePath, 'utf8');
   return /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html);
+}
+
+// A handful of routes are only there to catch URLs that were indexed under an
+// older slug and send the reader on. GitHub Pages cannot issue a 301, so they
+// are pages that redirect — and they must never enter the sitemap.
+//
+// Recognised by their markup rather than listed by hand: a list has to be kept
+// in step with the files, and the day it is not, a redirect quietly starts
+// advertising itself as a destination.
+function redirectTargetOf(filePath) {
+  const html = fs.readFileSync(filePath, 'utf8');
+  const match = html.match(/<meta\s+http-equiv=["']refresh["'][^>]*content=["'][^"']*url=([^"']+)["']/i);
+  return match ? match[1].trim() : null;
 }
 
 function walkIndexFiles(dir) {
@@ -150,18 +150,39 @@ function buildSitemapXml(entries) {
   ].join('\n');
 }
 
-const entries = walkIndexFiles(pagesRoot)
-  .map((filePath) => {
-    const route = routeFromFile(filePath);
-    return {
-      filePath,
-      route,
-      noindex: hasNoindexMeta(filePath),
-      priority: priorityForRoute(route),
-      lastmod: lastModifiedForFile(filePath)
-    };
-  })
-  .filter(({ route, noindex }) => route && !excludedRoutes.has(route) && !noindex)
+const pages = walkIndexFiles(pagesRoot).map((filePath) => ({
+  filePath,
+  route: routeFromFile(filePath),
+  noindex: hasNoindexMeta(filePath),
+  redirectTo: redirectTargetOf(filePath)
+}));
+
+// A redirect that no longer lands anywhere is worse than no redirect at all:
+// the reader gets a 404 and the old URL's standing is thrown away rather than
+// passed on. The slugs have been renamed once already, so check every hop
+// against the pages that actually exist.
+const routesOnFile = new Set(pages.map(({ route }) => route).filter(Boolean));
+const brokenRedirects = pages
+  .filter(({ redirectTo }) => redirectTo)
+  .filter(({ redirectTo }) => !routesOnFile.has(redirectTo));
+
+if (brokenRedirects.length) {
+  console.error('\nRedirect senza destinazione:');
+  for (const { filePath, route, redirectTo } of brokenRedirects) {
+    console.error(`  ${route} → ${redirectTo}  (${path.relative(projectRoot, filePath)})`);
+  }
+  console.error('\nLa pagina di arrivo non esiste: aggiorna il redirect o rimuovilo.\n');
+  process.exit(1);
+}
+
+const entries = pages
+  .filter(({ route, noindex, redirectTo }) => route && !noindex && !redirectTo)
+  .map(({ filePath, route }) => ({
+    filePath,
+    route,
+    priority: priorityForRoute(route),
+    lastmod: lastModifiedForFile(filePath)
+  }))
   .sort((a, b) => {
     const weightDiff = sortWeight(a.route) - sortWeight(b.route);
     if (weightDiff !== 0) return weightDiff;

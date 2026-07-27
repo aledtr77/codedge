@@ -118,6 +118,13 @@ function antiFoucHtmlPlugin(isServe) {
     transformIndexHtml: {
       order: 'post',
       handler(html) {
+        // A page whose only job is to redirect has no paint to protect: it is
+        // gone before anything renders. All this machinery would do there is
+        // put ~3.5kB in front of the hop — and its `opacity:0` while pending
+        // would hide the very link that is the fallback when the redirect
+        // does not fire.
+        if (/<meta\b[^>]*http-equiv=["']refresh["']/i.test(html)) return html;
+
         let updated = html
           .replace(criticalStyleRegex, '')
           .replace(noScriptRegex, '')
