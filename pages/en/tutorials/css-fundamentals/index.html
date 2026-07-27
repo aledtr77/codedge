@@ -176,9 +176,9 @@
               <p>When the browser loads your site, it merges the structure (the DOM) with the style rules (the CSSOM) in a process called the **Render Tree**, painting the pixels onto the screen.</p>
               <h3>Anatomy of a CSS rule</h3>
               <p>CSS syntax is remarkably straightforward and has three main parts:</p>
-              <pre><code>selettore {
-  proprietà: valore;
-  altra-proprietà: altro-valore;
+              <pre><code>selector {
+  property: value;
+  other-property: other-value;
 }</code></pre>
               <ul class="guide-list">
                 <li><strong>Selector</strong>: tells the browser <em>who</em> to apply the style to (which tags or classes, for example).</li>
@@ -202,7 +202,7 @@
               <h3>Why browsers "lie", and why a reset helps</h3>
               <p>If you create an empty HTML page with no CSS, you'll notice the text already has a font, the headings are large, and there are white margins at the edges of the screen. That happens because **every browser applies default styles** (the User Agent Stylesheet), and they differ slightly between Chrome, Safari and Firefox.</p>
               <p>To stop your site looking different depending on the browser, developers put a **CSS reset** first. The reset flattens those default differences, giving you a blank, predictable canvas to paint on. The most common reset concerns box-sizing:</p>
-              <pre><code>/* Reset base universale */
+              <pre><code>/* Universal base reset */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -221,14 +221,14 @@
                 <li><strong>Class selector</strong>: selects elements carrying a specific HTML class. It starts with a dot (`.`) and is reusable on as many elements as you like (`.card`).</li>
                 <li><strong>ID selector</strong>: selects a single unique element, marked with a hash (`#`). Since an ID must be unique on the page, use it very sparingly for styling.</li>
               </ul>
-              <pre><code>/* Selettore di tipo */
+              <pre><code>/* Type selector */
 p { color: #333; }
 
-/* Selettore di classe */
-.testo-evidenziato { background-color: yellow; }
+/* Class selector */
+.highlighted-text { background-color: yellow; }
 
-/* Selettore di ID */
-#bottone-speciale { border-radius: 50px; }</code></pre>
+/* ID selector */
+#special-button { border-radius: 50px; }</code></pre>
               <p>You can combine selectors by separating them with a space to find child elements (the descendant selector: `.menu a` finds every link inside the `.menu` class), or by separating them with a comma to apply the same style to different selectors (`h1, h2` selects both headings).</p>
             </section>
           </section>
@@ -241,7 +241,7 @@ p { color: #333; }
               <h3>The cascade</h3>
               <p>The browser reads code from top to bottom. When selectors are equally important, the rule written last wins and overrides the earlier ones:</p>
               <pre><code>p { color: red; }
-p { color: blue; } /* Vince questa perché è scritta per ultima! */</code></pre>
+p { color: blue; } /* This one wins, because it is written last! */</code></pre>
               <h3>Specificity: the points system</h3>
               <p>When the selectors differ, the browser calculates an importance score to decide the winner. More precise, specific selectors beat generic ones. Think of specificity as a points system:</p>
               <ul class="guide-list">
@@ -251,11 +251,11 @@ p { color: blue; } /* Vince questa perché è scritta per ultima! */</code></pre
                 <li><strong>Inline style</strong>: worth **1000 points** (maximum specificity).</li>
               </ul>
               <p>Look at this example:</p>
-              <pre><code>/* 1 Elemento = 1 punto */
+              <pre><code>/* 1 element = 1 point */
 p { color: blue; }
 
-/* 1 Classe = 10 punti. Vince questa! */
-.paragrafo-rosso { color: red; }</code></pre>
+/* 1 class = 10 points. This one wins! */
+.red-paragraph { color: red; }</code></pre>
               <p>Avoid using `!important` at the end of your rules. It forces the value above any specificity calculation, but it turns debugging and future changes into a nightmare. Keep it as a last resort.</p>
             </section>
           </section>
@@ -312,9 +312,9 @@ p { color: blue; }
               <p>To switch it on, apply `display: flex` to the container element:</p>
               <pre><code>.menu {
   display: flex;
-  justify-content: space-between; /* Distribuisce lo spazio tra gli elementi figli */
-  align-items: center;            /* Centra gli elementi verticalmente */
-  gap: 15px;                      /* Spazio minimo costante tra i figli */
+  justify-content: space-between; /* Spreads the space between the child elements */
+  align-items: center;            /* Centres the elements vertically */
+  gap: 15px;                      /* A constant minimum space between children */
 }</code></pre>
               <p>With Flexbox you don't need to calculate complicated margins: the `justify-content` (main axis) and `align-items` (cross axis) properties handle the spacing automatically and elastically.</p>
             </section>
@@ -325,10 +325,10 @@ p { color: blue; }
             <h2>8. Two-dimensional layouts: Grid</h2>
             <section class="guide-subchapter">
               <p>While Flexbox works on one row or column at a time, CSS Grid lets you manage **two dimensions at once** (rows and columns). It is the ideal tool for card grids, complex photo galleries, or the structural frame of a page.</p>
-              <pre><code>.griglia-card {
+              <pre><code>.card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonne di ugual dimensione */
-  gap: 20px;                             /* Spazio tra righe e colonne */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns of equal size */
+  gap: 20px;                             /* Space between rows and columns */
 }</code></pre>
               <p>The **`fr`** unit represents a fraction of the available space. In the example above, the three columns share the space in exactly equal parts. You can build remarkably responsive grids that adapt to the screen without using media queries:</p>
               <pre><code>grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</code></pre>
@@ -391,15 +391,15 @@ p { color: blue; }
                 <li><strong>`fixed`</strong>: the element is positioned relative to the browser window. It stays in the same place even as you scroll (a support chat widget in the bottom right, for instance).</li>
                 <li><strong>`sticky`</strong>: a hybrid behaviour. The element behaves normally until it reaches a given scroll threshold (`top: 0`, say), after which it "sticks" to the screen.</li>
               </ul>
-              <pre><code>/* Schema tipico: un badge posizionato sopra l'angolo di una card */
+              <pre><code>/* A typical pattern: a badge sitting over the corner of a card */
 .card {
-  position: relative; /* La card fa da ancora di riferimento */
+  position: relative; /* The card acts as the reference anchor */
 }
 
 .badge {
   position: absolute;
   top: -10px;
-  right: -10px;       /* Posizionato a cavallo dell'angolo in alto a destra */
+  right: -10px;       /* Straddling the top-right corner */
 }</code></pre>
             </section>
           </section>
@@ -411,14 +411,14 @@ p { color: blue; }
               <p>A modern website has to be comfortable to read on a smartwatch screen and on a 4K television alike. Responsive design is the set of techniques used to achieve that.</p>
               <h3>Media queries and breakpoints</h3>
               <p>Media queries let you apply CSS rules only when certain screen conditions are met (the so-called breakpoints):</p>
-              <pre><code>/* Stile base (Mobile-First: valido per tutti gli schermi a partire dagli smartphone) */
-.griglia {
+              <pre><code>/* Base style (Mobile-First: applies to every screen, starting from phones) */
+.grid {
   grid-template-columns: 1fr;
 }
 
-/* Stile applicato solo su schermi larghi almeno 768px (Tablet e Desktop) */
+/* Style applied only on screens at least 768px wide (tablet and desktop) */
 @media (min-width: 768px) {
-  .griglia {
+  .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }</code></pre>
@@ -433,13 +433,13 @@ p { color: blue; }
               <p>CSS variables (or custom properties) let you store recurring values — brand colors, fonts, spacing — in one place and reuse them anywhere in the stylesheet.</p>
               <p>They are usually declared in the `:root` pseudo-class to make them globally available:</p>
               <pre><code>:root {
-  --colore-primario: #00a8ff;
-  --padding-base: 1.5rem;
+  --primary-colour: #00a8ff;
+  --base-padding: 1.5rem;
 }
 
-.pulsante {
-  background-color: var(--colore-primario);
-  padding: var(--padding-base);
+.button {
+  background-color: var(--primary-colour);
+  padding: var(--base-padding);
 }</code></pre>
               <p>If the brand color changes in future, you only have to edit a single line inside `:root` and the change propagates instantly across hundreds of stylesheet rules.</p>
             </section>
@@ -452,12 +452,12 @@ p { color: blue; }
               <p>Adding small touches of movement makes an interface feel interactive and premium. In modern CSS you can animate any element easily.</p>
               <h3>Transitions</h3>
               <p>A transition smooths the shift from one style to another when the state changes — when the user hovers over an element with `:hover`, for instance:</p>
-              <pre><code>.bottone {
+              <pre><code>.button {
   background-color: #00a8ff;
-  transition: background-color 0.3s ease-in-out; /* Transizione morbida */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition */
 }
 
-.bottone:hover {
+.button:hover {
   background-color: #007cc0;
 }</code></pre>
               <h3>Transforms</h3>
@@ -467,7 +467,7 @@ p { color: blue; }
 }
 
 .card:hover {
-  transform: translateY(-5px) scale(1.03); /* Si solleva ed ingrandisce leggermente */
+  transform: translateY(-5px) scale(1.03); /* Lifts and grows slightly */
 }</code></pre>
               <p><strong>A note on taste</strong>: restraint is everything. The best animations last between `0.2s` and `0.4s` (micro-interactions). Continuous, slow or overly showy movement tires the reader out and slows older devices down.</p>
             </section>

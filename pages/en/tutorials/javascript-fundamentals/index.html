@@ -145,11 +145,11 @@
             <section class="guide-subchapter">
               <p>To attach a JavaScript file to an HTML page we use the `&lt;script src="script.js"&gt;&lt;/script&gt;` tag. But where should that tag go? By default, when the browser meets a script while parsing HTML it stops building the page to download and run the file, which dramatically slows down visual loading.</p>
               <p>To solve this, modern developers put the tag in the page head using two magic attributes:</p>
-              <pre><code>&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --&gt;
-&lt;script src="statistiche.js" async&gt;&lt;/script&gt;
+              <pre><code>&lt;!-- Downloads in the background, runs IMMEDIATELY once ready (can block the HTML) --&gt;
+&lt;script src="analytics.js" async&gt;&lt;/script&gt;
 
-&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --&gt;
-&lt;script src="app-logica.js" defer&gt;&lt;/script&gt;</code></pre>
+&lt;!-- Downloads in the background, runs ONLY once the HTML has been fully parsed --&gt;
+&lt;script src="app-logic.js" defer&gt;&lt;/script&gt;</code></pre>
               <h3>Which one to choose?</h3>
               <ul class="guide-list">
                 <li><strong>`async`</strong>: perfect for external scripts that don't depend on other files and don't need to interact with the page immediately (Google Analytics or Facebook tracking pixels, say). Execution order is not guaranteed.</li>
@@ -171,17 +171,17 @@
               <h3>The problem with var, and the stability of let/const</h3>
               <p>JavaScript used to have only `var`. But `var` **completely ignores block scope**, "escaping" out of loops and conditionals and creating silent bugs that are hard to track down. Modern JavaScript introduces `let` and `const`, which respect block scope strictly:</p>
               <pre><code>if (true) {
-  var scappa = "Sono visibile fuori!";
-  let protetta = "Rimango qui dentro.";
+  var escapes = "I am visible outside!";
+  let contained = "I stay in here.";
 }
-console.log(scappa);    // Stampa "Sono visibile fuori!"
-console.log(protetta);  // ReferenceError! (Corretto e sicuro)</code></pre>
+console.log(escapes);    // Prints "I am visible outside!"
+console.log(contained);  // ReferenceError! (Correct and safe)</code></pre>
               <h3>const locks the reference, not the object</h3>
               <p>Many developers wrongly believe that declaring an object with `const` makes it immutable. It doesn't: `const` prevents you from **reassigning the variable** to another object, but it still lets you **change the object's internal properties**:</p>
-              <pre><code>const utente = { nome: "Chiara" };
-utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
+              <pre><code>const user = { name: "Chiara" };
+user.name = "Sofia"; // Works perfectly! The object is modified.
 
-// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</code></pre>
+// user = { name: "Marco" }; // TypeError! (Reassignment is blocked)</code></pre>
               <p><strong>Rule of thumb</strong>: always reach for `const` first. Switch to `let` only when you know that variable's value will have to be reassigned (loop counters, for instance). Banish `var` from your code for good.</p>
             </section>
           </section>
@@ -195,20 +195,20 @@ utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
                 <li><strong>Primitive types</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): passed **by value**. Copy a variable and you create a completely independent clone.</li>
                 <li><strong>Reference types</strong> (Object, Array, Function): passed **by reference** (a memory address). Copying an object only copies the key that opens it in memory: change the copy and you change the original.</li>
               </ul>
-              <pre><code>let nome1 = "Alice";
-let nome2 = nome1; // Copia il valore
-nome2 = "Bob";
-console.log(nome1); // "Alice" (Rimane intatta)
+              <pre><code>let name1 = "Alice";
+let name2 = name1; // Copies the value
+name2 = "Bob";
+console.log(name1); // "Alice" (Left untouched)
 
 let array1 = [1, 2];
-let array2 = array1; // Copia il riferimento in memoria
+let array2 = array1; // Copies the reference in memory
 array2.push(3);
-console.log(array1); // [1, 2, 3] (Modificata anche l'originale!)</code></pre>
+console.log(array1); // [1, 2, 3] (The original changed too!)</code></pre>
               <h3>Loose equality (==) vs strict equality (===)</h3>
               <p>Never use the loose equality operator `==`. It tries to convert differing types automatically before comparing them, producing nonsense like `"" == 0` (true) or `0 == false` (true).</p>
               <p>**Always** use strict equality `===` (and its opposite `!==`), which checks both value and type without any conversion:</p>
-              <pre><code>console.log(5 == "5");  // true (Conversione automatica di tipo)
-console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
+              <pre><code>console.log(5 == "5");  // true (Automatic type conversion)
+console.log(5 === "5"); // false (Different types: Number vs String)</code></pre>
             </section>
           </section>
 
@@ -218,19 +218,19 @@ console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
             <section class="guide-subchapter">
               <p>Functions wrap up reusable blocks of code. Alongside classic functions, modern JavaScript makes heavy use of arrow functions.</p>
               <p>Classic functions enjoy **hoisting**: you can call them earlier in the file than the line where you declared them, because the browser loads them into memory when the script starts. Arrow functions don't have this property, and offer ultra-compact syntax:</p>
-              <pre><code>const quadrato = x => x * x; // Ritorno implicito ad una riga</code></pre>
+              <pre><code>const square = x => x * x; // Implicit return, on one line</code></pre>
               <h3>The great 'this' dilemma</h3>
               <p>The fundamental difference lies in how the `this` keyword behaves:</p>
               <ul class="guide-list">
                 <li>In **classic functions**, `this` refers to *whoever calls the function* at runtime (dynamic context).</li>
                 <li>In **arrow functions**, `this` is **lexical**: it inherits the value from the surrounding context where the function was written, regardless of who calls it.</li>
               </ul>
-              <pre><code>const carrello = {
-  prodotti: ["Libro", "Penna"],
-  stampa() {
-    // Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)
-    this.prodotti.forEach(prodotto => {
-      console.log(this); // Stampa l'oggetto carrello
+              <pre><code>const cart = {
+  products: ["Book", "Pen"],
+  print() {
+    // The arrow function inherits 'this' from the print method (so it points at cart)
+    this.products.forEach(product => {
+      console.log(this); // Prints the cart object
     });
   }
 };</code></pre>
@@ -244,12 +244,12 @@ console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
               <p>To write elegant, clean code you need to know the syntactic shortcuts introduced in recent years.</p>
               <h3>Destructuring</h3>
               <p>It lets you pull properties out of objects, or elements out of arrays, and store them in dedicated variables in one go:</p>
-              <pre><code>const impostazioni = { tema: "dark", volume: 80 };
-const { tema, volume } = impostazioni; // Estratti in variabili indipendenti</code></pre>
+              <pre><code>const settings = { theme: "dark", volume: 80 };
+const { theme, volume } = settings; // Extracted into independent variables</code></pre>
               <h3>The spread operator (...)</h3>
               <p>Written as three dots, it "spreads" an array's elements or an object's properties into a new container. It is the standard way to clone or merge data safely without mutating the source:</p>
-              <pre><code>const votiMatematica = [7, 8];
-const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clonato)</code></pre>
+              <pre><code>const mathsGrades = [7, 8];
+const allGrades = [...mathsGrades, 9, 10]; // [7, 8, 9, 10] (A new, cloned array)</code></pre>
               <h3>Avoiding manual loops</h3>
               <p>Don't use manual `for` loops to transform array data. JavaScript offers ready-made functional methods: `.map()` to change every element, `.filter()` to keep only the elements matching a condition, and `.reduce()` to accumulate values.</p>
             </section>
@@ -271,7 +271,7 @@ const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clon
               <p>The correct approach is to **define the visual states in CSS** (create an `.is-active` class with its rules, for instance) and use JavaScript purely to **add or remove that class** in the DOM:</p>
               <pre><code>const popup = document.querySelector(".popup");
 popup.classList.add("is-active");
-popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code></pre>
+popup.classList.toggle("is-open"); // Adds it if missing, removes it if present</code></pre>
               <h3>textContent vs innerHTML: XSS safety</h3>
               <p>If you have to print user-supplied text onto a page, always use `textContent`. Avoid `innerHTML`, since it interprets HTML tags and could let attackers inject malicious scripts into your site (a Cross-Site Scripting, or XSS, attack).</p>
 
@@ -288,14 +288,14 @@ popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code><
             <section class="guide-subchapter">
               <p>The browser fires an event every time something happens: a click, mouse movement, a keystroke, or loading finishing.</p>
               <p>You bind behaviour to an event by attaching a listener directly from JavaScript:</p>
-              <pre><code>const pulsante = document.querySelector("#btn-invia");
+              <pre><code>const button = document.querySelector("#btn-submit");
 
-function gestisciInvio(event) {
-  event.preventDefault(); // Blocca l'invio del form e il ricaricamento della pagina!
-  console.log("Dati inviati in modo asincrono.");
+function handleSubmit(event) {
+  event.preventDefault(); // Stops the form submitting and the page reloading!
+  console.log("Data sent asynchronously.");
 }
 
-pulsante.addEventListener("click", gestisciInvio);</code></pre>
+button.addEventListener("click", handleSubmit);</code></pre>
               <p>Using `event.preventDefault()` is crucial in forms: it stops the browser's default behaviour so we can handle submission in the background with JavaScript.</p>
             </section>
           </section>
@@ -308,19 +308,19 @@ pulsante.addEventListener("click", gestisciInvio);</code></pre>
               <p>A promise can be in one of three states: `Pending`, `Fulfilled` (resolved successfully) or `Rejected` (failed with an error).</p>
               <h3>The simplicity of async/await</h3>
               <p>To avoid messy code built on complex constructs, we use the modern `async/await` syntax. It lets you write asynchronous code with the same linear, line-by-line structure as synchronous code:</p>
-              <pre><code>// Contrassegniamo la funzione come asincrona
-async function caricaDati() {
-  console.log("Caricamento avviato...");
-  
-  // Il browser aspetta la risposta della fetch senza bloccare il resto della pagina
-  const risposta = await fetch("https://api.esempio.com/prodotti");
-  const prodotti = await risposta.json();
-  
-  console.log("Prodotti ricevuti:", prodotti);
+              <pre><code>// We mark the function as asynchronous
+async function loadData() {
+  console.log("Loading started...");
+
+  // The browser waits for the fetch response without blocking the rest of the page
+  const response = await fetch("https://api.example.com/products");
+  const products = await response.json();
+
+  console.log("Products received:", products);
 }
 
-caricaDati();
-console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!");</code></pre>
+loadData();
+console.log("This log appears BEFORE the products, because the API is asynchronous!");</code></pre>
             </section>
           </section>
 
@@ -330,18 +330,18 @@ console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!")
             <section class="guide-subchapter">
               <p>If JavaScript hits an unrecoverable error (an API call that fails because the network is down, or malformed JSON), it stops execution abruptly. In that state, all of your scripts stop working.</p>
               <p>To avoid catastrophic crashes, wrap risky code in a `try/catch` block and handle the error gracefully:</p>
-              <pre><code>async function scaricaProfilo() {
+              <pre><code>async function downloadProfile() {
   try {
-    const risposta = await fetch("https://api.esempio.com/profilo");
-    const dati = await risposta.json();
-    console.log("Profilo caricato:", dati.nome);
-  } catch (errore) {
-    // Eseguito solo in caso di errore nel blocco try
-    console.error("Non è stato possibile caricare il profilo:", errore.message);
-    mostraMessaggioDiErroreAllUtente();
+    const response = await fetch("https://api.example.com/profile");
+    const data = await response.json();
+    console.log("Profile loaded:", data.name);
+  } catch (error) {
+    // Runs only when something in the try block fails
+    console.error("The profile could not be loaded:", error.message);
+    showErrorMessageToUser();
   } finally {
-    // Eseguito sempre, a prescindere dal successo o dal fallimento
-    nascondiSpinnerCaricamento();
+    // Always runs, whether it succeeded or failed
+    hideLoadingSpinner();
   }
 }</code></pre>
             </section>
@@ -358,24 +358,24 @@ console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!")
                 <li><strong>`localStorage`</strong>: the data never expires and stays in the browser until it is cleared by code or by the user.</li>
                 <li><strong>`sessionStorage`</strong>: the data is lost the moment the browser tab is closed.</li>
               </ul>
-              <pre><code>// Salvare un dato
-localStorage.setItem("temaScuro", "true");
+              <pre><code>// Saving a value
+localStorage.setItem("darkTheme", "true");
 
-// Leggere un dato
-const tema = localStorage.getItem("temaScuro");
+// Reading a value
+const theme = localStorage.getItem("darkTheme");
 
-// Rimuovere un dato
-localStorage.removeItem("temaScuro");</code></pre>
+// Removing a value
+localStorage.removeItem("darkTheme");</code></pre>
               <h3>Storing complex objects</h3>
               <p>Because localStorage only accepts **strings**, trying to store an object directly turns it into the useless text `"[object Object]"`. To store complex structures (objects or arrays) you first have to convert them to JSON strings with `JSON.stringify`, and convert them back on retrieval with `JSON.parse`:</p>
-              <pre><code>const carrello = ["Scarpe", "Zaino"];
+              <pre><code>const cart = ["Shoes", "Backpack"];
 
-// Salvataggio (conversione in stringa JSON)
-localStorage.setItem("carrello_utente", JSON.stringify(carrello));
+// Saving (converting to a JSON string)
+localStorage.setItem("user_cart", JSON.stringify(cart));
 
-// Estrazione (conversione in array utilizzabile)
-const datiSalvati = localStorage.getItem("dati_utente");
-const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
+// Reading back (converting to a usable array)
+const savedData = localStorage.getItem("user_data");
+const cartArray = savedData ? JSON.parse(savedData) : [];</code></pre>
               <p><strong>Security warning</strong>: never store passwords, authentication tokens or sensitive personal data in localStorage. Any JavaScript running on the page can read it freely, which makes it an easy target in an XSS attack.</p>
             </section>
           </section>
@@ -389,19 +389,19 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">This isn't a JavaScript bug but a consequence of how computers convert decimal numbers into binary fractions. To compare prices in an e-commerce site without stray microscopic fractions, always round decimals with `toFixed()`, or work with whole numbers (convert to cents before doing the maths):</p>
-                <pre style="margin-top: 0.5rem;"><code>const totale = (0.1 * 10 + 0.2 * 10) / 10; // Restituisce esattamente 0.3!</code></pre>
+                <pre style="margin-top: 0.5rem;"><code>const total = (0.1 * 10 + 0.2 * 10) / 10; // Returns exactly 0.3!</code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>2. typeof null === "object"</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">This is a genuine historical bug in the original 1995 JavaScript engine. It can't be removed or fixed, because doing so would break millions of websites currently live on the internet. To check whether a variable really is an object while excluding `null`, do a double check:</p>
-                <pre style="margin-top: 0.5rem;"><code>if (variabile &amp;&amp; typeof variabile === "object") { ... }</code></pre>
+                <pre style="margin-top: 0.5rem;"><code>if (variable &amp;&amp; typeof variable === "object") { ... }</code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>3. NaN !== NaN (Not-a-Number is not equal to itself)</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` represents the result of an invalid mathematical operation (`"hello" * 5`, say). In JavaScript, `NaN` is the only value in the world that isn't equal to itself when compared with `===`. To test whether a value is `NaN`, use the native method:</p>
-                <pre style="margin-top: 0.5rem;"><code>Number.isNaN(valore); // Restituisce true o false in modo affidabile</code></pre>
+                <pre style="margin-top: 0.5rem;"><code>Number.isNaN(value); // Reliably returns true or false</code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
@@ -422,10 +422,10 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
               </ul>
               <h3>The power of the debugger statement</h3>
               <p>Put the **`debugger;`** keyword in your script and keep the browser's developer tools open, and execution freezes instantly at that exact point:</p>
-              <pre><code>function calcolaPrezzo(base) {
-  const tasse = 1.22;
-  debugger; // Il browser congela la pagina ed evidenzia questa riga nei DevTools
-  return base * tasse;
+              <pre><code>function calculatePrice(base) {
+  const tax = 1.22;
+  debugger; // The browser freezes the page and highlights this line in DevTools
+  return base * tax;
 }</code></pre>
               <p>You can then inspect the current value of every variable at that millisecond and step through line by line, finding problems without littering the code with throwaway logs.</p>
             </section>

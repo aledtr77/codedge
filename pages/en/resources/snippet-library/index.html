@@ -153,25 +153,25 @@
           </div>
           <pre><code class="language-html">
 &lt;!DOCTYPE html&gt;
-&lt;html lang="it"&gt;
+&lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;meta name="referrer" content="strict-origin-when-cross-origin"&gt;
-  &lt;title&gt;Titolo Ottimizzato SEO&lt;/title&gt;
-  &lt;meta name="description" content="Descrizione accattivante per i risultati di ricerca."&gt;
-  &lt;link rel="canonical" href="https://example.com/pagina"&gt;
-  
-  &lt;!-- Preconnessione ai font esterni --&gt;
+  &lt;title&gt;SEO-optimised title&lt;/title&gt;
+  &lt;meta name="description" content="A compelling description for search results."&gt;
+  &lt;link rel="canonical" href="https://example.com/page"&gt;
+
+  &lt;!-- Preconnect to external fonts --&gt;
   &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
   &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
-  
-  &lt;!-- Stili --&gt;
+
+  &lt;!-- Styles --&gt;
   &lt;link rel="stylesheet" href="styles.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;main&gt;
-    &lt;h1&gt;Contenuto Principale&lt;/h1&gt;
+    &lt;h1&gt;Main content&lt;/h1&gt;
   &lt;/main&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -190,7 +190,7 @@
   &lt;nav aria-label="Main navigation"&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;a href="/en/" aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href="/servizi"&gt;Servizi&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/services"&gt;Services&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/nav&gt;
 &lt;/header&gt;
@@ -198,23 +198,23 @@
 &lt;main id="main-content" role="main"&gt;
   &lt;article&gt;
     &lt;header&gt;
-      &lt;h1&gt;Titolo dell'Articolo&lt;/h1&gt;
-      &lt;p&gt;Pubblicato il &lt;time datetime="2026-07-04"&gt;4 Luglio 2026&lt;/time&gt;&lt;/p&gt;
+      &lt;h1&gt;Article title&lt;/h1&gt;
+      &lt;p&gt;Published on &lt;time datetime="2026-07-04"&gt;4 July 2026&lt;/time&gt;&lt;/p&gt;
     &lt;/header&gt;
-    
+
     &lt;section aria-labelledby="sec-intro"&gt;
-      &lt;h2 id="sec-intro"&gt;Introduzione&lt;/h2&gt;
-      &lt;p&gt;Contenuto descrittivo...&lt;/p&gt;
+      &lt;h2 id="sec-intro"&gt;Introduction&lt;/h2&gt;
+      &lt;p&gt;Descriptive content...&lt;/p&gt;
     &lt;/section&gt;
   &lt;/article&gt;
-  
-  &lt;aside aria-label="Risorse correlate"&gt;
-    &lt;h3&gt;Link utili&lt;/h3&gt;
+
+  &lt;aside aria-label="Related resources"&gt;
+    &lt;h3&gt;Useful links&lt;/h3&gt;
   &lt;/aside&gt;
 &lt;/main&gt;
 
 &lt;footer role="contentinfo"&gt;
-  &lt;p&gt;&amp;copy; 2026 Codedge. Tutti i diritti riservati.&lt;/p&gt;
+  &lt;p&gt;&amp;copy; 2026 Codedge. All rights reserved.&lt;/p&gt;
 &lt;/footer&gt;
           </code></pre>
         </div>
@@ -229,21 +229,21 @@
           <pre><code class="language-html">
 &lt;form action="/submit" method="POST" class="form-container" novalidate&gt;
   &lt;div class="form-group"&gt;
-    &lt;label for="user-name"&gt;Nome Completo&lt;/label&gt;
+    &lt;label for="user-name"&gt;Full name&lt;/label&gt;
     &lt;input type="text" id="user-name" name="name" required minlength="3" autocomplete="name"&gt;
   &lt;/div&gt;
 
   &lt;div class="form-group"&gt;
-    &lt;label for="user-email"&gt;Indirizzo Email&lt;/label&gt;
+    &lt;label for="user-email"&gt;Email address&lt;/label&gt;
     &lt;input type="email" id="user-email" name="email" required autocomplete="email"&gt;
   &lt;/div&gt;
 
   &lt;div class="form-group"&gt;
-    &lt;label for="user-message"&gt;Messaggio&lt;/label&gt;
-    &lt;textarea id="user-message" name="message" rows="5" required minlength="10" placeholder="Scrivi qui..."&gt;&lt;/textarea&gt;
+    &lt;label for="user-message"&gt;Message&lt;/label&gt;
+    &lt;textarea id="user-message" name="message" rows="5" required minlength="10" placeholder="Write here..."&gt;&lt;/textarea&gt;
   &lt;/div&gt;
 
-  &lt;button type="submit" class="submit-btn"&gt;Invia Richiesta&lt;/button&gt;
+  &lt;button type="submit" class="submit-btn"&gt;Send request&lt;/button&gt;
 &lt;/form&gt;
           </code></pre>
         </div>
@@ -257,15 +257,15 @@
           </div>
           <pre><code class="language-html">
 &lt;picture&gt;
-  &lt;!-- Schermi grandi (desktop) fallback WebP --&gt;
+  &lt;!-- Large screens (desktop), WebP first --&gt;
   &lt;source media="(min-width: 1024px)" srcset="image-large.webp" type="image/webp"&gt;
   &lt;source media="(min-width: 1024px)" srcset="image-large.jpg" type="image/jpeg"&gt;
-  
-  &lt;!-- Schermi piccoli (mobile) fallback WebP --&gt;
+
+  &lt;!-- Small screens (mobile), WebP first --&gt;
   &lt;source srcset="image-small.webp" type="image/webp"&gt;
-  
-  &lt;!-- Immagine di fallback standard --&gt;
-  &lt;img src="image-small.jpg" alt="Descrizione dell'immagine" loading="lazy" decoding="async" width="600" height="400"&gt;
+
+  &lt;!-- Standard fallback image --&gt;
+  &lt;img src="image-small.jpg" alt="Image description" loading="lazy" decoding="async" width="600" height="400"&gt;
 &lt;/picture&gt;
           </code></pre>
         </div>
@@ -280,7 +280,7 @@
           <pre><code class="language-html">
 &lt;div class="video-container"&gt;
   &lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-          title="Video di esempio" 
+          title="Example video"
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen 
@@ -292,7 +292,7 @@
 .video-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; /* Risolve il problema del CLS senza padding-top hack */
+  aspect-ratio: 16 / 9; /* Fixes CLS without the padding-top hack */
 }
 .video-container iframe {
   position: absolute;
@@ -317,7 +317,7 @@
             </button>
           </div>
           <pre><code class="language-css">
-/* Reset basato sulle best practice moderne */
+/* Reset based on modern best practices */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -361,7 +361,7 @@ html:focus-within {
             </button>
           </div>
           <pre><code class="language-css">
-/* Centratura perfetta in un contenitore */
+/* Perfect centring inside a container */
 .flex-center {
   display: flex;
   justify-content: center;
@@ -369,7 +369,7 @@ html:focus-within {
   min-height: 100vh;
 }
 
-/* Row flessibile e responsiva con gap */
+/* Flexible, responsive row with gap */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -378,7 +378,7 @@ html:focus-within {
   align-items: center;
 }
 
-/* Forza la colonna flex su piccoli schermi */
+/* Force a flex column on small screens */
 @media (max-width: 640px) {
   .flex-row {
     flex-direction: column;
@@ -396,15 +396,15 @@ html:focus-within {
             </button>
           </div>
           <pre><code class="language-css">
-/* Genera colonne dinamiche in base allo spazio disponibile */
+/* Generates dynamic columns based on the space available */
 .auto-grid {
   display: grid;
-  /* Minimo 280px, massimo 1 parte dello spazio rimanente */
+  /* At least 280px, at most 1 share of the remaining space */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-/* Griglia per layout asimmetrici (Sidebar 300px + Main flessibile) */
+/* Grid for asymmetric layouts (300px sidebar + flexible main) */
 .layout-grid {
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
@@ -427,7 +427,7 @@ html:focus-within {
             </button>
           </div>
           <pre><code class="language-css">
-/* Root per tema chiaro di base */
+/* Root values for the base light theme */
 :root {
   --primary-color: #007bf0;
   --bg-color: #ffffff;
@@ -435,7 +435,7 @@ html:focus-within {
   --border-color: #e5e7eb;
 }
 
-/* Attivazione dark mode nativa del sistema */
+/* Switches on the system's native dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color: #3b82f6;
@@ -445,7 +445,7 @@ html:focus-within {
   }
 }
 
-/* Utilizzo pratico delle custom properties */
+/* Custom properties in practice */
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -462,7 +462,7 @@ body {
             </button>
           </div>
           <pre><code class="language-css">
-/* Effetto bottone lucido con transizione smooth */
+/* Glossy button effect with a smooth transition */
 .btn-interactive {
   position: relative;
   display: inline-flex;
@@ -494,7 +494,7 @@ body {
             </button>
           </div>
           <pre><code class="language-css">
-/* Contenitore a scorrimento orizzontale magnetico */
+/* Magnetic horizontal scrolling container */
 .carousel-snap {
   display: flex;
   overflow-x: auto;
@@ -504,9 +504,9 @@ body {
   padding: 1rem 0;
 }
 
-/* Singolo elemento del carosello */
+/* A single carousel item */
 .carousel-item {
-  flex: 0 0 80%; /* 80% della larghezza del parent */
+  flex: 0 0 80%; /* 80% of the parent's width */
   scroll-snap-align: center;
   border-radius: 8px;
   background: #2a2a2a;
@@ -522,16 +522,16 @@ body {
             </button>
           </div>
           <pre><code class="language-css">
-/* Limita il testo a un numero esatto di righe con ellissi (...) */
+/* Limits text to an exact number of lines with an ellipsis (...) */
 .truncate-lines-3 {
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Numero massimo di righe */
+  -webkit-line-clamp: 3; /* Maximum number of lines */
   -webkit-box-orient: vertical;  
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Singolo troncatore classico su una sola riga */
+/* The classic single-line truncation */
 .single-line-ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -552,16 +552,16 @@ body {
             </button>
           </div>
           <pre><code class="language-javascript">
-// Ascolta i click sull'intero container per intercettare bottoni generati al volo
+// Listen for clicks on the whole container to catch buttons created on the fly
 const container = document.querySelector('.dynamic-list');
 
 container.addEventListener('click', (event) => {
-  // Trova l'elemento target con classe specifica
+  // Find the target element with the specific class
   const deleteBtn = event.target.closest('.btn-delete');
-  
+
   if (deleteBtn) {
     const item = deleteBtn.closest('.list-item');
-    item.remove(); // Rimuove l'elemento corrispondente
+    item.remove(); // Removes the matching element
   }
 });
           </code></pre>
@@ -575,7 +575,7 @@ container.addEventListener('click', (event) => {
             </button>
           </div>
           <pre><code class="language-javascript">
-// Debounce: esegue la funzione solo dopo N millisecondi di inattività
+// Debounce: runs the function only after N milliseconds of inactivity
 function debounce(fn, delay) {
   let timer = null;
   return function (...args) {
@@ -584,7 +584,7 @@ function debounce(fn, delay) {
   };
 }
 
-// Throttle: esegue la funzione al massimo una volta ogni N millisecondi
+// Throttle: runs the function at most once every N milliseconds
 function throttle(fn, limit) {
   let inThrottle = false;
   return function (...args) {
@@ -596,7 +596,7 @@ function throttle(fn, limit) {
   };
 }
 
-// Esempio: throttle sullo scroll o debounce sulla ricerca input
+// Example: throttle on scroll, or debounce on search input
 window.addEventListener('scroll', throttle(() => console.log('Scrolled!'), 200));
           </code></pre>
         </div>
@@ -620,13 +620,13 @@ async function fetchData(url = '') {
     });
 
     if (!response.ok) {
-      throw new Error(`Errore HTTP: status ${response.status}`);
+      throw new Error(`HTTP error: status ${response.status}`);
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Errore durante la chiamata fetch:', error);
+    console.error('Error during the fetch call:', error);
     return null;
   }
 }
@@ -642,24 +642,24 @@ async function fetchData(url = '') {
           </div>
           <pre><code class="language-javascript">
 const storage = {
-  // Salva un oggetto convertendolo in stringa JSON
+  // Saves an object by converting it to a JSON string
   set(key, value) {
     try {
       localStorage.setItem(key, JSON.stringify(value));
       return true;
     } catch (e) {
-      console.error('Errore scrittura LocalStorage:', e);
+      console.error('LocalStorage write error:', e);
       return false;
     }
   },
 
-  // Recupera l'oggetto deserializzandolo
+  // Reads the object back and deserialises it
   get(key) {
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : null;
     } catch (e) {
-      console.error('Errore lettura LocalStorage:', e);
+      console.error('LocalStorage read error:', e);
       return null;
     }
   }
@@ -675,20 +675,20 @@ const storage = {
             </button>
           </div>
           <pre><code class="language-javascript">
-// Crea un observer per monitorare la visibilità degli elementi nello schermo
+// Creates an observer that tracks when elements become visible on screen
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible'); // Aggiunge la classe per avviare transizioni CSS
-      observer.unobserve(entry.target); // Smette di osservare l'elemento una volta attivato
+      entry.target.classList.add('visible'); // Adds the class that starts the CSS transitions
+      observer.unobserve(entry.target); // Stops observing the element once it has fired
     }
   });
 }, {
-  threshold: 0.15, // Attiva l'azione al 15% di visibilità dell'elemento
-  rootMargin: '0px 0px -50px 0px' // Margine inferiore per anticipare l'azione
+  threshold: 0.15, // Fires when 15% of the element is visible
+  rootMargin: '0px 0px -50px 0px' // Bottom margin, to fire slightly earlier
 });
 
-// Avvia l'osservatore su tutti i target stabiliti
+// Starts the observer on every chosen target
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
           </code></pre>
         </div>
@@ -705,20 +705,20 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(e
           </div>
           <pre><code class="language-html">
 &lt;div class="reading-progress" data-reading-progress&gt;
-  &lt;aside class="reading-progress__toc" aria-label="Indice contenuto"&gt;
-    &lt;a href="#intro" data-reading-link class="is-active"&gt;Introduzione&lt;/a&gt;
+  &lt;aside class="reading-progress__toc" aria-label="Contents index"&gt;
+    &lt;a href="#intro" data-reading-link class="is-active"&gt;Introduction&lt;/a&gt;
     &lt;a href="#setup" data-reading-link&gt;Setup&lt;/a&gt;
-    &lt;a href="#checks" data-reading-link&gt;Controlli&lt;/a&gt;
-    &lt;button type="button" data-reading-top&gt;Torna su&lt;/button&gt;
+    &lt;a href="#checks" data-reading-link&gt;Checks&lt;/a&gt;
+    &lt;button type="button" data-reading-top&gt;Back to top&lt;/button&gt;
   &lt;/aside&gt;
 
   &lt;article class="reading-progress__content" data-reading-scroller tabindex="0"&gt;
     &lt;div class="reading-progress__bar" aria-hidden="true"&gt;
       &lt;span data-reading-bar&gt;&lt;/span&gt;
     &lt;/div&gt;
-    &lt;section id="intro" data-reading-section&gt;&lt;h2&gt;Introduzione&lt;/h2&gt;&lt;p&gt;Primo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
-    &lt;section id="setup" data-reading-section&gt;&lt;h2&gt;Setup&lt;/h2&gt;&lt;p&gt;Secondo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
-    &lt;section id="checks" data-reading-section&gt;&lt;h2&gt;Controlli&lt;/h2&gt;&lt;p&gt;Terzo blocco contenuto...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="intro" data-reading-section&gt;&lt;h2&gt;Introduction&lt;/h2&gt;&lt;p&gt;First block of content...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="setup" data-reading-section&gt;&lt;h2&gt;Setup&lt;/h2&gt;&lt;p&gt;Second block of content...&lt;/p&gt;&lt;/section&gt;
+    &lt;section id="checks" data-reading-section&gt;&lt;h2&gt;Checks&lt;/h2&gt;&lt;p&gt;Third block of content...&lt;/p&gt;&lt;/section&gt;
   &lt;/article&gt;
 &lt;/div&gt;
 
@@ -853,21 +853,21 @@ initReadingProgress();
           <pre><code class="language-html">
 &lt;article class="content-card" data-content-card&gt;
   &lt;div class="content-card__topline"&gt;
-    &lt;span class="content-card__badge"&gt;Guida&lt;/span&gt;
+    &lt;span class="content-card__badge"&gt;Guide&lt;/span&gt;
     &lt;button class="content-card__save" type="button" data-card-save aria-pressed="false"&gt;
-      Salva
+      Save
     &lt;/button&gt;
   &lt;/div&gt;
 
-  &lt;h2&gt;Accessibilita web base&lt;/h2&gt;
-  &lt;p&gt;Checklist essenziale per focus, testi alternativi, contrasto e navigazione da tastiera.&lt;/p>
+  &lt;h2&gt;Web accessibility basics&lt;/h2&gt;
+  &lt;p&gt;The essential checklist for focus, alt text, contrast and keyboard navigation.&lt;/p&gt;
 
   &lt;dl class="content-card__meta"&gt;
-    &lt;div&gt;&lt;dt&gt;Tempo&lt;/dt&gt;&lt;dd&gt;18 min&lt;/dd&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;dt&gt;Livello&lt;/dt&gt;&lt;dd&gt;Base&lt;/dd&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;dt&gt;Time&lt;/dt&gt;&lt;dd&gt;18 min&lt;/dd&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;dt&gt;Level&lt;/dt&gt;&lt;dd&gt;Beginner&lt;/dd&gt;&lt;/div&gt;
   &lt;/dl&gt;
 
-  &lt;a class="content-card__link" href="#"&gt;Apri risorsa&lt;/a&gt;
+  &lt;a class="content-card__link" href="#"&gt;Open resource&lt;/a&gt;
 &lt;/article&gt;
 
 &lt;style&gt;
@@ -966,9 +966,9 @@ document.querySelectorAll('[data-card-save]').forEach((button) =&gt; {
 
   &lt;ul class="site-header__menu" id="site-header-menu" data-header-menu&gt;
     &lt;li&gt;&lt;a href="/en/" data-header-link aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/en/resources/" data-header-link&gt;Risorse&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/progetti/" data-header-link&gt;Progetti&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/en/contact/" data-header-link&gt;Contatti&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/en/resources/" data-header-link&gt;Resources&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/en/projects/" data-header-link&gt;Projects&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/en/contact/" data-header-link&gt;Contact&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/nav&gt;
 
@@ -1082,7 +1082,7 @@ initAccessibleHeader();
           <pre><code class="language-html">
 &lt;form class="contact-form" data-contact-form novalidate&gt;
   &lt;div class="field"&gt;
-    &lt;label for="name"&gt;Nome&lt;/label&gt;
+    &lt;label for="name"&gt;Name&lt;/label&gt;
     &lt;input id="name" name="name" required minlength="2" data-validate="name"
       aria-describedby="name-error" aria-invalid="false"&gt;
     &lt;p class="error" id="name-error"&gt;&lt;/p&gt;
@@ -1096,13 +1096,13 @@ initAccessibleHeader();
   &lt;/div&gt;
 
   &lt;div class="field"&gt;
-    &lt;label for="message"&gt;Messaggio&lt;/label&gt;
+    &lt;label for="message"&gt;Message&lt;/label&gt;
     &lt;textarea id="message" name="message" required minlength="12" data-validate="message"
       aria-describedby="message-error" aria-invalid="false"&gt;&lt;/textarea&gt;
     &lt;p class="error" id="message-error"&gt;&lt;/p&gt;
   &lt;/div&gt;
 
-  &lt;button type="submit" data-submit-button&gt;Invia richiesta&lt;/button&gt;
+  &lt;button type="submit" data-submit-button&gt;Send request&lt;/button&gt;
   &lt;p class="status" data-form-status role="status" aria-live="polite"&gt;&lt;/p&gt;
 &lt;/form&gt;
 
@@ -1159,10 +1159,10 @@ function initValidatedContactForm(selector = '[data-contact-form]') {
 
   function getMessage(field) {
     const value = field.value.trim();
-    if (field.required &amp;&amp; !value) return 'Campo obbligatorio.';
-    if (field.type === 'email' &amp;&amp; !field.validity.valid) return 'Inserisci una email valida.';
+    if (field.required &amp;&amp; !value) return 'This field is required.';
+    if (field.type === 'email' &amp;&amp; !field.validity.valid) return 'Enter a valid email address.';
     if (field.minLength &gt; 0 &amp;&amp; value.length &lt; field.minLength) {
-      return 'Inserisci almeno ' + field.minLength + ' caratteri.';
+      return 'Enter at least ' + field.minLength + ' characters.';
     }
     return '';
   }
@@ -1185,13 +1185,13 @@ function initValidatedContactForm(selector = '[data-contact-form]') {
     const valid = fields.map(validate).every(Boolean);
     if (!valid) {
       fields.find((field) =&gt; field.getAttribute('aria-invalid') === 'true')?.focus();
-      status.textContent = 'Controlla i campi evidenziati.';
+      status.textContent = 'Check the highlighted fields.';
       return;
     }
 
     submit.disabled = true;
-    submit.textContent = 'Invio in corso';
-    status.textContent = "Messaggio pronto per l'invio.";
+    submit.textContent = 'Sending';
+    status.textContent = 'Message ready to send.';
   });
 }
 
