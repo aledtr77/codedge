@@ -37,26 +37,26 @@ export default function initGuideToc() {
   }
 
   // The TOC is position:fixed on desktop (see the guide stylesheet), so it
-  // leaves the grid flow; this placeholder keeps its track occupied and is the
-  // source of truth for the fixed element's left/width. Below 1200px the TOC
-  // is display:none, so the placeholder is dropped there.
+  // leaves the grid flow; the placeholder keeps its track occupied and is the
+  // source of truth for the fixed element's left/width.
+  //
+  // The placeholder is server-rendered and CSS sizes both it and the TOC, so
+  // the page paints correctly before this file runs. It used to be created
+  // here, which made the guide layout depend on JavaScript: until this ran, the
+  // article was squeezed into the TOC's track with the TOC on top of it, and
+  // that half-laid-out page was on screen for ~200ms on the heaviest guide.
+  // What is left here is upkeep, not construction — resizes only.
   const desktopToc = window.matchMedia("(min-width: 1201px)");
-  let tocPlaceholder = null;
   const syncFixedToc = () => {
     if (!tocContainer) return;
-    if (desktopToc.matches) {
-      if (!tocPlaceholder) {
-        tocPlaceholder = document.createElement("div");
-        tocPlaceholder.className = "guide-toc-placeholder";
-        tocPlaceholder.setAttribute("aria-hidden", "true");
-        tocContainer.parentNode.insertBefore(tocPlaceholder, tocContainer);
-      }
+    const tocPlaceholder = tocContainer.parentNode.querySelector(".guide-toc-placeholder");
+    if (desktopToc.matches && tocPlaceholder) {
       const rect = tocPlaceholder.getBoundingClientRect();
       tocContainer.style.left = `${Math.round(rect.left)}px`;
       tocContainer.style.width = `${Math.round(rect.width)}px`;
-    } else if (tocPlaceholder) {
-      tocPlaceholder.remove();
-      tocPlaceholder = null;
+    } else {
+      // Below the breakpoint CSS hides both; inline values from a wider
+      // viewport would otherwise survive the resize.
       tocContainer.style.left = "";
       tocContainer.style.width = "";
     }

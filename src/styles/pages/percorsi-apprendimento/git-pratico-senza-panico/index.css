@@ -23,17 +23,23 @@
 }
 
 .guide-layout {
+  /* One source of truth for the track, the placeholder that holds it and the
+     fixed TOC that has to line up with both. They used to carry the number
+     separately, which is how the TOC could paint 473px wide. */
+  --guide-toc-width: 360px;
   display: grid;
-  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(280px, var(--guide-toc-width)) minmax(0, 1fr);
   gap: clamp(1rem, 1.8vw, 1.5rem);
   align-items: start;
   min-width: 0;
 }
 
 /* Occupies the grid track the fixed TOC no longer fills, so the content
-   column keeps its position. Width matches the track's upper bound. */
+   column keeps its position. Server-rendered, not built by JS: it is what puts
+   the article in the right column, and a page that waits for JS to find out
+   where its own content goes paints wrong first. */
 .guide-toc-placeholder {
-  width: 360px;
+  width: var(--guide-toc-width);
 }
 
 /* Fixed, not sticky: the TOC is pinned below the navbar from the first pixel
@@ -43,6 +49,12 @@
    width synced to the grid track via a placeholder. */
 .guide-toc {
   position: fixed;
+  /* left comes free: a fixed box with `left:auto` sits at its static position,
+     which the placeholder above puts exactly on the track. Only the width has
+     to be stated — `width:auto` would shrink-to-fit the available space and
+     overflow the track. With both, the first paint is already correct and
+     guide-toc.js only keeps it true across resizes. */
+  width: var(--guide-toc-width);
   top: calc(var(--header-height, 96px) + 32px);
   /* 32px of air below the navbar, 20px above the viewport bottom */
   max-height: calc(100vh - var(--header-height, 96px) - 52px);
@@ -570,7 +582,10 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .guide-toc {
+  .guide-toc,
+  /* Hidden here rather than removed by JS: the track collapses to a single
+     column below this breakpoint, so the placeholder has nothing to hold. */
+  .guide-toc-placeholder {
     display: none;
   }
 

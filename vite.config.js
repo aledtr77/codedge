@@ -194,6 +194,36 @@ function antiFoucHtmlPlugin(isServe) {
 // The navbar and footer are injected by chromeI18nPlugin (scripts/i18n-plugin.mjs),
 // which fills the partials with the strings and hrefs of the page's language.
 
+// The guide TOC is position:fixed, so it leaves the grid flow and its track
+// would collapse - putting the article in the TOC's column, under the TOC.
+// The placeholder holds that track. It lives here rather than in the 24 guide
+// pages so a new guide cannot forget it and the two language versions cannot
+// drift apart; it carries no text, so nothing here needs translating.
+//
+// It is markup, not a JS-built node, because it decides where the article goes:
+// built by JS it would arrive after first paint, and the half-laid-out page in
+// between was visible for ~200ms on the heaviest guide.
+function guideTocPlaceholderPlugin() {
+  const tocRegex = /<aside\b[^>]*class=(?:"|')[^"']*\bguide-toc\b[^"']*(?:"|')[^>]*>/i;
+  return {
+    name: 'guide-toc-placeholder',
+    transformIndexHtml: {
+      // Before anti-fouc: that one only reads the head, but keeping the body
+      // rewrites ordered makes their interaction one-way.
+      order: 'pre',
+      handler(html) {
+        if (html.includes('guide-toc-placeholder')) return html;
+        const match = html.match(tocRegex);
+        if (!match) return html;
+        return html.replace(
+          match[0],
+          `<div class="guide-toc-placeholder" aria-hidden="true"></div>${match[0]}`
+        );
+      }
+    }
+  };
+}
+
 // Dev only: serves /@imagetools/<id> from the plugin's own disk cache when its
 // in-memory map doesn't have the id yet (e.g. a tab left open across a server
 // restart requesting lazy images), instead of letting vite-imagetools throw
@@ -338,6 +368,7 @@ export default defineConfig(({ command }) => {
   plugins.push(chromeI18nPlugin());
   plugins.push(hreflangPlugin());
   plugins.push(seoJsonLdPlugin());
+  plugins.push(guideTocPlaceholderPlugin());
   plugins.push(antiFoucHtmlPlugin(command === 'serve'));
   if (command === 'serve') {
     plugins.push(devPagesRewrite());
