@@ -31,7 +31,7 @@ Lo miglioro e lo aggiorno quando trovo tempo, aggiungendo nuove idee, sistemando
 - CSS
 - JavaScript
 - Vite
-- Deploy su GitHub Pages
+- Build su GitHub Actions, deploy su Cloudflare Pages
 
 ## Avvio locale
 ```bash

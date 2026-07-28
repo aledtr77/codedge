@@ -1,4 +1,4 @@
-name: Build and deploy to GitHub Pages
+name: Build and deploy to Cloudflare Pages
 
 on:
   push:
@@ -8,6 +8,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
+      # contents: write serve ancora al deploy gh-pages di riserva, che resta
+      # attivo finché il DNS non è stabile su Cloudflare (vedi step in fondo)
       contents: write
     steps:
       - name: Checkout
@@ -29,11 +31,25 @@ jobs:
       - name: Build
         run: npm run build
 
-      # CNAME e la vera 404 (con noindex) arrivano già da public/ via Vite:
-      # niente più copia di index.html su 404.html, che serviva la homepage
-      # intera come pagina di errore
+      # La vera 404 (con noindex) arriva già da public/ via Vite: niente più
+      # copia di index.html su 404.html, che serviva la homepage intera come
+      # pagina di errore. public/_headers, inerte su GitHub Pages, su
+      # Cloudflare Pages diventa la fonte reale di CSP, HSTS e affini.
 
-      - name: Deploy to gh-pages
+      - name: Deploy su Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # --branch esplicito: senza, wrangler deduce il ramo dall'ambiente CI
+          # e un deploy di produzione rischia di finire come preview
+          command: pages deploy dist --project-name=codedge --branch=main
+
+      # RISERVA TEMPORANEA — da togliere a cutover finito (vedi PROMEMORIA).
+      # Finché codedge.it può tornare su GitHub Pages con un rollback DNS, il
+      # branch gh-pages deve restare aggiornato: un rollback verso contenuto
+      # fermo a settimane prima sarebbe peggio del problema che risolve.
+      - name: Mirror su gh-pages (rollback)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
