@@ -10,32 +10,32 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/critical.css" />
-  <title>Accessibilita web base senza panico | Guida pratica | Codedge</title>
+  <title>Accessibilità web base senza panico | Guida pratica | Codedge</title>
   <meta
     name="description"
-    content="Guida essenziale all'accessibilita web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica.">
+    content="Guida essenziale all'accessibilità web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica.">
   <link rel="canonical" href="https://codedge.it/tutorial/accessibilita-web-base/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="Accessibilita web base senza panico | Guida pratica | Codedge" />
-  <meta property="og:description" content="Guida essenziale all'accessibilita web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica." />
+  <meta property="og:title" content="Accessibilità web base senza panico | Guida pratica | Codedge" />
+  <meta property="og:description" content="Guida essenziale all'accessibilità web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica." />
   <meta property="og:url" content="https://codedge.it/tutorial/accessibilita-web-base/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Anteprima guida Accessibilita web base" />
+  <meta property="og:image:alt" content="Anteprima guida Accessibilità web base" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Accessibilita web base senza panico | Guida pratica | Codedge" />
-  <meta name="twitter:description" content="Guida essenziale all'accessibilita web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica." />
+  <meta name="twitter:title" content="Accessibilità web base senza panico | Guida pratica | Codedge" />
+  <meta name="twitter:description" content="Guida essenziale all'accessibilità web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "Accessibilita web base senza panico",
-    "description": "Guida essenziale all'accessibilita web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica.",
+    "headline": "Accessibilità web base senza panico",
+    "description": "Guida essenziale all'accessibilità web: HTML semantico, alt text, tastiera, focus, contrasto, form, ARIA, responsive e checklist pratica.",
     "author": {
       "@type": "Person",
       "name": "Alessandro"
@@ -78,20 +78,20 @@
     <nav class="navbar" aria-label="Navigazione principale">
       <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
            (staticNavbarHtmlPlugin, vite.config.js). Da qui viene estratto solo il titolo. -->
-      <span class="navbar-title resize-text"><i class="fas fa-universal-access guide-title-icon" aria-hidden="true"></i>Accessibilita web base</span>
+      <span class="navbar-title resize-text"><i class="fas fa-universal-access guide-title-icon" aria-hidden="true"></i>Accessibilità web base</span>
     </nav>
   </header>
 
   <main id="main-content">
-    <h1 class="sr-only" id="accessibility-guide-title">Accessibilita web base</h1>
+    <h1 class="sr-only" id="accessibility-guide-title">Accessibilità web base</h1>
     <a href="/tutorial/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti i tutorial</a>
     <section class="section git-guide-shell" aria-labelledby="accessibility-guide-title">
       <div class="guide-layout">
-        <aside class="guide-toc" aria-label="Indice navigabile guida Accessibilita web base">
+        <aside class="guide-toc" aria-label="Indice navigabile guida Accessibilità web base">
           <h2>Indice guida</h2>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. Cos'e l'accessibilita</a></li>
+            <li><a href="#chapter-02">1. Cos'è l'accessibilità</a></li>
             <li><a href="#chapter-03">2. I quattro principi WCAG</a></li>
             <li><a href="#chapter-04">3. HTML semantico</a></li>
             <li><a href="#chapter-05">4. Link, button e navigazione</a></li>
@@ -108,56 +108,56 @@
           </ol>
         </aside>
 
-        <article class="guide-content" aria-label="Contenuto guida Accessibilita web base">
+        <article class="guide-content" aria-label="Contenuto guida Accessibilità web base">
           <section id="chapter-01" class="guide-block guide-chapter">
             <div class="guide-intro-layout">
               <div class="guide-intro-copy">
-                <p class="guide-intro-kicker">Guida pratica per costruire interfacce piu usabili, leggibili e solide</p>
+                <p class="guide-intro-kicker">Guida pratica per costruire interfacce più usabili, leggibili e solide</p>
                 <h2>Nota iniziale</h2>
               <section class="guide-subchapter">
-                <p>L'accessibilita web spesso viene raccontata come un tema enorme, tecnico e pieno di sigle. In parte lo e: ci sono standard, criteri, tecnologie assistive, casi d'uso diversi e responsabilita reali.</p>
-                <p>Pero per iniziare bene non serve sapere tutto. Serve capire il modello mentale giusto e applicare poche abitudini concrete mentre scrivi HTML, CSS e JavaScript.</p>
-                <p>Questa guida non sostituisce le WCAG e non e una certificazione. E una base pratica per evitare gli errori piu comuni: div usati come bottoni, focus invisibile, form senza label, immagini senza descrizione utile, testo poco leggibile, layout mobile faticosi e ARIA usata come toppa casuale.</p>
-                <p>Il punto e semplice: una pagina accessibile non e una pagina "speciale". E una pagina fatta meglio. Funziona meglio con tastiera, screen reader, zoom, mobile, connessioni lente, distrazioni, stanchezza e situazioni reali.</p>
+                <p>L'accessibilità web spesso viene raccontata come un tema enorme, tecnico e pieno di sigle. In parte lo è: ci sono standard, criteri, tecnologie assistive, casi d'uso diversi e responsabilità reali.</p>
+                <p>Però per iniziare bene non serve sapere tutto. Serve capire il modello mentale giusto e applicare poche abitudini concrete mentre scrivi HTML, CSS e JavaScript.</p>
+                <p>Questa guida non sostituisce le WCAG e non è una certificazione. È una base pratica per evitare gli errori più comuni: div usati come bottoni, focus invisibile, form senza label, immagini senza descrizione utile, testo poco leggibile, layout mobile faticosi e ARIA usata come toppa casuale.</p>
+                <p>Il punto è semplice: una pagina accessibile non è una pagina "speciale". È una pagina fatta meglio. Funziona meglio con tastiera, screen reader, zoom, mobile, connessioni lente, distrazioni, stanchezza e situazioni reali.</p>
               </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
-                <img src="/images/percorsi-apprendimento/accessibilita-web-base/copertina-editoriale.webp" alt="Illustrazione di apertura della guida Accessibilita web base" decoding="async" width="864" height="1080">
+                <img src="/images/percorsi-apprendimento/accessibilita-web-base/copertina-editoriale.webp" alt="Illustrazione di apertura della guida Accessibilità web base" decoding="async" width="864" height="1080">
               </figure>
             </div>
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Cos'e l'accessibilita web</h2>
+            <h2>1. Cos'è l'accessibilità web</h2>
             <section class="guide-subchapter">
-              <p>Accessibilita web significa progettare e sviluppare contenuti che possano essere percepiti, compresi e usati dal maggior numero possibile di persone, anche quando usano modalita diverse dalla tua.</p>
-              <p>Non riguarda solo chi usa uno screen reader. Riguarda anche chi naviga con la tastiera, chi ha bassa vista, chi non distingue bene alcuni colori, chi usa lo zoom, chi ha difficolta motorie, chi e in un ambiente rumoroso, chi consulta il sito da mobile o chi semplicemente e stanco e vuole capire subito cosa fare.</p>
-              <p>La cosa importante e questa: l'accessibilita non arriva alla fine come "controllo extra". Entra nelle decisioni base:</p>
+              <p>Accessibilità web significa progettare e sviluppare contenuti che possano essere percepiti, compresi e usati dal maggior numero possibile di persone, anche quando usano modalita diverse dalla tua.</p>
+              <p>Non riguarda solo chi usa uno screen reader. Riguarda anche chi naviga con la tastiera, chi ha bassa vista, chi non distingue bene alcuni colori, chi usa lo zoom, chi ha difficoltà motorie, chi è in un ambiente rumoroso, chi consulta il sito da mobile o chi semplicemente è stanco e vuole capire subito cosa fare.</p>
+              <p>La cosa importante è questa: l'accessibilità non arriva alla fine come "controllo extra". Entra nelle decisioni base:</p>
               <ul class="guide-list">
                 <li>quale elemento HTML scelgo?</li>
                 <li>il contenuto ha una gerarchia chiara?</li>
-                <li>un bottone si puo usare anche senza mouse?</li>
+                <li>un bottone si può usare anche senza mouse?</li>
                 <li>un errore del form viene spiegato bene?</li>
                 <li>il testo resta leggibile su mobile e con zoom?</li>
                 <li>un'immagine importante ha una descrizione utile?</li>
               </ul>
-              <p>Quando prendi queste decisioni bene, migliori la vita a molte persone e spesso rendi il codice piu pulito.</p>
+              <p>Quando prendi queste decisioni bene, migliori la vita a molte persone e spesso rendi il codice più pulito.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Una definizione pratica</h3>
-              <p>Una pagina accessibile e una pagina che non obbliga l'utente a usare un solo modo di interazione.</p>
-              <p>Se puoi leggere, ascoltare, ingrandire, navigare con tastiera, capire gli errori, distinguere i controlli e completare il flusso principale, sei gia molto piu vicino a un'interfaccia rispettosa.</p>
+              <p>Una pagina accessibile è una pagina che non obbliga l'utente a usare un solo modo di interazione.</p>
+              <p>Se puoi leggere, ascoltare, ingrandire, navigare con tastiera, capire gli errori, distinguere i controlli e completare il flusso principale, sei già molto più vicino a un'interfaccia rispettosa.</p>
             </section>
           </section>
 
           <section id="chapter-03" class="guide-block guide-chapter">
             <h2>2. I quattro principi WCAG</h2>
             <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/accessibilita-web-base/panoramica-accessibilita-web-base.svg" alt="Panoramica dei quattro principi dell'accessibilita web: percepibile, utilizzabile, comprensibile e robusto" loading="lazy" decoding="async" width="1200" height="520">
-              <figcaption>Le WCAG organizzano l'accessibilita intorno a quattro principi: percepibile, utilizzabile, comprensibile e robusto.</figcaption>
+              <img src="/images/percorsi-apprendimento/accessibilita-web-base/panoramica-accessibilita-web-base.svg" alt="Panoramica dei quattro principi dell'accessibilità web: percepibile, utilizzabile, comprensibile e robusto" loading="lazy" decoding="async" width="1200" height="520">
+              <figcaption>Le WCAG organizzano l'accessibilità intorno a quattro principi: percepibile, utilizzabile, comprensibile e robusto.</figcaption>
             </figure>
             <section class="guide-subchapter">
-              <p>Le WCAG sono le linee guida internazionali piu importanti per l'accessibilita dei contenuti web. Per iniziare, la cosa piu utile non e memorizzare tutti i criteri, ma capire i quattro principi.</p>
+              <p>Le WCAG sono le linee guida internazionali più importanti per l'accessibilità dei contenuti web. Per iniziare, la cosa più utile non è memorizzare tutti i criteri, ma capire i quattro principi.</p>
               <dl class="guide-glossary">
                 <div>
                   <dt>Percepibile</dt>
@@ -176,15 +176,15 @@
                   <dd>Il codice deve essere abbastanza solido da funzionare con browser, tecnologie assistive e strumenti diversi.</dd>
                 </div>
               </dl>
-              <p>Questa bussola e potente: quando non sai se una scelta e buona, chiediti quale principio sta aiutando o danneggiando.</p>
+              <p>Questa bussola è potente: quando non sai se una scelta è buona, chiediti quale principio sta aiutando o danneggiando.</p>
             </section>
           </section>
 
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>3. HTML semantico: il primo superpotere</h2>
             <section class="guide-subchapter">
-              <p>Il modo piu semplice per migliorare l'accessibilita e usare l'HTML giusto prima di inventare soluzioni complicate.</p>
-              <p>HTML non serve solo a "far vedere cose". Comunica significato: un bottone e un'azione, un link porta altrove, un titolo organizza il contenuto, una label descrive un input, una nav raccoglie link di navigazione.</p>
+              <p>Il modo più semplice per migliorare l'accessibilità è usare l'HTML giusto prima di inventare soluzioni complicate.</p>
+              <p>HTML non serve solo a "far vedere cose". Comunica significato: un bottone è un'azione, un link porta altrove, un titolo organizza il contenuto, una label descrive un input, una nav raccoglie link di navigazione.</p>
               <pre><code>&lt;header&gt;
   &lt;nav aria-label="Navigazione principale"&gt;
     &lt;a href="/"&gt;Home&lt;/a&gt;
@@ -193,17 +193,17 @@
 &lt;/header&gt;
 
 &lt;main&gt;
-  &lt;h1&gt;Accessibilita web base&lt;/h1&gt;
+  &lt;h1&gt;Accessibilit&amp;agrave; web base&lt;/h1&gt;
   &lt;section&gt;
     &lt;h2&gt;HTML semantico&lt;/h2&gt;
     &lt;p&gt;Il contenuto principale della sezione.&lt;/p&gt;
   &lt;/section&gt;
 &lt;/main&gt;</code></pre>
-              <p>Questo codice e piu chiaro per browser, sviluppatori e tecnologie assistive rispetto a una lunga serie di <code>&lt;div&gt;</code> senza significato.</p>
+              <p>Questo codice è più chiaro per browser, sviluppatori e tecnologie assistive rispetto a una lunga serie di <code>&lt;div&gt;</code> senza significato.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Heading: non sono solo dimensioni</h3>
-              <p>Gli heading creano la mappa del contenuto. Non usarli solo per ottenere un font piu grande.</p>
+              <p>Gli heading creano la mappa del contenuto. Non usarli solo per ottenere un font più grande.</p>
               <ul class="guide-checklist">
                 <li>usa un H1 principale per il tema della pagina;</li>
                 <li>usa H2 per i blocchi principali;</li>
@@ -211,19 +211,19 @@
                 <li>non saltare livelli solo per estetica;</li>
                 <li>non trasformare ogni frase evidenziata in heading.</li>
               </ul>
-              <p>Se la gerarchia dei titoli e leggibile, anche la pagina diventa piu scansionabile.</p>
+              <p>Se la gerarchia dei titoli è leggibile, anche la pagina diventa più scansionabile.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Landmark utili</h3>
               <p>Elementi come <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;footer&gt;</code> e <code>&lt;aside&gt;</code> aiutano a capire le zone della pagina.</p>
-              <p>Non servono per decorare il markup: servono a orientarsi. Una pagina con un solo <code>&lt;main&gt;</code>, una navigazione chiara e sezioni ordinate e gia molto piu solida.</p>
+              <p>Non servono per decorare il markup: servono a orientarsi. Una pagina con un solo <code>&lt;main&gt;</code>, una navigazione chiara e sezioni ordinate è già molto più solida.</p>
             </section>
           </section>
 
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>4. Link, button e navigazione</h2>
             <section class="guide-subchapter">
-              <p>Un errore molto comune e usare link e bottoni come se fossero intercambiabili. Non lo sono.</p>
+              <p>Un errore molto comune è usare link e bottoni come se fossero intercambiabili. Non lo sono.</p>
               <div class="guide-compare-grid">
                 <div class="guide-compare-card">
                   <h3 class="sr-only">Link e button a confronto</h3>
@@ -257,12 +257,12 @@
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Tastiera e focus</h2>
             <section class="guide-subchapter">
-              <p>Una pagina dovrebbe essere usabile anche senza mouse. Questo e uno dei controlli piu semplici e rivelatori.</p>
-              <p>Apri la pagina, appoggia il mouse, premi <code>Tab</code> e prova a usare tutto cio che conta: menu, link, bottoni, form, modali, card interattive.</p>
+              <p>Una pagina dovrebbe essere usabile anche senza mouse. Questo è uno dei controlli più semplici e rivelatori.</p>
+              <p>Apri la pagina, appoggia il mouse, premi <code>Tab</code> e prova a usare tutto ciò che conta: menu, link, bottoni, form, modali, card interattive.</p>
               <ul class="guide-checklist">
                 <li>l'ordine di focus segue il percorso visivo e logico;</li>
                 <li>ogni controllo interattivo riceve focus;</li>
-                <li>il focus e visibile;</li>
+                <li>il focus è visibile;</li>
                 <li><code>Enter</code> e <code>Space</code> funzionano dove ci si aspetta;</li>
                 <li>non rimani intrappolato in componenti custom;</li>
                 <li>puoi chiudere menu o modali senza mouse.</li>
@@ -270,11 +270,11 @@
             </section>
             <section class="guide-subchapter">
               <h3>Non eliminare il focus</h3>
-              <p>Questo e uno degli errori peggiori:</p>
+              <p>Questo è uno degli errori peggiori:</p>
               <pre><code>*:focus {
   outline: none;
 }</code></pre>
-              <p>Se togli l'outline senza sostituirlo con uno stato visibile, chi naviga da tastiera non sa piu dove si trova.</p>
+              <p>Se togli l'outline senza sostituirlo con uno stato visibile, chi naviga da tastiera non sa più dove si trova.</p>
               <p>Meglio creare un focus coerente con il design:</p>
               <pre><code>a:focus-visible,
 button:focus-visible,
@@ -285,7 +285,7 @@ input:focus-visible {
             </section>
             <section class="guide-subchapter">
               <h3>Tabindex: poco e con criterio</h3>
-              <p><code>tabindex="0"</code> puo rendere focusabile un elemento quando serve davvero. <code>tabindex="-1"</code> puo essere utile per portare focus via script su un contenitore o messaggio.</p>
+              <p><code>tabindex="0"</code> può rendere focusabile un elemento quando serve davvero. <code>tabindex="-1"</code> può essere utile per portare focus via script su un contenitore o messaggio.</p>
               <p>Evita invece <code>tabindex="1"</code>, <code>tabindex="2"</code> e simili: creano ordini artificiali difficili da mantenere.</p>
             </section>
           </section>
@@ -293,11 +293,11 @@ input:focus-visible {
           <section id="chapter-07" class="guide-block guide-chapter">
             <h2>6. Immagini e alt text</h2>
             <section class="guide-subchapter">
-              <p>L'attributo <code>alt</code> non e una descrizione obbligatoria da riempire sempre nello stesso modo. E un'alternativa testuale quando l'immagine porta informazione.</p>
-              <p>La domanda utile e: se questa immagine non si vede, quale informazione perde l'utente?</p>
+              <p>L'attributo <code>alt</code> non è una descrizione obbligatoria da riempire sempre nello stesso modo. È un'alternativa testuale quando l'immagine porta informazione.</p>
+              <p>La domanda utile è: se questa immagine non si vede, quale informazione perde l'utente?</p>
               <pre><code>&lt;img
   src="/images/percorsi-apprendimento/accessibilita-web-base/panoramica-accessibilita-web-base.svg"
-  alt="Panoramica dei quattro principi dell'accessibilita web: percepibile, utilizzabile, comprensibile e robusto"
+  alt="Panoramica dei quattro principi dell'accessibilit&agrave; web: percepibile, utilizzabile, comprensibile e robusto"
   width="1200"
   height="520"&gt;</code></pre>
             </section>
@@ -310,7 +310,7 @@ input:focus-visible {
                 </div>
                 <div>
                   <dt>Immagine decorativa</dt>
-                  <dd>Usa <code>alt=""</code>, cosi viene ignorata dalle tecnologie assistive.</dd>
+                  <dd>Usa <code>alt=""</code>, così viene ignorata dalle tecnologie assistive.</dd>
                 </div>
                 <div>
                   <dt>Immagine-link</dt>
@@ -321,7 +321,7 @@ input:focus-visible {
             <section class="guide-subchapter">
               <h3>Errori da evitare</h3>
               <ul class="guide-list guide-list-bad">
-                <li><code>alt="immagine"</code>, perche non comunica nulla;</li>
+                <li><code>alt="immagine"</code>, perché non comunica nulla;</li>
                 <li>keyword stuffing dentro l'alt;</li>
                 <li>alt lunghissimi che ripetono tutto il testo vicino;</li>
                 <li>lasciare senza alt immagini che sono contenuto vero;</li>
@@ -334,7 +334,7 @@ input:focus-visible {
             <h2>7. Colori, contrasto e testo</h2>
             <section class="guide-subchapter">
               <p>Il colore aiuta, ma non deve essere l'unico modo per capire qualcosa.</p>
-              <p>Se un errore e indicato solo con il rosso, chi non distingue bene quel colore potrebbe non capirlo. Aggiungi testo, icone sensate, bordi, messaggi e stati chiari.</p>
+              <p>Se un errore è indicato solo con il rosso, chi non distingue bene quel colore potrebbe non capirlo. Aggiungi testo, icone sensate, bordi, messaggi e stati chiari.</p>
               <ul class="guide-checklist">
                 <li>testo e sfondo devono avere contrasto sufficiente;</li>
                 <li>link e bottoni devono essere distinguibili;</li>
@@ -344,8 +344,8 @@ input:focus-visible {
               </ul>
             </section>
             <section class="guide-subchapter">
-              <h3>Leggibilita pratica</h3>
-              <p>La leggibilita non e solo contrasto. Conta anche quanto e faticoso leggere.</p>
+              <h3>Leggibilità pratica</h3>
+              <p>La leggibilità non è solo contrasto. Conta anche quanto è faticoso leggere.</p>
               <ul class="guide-list">
                 <li>usa righe non troppo lunghe;</li>
                 <li>mantieni spaziatura sufficiente;</li>
@@ -359,13 +359,13 @@ input:focus-visible {
           <section id="chapter-09" class="guide-block guide-chapter">
             <h2>8. Form ed errori</h2>
             <section class="guide-subchapter">
-              <p>I form sono uno dei punti in cui l'accessibilita diventa molto concreta. Se un utente non capisce cosa compilare o non capisce l'errore, il flusso si rompe.</p>
+              <p>I form sono uno dei punti in cui l'accessibilità diventa molto concreta. Se un utente non capisce cosa compilare o non capisce l'errore, il flusso si rompe.</p>
               <p>La base minima:</p>
               <ul class="guide-checklist">
                 <li>ogni input importante ha una <code>&lt;label&gt;</code> collegata;</li>
                 <li>placeholder e label non sono la stessa cosa;</li>
                 <li>gli errori sono scritti in modo chiaro;</li>
-                <li>il messaggio di errore e vicino al campo;</li>
+                <li>il messaggio di errore è vicino al campo;</li>
                 <li>non indicare errori solo con colore;</li>
                 <li>il submit non cancella dati senza avviso.</li>
               </ul>
@@ -381,7 +381,7 @@ input:focus-visible {
             </section>
             <section class="guide-subchapter">
               <h3>Label, placeholder e istruzioni</h3>
-              <p>Il placeholder sparisce quando inizi a scrivere e spesso ha contrasto piu basso. Non usarlo come unica etichetta.</p>
+              <p>Il placeholder sparisce quando inizi a scrivere e spesso ha contrasto più basso. Non usarlo come unica etichetta.</p>
               <ul class="guide-list guide-list-good">
                 <li><code>&lt;label for="nome"&gt;Nome&lt;/label&gt;</code></li>
                 <li><code>&lt;input id="nome" name="nome" autocomplete="given-name"&gt;</code></li>
@@ -397,8 +397,8 @@ input:focus-visible {
           <section id="chapter-10" class="guide-block guide-chapter">
             <h2>9. ARIA senza confusione</h2>
             <section class="guide-subchapter">
-              <p>ARIA serve ad aggiungere informazioni di accessibilita quando l'HTML nativo non basta, soprattutto in componenti dinamici o custom.</p>
-              <p>La regola piu importante e semplice: se puoi usare un elemento HTML nativo con semantica e comportamento gia corretti, usa quello.</p>
+              <p>ARIA serve ad aggiungere informazioni di accessibilità quando l'HTML nativo non basta, soprattutto in componenti dinamici o custom.</p>
+              <p>La regola più importante è semplice: se puoi usare un elemento HTML nativo con semantica e comportamento già corretti, usa quello.</p>
               <ul class="guide-list guide-list-good">
                 <li><code>&lt;button type="button"&gt;Apri menu&lt;/button&gt;</code></li>
                 <li><code>&lt;nav aria-label="Navigazione principale"&gt;...&lt;/nav&gt;</code></li>
@@ -407,12 +407,12 @@ input:focus-visible {
               <ul class="guide-list guide-list-bad">
                 <li><code>&lt;div role="button"&gt;Apri menu&lt;/div&gt;</code> senza comportamento da bottone;</li>
                 <li><code>&lt;span onclick="..."&gt;Invia&lt;/span&gt;</code> al posto di un bottone;</li>
-                <li>aggiungere ruoli ARIA a caso per "migliorare" elementi gia corretti.</li>
+                <li>aggiungere ruoli ARIA a caso per "migliorare" elementi già corretti.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
               <h3>Quando ARIA aiuta davvero</h3>
-              <p>ARIA puo essere utile per:</p>
+              <p>ARIA può essere utile per:</p>
               <ul class="guide-list">
                 <li>comunicare stato aperto/chiuso con <code>aria-expanded</code>;</li>
                 <li>collegare descrizioni con <code>aria-describedby</code>;</li>
@@ -420,7 +420,7 @@ input:focus-visible {
                 <li>annunciare aggiornamenti dinamici con live regions;</li>
                 <li>costruire widget complessi quando non esiste un elemento nativo sufficiente.</li>
               </ul>
-              <p>Pero ARIA non aggiunge automaticamente interazioni da tastiera. Se trasformi un <code>&lt;div&gt;</code> in bottone con <code>role="button"</code>, devi comunque gestire focus, <code>Enter</code>, <code>Space</code> e stati. Per questo di solito e meglio usare un vero <code>&lt;button&gt;</code>.</p>
+              <p>Però ARIA non aggiunge automaticamente interazioni da tastiera. Se trasformi un <code>&lt;div&gt;</code> in bottone con <code>role="button"</code>, devi comunque gestire focus, <code>Enter</code>, <code>Space</code> e stati. Per questo di solito è meglio usare un vero <code>&lt;button&gt;</code>.</p>
             </section>
           </section>
 
@@ -428,7 +428,7 @@ input:focus-visible {
             <h2>10. Responsive, motion e contenuti</h2>
             <section class="guide-subchapter">
               <h3>Responsive accessibile</h3>
-              <p>Un layout responsive non e automaticamente accessibile. Deve restare usabile quando cambia schermo, zoom, orientamento o densita del contenuto.</p>
+              <p>Un layout responsive non è automaticamente accessibile. Deve restare usabile quando cambia schermo, zoom, orientamento o densita del contenuto.</p>
               <ul class="guide-checklist">
                 <li>il testo non si sovrappone;</li>
                 <li>i target touch sono comodi;</li>
@@ -455,12 +455,12 @@ input:focus-visible {
             </section>
             <section class="guide-subchapter">
               <h3>Contenuto chiaro</h3>
-              <p>Accessibilita e anche scrittura. Un'interfaccia con testi vaghi, errori criptici e call to action ambigue crea barriere.</p>
+              <p>Accessibilità è anche scrittura. Un'interfaccia con testi vaghi, errori criptici e call to action ambigue crea barriere.</p>
               <ul class="guide-list">
                 <li>usa titoli che spiegano davvero la sezione;</li>
                 <li>scrivi bottoni con azioni chiare;</li>
                 <li>spiega cosa succede dopo un invio;</li>
-                <li>evita messaggi generici come "qualcosa e andato storto" quando puoi aiutare di piu;</li>
+                <li>evita messaggi generici come "qualcosa è andato storto" quando puoi aiutare di più;</li>
                 <li>mantieni coerenza tra etichette, link e destinazioni.</li>
               </ul>
             </section>
@@ -469,8 +469,8 @@ input:focus-visible {
           <section id="chapter-12" class="guide-block guide-chapter">
             <h2>11. Checklist finale prima del deploy</h2>
             <figure class="guide-figure">
-              <img src="/images/percorsi-apprendimento/accessibilita-web-base/workflow-accessibilita-controlli.svg" alt="Workflow dei controlli accessibilita: struttura, tastiera, contrasto, form, mobile e test finale" loading="lazy" decoding="async" width="1200" height="500">
-              <figcaption>Una routine minima ripetuta spesso vale piu di un controllo enorme fatto una volta sola.</figcaption>
+              <img src="/images/percorsi-apprendimento/accessibilita-web-base/workflow-accessibilita-controlli.svg" alt="Workflow dei controlli accessibilità: struttura, tastiera, contrasto, form, mobile e test finale" loading="lazy" decoding="async" width="1200" height="500">
+              <figcaption>Una routine minima ripetuta spesso vale più di un controllo enorme fatto una volta sola.</figcaption>
             </figure>
             <section class="guide-subchapter">
               <h3>Controllo rapido</h3>
@@ -479,14 +479,14 @@ input:focus-visible {
                 <li>usi elementi HTML nativi quando esistono;</li>
                 <li>link e bottoni hanno ruoli coerenti;</li>
                 <li>la navigazione con <code>Tab</code> funziona;</li>
-                <li>il focus e sempre visibile;</li>
+                <li>il focus è sempre visibile;</li>
                 <li>le immagini informative hanno alt utili;</li>
                 <li>le immagini decorative hanno <code>alt=""</code>;</li>
                 <li>testo e controlli hanno contrasto sufficiente;</li>
                 <li>i form hanno label, istruzioni ed errori chiari;</li>
                 <li>il layout resta usabile su mobile e con zoom;</li>
-                <li>ARIA e usata solo quando serve davvero;</li>
-                <li>la pagina si puo completare senza mouse.</li>
+                <li>ARIA è usata solo quando serve davvero;</li>
+                <li>la pagina si può completare senza mouse.</li>
               </ul>
             </section>
             <section class="guide-subchapter">
@@ -500,16 +500,16 @@ input:focus-visible {
                 <li>Leggi la pagina guardando solo titoli, link e messaggi.</li>
                 <li>Verifica che gli errori dei form siano comprensibili.</li>
               </ol>
-              <p>Questo non sostituisce test professionali, screen reader, audit completi o validazioni WCAG. Pero intercetta molti problemi prima che arrivino online.</p>
+              <p>Questo non sostituisce test professionali, screen reader, audit completi o validazioni WCAG. Però intercetta molti problemi prima che arrivino online.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Da qui in poi</h3>
-              <p>Se capisci questa base, inizi a progettare componenti meno fragili. Non stai solo "facendo accessibilita": stai scegliendo HTML piu corretto, interazioni piu prevedibili, messaggi piu chiari e pagine piu resistenti.</p>
+              <p>Se capisci questa base, inizi a progettare componenti meno fragili. Non stai solo "facendo accessibilità": stai scegliendo HTML più corretto, interazioni più prevedibili, messaggi più chiari e pagine più resistenti.</p>
               <p>Per continuare il percorso, queste guide si collegano bene:</p>
               <ul class="guide-list">
-                <li><a href="/tutorial/seo-tecnico-base/">SEO tecnico base</a>: per collegare accessibilita, leggibilita tecnica e qualita della pagina pubblicata.</li>
+                <li><a href="/tutorial/seo-tecnico-base/">SEO tecnico base</a>: per collegare accessibilità, leggibilità tecnica e qualità della pagina pubblicata.</li>
                 <li><a href="/tutorial/browser-devtools/">Browser e DevTools</a>: per controllare DOM, CSS applicato, console e comportamento reale.</li>
-                <li><a href="/tutorial/vscode-essenziale/">VSCode essenziale</a>: per lavorare con piu ordine su file, problemi e routine.</li>
+                <li><a href="/tutorial/vscode-essenziale/">VSCode essenziale</a>: per lavorare con più ordine su file, problemi e routine.</li>
                 <li><a href="/tutorial/deploy-base/">Deploy base</a>: per pubblicare e verificare la versione davvero online.</li>
                 <li><a href="/tutorial/">Tutti i tutorial</a>: per seguire gli altri contenuti disponibili.</li>
               </ul>
