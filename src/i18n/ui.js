@@ -26,7 +26,7 @@ const STRINGS = {
     'footer.about': 'Chi Sono',
     'footer.reportBug': 'Segnala un bug',
     'footer.icons': 'Icone di Font Awesome',
-    'footer.youtubeAria': 'Canale YouTube Tasto Destro',
+    'footer.youtubeAria': 'Canale YouTube Codedge',
     'footer.githubAria': 'GitHub Codedge',
 
     'quiz.step': 'Domanda {current} di {total}',
@@ -166,7 +166,7 @@ const STRINGS = {
     'footer.about': 'About',
     'footer.reportBug': 'Report a bug',
     'footer.icons': 'Icons by Font Awesome',
-    'footer.youtubeAria': 'Tasto Destro YouTube channel',
+    'footer.youtubeAria': 'Codedge YouTube channel',
     'footer.githubAria': 'Codedge on GitHub',
 
     'quiz.step': 'Question {current} of {total}',

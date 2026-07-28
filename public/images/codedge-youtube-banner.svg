@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Banner del canale YouTube, sostituisce tasto-destro-banner.png.
+
+  Volutamente senza frasi: il PNG precedente aveva "Il canale YouTube di
+  Codedge.it" cotto dentro i pixel, quindi la pagina inglese mostrava una
+  scritta italiana e nessuno script i18n poteva accorgersene. Qui restano
+  solo il marchio e la parola YOUTUBE, uguali nelle due lingue; la frase
+  localizzata sta nell'alt.
+
+  Palette presa da icons/codedge-logo.svg e dallo sfondo di critical.css.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 164"
+     width="1024" height="164" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="ytBannerBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A6CFF"/>
+      <stop offset="45%" stop-color="#3DA2FF"/>
+      <stop offset="100%" stop-color="#0051D4"/>
+    </linearGradient>
+
+    <linearGradient id="ytBannerBg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="50%" stop-color="#0d1524"/>
+      <stop offset="100%" stop-color="#080c14"/>
+    </linearGradient>
+
+    <radialGradient id="ytBannerGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#0A6CFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0A6CFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Tracce tipo circuito, ripetute a sinistra e a destra -->
+    <g id="ytBannerCircuit" fill="none" stroke="#1e5fbf" stroke-opacity="0.5"
+       stroke-width="1.5">
+      <path d="M0 34 H58 L74 50 H130"/>
+      <path d="M0 74 H40 L56 58 H104"/>
+      <path d="M0 110 H66 L82 94 H128"/>
+      <path d="M0 138 H34 L50 122 H96"/>
+      <circle cx="130" cy="50" r="3" fill="#3DA2FF" stroke="none"/>
+      <circle cx="104" cy="58" r="3" fill="#3DA2FF" stroke="none"/>
+      <circle cx="128" cy="94" r="3" fill="#3DA2FF" stroke="none"/>
+      <circle cx="96" cy="122" r="3" fill="#3DA2FF" stroke="none"/>
+    </g>
+  </defs>
+
+  <rect width="1024" height="164" fill="url(#ytBannerBg)"/>
+  <ellipse cx="512" cy="82" rx="420" ry="130" fill="url(#ytBannerGlow)"/>
+
+  <use href="#ytBannerCircuit" opacity="0.55"/>
+  <use href="#ytBannerCircuit" opacity="0.55"
+       transform="translate(1024,164) rotate(180)"/>
+
+  <!-- Marchio </> ripreso dal logo del sito -->
+  <g transform="translate(196,82)" fill="none" stroke="url(#ytBannerBlue)"
+     stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="-34,-26 -62,0 -34,26"/>
+    <line x1="-14" y1="30" x2="14" y2="-30"/>
+    <polyline points="34,-26 62,0 34,26"/>
+  </g>
+
+  <!-- Pulsante play -->
+  <g transform="translate(320,82)">
+    <rect x="-27" y="-19" width="54" height="38" rx="12"
+          fill="url(#ytBannerBlue)"/>
+    <path d="M-7 -10 L13 0 L-7 10 Z" fill="#080c14"/>
+  </g>
+
+  <text x="382" y="82" dominant-baseline="central"
+        font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif"
+        font-size="58" font-weight="800" letter-spacing="2"
+        fill="#f2f2f2">CODEDGE</text>
+
+  <rect x="706" y="52" width="2" height="60" rx="1"
+        fill="#3DA2FF" fill-opacity="0.4"/>
+
+  <text x="736" y="84" dominant-baseline="central"
+        font-family="'Inter', system-ui, sans-serif"
+        font-size="21" font-weight="600" letter-spacing="6"
+        fill="#3DA2FF">YOUTUBE</text>
+</svg>
