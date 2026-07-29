@@ -2,7 +2,8 @@
 //
 // Usage:
 //   node scripts/indexnow-ping.mjs --all              every sitemap URL
-//   node scripts/indexnow-ping.mjs /tutorial/x/ ...   specific routes
+//   node scripts/indexnow-ping.mjs /tutorials/x/ ...  specific routes
+//   node scripts/indexnow-ping.mjs pages/en/tools/index.html ...  changed files
 //   ... --dry-run                                     print payload, no send
 //
 // The key is the one hosted at public/<key>.txt: public by design, the
@@ -11,6 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { routeFromSourceDir } from '../src/i18n/routes.mjs';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publicRoot = path.join(projectRoot, 'public');
@@ -48,7 +50,15 @@ if (!key) {
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const all = args.includes('--all');
-const routes = args.filter((a) => !a.startsWith('--'));
+// A path inside pages/ is not a URL: the two shapes stopped matching the day
+// English took the root (pages/en/tools/ is published at /tools/). Callers pass
+// whichever they have — the workflow passes the files git says changed — and the
+// route map does the translation, so nobody has to derive a URL with sed again.
+const asRoute = (arg) => {
+  const match = arg.replace(/^\.?\//, '').match(/^pages\/(.+?)\/?(?:index\.html)?$/);
+  return match ? routeFromSourceDir(match[1]) ?? arg : arg;
+};
+const routes = args.filter((a) => !a.startsWith('--')).map(asRoute);
 
 let urlList;
 if (all) {

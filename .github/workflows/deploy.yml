@@ -67,7 +67,8 @@ jobs:
             node scripts/indexnow-ping.mjs --all
             exit 0
           fi
-          ROUTES=$(git diff --name-only "$BEFORE" "$AFTER" -- pages/ | grep 'index\.html$' | sed 's|^pages||; s|index\.html$||' | sort -u)
+          # I file, non le URL: la conversione la fa lo script, che ha la mappa.
+          ROUTES=$(git diff --name-only "$BEFORE" "$AFTER" -- pages/ | grep 'index\.html$' | sort -u)
           if [ -n "$ROUTES" ]; then
             node scripts/indexnow-ping.mjs $ROUTES
           else
