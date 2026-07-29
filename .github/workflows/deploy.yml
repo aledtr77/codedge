@@ -8,9 +8,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      # contents: write serve ancora al deploy gh-pages di riserva, che resta
-      # attivo finché il DNS non è stabile su Cloudflare (vedi step in fondo)
-      contents: write
+      # Solo lettura: il deploy esce da Cloudflare Pages via API, niente viene
+      # più scritto su un branch di questo repo.
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
@@ -33,8 +33,11 @@ jobs:
 
       # La vera 404 (con noindex) arriva già da public/ via Vite: niente più
       # copia di index.html su 404.html, che serviva la homepage intera come
-      # pagina di errore. public/_headers, inerte su GitHub Pages, su
-      # Cloudflare Pages diventa la fonte reale di CSP, HSTS e affini.
+      # pagina di errore. Da public/ escono anche _headers (CSP, HSTS) e
+      # _redirects (i 301 delle URL di prima dello spostamento del 29/07/2026):
+      # entrambi li legge Cloudflare Pages e nessun altro, ed è il motivo per
+      # cui non esiste più un mirror di riserva altrove — servirebbe le pagine
+      # senza nessuna delle due cose.
 
       - name: Deploy su Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
@@ -44,17 +47,6 @@ jobs:
           # --branch esplicito: senza, wrangler deduce il ramo dall'ambiente CI
           # e un deploy di produzione rischia di finire come preview
           command: pages deploy dist --project-name=codedge --branch=main
-
-      # RISERVA TEMPORANEA — da togliere a cutover finito (vedi PROMEMORIA).
-      # Finché codedge.it può tornare su GitHub Pages con un rollback DNS, il
-      # branch gh-pages deve restare aggiornato: un rollback verso contenuto
-      # fermo a settimane prima sarebbe peggio del problema che risolve.
-      - name: Mirror su gh-pages (rollback)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
 
       - name: IndexNow ping (pagine cambiate in questo push)
         continue-on-error: true
