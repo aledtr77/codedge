@@ -172,7 +172,7 @@ export default function seoJsonLdPlugin() {
         const blocks = [];
 
         // Both language homes are roots, so neither gets a breadcrumb.
-        const isLanguageHome = route === '/' || route === '/en/';
+        const isLanguageHome = route === '/' || route === '/it/';
         if (!isLanguageHome && !html.includes('"BreadcrumbList"')) {
           blocks.push(breadcrumbLd(baseUrl, route, lang));
         }

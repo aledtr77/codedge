@@ -1,89 +1,91 @@
 // Single source of truth for the IT <-> EN route pairing.
 //
-// Italian stays at the site root (existing URLs are already indexed and must
-// not move); English lives under /en/ with translated slugs. Everything that
-// needs to know how a page maps across languages reads from here: the language
-// switch in the navbar, the hreflang tags, the sitemap alternates and the
-// build-time checks.
+// English is the language the site opens in, so it holds the root: /resources/,
+// /tools/, and the home at /. Italian lives under /it/ with its own slugs.
+// Everything that needs to know how a page maps across languages reads from
+// here: the language switch in the navbar, the hreflang tags, the sitemap
+// alternates and the build-time checks.
 //
 // Keys are Italian routes, values are the English counterpart. Both sides are
 // written with a leading and a trailing slash, exactly as they appear in URLs.
+//
+// The Italian URLs used to be the ones at the root. They moved on 29/07/2026,
+// and every one of them is answered by a 301 in public/_redirects — that file
+// and this map have to be changed together, or an indexed URL dies quietly.
 
-// The language served from the site root — a fact about URL shape, not about
-// what a reader is shown: a reader who has chosen nothing is served English
-// (see langPreferencePlugin in scripts/i18n-plugin.mjs).
-export const ROOT_LANG = 'it';
+// The language served from the site root: the one a reader gets without asking
+// for anything (see langPreferencePlugin in scripts/i18n-plugin.mjs).
+export const ROOT_LANG = 'en';
 export const LANGS = ['it', 'en'];
-export const EN_PREFIX = '/en';
+export const IT_PREFIX = '/it';
 
 // The source tree is symmetric — pages/it/… and pages/en/… — but the URLs are
-// not: Italian is served from the root, so pages/it/risorse/ is published at
-// /risorse/, not at /it/risorse/. Those Italian URLs are already indexed and
-// must never move. Everything that needs to turn a file path into a URL (or
-// back) goes through the two helpers below rather than assuming the two shapes
-// match.
+// not: English is served from the root, so pages/en/resources/ is published at
+// /resources/, not at /en/resources/. Everything that needs to turn a file path
+// into a URL (or back) goes through the two helpers below rather than assuming
+// the two shapes match.
 export const LANG_DIR = { it: 'it', en: 'en' };
 
 export const ROUTE_MAP = {
-  '/': '/en/',
+  '/it/': '/',
 
   // Top-level pages
-  '/chi-sono/': '/en/about/',
-  '/contatti/': '/en/contact/',
-  '/privacy-policy/': '/en/privacy-policy/',
-  '/termini-servizio/': '/en/terms-of-service/',
-  '/template/': '/en/templates/',
+  '/it/chi-sono/': '/about/',
+  '/it/contatti/': '/contact/',
+  '/it/privacy-policy/': '/privacy-policy/',
+  '/it/termini-servizio/': '/terms-of-service/',
+  '/it/template/': '/templates/',
 
   // Resources
-  '/risorse/': '/en/resources/',
-  '/risorse/glossario-html/': '/en/resources/html-glossary/',
-  '/risorse/glossario-css/': '/en/resources/css-glossary/',
-  '/risorse/glossario-js/': '/en/resources/javascript-glossary/',
-  '/risorse/snippet-library/': '/en/resources/snippet-library/',
+  '/it/risorse/': '/resources/',
+  '/it/risorse/glossario-html/': '/resources/html-glossary/',
+  '/it/risorse/glossario-css/': '/resources/css-glossary/',
+  '/it/risorse/glossario-js/': '/resources/javascript-glossary/',
+  '/it/risorse/snippet-library/': '/resources/snippet-library/',
 
   // Tools
-  '/strumenti/': '/en/tools/',
-  '/strumenti/compressore-immagini/': '/en/tools/image-compressor/',
-  '/strumenti/estrattore-palette/': '/en/tools/palette-extractor/',
-  '/strumenti/generatore-colori/': '/en/tools/color-generator/',
-  '/strumenti/generatore-gradienti/': '/en/tools/gradient-generator/',
+  '/it/strumenti/': '/tools/',
+  '/it/strumenti/compressore-immagini/': '/tools/image-compressor/',
+  '/it/strumenti/estrattore-palette/': '/tools/palette-extractor/',
+  '/it/strumenti/generatore-colori/': '/tools/color-generator/',
+  '/it/strumenti/generatore-gradienti/': '/tools/gradient-generator/',
 
   // UI components
-  '/componenti-ui/': '/en/ui-components/',
-  '/componenti-ui/card-interattive/': '/en/ui-components/interactive-cards/',
-  '/componenti-ui/form/': '/en/ui-components/form/',
-  '/componenti-ui/minimal-navbar/': '/en/ui-components/minimal-navbar/',
-  '/componenti-ui/scroll-indicator/': '/en/ui-components/scroll-indicator/',
+  '/it/componenti-ui/': '/ui-components/',
+  '/it/componenti-ui/card-interattive/': '/ui-components/interactive-cards/',
+  '/it/componenti-ui/form/': '/ui-components/form/',
+  '/it/componenti-ui/minimal-navbar/': '/ui-components/minimal-navbar/',
+  '/it/componenti-ui/scroll-indicator/': '/ui-components/scroll-indicator/',
 
   // Tutorials
-  '/tutorial/': '/en/tutorials/',
-  '/tutorial/accessibilita-web-base/': '/en/tutorials/web-accessibility-basics/',
-  '/tutorial/ai-sviluppo-solido/': '/en/tutorials/ai-assisted-development/',
-  '/tutorial/browser-devtools/': '/en/tutorials/browser-devtools/',
-  '/tutorial/css-fondamentali/': '/en/tutorials/css-fundamentals/',
-  '/tutorial/deploy-base/': '/en/tutorials/deployment-basics/',
-  '/tutorial/git-pratico-senza-panico/': '/en/tutorials/git-without-panic/',
-  '/tutorial/github-operativo/': '/en/tutorials/github-in-practice/',
-  '/tutorial/html-fondamentali/': '/en/tutorials/html-fundamentals/',
-  '/tutorial/javascript-fondamentali/': '/en/tutorials/javascript-fundamentals/',
-  '/tutorial/npm-vite-struttura-progetto/': '/en/tutorials/npm-vite-project-structure/',
-  '/tutorial/seo-tecnico-base/': '/en/tutorials/technical-seo-basics/',
-  '/tutorial/vscode-essenziale/': '/en/tutorials/vscode-essentials/'
+  '/it/tutorial/': '/tutorials/',
+  '/it/tutorial/accessibilita-web-base/': '/tutorials/web-accessibility-basics/',
+  '/it/tutorial/ai-sviluppo-solido/': '/tutorials/ai-assisted-development/',
+  '/it/tutorial/browser-devtools/': '/tutorials/browser-devtools/',
+  '/it/tutorial/css-fondamentali/': '/tutorials/css-fundamentals/',
+  '/it/tutorial/deploy-base/': '/tutorials/deployment-basics/',
+  '/it/tutorial/git-pratico-senza-panico/': '/tutorials/git-without-panic/',
+  '/it/tutorial/github-operativo/': '/tutorials/github-in-practice/',
+  '/it/tutorial/html-fondamentali/': '/tutorials/html-fundamentals/',
+  '/it/tutorial/javascript-fondamentali/': '/tutorials/javascript-fundamentals/',
+  '/it/tutorial/npm-vite-struttura-progetto/': '/tutorials/npm-vite-project-structure/',
+  '/it/tutorial/seo-tecnico-base/': '/tutorials/technical-seo-basics/',
+  '/it/tutorial/vscode-essenziale/': '/tutorials/vscode-essentials/'
 };
 
 // Legacy redirect stubs. They exist only to keep old Italian URLs alive, so
 // they get no English twin, no hreflang and no sitemap entry.
 export const REDIRECT_STUBS = new Set([
-  '/percorsi-apprendimento/',
-  '/percorsi-apprendimento/github-senza-panico/',
-  '/percorsi-apprendimento/git-pratico-senza-panico/',
-  '/percorsi-apprendimento/visual-studio-code-senza-panico/',
-  '/tutorial/visual-studio-code-senza-panico/',
-  '/shop-template/',
-  '/footer/chi-sono/',
-  '/footer/contatti/',
-  '/footer/privacy-policy/',
-  '/footer/termini-servizio/'
+  '/it/percorsi-apprendimento/',
+  '/it/percorsi-apprendimento/github-senza-panico/',
+  '/it/percorsi-apprendimento/git-pratico-senza-panico/',
+  '/it/percorsi-apprendimento/visual-studio-code-senza-panico/',
+  '/it/tutorial/visual-studio-code-senza-panico/',
+  '/it/shop-template/',
+  '/it/footer/chi-sono/',
+  '/it/footer/contatti/',
+  '/it/footer/privacy-policy/',
+  '/it/footer/termini-servizio/'
 ]);
 
 const EN_TO_IT = Object.fromEntries(
@@ -101,12 +103,12 @@ export function normalizeRoute(pathname) {
   return clean === '' ? '/' : `${clean}/`;
 }
 
-/** `it` for root routes, `en` for anything under /en/. */
+/** `it` for anything under /it/, `en` for root routes. */
 export function langOf(route) {
   const normalized = normalizeRoute(route);
-  return normalized === `${EN_PREFIX}/` || normalized.startsWith(`${EN_PREFIX}/`)
-    ? 'en'
-    : 'it';
+  return normalized === `${IT_PREFIX}/` || normalized.startsWith(`${IT_PREFIX}/`)
+    ? 'it'
+    : 'en';
 }
 
 /** The same page in the other language, or null when it has no twin. */
@@ -135,17 +137,17 @@ export function routePairs() {
 
 /**
  * URL route -> directory under pages/, without leading or trailing slashes.
- *   '/'            -> 'it'
- *   '/risorse/'    -> 'it/risorse'
- *   '/en/'         -> 'en'
- *   '/en/tools/'   -> 'en/tools'
+ *   '/'              -> 'en'
+ *   '/resources/'    -> 'en/resources'
+ *   '/it/'           -> 'it'
+ *   '/it/risorse/'   -> 'it/risorse'
  */
 export function sourceDirForRoute(route) {
   const normalized = normalizeRoute(route);
-  if (langOf(normalized) === 'en') {
-    return `${LANG_DIR.en}${normalized.slice(EN_PREFIX.length).replace(/\/+$/, '')}`;
+  if (langOf(normalized) === 'it') {
+    return `${LANG_DIR.it}${normalized.slice(IT_PREFIX.length).replace(/\/+$/, '')}`;
   }
-  return `${LANG_DIR.it}${normalized.replace(/\/+$/, '')}`;
+  return `${LANG_DIR.en}${normalized.replace(/\/+$/, '')}`;
 }
 
 /**
@@ -157,10 +159,10 @@ export function routeFromSourceDir(relDir) {
   const [head, ...rest] = clean.split('/').filter(Boolean);
 
   if (head === LANG_DIR.it) {
-    return rest.length ? `/${rest.join('/')}/` : '/';
+    return rest.length ? `${IT_PREFIX}/${rest.join('/')}/` : `${IT_PREFIX}/`;
   }
   if (head === LANG_DIR.en) {
-    return rest.length ? `${EN_PREFIX}/${rest.join('/')}/` : `${EN_PREFIX}/`;
+    return rest.length ? `/${rest.join('/')}/` : '/';
   }
   return null;
 }

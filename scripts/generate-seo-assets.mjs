@@ -2,7 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
-import { counterpartOf, langOf, routeFromSourceDir } from '../src/i18n/routes.mjs';
+import {
+  counterpartOf,
+  langOf,
+  routeFromSourceDir,
+  ROUTE_MAP,
+  REDIRECT_STUBS,
+  IT_PREFIX
+} from '../src/i18n/routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -85,7 +92,7 @@ function lastModifiedForFile(filePath) {
 }
 
 // Priority and ordering are language-independent: an English page inherits the
-// weight of its Italian twin, so /en/tools/ ranks like /strumenti/.
+// weight of its Italian twin, so /tools/ ranks like /it/strumenti/.
 function canonicalShape(route) {
   const itRoute = langOf(route) === 'en' ? counterpartOf(route) : route;
   return itRoute || route;
@@ -93,18 +100,18 @@ function canonicalShape(route) {
 
 function priorityForRoute(route) {
   const shape = canonicalShape(route);
-  if (shape === '/') return '1.0';
-  if (/^\/(risorse|strumenti|componenti-ui)\/$/.test(shape)) return '0.9';
-  if (shape === '/tutorial/' || shape === '/template/') return '0.8';
-  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\/$/.test(shape)) return '0.3';
+  if (shape === '/it/') return '1.0';
+  if (/^\/it\/(risorse|strumenti|componenti-ui)\/$/.test(shape)) return '0.9';
+  if (shape === '/it/tutorial/' || shape === '/it/template/') return '0.8';
+  if (/^\/it\/(chi-sono|contatti|privacy-policy|termini-servizio)\/$/.test(shape)) return '0.3';
   return '0.7';
 }
 
 function sortWeight(route) {
   const shape = canonicalShape(route);
-  if (shape === '/') return 0;
-  if (/^\/(risorse|strumenti|componenti-ui|tutorial|template)\//.test(shape)) return 1;
-  if (/^\/(chi-sono|contatti|privacy-policy|termini-servizio)\//.test(shape)) return 3;
+  if (shape === '/it/') return 0;
+  if (/^\/it\/(risorse|strumenti|componenti-ui|tutorial|template)\//.test(shape)) return 1;
+  if (/^\/it\/(chi-sono|contatti|privacy-policy|termini-servizio)\//.test(shape)) return 3;
   return 2;
 }
 
@@ -194,3 +201,60 @@ const entries = pages
 
 fs.writeFileSync(sitemapPath, buildSitemapXml(entries), 'utf8');
 console.log(`Generated ${path.relative(projectRoot, sitemapPath)} with ${entries.length} URLs`);
+
+/**
+ * The 301s that keep the pre-29/07/2026 URLs alive.
+ *
+ * Until then Italian was served from the root and English from /en/; the two
+ * swapped places. Every URL that moved has been indexed under the old shape and
+ * linked to from outside, so none of them may simply stop answering.
+ *
+ * Generated rather than written by hand for the same reason the sitemap is: the
+ * pairing lives in one place, and a route added there cannot be forgotten here.
+ */
+function buildRedirects() {
+  const enRoutes = new Set(Object.values(ROUTE_MAP));
+  const italianRoutes = [...Object.keys(ROUTE_MAP), ...REDIRECT_STUBS].sort();
+  const lines = [];
+  const collisions = [];
+
+  for (const route of italianRoutes) {
+    // The Italian home is not a redirect: the root now answers in English, and
+    // that is the whole point of the move.
+    if (route === `${IT_PREFIX}/`) continue;
+
+    const was = route.slice(IT_PREFIX.length);
+    // A slug both languages spell the same way (/privacy-policy/) is now the
+    // English page's own URL. Redirecting it would take that page off the air;
+    // a reader who wanted the Italian one is moved on by their stored
+    // preference instead.
+    if (enRoutes.has(was)) {
+      collisions.push(was);
+      continue;
+    }
+    lines.push(`${was} ${route} 301`);
+  }
+
+  if (collisions.length) {
+    console.log(`  (${collisions.length} URL non redirette, ora sono dell'inglese: ${collisions.join(', ')})`);
+  }
+
+  return [
+    '# Generato da scripts/generate-seo-assets.mjs — non modificare a mano.',
+    '#',
+    '# Il 29/07/2026 inglese e italiano si sono scambiati di posto: la radice',
+    '# risponde in inglese, l\'italiano sta sotto /it/. Queste regole tengono in',
+    '# vita le URL di prima.',
+    '',
+    '# Inglese: perde il prefisso e basta, gli slug sono gli stessi.',
+    '/en/* /:splat 301',
+    '',
+    '# Italiano: ogni URL scende sotto /it/.',
+    ...lines,
+    ''
+  ].join('\n');
+}
+
+const redirectsPath = path.join(publicRoot, '_redirects');
+fs.writeFileSync(redirectsPath, buildRedirects(), 'utf8');
+console.log(`Generated ${path.relative(projectRoot, redirectsPath)}`);

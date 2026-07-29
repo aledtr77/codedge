@@ -55,7 +55,7 @@ export function routeFromCtx(ctx, projectRoot) {
   }
 
   const fromPath = String(ctx?.path || '/').replace(/^\/pages\/(it|en)\//, (_m, lang) =>
-    lang === 'en' ? '/en/' : '/'
+    lang === 'it' ? '/it/' : '/'
   );
   return normalizeRoute(fromPath);
 }
@@ -67,35 +67,35 @@ const LANG_CODE = { it: 'IT', en: 'EN' };
 // Section landing pages the navbar links to, per language.
 const NAV_HREFS = {
   it: {
-    HOME_HREF: '/',
-    RESOURCES_HREF: '/risorse/',
-    TOOLS_HREF: '/strumenti/',
-    COMPONENTS_HREF: '/componenti-ui/',
-    TUTORIALS_HREF: '/tutorial/',
-    TEMPLATES_HREF: '/template/'
+    HOME_HREF: '/it/',
+    RESOURCES_HREF: '/it/risorse/',
+    TOOLS_HREF: '/it/strumenti/',
+    COMPONENTS_HREF: '/it/componenti-ui/',
+    TUTORIALS_HREF: '/it/tutorial/',
+    TEMPLATES_HREF: '/it/template/'
   },
   en: {
-    HOME_HREF: '/en/',
-    RESOURCES_HREF: '/en/resources/',
-    TOOLS_HREF: '/en/tools/',
-    COMPONENTS_HREF: '/en/ui-components/',
-    TUTORIALS_HREF: '/en/tutorials/',
-    TEMPLATES_HREF: '/en/templates/'
+    HOME_HREF: '/',
+    RESOURCES_HREF: '/resources/',
+    TOOLS_HREF: '/tools/',
+    COMPONENTS_HREF: '/ui-components/',
+    TUTORIALS_HREF: '/tutorials/',
+    TEMPLATES_HREF: '/templates/'
   }
 };
 
 const FOOTER_HREFS = {
   it: {
-    PRIVACY_HREF: '/privacy-policy/',
-    TERMS_HREF: '/termini-servizio/',
-    CONTACT_HREF: '/contatti/',
-    ABOUT_HREF: '/chi-sono/'
+    PRIVACY_HREF: '/it/privacy-policy/',
+    TERMS_HREF: '/it/termini-servizio/',
+    CONTACT_HREF: '/it/contatti/',
+    ABOUT_HREF: '/it/chi-sono/'
   },
   en: {
-    PRIVACY_HREF: '/en/privacy-policy/',
-    TERMS_HREF: '/en/terms-of-service/',
-    CONTACT_HREF: '/en/contact/',
-    ABOUT_HREF: '/en/about/'
+    PRIVACY_HREF: '/privacy-policy/',
+    TERMS_HREF: '/terms-of-service/',
+    CONTACT_HREF: '/contact/',
+    ABOUT_HREF: '/about/'
   }
 };
 
@@ -130,7 +130,7 @@ function navbarTokens(route, lang) {
   const s = STRINGS[lang];
   const other = lang === 'it' ? 'en' : 'it';
   const twin = publishableCounterpart(route);
-  const fallbackHome = other === 'it' ? '/' : '/en/';
+  const fallbackHome = other === 'it' ? '/it/' : '/';
 
   return {
     ...NAV_HREFS[lang],
@@ -267,12 +267,12 @@ export function hreflangPlugin() {
 
         // The manifest carries a name, a description and a start_url, all of
         // which are language-specific, so each tree points at its own. The two
-        // declare different ids, so installing from an English page yields an
-        // app that opens at /en/ rather than relabelling the Italian one.
-        if (lang === 'en') {
+        // declare different ids, so installing from an Italian page yields an
+        // app that opens at /it/ rather than relabelling the English one.
+        if (lang === 'it') {
           updated = updated.replace(
             /(<link\b[^>]*rel=["']manifest["'][^>]*href=)(?:"[^"]*"|'[^']*')/i,
-            `$1"/site.en.webmanifest"`
+            `$1"/site.it.webmanifest"`
           );
         }
 

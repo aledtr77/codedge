@@ -24,9 +24,9 @@ function getBreadcrumbTitle(path, lang) {
 function renderBreadcrumbs() {
   const currentPath = normalizePath(location.pathname);
   const lang = currentLang();
-  // The language prefix is not a navigation level: /en/ is the English home,
-  // and /en/tools/ must read "Home > Tools", not "Home > En > Tools".
-  const langRoot = lang === "it" ? "/" : "/en";
+  // The language prefix is not a navigation level: /it/ is the Italian home,
+  // and /it/strumenti/ must read "Home > Strumenti", not "Home > It > Strumenti".
+  const langRoot = lang === "it" ? "/it" : "/";
   const isHomepage = currentPath === "/" || currentPath === langRoot;
 
   if (isHomepage) return;
@@ -47,7 +47,7 @@ function renderBreadcrumbs() {
   const homeLi = document.createElement("li");
   homeLi.className = "breadcrumb-item";
   const homeLink = document.createElement("a");
-  homeLink.href = lang === "it" ? "/" : "/en/";
+  homeLink.href = lang === "it" ? "/it/" : "/";
   homeLink.className = "breadcrumb-link";
   homeLink.innerHTML = `<i class="fas fa-home" aria-hidden="true"></i> ${t("breadcrumb.home")}`;
   homeLi.appendChild(homeLink);

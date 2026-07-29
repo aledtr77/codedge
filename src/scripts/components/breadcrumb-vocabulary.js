@@ -2,7 +2,7 @@
 // (breadcrumb.js) and the build-time structured data (seo-jsonld-plugin.mjs):
 // the visible labels and the BreadcrumbList JSON-LD must stay identical.
 //
-// Two vocabularies, one per language. The `/en` prefix is a language marker,
+// Two vocabularies, one per language. The `/it` prefix is a language marker,
 // not a navigation level, so it never becomes a breadcrumb entry.
 
 // Terms shared by both languages: acronyms and casing fixes.
@@ -95,7 +95,7 @@ const LOWERCASE_WORDS = {
   en: ["a", "an", "the", "and", "or", "of", "for", "in", "on", "to", "with", "without"]
 };
 
-export const LANG_PREFIX_SEGMENTS = new Set(["en"]);
+export const LANG_PREFIX_SEGMENTS = new Set(["it"]);
 
 // Kept as the Italian vocabulary so existing importers keep working.
 export const BREADCRUMB_VOCABULARY = IT_VOCABULARY;

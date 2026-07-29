@@ -48,13 +48,13 @@ function rewrite(html, itRoute, enRoute) {
   const escaped = itRoute.replace(/[/]/g, '\\/');
   out = out.replace(new RegExp(`(https://codedge\\.it)${escaped}(?=["'])`, 'g'), `$1${enRoute}`);
 
-  // Internal links: href="/strumenti/" -> href="/en/tools/"
+  // Internal links: href="/it/strumenti/" -> href="/tools/"
   for (const [it, en] of linkRewrites) {
     out = out.replaceAll(`href="${it}"`, `href="${en}"`);
     out = out.replaceAll(`href='${it}'`, `href='${en}'`);
   }
   // Links to the Italian home become the English home.
-  out = out.replaceAll('href="/"', 'href="/en/"');
+  out = out.replaceAll('href="/it/"', 'href="/"');
 
   out = out.replace(
     /\(staticNavbarHtmlPlugin, vite\.config\.js\)/g,

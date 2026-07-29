@@ -17,17 +17,17 @@ import initLangSwitch from "./lang-switch.js";
   // language); this map only restores them if a script has emptied the link.
   const navLabels = {
     "/": { text: "Home", ariaLabel: "Home" },
-    "/risorse": { text: "Risorse", ariaLabel: "Risorse" },
-    "/strumenti": { text: "Strumenti", ariaLabel: "Strumenti" },
-    "/componenti-ui": { text: "Componenti UI", ariaLabel: "Componenti UI" },
-    "/tutorial": { text: "Tutorial", ariaLabel: "Tutorial" },
-    "/template": { text: "Template", ariaLabel: "Template" },
-    "/en": { text: "Home", ariaLabel: "Home" },
-    "/en/resources": { text: "Resources", ariaLabel: "Resources" },
-    "/en/tools": { text: "Tools", ariaLabel: "Tools" },
-    "/en/ui-components": { text: "UI Components", ariaLabel: "UI Components" },
-    "/en/tutorials": { text: "Tutorials", ariaLabel: "Tutorials" },
-    "/en/templates": { text: "Templates", ariaLabel: "Templates" },
+    "/resources": { text: "Resources", ariaLabel: "Resources" },
+    "/tools": { text: "Tools", ariaLabel: "Tools" },
+    "/ui-components": { text: "UI Components", ariaLabel: "UI Components" },
+    "/tutorials": { text: "Tutorials", ariaLabel: "Tutorials" },
+    "/templates": { text: "Templates", ariaLabel: "Templates" },
+    "/it": { text: "Home", ariaLabel: "Home" },
+    "/it/risorse": { text: "Risorse", ariaLabel: "Risorse" },
+    "/it/strumenti": { text: "Strumenti", ariaLabel: "Strumenti" },
+    "/it/componenti-ui": { text: "Componenti UI", ariaLabel: "Componenti UI" },
+    "/it/tutorial": { text: "Tutorial", ariaLabel: "Tutorial" },
+    "/it/template": { text: "Template", ariaLabel: "Template" },
   };
 
   function log(...args) {

@@ -33,8 +33,8 @@ const SHOW = Number(process.env.SHOW) || 8;
 // difference can only mean a translation the swap missed. The switch carries
 // the query across, so both sides of a pair stay pinned to the same palette.
 const PINNED = {
-  '/strumenti/generatore-colori/': '?colors=E74C3C-2980B9-2ECC71-F1C40F-8E44AD',
-  '/en/tools/color-generator/': '?colors=E74C3C-2980B9-2ECC71-F1C40F-8E44AD'
+  '/it/strumenti/generatore-colori/': '?colors=E74C3C-2980B9-2ECC71-F1C40F-8E44AD',
+  '/tools/color-generator/': '?colors=E74C3C-2980B9-2ECC71-F1C40F-8E44AD'
 };
 
 const urlFor = (route) => BASE + route + (PINNED[route] || '');
@@ -194,7 +194,7 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 // would otherwise perform.
 await page.addInitScript(() => {
   try {
-    localStorage.setItem('codedge:lang', location.pathname.startsWith('/en/') ? 'en' : 'it');
+    localStorage.setItem('codedge:lang', location.pathname.startsWith('/it/') ? 'it' : 'en');
   } catch {
     // Nothing stored means the default applies and the check will say so.
   }

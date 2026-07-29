@@ -1,0 +1,52 @@
+# Generato da scripts/generate-seo-assets.mjs — non modificare a mano.
+#
+# Il 29/07/2026 inglese e italiano si sono scambiati di posto: la radice
+# risponde in inglese, l'italiano sta sotto /it/. Queste regole tengono in
+# vita le URL di prima.
+
+# Inglese: perde il prefisso e basta, gli slug sono gli stessi.
+/en/* /:splat 301
+
+# Italiano: ogni URL scende sotto /it/.
+/chi-sono/ /it/chi-sono/ 301
+/componenti-ui/ /it/componenti-ui/ 301
+/componenti-ui/card-interattive/ /it/componenti-ui/card-interattive/ 301
+/componenti-ui/form/ /it/componenti-ui/form/ 301
+/componenti-ui/minimal-navbar/ /it/componenti-ui/minimal-navbar/ 301
+/componenti-ui/scroll-indicator/ /it/componenti-ui/scroll-indicator/ 301
+/contatti/ /it/contatti/ 301
+/footer/chi-sono/ /it/footer/chi-sono/ 301
+/footer/contatti/ /it/footer/contatti/ 301
+/footer/privacy-policy/ /it/footer/privacy-policy/ 301
+/footer/termini-servizio/ /it/footer/termini-servizio/ 301
+/percorsi-apprendimento/ /it/percorsi-apprendimento/ 301
+/percorsi-apprendimento/git-pratico-senza-panico/ /it/percorsi-apprendimento/git-pratico-senza-panico/ 301
+/percorsi-apprendimento/github-senza-panico/ /it/percorsi-apprendimento/github-senza-panico/ 301
+/percorsi-apprendimento/visual-studio-code-senza-panico/ /it/percorsi-apprendimento/visual-studio-code-senza-panico/ 301
+/risorse/ /it/risorse/ 301
+/risorse/glossario-css/ /it/risorse/glossario-css/ 301
+/risorse/glossario-html/ /it/risorse/glossario-html/ 301
+/risorse/glossario-js/ /it/risorse/glossario-js/ 301
+/risorse/snippet-library/ /it/risorse/snippet-library/ 301
+/shop-template/ /it/shop-template/ 301
+/strumenti/ /it/strumenti/ 301
+/strumenti/compressore-immagini/ /it/strumenti/compressore-immagini/ 301
+/strumenti/estrattore-palette/ /it/strumenti/estrattore-palette/ 301
+/strumenti/generatore-colori/ /it/strumenti/generatore-colori/ 301
+/strumenti/generatore-gradienti/ /it/strumenti/generatore-gradienti/ 301
+/template/ /it/template/ 301
+/termini-servizio/ /it/termini-servizio/ 301
+/tutorial/ /it/tutorial/ 301
+/tutorial/accessibilita-web-base/ /it/tutorial/accessibilita-web-base/ 301
+/tutorial/ai-sviluppo-solido/ /it/tutorial/ai-sviluppo-solido/ 301
+/tutorial/browser-devtools/ /it/tutorial/browser-devtools/ 301
+/tutorial/css-fondamentali/ /it/tutorial/css-fondamentali/ 301
+/tutorial/deploy-base/ /it/tutorial/deploy-base/ 301
+/tutorial/git-pratico-senza-panico/ /it/tutorial/git-pratico-senza-panico/ 301
+/tutorial/github-operativo/ /it/tutorial/github-operativo/ 301
+/tutorial/html-fondamentali/ /it/tutorial/html-fondamentali/ 301
+/tutorial/javascript-fondamentali/ /it/tutorial/javascript-fondamentali/ 301
+/tutorial/npm-vite-struttura-progetto/ /it/tutorial/npm-vite-struttura-progetto/ 301
+/tutorial/seo-tecnico-base/ /it/tutorial/seo-tecnico-base/ 301
+/tutorial/visual-studio-code-senza-panico/ /it/tutorial/visual-studio-code-senza-panico/ 301
+/tutorial/vscode-essenziale/ /it/tutorial/vscode-essenziale/ 301

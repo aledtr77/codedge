@@ -86,12 +86,12 @@ export const quizzesData = {
       q: "Quale dei seguenti link rappresenta l'utilizzo corretto di un link relativo?",
       options: [
         "&lt;a href='https://google.com'&gt;Google&lt;/a&gt;",
-        "&lt;a href='/tutorial/css-fondamentali/'&gt;CSS Fondamentali&lt;/a&gt;",
+        "&lt;a href='/it/tutorial/css-fondamentali/'&gt;CSS Fondamentali&lt;/a&gt;",
         "&lt;a href='mailto:info@codedge.it'&gt;Scrivici&lt;/a&gt;"
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Un link relativo punta a una risorsa interna allo stesso dominio senza ripetere il nome del sito web (es. '/chi-sono/').",
+        correct: "Esatto! Un link relativo punta a una risorsa interna allo stesso dominio senza ripetere il nome del sito web (es. '/it/chi-sono/').",
         wrong: "No. Un URL che inizia con 'https://' è un link assoluto (punta all'esterno), e un 'mailto:' è un collegamento e-mail."
       }
     },

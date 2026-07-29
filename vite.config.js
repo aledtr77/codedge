@@ -289,8 +289,8 @@ function devPagesRewrite() {
         // no rewrite for explicit file requests (e.g. /robots.txt)
         if (path.extname(pathname)) return next();
 
-        // URL -> source directory: Italian is served from the root but lives in
-        // pages/it/, English keeps its /en/ prefix in both places.
+        // URL -> source directory: English is served from the root but lives in
+        // pages/en/, Italian keeps its /it/ prefix in both places.
         const sourceDir = sourceDirForRoute(pathname);
         const candidate = path.join(process.cwd(), ENTRY_DIR, sourceDir, 'index.html');
 
@@ -306,8 +306,8 @@ function devPagesRewrite() {
 }
 
 // Build: maps the symmetric source tree onto the published URL shape.
-//   dist/pages/it/**  ->  dist/**      (Italian is the default language: root)
-//   dist/pages/en/**  ->  dist/en/**   (English keeps its prefix)
+//   dist/pages/en/**  ->  dist/**      (English is what the site opens in: root)
+//   dist/pages/it/**  ->  dist/it/**   (Italian keeps its prefix)
 function movePagesToRootPlugin(outDir) {
   return {
     name: 'move-pages-to-root',
@@ -319,8 +319,8 @@ function movePagesToRootPlugin(outDir) {
 
       try {
         for (const [dir, target] of [
-          [LANG_DIR.it, distRoot],
-          [LANG_DIR.en, path.join(distRoot, LANG_DIR.en)]
+          [LANG_DIR.en, distRoot],
+          [LANG_DIR.it, path.join(distRoot, LANG_DIR.it)]
         ]) {
           const source = path.join(pagesRoot, dir);
           if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true });

@@ -3,12 +3,13 @@ const STATIC_CACHE = `codedge-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `codedge-runtime-${SW_VERSION}`;
 
 const PRECACHE_URLS = [
+  // La home inglese sta alla radice: è quella che si apre senza aver scelto
+  // niente. Quella italiana serve lo stesso, o offline chi ha scelto l'italiano
+  // verrebbe mandato su una pagina non in cache.
   "/",
-  // Chi non ha ancora scelto una lingua viene mandato qui appena apre "/", quindi
-  // offline la home italiana da sola non basta più: senza questa, il redirect
-  // atterrerebbe su una pagina non in cache.
-  "/en/",
+  "/it/",
   "/site.webmanifest",
+  "/site.it.webmanifest",
   "/favicon.ico",
   "/icons/android-chrome-192.png",
   "/icons/android-chrome-512.png",
