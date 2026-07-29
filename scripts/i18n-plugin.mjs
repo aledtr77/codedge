@@ -149,7 +149,7 @@ function navbarTokens(route, lang) {
     // A page without a twin sends the reader to the other language's home
     // instead of hiding the control; the marker keeps that case greppable.
     SWITCH_EXTRA: twin ? '' : ' data-lang-fallback="true"',
-    // The two codes are always rendered in the same order (IT then EN) so the
+    // The two codes are always rendered in the same order (EN then IT) so the
     // knob has a fixed left/right position to slide between; which one is
     // selected is carried by data-active, not by the markup order.
     LANG_ACTIVE: lang

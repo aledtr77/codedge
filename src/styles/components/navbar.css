@@ -165,7 +165,10 @@ header.header-scrolled {
    language reads as selected, the other as the destination. */
 /* A two-position lever. The codes never move: a knob slides between them, and
    the knob carries a view-transition-name so the slide keeps going across the
-   document swap instead of restarting on the new page. */
+   document swap instead of restarting on the new page.
+   EN sits on the left because English is the language a reader gets by default,
+   and the knob's home position — no transform at all — is the left one. So the
+   state the site opens in is also the state that needs nothing applied to it. */
 .lang-switch {
   --lang-seg-w: 2.05rem;
   --lang-seg-h: 1.72rem;
@@ -207,7 +210,16 @@ header.header-scrolled {
   pointer-events: none;
 }
 
-.lang-switch[data-active="en"] .lang-switch-thumb {
+/* Until the page is revealed there is nothing to animate *from*: the knob is
+   taking its starting position, not moving to a new one. Without this it slides
+   across the lever on every load whose stylesheet lands after the first layout
+   — which on the dev server, where bundle CSS arrives through JS, is every
+   single one. The reader would watch the site change its own language. */
+body[data-css-ready="pending"] .lang-switch-thumb {
+  transition: none;
+}
+
+.lang-switch[data-active="it"] .lang-switch-thumb {
   transform: translateX(calc(var(--lang-seg-w) + var(--lang-gap)));
 }
 
