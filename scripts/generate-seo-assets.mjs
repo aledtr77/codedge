@@ -121,7 +121,10 @@ function alternateLinks(route, knownRoutes) {
   return [
     `    <xhtml:link rel="alternate" hreflang="it" href="${baseUrl}${itRoute}"/>`,
     `    <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}${enRoute}"/>`,
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${itRoute}"/>`
+    // English answers for every locale neither version matches: it is what a
+    // reader without a stored language preference is served (see
+    // langPreferencePlugin in scripts/i18n-plugin.mjs).
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${enRoute}"/>`
   ];
 }
 

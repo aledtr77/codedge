@@ -29,6 +29,25 @@
 import { t } from "@/i18n/ui.js";
 
 const SELECTOR = "a.lang-switch";
+
+// The reader's choice, kept for the rest of this visit and for the next one.
+// Only the head script injected by scripts/i18n-plugin.mjs reads it: it runs
+// before first paint on every page and sends the reader to the language stored
+// here, defaulting to English for anyone who has never chosen. So this write is
+// the whole of "the language stays where I put it" — without it every page load
+// would fall back to English again.
+const LANG_KEY = "codedge:lang";
+
+function remember(lang) {
+  if (lang !== "it" && lang !== "en") return;
+  try {
+    localStorage.setItem(LANG_KEY, lang);
+  } catch {
+    // Private mode, storage disabled, quota: the switch still works for this
+    // page, it just will not be remembered. Nothing to recover from.
+  }
+}
+
 const LANG_CHANGED = "codedge:lang-changed";
 // Fired before the swap, for components that rewrote the server-rendered
 // markup at load time. The walk below matches text nodes by position, so a
@@ -305,6 +324,10 @@ async function swapTo(href, control, { push = true } = {}) {
   applyHead(doc);
   applySwitch(control, doc);
 
+  // Covers the path a click does not: Back after a switch lands here through
+  // popstate, and what is on screen then has to be what a reload gives back.
+  remember(document.documentElement.lang);
+
   // The switch's href is a bare path, but the query and the fragment belong to
   // the reader, not to the language: a pinned palette or the anchor they were
   // reading at must survive the swap, and above all stay in the URL they copy.
@@ -339,6 +362,11 @@ export default function initLangSwitch() {
     if (!href || !href.startsWith("/")) return;
 
     event.preventDefault();
+
+    // Recorded before the swap, not after it: the catch below falls back to a
+    // plain navigation, and the head script on the page it lands on would send
+    // the reader straight back here if the choice were not already stored.
+    remember(control.getAttribute("hreflang"));
 
     // The lever moves under the finger, before the content catches up.
     control.dataset.active = control.dataset.active === "en" ? "it" : "en";

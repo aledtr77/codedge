@@ -4,8 +4,9 @@ import fs from 'fs';
 import { minify } from 'html-minifier-terser';
 import { imagetools } from 'vite-imagetools';
 import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
-import { chromeI18nPlugin, hreflangPlugin } from './scripts/i18n-plugin.mjs';
+import { chromeI18nPlugin, hreflangPlugin, langPreferencePlugin } from './scripts/i18n-plugin.mjs';
 import { LANG_DIR, sourceDirForRoute } from './src/i18n/routes.mjs';
+import { CRAWLER_UA_PATTERN } from './scripts/crawler-ua.mjs';
 
 const ENTRY_DIR = 'pages';
 
@@ -60,7 +61,7 @@ const antiFoucCss = [
   '@media screen and (max-width:860px){.logo{width:48px;max-width:48px}.resize-text,.invisible-text{display:none}}'
 ].join('');
 
-const antiFoucJsFlagScript = 'if(!/bot|google|baidu|bing|msn|duckduck|teoma|slurp|yandex|lighthouse/i.test(navigator.userAgent)){document.documentElement.classList.add("js");}';
+const antiFoucJsFlagScript = `if(!/${CRAWLER_UA_PATTERN}/i.test(navigator.userAgent)){document.documentElement.classList.add("js");}`;
 const indexRedirectScript = [
   '(function(){',
   'var path=window.location.pathname;',
@@ -367,6 +368,7 @@ export default defineConfig(({ command }) => {
   plugins.push(imagetools());
   plugins.push(chromeI18nPlugin());
   plugins.push(hreflangPlugin());
+  plugins.push(langPreferencePlugin());
   plugins.push(seoJsonLdPlugin());
   plugins.push(guideTocPlaceholderPlugin());
   plugins.push(antiFoucHtmlPlugin(command === 'serve'));

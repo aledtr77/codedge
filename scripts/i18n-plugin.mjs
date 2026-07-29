@@ -5,6 +5,8 @@
 //                        language switch pointing at the twin page
 //   hreflangPlugin()     writes <html lang>, og:locale and the reciprocal
 //                        hreflang tags from the shared route map
+//   langPreferencePlugin() injects the head script that sends a reader to the
+//                        language they chose, English until they choose
 //
 // Both derive the language from the page's position in pages/ — anything under
 // pages/en/ is English, everything else Italian — so a page never has to
@@ -21,6 +23,13 @@ import {
   REDIRECT_STUBS
 } from '../src/i18n/routes.mjs';
 import { STRINGS } from '../src/i18n/ui.js';
+import { CRAWLER_UA_PATTERN } from './crawler-ua.mjs';
+
+// Where the reader's chosen language is kept, and the language served to a
+// reader who has not chosen one. src/scripts/components/lang-switch.js writes
+// the key; the script below is the only thing that reads it.
+export const LANG_STORAGE_KEY = 'codedge:lang';
+export const FALLBACK_LANG = 'en';
 
 const ENTRY_DIR = 'pages';
 
@@ -274,8 +283,9 @@ export function hreflangPlugin() {
         const alternates = [
           `<link rel="alternate" hreflang="it" href="${escapeAttr(baseUrl + itRoute)}" />`,
           `<link rel="alternate" hreflang="en" href="${escapeAttr(baseUrl + enRoute)}" />`,
-          // Italian is the site default, so it also answers for unmatched locales.
-          `<link rel="alternate" hreflang="x-default" href="${escapeAttr(baseUrl + itRoute)}" />`,
+          // English is what a reader without a stored preference is served, so
+          // it is also what answers for a locale neither version matches.
+          `<link rel="alternate" hreflang="x-default" href="${escapeAttr(baseUrl + enRoute)}" />`,
           `<meta property="og:locale:alternate" content="${OG_LOCALE[lang === 'it' ? 'en' : 'it']}" />`
         ].join('\n  ');
 
@@ -287,6 +297,66 @@ export function hreflangPlugin() {
           );
         }
         return updated.replace(/<\/head>/i, `  ${alternates}\n</head>`);
+      }
+    }
+  };
+}
+
+/**
+ * The inline script that decides, before anything is fetched or painted, which
+ * language this reader gets.
+ *
+ * Two documents exist for every page and the URL alone says which one you are
+ * looking at, so a preference can only be honoured by moving to the other URL.
+ * That is what this does, and why it has to be the first thing in the head:
+ * everything the browser starts before it — fonts, stylesheets, the module
+ * graph — is work thrown away by the hop.
+ *
+ * The rules, in order:
+ *   a stored choice wins, always, on every page and every visit;
+ *   without one, the reader gets English, whatever their browser asks for;
+ *   a crawler is never moved, so both language trees stay indexable and each
+ *     URL keeps answering in the language it was indexed in.
+ *
+ * `location.replace` rather than an assignment: the page being left was never
+ * the reader's destination, and must not sit in the history as a step Back
+ * returns to (it would redirect again, trapping them).
+ */
+export function langPreferencePlugin() {
+  const projectRoot = process.cwd();
+
+  return {
+    name: 'codedge-lang-preference',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        const route = routeFromCtx(ctx, projectRoot);
+        if (REDIRECT_STUBS.has(route)) return html;
+
+        // No twin worth showing — an untranslated scaffold, a page that exists
+        // in one language only — means there is nowhere to send anyone: the
+        // reader stays here rather than landing on Italian text under /en/.
+        const twin = publishableCounterpart(route);
+        if (!twin) return html;
+
+        const lang = langOf(route);
+        const script = [
+          '(function(){try{',
+          `if(/${CRAWLER_UA_PATTERN}/i.test(navigator.userAgent))return;`,
+          'var w=null;',
+          `try{w=localStorage.getItem(${JSON.stringify(LANG_STORAGE_KEY)})}catch(e){}`,
+          `if(w!=="it"&&w!=="en")w=${JSON.stringify(FALLBACK_LANG)};`,
+          `if(w===${JSON.stringify(lang)})return;`,
+          // The query and the fragment belong to the reader (a pinned palette,
+          // the section they were sent to), not to the language.
+          `location.replace(${JSON.stringify(twin)}+location.search+location.hash);`,
+          '}catch(e){}})();'
+        ].join('');
+
+        return html.replace(
+          /<head\b[^>]*>/i,
+          (match) => `${match}\n  <script data-lang-preference>${script}</script>`
+        );
       }
     }
   };

@@ -185,6 +185,21 @@ const filter = process.argv.slice(2).find((a) => !a.startsWith('--'));
 const browser = await chromium.launch({ executablePath: CHROME, headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 
+// Every page carries a head script that sends a reader to the language they
+// chose, English until they choose one — so a bare goto of an Italian route
+// would land on the English twin instead, and this whole check would compare a
+// page against itself. Declaring the preference to be whatever the URL asks for
+// keeps every navigation here going exactly where it was aimed. It runs before
+// the page's own scripts, on every navigation, including the ones the redirect
+// would otherwise perform.
+await page.addInitScript(() => {
+  try {
+    localStorage.setItem('codedge:lang', location.pathname.startsWith('/en/') ? 'en' : 'it');
+  } catch {
+    // Nothing stored means the default applies and the check will say so.
+  }
+});
+
 let failures = 0;
 let checked = 0;
 

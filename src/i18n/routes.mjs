@@ -9,16 +9,19 @@
 // Keys are Italian routes, values are the English counterpart. Both sides are
 // written with a leading and a trailing slash, exactly as they appear in URLs.
 
-export const DEFAULT_LANG = 'it';
+// The language served from the site root — a fact about URL shape, not about
+// what a reader is shown: a reader who has chosen nothing is served English
+// (see langPreferencePlugin in scripts/i18n-plugin.mjs).
+export const ROOT_LANG = 'it';
 export const LANGS = ['it', 'en'];
 export const EN_PREFIX = '/en';
 
 // The source tree is symmetric — pages/it/… and pages/en/… — but the URLs are
-// not: Italian is the default language and is served from the root, so
-// pages/it/risorse/ is published at /risorse/, not at /it/risorse/. Those
-// Italian URLs are already indexed and must never move. Everything that needs
-// to turn a file path into a URL (or back) goes through the two helpers below
-// rather than assuming the two shapes match.
+// not: Italian is served from the root, so pages/it/risorse/ is published at
+// /risorse/, not at /it/risorse/. Those Italian URLs are already indexed and
+// must never move. Everything that needs to turn a file path into a URL (or
+// back) goes through the two helpers below rather than assuming the two shapes
+// match.
 export const LANG_DIR = { it: 'it', en: 'en' };
 
 export const ROUTE_MAP = {
