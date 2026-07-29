@@ -7,7 +7,7 @@ import {
   langOf,
   routeFromSourceDir,
   ROUTE_MAP,
-  REDIRECT_STUBS,
+  LEGACY_REDIRECTS,
   IT_PREFIX
 } from '../src/i18n/routes.mjs';
 
@@ -23,19 +23,6 @@ const baseUrl = String(packageJson.homepage || 'https://codedge.it/').replace(/\
 function hasNoindexMeta(filePath) {
   const html = fs.readFileSync(filePath, 'utf8');
   return /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(html);
-}
-
-// A handful of routes are only there to catch URLs that were indexed under an
-// older slug and send the reader on. GitHub Pages cannot issue a 301, so they
-// are pages that redirect — and they must never enter the sitemap.
-//
-// Recognised by their markup rather than listed by hand: a list has to be kept
-// in step with the files, and the day it is not, a redirect quietly starts
-// advertising itself as a destination.
-function redirectTargetOf(filePath) {
-  const html = fs.readFileSync(filePath, 'utf8');
-  const match = html.match(/<meta\s+http-equiv=["']refresh["'][^>]*content=["'][^"']*url=([^"']+)["']/i);
-  return match ? match[1].trim() : null;
 }
 
 function walkIndexFiles(dir) {
@@ -163,30 +150,26 @@ function buildSitemapXml(entries) {
 const pages = walkIndexFiles(pagesRoot).map((filePath) => ({
   filePath,
   route: routeFromFile(filePath),
-  noindex: hasNoindexMeta(filePath),
-  redirectTo: redirectTargetOf(filePath)
+  noindex: hasNoindexMeta(filePath)
 }));
 
-// A redirect that no longer lands anywhere is worse than no redirect at all:
-// the reader gets a 404 and the old URL's standing is thrown away rather than
-// passed on. The slugs have been renamed once already, so check every hop
-// against the pages that actually exist.
+// Un redirect che non atterra da nessuna parte è peggio di nessun redirect: il
+// lettore prende un 404 e il credito della vecchia URL si butta invece di
+// passarlo. Gli slug sono già stati rinominati una volta, quindi ogni salto si
+// controlla contro le pagine che esistono davvero.
 const routesOnFile = new Set(pages.map(({ route }) => route).filter(Boolean));
-const brokenRedirects = pages
-  .filter(({ redirectTo }) => redirectTo)
-  .filter(({ redirectTo }) => !routesOnFile.has(redirectTo));
+const brokenRedirects = Object.entries(LEGACY_REDIRECTS)
+  .filter(([, to]) => !routesOnFile.has(to));
 
 if (brokenRedirects.length) {
   console.error('\nRedirect senza destinazione:');
-  for (const { filePath, route, redirectTo } of brokenRedirects) {
-    console.error(`  ${route} → ${redirectTo}  (${path.relative(projectRoot, filePath)})`);
-  }
-  console.error('\nLa pagina di arrivo non esiste: aggiorna il redirect o rimuovilo.\n');
+  for (const [from, to] of brokenRedirects) console.error(`  ${from} → ${to}`);
+  console.error('\nLa pagina di arrivo non esiste: aggiorna LEGACY_REDIRECTS in src/i18n/routes.mjs.\n');
   process.exit(1);
 }
 
 const entries = pages
-  .filter(({ route, noindex, redirectTo }) => route && !noindex && !redirectTo)
+  .filter(({ route, noindex }) => route && !noindex)
   .map(({ filePath, route }) => ({
     filePath,
     route,
@@ -214,7 +197,7 @@ console.log(`Generated ${path.relative(projectRoot, sitemapPath)} with ${entries
  */
 function buildRedirects() {
   const enRoutes = new Set(Object.values(ROUTE_MAP));
-  const italianRoutes = [...Object.keys(ROUTE_MAP), ...REDIRECT_STUBS].sort();
+  const italianRoutes = Object.keys(ROUTE_MAP).sort();
   const lines = [];
   const collisions = [];
 
@@ -239,6 +222,16 @@ function buildRedirects() {
     console.log(`  (${collisions.length} URL non redirette, ora sono dell'inglese: ${collisions.join(', ')})`);
   }
 
+  // Slug abbandonati anche prima dello spostamento: qui la destinazione è
+  // scritta a mano perché non c'è nessuna regola che la possa dedurre.
+  const legacy = Object.entries(LEGACY_REDIRECTS).flatMap(([from, to]) => {
+    const rules = [`${from} ${to} 301`];
+    // Per un giorno queste URL sono esistite anche sotto /it/, perché lo
+    // spostamento le ha portate con sé prima che diventassero regole.
+    if (!from.startsWith('/html/')) rules.push(`${IT_PREFIX}${from} ${to} 301`);
+    return rules;
+  });
+
   return [
     '# Generato da scripts/generate-seo-assets.mjs — non modificare a mano.',
     '#',
@@ -251,6 +244,10 @@ function buildRedirects() {
     '',
     '# Italiano: ogni URL scende sotto /it/.',
     ...lines,
+    '',
+    '# Slug abbandonati prima dello spostamento: erano pagine con un meta',
+    '# refresh finché l\'host non sapeva emettere un 301.',
+    ...legacy,
     ''
   ].join('\n');
 }

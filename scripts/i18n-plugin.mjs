@@ -19,8 +19,7 @@ import {
   langOf,
   normalizeRoute,
   routeFromSourceDir,
-  sourceDirForRoute,
-  REDIRECT_STUBS
+  sourceDirForRoute
 } from '../src/i18n/routes.mjs';
 import { STRINGS } from '../src/i18n/ui.js';
 import { CRAWLER_UA_PATTERN } from './crawler-ua.mjs';
@@ -197,7 +196,6 @@ export function chromeI18nPlugin() {
       order: 'pre',
       handler(html, ctx) {
         const route = routeFromCtx(ctx, projectRoot);
-        if (REDIRECT_STUBS.has(route)) return html;
 
         const lang = langOf(route);
         let updated = html;
@@ -244,7 +242,6 @@ export function hreflangPlugin() {
       order: 'pre',
       handler(html, ctx) {
         const route = routeFromCtx(ctx, projectRoot);
-        if (REDIRECT_STUBS.has(route)) return html;
 
         const lang = langOf(route);
         // A page still carrying the Italian source text is marked noindex by the
@@ -331,7 +328,6 @@ export function langPreferencePlugin() {
       order: 'pre',
       handler(html, ctx) {
         const route = routeFromCtx(ctx, projectRoot);
-        if (REDIRECT_STUBS.has(route)) return html;
 
         // No twin worth showing — an untranslated scaffold, a page that exists
         // in one language only — means there is nowhere to send anyone: the

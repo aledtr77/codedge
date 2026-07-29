@@ -73,20 +73,35 @@ export const ROUTE_MAP = {
   '/it/tutorial/vscode-essenziale/': '/tutorials/vscode-essentials/'
 };
 
-// Legacy redirect stubs. They exist only to keep old Italian URLs alive, so
-// they get no English twin, no hreflang and no sitemap entry.
-export const REDIRECT_STUBS = new Set([
-  '/it/percorsi-apprendimento/',
-  '/it/percorsi-apprendimento/github-senza-panico/',
-  '/it/percorsi-apprendimento/git-pratico-senza-panico/',
-  '/it/percorsi-apprendimento/visual-studio-code-senza-panico/',
-  '/it/tutorial/visual-studio-code-senza-panico/',
-  '/it/shop-template/',
-  '/it/footer/chi-sono/',
-  '/it/footer/contatti/',
-  '/it/footer/privacy-policy/',
-  '/it/footer/termini-servizio/'
-]);
+/**
+ * URL indicizzate sotto uno slug che non esiste più, e dove mandare chi ci
+ * arriva. Non sono pagine: fino al 29/07/2026 lo erano per forza, perché
+ * GitHub Pages non sa emettere un 301 e l'unico modo di spostare qualcuno era
+ * servirgli un documento con dentro un meta refresh. Il prezzo era che ognuna
+ * rispondeva 200 dichiarandosi copia di un'altra, ed è così che finivano nei
+ * doppioni di Search Console. Su Cloudflare il 301 c'è, quindi qui restano
+ * solo due colonne di testo e public/_redirects fa il resto.
+ *
+ * Le chiavi sono le URL vecchie, quelle che stanno in giro nei link e negli
+ * indici — cioè senza il prefisso /it, che è arrivato dopo.
+ */
+export const LEGACY_REDIRECTS = {
+  '/percorsi-apprendimento/': '/it/tutorial/',
+  '/percorsi-apprendimento/github-senza-panico/': '/it/tutorial/github-operativo/',
+  '/percorsi-apprendimento/git-pratico-senza-panico/': '/it/tutorial/git-pratico-senza-panico/',
+  '/percorsi-apprendimento/visual-studio-code-senza-panico/': '/it/tutorial/vscode-essenziale/',
+  '/tutorial/visual-studio-code-senza-panico/': '/it/tutorial/vscode-essenziale/',
+  '/shop-template/': '/it/template/',
+  '/footer/chi-sono/': '/it/chi-sono/',
+  '/footer/contatti/': '/it/contatti/',
+  '/footer/privacy-policy/': '/it/privacy-policy/',
+  '/footer/termini-servizio/': '/it/termini-servizio/',
+  // Quattro pagine di rimbalzo servite da public/, con l'estensione in chiaro.
+  '/html/footer/chi-sono.html': '/it/chi-sono/',
+  '/html/footer/contatti.html': '/it/contatti/',
+  '/html/footer/privacy-policy.html': '/it/privacy-policy/',
+  '/html/footer/termini-servizio.html': '/it/termini-servizio/'
+};
 
 const EN_TO_IT = Object.fromEntries(
   Object.entries(ROUTE_MAP).map(([it, en]) => [en, it])
@@ -114,7 +129,6 @@ export function langOf(route) {
 /** The same page in the other language, or null when it has no twin. */
 export function counterpartOf(route) {
   const normalized = normalizeRoute(route);
-  if (REDIRECT_STUBS.has(normalized)) return null;
   return langOf(normalized) === 'it'
     ? ROUTE_MAP[normalized] ?? null
     : EN_TO_IT[normalized] ?? null;

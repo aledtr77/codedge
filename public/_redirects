@@ -15,20 +15,11 @@
 /componenti-ui/minimal-navbar/ /it/componenti-ui/minimal-navbar/ 301
 /componenti-ui/scroll-indicator/ /it/componenti-ui/scroll-indicator/ 301
 /contatti/ /it/contatti/ 301
-/footer/chi-sono/ /it/footer/chi-sono/ 301
-/footer/contatti/ /it/footer/contatti/ 301
-/footer/privacy-policy/ /it/footer/privacy-policy/ 301
-/footer/termini-servizio/ /it/footer/termini-servizio/ 301
-/percorsi-apprendimento/ /it/percorsi-apprendimento/ 301
-/percorsi-apprendimento/git-pratico-senza-panico/ /it/percorsi-apprendimento/git-pratico-senza-panico/ 301
-/percorsi-apprendimento/github-senza-panico/ /it/percorsi-apprendimento/github-senza-panico/ 301
-/percorsi-apprendimento/visual-studio-code-senza-panico/ /it/percorsi-apprendimento/visual-studio-code-senza-panico/ 301
 /risorse/ /it/risorse/ 301
 /risorse/glossario-css/ /it/risorse/glossario-css/ 301
 /risorse/glossario-html/ /it/risorse/glossario-html/ 301
 /risorse/glossario-js/ /it/risorse/glossario-js/ 301
 /risorse/snippet-library/ /it/risorse/snippet-library/ 301
-/shop-template/ /it/shop-template/ 301
 /strumenti/ /it/strumenti/ 301
 /strumenti/compressore-immagini/ /it/strumenti/compressore-immagini/ 301
 /strumenti/estrattore-palette/ /it/strumenti/estrattore-palette/ 301
@@ -48,5 +39,31 @@
 /tutorial/javascript-fondamentali/ /it/tutorial/javascript-fondamentali/ 301
 /tutorial/npm-vite-struttura-progetto/ /it/tutorial/npm-vite-struttura-progetto/ 301
 /tutorial/seo-tecnico-base/ /it/tutorial/seo-tecnico-base/ 301
-/tutorial/visual-studio-code-senza-panico/ /it/tutorial/visual-studio-code-senza-panico/ 301
 /tutorial/vscode-essenziale/ /it/tutorial/vscode-essenziale/ 301
+
+# Slug abbandonati prima dello spostamento: erano pagine con un meta
+# refresh finché l'host non sapeva emettere un 301.
+/percorsi-apprendimento/ /it/tutorial/ 301
+/it/percorsi-apprendimento/ /it/tutorial/ 301
+/percorsi-apprendimento/github-senza-panico/ /it/tutorial/github-operativo/ 301
+/it/percorsi-apprendimento/github-senza-panico/ /it/tutorial/github-operativo/ 301
+/percorsi-apprendimento/git-pratico-senza-panico/ /it/tutorial/git-pratico-senza-panico/ 301
+/it/percorsi-apprendimento/git-pratico-senza-panico/ /it/tutorial/git-pratico-senza-panico/ 301
+/percorsi-apprendimento/visual-studio-code-senza-panico/ /it/tutorial/vscode-essenziale/ 301
+/it/percorsi-apprendimento/visual-studio-code-senza-panico/ /it/tutorial/vscode-essenziale/ 301
+/tutorial/visual-studio-code-senza-panico/ /it/tutorial/vscode-essenziale/ 301
+/it/tutorial/visual-studio-code-senza-panico/ /it/tutorial/vscode-essenziale/ 301
+/shop-template/ /it/template/ 301
+/it/shop-template/ /it/template/ 301
+/footer/chi-sono/ /it/chi-sono/ 301
+/it/footer/chi-sono/ /it/chi-sono/ 301
+/footer/contatti/ /it/contatti/ 301
+/it/footer/contatti/ /it/contatti/ 301
+/footer/privacy-policy/ /it/privacy-policy/ 301
+/it/footer/privacy-policy/ /it/privacy-policy/ 301
+/footer/termini-servizio/ /it/termini-servizio/ 301
+/it/footer/termini-servizio/ /it/termini-servizio/ 301
+/html/footer/chi-sono.html /it/chi-sono/ 301
+/html/footer/contatti.html /it/contatti/ 301
+/html/footer/privacy-policy.html /it/privacy-policy/ 301
+/html/footer/termini-servizio.html /it/termini-servizio/ 301
