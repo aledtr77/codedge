@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
+import crypto from 'crypto';
 import { minify } from 'html-minifier-terser';
 import { imagetools } from 'vite-imagetools';
 import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
@@ -333,6 +334,98 @@ function movePagesToRootPlugin(outDir) {
   };
 }
 
+// Replaces 'unsafe-inline' in the published script-src with the SHA-256 hash of
+// every inline script the build actually emitted.
+//
+// The site needs a handful of inline scripts that must run before the first
+// paint (language preference, the anti-FOUC flag, the CSS-ready fade), so they
+// cannot move to a file. 'unsafe-inline' bought that at the price of also
+// authorising any script an attacker managed to inject — which matters here
+// because the playground, the palette extractor and the image compressor all
+// put reader input into the DOM. Hashes authorise exactly these scripts and
+// nothing else.
+//
+// Runs in closeBundle so it sees the final dist: after move-pages-to-root has
+// put the pages where they are served from, and after html-minifier has settled
+// the bytes the hash is taken over. A hash of pre-minified source would not
+// match what the browser receives.
+//
+// Only `script-src` is touched. Inline *style attributes* cannot be hashed, so
+// style-src keeps 'unsafe-inline' and is left exactly as written.
+function cspHashesPlugin(outDir) {
+  return {
+    name: 'csp-inline-hashes',
+    apply: 'build',
+    closeBundle() {
+      const distRoot = path.resolve(process.cwd(), outDir);
+      const headersFile = path.join(distRoot, '_headers');
+      if (!fs.existsSync(headersFile)) {
+        this.error('[csp-hashes] dist/_headers non trovato: la CSP non è stata scritta.');
+      }
+
+      const htmlFiles = [];
+      (function walk(dir) {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          const full = path.join(dir, entry.name);
+          if (entry.isDirectory()) walk(full);
+          else if (entry.isFile() && entry.name.endsWith('.html')) htmlFiles.push(full);
+        }
+      })(distRoot);
+
+      // An inline script is one without src. A type that is not a JavaScript
+      // MIME type (application/ld+json here) is data the browser never
+      // executes, so CSP does not apply to it and hashing it would only bloat
+      // the header — one hash per page instead of one for the whole site.
+      const EXECUTABLE_TYPE = /^(module|text\/javascript|application\/javascript)$/i;
+      const hashes = new Set();
+      for (const file of htmlFiles) {
+        const html = fs.readFileSync(file, 'utf8');
+        for (const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)) {
+          const [, attrs, body] = match;
+          if (/\ssrc\s*=/i.test(attrs)) continue;
+          const type = /\stype\s*=\s*["']([^"']*)["']/i.exec(attrs)?.[1]?.trim();
+          if (type && !EXECUTABLE_TYPE.test(type)) continue;
+          if (!body.trim()) continue;
+          hashes.add(crypto.createHash('sha256').update(body, 'utf8').digest('base64'));
+        }
+      }
+
+      if (hashes.size === 0) {
+        this.error('[csp-hashes] nessuno script inline trovato: sospetto, meglio fermarsi.');
+      }
+
+      const tokens = [...hashes].sort().map((h) => `'sha256-${h}'`).join(' ');
+      let replaced = 0;
+      const rewritten = fs
+        .readFileSync(headersFile, 'utf8')
+        .replace(/^(\s*Content-Security-Policy:\s*)(.+)$/gim, (line, label, policy) => {
+          const directives = policy.split(';').map((part) => {
+            if (!/^\s*script-src\s/i.test(part)) return part;
+            replaced += 1;
+            const kept = part
+              .trim()
+              .split(/\s+/)
+              .filter((token) => token !== "'unsafe-inline'");
+            return ` ${kept.join(' ')} ${tokens}`;
+          });
+          return label + directives.join(';');
+        });
+
+      if (replaced !== 1) {
+        this.error(
+          `[csp-hashes] atteso un solo script-src da riscrivere in _headers, trovati ${replaced}.`
+        );
+      }
+      if (rewritten.includes("script-src 'self' 'unsafe-inline'")) {
+        this.error("[csp-hashes] 'unsafe-inline' è ancora in script-src dopo la riscrittura.");
+      }
+
+      fs.writeFileSync(headersFile, rewritten);
+      console.log(`[csp-hashes] script-src: ${hashes.size} hash inline, 'unsafe-inline' rimosso`);
+    }
+  };
+}
+
 export default defineConfig(({ command }) => {
   const outDir = 'dist';
   const entries = scanEntries(ENTRY_DIR) || {};
@@ -378,6 +471,7 @@ export default defineConfig(({ command }) => {
   if (command === 'build') {
     plugins.push(htmlMinifierPlugin);
     plugins.push(movePagesToRootPlugin(outDir));
+    plugins.push(cspHashesPlugin(outDir));
   }
 
   return {

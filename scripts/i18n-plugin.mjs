@@ -336,22 +336,34 @@ export function langPreferencePlugin() {
         if (!twin) return html;
 
         const lang = langOf(route);
+
+        // The page's own language and the route of its twin ride on the tag as
+        // attributes, never baked into the body. A CSP hash covers the body
+        // alone, so keeping it byte-identical on every page lets one hash
+        // authorise all of them — see cspHashesPlugin in vite.config.js.
+        // document.currentScript is the running tag while the parser is inside
+        // it, which is exactly when this executes.
         const script = [
           '(function(){try{',
+          'var s=document.currentScript;if(!s)return;',
           `if(/${CRAWLER_UA_PATTERN}/i.test(navigator.userAgent))return;`,
           'var w=null;',
           `try{w=localStorage.getItem(${JSON.stringify(LANG_STORAGE_KEY)})}catch(e){}`,
           `if(w!=="it"&&w!=="en")w=${JSON.stringify(FALLBACK_LANG)};`,
-          `if(w===${JSON.stringify(lang)})return;`,
+          'if(w===s.getAttribute("data-page-lang"))return;',
+          'var t=s.getAttribute("data-lang-twin");if(!t)return;',
           // The query and the fragment belong to the reader (a pinned palette,
           // the section they were sent to), not to the language.
-          `location.replace(${JSON.stringify(twin)}+location.search+location.hash);`,
+          'location.replace(t+location.search+location.hash);',
           '}catch(e){}})();'
         ].join('');
 
+        const attr = (value) => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
         return html.replace(
           /<head\b[^>]*>/i,
-          (match) => `${match}\n  <script data-lang-preference>${script}</script>`
+          (match) =>
+            `${match}\n  <script data-lang-preference data-page-lang="${attr(lang)}" data-lang-twin="${attr(twin)}">${script}</script>`
         );
       }
     }

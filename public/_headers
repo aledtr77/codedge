@@ -12,3 +12,10 @@
 # Il service worker si aggiorna comunque subito dopo un deploy perché
 # src/scripts/components/pwa.js lo registra con updateViaCache:"none", che
 # salta la cache HTTP quando il browser controlla se c'è un worker nuovo.
+
+# Lo script che decide la lingua e quelli anti-FOUC sono inline e non possono
+# uscire da lì: girano prima del primo paint. Invece di aprire a tutto l'inline
+# con 'unsafe-inline', la CSP qui sopra viene riscritta a fine build con gli
+# hash SHA-256 di quei quattro script — vedi cspHashesPlugin in vite.config.js.
+# Perciò 'unsafe-inline' in script-src vale solo per `npm run dev`: nel dist
+# pubblicato non c'è.
