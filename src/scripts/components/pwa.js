@@ -17,7 +17,11 @@ if ("serviceWorker" in navigator) {
 
   const registerSW = () => {
     navigator.serviceWorker
-      .register("/sw.js")
+      // updateViaCache:"none" makes the browser fetch sw.js from the network
+      // instead of its HTTP cache when checking for an update. The host serves
+      // sw.js with max-age=14400, which would otherwise pin a returning reader
+      // to the previous worker for up to four hours after a deploy.
+      .register("/sw.js", { updateViaCache: "none" })
       .then((registration) => {
         // The browser only checks for a new sw.js on navigation. An installed
         // PWA resumed from the background may not navigate for a long time,

@@ -7,5 +7,8 @@
   X-Content-Type-Options: nosniff
   X-Permitted-Cross-Domain-Policies: none
 
-/sw.js
-  Cache-Control: no-cache
+# Nessuna regola Cache-Control qui: Pages serve i file statici con il suo
+# max-age (sw.js esce con max-age=14400) e ignora quello che scriviamo noi.
+# Il service worker si aggiorna comunque subito dopo un deploy perché
+# src/scripts/components/pwa.js lo registra con updateViaCache:"none", che
+# salta la cache HTTP quando il browser controlla se c'è un worker nuovo.
