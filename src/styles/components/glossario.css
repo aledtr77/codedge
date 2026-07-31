@@ -561,6 +561,44 @@ pre::-webkit-scrollbar-thumb:hover {
   padding: 0 2rem;
 }
 
+/* Contenitore separato e non dentro .breadcrumb-container: breadcrumb.js
+   rimuove quel blocco dal DOM appena monta la barra runtime, e il link se ne
+   andrebbe con lui dopo essere comparso per un istante. */
+.glossary-jump {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Il ritorno verso il percorso lungo. Al glossario si arriva quasi sempre da
+   una ricerca su un termine singolo, e senza questo link non c'è modo di
+   scoprire che sullo stesso argomento esiste un tutorial intero. Secondario
+   nella forma perché "Tutte le risorse" resta l'uscita principale: due pulsanti
+   pieni affiancati competerebbero fra loro. */
+.glossary-tutorial-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.4rem 0.95rem;
+  border: 1px solid rgba(143, 206, 255, 0.38);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--site-link-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glossary-tutorial-link:hover,
+.glossary-tutorial-link:focus-visible {
+  border-color: rgba(188, 227, 255, 0.85);
+  background: rgba(143, 206, 255, 0.12);
+  color: var(--site-link-hover-color);
+}
+
 @media (max-width: 768px) {
   .breadcrumb-container {
     margin-top: 2.75rem;
