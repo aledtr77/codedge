@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CODEDGE — Tutorial</title>
+    <link>https://codedge.it/it/</link>
+    <description>I tutorial pratici di sviluppo web di codedge.it, dal più recente.</description>
+    <language>it-IT</language>
+    <lastBuildDate>Sun, 26 Jul 2026 03:19:52 GMT</lastBuildDate>
+    <atom:link href="https://codedge.it/it/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Accessibilità web base senza panico</title>
+      <link>https://codedge.it/it/tutorial/accessibilita-web-base/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/accessibilita-web-base/</guid>
+      <description>Guida essenziale all</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Sviluppare con l'AI senza perdere il controllo</title>
+      <link>https://codedge.it/it/tutorial/ai-sviluppo-solido/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/ai-sviluppo-solido/</guid>
+      <description>Guida pratica per integrare l</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Browser e DevTools</title>
+      <link>https://codedge.it/it/tutorial/browser-devtools/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/browser-devtools/</guid>
+      <description>Guida pratica a browser e DevTools: inspector, console, Sources, Network, storage, Performance, Memory, Lighthouse e routine di debug front-end.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>CSS: stile e layout</title>
+      <link>https://codedge.it/it/tutorial/css-fondamentali/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/css-fondamentali/</guid>
+      <description>Una panoramica pratica su CSS: regole, selettori, specificità, Box Model, Flexbox, Grid, posizionamento e media query. La base essenziale per dare stile alle tue pagine web senza mal di testa.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Deploy base</title>
+      <link>https://codedge.it/it/tutorial/deploy-base/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/deploy-base/</guid>
+      <description>Guida pratica al deploy base: build, hosting, dominio, variabili ambiente, controlli finali ed errori comuni per pubblicare senza confusione.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Git pratico senza panico</title>
+      <link>https://codedge.it/it/tutorial/git-pratico-senza-panico/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/git-pratico-senza-panico/</guid>
+      <description>Guida pratica a Git per iniziare da zero: workflow quotidiano, commit chiari, branch, merge, remoti e recupero errori senza panico.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>GitHub operativo</title>
+      <link>https://codedge.it/it/tutorial/github-operativo/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/github-operativo/</guid>
+      <description>Guida pratica a GitHub per lavorare meglio su repository, push/pull, pull request, issue e workflow collaborativo quotidiano.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>HTML: struttura e senso</title>
+      <link>https://codedge.it/it/tutorial/html-fondamentali/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/html-fondamentali/</guid>
+      <description>Una panoramica pratica su HTML: struttura, semantica, tag essenziali, form, link e immagini. Un punto di partenza ragionato per capire come funziona il web prima di toccare CSS e JavaScript.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>JavaScript: i fondamentali</title>
+      <link>https://codedge.it/it/tutorial/javascript-fondamentali/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/javascript-fondamentali/</guid>
+      <description>Una guida pratica e approfondita su JavaScript: scoping, variabili, uguaglianza, funzioni, DOM, eventi ed asincronia con async/await. Cose che gli altri tutorial non spiegano chiaramente.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>NPM, Vite e struttura progetto</title>
+      <link>https://codedge.it/it/tutorial/npm-vite-struttura-progetto/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/npm-vite-struttura-progetto/</guid>
+      <description>Guida pratica a NPM, Vite, working tree e struttura progetto: package manager, script, dipendenze, cartelle, build locale e routine base.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>SEO tecnico base senza panico</title>
+      <link>https://codedge.it/it/tutorial/seo-tecnico-base/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/seo-tecnico-base/</guid>
+      <description>Guida essenziale alla SEO tecnica: title, description, URL, contenuti, link interni, sitemap, robots.txt, canonical, performance, dati strutturati e Search Console.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>VSCode essenziale</title>
+      <link>https://codedge.it/it/tutorial/vscode-essenziale/</link>
+      <guid isPermaLink="true">https://codedge.it/it/tutorial/vscode-essenziale/</guid>
+      <description>Guida professionale a VS Code: setup ottimizzato, configurazione del workspace, allineamento formatter/linter, debug avanzato e Git integrato.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

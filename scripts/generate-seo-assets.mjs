@@ -186,6 +186,121 @@ fs.writeFileSync(sitemapPath, buildSitemapXml(entries), 'utf8');
 console.log(`Generated ${path.relative(projectRoot, sitemapPath)} with ${entries.length} URLs`);
 
 /**
+ * One RSS feed per language, listing the tutorials newest first.
+ *
+ * Only tutorials go in: a feed is a list of things that get published, and the
+ * glossaries, tools and components are pages that get revised instead. Dates
+ * come from git — the first commit that added the file is the publication date,
+ * the last one that touched it is the update — so nothing has to be maintained
+ * by hand and the feed cannot drift from what is actually online.
+ */
+function escapeXml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function firstCommitDate(filePath) {
+  try {
+    const added = execFileSync(
+      'git',
+      ['log', '--diff-filter=A', '--format=%cI', '--', gitRelativePath(filePath)],
+      { cwd: projectRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
+    ).trim().split('\n').filter(Boolean).pop();
+    return added ? new Date(added).toISOString() : lastModifiedForFile(filePath);
+  } catch {
+    return lastModifiedForFile(filePath);
+  }
+}
+
+function readMeta(filePath) {
+  const html = fs.readFileSync(filePath, 'utf8');
+  const title = (html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || '';
+  const description =
+    (html.match(/<meta\s+name=["']description["'][^>]*content=["']([^"']*)["']/i) ||
+     html.match(/content=["']([^"']*)["'][^>]*name=["']description["']/i) || [])[1] || '';
+  return {
+    // "Titolo | Codedge" is right in a tab and noise in a feed reader, where the
+    // channel name is already on screen.
+    title: title.split('|')[0].replace(/\s+/g, ' ').trim(),
+    description: description.replace(/\s+/g, ' ').trim()
+  };
+}
+
+function buildFeedXml({ feedRoute, selfUrl, title, description, lang, items }) {
+  const body = items
+    .map(({ route, title: itemTitle, description: itemDescription, published }) => [
+      '    <item>',
+      `      <title>${escapeXml(itemTitle)}</title>`,
+      `      <link>${baseUrl}${route}</link>`,
+      `      <guid isPermaLink="true">${baseUrl}${route}</guid>`,
+      itemDescription ? `      <description>${escapeXml(itemDescription)}</description>` : '',
+      published ? `      <pubDate>${new Date(published).toUTCString()}</pubDate>` : '',
+      '    </item>'
+    ].filter(Boolean).join('\n'))
+    .join('\n');
+
+  const newest = items.map((i) => i.published).filter(Boolean).sort().pop();
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+    '  <channel>',
+    `    <title>${escapeXml(title)}</title>`,
+    `    <link>${baseUrl}${feedRoute === '/feed.xml' ? '/' : '/it/'}</link>`,
+    `    <description>${escapeXml(description)}</description>`,
+    `    <language>${lang}</language>`,
+    newest ? `    <lastBuildDate>${new Date(newest).toUTCString()}</lastBuildDate>` : '',
+    `    <atom:link href="${selfUrl}" rel="self" type="application/rss+xml"/>`,
+    body,
+    '  </channel>',
+    '</rss>',
+    ''
+  ].filter(Boolean).join('\n');
+}
+
+const FEEDS = [
+  {
+    feedRoute: '/feed.xml',
+    file: path.join(publicRoot, 'feed.xml'),
+    prefix: '/tutorials/',
+    lang: 'en-US',
+    title: 'CODEDGE — Tutorials',
+    description: 'Hands-on web development tutorials from codedge.it, newest first.'
+  },
+  {
+    feedRoute: '/it/feed.xml',
+    file: path.join(publicRoot, 'it', 'feed.xml'),
+    prefix: '/it/tutorial/',
+    lang: 'it-IT',
+    title: 'CODEDGE — Tutorial',
+    description: 'I tutorial pratici di sviluppo web di codedge.it, dal più recente.'
+  }
+];
+
+for (const feed of FEEDS) {
+  const items = entries
+    .filter(({ route }) => route.startsWith(feed.prefix) && route !== feed.prefix)
+    .map(({ filePath, route }) => ({
+      route,
+      published: firstCommitDate(filePath),
+      ...readMeta(filePath)
+    }))
+    .filter(({ title }) => title)
+    .sort((a, b) => String(b.published).localeCompare(String(a.published)));
+
+  fs.mkdirSync(path.dirname(feed.file), { recursive: true });
+  fs.writeFileSync(
+    feed.file,
+    buildFeedXml({ ...feed, selfUrl: `${baseUrl}${feed.feedRoute}`, items }),
+    'utf8'
+  );
+  console.log(`Generated ${path.relative(projectRoot, feed.file)} with ${items.length} items`);
+}
+
+/**
  * The 301s that keep the pre-29/07/2026 URLs alive.
  *
  * Until then Italian was served from the root and English from /en/; the two

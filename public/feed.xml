@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CODEDGE — Tutorials</title>
+    <link>https://codedge.it/</link>
+    <description>Hands-on web development tutorials from codedge.it, newest first.</description>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 26 Jul 2026 03:19:52 GMT</lastBuildDate>
+    <atom:link href="https://codedge.it/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Developing with AI without losing control</title>
+      <link>https://codedge.it/tutorials/ai-assisted-development/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/ai-assisted-development/</guid>
+      <description>A practical guide to bringing AI into your development flow: clear specifications, effective prompts, an 8-step pipeline and reviewing the generated code. Method before tools.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Browsers and DevTools</title>
+      <link>https://codedge.it/tutorials/browser-devtools/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/browser-devtools/</guid>
+      <description>A practical guide to browsers and DevTools: inspector, console, Sources, Network, storage, Performance, Memory, Lighthouse and a front-end debugging routine.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>CSS: style and layout</title>
+      <link>https://codedge.it/tutorials/css-fundamentals/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/css-fundamentals/</guid>
+      <description>A practical overview of CSS: rules, selectors, specificity, the Box Model, Flexbox, Grid, positioning and media queries. The essential foundation for styling your web pages without the headache.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Deployment basics</title>
+      <link>https://codedge.it/tutorials/deployment-basics/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/deployment-basics/</guid>
+      <description>A practical guide to deployment basics: build, hosting, domain, environment variables, final checks and the common mistakes to avoid when publishing.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Git without panic</title>
+      <link>https://codedge.it/tutorials/git-without-panic/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/git-without-panic/</guid>
+      <description>A practical guide to Git from scratch: a daily workflow, clear commits, branches, merges, remotes and recovering from mistakes without panic.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>GitHub in practice</title>
+      <link>https://codedge.it/tutorials/github-in-practice/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/github-in-practice/</guid>
+      <description>A practical guide to GitHub for working better with repositories, push/pull, pull requests, issues and a day-to-day collaborative workflow.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>HTML: structure and meaning</title>
+      <link>https://codedge.it/tutorials/html-fundamentals/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/html-fundamentals/</guid>
+      <description>A practical overview of HTML: structure, semantics, the essential tags, forms, links and images. A considered starting point for understanding how the web works before you touch CSS and JavaScript.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>JavaScript: the fundamentals</title>
+      <link>https://codedge.it/tutorials/javascript-fundamentals/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/javascript-fundamentals/</guid>
+      <description>A practical, in-depth guide to JavaScript: scoping, variables, equality, functions, the DOM, events and asynchrony with async/await. The things other tutorials don</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>NPM, Vite and project structure</title>
+      <link>https://codedge.it/tutorials/npm-vite-project-structure/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/npm-vite-project-structure/</guid>
+      <description>A practical guide to NPM, Vite, the working tree and project structure: package manager, scripts, dependencies, folders, local builds and a basic routine.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Technical SEO basics without panic</title>
+      <link>https://codedge.it/tutorials/technical-seo-basics/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/technical-seo-basics/</guid>
+      <description>An essential guide to technical SEO: title, description, URLs, content, internal links, sitemap, robots.txt, canonical, performance, structured data and Search Console.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>VS Code essentials</title>
+      <link>https://codedge.it/tutorials/vscode-essentials/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/vscode-essentials/</guid>
+      <description>A professional guide to VS Code: an optimised setup, workspace configuration, formatter/linter alignment, advanced debugging and built-in Git.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+    <item>
+      <title>Web accessibility basics without panic</title>
+      <link>https://codedge.it/tutorials/web-accessibility-basics/</link>
+      <guid isPermaLink="true">https://codedge.it/tutorials/web-accessibility-basics/</guid>
+      <description>An essential guide to web accessibility: semantic HTML, alt text, keyboard, focus, contrast, forms, ARIA, responsive layouts and a practical checklist.</description>
+      <pubDate>Sun, 26 Jul 2026 03:19:52 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

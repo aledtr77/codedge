@@ -10,10 +10,22 @@ import fs from 'fs';
 import path from 'path';
 import { execFileSync } from 'child_process';
 import { formatSegment, LANG_PREFIX_SEGMENTS } from '../src/scripts/components/breadcrumb-vocabulary.js';
-import { langOf, routeFromSourceDir } from '../src/i18n/routes.mjs';
+import { ROUTE_MAP, counterpartOf, langOf, routeFromSourceDir, sourceDirForRoute } from '../src/i18n/routes.mjs';
 
 const DEFAULT_OG_IMAGE = '/og/opengraph-1200x630.jpg';
 const IN_LANGUAGE = { it: 'it-IT', en: 'en-US' };
+const AUTHOR = { '@type': 'Person', name: 'Alessandro DTR', sameAs: ['https://github.com/aledtr77'] };
+
+/**
+ * Which kind of page a route is, asked in one language only. Matching the live
+ * URLs directly needs one pattern per language and silently stops matching the
+ * day they are renamed or swapped — which is exactly what happened when the
+ * default language moved to the root. The IT route is the stable identity of a
+ * page pair in ROUTE_MAP, so every check is written against that.
+ */
+function itRouteOf(route) {
+  return langOf(route) === 'it' ? route : counterpartOf(route) ?? route;
+}
 
 function readBaseUrl(projectRoot) {
   try {
@@ -113,7 +125,7 @@ function techArticleLd(baseUrl, route, html, filePath, projectRoot, lang) {
     '@type': 'TechArticle',
     headline,
     description,
-    author: { '@type': 'Person', name: 'Alessandro' },
+    author: AUTHOR,
     publisher: { '@type': 'Organization', name: 'CODEDGE', url: `${baseUrl}/` },
     inLanguage: IN_LANGUAGE[lang],
     url,
@@ -147,6 +159,55 @@ function glossaryLd(baseUrl, route, html, lang) {
   };
 }
 
+/**
+ * The pages one level below a section index, in the order the visitor meets
+ * them on the page. Derived from ROUTE_MAP rather than from the card markup so
+ * a restyled grid cannot silently empty the list, and filtered by what the page
+ * actually links so a route present in the map but not yet linked stays out.
+ */
+function childRoutesOf(route, lang, html) {
+  const all = lang === 'it' ? Object.keys(ROUTE_MAP) : Object.values(ROUTE_MAP);
+  const depth = route.split('/').filter(Boolean).length;
+  return all
+    .filter((r) => r !== route && r.startsWith(route) &&
+      r.split('/').filter(Boolean).length === depth + 1 &&
+      html.includes(`href="${r}"`))
+    .sort((a, b) => html.indexOf(`href="${a}"`) - html.indexOf(`href="${b}"`));
+}
+
+function itemListLd(baseUrl, route, html, lang, pagesRoot) {
+  const children = childRoutesOf(route, lang, html);
+  if (children.length < 2) return null;
+
+  const itemListElement = children.map((child, i) => {
+    let name = '';
+    try {
+      const file = path.join(pagesRoot, sourceDirForRoute(child), 'index.html');
+      name = getTitleHeadline(fs.readFileSync(file, 'utf8'));
+    } catch {
+      name = '';
+    }
+    return {
+      '@type': 'ListItem',
+      position: i + 1,
+      name: name || formatSegment(child.split('/').filter(Boolean).pop(), lang),
+      url: `${baseUrl}${child}`
+    };
+  });
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: getTitleHeadline(html) || undefined,
+    description: getMetaDescription(html) || undefined,
+    url: getCanonical(html) || `${baseUrl}${route}`,
+    inLanguage: IN_LANGUAGE[lang],
+    numberOfItems: itemListElement.length,
+    itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    itemListElement
+  };
+}
+
 export default function seoJsonLdPlugin() {
   const projectRoot = process.cwd();
   const pagesRoot = path.resolve(projectRoot, 'pages');
@@ -177,14 +238,22 @@ export default function seoJsonLdPlugin() {
           blocks.push(breadcrumbLd(baseUrl, route, lang));
         }
 
-        const isTutorial = /^\/tutorial\/[^/]+\/$/.test(route) || /^\/en\/tutorials\/[^/]+\/$/.test(route);
+        const itRoute = itRouteOf(route);
+
+        const isTutorial = /^\/it\/tutorial\/[^/]+\/$/.test(itRoute);
         if (isTutorial && !html.includes('"TechArticle"')) {
           blocks.push(techArticleLd(baseUrl, route, html, filename, projectRoot, lang));
         }
 
-        const isGlossary = /^\/risorse\/glossario-[^/]+\/$/.test(route) || /^\/en\/resources\/[^/]+-glossary\/$/.test(route);
+        const isGlossary = /^\/it\/risorse\/glossario-[^/]+\/$/.test(itRoute);
         if (isGlossary && !html.includes('"DefinedTermSet"')) {
           blocks.push(glossaryLd(baseUrl, route, html, lang));
+        }
+
+        // Section indexes: the grid of cards is a list, and saying so is what
+        // earns the expanded result with sub-links under the snippet.
+        if (!isLanguageHome && !html.includes('"ItemList"')) {
+          blocks.push(itemListLd(baseUrl, route, html, lang, pagesRoot));
         }
 
         const valid = blocks.filter(Boolean);
