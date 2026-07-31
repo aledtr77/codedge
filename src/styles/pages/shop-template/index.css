@@ -94,11 +94,41 @@
   line-height: 1.03;
 }
 
-.shop-hero-copy > p:not(.section-kicker) {
-  margin: 1.1rem 0 0;
+/* Il testo si distribuisce su due colonne invece di stendersi per tutti i
+   1600px del contenitore: la pagina resta piena, ma nessuna riga supera la
+   settantina di caratteri, che è il punto oltre il quale l'occhio perde il capo
+   quando torna a sinistra. */
+.shop-hero-body,
+.shop-section-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3.5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(1.4rem, 2.5vw, 2.1rem);
+}
+
+/* Un solo punto d'ingresso per blocco: il paragrafo d'apertura è più grande e
+   più chiaro, tutto il resto arretra. Senza questo stacco il lettore non sa da
+   dove cominciare e legge tutto con lo stesso peso, cioè non legge niente. */
+.shop-lead {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: clamp(1.1rem, 1.5vw, 1.32rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.shop-hero-notes p,
+.shop-section-body > p:not(.shop-lead) {
+  margin: 0 0 1rem;
   color: var(--shop-muted);
-  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  font-size: clamp(0.95rem, 1.1vw, 1.04rem);
   line-height: 1.75;
+}
+
+.shop-hero-notes p:last-child,
+.shop-section-body > p:last-child {
+  margin-bottom: 0;
 }
 
 .shop-hero-actions {
@@ -106,7 +136,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem 1.2rem;
-  margin-top: 1.55rem;
+  margin-top: clamp(1.5rem, 2.5vw, 2.1rem);
 }
 
 .shop-layout .button-simple {
@@ -410,13 +440,16 @@
 }
 
 .shop-custom {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
   padding: clamp(2rem, 4vw, 3.25rem) 0 0;
   border-top: 1px solid var(--shop-line);
 }
 
 .shop-custom-copy {
-  max-width: none;
+  max-width: 62ch;
 }
 
 .shop-custom h2 {
@@ -542,5 +575,17 @@
   .shop-layout .shop-demo-link:hover {
     background: rgba(11, 89, 171, 0.42);
     box-shadow: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .shop-hero-body,
+  .shop-section-body,
+  .shop-custom {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-custom-action {
+    justify-self: start;
   }
 }
