@@ -145,6 +145,16 @@
         margin-top: 0;
         max-width: none;
       }
+      /* Titolo di colonna: deve etichettare il blocco senza competere con
+         l'h1 e col logo, quindi resta appena sopra il corpo del testo. */
+      .description-column__heading {
+        margin: 0;
+        font-size: clamp(1.05rem, 1.5vw, 1.24rem);
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: 0.005em;
+        color: rgba(255, 255, 255, 0.94);
+      }
       .hero-inline-link {
         color: inherit;
         font-weight: 700;
