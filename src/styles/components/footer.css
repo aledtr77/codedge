@@ -87,42 +87,45 @@ footer {
   outline-offset: 4px;
   border-radius: 0.45rem;
 }
+/* The mark is an inline SVG, not a webfont glyph: at 32px the font rasterizer
+   smeared the octocat and the old 1.5px multi-colour border read as a blurry
+   halo. Integer sizes + a single flat border keep every edge on the pixel. */
 .footer-social-link-github {
   border-color: transparent;
   background: transparent;
   box-shadow: none;
 }
-.footer-social-link-github i {
+.footer-github-tile {
+  display: grid;
+  place-items: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 0.56rem;
+  border-radius: 0.5rem;
   color: #ffffff;
-  font-size: 1.45rem;
-  background: #0d0d0d;
-  border: 1.5px solid rgba(255, 255, 255, 0.92);
-  border-top-color: #ffffff;
-  border-bottom-color: rgba(255, 255, 255, 0.85);
-  box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35),
-    0 4px 10px -6px rgba(0, 0, 0, 0.75);
-  -webkit-text-fill-color: #ffffff;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 6px -3px rgba(0, 0, 0, 0.8);
   transition:
     transform 0.22s ease,
-    box-shadow 0.22s ease;
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+.footer-github-mark {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 .footer-social-link-github:hover {
   filter: none;
+  transform: none;
   border-color: transparent;
   background: transparent;
   box-shadow: none;
 }
-.footer-social-link-github:hover i {
-  transform: scale(1.06);
-  box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
-    0 8px 16px -8px rgba(24, 23, 23, 0.9);
+.footer-social-link-github:hover .footer-github-tile {
+  transform: translateY(-1px) scale(1.06);
+  border-color: #ffffff;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.9);
 }
 .footer-social-link-github:focus-visible {
   outline-color: rgba(255, 255, 255, 0.75);
