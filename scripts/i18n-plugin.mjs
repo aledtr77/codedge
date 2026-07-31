@@ -167,7 +167,6 @@ function footerTokens(lang) {
     FOOTER_ABOUT: s['footer.about'],
     FOOTER_BUG: s['footer.reportBug'],
     FOOTER_ICONS: s['footer.icons'],
-    FOOTER_YT_ARIA: s['footer.youtubeAria'],
     FOOTER_GH_ARIA: s['footer.githubAria']
   };
 }
