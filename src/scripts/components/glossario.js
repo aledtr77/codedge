@@ -465,12 +465,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", syncHeaderOffset);
 
-  search?.addEventListener("input", () => filterEntries(true));
+  // Deep link: /risorse/glossario-css/?q=flex-direction apre il glossario già
+  // filtrato su quel termine. Senza, un tutorial può linkare soltanto la cima
+  // di un elenco da centinaia di voci e lascia al lettore il compito di
+  // ritrovarsela a mano. La lang-switch si porta dietro location.search, quindi
+  // il termine sopravvive al cambio lingua.
+  const QUERY_PARAM = "q";
+
+  function readQueryFromUrl() {
+    try {
+      return new URLSearchParams(location.search).get(QUERY_PARAM) || "";
+    } catch {
+      return "";
+    }
+  }
+
+  function writeQueryToUrl(value) {
+    if (typeof history.replaceState !== "function") return;
+    try {
+      const url = new URL(location.href);
+      if (value) url.searchParams.set(QUERY_PARAM, value);
+      else url.searchParams.delete(QUERY_PARAM);
+      // replaceState e non pushState: digitando, un pushState per tasto
+      // riempirebbe la cronologia e il tasto indietro non tornerebbe più
+      // alla pagina da cui si arriva.
+      history.replaceState(history.state, "", `${url.pathname}${url.search}${url.hash}`);
+    } catch {
+      /* URL non manipolabile: la ricerca continua a funzionare in pagina */
+    }
+  }
+
+  search?.addEventListener("input", () => {
+    filterEntries(true);
+    writeQueryToUrl(search.value.trim());
+  });
 
   clickableItems.forEach((item) => {
     item.addEventListener("click", () => {
       if (search) {
         search.value = "";
+        writeQueryToUrl("");
         filterEntries(false);
       }
 
@@ -502,5 +536,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (search) search.value = "";
   });
 
-  filterEntries(false);
+  const initialQuery = readQueryFromUrl();
+  if (initialQuery && search) {
+    search.value = initialQuery;
+    // scrollToFirst: chi arriva da un link su un termine deve trovarselo
+    // davanti, non in fondo a un elenco filtrato.
+    filterEntries(true);
+  } else {
+    filterEntries(false);
+  }
 });

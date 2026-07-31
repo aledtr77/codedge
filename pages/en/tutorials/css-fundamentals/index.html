@@ -213,7 +213,7 @@
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>3. The fundamental selectors</h2>
             <section class="guide-subchapter">
-              <p>Before you can style an element, you have to be able to find it. That's what selectors are for. Here are the basics:</p>
+              <p>Before you can style an element, you have to be able to find it. That's what <a href="/resources/css-glossary/?q=selectors">selectors</a> are for. Here are the basics:</p>
               <ul class="guide-list">
                 <li><strong>Type (or tag) selector</strong>: selects every element with that specific tag (`h2` colors all H2 headings).</li>
                 <li><strong>Class selector</strong>: selects elements carrying a specific HTML class. It starts with a dot (`.`) and is reusable on as many elements as you like (`.card`).</li>
@@ -235,7 +235,7 @@ p { color: #333; }
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>4. The cascade and specificity</h2>
             <section class="guide-subchapter">
-              <p>What happens if two different rules try to apply different colors to the same paragraph? Who wins? In CSS the answer is governed by two key concepts.</p>
+              <p>What happens if two different rules try to apply different colors to the same paragraph? Who wins? In CSS the answer is governed by two key concepts: the <a href="/resources/css-glossary/?q=cascade">cascade</a> and <a href="/resources/css-glossary/?q=specificity">specificity</a>.</p>
               <h3>The cascade</h3>
               <p>The browser reads code from top to bottom. When selectors are equally important, the rule written last wins and overrides the earlier ones:</p>
               <pre><code>p { color: red; }
@@ -262,7 +262,7 @@ p { color: blue; }
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Shipping parcels: the Box Model</h2>
             <section class="guide-subchapter">
-              <p>As far as the browser is concerned, **every element on the page is a rectangular box**. That box is governed by the Box Model.</p>
+              <p>As far as the browser is concerned, **every element on the page is a rectangular box**. That box is governed by the <a href="/resources/css-glossary/?q=box%20model">Box Model</a>.</p>
               
               <h3>The postal shipping metaphor</h3>
               <p>To understand the Box Model, imagine you have to ship a fragile ceramic vase by post:</p>
@@ -306,7 +306,7 @@ p { color: blue; }
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>7. Horizontal and vertical layouts: Flexbox</h2>
             <section class="guide-subchapter">
-              <p>Flexbox is the go-to tool for aligning and distributing elements along **a single dimension** (horizontally as a row, or vertically as a column). It is perfect for navigation bars, lists of items, or alignment inside a component.</p>
+              <p><a href="/resources/css-glossary/?q=flexbox">Flexbox</a> is the go-to tool for aligning and distributing elements along **a single dimension** (horizontally as a row, or vertically as a column). It is perfect for navigation bars, lists of items, or alignment inside a component.</p>
               <p>To switch it on, apply `display: flex` to the container element:</p>
               <pre><code>.menu {
   display: flex;
@@ -322,7 +322,7 @@ p { color: blue; }
           <section id="chapter-09" class="guide-block guide-chapter">
             <h2>8. Two-dimensional layouts: Grid</h2>
             <section class="guide-subchapter">
-              <p>While Flexbox works on one row or column at a time, CSS Grid lets you manage **two dimensions at once** (rows and columns). It is the ideal tool for card grids, complex photo galleries, or the structural frame of a page.</p>
+              <p>While Flexbox works on one row or column at a time, CSS <a href="/resources/css-glossary/?q=grid%20layout">Grid</a> lets you manage **two dimensions at once** (rows and columns). It is the ideal tool for card grids, complex photo galleries, or the structural frame of a page.</p>
               <pre><code>.card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns of equal size */

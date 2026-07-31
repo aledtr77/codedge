@@ -213,7 +213,7 @@
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>3. I Selettori Fondamentali</h2>
             <section class="guide-subchapter">
-              <p>Per poter applicare uno stile a un elemento, devi prima riuscire a trovarlo. I selettori servono a questo. Ecco quelli di base:</p>
+              <p>Per poter applicare uno stile a un elemento, devi prima riuscire a trovarlo. I <a href="/it/risorse/glossario-css/?q=selectors">selettori</a> servono a questo. Ecco quelli di base:</p>
               <ul class="guide-list">
                 <li><strong>Selettore di Tipo (o tag)</strong>: seleziona tutti gli elementi con quel tag specifico (es. `h2` colora tutti i titoli H2).</li>
                 <li><strong>Selettore di Classe</strong>: seleziona gli elementi con una specifica classe HTML. Si indica con un punto (`.`) ed è riutilizzabile su quanti elementi vuoi (es. `.card`).</li>
@@ -235,7 +235,7 @@ p { color: #333; }
           <section id="chapter-05" class="guide-block guide-chapter">
             <h2>4. La Cascata e la Specificità</h2>
             <section class="guide-subchapter">
-              <p>Cosa succede se due regole diverse cercano di applicare colori differenti allo stesso paragrafo? Chi vince la sfida? Nel CSS la risposta è regolata da due concetti cardine.</p>
+              <p>Cosa succede se due regole diverse cercano di applicare colori differenti allo stesso paragrafo? Chi vince la sfida? Nel CSS la risposta è regolata da due concetti cardine: la <a href="/it/risorse/glossario-css/?q=cascade">cascata</a> e la <a href="/it/risorse/glossario-css/?q=specificity">specificità</a>.</p>
               <h3>La Cascata</h3>
               <p>Il browser legge il codice dall'alto verso il basso. A parità di importanza del selettore, l'ultima regola scritta in ordine temporale vince e sovrascrive quelle precedenti:</p>
               <pre><code>p { color: red; }
@@ -262,7 +262,7 @@ p { color: blue; }
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Spedire pacchi: il Box Model</h2>
             <section class="guide-subchapter">
-              <p>Per il browser, **qualunque elemento sulla pagina è una scatola rettangolare**. Questa scatola è regolata dal Box Model.</p>
+              <p>Per il browser, **qualunque elemento sulla pagina è una scatola rettangolare**. Questa scatola è regolata dal <a href="/it/risorse/glossario-css/?q=box%20model">Box Model</a>.</p>
               
               <h3>La metafora della spedizione postale</h3>
               <p>Per capire il Box Model, immagina di dover spedire un vaso di ceramica fragile per posta:</p>
@@ -306,7 +306,7 @@ p { color: blue; }
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>7. Layout orizzontali/verticali: Flexbox</h2>
             <section class="guide-subchapter">
-              <p>Flexbox è lo strumento principe per allineare e distribuire gli elementi lungo **una singola dimensione** (in orizzontale come riga, o in verticale come colonna). È perfetto per barre di navigazione, liste di elementi o allineamenti interni a componenti.</p>
+              <p><a href="/it/risorse/glossario-css/?q=flexbox">Flexbox</a> è lo strumento principe per allineare e distribuire gli elementi lungo **una singola dimensione** (in orizzontale come riga, o in verticale come colonna). È perfetto per barre di navigazione, liste di elementi o allineamenti interni a componenti.</p>
               <p>Per attivarlo, basta applicare `display: flex` all'elemento contenitore:</p>
               <pre><code>.menu {
   display: flex;
@@ -322,7 +322,7 @@ p { color: blue; }
           <section id="chapter-09" class="guide-block guide-chapter">
             <h2>8. Layout bidimensionali: Grid</h2>
             <section class="guide-subchapter">
-              <p>Mentre Flexbox lavora su una sola riga o colonna alla volta, CSS Grid permette di gestire **due dimensioni contemporaneamente** (righe e colonne). È lo strumento ideale per griglie di card, gallerie fotografiche complesse o per la gabbia strutturale della pagina.</p>
+              <p>Mentre Flexbox lavora su una sola riga o colonna alla volta, CSS <a href="/it/risorse/glossario-css/?q=grid%20layout">Grid</a> permette di gestire **due dimensioni contemporaneamente** (righe e colonne). È lo strumento ideale per griglie di card, gallerie fotografiche complesse o per la gabbia strutturale della pagina.</p>
               <pre><code>.griglia-card {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colonne di ugual dimensione */
