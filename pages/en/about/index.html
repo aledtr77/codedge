@@ -13,6 +13,30 @@
   <meta name="description"
     content="Who I am, how Codedge came about and why I built this space for front-end work, practical resources, UI components and digital projects.">
   <link rel="canonical" href="https://codedge.it/about/">
+  <!-- ProfilePage: è la pagina che il WebSite della home indica come "url" dell'autore.
+       Senza questo blocco quel rimando punta a una pagina che non si dichiara di nessuno. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://codedge.it/about/",
+      "inLanguage": "en-US",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Alessandro DTR",
+        "url": "https://codedge.it/about/",
+        "jobTitle": "Front-end developer",
+        "description": "Self-taught front-end developer, author of CODEDGE: glossaries, tutorials, tools and components for web development.",
+        "sameAs": ["https://github.com/aledtr77"],
+        "knowsAbout": ["HTML", "CSS", "JavaScript", "Front-end development", "Web accessibility", "Technical SEO", "Git"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "CODEDGE",
+          "url": "https://codedge.it/"
+        }
+      }
+    }
+  </script>
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
@@ -71,26 +95,54 @@
         
         <div class="about-text-side">
           <p>
-            My name is <strong>Alessandro DTR</strong>, and Codedge is where I collect everything I study, build and refine in front-end. It's a personal project born to give shape to my own path, pairing a passion for IT and digital technologies with an orderly, quality-driven way of working.
+            My name is <strong>Alessandro DTR</strong> and I taught myself to code. CODEDGE came out of that: while I was learning I kept twenty tabs open and rewrote the same notes three times, so I started putting things in one place, written the way I would have wanted to find them.
           </p>
 
           <p>
-            The approach I follow is built on learning by doing: start from the fundamentals and turn them straight into real pages, components or tools. I prefer a concrete path, where testing, revising and improving step by step serve both to consolidate my own skills and to make every section of the site genuinely useful to whoever lands on it.
+            I work on front-end and everything that orbits it. What I know I learned by building things, breaking them and building them again, and this site is where that work takes a shape someone else can read.
           </p>
         </div>
       </div>
 
       <!-- Seconda Parte del Testo -->
       <div class="about-body">
+        <h2>How I work</h2>
+
         <p>
-          Inside you'll find web development, digital tools and artificial intelligence covered in an approachable way: every section opens with a quick overview, meant as a light guide for anyone starting out without excessive complications, and then goes down into the practical details and the condensed solutions.
+          I always start from something that runs. I'd rather have a component that genuinely works than a flawless explanation of how it would work: the code I publish is code I wrote to use, not to illustrate. When I explain something I explain it once, in the right place, and link to it from then on — which is why the glossaries and the tutorials point at each other instead of repeating each other.
         </p>
 
         <p>
-          If you want to find your way around Codedge, you can start from the <strong><a href="/tutorials/">Tutorials</a></strong> for ready-to-use practical solutions, explore the everyday <strong><a href="/tools/">Tools</a></strong>, or browse the <strong><a href="/resources/">Resources</a></strong> for a quick refresher on syntax and key concepts.
+          The other half of the method is less fun and matters more: checking. A change that "should work" isn't finished as far as I'm concerned — it has to be opened in the browser, looked at on a large screen and a small one, and checked for what it might have broken that used to be fine. Most of what's here has been through that loop at least twice.
+        </p>
+
+        <h2>How this site is built</h2>
+
+        <p>
+          The most honest way to show you how I work is to let you look inside the thing I built. CODEDGE is written by hand, with no framework: HTML, CSS and JavaScript, with <strong>Vite</strong> putting the pages together. There's no React, no CMS, no bought theme.
+        </p>
+
+        <p>
+          The <a href="/tools/">tools</a> run entirely in your browser: when you compress an image no request goes out and the file never leaves your computer. The <a href="/ui-components/">components</a> are written with ARIA attributes and keyboard focus handling built in, not bolted on afterwards. The site is bilingual, and the alignment between English and Italian is watched by a script that flags it when a page changes on one side only. The code is public on <a href="https://github.com/aledtr77/01-codedge" target="_blank" rel="noopener noreferrer">GitHub</a>: if something doesn't add up, you can go and see how it's done.
+        </p>
+
+        <h2>What you'll find here</h2>
+
+        <p>
+          Right now there are <strong>418 entries</strong> across the three glossaries for <a href="/resources/html-glossary/">HTML</a>, <a href="/resources/css-glossary/">CSS</a> and <a href="/resources/javascript-glossary/">JavaScript</a>, to check when a property or a method won't come back to you. There are <strong>12 <a href="/tutorials/">tutorials</a></strong> on Git and GitHub, browser DevTools, accessibility, deployment, technical SEO and the fundamentals of the three languages. There are <strong>4 <a href="/tools/">tools</a></strong> for everyday work and <strong>4 <a href="/ui-components/">components</a></strong> with their full code, plus a <a href="/resources/snippet-library/">snippet library</a> ready to paste.
+        </p>
+
+        <h2>Working together</h2>
+
+        <p>
+          I'm available for collaborations and commissioned work: sites and landing pages, custom components, work on projects that already exist. If you have something in mind, <a href="/contact/">get in touch</a> and we'll talk it through — even just to work out whether I'm the right person for the job.
+        </p>
+
+        <p>
+          If you'd rather have something ready-made, the <a href="/templates/">Templates</a> section holds my finished portfolio projects, for sale in my Etsy shop. And if you've spotted a mistake on a page or want to contribute, an issue on GitHub is the quickest way to let me know.
         </p>
       </div>
-      
+
     </article>
   </main>
 

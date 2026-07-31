@@ -13,6 +13,30 @@
   <meta name="description"
     content="Chi sono, come nasce Codedge e perché ho creato questo spazio dedicato a front-end, risorse pratiche, componenti UI e progetti digitali.">
   <link rel="canonical" href="https://codedge.it/it/chi-sono/">
+  <!-- ProfilePage: è la pagina che il WebSite della home indica come "url" dell'autore.
+       Senza questo blocco quel rimando punta a una pagina che non si dichiara di nessuno. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://codedge.it/it/chi-sono/",
+      "inLanguage": "it-IT",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Alessandro DTR",
+        "url": "https://codedge.it/it/chi-sono/",
+        "jobTitle": "Sviluppatore front-end",
+        "description": "Sviluppatore front-end autodidatta, autore di CODEDGE: glossari, tutorial, strumenti e componenti per lo sviluppo web.",
+        "sameAs": ["https://github.com/aledtr77"],
+        "knowsAbout": ["HTML", "CSS", "JavaScript", "Sviluppo front-end", "Accessibilità web", "SEO tecnica", "Git"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "CODEDGE",
+          "url": "https://codedge.it/"
+        }
+      }
+    }
+  </script>
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
@@ -71,26 +95,54 @@
         
         <div class="about-text-side">
           <p>
-            Mi chiamo <strong>Alessandro DTR</strong> e Codedge è lo spazio in cui raccolgo quello che studio, costruisco e affino nel front-end. È un progetto personale nato per dare forma al mio percorso, unendo la passione per l'IT e per le tecnologie digitali a un modo di lavorare ordinato e orientato alla qualità.
+            Mi chiamo <strong>Alessandro DTR</strong> e ho imparato a programmare da autodidatta. CODEDGE nasce da lì: mentre studiavo tenevo venti schede aperte e riscrivevo gli stessi appunti tre volte, così ho iniziato a mettere le cose in un posto solo, scritte come avrei voluto trovarle io.
           </p>
 
           <p>
-            L'approccio che seguo si basa sull'apprendimento pratico: partire dai concetti fondamentali e tradurli subito in pagine, componenti o strumenti reali. Preferisco un percorso concreto, dove test, revisioni e miglioramenti progressivi servono sia a consolidare le mie competenze sia a rendere ogni sezione del sito utile per chi la visita.
+            Lavoro sul front-end e su tutto quello che ci gira intorno. Quello che so l'ho imparato costruendo, rompendo e rifacendo, e questo sito è il posto dove quel lavoro prende una forma leggibile anche per qualcun altro.
           </p>
         </div>
       </div>
 
       <!-- Seconda Parte del Testo -->
       <div class="about-body">
+        <h2>Come lavoro</h2>
+
         <p>
-          Qui dentro trovi sviluppo web, strumenti digitali e intelligenza artificiale raccontati in modo accessibile: ogni sezione parte da una panoramica rapida, pensata come una guida leggera per chi inizia senza complicazioni eccessive, per poi scendere nei dettagli pratici e nelle soluzioni condensate.
+          Parto sempre da qualcosa che gira. Preferisco un componente che funziona davvero a una spiegazione impeccabile di come funzionerebbe: il codice che pubblico l'ho scritto per usarlo, non per illustrarlo. Quando spiego una cosa la spiego una volta sola, nel punto giusto, e poi da lì la linko: è il motivo per cui i glossari e i tutorial si rimandano a vicenda invece di ripetersi.
         </p>
 
         <p>
-          Se vuoi orientarti all'interno di Codedge, puoi partire dai <strong><a href="/it/tutorial/">Tutorial</a></strong> per trovare soluzioni pratiche pronte all'uso, esplorare gli <strong><a href="/it/strumenti/">Strumenti</a></strong> di utilità quotidiana, o consultare le <strong><a href="/it/risorse/">Risorse</a></strong> per un ripasso veloce di sintassi e concetti chiave.
+          L'altra metà del metodo è meno divertente e conta di più: verificare. Una modifica che "dovrebbe funzionare" per me non è finita — va aperta nel browser, guardata a schermo grande e piccolo, e controllata che non abbia rotto qualcosa che prima andava. Buona parte di quello che trovi qui è passata da quel giro almeno due volte.
+        </p>
+
+        <h2>Com'è fatto questo sito</h2>
+
+        <p>
+          Il modo più onesto di farti capire come lavoro è farti guardare dentro la cosa che ho costruito. CODEDGE è scritto a mano, senza framework: HTML, CSS e JavaScript, con <strong>Vite</strong> che assembla le pagine. Non c'è React, non c'è un CMS, non c'è un tema comprato.
+        </p>
+
+        <p>
+          Gli <a href="/it/strumenti/">strumenti</a> girano interamente nel browser: quando comprimi un'immagine non parte nessuna richiesta e il file non lascia il tuo computer. I <a href="/it/componenti-ui/">componenti</a> sono scritti con gli attributi ARIA e la gestione del focus da tastiera, non aggiunti dopo per sicurezza. Il sito è bilingue, e l'allineamento tra italiano e inglese lo controlla uno script che segnala quando una pagina cambia da una parte sola. Il codice è pubblico su <a href="https://github.com/aledtr77/01-codedge" target="_blank" rel="noopener noreferrer">GitHub</a>: se qualcosa non ti torna, puoi andare a vedere com'è fatto.
+        </p>
+
+        <h2>Cosa trovi qui dentro</h2>
+
+        <p>
+          Al momento ci sono <strong>418 voci</strong> nei tre glossari di <a href="/it/risorse/glossario-html/">HTML</a>, <a href="/it/risorse/glossario-css/">CSS</a> e <a href="/it/risorse/glossario-js/">JavaScript</a>, da consultare quando non ti torna una proprietà o un metodo. Ci sono <strong>12 <a href="/it/tutorial/">tutorial</a></strong> su Git e GitHub, i DevTools del browser, l'accessibilità, il deploy, la SEO tecnica e i fondamentali dei tre linguaggi. Ci sono <strong>4 <a href="/it/strumenti/">strumenti</a></strong> per il lavoro di tutti i giorni e <strong>4 <a href="/it/componenti-ui/">componenti</a></strong> con il codice completo, oltre a una <a href="/it/risorse/snippet-library/">libreria di snippet</a> pronti da incollare.
+        </p>
+
+        <h2>Lavoriamo insieme</h2>
+
+        <p>
+          Sono disponibile per collaborazioni e per lavori su commissione: siti e landing page, componenti su misura, interventi su progetti che esistono già. Se hai qualcosa in mente <a href="/it/contatti/">scrivimi</a> e ne parliamo — anche solo per capire se sono la persona giusta per quel lavoro.
+        </p>
+
+        <p>
+          Se invece ti serve qualcosa di pronto, nella sezione <a href="/it/template/">Template</a> ci sono i miei progetti portfolio completi, in vendita sul mio shop Etsy. E se hai trovato un errore in una pagina o vuoi contribuire, la segnalazione su GitHub è il modo più veloce per farmelo sapere.
         </p>
       </div>
-      
+
     </article>
   </main>
 

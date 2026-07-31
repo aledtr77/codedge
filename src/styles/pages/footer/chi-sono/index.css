@@ -65,6 +65,22 @@
   margin-bottom: 0;
 }
 
+/* Sottotitoli di sezione: stanno sotto un h1 già grande, quindi separano il
+   testo per stacco di peso e di spazio, non per dimensione. Il margine sopra
+   è il doppio di quello sotto perché il titolo appartiene al blocco che apre. */
+.about-body h2 {
+  font-family: var(--heading-font);
+  font-size: clamp(1.22rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  margin: 2.6rem 0 1.1rem;
+}
+
+.about-body h2:first-child {
+  margin-top: 0;
+}
+
 .about-body p {
   font-size: clamp(1rem, 1.25vw, 1.12rem);
   color: rgba(242, 242, 242, 0.9);
