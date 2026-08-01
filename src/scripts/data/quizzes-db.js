@@ -87,7 +87,7 @@ export const quizzesData = {
       options: [
         "&lt;a href='https://google.com'&gt;Google&lt;/a&gt;",
         "&lt;a href='/it/tutorial/css-fondamentali/'&gt;CSS Fondamentali&lt;/a&gt;",
-        "&lt;a href='mailto:info@codedge.it'&gt;Scrivici&lt;/a&gt;"
+        "&lt;a href='mailto:info@example.com'&gt;Scrivici&lt;/a&gt;"
       ],
       correct: 1,
       feedback: {

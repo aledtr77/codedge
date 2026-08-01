@@ -1544,7 +1544,7 @@ export const quizzesData = {
       options: [
         "&lt;a href='https://google.com'&gt;Google&lt;/a&gt;",
         "&lt;a href='/tutorials/css-fundamentals/'&gt;CSS fundamentals&lt;/a&gt;",
-        "&lt;a href='mailto:info@codedge.it'&gt;Write to us&lt;/a&gt;"
+        "&lt;a href='mailto:info@example.com'&gt;Write to us&lt;/a&gt;"
       ],
       correct: 1,
       feedback: {
