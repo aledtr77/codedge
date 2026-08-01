@@ -455,17 +455,18 @@ body button:active {
   z-index: -1;
 }
 
-/* Anti-FOUC: hides the body on load only when JS is active (html.js), revealed
-   when styles are ready. :root repeats the html element as a pseudo-class to
-   push specificity to (0,3,2), above any late same-property rule - this
-   replaced !important, do not simplify. */
-html.js:root body[data-css-ready="pending"] {
-  opacity: 0;
-}
-html.js:root body[data-css-ready="ready"] {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
+/* The body used to load hidden (opacity 0 while data-css-ready="pending") and
+   fade in once styles were ready. Removed because it cost us the metric, not
+   just the flash: Chrome does not count a paint at opacity 0 as contentful, and
+   the later fade is an opacity change that does not register a new first paint,
+   so First Contentful Paint was never recorded at all. Lighthouse then aborts
+   with NO_FCP and reports *every* category red, accessibility and SEO included.
+
+   It was a race between the reveal and the first paint, so the outcome flipped
+   with machine load: PageSpeed mobile (CPU throttled 4x) went green and red on
+   the same URL minutes apart, while desktop (no CPU throttling) was always
+   green. Stylesheets in <head> are render-blocking anyway, so unstyled markup
+   cannot paint. Keep the body visible; data-css-ready is now inert in CSS. */
 
 .alert {
   padding: 1.2rem;

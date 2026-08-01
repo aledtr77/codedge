@@ -16,7 +16,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: block;
   src: url('/fonts/inter-v20-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -25,7 +25,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: block;
   src: url('/fonts/inter-v20-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -34,7 +34,7 @@
   font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 200 800;
-  font-display: swap;
+  font-display: block;
   src: url('/fonts/jakarta-v12-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -43,7 +43,7 @@
   font-family: 'Plus Jakarta Sans';
   font-style: normal;
   font-weight: 200 800;
-  font-display: swap;
+  font-display: block;
   src: url('/fonts/jakarta-v12-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
@@ -388,15 +388,10 @@ body.no-scroll {
   .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.25s; }
 }
 
-/* Anti-FOUC twin of main.css's rule - see there for why :root replaces
-   !important. Keep both copies in sync. */
-html.js:root body[data-css-ready="pending"] {
-  opacity: 0;
-}
-html.js:root body[data-css-ready="ready"] {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
+/* The anti-FOUC twin of main.css's rule used to sit here, hiding the body at
+   opacity 0 until styles settled. It cost us First Contentful Paint outright -
+   see main.css for the full story. Keep both copies in sync: body stays
+   visible. */
 
 /* Utility: testo accessibile a screen reader e motori di ricerca ma non visibile
    a schermo. Usata per i titoli di pagina il cui titolo visibile vive nella navbar. */

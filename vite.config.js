@@ -46,13 +46,38 @@ const htmlMinifyOptions = {
   sortClassName: true
 };
 
-const antiFoucCss = [
-  'html{background:#0d111a;color:#f2f2f2;color-scheme:dark}',
+// Hiding the body until the styles land is a DEV-ONLY need, and the two builds
+// differ in a way that makes it actively harmful in production:
+//
+//   dev  - page CSS arrives through the JS module graph, so the browser paints
+//          raw markup first. blocking="render" (below) covers the entry module,
+//          but the CSS that other chunks pull in still lands after that, so the
+//          unstyled flash is real and this reveal is what stops it.
+//   prod - every stylesheet is a render-blocking <link>, so unstyled markup
+//          cannot paint in the first place and the reveal protects nothing.
+//
+// In production it also cost us the metric: Chrome does not count a paint at
+// opacity 0 as contentful, and the later fade never registers a new first
+// paint, so First Contentful Paint was never recorded, Lighthouse aborted with
+// NO_FCP, and PageSpeed reported *every* category red - accessibility and SEO
+// included - flipping green and red on the same URL minutes apart as the race
+// between reveal and first paint went one way or the other.
+//
+// This is the only surviving copy of the rule; the twins in public/critical.css
+// and src/styles/components/main.css were removed. Because it is inlined ahead
+// of both stylesheets and all three had equal specificity, whichever copy came
+// last won - which is why deleting only the other two changed nothing.
+const bodyRevealCss = [
   'html.js:root body[data-css-ready="pending"]{opacity:0}',
   'html.js:root body[data-css-ready="ready"]{opacity:1;transition:opacity 0.25s ease}',
   // Revealed inside a view transition: the transition already animates the
   // swap, so fading the body on top of it would double up.
-  'html.js:root body[data-css-ready="instant"]{opacity:1}',
+  'html.js:root body[data-css-ready="instant"]{opacity:1}'
+].join('');
+
+const buildAntiFoucCss = (isServe) => [
+  'html{background:#0d111a;color:#f2f2f2;color-scheme:dark}',
+  isServe ? bodyRevealCss : '',
   'body{margin:0;font-family:\'Inter\',sans-serif;color:#f2f2f2;background:#0d111a;line-height:1.6}',
   '.logo{display:block;flex:0 0 auto;width:80px;max-width:80px;height:auto}',
   'main{max-width:1900px;margin:2rem auto;padding:0 2rem}',
@@ -156,7 +181,7 @@ function antiFoucHtmlPlugin(isServe) {
           const antiFoucTags = [
             `<script data-index-redirect>${indexRedirectScript}</script>`,
             `<script data-critical-base>${antiFoucJsFlagScript}</script>`,
-            `<style data-critical-base>${antiFoucCss}</style>`,
+            `<style data-critical-base>${buildAntiFoucCss(isServe)}</style>`,
             '<noscript data-critical-base><style>body[data-css-ready="pending"]{opacity:1;visibility:visible}</style></noscript>',
             ...stylesheets
           ].join('');
