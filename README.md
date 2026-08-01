@@ -1,46 +1,55 @@
 # CODEDGE
 
-Sito: [https://codedge.it](https://codedge.it)
+Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
+written by hand. No framework, no CMS, no bought theme underneath.
 
-![Anteprima Template](src/assets/images/shop-template/index.png)
+![The codedge.it home page](src/assets/images/shop-template/readme-preview.jpg)
 
-## Cos'e questo sito
-Codedge e il mio spazio personale dove studio, provo e pubblico front-end.
-Non e una vetrina perfetta: e un laboratorio pratico fatto di test, errori, miglioramenti e codice reale.
-Lo uso anche come raccoglitore dei progetti che realizzo: una home contenitore per cercare un ordine mentale e non perdere la bussola durante il percorso.
+## What's on it
 
-## Chi sono
-Mi chiamo Alessandro.
-Sono autodidatta, appassionato di IT, e ho scelto il front-end come percorso principale.
-Questo progetto nasce per mettere in pratica quello che studio e per tracciare i miei progressi nel tempo.
+- **Glossaries** — 418 entries across HTML, CSS and JavaScript, to open when a property
+  or a method won't come back to you
+- **Tutorials** — 12 practical guides: Git and GitHub, browser DevTools, accessibility,
+  deployment, technical SEO, and the fundamentals of the three languages
+- **Tools** — four utilities that run entirely in the browser: colour and gradient
+  generators, an image compressor, a palette extractor
+- **UI components** — four components with the full commented source, plus a snippet
+  library ready to paste
+- **Templates** — live demos of the portfolio projects, with a link to the Etsy shop
 
-## Cosa trovi dentro
-- `Risorse`: glossari HTML/CSS/JS e snippet pronti da usare.
-- `Strumenti`: generatori colori e gradienti, compressore immagini, estrattore palette.
-- `Progetti pratici`: mini progetti ed esempi interattivi (scroll indicator, card, navbar, form, ecc.).
-- `Template`: demo live, collegamento allo shop Etsy e pagina per richieste di personalizzazione.
-- `Tutorial`: guide pratiche su Git, GitHub e Visual Studio Code, con altre basi operative in arrivo.
-- Pagine utili: contatti, chi sono, privacy policy, termini di servizio.
+## How it's built
 
-## Stato del progetto
-Questo sito e in continuo mutamento.
-Lo miglioro e lo aggiorno quando trovo tempo, aggiungendo nuove idee, sistemando dettagli e rendendo tutto piu solido passo dopo passo.
+Plain HTML, CSS and JavaScript, assembled with Vite into a multi-page static site.
+Built on GitHub Actions, deployed to Cloudflare Pages.
 
-## Stack
-- HTML
-- CSS
-- JavaScript
-- Vite
-- Build su GitHub Actions, deploy su Cloudflare Pages
+A few things worth pointing at, because they're the parts that took the work:
 
-## Avvio locale
+- **The tools never upload anything.** Compress an image and the file stays on your
+  machine — there is no request that could carry it anywhere.
+- **Accessibility is written in, not bolted on.** Components ship with their ARIA
+  attributes and keyboard focus handling from the start.
+- **The two languages are kept in sync by a script**, not by memory. It flags a page
+  when it changes on one side only. English lives at the root, Italian under `/it/`.
+
+## Run it locally
+
 ```bash
 npm install
-npm run dev
+npm run dev      # dev server
+npm run build    # static output in dist/
+npm run preview  # serve the build
 ```
 
-## Build
-```bash
-npm run build
-npm run preview
-```
+## Licence
+
+Split, and the split matters — see [LICENSE](LICENSE).
+
+**The code is MIT.** Take it, read it, reuse it.
+
+**The content is not.** Glossary entries, tutorials, article text, images and the
+Codedge brand are all rights reserved. Quote a passage with attribution and a link if
+it's useful to you; don't republish the material in bulk somewhere else.
+
+## Contact
+
+**contatti.codedge@gmail.com** · [codedge.it/contact](https://codedge.it/contact/)
