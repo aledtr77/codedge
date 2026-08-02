@@ -2,7 +2,7 @@
 <html lang="en" data-page-ready="false">
 
 <head>
-  <!-- Imposta la codifica dei caratteri usata nella pagina -->
+  <!-- Sets the character encoding used by the page -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
   <meta charset="UTF-8" />
@@ -12,12 +12,12 @@
   <meta name="author" content="Alessandro DTR" />
   <meta name="p:domain_verify" content="f79ef4f62794942c89ce4fb64cde7fa7"/>
 <link rel="stylesheet" href="/critical.css" />
-<!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
+<!-- Title shown in the browser tab and used by search engines -->
   <title>Web development: resources, tools and tutorials | Codedge</title>
   <!-- Descrizione usata nei risultati di ricerca e anteprime -->
   <meta name="description"
     content="Codedge started out front-end focused and grew into web development at large: practical tools, UI components and hands-on paths through digital technologies." />
-  <!-- Indica l'URL "ufficiale" di questa pagina per evitare contenuti duplicati -->
+  <!-- Points at the "official" URL of this page, to avoid duplicate content -->
   <link rel="canonical" href="https://codedge.it/" />
   <link rel="alternate" type="application/rss+xml" title="CODEDGE — Tutorials" href="/feed.xml" />
   <meta property="og:locale" content="en_US" />
@@ -43,15 +43,15 @@
   <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <!-- Icona specifica per quando l'utente aggiunge il sito alla home di iOS -->
+  <!-- Icon used when the site is added to the iOS home screen -->
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-  <!-- Manifest PWA: indica risorse e impostazioni per installare la pagina come app -->
+  <!-- PWA manifest: the resources and settings for installing the page as an app -->
   <link rel="manifest" href="/site.webmanifest" />
   <!-- Icona per Safari pinned tab; il colore riempie la maschera SVG -->
   <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
   <!-- Colore della barra di stato o UI del browser su dispositivi compatibili -->
   <meta name="theme-color" content="#00A8FF" />
-  <!-- Dichiara che la pagina può comportarsi come una web app su dispositivi mobili -->
+  <!-- Declares that the page can behave as a web app on mobile devices -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
@@ -86,20 +86,20 @@
 <body>
   <!-- HEADER: area di intestazione contenente la navigazione principale -->
   <header>
-    <!-- Nav identificata come 'Navigazione principale' per i lettori di schermo -->
+    <!-- Nav labelled as 'Main navigation' for screen readers -->
     <nav class="navbar" aria-label="Main navigation">
-      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
-           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <!-- Stub: the navbar served here is replaced wholesale by src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Only the title is taken from this. -->
       <span class="navbar-title resize-text">Home</span>
     </nav>
 
-    <!-- Contenitore del breadcrumb:
-         elemento vuoto che il loader runtime riempie con la traccia di navigazione.
-         Mantieni id e attributi perché lo script li cerca direttamente. -->
+    <!-- Breadcrumb container:
+         an empty element that the runtime loader fills with the navigation trail.
+         Keep the id and the attributes: the script looks them up directly. -->
   </header>
 
   <main id="main-content">
-    <!-- Sezione principale con riferimento al titolo per accessibilità -->
+    <!-- Main section, referencing its heading for accessibility -->
     <section class="unified-section home-shell" aria-labelledby="hero-title">
       <div class="hero-compact">
         <div class="home-hero-grid">
@@ -153,9 +153,9 @@
     </section>
   </main>
 
-  <!-- ENTRY MODULE (unico)
-       Questo script è l'entry point JS della pagina: importa componenti, monta il nav, il breadcrumb e aggiunge event listener.
-       type="module" abilita import/export e execution in strict mode. Non cancellarlo se vuoi che i loader JS funzionino. -->
+  <!-- ENTRY MODULE (the only one)
+       This script is the page's JS entry point: it imports components, mounts the nav and the breadcrumb, and attaches event listeners.
+       type="module" enables import/export and strict mode. Do not remove it if you want the JS loaders to run. -->
   <script type="module" src="/src/scripts/pages/index/main.js"></script>
 </body>
 

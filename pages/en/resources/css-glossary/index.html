@@ -2,20 +2,20 @@
 <html lang="en" data-page-ready="false">
 
 <head>
-    <!-- UTF-8: definisce la codifica dei caratteri per gestire accentate e simboli -->
+    <!-- UTF-8: sets the character encoding, so accents and symbols render -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
     <meta charset="UTF-8">
-    <!-- Viewport: obbligatorio per il comportamento responsive sui dispositivi mobili -->
+    <!-- Viewport: required for responsive behaviour on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="stylesheet" href="/critical.css" />
-<!-- Titolo della pagina mostrato nella scheda del browser -->
+<!-- Page title shown in the browser tab -->
     <title>Complete CSS glossary with practical examples | Codedge</title>
     <!-- Descrizione usata dai motori di ricerca e nelle anteprime -->
     <meta name="description"
         content="A CSS glossary: properties, selectors and layout explained simply, with short examples and practical notes so you can use them straight away.">
-    <!-- URL canonico per indicare la versione "ufficiale" di questa pagina -->
+    <!-- Canonical URL marking the "official" version of this page -->
     <link rel="canonical" href="https://codedge.it/resources/css-glossary/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -40,17 +40,17 @@
     <link rel="icon" href="/icons/favicon-16.png" sizes="16x16" type="image/png" />
     <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
     <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
-    <!-- fallback per browser che cercano /favicon.ico -->
+    <!-- fallback for browsers that look for /favicon.ico -->
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <!-- Icona usata quando l'utente salva il sito sulla home di iOS -->
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-    <!-- Manifest: definisce metadati per comportamento PWA (installazione, splash, ecc.) -->
+    <!-- Manifest: the metadata behind the PWA behaviour (install, splash screen and so on) -->
     <link rel="manifest" href="/site.webmanifest" />
     <!-- Mask icon: per pinned tabs di Safari; il colore è applicato alla maschera -->
     <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
     <!-- Tema colore usato in alcune UI del browser e su Android -->
     <meta name="theme-color" content="#00A8FF" />
-    <!-- Indicano che la pagina può comportarsi come web app su dispositivi mobili -->
+    <!-- These declare that the page can behave as a web app on mobile devices -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
@@ -58,10 +58,10 @@
 
 <body>
     <header>
-        <!-- Navigazione principale: struttura della barra superiore -->
+        <!-- Main navigation: the structure of the top bar -->
         <nav class="navbar" aria-label="Main navigation">
-      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
-           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <!-- Stub: the navbar served here is replaced wholesale by src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Only the title is taken from this. -->
       <span class="navbar-title resize-text"><i class="fab fa-css3" aria-hidden="true"></i> CSS glossary</span>
     </nav>
 
@@ -70,7 +70,7 @@
         <!-- Campo di ricerca locale per filtrare il glossario -->
         <div class="search-container">
             <input type="text" id="search" placeholder="Search for a property…">
-            <!-- Sottotitolo che descrive rapidamente il contenuto della pagina -->
+            <!-- Subtitle giving a quick description of the page's content -->
             <h1 class="glossari_resize">Properties, selectors and layout explained simply</h1>
         </div>
     </header>
@@ -281,7 +281,7 @@
                     <!-- Summary: titolo breve visibile, include una breve descrizione (span) -->
                     <summary>CSS<span class="tag-description"
                             aria-label="concept description">Language for styling web pages</span>
-                        <!-- tag-group indica la categoria della voce; utile per styling/JS -->
+                        <!-- tag-group marks the entry's category; used for styling and JS -->
                         <div class="tag-group" aria-label="group">1. Concepts — basics</div>
                     </summary>
                     <!-- Elenco numerato con definizione, scopo, esempi e best practice -->
@@ -2050,7 +2050,7 @@
             </section>
         </div>
     </main>
-    <!-- entry Vite per questa pagina -->
+    <!-- Vite entry for this page -->
     <script type="module" src="/src/scripts/pages/risorse/glossario-css/main.js"></script>
     </div>
 </body>

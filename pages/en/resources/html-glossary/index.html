@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- Doctype HTML5: obbligatorio all'inizio del documento per attivare il parsing HTML5 -->
+<!-- HTML5 doctype: required at the top of the document to switch on HTML5 parsing -->
 <html lang="en" data-page-ready="false">
 
 <head>
-    <!-- Charset: definisce la codifica dei caratteri della pagina -->
+    <!-- Charset: sets the character encoding of the page -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
     <meta charset="UTF-8">
@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="stylesheet" href="/critical.css" />
-<!-- Titolo della pagina, mostrato nella scheda del browser -->
+<!-- Page title, shown in the browser tab -->
     <title>Complete HTML glossary with practical examples | Codedge</title>
     <!-- Descrizione breve usata da motori di ricerca e anteprime -->
     <meta name="description"
         content="An HTML glossary: plain definitions of tags and attributes, short examples and practical notes on using them, without the waffle.">
-    <!-- URL canonico: segnala ai motori quale è l'indirizzo 'ufficiale' della pagina -->
+    <!-- Canonical URL: tells search engines which address is the page's 'official' one -->
     <link rel="canonical" href="https://codedge.it/resources/html-glossary/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -42,15 +42,15 @@
     <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
     <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <!-- Icona per quando il sito viene salvato sulla home di iOS -->
+    <!-- Icon for when the site is saved to the iOS home screen -->
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-    <!-- Manifest PWA: mappa risorse e impostazioni per comportamento installabile come app -->
+    <!-- PWA manifest: maps the resources and settings that make the site installable as an app -->
     <link rel="manifest" href="/site.webmanifest" />
     <!-- Mask icon: icona maschera per Safari pinned tabs (colore fornito) -->
     <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
     <!-- Colore della UI del browser su dispositivi compatibili -->
     <meta name="theme-color" content="#00A8FF" />
-    <!-- Dichiara che la pagina può comportarsi come una web app su mobile -->
+    <!-- Declares that the page can behave as a web app on mobile -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     
@@ -60,8 +60,8 @@
     <header>
         <!-- Nav principale: contiene logo, titolo e controllo menu -->
         <nav class="navbar" aria-label="Main navigation">
-      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
-           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <!-- Stub: the navbar served here is replaced wholesale by src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Only the title is taken from this. -->
       <span class="navbar-title resize-text"><i class="fab fa-html5" aria-hidden="true"></i> HTML glossary</span>
     </nav>
 
@@ -69,7 +69,7 @@
 
         <!-- Area di ricerca del glossario -->
         <div class="search-container">
-            <!-- Input con id "search": usato dal JS per filtrare o cercare i tag -->
+            <!-- Input with id "search": the JS uses it to filter and search the tags -->
             <input type="text" id="search" placeholder="Search for a tag…">
             <!-- Titolo della sezione di ricerca -->
             <h1 class="glossari_resize">Tags and attributes explained simply</h1>
@@ -89,9 +89,9 @@
 
             <aside>
                 <div class="aside-content">
-                    <!-- Lista dei concetti / sezioni del glossario.
-                         Elementi con classe clickable-item vengono probabilmente usati dagli script
-                         per navigare/filtrare il contenuto. -->
+                    <!-- List of the glossary's concepts and sections.
+                         Elements with the clickable-item class are the ones the scripts read
+                         to navigate and filter the content. -->
                     <ul class="concept-list">
                         <li>1. HTML fundamentals</li>
 
@@ -231,8 +231,8 @@
                 <section>
 
                     <!--
-                      Voce del glossario: ogni <details> rappresenta una voce espandibile.
-                      <summary> mostra il titolo/etichetta e una breve descrizione.
+                      Glossary entry: each <details> is one expandable entry.
+                      <summary> carries the term and a short description.
                     -->
                     <details>
                         <summary>DOCTYPE<span class="tag-description" aria-label="tag description">document type declaration</span>
@@ -1375,7 +1375,7 @@
                 </section>
             </div>
     </main>
-    <!-- entry Vite per questa pagina -->
+    <!-- Vite entry for this page -->
 <script type="module" src="/src/scripts/pages/risorse/glossario-html/main.js"></script>
 
     </div>

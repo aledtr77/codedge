@@ -2,7 +2,7 @@
 <html lang="en" data-page-ready="false">
 
 <head>
-    <!-- Codifica caratteri usata da questa pagina -->
+    <!-- Character encoding used by this page -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     <!-- Descrizione usata dai motori di ricerca -->
     <meta name="description"
         content="A JavaScript glossary from A to Z: plain definitions with quick examples for understanding the syntax, the methods and the key concepts.">
-    <!-- URL canonico della pagina (evita duplicati SEO) -->
+    <!-- Canonical URL of the page (avoids duplicate-content issues) -->
     <link rel="canonical" href="https://codedge.it/resources/javascript-glossary/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -40,8 +40,8 @@
     <header>
         <!-- Barra di navigazione principale -->
         <nav class="navbar" aria-label="Main navigation">
-      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
-           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
+      <!-- Stub: the navbar served here is replaced wholesale by src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Only the title is taken from this. -->
       <span class="navbar-title resize-text"><i class="fab fa-js-square" aria-hidden="true"></i> JS glossary</span>
     </nav>
 
@@ -49,9 +49,9 @@
 
         <!-- Area di ricerca del glossario -->
         <div class="search-container">
-            <!-- Input di ricerca; gli script filtrano/collegano i risultati a questo campo -->
+            <!-- Search input; the scripts filter and wire the results to this field -->
             <input type="text" id="search" placeholder="Search for a term…">
-            <!-- Sottotitolo della pagina -->
+            <!-- Page subtitle -->
             <h1 class="glossari_resize">Clear definitions with quick examples</h1>
         </div>
     </header>
@@ -69,8 +69,8 @@
 
         <aside>
             <div class="aside-content">
-                <!-- Indice / sommario del glossario: struttura ad elenco per navigare i concetti -->
-                <!-- Le classi "clickable-item" probabilmente sono legate a script che filtrano o saltano ai contenuti -->
+                <!-- Glossary index: a list structure for navigating the concepts -->
+                <!-- The "clickable-item" class is what the scripts hook into to filter and jump to content -->
                 <ul class="concept-list">
                     <ul>
                         <li>1. Variables</li>
@@ -302,7 +302,7 @@
                         <div class="tag-group" aria-label="group">1. Variables</div>
                     </summary>
 
-                    <!-- Lista ordinata che descrive il termine: usata dal contenuto del glossario -->
+                    <!-- Ordered list describing the term: used by the glossary content -->
                     
                     <ol>
                         <li>What it is: The "var" keyword in JavaScript declares a variable with function-level or global scope.</li>

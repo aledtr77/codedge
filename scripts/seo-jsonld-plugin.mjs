@@ -137,6 +137,14 @@ function techArticleLd(baseUrl, route, html, filePath, projectRoot, lang) {
   return ld;
 }
 
+/**
+ * Drops HTML comments before any regex scanning. A comment that quotes a tag
+ * name is indistinguishable from the tag itself to a pattern match.
+ */
+function stripComments(html) {
+  return html.replace(/<!--[\s\S]*?-->/g, '');
+}
+
 function glossaryLd(baseUrl, route, html, lang) {
   const terms = [];
   const entryRegex = /<summary>\s*([\s\S]*?)<span class="tag-description"[^>]*>([\s\S]*?)<\/span>/gi;
@@ -230,30 +238,38 @@ export default function seoJsonLdPlugin() {
         if (!route) return html;
         const lang = langOf(route);
 
+        // Everything below reads the page with regexes, and a regex cannot tell
+        // markup from a comment that quotes markup. The glossary pages explain
+        // their own structure in a comment that names <summary>, which the entry
+        // scanner matched as if it were the first entry — shipping the comment
+        // text as a DefinedTerm name. Scan a comment-free copy; the html that
+        // gets returned is untouched.
+        const scannable = stripComments(html);
+
         const blocks = [];
 
         // Both language homes are roots, so neither gets a breadcrumb.
         const isLanguageHome = route === '/' || route === '/it/';
-        if (!isLanguageHome && !html.includes('"BreadcrumbList"')) {
+        if (!isLanguageHome && !scannable.includes('"BreadcrumbList"')) {
           blocks.push(breadcrumbLd(baseUrl, route, lang));
         }
 
         const itRoute = itRouteOf(route);
 
         const isTutorial = /^\/it\/tutorial\/[^/]+\/$/.test(itRoute);
-        if (isTutorial && !html.includes('"TechArticle"')) {
-          blocks.push(techArticleLd(baseUrl, route, html, filename, projectRoot, lang));
+        if (isTutorial && !scannable.includes('"TechArticle"')) {
+          blocks.push(techArticleLd(baseUrl, route, scannable, filename, projectRoot, lang));
         }
 
         const isGlossary = /^\/it\/risorse\/glossario-[^/]+\/$/.test(itRoute);
-        if (isGlossary && !html.includes('"DefinedTermSet"')) {
-          blocks.push(glossaryLd(baseUrl, route, html, lang));
+        if (isGlossary && !scannable.includes('"DefinedTermSet"')) {
+          blocks.push(glossaryLd(baseUrl, route, scannable, lang));
         }
 
         // Section indexes: the grid of cards is a list, and saying so is what
         // earns the expanded result with sub-links under the snippet.
-        if (!isLanguageHome && !html.includes('"ItemList"')) {
-          blocks.push(itemListLd(baseUrl, route, html, lang, pagesRoot));
+        if (!isLanguageHome && !scannable.includes('"ItemList"')) {
+          blocks.push(itemListLd(baseUrl, route, scannable, lang, pagesRoot));
         }
 
         const valid = blocks.filter(Boolean);

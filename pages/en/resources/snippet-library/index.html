@@ -2,18 +2,18 @@
 <html lang="en" data-page-ready="false">
 
 <head>
-  <!-- Codifica caratteri della pagina -->
+  <!-- Character encoding of the page -->
   <meta charset="UTF-8">
-  <!-- Imposta la pagina per dispositivi mobili (responsive) -->
+  <!-- Sets the page up for mobile devices (responsive) -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/critical.css" />
-  <!-- Titolo visibile nella scheda del browser e usato dai motori di ricerca -->
+  <!-- Title shown in the browser tab and used by search engines -->
   <title>Ready-to-copy HTML, CSS and JavaScript snippets | Codedge</title>
   <!-- Descrizione usata nelle anteprime dei motori di ricerca -->
   <meta name="description"
     content="HTML, CSS and JavaScript snippets ready to copy, adapt and reuse, so you can build faster without starting from scratch every time.">
-  <!-- URL preferito per questa pagina (previene problemi di contenuto duplicato) -->
+  <!-- Preferred URL for this page (prevents duplicate-content problems) -->
   <link rel="canonical" href="https://codedge.it/resources/snippet-library/">
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
@@ -39,9 +39,9 @@
   <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <!-- Icona per quando l'utente aggiunge il sito alla Home su iOS -->
+  <!-- Icon for when the user adds the site to the Home screen on iOS -->
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
-  <!-- Manifest PWA: definisce risorse e impostazioni per l'installazione come app -->
+  <!-- PWA manifest: defines the resources and settings for installing as an app -->
   <link rel="manifest" href="/site.webmanifest" />
   <!-- Mask icon per Safari pinned tabs (colore specificato) -->
   <link rel="mask-icon" href="/icons/favicon-mask.svg" color="#00A8FF" />
@@ -56,9 +56,9 @@
   <header>
     <!-- Barra di navigazione principale -->
     <nav class="navbar" aria-label="Main navigation">
-      <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
-           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Da qui viene estratto solo il titolo. -->
-      <span class="navbar-title resize-text"> <!-- Icona decorativa; aria-hidden=true indica che gli screen reader la ignorano --> <i class="fas fa-code" aria-hidden="true"></i> HTML/CSS/JS snippet library </span>
+      <!-- Stub: the navbar served here is replaced wholesale by src/partials/navbar.html
+           (chromeI18nPlugin, scripts/i18n-plugin.mjs). Only the title is taken from this. -->
+      <span class="navbar-title resize-text"> <!-- Decorative icon; aria-hidden=true keeps screen readers from announcing it --> <i class="fas fa-code" aria-hidden="true"></i> HTML/CSS/JS snippet library </span>
     </nav>
   </header>
 
@@ -76,7 +76,7 @@
       <button class="category-pill" data-target="ui-snippets">UI Components</button>
     </div>
 
-    <!-- Sidebar che contiene l'indice degli snippet -->
+    <!-- Sidebar holding the snippet index -->
     <aside class="snippet-sidebar">
       <nav class="snippet-nav">
         <details open>
@@ -139,7 +139,7 @@
       </nav>
     </aside>
 
-    <!-- Area principale dove vengono mostrati gli snippet -->
+    <!-- Main area where the snippets are shown -->
     <main class="snippet-main">
       <h1 class="sr-only">HTML/CSS/JS snippet library</h1>
       <section id="html-snippets" class="snippet-section">
@@ -1204,7 +1204,7 @@ initValidatedContactForm();
   </div>
   </div>
 
-  <!-- entry Vite per questa pagina -->
+  <!-- Vite entry for this page -->
   <script type="module" src="/src/scripts/pages/risorse/snippet-library/main.js"></script>
 
 </body>
