@@ -26,7 +26,7 @@ const STRINGS = {
     'footer.about': 'Chi Sono',
     'footer.reportBug': 'Segnala un bug',
     'footer.icons': 'Icone di Font Awesome',
-    'footer.githubAria': 'GitHub Codedge',
+    'footer.githubAria': 'Alessandro DTR su GitHub',
 
     'quiz.step': 'Domanda {current} di {total}',
     'quiz.score': 'Punti: {score}',
@@ -165,7 +165,7 @@ const STRINGS = {
     'footer.about': 'About',
     'footer.reportBug': 'Report a bug',
     'footer.icons': 'Icons by Font Awesome',
-    'footer.githubAria': 'Codedge on GitHub',
+    'footer.githubAria': 'Alessandro DTR on GitHub',
 
     'quiz.step': 'Question {current} of {total}',
     'quiz.score': 'Score: {score}',
