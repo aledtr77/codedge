@@ -28,6 +28,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
+      # Italiano rimasto nelle pagine inglesi: blocca, perché finisce sotto
+      # gli occhi di un lettore e di un crawler.
+      - name: Lingua delle pagine inglesi
+        run: npm run i18n:lint
+
+      # L'inglese rimasto indietro rispetto all'italiano: solo avviso. Il
+      # difetto è reale ma lo è anche il registro dimenticato, e un deploy
+      # fermo perché manca un `i18n:sync` non aiuta nessuno.
+      - name: Traduzioni indietro
+        continue-on-error: true
+        run: npm run i18n:drift
+
       - name: Build
         run: npm run build
 
