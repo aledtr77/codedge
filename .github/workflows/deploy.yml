@@ -63,6 +63,13 @@ jobs:
       # cui non esiste più un mirror di riserva altrove — servirebbe le pagine
       # senza nessuna delle due cose.
 
+      # wrangler sta nelle devDependencies apposta, non per sbaglio: senza,
+      # l'action se lo scarica al volo a ogni push e il 03/08/2026 il deploy è
+      # fallito da solo perché non era arrivato @cloudflare/workerd-linux-64,
+      # una sua dipendenza opzionale. Dal lockfile arriva con tutti i binari e
+      # sempre la stessa versione. L'action lo rileva e salta il download —
+      # ma solo finché qui sotto NON compare `wranglerVersion`: se lo si
+      # specifica, ricomincia a installarselo per conto suo.
       - name: Deploy su Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
