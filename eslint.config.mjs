@@ -24,7 +24,21 @@ export default [
 
   // Build, i18n and SEO tooling: Node, ES modules.
   {
-    files: ['scripts/**/*.mjs', 'vite.config.js', 'src/i18n/**/*.mjs'],
+    files: ['scripts/**/*.mjs', 'vite.config.js', 'vitest.config.mjs', 'src/i18n/**/*.mjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+    rules: js.configs.recommended.rules,
+  },
+
+  // The tests run in Node under Vitest, and import both sides: browser modules
+  // from src/scripts and build tooling from scripts/. No globals are declared
+  // for the test API — describe/it/expect are imported explicitly, so a typo
+  // in one of them is an undefined variable here rather than a runtime error.
+  {
+    files: ['tests/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

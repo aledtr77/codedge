@@ -1,4 +1,5 @@
 import { scrollBehavior } from "@/scripts/utils/motion.js";
+import { normalizeForSearch } from "@/scripts/utils/text.js";
 import { t } from "@/i18n/ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,15 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!header) return;
     const h = Math.ceil(header.getBoundingClientRect().height);
     document.body.style.setProperty("--glossary-header-offset", `${h}px`);
-  }
-
-  function normalize(value) {
-    return (value || "")
-      .toString()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim();
   }
 
   // The enhancement below rewrites each definition: it splits the single text
@@ -135,23 +127,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const group = entry.querySelector(".tag-group")?.textContent || "";
 
       entry.dataset.glossaryTitleRaw = title;
-      entry.dataset.glossaryTitle = normalize(title);
+      entry.dataset.glossaryTitle = normalizeForSearch(title);
       // Deliberately scoped to title + short description + category, not the
       // full entry body: the body's "Cos'è/A cosa serve/Quando usarlo" text is
       // boilerplate-heavy (nearly every entry mentions the page's own subject,
       // e.g. "in JavaScript"), so substring-matching against it would surface
       // dozens of unrelated entries for any common word - the opposite of
       // precise ranking.
-      entry.dataset.glossarySummary = normalize(`${title} ${description} ${group}`);
+      entry.dataset.glossarySummary = normalizeForSearch(`${title} ${description} ${group}`);
     });
   }
 
   function setActiveItem(rawTitle) {
-    const normalizedQuery = normalize(rawTitle);
+    const normalizedQuery = normalizeForSearch(rawTitle);
     let activeItem = null;
 
     clickableItems.forEach((item) => {
-      const active = normalize(item.textContent) === normalizedQuery;
+      const active = normalizeForSearch(item.textContent) === normalizedQuery;
       item.classList.toggle("is-active", active);
       if (active) activeItem = item;
     });
@@ -256,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * because the aside loses its sticky scroll context.
    */
   function filterEntries(scrollToFirst = false) {
-    const query = normalize(search?.value.trim() || "");
+    const query = normalizeForSearch(search?.value.trim() || "");
 
     if (!query) {
       entries.forEach((entry) => {
@@ -309,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const visibleTitlesSet = new Set(matches.map((c) => c.entry.dataset.glossaryTitle));
 
     clickableItems.forEach((item) => {
-      const itemTitle = normalize(item.textContent);
+      const itemTitle = normalizeForSearch(item.textContent);
       const visible = visibleTitlesSet.has(itemTitle);
       item.classList.toggle("sidebar-item--hidden", !visible);
     });
@@ -492,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
         filterEntries(false);
       }
 
-      const normalizedTitle = normalize(item.textContent);
+      const normalizedTitle = normalizeForSearch(item.textContent);
       const targetEntry = entries.find(
         (entry) => entry.dataset.glossaryTitle === normalizedTitle
       );

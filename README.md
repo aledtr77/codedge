@@ -30,12 +30,18 @@ A few things worth pointing at, because they're the parts that took the work:
   attributes and keyboard focus handling from the start.
 - **The two languages are kept in sync by a script**, not by memory. It flags a page
   when it changes on one side only. English lives at the root, Italian under `/it/`.
+- **The logic that runs without a DOM is tested, and the tests block the deploy.**
+  Colour conversion and quantisation, the route map the hreflang tags and the 301s
+  come out of, the Italian-in-English detector, the runtime UI strings. The rest is
+  checked in a browser, which is the only place the rest can be checked.
 
 ## Run it locally
 
 ```bash
 npm install
 npm run dev      # dev server
+npm test         # unit tests (Vitest)
+npm run lint     # ESLint
 npm run build    # static output in dist/
 npm run preview  # serve the build
 ```

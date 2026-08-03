@@ -13,6 +13,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { routePairs, sourceDirForRoute } from '../src/i18n/routes.mjs';
+import { italianHits, visibleSnippets } from './lib/italian-markers.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -23,75 +24,8 @@ const GREEN = '\x1b[32m';
 const DIM = '\x1b[2m';
 const RESET = '\x1b[0m';
 
-// Words that are unambiguously Italian: none of them is an English word, a
-// programming keyword, or a proper noun used on this site.
-const ITALIAN_MARKERS = [
-  'il', 'lo', 'gli', 'della', 'dello', 'degli', 'delle', 'dei', 'nel', 'nella',
-  'sul', 'sulla', 'dal', 'dalla', 'agli', 'alle', 'allo', 'una', 'uno', 'che',
-  'perché', 'perche', 'quando', 'come', 'anche', 'più', 'piu', 'molto', 'ogni',
-  'questo', 'questa', 'questi', 'queste', 'quello', 'quella', 'sono', 'essere',
-  'avere', 'fare', 'puoi', 'devi', 'vuoi', 'trovi', 'serve', 'servono', 'senza',
-  'sempre', 'ancora', 'quindi', 'però', 'pero', 'oppure', 'invece', 'mentre',
-  'dove', 'tutti', 'tutte', 'tutto', 'tutta', 'niente', 'nulla', 'adesso',
-  'prima', 'dopo', 'sopra', 'sotto', 'dentro', 'fuori', 'verso', 'tra', 'fra',
-  'pagina', 'pagine', 'codice', 'esempio', 'esempi', 'guida', 'guide',
-  'strumenti', 'risorse', 'sviluppo', 'progetto', 'progetti', 'lavoro',
-  'capitolo', 'domanda', 'risposta', 'sezione', 'immagine', 'immagini',
-  'colore', 'colori', 'testo', 'file', 'nome', 'passo', 'punto'
-];
-
-// `file`, `nome`, `punto` and friends are risky on their own; require them to
-// sit next to another marker before reporting, by scoring the whole snippet.
-const STRONG = new Set([
-  'il', 'lo', 'gli', 'della', 'dello', 'degli', 'delle', 'dei', 'nel', 'nella',
-  'perché', 'perche', 'questo', 'questa', 'questi', 'queste', 'quello', 'quella',
-  'puoi', 'devi', 'vuoi', 'trovi', 'però', 'pero', 'oppure', 'invece', 'senza',
-  'sono', 'anche', 'più', 'piu', 'quindi', 'mentre', 'sempre'
-]);
-
-const MARKER_SET = new Set(ITALIAN_MARKERS);
-
 const fileForRoute = (route) =>
   path.join(pagesRoot, sourceDirForRoute(route), 'index.html');
-
-const ATTR_REGEX = /\b(?:alt|title|aria-label|placeholder|content)\s*=\s*"([^"]{4,})"/gi;
-
-function visibleSnippets(html) {
-  const stripped = html
-    .replace(/<!--[\s\S]*?-->/g, ' ')
-    .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<pre\b[\s\S]*?<\/pre>/gi, ' ')
-    .replace(/<code\b[\s\S]*?<\/code>/gi, ' ');
-
-  const snippets = [];
-
-  for (const raw of stripped.split(/<[^>]+>/)) {
-    const text = raw.replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    if (text.length > 3) snippets.push(text);
-  }
-
-  let m;
-  while ((m = ATTR_REGEX.exec(stripped)) !== null) {
-    const text = m[1].replace(/\s+/g, ' ').trim();
-    // Skip machine-readable content: URLs, dimensions, locale codes.
-    if (/^(https?:|\/|#|\d+$|[a-z]{2}_[A-Z]{2}$)/.test(text)) continue;
-    if (text.includes(' ')) snippets.push(text);
-  }
-
-  return snippets;
-}
-
-function italianHits(snippet) {
-  const words = snippet.toLowerCase().match(/[a-zàèéìòùA-Z]+/g) || [];
-  const hits = [...new Set(words.filter((w) => MARKER_SET.has(w)))];
-  const strong = hits.filter((w) => STRONG.has(w));
-  // Count *distinct* markers, not occurrences: several words that are Italian
-  // and English alike ("file", "guide", "come") repeating in one correct
-  // English sentence must not add up to a hit. Real Italian prose trips this
-  // anyway, because it brings several different markers at once.
-  return strong.length > 0 || hits.length >= 2 ? hits : [];
-}
 
 const filter = process.argv.slice(2).find((a) => !a.startsWith('--'));
 let totalFlagged = 0;

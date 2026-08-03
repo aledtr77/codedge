@@ -9,6 +9,8 @@
     "preview": "vite preview --port 5000",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "i18n:drift": "node scripts/i18n-drift.mjs",
     "i18n:sync": "node scripts/i18n-drift.mjs --update",
     "i18n:lint": "node scripts/i18n-lint.mjs",
@@ -23,7 +25,8 @@
     "html-minifier-terser": "^7.2.0",
     "playwright-core": "^1.62.0",
     "vite": "^8.0.7",
-    "vite-imagetools": "^10.0.1"
+    "vite-imagetools": "^10.0.1",
+    "vitest": "^4.1.10"
   },
   "homepage": "https://codedge.it/",
   "dependencies": {

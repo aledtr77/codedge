@@ -31,6 +31,15 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # I test coprono la logica che gira senza DOM: le conversioni colore
+      # dell'estrattore, la mappa delle rotte (da cui escono hreflang, sitemap
+      # e i 301), il taglio delle pagine in unità che fa i18n-drift, il
+      # rilevatore di italiano qui sotto e le stringhe runtime dei componenti.
+      # Bloccano: se una di queste cede il sito si costruisce lo stesso, e il
+      # danno lo si scopre da un lettore o da un crawler, non dalla build.
+      - name: Test
+        run: npm test
+
       # Italiano rimasto nelle pagine inglesi: blocca, perché finisce sotto
       # gli occhi di un lettore e di un crawler.
       - name: Lingua delle pagine inglesi
