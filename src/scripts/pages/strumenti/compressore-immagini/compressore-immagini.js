@@ -289,11 +289,6 @@ export function initImageCompressor() {
     return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
   }
 
-  function friendlyFormat(mimeType) {
-    if (!mimeType) return "Sconosciuto";
-    return mimeType.replace("image/", "").toUpperCase();
-  }
-
   function extensionFromMime(mimeType) {
     const map = {
       "image/jpeg": "jpg",

@@ -135,7 +135,6 @@ if (header) {
     const currentScrollY = window.scrollY;
     const scrollDelta = currentScrollY - lastScrollY;
 
-    const isAtBottom = (window.innerHeight + currentScrollY) >= (document.documentElement.scrollHeight - 10);
     const isMobile = window.innerWidth <= 768;
 
     if (currentScrollY <= 50) {

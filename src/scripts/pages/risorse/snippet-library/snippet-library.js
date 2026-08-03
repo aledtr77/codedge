@@ -41,7 +41,9 @@ export function initSnippets() {
       try {
         await navigator.clipboard.writeText(text);
         return true;
-      } catch (e) {
+      } catch {
+        // Denied permission, insecure context, an unfocused document: every
+        // one of them lands here, and the textarea path below handles them all.
       }
     }
     try {

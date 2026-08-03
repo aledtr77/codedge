@@ -109,7 +109,7 @@ export async function initContactForm({
   function resetForm() {
     try {
       form.reset();
-    } catch (e) {
+    } catch {
       /* ignore */
     }
   }

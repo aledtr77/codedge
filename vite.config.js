@@ -473,7 +473,7 @@ export default defineConfig(({ command }) => {
     name: 'html-minifier',
     transformIndexHtml: {
       order: 'post',
-      handler: async (html, ctx) => {
+      handler: async (html) => {
         if (command !== 'build') return html;
         try { return await minify(html, htmlMinifyOptions); }
         catch (e) { console.error('[html-minifier] errore minifying', e); return html; }

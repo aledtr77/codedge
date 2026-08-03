@@ -156,7 +156,7 @@ export default async function initGuideQuiz() {
   };
 
   const showResults = () => {
-    let msg = "";
+    let msg;
     let confettiHtml = "";
     if (score === 10) {
       msg = t("quiz.msgPerfect");

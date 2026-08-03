@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     NO_MATCH: 0,
   });
 
-  const escapeRegExp = (text) => text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  const escapeRegExp = (text) => text.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 
   // Word-boundary prefix match, e.g. "flex" matches "flexbox" but not "reflex".
   // Returns the match index, or -1. Text/word are already normalized (lowercased,
@@ -393,22 +393,6 @@ document.addEventListener("DOMContentLoaded", () => {
         openAsideGroupForItem(item);
       });
     });
-  }
-
-  function lockAsideScroll() {
-    const aside = document.querySelector("aside");
-    if (!aside) return;
-
-    aside.addEventListener(
-      "wheel",
-      (event) => {
-        if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-
-        event.preventDefault();
-        aside.scrollTop += event.deltaY;
-      },
-      { passive: false },
-    );
   }
 
   async function copyCode(button) {

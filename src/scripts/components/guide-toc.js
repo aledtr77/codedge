@@ -152,7 +152,9 @@ export default function initGuideToc() {
   // Keep vertical wheel input over the TOC inside the TOC: without this, a
   // wheel at the TOC's scroll boundary (or on a TOC with no overflow) chains
   // into the page scroll, which moves the scrollspy, which re-scrolls the TOC
-  // against the user. Same pattern as lockAsideScroll in glossario.js.
+  // against the user. The glossary sidebar solves the same problem in CSS with
+  // overscroll-behavior; that is not enough here, where the TOC often has no
+  // overflow of its own and the wheel event would chain straight to the page.
   if (tocContainer) {
     tocContainer.addEventListener(
       "wheel",

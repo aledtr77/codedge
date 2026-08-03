@@ -188,7 +188,7 @@ function itemListLd(baseUrl, route, html, lang, pagesRoot) {
   if (children.length < 2) return null;
 
   const itemListElement = children.map((child, i) => {
-    let name = '';
+    let name;
     try {
       const file = path.join(pagesRoot, sourceDirForRoute(child), 'index.html');
       name = getTitleHeadline(fs.readFileSync(file, 'utf8'));

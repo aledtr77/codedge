@@ -61,7 +61,6 @@ export function routeFromCtx(ctx, projectRoot) {
 
 const OG_LOCALE = { it: 'it_IT', en: 'en_US' };
 const LANG_ATTR = { it: 'it', en: 'en' };
-const LANG_CODE = { it: 'IT', en: 'EN' };
 
 // Section landing pages the navbar links to, per language.
 const NAV_HREFS = {
