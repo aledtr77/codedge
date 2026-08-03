@@ -3,7 +3,7 @@
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
 written by hand. No framework, no CMS, no bought theme underneath.
 
-![The codedge.it home page](src/assets/images/shop-template/readme-preview.jpg)
+[![The codedge.it home page](.github/preview.jpg)](https://codedge.it)
 
 ## What's on it
 
