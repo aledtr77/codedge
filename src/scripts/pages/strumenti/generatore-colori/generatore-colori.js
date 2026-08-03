@@ -101,10 +101,6 @@ export function initColorGenerator() {
     } : null;
   }
 
-  function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }
-
   function hexToHsl(hex) {
     const rgb = hexToRgb(hex);
     if (!rgb) return { h: 0, s: 0, l: 0 };
@@ -259,7 +255,7 @@ export function initColorGenerator() {
           );
           break;
 
-        case "complementary":
+        case "complementary": {
           const baseHue = (index % 2 === 0) ? seedHsl.h : (seedHsl.h + 180) % 360;
           nextHex = hslToHex(
             baseHue,
@@ -267,8 +263,9 @@ export function initColorGenerator() {
             Math.max(25, Math.min(75, seedHsl.l + (index - 2) * 10))
           );
           break;
+        }
 
-        case "triadic":
+        case "triadic": {
           const triadicHue = (seedHsl.h + (index % 3) * 120) % 360;
           nextHex = hslToHex(
             triadicHue,
@@ -276,6 +273,7 @@ export function initColorGenerator() {
             seedHsl.l + (index - 2) * 8
           );
           break;
+        }
 
         case "random":
         default:
@@ -297,7 +295,7 @@ export function initColorGenerator() {
   function renderPalette() {
     cardsContainer.innerHTML = "";
 
-    palette.forEach((color, index) => {
+    palette.forEach((color) => {
       const isLight = isLightColor(color.hex);
       const card = document.createElement("div");
       card.className = `color-card ${isLight ? "light-color" : ""}`;
