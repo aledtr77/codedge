@@ -21,6 +21,9 @@ const ACCEPTED_IMAGE_TYPES = new Set([
   "image/gif",
   "image/bmp",
 ]);
+// Kept identical to the <pre id="codePreview"> in the page markup, so a reset
+// puts back exactly what the panel showed on load.
+const EMPTY_CSS_PREVIEW = ":root {\n  --color-1: ...\n}";
 
 let inited = false;
 
@@ -403,7 +406,7 @@ export function initPaletteExtractor() {
     refs.averageColor.textContent = "-";
     refs.averageColor.style.color = "";
     refs.pixelCount.textContent = "-";
-    refs.codePreview.textContent = ":root {\\n  --color-1: ...\\n}";
+    refs.codePreview.textContent = EMPTY_CSS_PREVIEW;
     resetRoles();
     setStatus(t("tool.ready"));
   }
