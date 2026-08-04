@@ -1,5 +1,9 @@
 # CODEDGE
 
+[![lint · tests · build](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
+[![121 tests](https://img.shields.io/badge/tests-121%20(Vitest)-3fb950)](tests/)
+[![licence: code MIT, content reserved](https://img.shields.io/badge/licence-code%20MIT%20%C2%B7%20content%20reserved-0969da)](LICENSE)
+
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
 written by hand. No framework, no CMS, no bought theme underneath.
 
