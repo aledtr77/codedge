@@ -15,7 +15,9 @@
     "i18n:sync": "node scripts/i18n-drift.mjs --update",
     "i18n:lint": "node scripts/i18n-lint.mjs",
     "i18n:swap": "node scripts/i18n-swap.mjs",
-    "i18n:scaffold": "node scripts/i18n-scaffold.mjs"
+    "i18n:scaffold": "node scripts/i18n-scaffold.mjs",
+    "badge": "node scripts/sync-test-badge.mjs",
+    "badge:check": "node scripts/sync-test-badge.mjs --check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -40,5 +42,6 @@
   "overrides": {
     "preact": "10.29.1",
     "undici": "^7.29.0"
-  }
+  },
+  "license": "MIT"
 }
