@@ -8,15 +8,15 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      # Solo lettura: il deploy esce da Cloudflare Pages via API, niente viene
-      # più scritto su un branch di questo repo.
+      # Read only: the deploy leaves from Cloudflare Pages over the API, and
+      # nothing is written back to a branch of this repo any more.
       contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
         with:
-          # Storia completa: le date git (lastmod sitemap, datePublished dei
-          # TechArticle) e il diff del ping IndexNow la richiedono
+          # Full history: the git dates (sitemap lastmod, datePublished on the
+          # TechArticles) and the IndexNow diff both need it
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -31,69 +31,77 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # I test coprono la logica che gira senza DOM: le conversioni colore
-      # dell'estrattore, la mappa delle rotte (da cui escono hreflang, sitemap
-      # e i 301), il taglio delle pagine in unità che fa i18n-drift, il
-      # rilevatore di italiano qui sotto e le stringhe runtime dei componenti.
-      # Bloccano: se una di queste cede il sito si costruisce lo stesso, e il
-      # danno lo si scopre da un lettore o da un crawler, non dalla build.
+      # The tests cover the logic that runs without a DOM: the extractor's
+      # colour conversions, the route map (which hreflang, the sitemap and the
+      # 301s all come out of), the split of pages into units that i18n-drift
+      # works on, the Italian detector below, and the components' runtime
+      # strings. They block: if one of these gives way the site still builds,
+      # and the damage gets found by a reader or a crawler rather than by the
+      # build.
       - name: Test
         run: npm test
 
-      # Italiano rimasto nelle pagine inglesi: blocca, perché finisce sotto
-      # gli occhi di un lettore e di un crawler.
-      - name: Lingua delle pagine inglesi
+      # The test count the README advertises. Typed by hand it is right once and
+      # wrong from the next commit on, so this fails the build when the badge
+      # and the suite disagree.
+      - name: Test-count badge
+        run: npm run badge:check
+
+      # Italian left in the English pages: blocks, because it lands in front of
+      # a reader and a crawler.
+      - name: Language of the English pages
         run: npm run i18n:lint
 
-      # L'inglese rimasto indietro rispetto all'italiano: solo avviso. Il
-      # difetto è reale ma lo è anche il registro dimenticato, e un deploy
-      # fermo perché manca un `i18n:sync` non aiuta nessuno.
-      - name: Traduzioni indietro
+      # English left behind its Italian counterpart: warning only. The defect is
+      # real, but so is the forgotten changelog, and a deploy held up by a
+      # missing `i18n:sync` helps nobody.
+      - name: Translations lagging behind
         continue-on-error: true
         run: npm run i18n:drift
 
       - name: Build
         run: npm run build
 
-      # La vera 404 (con noindex) arriva già da public/ via Vite: niente più
-      # copia di index.html su 404.html, che serviva la homepage intera come
-      # pagina di errore. Da public/ escono anche _headers (CSP, HSTS) e
-      # _redirects (i 301 delle URL di prima dello spostamento del 29/07/2026):
-      # entrambi li legge Cloudflare Pages e nessun altro, ed è il motivo per
-      # cui non esiste più un mirror di riserva altrove — servirebbe le pagine
-      # senza nessuna delle due cose.
+      # The real 404 (with noindex) already arrives from public/ through Vite:
+      # no more copying index.html over 404.html, which served the whole
+      # homepage as an error page. public/ is also where _headers (CSP, HSTS)
+      # and _redirects come from (the 301s for the URLs from before the move of
+      # 29 July 2026): Cloudflare Pages reads both and nobody else does, which
+      # is why there is no longer a standby mirror anywhere — it would serve the
+      # pages with neither of those two things.
 
-      # wrangler sta nelle devDependencies apposta, non per sbaglio: senza,
-      # l'action se lo scarica al volo a ogni push e il 03/08/2026 il deploy è
-      # fallito da solo perché non era arrivato @cloudflare/workerd-linux-64,
-      # una sua dipendenza opzionale. Dal lockfile arriva con tutti i binari e
-      # sempre la stessa versione. L'action lo rileva e salta il download —
-      # ma solo finché qui sotto NON compare `wranglerVersion`: se lo si
-      # specifica, ricomincia a installarselo per conto suo.
-      - name: Deploy su Cloudflare Pages
+      # wrangler sits in devDependencies on purpose, not by accident: without it
+      # the action downloads it on the fly on every push, and on 3 August 2026
+      # the deploy failed on its own because @cloudflare/workerd-linux-64, one
+      # of its optional dependencies, had not arrived. From the lockfile it
+      # comes with every binary and always at the same version. The action
+      # detects it and skips the download — but only for as long as
+      # `wranglerVersion` does NOT appear below: specify it and the action goes
+      # back to installing wrangler by itself.
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # --branch esplicito: senza, wrangler deduce il ramo dall'ambiente CI
-          # e un deploy di produzione rischia di finire come preview
+          # --branch spelled out: without it wrangler infers the branch from the
+          # CI environment, and a production deploy risks landing as a preview
           command: pages deploy dist --project-name=codedge --branch=main
 
-      - name: IndexNow ping (pagine cambiate in questo push)
+      - name: IndexNow ping (pages changed in this push)
         continue-on-error: true
         env:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
         run: |
           if [ -z "$BEFORE" ] || echo "$BEFORE" | grep -Eq '^0+$' || ! git cat-file -e "$BEFORE" 2>/dev/null; then
-            echo "Commit di partenza non disponibile: invio tutta la sitemap"
+            echo "Starting commit not available: sending the whole sitemap"
             node scripts/indexnow-ping.mjs --all
             exit 0
           fi
-          # I file, non le URL: la conversione la fa lo script, che ha la mappa.
+          # The files, not the URLs: the script does the conversion, it has the map.
           ROUTES=$(git diff --name-only "$BEFORE" "$AFTER" -- pages/ | grep 'index\.html$' | sort -u)
           if [ -n "$ROUTES" ]; then
             node scripts/indexnow-ping.mjs $ROUTES
           else
-            echo "Nessuna pagina cambiata in questo push: niente ping IndexNow"
+            echo "No page changed in this push: no IndexNow ping"
           fi
