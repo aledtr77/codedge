@@ -10,6 +10,7 @@ import {
   LEGACY_REDIRECTS,
   IT_PREFIX
 } from '../src/i18n/routes.mjs';
+import { collectPageSources } from './page-sources.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -52,30 +53,50 @@ function gitRelativePath(filePath) {
   return path.relative(projectRoot, filePath).split(path.sep).join('/');
 }
 
-function lastModifiedForFile(filePath) {
-  const fallback = () => fs.statSync(filePath).mtime.toISOString();
+// One git call per file, asked for once: the pages share their entries, so the
+// same path comes up again and again while the dates are collected.
+const lastCommitCache = new Map();
 
+function lastCommitFor(relativePath) {
+  if (lastCommitCache.has(relativePath)) return lastCommitCache.get(relativePath);
+
+  let isoDate = null;
   try {
     const lastCommitDate = execFileSync(
       'git',
-      ['log', '-1', '--format=%cI', '--', gitRelativePath(filePath)],
+      ['log', '-1', '--format=%cI', '--', relativePath],
       {
         cwd: projectRoot,
         encoding: 'utf8',
         stdio: ['ignore', 'pipe', 'ignore']
       }
     ).trim();
-
-    if (!lastCommitDate) return fallback();
-
-    // Only the last commit touching the page itself: folding in "global"
-    // commits (theme, navbar) flattened every lastmod to the same date on any
-    // CSS touch-up, and an always-changing lastmod is one crawlers learn to
-    // ignore.
-    return new Date(lastCommitDate).toISOString();
+    if (lastCommitDate) isoDate = new Date(lastCommitDate).toISOString();
   } catch {
-    return fallback();
+    // Not a git checkout, or the file has never been committed: the caller
+    // falls back to the mtime.
   }
+
+  lastCommitCache.set(relativePath, isoDate);
+  return isoDate;
+}
+
+function lastModifiedForFile(filePath) {
+  return lastCommitFor(gitRelativePath(filePath)) || fs.statSync(filePath).mtime.toISOString();
+}
+
+/**
+ * The newest commit across the page's HTML and the sources only that page
+ * imports — see scripts/page-sources.mjs for why the shared ones stay out.
+ * ISO strings in UTC, so sorting them is sorting the dates.
+ */
+function lastModifiedForPage(filePath, sources) {
+  const dates = [lastModifiedForFile(filePath)];
+  for (const source of sources) {
+    const date = lastCommitFor(source);
+    if (date) dates.push(date);
+  }
+  return dates.sort().pop();
 }
 
 // Priority and ordering are language-independent: an English page inherits the
@@ -168,13 +189,40 @@ if (brokenRedirects.length) {
   process.exit(1);
 }
 
-const entries = pages
-  .filter(({ route, noindex }) => route && !noindex)
+const indexablePages = pages.filter(({ route, noindex }) => route && !noindex);
+
+const readSource = (relativePath) => {
+  try {
+    return fs.readFileSync(path.join(projectRoot, relativePath), 'utf8');
+  } catch {
+    return '';
+  }
+};
+
+const isFile = (relativePath) => {
+  try {
+    return fs.statSync(path.join(projectRoot, relativePath)).isFile();
+  } catch {
+    return false;
+  }
+};
+
+const pageSources = collectPageSources({
+  pages: indexablePages.map(({ filePath, route }) => ({
+    route,
+    shape: canonicalShape(route),
+    htmlPath: gitRelativePath(filePath)
+  })),
+  readFile: readSource,
+  exists: isFile
+});
+
+const entries = indexablePages
   .map(({ filePath, route }) => ({
     filePath,
     route,
     priority: priorityForRoute(route),
-    lastmod: lastModifiedForFile(filePath)
+    lastmod: lastModifiedForPage(filePath, pageSources.get(route) || [])
   }))
   .sort((a, b) => {
     const weightDiff = sortWeight(a.route) - sortWeight(b.route);
