@@ -1,44 +1,44 @@
-name: "🐛 Segnala un bug"
-description: "Qualcosa non funziona come dovrebbe su Codedge."
+name: "🐛 Report a bug"
+description: "Something on Codedge is not working the way it should."
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Grazie per esserti preso un minuto per segnalare il problema. 🙏
-        Più dettagli aggiungi, più in fretta riusciamo a sistemarlo.
+        Thanks for taking a minute to report it. 🙏
+        The more detail you add, the faster it gets fixed.
   - type: input
     id: page_url
     attributes:
-      label: "Pagina interessata"
-      description: "URL o titolo della pagina dove hai trovato il problema."
+      label: "Page affected"
+      description: "URL or title of the page where you found the problem."
       placeholder: "https://codedge.it/tutorial/..."
     validations:
       required: false
   - type: textarea
     id: what_happened
     attributes:
-      label: "Cosa è successo?"
-      description: "Descrivi il problema e cosa ti aspettavi che succedesse invece."
-      placeholder: "Al termine del quiz i due pulsanti compaiono affiancati e sovrapposti invece che uno alla volta..."
+      label: "What happened?"
+      description: "Describe the problem, and what you expected to happen instead."
+      placeholder: "At the end of the quiz the two buttons appear side by side and overlapping, instead of one at a time..."
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: "Come riprodurlo (opzionale)"
-      description: "I passaggi per far ricomparire il problema."
+      label: "How to reproduce it (optional)"
+      description: "The steps that bring the problem back."
       placeholder: |
-        1. Vai su ...
-        2. Clicca su ...
-        3. Il problema compare qui
+        1. Go to ...
+        2. Click on ...
+        3. The problem shows up here
     validations:
       required: false
   - type: input
     id: environment
     attributes:
-      label: "Dispositivo e browser (opzionale)"
-      placeholder: "es. Samsung S25 Ultra + Chrome / iPhone + Safari / Desktop Windows + Firefox"
+      label: "Device and browser (optional)"
+      placeholder: "e.g. Samsung S25 Ultra + Chrome / iPhone + Safari / Windows desktop + Firefox"
     validations:
       required: false

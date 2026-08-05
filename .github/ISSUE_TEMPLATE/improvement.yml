@@ -1,24 +1,24 @@
-name: "💡 Proposta di miglioramento"
-description: "Un'idea per rendere Codedge più utile, chiaro o completo."
-title: "[Miglioramento]: "
+name: "💡 Suggest an improvement"
+description: "An idea for making Codedge more useful, clearer or more complete."
+title: "[Improvement]: "
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Ogni idea è benvenuta, anche la più piccola. ✨
+        Every idea is welcome, however small. ✨
   - type: input
     id: page_url
     attributes:
-      label: "Pagina o sezione (opzionale)"
-      description: "Dove si applica la tua proposta, se riguarda un punto preciso del sito."
+      label: "Page or section (optional)"
+      description: "Where your suggestion applies, if it is about one specific part of the site."
       placeholder: "https://codedge.it/..."
     validations:
       required: false
   - type: textarea
     id: suggestion
     attributes:
-      label: "La tua proposta"
-      description: "Cosa miglioreresti e perché pensi sia utile."
+      label: "Your suggestion"
+      description: "What you would improve, and why you think it would help."
     validations:
       required: true
