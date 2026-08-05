@@ -1,8 +1,8 @@
 # CODEDGE
 
 [![lint · tests · build](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
-[![121 tests](https://img.shields.io/badge/tests-121%20(Vitest)-3fb950)](tests/)
-[![licence: code MIT, content reserved](https://img.shields.io/badge/licence-code%20MIT%20%C2%B7%20content%20reserved-0969da)](LICENSE)
+[![125 tests](https://img.shields.io/badge/tests-125%20(Vitest)-3fb950)](tests/)
+[![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
 written by hand. No framework, no CMS, no bought theme underneath.
@@ -52,13 +52,14 @@ npm run preview  # serve the build
 
 ## Licence
 
-Split, and the split matters — see [LICENSE](LICENSE).
+**The code is MIT** — see [LICENSE](LICENSE). HTML structure, CSS, JavaScript, build
+configuration and scripts: take them, read them, reuse them.
 
-**The code is MIT.** Take it, read it, reuse it.
-
-**The content is not.** Glossary entries, tutorials, article text, images and the
-Codedge brand are all rights reserved. Quote a passage with attribution and a link if
-it's useful to you; don't republish the material in bulk somewhere else.
+**The editorial material is not**, and that split matters — see
+[CONTENT-LICENSE.md](CONTENT-LICENSE.md). Glossary entries, tutorials, article text,
+quiz questions, images and the Codedge brand are all rights reserved. Quote a passage
+with attribution and a link if it's useful to you; don't republish the material in bulk
+somewhere else.
 
 ## Contact
 
