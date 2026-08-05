@@ -1,0 +1,14 @@
+# Language statistics
+#
+# The glossaries and the tutorials are reference content: 2.1 MB of hand-written
+# prose that happens to be marked up in HTML. Counted as code they bury everything
+# else and GitHub labels the whole repo "HTML", which says nothing about what is
+# actually in here.
+#
+# The pages that make up the site as a program — home, tools, UI components, the
+# legal pages — stay counted, because that is what they are.
+
+pages/en/tutorials/**  linguist-documentation
+pages/it/tutorial/**   linguist-documentation
+pages/en/resources/**  linguist-documentation
+pages/it/risorse/**    linguist-documentation
