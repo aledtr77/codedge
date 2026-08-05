@@ -191,6 +191,16 @@ describe('rgbToLab and labDistance', () => {
     expect(labDistance(red, blue)).toBeCloseTo(labDistance(blue, red), 10);
     expect(labDistance(red, blue)).toBeGreaterThan(50);
   });
+
+  // Lab is used to decide whether two colours are the same one. If a step in
+  // sRGB moved a different amount depending on where it started, the merge
+  // threshold would mean something different in every part of the space.
+  it('separates two colours the eye can tell apart by more than the merge threshold', () => {
+    const near = labDistance(rgbToLab({ r: 200, g: 30, b: 30 }), rgbToLab({ r: 202, g: 32, b: 31 }));
+    const far = labDistance(rgbToLab({ r: 200, g: 30, b: 30 }), rgbToLab({ r: 30, g: 30, b: 200 }));
+    expect(near).toBeLessThan(8);
+    expect(far).toBeGreaterThan(8);
+  });
 });
 
 describe('hueDistance', () => {
@@ -280,6 +290,30 @@ describe('extractPalette', () => {
     expect(() => extractPalette([bucket(10, 20, 30, 5)], 10)).not.toThrow();
     expect(extractPalette([bucket(10, 20, 30, 5)], 10).length).toBeLessThanOrEqual(1);
   });
+
+  // An image with four colours in it cannot yield ten, and the slider is
+  // allowed to ask for ten. Returning fewer is the right answer, not a failure.
+  it('never returns more than it was asked for', () => {
+    const buckets = [
+      bucket(220, 40, 40, 4000),
+      bucket(40, 90, 220, 3000),
+      bucket(30, 160, 90, 2000),
+      bucket(240, 200, 60, 1000),
+      bucket(150, 60, 200, 900),
+      bucket(250, 140, 40, 700),
+    ];
+
+    for (const size of [4, 5, 6, 8, 10]) {
+      expect(extractPalette(buckets, size).length).toBeLessThanOrEqual(size);
+    }
+  });
+
+  it('gives the same palette for the same buckets', () => {
+    const buckets = [bucket(220, 40, 40, 4000), bucket(40, 90, 220, 3000), bucket(30, 160, 90, 900)];
+    const first = extractPalette(buckets, 3).map((c) => c.hex);
+    const second = extractPalette(buckets, 3).map((c) => c.hex);
+    expect(second).toEqual(first);
+  });
 });
 
 describe('pickRoles', () => {
@@ -311,6 +345,13 @@ describe('pickRoles', () => {
   it('does not hand the same colour to background and primary', () => {
     const roles = pickRoles(palette);
     expect(roles.primary.hex).not.toBe(roles.background.hex);
+  });
+
+  it('fills all four roles even when the palette is only two colours long', () => {
+    const roles = pickRoles(extractPalette([bucket(18, 22, 30, 6000), bucket(220, 60, 60, 2500)], 2));
+    for (const role of ['background', 'primary', 'accent', 'text']) {
+      expect(roles[role].hex).toMatch(/^#[0-9a-f]{6}$/);
+    }
   });
 });
 
