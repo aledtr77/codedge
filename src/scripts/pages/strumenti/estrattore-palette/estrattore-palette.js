@@ -1,4 +1,4 @@
-import { t } from "@/i18n/ui.js";
+import { currentLang, t } from "@/i18n/ui.js";
 import {
   contrastRatio,
   extractPalette,
@@ -129,6 +129,29 @@ export function initPaletteExtractor() {
     setStatus(ok ? t("tool.somethingCopied", { what: target.dataset.copy.toUpperCase() }) : t("tool.copyUnavailable"));
   });
 
+  // Everything this tool puts on screen is markup built here, so the language
+  // swap in lang-switch.js cannot translate it: the walk compares against the
+  // fetched twin, which knows nothing about a rendered palette and stops at
+  // that branch. The metrics are worse than untranslated — the twin *does*
+  // carry their "-" placeholders, so a swap copies those over a real reading
+  // and leaves "Pixels read: -" above eight swatches.
+  //
+  // Re-rendering from the result settles all of it at once: the metrics come
+  // back, the swatch and role labels change language, and the contrast card
+  // gets rebuilt even though its container is empty in the served markup and
+  // the walk never reaches it.
+  window.addEventListener("codedge:lang-changed", () => {
+    if (currentResult) {
+      renderResult(currentResult);
+      setStatus(t("tool.paletteReady"));
+      return;
+    }
+
+    refs.paletteGrid.innerHTML = `<div class="empty-state">${t("tool.emptyPalette")}</div>`;
+    resetRoles();
+    setStatus(t("tool.ready"));
+  });
+
   async function runAnalysis() {
     if (!currentSource) {
       setStatus(cameraStream ? t("tool.takePhotoFirst") : t("tool.uploadPhotoFirst"));
@@ -136,14 +159,14 @@ export function initPaletteExtractor() {
     }
 
     refs.analyzeBtn.disabled = true;
-    setStatus("Analisi in corso");
+    setStatus(t("tool.analyzing"));
 
     try {
       currentResult = await analyzeImage(currentSource, {
         paletteSize: Number(refs.paletteSize.value),
       });
       renderResult(currentResult);
-      setStatus("Palette pronta");
+      setStatus(t("tool.paletteReady"));
     } catch (error) {
       console.error(error);
       setStatus(t("tool.analysisError"));
@@ -154,7 +177,11 @@ export function initPaletteExtractor() {
 
   function renderResult(result) {
     refs.imageSize.textContent = `${result.meta.naturalWidth} x ${result.meta.naturalHeight}px`;
-    refs.pixelCount.textContent = result.meta.pixelCount.toLocaleString("it-IT");
+    // The page language, not a fixed locale: "96.330" reads as ninety-six
+    // thousand in Italian and as ninety-six point three in English.
+    refs.pixelCount.textContent = result.meta.pixelCount.toLocaleString(
+      currentLang() === "it" ? "it-IT" : "en-US"
+    );
     refs.averageColor.textContent = rgbToHex(result.meta.average).toUpperCase();
     refs.averageColor.style.color = rgbToHex(result.meta.average);
     refs.paletteGrid.innerHTML = result.palette.map(renderSwatch).join("");
@@ -426,7 +453,7 @@ export function initPaletteExtractor() {
       <div class="role-placeholder"></div>
       <div class="role-placeholder"></div>
     `;
-    refs.contrastCard.innerHTML = `<div class="empty-state small">I controlli contrasto compariranno dopo l'analisi.</div>`;
+    refs.contrastCard.innerHTML = `<div class="empty-state small">${t("tool.contrastEmpty")}</div>`;
   }
 
   function getCss() {
@@ -462,7 +489,7 @@ export function initPaletteExtractor() {
     link.download = filename;
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 500);
-    setStatus(`${filename} scaricato`);
+    setStatus(t("tool.downloaded", { what: filename }));
   }
 
   async function copyText(text) {
@@ -515,7 +542,7 @@ function loadImage(source) {
     image.crossOrigin = "anonymous";
     image.decoding = "async";
     image.onload = () => resolve(image);
-    image.onerror = () => reject(new Error("Immagine non leggibile"));
+    image.onerror = () => reject(new Error("Image could not be read"));
     image.src = source;
   });
 }

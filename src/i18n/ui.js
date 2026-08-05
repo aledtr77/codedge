@@ -142,7 +142,11 @@ const STRINGS = {
     'tool.shotReady': 'Scatto pronto',
     'tool.emptyPalette': "Carica un'immagine o avvia la demo.",
     'tool.ready': 'Pronto',
-    'tool.generatePaletteFirst': 'Genera prima la palette'
+    'tool.generatePaletteFirst': 'Genera prima la palette',
+    'tool.analyzing': 'Analisi in corso',
+    'tool.paletteReady': 'Palette pronta',
+    'tool.downloaded': '{what} scaricato',
+    'tool.contrastEmpty': "I controlli contrasto compariranno dopo l'analisi."
   },
 
   en: {
@@ -281,7 +285,11 @@ const STRINGS = {
     'tool.shotReady': 'Shot ready',
     'tool.emptyPalette': 'Upload an image or start the demo.',
     'tool.ready': 'Ready',
-    'tool.generatePaletteFirst': 'Generate the palette first'
+    'tool.generatePaletteFirst': 'Generate the palette first',
+    'tool.analyzing': 'Analyzing',
+    'tool.paletteReady': 'Palette ready',
+    'tool.downloaded': '{what} downloaded',
+    'tool.contrastEmpty': 'Contrast controls will appear after analysis.'
   }
 };
 
