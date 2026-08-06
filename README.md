@@ -4,8 +4,8 @@
 [![240 tests](https://img.shields.io/badge/tests-240%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
-Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
-written by hand. No framework, no CMS, no bought theme underneath.
+Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference built
+with semantic HTML, modular CSS and JavaScript, assembled as a multi-page Vite site.
 
 [![The codedge.it home page](.github/preview.jpg)](https://codedge.it)
 
