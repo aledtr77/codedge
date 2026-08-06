@@ -75,6 +75,15 @@ jobs:
       - name: Smoke test in a browser
         run: npm run test:smoke
 
+      # The README says accessibility is written in rather than bolted on, and
+      # until today nothing checked it. The first run found a search box with no
+      # label on all three glossaries, three unnamed inputs on the compressor,
+      # seven active elements painting white at 3.66:1, and a quiz component
+      # emitting an h4 under an h2 on all twelve guides. Every one of them had
+      # survived every visual review, because they all look fine.
+      - name: Accessibility on every page
+        run: npm run test:a11y
+
       # The real 404 (with noindex) already arrives from public/ through Vite:
       # no more copying index.html over 404.html, which served the whole
       # homepage as an error page. public/ is also where _headers (CSP, HSTS)

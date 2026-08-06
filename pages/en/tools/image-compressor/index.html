@@ -74,7 +74,7 @@
             <span class="upload-area__subtitle">Supports JPG, PNG, WebP and AVIF</span>
           </div>
         </button>
-        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif">
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif" aria-label="Choose an image to compress">
 
         <!-- Pannello Impostazioni (Sempre visibile di base) -->
         <div id="advanced-settings-panel" class="advanced-settings-panel">
@@ -110,7 +110,7 @@
               <div class="field-group">
                 <div class="field-row">
                   <label for="quality" class="field-label">Compression quality</label>
-                  <input id="qualityValue" class="value-input" value="72%">
+                  <input id="qualityValue" class="value-input" value="72%" aria-label="Compression quality, as a percentage">
                 </div>
                 <div class="slider-wrapper">
                   <input type="range" id="quality" class="slider" min="35" max="95" value="72" step="1">
@@ -121,7 +121,7 @@
               <div class="field-group">
                 <div class="field-row">
                   <label for="maxWidth" class="field-label">Maximum width</label>
-                  <input id="maxWidthValue" class="value-input" value="1600px">
+                  <input id="maxWidthValue" class="value-input" value="1600px" aria-label="Maximum width, in pixels">
                 </div>
                 <div class="slider-wrapper">
                   <input type="range" id="maxWidth" class="slider" min="640" max="2560" value="1600" step="20">

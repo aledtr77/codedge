@@ -1,7 +1,7 @@
 // Three kinds of JavaScript live in this repo and they do not share globals:
 // the site's own scripts run in a browser, the build and i18n scripts run in
-// Node, and i18n-swap.mjs and smoke.mjs are Node scripts that carry browser
-// code inside page.evaluate(). Telling them apart is the whole job of this
+// Node, and i18n-swap.mjs, smoke.mjs and a11y.mjs are Node scripts that carry
+// browser code inside page.evaluate(). Telling them apart is the whole job of this
 // file — a single flat config would report `document` as undefined in one
 // place and let a real typo through in another.
 
@@ -51,7 +51,7 @@ export default [
   // page.evaluate() are executed in the page, so they legitimately reach for
   // document, location and NodeFilter from inside a Node file.
   {
-    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs'],
+    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs', 'scripts/a11y.mjs'],
     languageOptions: {
       globals: { ...globals.node, ...globals.browser },
     },

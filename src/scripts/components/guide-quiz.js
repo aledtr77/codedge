@@ -77,7 +77,10 @@ export default async function initGuideQuiz() {
           </div>
         </div>
         
-        <h4 class="quiz-question-title">${qData.q}</h4>
+        <!-- h3, not h4: the quiz sits inside a chapter whose heading is an h2,
+             and an h4 there skips a level on all twelve guides at once. The
+             size comes from .quiz-question-title, not from the tag. -->
+        <h3 class="quiz-question-title">${qData.q}</h3>
         
         <div class="quiz-options-list">
           ${optionsHtml}

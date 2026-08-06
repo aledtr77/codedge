@@ -95,7 +95,7 @@ body > main .section h2 {
 
 .button-simple.main-gen-btn {
   background: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
   font-weight: 700;
   border: none;
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3);
@@ -221,7 +221,7 @@ body > main .section h2 {
 .card-action-btn.is-locked:hover {
   background: var(--color-three);
   border-color: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
 }
 
 .color-picker-wrapper {
@@ -249,6 +249,7 @@ body > main .section h2 {
 }
 
 .color-card-name {
+  color: var(--card-ink, #ffffff);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.2px;
@@ -261,6 +262,7 @@ body > main .section h2 {
 }
 
 .color-card-hex {
+  color: var(--card-ink, #ffffff);
   font-size: 1.25rem;
   font-weight: 750;
   letter-spacing: 0.5px;
@@ -345,19 +347,19 @@ body > main .section h2 {
 }
 
 .color-card.light-color {
-  color: #1e293b;
+  color: var(--card-ink, #1e293b);
 }
 
 .color-card.light-color .color-card-name {
   background: rgba(255, 255, 255, 0.35);
-  color: #1e293b;
+  color: var(--card-ink, #1e293b);
   text-shadow: none;
 }
 
 .color-card.light-color .card-action-btn {
   background: rgba(0, 0, 0, 0.08);
   border-color: rgba(0, 0, 0, 0.15);
-  color: #1e293b;
+  color: var(--card-ink, #1e293b);
 }
 
 .color-card.light-color .card-action-btn:hover {
@@ -368,12 +370,12 @@ body > main .section h2 {
 .color-card.light-color .card-action-btn.is-locked:hover {
   background: var(--color-three);
   border-color: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
 }
 
 .color-card.light-color .color-card-hex {
   background: rgba(255, 255, 255, 0.45);
-  color: #1e293b;
+  color: var(--card-ink, #1e293b);
   text-shadow: none;
 }
 
@@ -415,7 +417,8 @@ body > main .section h2 {
 
 .mockup-title-url {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
+  /* 0.35 composited to 3.21:1 against the mockup body. */
+  color: rgba(255, 255, 255, 0.62);
   margin-left: auto;
   margin-right: auto;
   background: rgba(0, 0, 0, 0.2);

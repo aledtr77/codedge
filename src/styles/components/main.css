@@ -18,6 +18,11 @@
   --color-one: #0056b3;
   --color-two: #718096;
   --color-three: #0084ff;
+  /* The text that sits on --color-three. White reaches 3.66:1 against it,
+     under the 4.5 WCAG asks for body text, and it was on seven active elements
+     across three tool pages. This is the colour the site's own palette
+     extractor picks for that background: 5.35:1. */
+  --color-three-ink: #0a0c10;
   --color-four: #0066cc;
   --color-five: #4a5568; /* scrollbar hover */
   --background-one: #0d111a;
@@ -562,4 +567,20 @@ body button:active {
   .card {
     animation: none;
   }
+}
+
+/* Visible to a screen reader and to nothing else. Lived in two page
+   stylesheets in two slightly different versions; one place now, and the
+   version that also sets clip-path, which is what current browsers read. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

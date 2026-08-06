@@ -45,6 +45,11 @@ A few things worth pointing at, because they're the parts that took the work:
   if the language lever stops swapping in place, or if the palette extractor and
   the glossary search stop doing their one job. Every one of those got past a
   green build once already.
+- **Accessibility is checked, not asserted.** All 68 pages, in the browser, on
+  every push: contrast against the background actually painted behind the text,
+  a name on every control, a label on every field, one h1 and one main, no
+  skipped heading levels. It went in on 6 August 2026 and found four things on
+  the first run — the fixes are in the same commit as the check.
 
 ## Run it locally
 

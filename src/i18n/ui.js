@@ -104,6 +104,11 @@ const STRINGS = {
     'tool.unknownColor': 'Sconosciuto',
     'tool.genericColor': 'Colore',
     'tool.deleteColor': 'Elimina questo colore',
+    'tool.shades': 'Sfumature tonalità',
+    'tool.closeShades': 'Chiudi le sfumature',
+    'tool.gradientAngle': 'Angolo del gradiente, in gradi',
+    'tool.stopColor': 'Colore della tappa {n}',
+    'tool.stopPosition': 'Posizione della tappa {n}, in percentuale',
     'tool.codeCopied': 'Codice copiato!',
 
     'tool.presetBalanced': 'Bilanciata',
@@ -247,6 +252,11 @@ const STRINGS = {
     'tool.unknownColor': 'Unknown',
     'tool.genericColor': 'Color',
     'tool.deleteColor': 'Delete this color',
+    'tool.shades': 'Shades',
+    'tool.closeShades': 'Close the shades',
+    'tool.gradientAngle': 'Gradient angle, in degrees',
+    'tool.stopColor': 'Colour of stop {n}',
+    'tool.stopPosition': 'Position of stop {n}, as a percentage',
     'tool.codeCopied': 'Code copied!',
 
     'tool.presetBalanced': 'Balanced',

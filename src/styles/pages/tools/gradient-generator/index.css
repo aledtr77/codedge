@@ -155,7 +155,7 @@
 .btn-type-toggle.active:hover {
   background: var(--color-three);
   border-color: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.25);
 }
 
@@ -604,7 +604,7 @@
 
 .mockup-tag {
   background: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
   font-size: 0.62rem;
   font-weight: 800;
   text-transform: uppercase;

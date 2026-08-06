@@ -293,16 +293,16 @@ export default function initGeneratorGradienti() {
       row.innerHTML = `
         <div class="stop-row-left">
           <div class="color-picker-wrapper">
-            <input type="color" class="row-color-input" value="${stop.color}">
+            <input type="color" class="row-color-input" value="${stop.color}" aria-label="${t("tool.stopColor", { n: index + 1 })}">
             <span class="row-color-hex">${stop.color.toUpperCase()}</span>
           </div>
         </div>
         <div class="stop-row-middle">
-          <input type="range" class="row-position-slider" min="0" max="100" value="${stop.position}">
+          <input type="range" class="row-position-slider" min="0" max="100" value="${stop.position}" aria-label="${t("tool.stopPosition", { n: index + 1 })}">
           <span class="row-position-val">${stop.position}%</span>
         </div>
         <div class="stop-row-right">
-          <button type="button" class="btn-delete-row-stop" title=t("tool.deleteColor")>
+          <button type="button" class="btn-delete-row-stop" title="${t("tool.deleteColor")}" aria-label="${t("tool.deleteColor")}">
             <i class="fas fa-trash-alt" aria-hidden="true"></i>
           </button>
         </div>

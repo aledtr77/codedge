@@ -169,7 +169,11 @@
                 </div>
               </div>
               <div class="mockup-hero-section">
-                <div id="mockup-hero-title" class="mockup-hero-title">Sviluppa Idee Grandi</div>
+                <!-- data-contrast-demo: this heading is painted with the reader's own
+                     accent colour, on purpose. It is a swatch shaped like a headline,
+                     not text the tool chose, so the contrast check leaves it alone —
+                     everything around it, which the tool does choose, is checked. -->
+                <div id="mockup-hero-title" class="mockup-hero-title" data-contrast-demo>Sviluppa Idee Grandi</div>
                 <p id="mockup-hero-text">Combina i tuoi colori preferiti e guarda come si comportano in una vera interfaccia web.</p>
                 <button id="mockup-hero-btn" class="mockup-button">Inizia Ora</button>
               </div>
@@ -213,7 +217,7 @@
           </div>
         </div>
         
-        <div id="contrast-preview-box" class="contrast-preview-box">
+        <div id="contrast-preview-box" data-contrast-demo class="contrast-preview-box">
           <span class="preview-text">Testo di esempio per testare la leggibilità in tempo reale.</span>
         </div>
         

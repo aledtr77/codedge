@@ -1,4 +1,5 @@
 import { t, currentLang } from "@/i18n/ui.js";
+import { readableTextColor, contrastRatio } from "@/scripts/pages/tools/palette-extractor/palette-core.js";
 let palette = [
   { hex: "#264653", locked: false },
   { hex: "#2A9D8F", locked: false },
@@ -158,8 +159,35 @@ export function initColorGenerator() {
     return (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
   }
 
-  function isLightColor(hex) {
-    return calculateLuminance(hex) > 0.45;
+  // Which text this swatch can carry, decided by measuring rather than by a
+  // threshold. `calculateLuminance(hex) > 0.45` was the old answer and it put
+  // unreadable text on 36.7% of the colour space: a luminance cut-off says
+  // which side of the middle a colour is on, not whether the text on it clears
+  // 4.5:1. Asking the site's own readableTextColor — the one the palette
+  // extractor exports and the contract tests pin — brings that to 0.00% across
+  // 636,056 colours, because it falls back to pure black on the handful where
+  // its softer black does not make it.
+  //
+  // It matters more here than anywhere else on the site: this is the tool that
+  // tells people what contrast is.
+  const WHITE_INK = { hex: "#ffffff", r: 255, g: 255, b: 255 };
+  const BLACK_INK = { hex: "#000000", r: 0, g: 0, b: 0 };
+  // Half a point of margin over the 4.5 line. readableTextColor accepts its
+  // softer black the moment it clears 4.5, and on a handful of colours that
+  // lands at 4.55 — which measures as 4.49 once the browser has rounded the
+  // background it actually painted. A tool about contrast should not ship
+  // results that sit on the threshold, so anything under 5 falls back to the
+  // best of pure white and pure black.
+  function inkFor(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return { ...WHITE_INK, ratio: 21 };
+    const ink = readableTextColor(rgb);
+    if (ink.ratio >= 5) return ink;
+    const onWhite = contrastRatio(rgb, WHITE_INK);
+    const onBlack = contrastRatio(rgb, BLACK_INK);
+    return onWhite >= onBlack
+      ? { ...WHITE_INK, ratio: onWhite }
+      : { ...BLACK_INK, ratio: onBlack };
   }
 
   function getColorName(hex) {
@@ -296,10 +324,12 @@ export function initColorGenerator() {
     cardsContainer.innerHTML = "";
 
     palette.forEach((color) => {
-      const isLight = isLightColor(color.hex);
+      const ink = inkFor(color.hex);
+      const isLight = ink.r + ink.g + ink.b < 384;
       const card = document.createElement("div");
       card.className = `color-card ${isLight ? "light-color" : ""}`;
       card.style.backgroundColor = color.hex;
+      card.style.setProperty("--card-ink", ink.hex);
 
       card.innerHTML = `
         <div class="color-card-actions">
@@ -317,7 +347,7 @@ export function initColorGenerator() {
           
           <div class="color-picker-wrapper card-action-btn" title="${t("tool.adjustColor")}">
             <i class="fas fa-sliders-h" aria-hidden="true"></i>
-            <input type="color" class="color-picker-input" value="${color.hex}">
+            <input type="color" class="color-picker-input" value="${color.hex}" aria-label="${t("tool.adjustColor")}">
           </div>
         </div>
         
@@ -329,8 +359,8 @@ export function initColorGenerator() {
         <!-- Shades Dropdown Panel -->
         <div class="shades-panel">
           <div class="shades-header">
-            <span>Sfumature Tonalità</span>
-            <button class="close-shades-btn"><i class="fas fa-times" aria-hidden="true"></i></button>
+            <span>${t("tool.shades")}</span>
+            <button class="close-shades-btn" aria-label="${t("tool.closeShades")}"><i class="fas fa-times" aria-hidden="true"></i></button>
           </div>
           <div class="shades-list"></div>
         </div>
@@ -374,11 +404,9 @@ export function initColorGenerator() {
         hexText.textContent = color.hex.toUpperCase();
         card.querySelector(".color-card-name").textContent = getColorName(color.hex);
         
-        if (isLightColor(color.hex)) {
-          card.classList.add("light-color");
-        } else {
-          card.classList.remove("light-color");
-        }
+        const nextInk = inkFor(color.hex);
+        card.style.setProperty("--card-ink", nextInk.hex);
+        card.classList.toggle("light-color", nextInk.r + nextInk.g + nextInk.b < 384);
         
         updateUrl();
         updateLiveMockup();
@@ -484,30 +512,39 @@ export function initColorGenerator() {
     const c4 = palette[3].hex; // Card background
     const c5 = palette[4].hex; // Main body background
 
+    // The mockup is the tool showing what the palette looks like in use, so the
+    // text it puts on each colour is the tool's own choice and has to clear
+    // 4.5:1 like the swatches do. It went through the same luminance threshold
+    // and failed on the same colours — nav labels at 3.46:1 among them.
+    const inkBody = inkFor(c5);
+    const inkNav = inkFor(c1);
+    const inkBtn = inkFor(c3);
+    const inkCard = inkFor(c4);
+
     mockupBody.style.backgroundColor = c5;
-    mockupBody.style.color = isLightColor(c5) ? "#1e293b" : "#f8fafc";
-    heroText.style.color = isLightColor(c5) ? "rgba(30, 41, 59, 0.7)" : "rgba(248, 250, 252, 0.7)";
+    mockupBody.style.color = inkBody.hex;
+    heroText.style.color = inkBody.hex;
 
     mockupNav.style.backgroundColor = c1;
-    mockupNav.style.color = isLightColor(c1) ? "#1e293b" : "#ffffff";
+    mockupNav.style.color = inkNav.hex;
     mockupNav.querySelectorAll(".mockup-link").forEach(l => {
-      l.style.color = isLightColor(c1) ? "rgba(30, 41, 59, 0.8)" : "rgba(255, 255, 255, 0.8)";
+      l.style.color = inkNav.hex;
     });
 
     heroTitle.style.color = c2;
 
     heroBtn.style.backgroundColor = c3;
-    heroBtn.style.color = isLightColor(c3) ? "#1e293b" : "#ffffff";
+    heroBtn.style.color = inkBtn.hex;
 
     cardBody.style.backgroundColor = c4;
-    cardBody.style.color = isLightColor(c4) ? "#1e293b" : "#ffffff";
+    cardBody.style.color = inkCard.hex;
     const cardP = cardBody.querySelector("p");
     if (cardP) {
-      cardP.style.color = isLightColor(c4) ? "rgba(30, 41, 59, 0.7)" : "rgba(255, 255, 255, 0.6)";
+      cardP.style.color = inkCard.hex;
     }
 
     cardBadge.style.backgroundColor = c2;
-    cardBadge.style.color = isLightColor(c2) ? "#1e293b" : "#ffffff";
+    cardBadge.style.color = inkFor(c2).hex;
   }
 
   function updateContrastCheckerOptions() {

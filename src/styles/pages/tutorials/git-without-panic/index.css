@@ -1300,7 +1300,8 @@
 }
 
 .text-muted {
-  color: rgba(232, 244, 255, 0.4);
+  /* 0.4 composited to 3.50:1 on the panel behind it. */
+  color: rgba(232, 244, 255, 0.55);
 }
 
 /* Hover highlights */
@@ -1466,13 +1467,15 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+/* #10b981 left white at 2.54:1 and #ef4444 at 3.76:1. Same hues, deep
+   enough that the label on them clears 4.5. */
 .nesting-diagram.correct .nesting-header-badge {
-  background: #10b981;
+  background: #0a7854;
   color: #ffffff;
 }
 
 .nesting-diagram.incorrect .nesting-header-badge {
-  background: #ef4444;
+  background: #b33333;
   color: #ffffff;
 }
 
@@ -1531,12 +1534,13 @@
 }
 
 .tag-error {
-  color: rgba(239, 68, 68, 0.9);
+  color: #f87171;
 }
 
 .box-tag-label {
   font-size: 0.78rem;
-  color: rgba(232, 244, 255, 0.45);
+  /* 0.45 composited to 4.06:1 on the panel behind it. */
+  color: rgba(232, 244, 255, 0.55);
   margin-left: 0.5rem;
   font-family: system-ui, -apple-system, sans-serif;
   font-weight: normal;
@@ -1548,14 +1552,16 @@
   margin: 0.4rem 0;
 }
 
+/* Full opacity and a lighter red: on the dark panel the alpha was compositing
+   towards the background, taking 4.42 down to a real 3.21. */
 .text-error-crossed {
-  color: rgba(239, 68, 68, 0.8);
+  color: #f87171;
 }
 
 .error-badge {
   display: inline-block;
   background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
+  color: #f87171;
   font-size: 0.72rem;
   font-family: system-ui, -apple-system, sans-serif;
   font-weight: 600;

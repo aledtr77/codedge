@@ -19,25 +19,9 @@
 // Needs `npm run build` first and a local Chrome. Exits non-zero on the first
 // failing check so it can gate a deploy.
 
-import { createServer } from 'node:http';
-import { existsSync, readFileSync, statSync } from 'node:fs';
-import { extname, join, normalize } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
-
-const DIST = fileURLToPath(new URL('../dist', import.meta.url));
-
-// The runners and the distributions do not agree on where Chrome lives, and a
-// hard-coded path turns a missing browser into a confusing timeout instead of a
-// sentence saying which paths were tried.
-const CHROME_CANDIDATES = [
-  process.env.CHROME_PATH,
-  '/usr/bin/google-chrome',
-  '/usr/bin/google-chrome-stable',
-  '/usr/bin/chromium',
-  '/usr/bin/chromium-browser',
-  '/snap/bin/chromium',
-].filter(Boolean);
+import { existsSync } from 'node:fs';
+import { chromePath, DIST, serveDist } from './lib/serve-dist.mjs';
 
 const RED = '\x1b[31m';
 const GREEN = '\x1b[32m';
@@ -57,50 +41,6 @@ const PAGES = [
   '/ui-components/',
 ];
 
-const MIME = {
-  '.html': 'text/html; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.webmanifest': 'application/manifest+json',
-  '.svg': 'image/svg+xml',
-  '.webp': 'image/webp',
-  '.avif': 'image/avif',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.png': 'image/png',
-  '.ico': 'image/x-icon',
-  '.woff2': 'font/woff2',
-  '.xml': 'application/xml; charset=utf-8',
-  '.txt': 'text/plain; charset=utf-8',
-};
-
-function resolveFile(urlPath) {
-  const clean = normalize(decodeURIComponent(urlPath.split('?')[0])).replace(/^(\.\.[/\\])+/, '');
-  const target = join(DIST, clean);
-  if (existsSync(target) && statSync(target).isFile()) return target;
-  const index = join(target, 'index.html');
-  if (existsSync(index)) return index;
-  return null;
-}
-
-function serve() {
-  const server = createServer((req, res) => {
-    const file = resolveFile(req.url || '/');
-    if (!file) {
-      const notFound = join(DIST, '404.html');
-      res.writeHead(404, { 'content-type': MIME['.html'] });
-      res.end(existsSync(notFound) ? readFileSync(notFound) : 'not found');
-      return;
-    }
-    res.writeHead(200, { 'content-type': MIME[extname(file)] || 'application/octet-stream' });
-    res.end(readFileSync(file));
-  });
-  return new Promise((resolve) => {
-    server.listen(0, '127.0.0.1', () => resolve({ server, port: server.address().port }));
-  });
-}
-
 // A counter only a real navigation can increment. Runs before anything of the
 // page's own, on a context so fresh that document.documentElement is still null.
 const PROBE = 'window.__navigations = (window.__navigations || 0) + 1;';
@@ -117,15 +57,8 @@ if (!existsSync(DIST)) {
   process.exit(1);
 }
 
-const executablePath = CHROME_CANDIDATES.find((p) => existsSync(p));
-if (!executablePath) {
-  console.error(`No Chrome found. Tried:\n  ${CHROME_CANDIDATES.join('\n  ')}\nSet CHROME_PATH.`);
-  process.exit(1);
-}
-
-const { server, port } = await serve();
-const BASE = `http://127.0.0.1:${port}`;
-const browser = await chromium.launch({ executablePath, headless: true });
+const { server, base: BASE } = await serveDist();
+const browser = await chromium.launch({ executablePath: chromePath(), headless: true });
 
 async function withPage(fn, options = {}) {
   const context = await browser.newContext(options);

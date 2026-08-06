@@ -171,7 +171,7 @@ body > main .section {
 .preset-chip.is-active {
   background: var(--color-three);
   border-color: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.25);
 }
 
@@ -456,7 +456,7 @@ body > main .section {
 
 .row-download-btn {
   background: var(--color-three);
-  color: #ffffff;
+  color: var(--color-three-ink);
   border: none;
   font-weight: 700;
   font-size: 0.82rem;
