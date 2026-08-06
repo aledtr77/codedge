@@ -21,5 +21,9 @@ Thumbs.db
 .vscode/
 .idea/
 
-# appunti di lavoro personali, non fanno parte del progetto
+# personal working notes, not part of the project
 PROMEMORIA.md
+
+# machine-local agent permissions and paths. A global ignore covered this on one
+# machine only: here it travels with the repo.
+.claude/settings.local.json
