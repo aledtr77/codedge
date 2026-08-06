@@ -1,7 +1,7 @@
 # CODEDGE
 
 [![lint · tests · build · browser](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build%20%C2%B7%20browser)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
-[![235 tests](https://img.shields.io/badge/tests-235%20(Vitest)-3fb950)](tests/)
+[![240 tests](https://img.shields.io/badge/tests-240%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference site,
