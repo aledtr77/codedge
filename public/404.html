@@ -1,11 +1,19 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pagina non trovata (404) | CODEDGE</title>
+  <title>Page not found (404) | CODEDGE</title>
   <meta name="robots" content="noindex,follow" />
-  <meta name="description" content="La pagina richiesta non esiste o e stata spostata. Torna alla home di CODEDGE per trovare risorse, strumenti e componenti UI." />
+  <meta name="description" content="The page you asked for does not exist or has moved. Head back to the CODEDGE home page for the glossaries, tools and UI components." />
+  <!--
+    One 404 answers for the whole site, and the site is two: English at the root
+    and Italian under /it/. It cannot know which one the reader wanted — the URL
+    that got them here is by definition not a route — so it says it in both,
+    English first because the root is English, and each half links only to its
+    own language. No script: a page that exists to say something went wrong is
+    the last place to depend on anything running.
+  -->
   <style>
     :root { color-scheme: dark; }
     body {
@@ -13,8 +21,8 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: #1f1f1f;
-      color: #f1f1f1;
+      background: #0d111a;
+      color: #f2f2f2;
       font-family: Verdana, sans-serif;
       line-height: 1.5;
       padding: 1.5rem;
@@ -22,14 +30,19 @@
     }
     main {
       max-width: 680px;
-      background: #2a2a2a;
-      border: 1px solid #3d3d3d;
+      background: #141a26;
+      border: 1px solid #2a3240;
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 2rem;
     }
     h1 { margin-top: 0; }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 .25rem;
+    }
     a {
-      color: #00a8ff;
+      color: #4aa8ff;
       font-weight: 700;
       text-decoration: none;
     }
@@ -37,25 +50,46 @@
     ul {
       list-style: none;
       padding: 0;
-      margin: 1rem 0 0;
+      margin: .75rem 0 0;
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
+    .other {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #2a3240;
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>Errore 404</h1>
-    <p>Questa pagina non e disponibile. Potrebbe essere stata rimossa o l'URL potrebbe essere errato.</p>
-    <p><a href="/">Torna alla home</a></p>
-    <ul>
-      <li><a href="/it/risorse/">Risorse</a></li>
-      <li><a href="/it/strumenti/">Strumenti</a></li>
-      <li><a href="/it/componenti-ui/">Componenti UI</a></li>
-      <li><a href="/it/template/">Template</a></li>
-    </ul>
+    <h1>404</h1>
+
+    <section>
+      <h2 lang="en">Page not found</h2>
+      <p lang="en">This page is not available. It may have been removed, or the address may be wrong.</p>
+      <p><a href="/" lang="en">Back to the home page</a></p>
+      <ul lang="en">
+        <li><a href="/resources/">Resources</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/ui-components/">UI components</a></li>
+        <li><a href="/tutorials/">Tutorials</a></li>
+      </ul>
+    </section>
+
+    <section class="other">
+      <h2 lang="it">Pagina non trovata</h2>
+      <p lang="it">Questa pagina non è disponibile. Potrebbe essere stata rimossa, oppure l'indirizzo potrebbe essere sbagliato.</p>
+      <p><a href="/it/" lang="it">Torna alla home</a></p>
+      <ul lang="it">
+        <li><a href="/it/risorse/">Risorse</a></li>
+        <li><a href="/it/strumenti/">Strumenti</a></li>
+        <li><a href="/it/componenti-ui/">Componenti UI</a></li>
+        <li><a href="/it/tutorial/">Tutorial</a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>
