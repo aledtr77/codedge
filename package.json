@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:smoke": "node scripts/smoke.mjs",
     "i18n:drift": "node scripts/i18n-drift.mjs",
     "i18n:sync": "node scripts/i18n-drift.mjs --update",
     "i18n:lint": "node scripts/i18n-lint.mjs",

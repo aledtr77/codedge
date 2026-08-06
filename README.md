@@ -1,6 +1,6 @@
 # CODEDGE
 
-[![lint · tests · build](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
+[![lint · tests · build · browser](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build%20%C2%B7%20browser)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
 [![148 tests](https://img.shields.io/badge/tests-148%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
@@ -36,18 +36,25 @@ A few things worth pointing at, because they're the parts that took the work:
   when it changes on one side only. English lives at the root, Italian under `/it/`.
 - **The logic that runs without a DOM is tested, and the tests block the deploy.**
   Colour conversion and quantisation, the route map the hreflang tags and the 301s
-  come out of, the Italian-in-English detector, the runtime UI strings. The rest is
-  checked in a browser, which is the only place the rest can be checked.
+  come out of, the Italian-in-English detector, the runtime UI strings.
+- **What only exists in a browser is checked in one, in CI, and blocks too.**
+  After the build, a headless Chrome opens the pages in `dist/` — what ships — and
+  fails the deploy if one of them never produces a contentful paint, if a module
+  throws or a request 404s, if the guide needs JavaScript before it will lay out,
+  if the language lever stops swapping in place, or if the palette extractor and
+  the glossary search stop doing their one job. Every one of those got past a
+  green build once already.
 
 ## Run it locally
 
 ```bash
 npm install
-npm run dev      # dev server
-npm test         # unit tests (Vitest)
-npm run lint     # ESLint
-npm run build    # static output in dist/
-npm run preview  # serve the build
+npm run dev         # dev server
+npm test            # unit tests (Vitest)
+npm run lint        # ESLint
+npm run build       # static output in dist/
+npm run test:smoke  # drives a headless Chrome over dist/ — needs the build first
+npm run preview     # serve the build
 ```
 
 ## Licence

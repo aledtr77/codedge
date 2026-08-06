@@ -1,0 +1,288 @@
+// What the unit tests cannot see: the site running in a browser.
+//
+// The suite in tests/ covers the logic that survives without a DOM, and that
+// leaves the whole of what a reader actually experiences uncovered — a page
+// that paints blank, a module that throws on load and takes the tool with it,
+// a stylesheet that 404s after a rename. None of that shows up in a build that
+// exits 0, and twice already it reached the live site instead: the body left at
+// `opacity: 0` that never let the FCP register, and the guide layout that was
+// assembled in JavaScript and therefore was not there on the first paint.
+//
+// So these checks run against dist/ — not the dev server — because dist/ is
+// what ships: minified HTML, hashed assets, the real _headers next to them.
+// The script serves that directory itself the way Cloudflare Pages does
+// (a directory means its index.html) and drives a real Chrome over it.
+//
+//   npm run test:smoke
+//   CHROME_PATH=/usr/bin/chromium npm run test:smoke
+//
+// Needs `npm run build` first and a local Chrome. Exits non-zero on the first
+// failing check so it can gate a deploy.
+
+import { createServer } from 'node:http';
+import { existsSync, readFileSync, statSync } from 'node:fs';
+import { extname, join, normalize } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright-core';
+
+const DIST = fileURLToPath(new URL('../dist', import.meta.url));
+
+// The runners and the distributions do not agree on where Chrome lives, and a
+// hard-coded path turns a missing browser into a confusing timeout instead of a
+// sentence saying which paths were tried.
+const CHROME_CANDIDATES = [
+  process.env.CHROME_PATH,
+  '/usr/bin/google-chrome',
+  '/usr/bin/google-chrome-stable',
+  '/usr/bin/chromium',
+  '/usr/bin/chromium-browser',
+  '/snap/bin/chromium',
+].filter(Boolean);
+
+const RED = '\x1b[31m';
+const GREEN = '\x1b[32m';
+const DIM = '\x1b[2m';
+const RESET = '\x1b[0m';
+
+// One page per kind of thing the site is made of: the two home pages (the
+// language pair), a glossary (the app-shell with its own scrolling), a tool
+// (canvas and workers), a guide (the longest page, table of contents included)
+// and the components index.
+const PAGES = [
+  '/',
+  '/it/',
+  '/resources/css-glossary/',
+  '/tools/palette-extractor/',
+  '/tutorials/git-without-panic/',
+  '/ui-components/',
+];
+
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.webmanifest': 'application/manifest+json',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.png': 'image/png',
+  '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
+};
+
+function resolveFile(urlPath) {
+  const clean = normalize(decodeURIComponent(urlPath.split('?')[0])).replace(/^(\.\.[/\\])+/, '');
+  const target = join(DIST, clean);
+  if (existsSync(target) && statSync(target).isFile()) return target;
+  const index = join(target, 'index.html');
+  if (existsSync(index)) return index;
+  return null;
+}
+
+function serve() {
+  const server = createServer((req, res) => {
+    const file = resolveFile(req.url || '/');
+    if (!file) {
+      const notFound = join(DIST, '404.html');
+      res.writeHead(404, { 'content-type': MIME['.html'] });
+      res.end(existsSync(notFound) ? readFileSync(notFound) : 'not found');
+      return;
+    }
+    res.writeHead(200, { 'content-type': MIME[extname(file)] || 'application/octet-stream' });
+    res.end(readFileSync(file));
+  });
+  return new Promise((resolve) => {
+    server.listen(0, '127.0.0.1', () => resolve({ server, port: server.address().port }));
+  });
+}
+
+// A counter only a real navigation can increment. Runs before anything of the
+// page's own, on a context so fresh that document.documentElement is still null.
+const PROBE = 'window.__navigations = (window.__navigations || 0) + 1;';
+
+const results = [];
+function record(name, detail) {
+  results.push({ name, detail });
+  const mark = detail ? `${RED}✗${RESET}` : `${GREEN}✓${RESET}`;
+  console.log(`${mark} ${name}${detail ? ` ${DIM}(${detail})${RESET}` : ''}`);
+}
+
+if (!existsSync(DIST)) {
+  console.error('dist/ is not there: run `npm run build` first.');
+  process.exit(1);
+}
+
+const executablePath = CHROME_CANDIDATES.find((p) => existsSync(p));
+if (!executablePath) {
+  console.error(`No Chrome found. Tried:\n  ${CHROME_CANDIDATES.join('\n  ')}\nSet CHROME_PATH.`);
+  process.exit(1);
+}
+
+const { server, port } = await serve();
+const BASE = `http://127.0.0.1:${port}`;
+const browser = await chromium.launch({ executablePath, headless: true });
+
+async function withPage(fn, options = {}) {
+  const context = await browser.newContext(options);
+  await context.addInitScript(PROBE);
+  const page = await context.newPage();
+  try {
+    return await fn(page);
+  } finally {
+    await context.close();
+  }
+}
+
+// 1-3. Every sampled page: it paints, it paints something, and nothing on it
+// throws or 404s on the way.
+for (const route of PAGES) {
+  await withPage(async (page) => {
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(`throw: ${e.message.split('\n')[0]}`));
+    page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text().slice(0, 120)}`); });
+    page.on('requestfailed', (r) => errors.push(`request: ${r.url().replace(BASE, '')}`));
+    const response = await page.goto(BASE + route, { waitUntil: 'load' });
+    if (response.status() !== 200) errors.push(`HTTP ${response.status()}`);
+
+    // Not "is the body visible" but "did the browser record a contentful
+    // paint": the way the opacity-0 body failed was by never producing one, and
+    // that is the entry PageSpeed reads as NO_FCP. Reading the metric itself
+    // means the check does not depend on catching the right instant.
+    await page.waitForFunction(
+      () => performance.getEntriesByType('paint').some((e) => e.name === 'first-contentful-paint'),
+      null,
+      { timeout: 5000 },
+    ).catch(() => {});
+    const paint = await page.evaluate(() => {
+      const fcp = performance.getEntriesByType('paint').find((e) => e.name === 'first-contentful-paint');
+      const style = getComputedStyle(document.body);
+      return { fcp: fcp ? Math.round(fcp.startTime) : null, opacity: style.opacity, visibility: style.visibility };
+    });
+    record(
+      `${route} — paints something`,
+      paint.fcp !== null && paint.opacity === '1' && paint.visibility !== 'hidden'
+        ? null
+        : `FCP ${paint.fcp === null ? 'never' : `${paint.fcp}ms`}, body opacity ${paint.opacity}, visibility ${paint.visibility}`,
+    );
+
+    const box = await page.evaluate(() => {
+      const heading = document.querySelector('h1');
+      const main = document.querySelector('#main-content, main');
+      const size = (el) => (el ? el.getBoundingClientRect() : null);
+      const h = size(heading);
+      const m = size(main);
+      return {
+        heading: h && h.width > 0 && h.height > 0,
+        main: m && m.width > 0 && m.height > 0,
+        text: (heading?.textContent || '').trim().length,
+      };
+    });
+    record(
+      `${route} — heading and main have a box`,
+      box.heading && box.main && box.text > 0 ? null : `h1 ${box.heading}, main ${box.main}, ${box.text} chars`,
+    );
+
+    record(`${route} — loads clean`, errors.length ? errors.slice(0, 2).join(' · ') : null);
+  });
+}
+
+// 4. The layout must come out of the markup and the CSS. With JavaScript off,
+// the guide is the page that used to fall apart: its table of contents and its
+// two columns were assembled at runtime, so the first paint had neither.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/tutorials/git-without-panic/`, { waitUntil: 'load' });
+  const laid = await page.evaluate(() => {
+    const main = document.querySelector('#main-content, main');
+    const heading = document.querySelector('h1');
+    const paragraphs = Array.from(document.querySelectorAll('main p, #main-content p'))
+      .filter((p) => p.getBoundingClientRect().height > 0);
+    return {
+      main: main ? main.getBoundingClientRect().height : 0,
+      heading: heading ? heading.getBoundingClientRect().height : 0,
+      paragraphs: paragraphs.length,
+    };
+  });
+  record(
+    'the guide lays out with JavaScript disabled',
+    laid.main > 400 && laid.heading > 0 && laid.paragraphs > 3
+      ? null
+      : `main ${Math.round(laid.main)}px, h1 ${Math.round(laid.heading)}px, ${laid.paragraphs} paragraphs`,
+  );
+}, { javaScriptEnabled: false });
+
+// 5. The lever swaps the page in place. A full navigation would also end up on
+// the right URL, which is why the navigation counter is part of the assertion.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/resources/`, { waitUntil: 'load' });
+  await page.click('.lang-switch');
+  await page.waitForFunction(() => document.documentElement.lang === 'it', null, { timeout: 5000 })
+    .catch(() => {});
+  const after = await page.evaluate(() => ({
+    lang: document.documentElement.lang,
+    path: location.pathname,
+    navigations: window.__navigations,
+  }));
+  record(
+    'the language lever swaps in place',
+    after.lang === 'it' && after.path === '/it/risorse/' && after.navigations === 1
+      ? null
+      : `lang ${after.lang}, path ${after.path}, ${after.navigations} navigation(s)`,
+  );
+});
+
+// 6. The tool has to do its arithmetic in the browser, on an image, with no
+// network anywhere in the path. Its own Demo button is the reproducible input.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/tools/palette-extractor/`, { waitUntil: 'load' });
+  await page.click('#demoBtn');
+  await page.waitForFunction(
+    () => document.querySelectorAll('#paletteGrid *').length > 0,
+    null,
+    { timeout: 15000 },
+  ).catch(() => {});
+  const out = await page.evaluate(() => ({
+    swatches: document.querySelectorAll('#paletteGrid > *').length,
+    roles: document.querySelectorAll('#rolesList > *').length,
+    hex: /#[0-9a-f]{6}/i.test(document.querySelector('#paletteGrid')?.textContent || ''),
+  }));
+  record(
+    'the palette extractor builds a palette from its demo',
+    out.swatches > 0 && out.roles > 0 && out.hex
+      ? null
+      : `${out.swatches} swatch(es), ${out.roles} role(s), hex ${out.hex}`,
+  );
+});
+
+// 7. The glossary is a search box over a few hundred entries: if the filter
+// stops filtering the page still looks perfectly fine.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/resources/css-glossary/`, { waitUntil: 'load' });
+  const visible = () => page.evaluate(() =>
+    Array.from(document.querySelectorAll('.main-content details ol > li'))
+      .filter((li) => li.getBoundingClientRect().height > 0).length);
+  const before = await visible();
+  await page.fill('#search', 'flex-direction');
+  await page.waitForFunction(
+    (n) => Array.from(document.querySelectorAll('.main-content details ol > li'))
+      .filter((li) => li.getBoundingClientRect().height > 0).length < n,
+    before,
+    { timeout: 5000 },
+  ).catch(() => {});
+  const after = await visible();
+  record(
+    'the glossary search filters the entries',
+    before > 20 && after > 0 && after < before ? null : `${before} entries before, ${after} after`,
+  );
+});
+
+await browser.close();
+server.close();
+
+const failing = results.filter((r) => r.detail).length;
+console.log(`\n${results.length} check(s) · ${failing} failing`);
+process.exit(failing > 0 ? 1 : 0);

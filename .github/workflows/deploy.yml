@@ -62,6 +62,19 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Everything above this line runs without a browser, and the site is a
+      # browser. These checks drive a real Chrome over dist/ — what ships, not
+      # the dev server — and block: a page that never produces a contentful
+      # paint, a module that throws on load, a tool that stops extracting, a
+      # guide that only lays out once JavaScript has run. Each of those has
+      # reached the live site at least once while the build stayed green.
+      #
+      # Chrome comes with the runner image. If it ever stops coming, this step
+      # fails loudly naming the paths it tried, which is the right outcome:
+      # deploying without having opened the site is the thing to avoid.
+      - name: Smoke test in a browser
+        run: npm run test:smoke
+
       # The real 404 (with noindex) already arrives from public/ through Vite:
       # no more copying index.html over 404.html, which served the whole
       # homepage as an error page. public/ is also where _headers (CSP, HSTS)
