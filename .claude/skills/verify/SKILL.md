@@ -44,6 +44,6 @@ const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome'
   the first/last element, the browser clamps at 0/max and the "ideal" offset
   is physically unreachable. Check `scrollTop >= maxScroll` / `scrollY === 0`
   before calling a delta a failure.
-- The three glossaries (html/css/js) share `src/scripts/components/glossario.js`
-  and `src/styles/components/glossario.css`; verifying one page covers the
+- The three glossaries (html/css/js) share `src/scripts/components/glossary.js`
+  and `src/styles/components/glossary.css`; verifying one page covers the
   shared logic, but page structure differs slightly (e.g. breadcrumb presence).

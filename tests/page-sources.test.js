@@ -47,8 +47,8 @@ describe('extractSpecifiers', () => {
   });
 
   it('reads the dynamic import that actually pulls in the page script', () => {
-    const source = 'const { init } = await import("@/scripts/pages/strumenti/x/x.js");';
-    expect(extractSpecifiers(source, '.js')).toEqual(['@/scripts/pages/strumenti/x/x.js']);
+    const source = 'const { init } = await import("@/scripts/pages/tools/x/x.js");';
+    expect(extractSpecifiers(source, '.js')).toEqual(['@/scripts/pages/tools/x/x.js']);
   });
 
   it('reads a re-export', () => {

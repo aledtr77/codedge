@@ -20,7 +20,7 @@ import {
   rgbToHex,
   rgbToHsl,
   rgbToLab,
-} from '@/scripts/pages/strumenti/estrattore-palette/palette-core.js';
+} from '@/scripts/pages/tools/palette-extractor/palette-core.js';
 
 /** A bucket in the shape sampleImage() hands to extractPalette(). */
 function bucket(r, g, b, count) {
