@@ -273,7 +273,6 @@ export function initSnippets() {
     }
   }
 
-  console.log('initSnippets: initialized');
 }
 
 export default initSnippets;
