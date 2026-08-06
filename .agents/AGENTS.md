@@ -7,8 +7,10 @@ another language: a second copy is a second thing to keep in sync, and the two d
 
 - **Commits are fine.** Commit the changes you make. Write every message in English —
   subject and body — whatever language the conversation is in.
-- **Never push.** Do not run `git push` under any circumstances. Pushing is the user's,
-  from the terminal.
+- **Never push on your own initiative.** Run `git push` only when it is asked for in so
+  many words. When it is asked for, the commit has already been read: the request is
+  the review, and handing the push over is quicker than switching to a terminal to type
+  it. Absent the request, the commit stays local and you say so.
 
 ## Code
 
