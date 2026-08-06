@@ -8,7 +8,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execFileSync } from 'child_process';
+import { fileDates, toRelative } from './lib/git-dates.mjs';
 import { formatSegment, LANG_PREFIX_SEGMENTS } from '../src/scripts/components/breadcrumb-vocabulary.js';
 import { ROUTE_MAP, counterpartOf, langOf, routeFromSourceDir, sourceDirForRoute } from '../src/i18n/routes.mjs';
 
@@ -62,22 +62,11 @@ function getTitleHeadline(html) {
   return m[1].split('|')[0].replace(/\s+/g, ' ').trim();
 }
 
+// datePublished and dateModified, from a history read so that moving a file
+// changes neither — see scripts/lib/git-dates.mjs.
 function gitDate(projectRoot, filePath, { first = false } = {}) {
-  try {
-    const rel = path.relative(projectRoot, filePath).split(path.sep).join('/');
-    const args = first
-      ? ['log', '--diff-filter=A', '--format=%cI', '--', rel]
-      : ['log', '-1', '--format=%cI', '--', rel];
-    const out = execFileSync('git', args, {
-      cwd: projectRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']
-    }).trim();
-    if (!out) return '';
-    const lines = out.split('\n');
-    // publication date needs the oldest commit (last line)
-    return (first ? lines[lines.length - 1] : lines[0]).slice(0, 10);
-  } catch {
-    return '';
-  }
+  const dates = fileDates(projectRoot, toRelative(projectRoot, filePath));
+  return (first ? dates.created : dates.modified)?.slice(0, 10) || '';
 }
 
 // Must produce the same trail as the runtime breadcrumb (breadcrumb.js):

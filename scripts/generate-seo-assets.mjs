@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import {
   counterpartOf,
@@ -11,6 +10,7 @@ import {
   IT_PREFIX
 } from '../src/i18n/routes.mjs';
 import { collectPageSources } from './page-sources.mjs';
+import { fileDates, toRelative } from './lib/git-dates.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -50,35 +50,13 @@ function routeFromFile(filePath) {
 }
 
 function gitRelativePath(filePath) {
-  return path.relative(projectRoot, filePath).split(path.sep).join('/');
+  return toRelative(projectRoot, filePath);
 }
 
-// One git call per file, asked for once: the pages share their entries, so the
-// same path comes up again and again while the dates are collected.
-const lastCommitCache = new Map();
-
+// The date a move must not touch — see scripts/lib/git-dates.mjs for why the
+// obvious git call gets this wrong, and what it costs when it does.
 function lastCommitFor(relativePath) {
-  if (lastCommitCache.has(relativePath)) return lastCommitCache.get(relativePath);
-
-  let isoDate = null;
-  try {
-    const lastCommitDate = execFileSync(
-      'git',
-      ['log', '-1', '--format=%cI', '--', relativePath],
-      {
-        cwd: projectRoot,
-        encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'ignore']
-      }
-    ).trim();
-    if (lastCommitDate) isoDate = new Date(lastCommitDate).toISOString();
-  } catch {
-    // Not a git checkout, or the file has never been committed: the caller
-    // falls back to the mtime.
-  }
-
-  lastCommitCache.set(relativePath, isoDate);
-  return isoDate;
+  return fileDates(projectRoot, relativePath).modified;
 }
 
 function lastModifiedForFile(filePath) {
@@ -251,16 +229,7 @@ function escapeXml(value) {
 }
 
 function firstCommitDate(filePath) {
-  try {
-    const added = execFileSync(
-      'git',
-      ['log', '--diff-filter=A', '--format=%cI', '--', gitRelativePath(filePath)],
-      { cwd: projectRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
-    ).trim().split('\n').filter(Boolean).pop();
-    return added ? new Date(added).toISOString() : lastModifiedForFile(filePath);
-  } catch {
-    return lastModifiedForFile(filePath);
-  }
+  return fileDates(projectRoot, gitRelativePath(filePath)).created || lastModifiedForFile(filePath);
 }
 
 function readMeta(filePath) {
