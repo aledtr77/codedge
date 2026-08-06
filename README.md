@@ -14,7 +14,8 @@ written by hand. No framework, no CMS, no bought theme underneath.
 - **Glossaries** — 418 entries across HTML, CSS and JavaScript, to open when a property
   or a method won't come back to you
 - **Tutorials** — 12 practical guides: Git and GitHub, browser DevTools, accessibility,
-  deployment, technical SEO, and the fundamentals of the three languages
+  deployment, technical SEO, developing with AI, and the fundamentals of the three
+  languages
 - **Tools** — four utilities that run entirely in the browser: colour and gradient
   generators, an image compressor, a palette extractor
 - **UI components** — four components with the full commented source, plus a snippet
