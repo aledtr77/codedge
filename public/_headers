@@ -7,15 +7,15 @@
   X-Content-Type-Options: nosniff
   X-Permitted-Cross-Domain-Policies: none
 
-# Nessuna regola Cache-Control qui: Pages serve i file statici con il suo
-# max-age (sw.js esce con max-age=14400) e ignora quello che scriviamo noi.
-# Il service worker si aggiorna comunque subito dopo un deploy perché
-# src/scripts/components/pwa.js lo registra con updateViaCache:"none", che
-# salta la cache HTTP quando il browser controlla se c'è un worker nuovo.
+# No Cache-Control rules here: Pages serves the static files with its own
+# max-age (sw.js goes out with max-age=14400) and ignores whatever we write.
+# The service worker still updates right after a deploy, because
+# src/scripts/components/pwa.js registers it with updateViaCache:"none", which
+# skips the HTTP cache when the browser checks whether a newer worker exists.
 
-# Lo script che decide la lingua e quelli anti-FOUC sono inline e non possono
-# uscire da lì: girano prima del primo paint. Invece di aprire a tutto l'inline
-# con 'unsafe-inline', la CSP qui sopra viene riscritta a fine build con gli
-# hash SHA-256 di quei quattro script — vedi cspHashesPlugin in vite.config.js.
-# Perciò 'unsafe-inline' in script-src vale solo per `npm run dev`: nel dist
-# pubblicato non c'è.
+# The script that picks the language and the anti-FOUC ones are inline and
+# cannot move out: they run before the first paint. Rather than open the door to
+# any inline script with 'unsafe-inline', the CSP above is rewritten at the end
+# of the build with the SHA-256 hashes of those four — see cspHashesPlugin in
+# vite.config.js. So 'unsafe-inline' in script-src holds for `npm run dev` only:
+# it is not in the published dist.

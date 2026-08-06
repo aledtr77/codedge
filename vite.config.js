@@ -353,7 +353,7 @@ function movePagesToRootPlugin(outDir) {
         }
         fs.rmSync(pagesRoot, { recursive: true, force: true });
       } catch (e) {
-        this.error(`[move-pages] errore durante lo spostamento: ${e.message}`);
+        this.error(`[move-pages] failed while moving the pages: ${e.message}`);
       }
     }
   };
@@ -385,7 +385,7 @@ function cspHashesPlugin(outDir) {
       const distRoot = path.resolve(process.cwd(), outDir);
       const headersFile = path.join(distRoot, '_headers');
       if (!fs.existsSync(headersFile)) {
-        this.error('[csp-hashes] dist/_headers non trovato: la CSP non è stata scritta.');
+        this.error('[csp-hashes] dist/_headers is not there: the CSP was never written.');
       }
 
       const htmlFiles = [];
@@ -438,15 +438,15 @@ function cspHashesPlugin(outDir) {
 
       if (replaced !== 1) {
         this.error(
-          `[csp-hashes] atteso un solo script-src da riscrivere in _headers, trovati ${replaced}.`
+          `[csp-hashes] expected exactly one script-src to rewrite in _headers, found ${replaced}.`
         );
       }
       if (rewritten.includes("script-src 'self' 'unsafe-inline'")) {
-        this.error("[csp-hashes] 'unsafe-inline' è ancora in script-src dopo la riscrittura.");
+        this.error("[csp-hashes] 'unsafe-inline' is still in script-src after the rewrite.");
       }
 
       fs.writeFileSync(headersFile, rewritten);
-      console.log(`[csp-hashes] script-src: ${hashes.size} hash inline, 'unsafe-inline' rimosso`);
+      console.log(`[csp-hashes] script-src: ${hashes.size} inline hash(es), 'unsafe-inline' removed`);
     }
   };
 }
@@ -476,7 +476,7 @@ export default defineConfig(({ command }) => {
       handler: async (html) => {
         if (command !== 'build') return html;
         try { return await minify(html, htmlMinifyOptions); }
-        catch (e) { console.error('[html-minifier] errore minifying', e); return html; }
+        catch (e) { console.error('[html-minifier] failed to minify', e); return html; }
       }
     }
   };

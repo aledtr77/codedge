@@ -43,7 +43,7 @@ const baseUrl = readBaseUrl();
 const host = new URL(baseUrl).host;
 const key = findKey();
 if (!key) {
-  console.error('IndexNow: nessun file chiave trovato in public/ (atteso <chiave>.txt con la chiave come contenuto).');
+  console.error('IndexNow: no key file in public/ (expected <key>.txt holding the key as its contents).');
   process.exit(1);
 }
 
@@ -69,16 +69,16 @@ if (all) {
     .map((r) => (r.startsWith('http') ? r : `${baseUrl}${r.startsWith('/') ? '' : '/'}${r}`))
     .filter((u) => {
       if (known.has(u)) return true;
-      console.log(`IndexNow: salto ${u} (non presente in sitemap: redirect, esclusa o noindex)`);
+      console.log(`IndexNow: skipping ${u} (not in the sitemap: a redirect, excluded, or noindex)`);
       return false;
     });
 } else {
-  console.error('IndexNow: nessun URL da inviare. Usa --all o passa una o più route.');
+  console.error('IndexNow: nothing to send. Use --all, or pass one or more routes.');
   process.exit(1);
 }
 
 if (!urlList.length) {
-  console.log('IndexNow: niente da inviare.');
+  console.log('IndexNow: nothing to send.');
   process.exit(0);
 }
 
@@ -89,7 +89,7 @@ const payload = {
   urlList
 };
 
-console.log(`IndexNow: ${urlList.length} URL per ${host}${dryRun ? ' (dry-run)' : ''}`);
+console.log(`IndexNow: ${urlList.length} URL(s) for ${host}${dryRun ? ' (dry run)' : ''}`);
 urlList.forEach((u) => console.log('  -', u));
 
 if (dryRun) {
@@ -105,9 +105,9 @@ const res = await fetch(ENDPOINT, {
 
 // 200 = ok; 202 = accepted, key verification still pending. Both fine.
 if (res.ok) {
-  console.log(`IndexNow: inviato, risposta ${res.status} ${res.statusText}`);
+  console.log(`IndexNow: sent, answered ${res.status} ${res.statusText}`);
 } else {
-  console.error(`IndexNow: rifiutato, risposta ${res.status} ${res.statusText}`);
+  console.error(`IndexNow: refused, answered ${res.status} ${res.statusText}`);
   console.error(await res.text().catch(() => ''));
   process.exit(1);
 }
