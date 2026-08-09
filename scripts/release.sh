@@ -54,6 +54,33 @@ say()  { printf '\n\033[1m%s\033[0m\n' "$*"; }
 fail() { printf '\nERROR: %s\n' "$*" >&2; exit 1; }
 run()  { if [ "$DRY_RUN" = 1 ]; then echo "   [dry-run] $*"; else "$@"; fi; }
 
+# Runs a check quietly and, when it fails, prints what it said before giving up.
+# Sending the output to /dev/null and then dying on `set -e` leaves you with an
+# exit status and no reason — which is how this script first failed here.
+step() {
+  local label="$1"; shift
+  local out
+  if out="$("$@" 2>&1)"; then
+    echo "   $label"
+  else
+    printf '\n%s\n' "$out" >&2
+    fail "$label"
+  fi
+}
+
+# Same, for a check the repository has decided not to block on. The output is
+# still shown: a warning nobody reads is the same as no warning.
+warn() {
+  local label="$1"; shift
+  local out
+  if out="$("$@" 2>&1)"; then
+    echo "   $label"
+  else
+    printf '\n%s\n' "$out"
+    printf '\n   NOT BLOCKING, as in CI — but this release will freeze it into a tag.\n'
+  fi
+}
+
 CURRENT=$(node -p "require('./package.json').version")
 say "Releasing from v$CURRENT  (bump: $LEVEL)"
 [ "$DRY_RUN" = 1 ] && echo "   DRY-RUN: nothing will be modified"
@@ -115,17 +142,17 @@ esac
 # built site and a server, CI has already run them on this exact commit, and a
 # precondition above refuses to continue unless that run was green.
 say "2. Checks"
-npm run lint --silent
-echo "   lint: clean"
-npm test --silent >/dev/null
-echo "   tests: passing"
-npm run badge:check --silent >/dev/null
-echo "   README badge matches the suite"
-npm run i18n:lint --silent >/dev/null
-npm run i18n:drift --silent >/dev/null
-echo "   translations: in step"
-npm run build --silent >/dev/null
-echo "   build: ok"
+step "lint: clean"                      npm run lint --silent
+step "tests: passing"                   npm test --silent
+step "README badge matches the suite"   npm run badge:check --silent
+step "English pages speak English"      npm run i18n:lint --silent
+
+# Warning only, matching the workflow, which says why: an Italian page lagging
+# behind its English original is a real defect, but holding a release for a
+# forgotten `npm run i18n:sync` helps nobody.
+warn "translations: in step"            npm run i18n:drift --silent
+
+step "build: ok"                        npm run build --silent
 
 # --- From here on things change ----------------------------------------------
 say "3. Version, commit, tag"
