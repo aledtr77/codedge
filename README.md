@@ -4,10 +4,23 @@
 [![240 tests](https://img.shields.io/badge/tests-240%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
-Source of **[codedge.it](https://codedge.it)** — a bilingual front-end reference built
-with semantic HTML, modular CSS and JavaScript, assembled as a multi-page Vite site.
+Source of **[codedge.it](https://codedge.it)** — a bilingual front-end learning
+reference that I curate while developing my web skills. It is assembled as a
+multi-page Vite site with semantic HTML, modular CSS and JavaScript.
 
 [![The codedge.it home page](.github/preview.jpg)](https://codedge.it)
+
+## Project role and AI use
+
+This is an AI-assisted personal project, not professional reference material. I set
+the scope, organise the learning experience, choose what to publish and define the
+checks a change must pass. AI supports much of the implementation, translation and
+documentation; I review the output, run the verification workflow and maintain the
+published result.
+
+The glossary and tutorials are curated learning content. Readers should verify
+important technical details against standards and official documentation, and
+corrections are welcome through the repository issue tracker.
 
 ## What's on it
 
@@ -27,7 +40,7 @@ with semantic HTML, modular CSS and JavaScript, assembled as a multi-page Vite s
 Plain HTML, CSS and JavaScript, assembled with Vite into a multi-page static site.
 Built on GitHub Actions, deployed to Cloudflare Pages.
 
-A few things worth pointing at, because they're the parts that took the work:
+A few things worth pointing at, because they show what the project currently verifies:
 
 - **The tools never upload anything.** Compress an image and the file stays on your
   machine — there is no request that could carry it anywhere.
