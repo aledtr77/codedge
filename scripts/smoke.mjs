@@ -212,6 +212,7 @@ await withPage(async (page) => {
     !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
   const jpeg = await page.locator('.compressed-size-text').textContent().catch(() => '');
   const jpegPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+  const jpegMessage = await page.locator('#result').textContent().catch(() => '');
 
   await page.locator('#maxWidth').evaluate((input) => {
     input.value = '640';
@@ -225,9 +226,10 @@ await withPage(async (page) => {
   record(
     'the image compressor reacts to format and width changes',
     webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
-      jpegPreview !== webpPreview && resized.includes('640×336')
+      jpegPreview !== webpPreview && jpegMessage.includes('-ottimizzata.jpg') &&
+      !jpegMessage.includes('-ottimizzata.webp') && resized.includes('640×336')
       ? null
-      : `WebP "${webp}", JPEG "${jpeg}", resized "${resized}"`,
+      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", resized "${resized}"`,
   );
 });
 

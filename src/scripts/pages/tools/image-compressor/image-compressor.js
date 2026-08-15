@@ -150,8 +150,8 @@ export function initImageCompressor() {
         throw new Error(t("tool.outputFormatUnsupported", { format: formatLabel(mimeType) }));
       }
 
-      renderOutput(file, output);
-      setStatus(t("tool.compressOk", { name: file.name }), "success");
+      const outputName = renderOutput(file, output);
+      setStatus(t("tool.compressOk", { name: outputName }), "success");
     } catch (error) {
       if (revision !== state.revision || file !== state.file) return;
       console.error(error);
@@ -193,6 +193,7 @@ export function initImageCompressor() {
 
     state.row.download.style.display = "inline-flex";
     state.row.download.onclick = () => downloadBlob(blob, outputName);
+    return outputName;
   }
 
   function selectedMimeType(file = state.file) {
