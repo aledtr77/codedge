@@ -21,6 +21,7 @@
 
 import { chromium } from 'playwright-core';
 import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { chromePath, DIST, serveDist } from './lib/serve-dist.mjs';
 
 const RED = '\x1b[31m';
@@ -191,7 +192,46 @@ await withPage(async (page) => {
   );
 });
 
-// 7. The glossary is a search box over a few hundred entries: if the filter
+// 7. Changing compressor settings after upload must create a new output. The
+// old implementation only changed the strategy label and kept serving the
+// first WebP blob, regardless of the selected format or maximum width.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/tools/image-compressor/`, { waitUntil: 'load' });
+  const fixture = fileURLToPath(new URL('../public/og/opengraph-1200x630.jpg', import.meta.url));
+  await page.setInputFiles('#fileInput', fixture);
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.webp') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const webp = await page.locator('.compressed-size-text').textContent().catch(() => '');
+  const webpPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+
+  await page.selectOption('#outputFormat', 'jpeg');
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+    document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const jpeg = await page.locator('.compressed-size-text').textContent().catch(() => '');
+  const jpegPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+
+  await page.locator('#maxWidth').evaluate((input) => {
+    input.value = '640';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await page.waitForFunction(() =>
+    document.querySelector('.compressed-size-text')?.textContent.includes('640×336') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const resized = await page.locator('.compressed-size-text').textContent().catch(() => '');
+
+  record(
+    'the image compressor reacts to format and width changes',
+    webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
+      jpegPreview !== webpPreview && resized.includes('640×336')
+      ? null
+      : `WebP "${webp}", JPEG "${jpeg}", resized "${resized}"`,
+  );
+});
+
+// 8. The glossary is a search box over a few hundred entries: if the filter
 // stops filtering the page still looks perfectly fine.
 await withPage(async (page) => {
   await page.goto(`${BASE}/resources/css-glossary/`, { waitUntil: 'load' });

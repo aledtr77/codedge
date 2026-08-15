@@ -445,6 +445,12 @@ body > main .section {
   box-shadow: 0 2px 6px rgba(16,185,129,0.1);
 }
 
+.savings-badge.is-error {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
 .compressed-size-text {
   font-size: 0.75rem;
   color: rgba(255,255,255,0.45);
