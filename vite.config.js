@@ -502,7 +502,7 @@ export default defineConfig(({ command }) => {
   return {
     root: process.cwd(),
     publicDir: 'public',
-    resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
+    resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
     plugins,
     build: {
       outDir,

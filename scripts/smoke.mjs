@@ -21,6 +21,7 @@
 
 import { chromium } from 'playwright-core';
 import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { chromePath, DIST, serveDist } from './lib/serve-dist.mjs';
 
 const RED = '\x1b[31m';
@@ -191,7 +192,93 @@ await withPage(async (page) => {
   );
 });
 
-// 7. The glossary is a search box over a few hundred entries: if the filter
+// 7. Changing compressor settings after upload must create a new output. The
+// old implementation only changed the strategy label and kept serving the
+// first WebP blob, regardless of the selected format or maximum width.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/tools/image-compressor/`, { waitUntil: 'load' });
+  const fixture = fileURLToPath(new URL('../public/og/opengraph-1200x630.jpg', import.meta.url));
+  await page.setInputFiles('#fileInput', fixture);
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.webp') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const webp = await page.locator('.compressed-size-text').textContent().catch(() => '');
+  const webpPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+
+  await page.selectOption('#outputFormat', 'jpeg');
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+    document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const jpeg = await page.locator('.compressed-size-text').textContent().catch(() => '');
+  const jpegPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+  const jpegMessage = await page.locator('#result').textContent().catch(() => '');
+
+  const presetChecks = [];
+  for (const [preset, quality, maxWidth] of [
+    ['balanced', '72', '1600'],
+    ['light', '82', '2200'],
+    ['strong', '58', '1280'],
+  ]) {
+    await page.click(`[data-preset="${preset}"]`);
+    await page.waitForFunction(([expectedQuality, expectedWidth]) =>
+      document.querySelector('#outputFormat')?.value === 'jpeg' &&
+      document.querySelector('#quality')?.value === expectedQuality &&
+      document.querySelector('#maxWidth')?.value === expectedWidth &&
+      document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+      !document.querySelector('.row-spinner'), [quality, maxWidth], { timeout: 15000 }).catch(() => {});
+    presetChecks.push(await page.evaluate(([expectedQuality, expectedWidth]) =>
+      document.querySelector('#outputFormat')?.value === 'jpeg' &&
+      document.querySelector('#quality')?.value === expectedQuality &&
+      document.querySelector('#maxWidth')?.value === expectedWidth &&
+      document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG'), [quality, maxWidth]));
+  }
+
+  await page.selectOption('#outputFormat', 'png');
+  const pngPresetOutputs = [];
+  for (const preset of ['balanced', 'light', 'strong']) {
+    await page.click(`[data-preset="${preset}"]`);
+    await page.waitForFunction(() =>
+      document.querySelector('#outputFormat')?.value === 'png' &&
+      document.querySelector('.row-filename')?.textContent.endsWith('.png') &&
+      document.querySelector('.compressed-size-text')?.textContent.startsWith('PNG') &&
+      !document.querySelector('.row-spinner'), null, { timeout: 30000 }).catch(() => {});
+    pngPresetOutputs.push(await page.locator('.compressed-size-text').textContent().catch(() => ''));
+  }
+  const pngPresetSizes = pngPresetOutputs.map((details) => {
+    const match = details.match(/([\d.]+) (KB|MB)$/);
+    if (!match) return Number.NaN;
+    return Number.parseFloat(match[1]) * (match[2] === 'MB' ? 1024 : 1);
+  });
+  const pngPresetsDiffer = pngPresetSizes.every(Number.isFinite) &&
+    pngPresetSizes[0] < pngPresetSizes[1] && pngPresetSizes[2] < pngPresetSizes[0];
+
+  await page.selectOption('#outputFormat', 'jpeg');
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+
+  await page.locator('#maxWidth').evaluate((input) => {
+    input.value = '640';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await page.waitForFunction(() =>
+    document.querySelector('.compressed-size-text')?.textContent.includes('640×336') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  const resized = await page.locator('.compressed-size-text').textContent().catch(() => '');
+
+  record(
+    'the image compressor reacts to format and width changes',
+    webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
+      jpegPreview !== webpPreview && jpegMessage.includes('-ottimizzata.jpg') &&
+      !jpegMessage.includes('-ottimizzata.webp') && presetChecks.every(Boolean) &&
+      pngPresetsDiffer && resized.includes('640×336')
+      ? null
+      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", presets ${presetChecks.join('/')}, PNG presets "${pngPresetOutputs.join(' / ')}", resized "${resized}"`,
+  );
+});
+
+// 8. The glossary is a search box over a few hundred entries: if the filter
 // stops filtering the page still looks perfectly fine.
 await withPage(async (page) => {
   await page.goto(`${BASE}/resources/css-glossary/`, { waitUntil: 'load' });

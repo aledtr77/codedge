@@ -1,6 +1,7 @@
 {
   "name": "codedge",
   "version": "1.0.0",
+  "type": "module",
   "engines": {
     "node": ">=22"
   },
@@ -41,7 +42,8 @@
     "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^7.0.1",
     "@jaames/iro": "^5.5.2",
-    "compressorjs": "^1.2.1",
+    "@jsquash/avif": "^2.1.1",
+    "image-q": "^4.0.0",
     "prismjs": "^1.30.0"
   },
   "overrides": {
