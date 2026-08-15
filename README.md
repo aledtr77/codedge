@@ -10,18 +10,6 @@ multi-page Vite site with semantic HTML, modular CSS and JavaScript.
 
 [![The codedge.it home page](.github/preview.jpg)](https://codedge.it)
 
-## Project role and AI use
-
-This is an AI-assisted personal project, not professional reference material. I set
-the scope, organise the learning experience, choose what to publish and define the
-checks a change must pass. AI supports much of the implementation, translation and
-documentation; I review the output, run the verification workflow and maintain the
-published result.
-
-The glossary and tutorials are curated learning content. Readers should verify
-important technical details against standards and official documentation, and
-corrections are welcome through the repository issue tracker.
-
 ## What's on it
 
 - **Glossaries** — 418 entries across HTML, CSS and JavaScript, to open when a property
@@ -33,7 +21,7 @@ corrections are welcome through the repository issue tracker.
   generators, an image compressor, a palette extractor
 - **UI components** — four components with the full commented source, plus a snippet
   library ready to paste
-- **Templates** — live demos of the portfolio projects, with a link to the Etsy shop
+- **Templates** — live demos of the portfolio projects
 
 ## How it's built
 
@@ -86,6 +74,17 @@ configuration and scripts: take them, read them, reuse them.
 quiz questions, images and the Codedge brand are all rights reserved. Quote a passage
 with attribution and a link if it's useful to you; don't republish the material in bulk
 somewhere else.
+
+## How this was built
+
+This is a personal project, not professional reference material. I set the scope,
+organise the learning experience, choose what to publish and define the checks a change
+must pass. AI supports much of the implementation, translation and documentation; I
+review the output, run the verification workflow and maintain the published result.
+
+The glossary and tutorials are curated learning content. Readers should verify
+important technical details against standards and official documentation, and
+corrections are welcome through the repository issue tracker.
 
 ## Contact
 
