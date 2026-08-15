@@ -121,6 +121,8 @@ const STRINGS = {
     'tool.invalidImage': 'Seleziona un file immagine valido.',
     'tool.compressOk': 'Immagine "{name}" compressa con successo!',
     'tool.compressError': 'Errore nella compressione di {name}: {message}',
+    'tool.outputFormatUnsupported': 'Il browser non ha prodotto un file {format} valido.',
+    'tool.canvasUnavailable': 'Il browser non consente di elaborare questa immagine.',
     'tool.error': 'Errore',
 
     'tool.cameraClosed': 'Fotocamera chiusa',
@@ -269,6 +271,8 @@ const STRINGS = {
     'tool.invalidImage': 'Please select a valid image file.',
     'tool.compressOk': 'Image "{name}" compressed successfully!',
     'tool.compressError': 'Error compressing {name}: {message}',
+    'tool.outputFormatUnsupported': 'The browser did not produce a valid {format} file.',
+    'tool.canvasUnavailable': 'The browser cannot process this image.',
     'tool.error': 'Error',
 
     'tool.cameraClosed': 'Camera closed',

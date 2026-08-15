@@ -194,16 +194,12 @@ export function initImageCompressor() {
         const maxWidth = clamp(Number.parseInt(elements.maxWidthSlider.value, 10), 640, 2560);
         const mimeType = resolveOutputMime(file);
 
-        const compressedBlob = await new Promise((resolve, reject) => {
-          new Compressor(file, {
-            quality,
-            maxWidth,
-            mimeType,
-            convertSize: 0,
-            success: resolve,
-            error: reject
-          });
-        });
+        const compressedBlob = await compressImage(file, { quality, maxWidth, mimeType });
+
+        if (compressedBlob.type !== mimeType) {
+          const requestedFormat = mimeType.replace("image/", "").toUpperCase();
+          throw new Error(t("tool.outputFormatUnsupported", { format: requestedFormat }));
+        }
 
         const savedPercent = ((file.size - compressedBlob.size) / file.size) * 100;
         const savedText = savedPercent > 0 ? `-${savedPercent.toFixed(0)}%` : "0%";
@@ -302,4 +298,63 @@ export function initImageCompressor() {
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
   }
+}
+
+async function compressImage(file, options) {
+  if (options.mimeType === "image/avif") {
+    return compressToAvif(file, options);
+  }
+
+  return compressWithCanvas(file, options);
+}
+
+function compressWithCanvas(file, { quality, maxWidth, mimeType }, overrides = {}) {
+  return new Promise((resolve, reject) => {
+    new Compressor(file, {
+      quality,
+      maxWidth,
+      mimeType,
+      // CompressorJS otherwise turns PNG into JPEG whenever it crosses its
+      // size threshold. The selected output format must always win.
+      convertTypes: [],
+      success: resolve,
+      error: reject,
+      ...overrides
+    });
+  });
+}
+
+async function compressToAvif(file, { quality, maxWidth }) {
+  // Canvas can decode AVIF but currently cannot encode it reliably. Resize to
+  // lossless RGBA first, then let the WASM codec produce a real AVIF payload.
+  const resizedPng = await compressWithCanvas(file, {
+    quality: 1,
+    maxWidth,
+    mimeType: "image/png"
+  }, { strict: false });
+  const imageData = await blobToImageData(resizedPng);
+  const { default: encodeAvif } = await import("@jsquash/avif/encode.js");
+  const buffer = await encodeAvif(imageData, {
+    quality: Math.round(quality * 100),
+    qualityAlpha: Math.round(quality * 100)
+  });
+
+  return new Blob([buffer], { type: "image/avif" });
+}
+
+async function blobToImageData(blob) {
+  const bitmap = await createImageBitmap(blob);
+  const canvas = document.createElement("canvas");
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    bitmap.close();
+    throw new Error(t("tool.canvasUnavailable"));
+  }
+
+  context.drawImage(bitmap, 0, 0);
+  bitmap.close();
+  return context.getImageData(0, 0, canvas.width, canvas.height);
 }
