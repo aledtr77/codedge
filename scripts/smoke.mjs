@@ -214,6 +214,26 @@ await withPage(async (page) => {
   const jpegPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
   const jpegMessage = await page.locator('#result').textContent().catch(() => '');
 
+  const presetChecks = [];
+  for (const [preset, quality, maxWidth] of [
+    ['balanced', '72', '1600'],
+    ['light', '82', '2200'],
+    ['strong', '58', '1280'],
+  ]) {
+    await page.click(`[data-preset="${preset}"]`);
+    await page.waitForFunction(([expectedQuality, expectedWidth]) =>
+      document.querySelector('#outputFormat')?.value === 'jpeg' &&
+      document.querySelector('#quality')?.value === expectedQuality &&
+      document.querySelector('#maxWidth')?.value === expectedWidth &&
+      document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+      !document.querySelector('.row-spinner'), [quality, maxWidth], { timeout: 15000 }).catch(() => {});
+    presetChecks.push(await page.evaluate(([expectedQuality, expectedWidth]) =>
+      document.querySelector('#outputFormat')?.value === 'jpeg' &&
+      document.querySelector('#quality')?.value === expectedQuality &&
+      document.querySelector('#maxWidth')?.value === expectedWidth &&
+      document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG'), [quality, maxWidth]));
+  }
+
   await page.locator('#maxWidth').evaluate((input) => {
     input.value = '640';
     input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -227,9 +247,10 @@ await withPage(async (page) => {
     'the image compressor reacts to format and width changes',
     webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
       jpegPreview !== webpPreview && jpegMessage.includes('-ottimizzata.jpg') &&
-      !jpegMessage.includes('-ottimizzata.webp') && resized.includes('640×336')
+      !jpegMessage.includes('-ottimizzata.webp') && presetChecks.every(Boolean) &&
+      resized.includes('640×336')
       ? null
-      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", resized "${resized}"`,
+      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", presets ${presetChecks.join('/')}, resized "${resized}"`,
   );
 });
 

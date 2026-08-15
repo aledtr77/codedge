@@ -3,9 +3,9 @@ import { t } from "@/i18n/ui.js";
 let initialized = false;
 
 const PRESETS = {
-  balanced: { quality: 72, maxWidth: 1600, format: "webp", summaryKey: "tool.summaryBalanced" },
-  light: { quality: 82, maxWidth: 2200, format: "webp", summaryKey: "tool.summaryLight" },
-  strong: { quality: 58, maxWidth: 1280, format: "webp", summaryKey: "tool.summaryStrong" }
+  balanced: { quality: 72, maxWidth: 1600, summaryKey: "tool.summaryBalanced" },
+  light: { quality: 82, maxWidth: 2200, summaryKey: "tool.summaryLight" },
+  strong: { quality: 58, maxWidth: 1280, summaryKey: "tool.summaryStrong" }
 };
 
 const EXTENSIONS = {
@@ -115,7 +115,6 @@ export function initImageCompressor() {
     if (!preset) return;
 
     state.activePreset = key;
-    ui.outputFormat.value = preset.format;
     ui.qualitySlider.value = String(preset.quality);
     ui.qualityValueInput.value = `${preset.quality}%`;
     ui.maxWidthSlider.value = String(preset.maxWidth);
@@ -215,7 +214,7 @@ export function initImageCompressor() {
   function updateStrategySummary() {
     const preset = PRESETS[state.activePreset];
     if (preset) {
-      ui.strategySummary.textContent = t(preset.summaryKey);
+      ui.strategySummary.textContent = t(preset.summaryKey, { format: formatLabel(selectedMimeType()) });
       return;
     }
 
