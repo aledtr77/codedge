@@ -12,11 +12,11 @@ multi-page Vite site with semantic HTML, modular CSS and JavaScript.
 
 ## Project role and AI use
 
-This is a personal project, not professional reference material. The code, the
-translations and much of the editorial text are written by AI models — most of it, not
-part of it. What is mine is everything around that: the scope, how the learning
-material is organised, what gets published, the checks a change has to pass before it
-ships, and the site running at the other end, which I build, deploy and maintain.
+This is an AI-assisted personal project, not professional reference material. I set
+the scope, organise the learning experience, choose what to publish and define the
+checks a change must pass. AI supports much of the implementation, translation and
+documentation; I review the output, run the verification workflow and maintain the
+published result.
 
 The glossary and tutorials are curated learning content. Readers should verify
 important technical details against standards and official documentation, and
