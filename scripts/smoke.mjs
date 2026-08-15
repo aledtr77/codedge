@@ -234,6 +234,30 @@ await withPage(async (page) => {
       document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG'), [quality, maxWidth]));
   }
 
+  await page.selectOption('#outputFormat', 'png');
+  const pngPresetOutputs = [];
+  for (const preset of ['balanced', 'light', 'strong']) {
+    await page.click(`[data-preset="${preset}"]`);
+    await page.waitForFunction(() =>
+      document.querySelector('#outputFormat')?.value === 'png' &&
+      document.querySelector('.row-filename')?.textContent.endsWith('.png') &&
+      document.querySelector('.compressed-size-text')?.textContent.startsWith('PNG') &&
+      !document.querySelector('.row-spinner'), null, { timeout: 30000 }).catch(() => {});
+    pngPresetOutputs.push(await page.locator('.compressed-size-text').textContent().catch(() => ''));
+  }
+  const pngPresetSizes = pngPresetOutputs.map((details) => {
+    const match = details.match(/([\d.]+) (KB|MB)$/);
+    if (!match) return Number.NaN;
+    return Number.parseFloat(match[1]) * (match[2] === 'MB' ? 1024 : 1);
+  });
+  const pngPresetsDiffer = pngPresetSizes.every(Number.isFinite) &&
+    pngPresetSizes[0] < pngPresetSizes[1] && pngPresetSizes[2] < pngPresetSizes[0];
+
+  await page.selectOption('#outputFormat', 'jpeg');
+  await page.waitForFunction(() =>
+    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
+    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+
   await page.locator('#maxWidth').evaluate((input) => {
     input.value = '640';
     input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -248,9 +272,9 @@ await withPage(async (page) => {
     webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
       jpegPreview !== webpPreview && jpegMessage.includes('-ottimizzata.jpg') &&
       !jpegMessage.includes('-ottimizzata.webp') && presetChecks.every(Boolean) &&
-      resized.includes('640×336')
+      pngPresetsDiffer && resized.includes('640×336')
       ? null
-      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", presets ${presetChecks.join('/')}, resized "${resized}"`,
+      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", presets ${presetChecks.join('/')}, PNG presets "${pngPresetOutputs.join(' / ')}", resized "${resized}"`,
   );
 });
 

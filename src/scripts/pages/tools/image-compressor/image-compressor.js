@@ -106,7 +106,6 @@ export function initImageCompressor() {
     state.activePreset = "custom";
     updatePresetButtons();
     updateStrategySummary();
-    updateQualityAvailability();
     requestCompression(delay);
   }
 
@@ -123,7 +122,6 @@ export function initImageCompressor() {
     updateSliderFill(ui.maxWidthSlider, ui.maxWidthFill);
     updatePresetButtons();
     updateStrategySummary();
-    updateQualityAvailability();
     if (recompress) requestCompression(0);
   }
 
@@ -197,12 +195,6 @@ export function initImageCompressor() {
 
   function selectedMimeType(file = state.file) {
     return ui.outputFormat.value === "original" ? file?.type || "image/jpeg" : `image/${ui.outputFormat.value}`;
-  }
-
-  function updateQualityAvailability() {
-    const losslessCanvasOutput = selectedMimeType() === "image/png";
-    ui.qualitySlider.disabled = losslessCanvasOutput;
-    ui.qualityValueInput.disabled = losslessCanvasOutput;
   }
 
   function updatePresetButtons() {
@@ -311,7 +303,10 @@ async function encodeImage(source, { mimeType, quality, maxWidth }) {
   context.drawImage(source, 0, 0, width, height);
 
   let blob;
-  if (mimeType === "image/avif") {
+  if (mimeType === "image/png") {
+    await quantizePng(context, width, height, quality);
+    blob = await canvasToBlob(canvas, mimeType);
+  } else if (mimeType === "image/avif") {
     const { default: encodeAvif } = await import("@jsquash/avif/encode.js");
     const buffer = await encodeAvif(context.getImageData(0, 0, width, height), {
       quality,
@@ -323,6 +318,27 @@ async function encodeImage(source, { mimeType, quality, maxWidth }) {
   }
 
   return { blob, width, height };
+}
+
+async function quantizePng(context, width, height, quality) {
+  const { applyPaletteSync, buildPaletteSync, utils } = await import("image-q");
+  const source = utils.PointContainer.fromImageData(context.getImageData(0, 0, width, height));
+  const palette = buildPaletteSync([source], {
+    colors: pngColorCount(quality),
+    colorDistanceFormula: "euclidean-bt709",
+    paletteQuantization: "wuquant"
+  });
+  const quantized = applyPaletteSync(source, palette, {
+    colorDistanceFormula: "euclidean-bt709",
+    imageQuantization: "nearest"
+  });
+  const pixels = new Uint8ClampedArray(quantized.toUint8Array());
+  context.putImageData(new ImageData(pixels, width, height), 0, 0);
+}
+
+function pngColorCount(quality) {
+  const normalized = (clamp(quality, 35, 95) - 35) / 60;
+  return Math.round(32 * (2 ** (normalized * 3)));
 }
 
 function canvasToBlob(canvas, mimeType, quality) {
