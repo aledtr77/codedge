@@ -82,22 +82,21 @@
             <li><a href="#chapter-03">2. Anatomia di un Tag e la Regola del Nesting</a></li>
             <li><a href="#chapter-04">3. Lo scheletro base (Boilerplate)</a></li>
             <li><a href="#chapter-05">4. Il testo: paragrafi e titoli</a></li>
-            <li><a href="#chapter-06">5. Marcare le parole: i tag in linea</a></li>
-            <li><a href="#chapter-07">6. Blocco e in linea: come il browser dispone gli elementi</a></li>
-            <li><a href="#chapter-08">7. Gli attributi globali: id, class e gli altri</a></li>
-            <li><a href="#chapter-09">8. I link: collegare le pagine</a></li>
-            <li><a href="#chapter-10">9. Immagini e contenuti multimediali</a></li>
-            <li><a href="#chapter-11">10. Le liste</a></li>
-            <li><a href="#chapter-12">11. Le tabelle</a></li>
-            <li><a href="#chapter-13">12. div e span: i contenitori neutri</a></li>
-            <li><a href="#chapter-14">13. HTML semantico: la struttura della pagina</a></li>
-            <li><a href="#chapter-15">14. I form: raccogliere dati dall'utente</a></li>
-            <li><a href="#chapter-16">15. L'head: metadati, SEO e anteprime social</a></li>
-            <li><a href="#chapter-17">16. I 5 errori semantici più comuni</a></li>
-            <li><a href="#chapter-cheatsheet">17. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">18. Sfida pratica: Mettiti alla prova</a></li>
-            <li><a href="#chapter-18">19. Dove continuare dopo</a></li>
-            <li><a href="#chapter-quiz">20. Verifica la preparazione (Quiz)</a></li>
+            <li><a href="#chapter-06">5. Elementi a blocco e in linea</a></li>
+            <li><a href="#chapter-08">6. Gli attributi globali: id, class e gli altri</a></li>
+            <li><a href="#chapter-09">7. I link: collegare le pagine</a></li>
+            <li><a href="#chapter-10">8. Immagini e contenuti multimediali</a></li>
+            <li><a href="#chapter-11">9. Le liste</a></li>
+            <li><a href="#chapter-12">10. Le tabelle</a></li>
+            <li><a href="#chapter-13">11. div e span: i contenitori neutri</a></li>
+            <li><a href="#chapter-14">12. HTML semantico: la struttura della pagina</a></li>
+            <li><a href="#chapter-15">13. I form: raccogliere dati dall'utente</a></li>
+            <li><a href="#chapter-16">14. L'head: metadati, SEO e anteprime social</a></li>
+            <li><a href="#chapter-17">15. I 5 errori semantici più comuni</a></li>
+            <li><a href="#chapter-cheatsheet">16. Sintassi rapida (Cheat Sheet)</a></li>
+            <li><a href="#chapter-challenge">17. Sfida pratica: Mettiti alla prova</a></li>
+            <li><a href="#chapter-18">18. Dove continuare dopo</a></li>
+            <li><a href="#chapter-quiz">19. Verifica la preparazione (Quiz)</a></li>
           </ol>
         </aside>
 
@@ -317,10 +316,10 @@
               <h3>Che cos'è il tag &lt;body&gt;?</h3>
               <p>Il tag <a href="/it/risorse/glossario-html/?q=body"><code>&lt;body&gt;</code></a> (che in inglese significa "corpo") rappresenta a tutti gli effetti la <strong>tela visibile</strong> del tuo sito web. Tutto ciò che un utente vede, legge, clicca o con cui interagisce all'interno della finestra del browser — testi, titoli, immagini, video, pulsanti, menu di navigazione, form per i contatti — deve essere posizionato tassativamente all'interno di questa scatola.</p>
               
-              <p>Per capire meglio la sua importanza, pensa alla struttura di una lettera cartacea:</p>
+              <p>Nel capitolo precedente abbiamo visto che una pagina HTML è divisa in due aree principali: l'<code>&lt;head&gt;</code>, che contiene informazioni per il browser, e il <code>&lt;body&gt;</code>, che contiene ciò che appare nella pagina. Per distinguerle meglio, pensa alla struttura di una lettera cartacea:</p>
               <ul class="guide-list">
-                <li>L'<code>&lt;head&gt;</code> è la busta della lettera: contiene l'indirizzo del destinatario, il francobollo, il mittente. Sono informazioni fondamentali per far viaggiare la lettera, ma chi la riceve non legge la busta per conoscere il messaggio.</li>
-                <li>Il <code>&lt;body&gt;</code> è il foglio di carta interno: contiene il messaggio vero e proprio, le parole scritte, i disegni o gli allegati. È ciò che interessa davvero al lettore.</li>
+                <li>Il <code>&lt;body&gt;</code> è il foglio di carta interno: contiene il messaggio vero e proprio, le parole scritte, i disegni o gli allegati. È la parte che il lettore vede e consulta.</li>
+                <li>L'<code>&lt;head&gt;</code>, invece, è paragonabile alla busta: contiene informazioni necessarie per identificare e gestire la lettera, ma non il messaggio destinato al lettore.</li>
               </ul>
 
               <p>Ci sono tre regole d'oro da tenere sempre a mente quando si lavora con il <code>&lt;body&gt;</code>:</p>
@@ -370,7 +369,7 @@
 
               <div class="alert alert--warning">
                 <strong>Un paragrafo non può contenere un altro paragrafo</strong>
-                <p>Se scrivi <code>&lt;p&gt;Testo &lt;p&gt;altro testo&lt;/p&gt;&lt;/p&gt;</code>, il browser non ti segnala un errore: chiude in autonomia il primo paragrafo appena ne incontra un secondo, e ti ritrovi una struttura diversa da quella che avevi in mente. Vale per tutti i blocchi: nessun blocco va dentro un <code>&lt;p&gt;</code>. Il perché lo vedremo nel capitolo 6.</p>
+                <p>Se scrivi <code>&lt;p&gt;Testo &lt;p&gt;altro testo&lt;/p&gt;&lt;/p&gt;</code>, il browser non ti segnala un errore: chiude in autonomia il primo paragrafo appena ne incontra un secondo, e ti ritrovi una struttura diversa da quella che avevi in mente. Un <code>&lt;p&gt;</code> non può contenere altri paragrafi né elementi strutturali come titoli o <code>&lt;div&gt;</code>. Il perché lo vedremo nel capitolo 5.</p>
               </div>
 
               <h3>I titoli: da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code></h3>
@@ -417,15 +416,41 @@
                 <p>«Questo <code>&lt;h2&gt;</code> viene troppo grosso, uso un <code>&lt;h4&gt;</code> che è più piccolo.» Così facendo hai rotto l'indice del documento per un motivo grafico. Usa il tag giusto per la gerarchia e rimpicciolisci con il CSS: sono due problemi diversi, e HTML si occupa solo del primo.</p>
               </div>
 
-              <p>Con titoli e paragrafi si stabilisce l'ossatura generale di una pagina. Tuttavia, spesso nasce la necessità di evidenziare o dare un significato speciale a singole parole o frasi all'interno di un paragrafo (ad esempio per indicare un termine importante o un frammento di codice) senza per questo spezzare la riga e andare a capo. Questo è il compito dei tag in linea, che verranno esaminati nel prossimo capitolo.</p>
+              <p>Con titoli e paragrafi si stabilisce l'ossatura generale di una pagina. Avrai però notato che questi elementi iniziano su una nuova riga, mentre altri tag possono marcare singole parole senza interrompere il testo. Nel prossimo capitolo mettiamo a confronto questi due comportamenti — <strong>a blocco</strong> e <strong>in linea</strong> — prima di scoprire i tag che lavorano dentro le frasi.</p>
             </section>
           </section>
 
-          <!-- CAPITOLO 06 — I TAG IN LINEA -->
+          <!-- CAPITOLO 06 — ELEMENTI A BLOCCO E IN LINEA -->
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Marcare le parole: i tag in linea</h2>
+            <h2>5. Elementi a blocco e in linea: come si dispongono i tag</h2>
             <section class="guide-subchapter">
-              <p>Nel capitolo precedente sono stati utilizzati tag che creano interi blocchi di testo e vanno a capo automaticamente (come i paragrafi <a href="/it/risorse/glossario-html/?q=p"><code>&lt;p&gt;</code></a> e i titoli). I tag <strong>in linea</strong> (<em>inline</em>), invece, si inseriscono direttamente <em>all'interno</em> di un testo. Servono a evidenziare o definire una o più parole specifiche senza spezzare la riga o interrompere il flusso del paragrafo.</p>
+              <p>Prima di imparare altri tag serve una mappa chiara. Nel normale flusso della pagina, il browser mostra gli elementi HTML con due comportamenti predefiniti molto comuni: alcuni formano un blocco e iniziano su una nuova riga; altri restano in linea e scorrono insieme alle parole che li circondano.</p>
+
+              <h3>Elementi a blocco</h3>
+              <p>Un elemento <strong>a blocco</strong> (<em>block</em>) inizia normalmente su una nuova riga e si estende per tutta la larghezza disponibile. Per questo due paragrafi o due titoli vengono disposti uno sotto l'altro, anche quando il loro testo è corto.</p>
+              <p>Tra gli elementi mostrati a blocco per impostazione predefinita ci sono <a href="/it/risorse/glossario-html/?q=p"><code>&lt;p&gt;</code></a>, <code>&lt;h1&gt;</code>…<code>&lt;h6&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;section&gt;</code> e <code>&lt;article&gt;</code>.</p>
+
+              <h3>Elementi in linea</h3>
+              <p>Un elemento <strong>in linea</strong> (<em>inline</em>) non apre una nuova riga: occupa soltanto lo spazio necessario al suo contenuto e rimane nel flusso della frase. Serve quindi a marcare una parola o una porzione di testo senza spezzare il paragrafo.</p>
+              <p>Tra gli elementi mostrati in linea per impostazione predefinita ci sono <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;abbr&gt;</code> e <code>&lt;img&gt;</code>.</p>
+
+              <p>Questo esempio rende visibile la differenza:</p>
+
+              <pre><code class="language-html">&lt;p&gt;Primo blocco: inizio su una nuova riga.&lt;/p&gt;
+&lt;p&gt;Secondo blocco: mi dispongo sotto il primo.&lt;/p&gt;
+
+&lt;p&gt;
+  Dentro questo blocco, &lt;strong&gt;io resto in linea&lt;/strong&gt;
+  e anche &lt;code&gt;questo frammento&lt;/code&gt; continua sulla stessa riga.
+&lt;/p&gt;</code></pre>
+
+              <div class="alert alert--note">
+                <strong>Comportamento visivo e struttura HTML non sono la stessa cosa</strong>
+                <p>“A blocco” e “in linea” descrivono qui il modo in cui il browser dispone normalmente gli elementi. Con la proprietà CSS <code>display</code> potrai cambiarne la resa grafica, ma non il loro significato né le regole su quali contenuti possono racchiudere.</p>
+              </div>
+
+              <h3>Marcare le parole con i tag in linea</h3>
+              <p>Ora concentriamoci sugli elementi in linea che servono a dare un significato preciso a una o più parole senza interrompere il flusso del paragrafo.</p>
 
               <div class="alert alert--note" style="margin: 1.5rem 0;">
                 <strong>Una premessa fondamentale: Semantica vs Stile</strong>
@@ -470,7 +495,7 @@
                     </tr>
                     <tr>
                       <td class="is-code is-strong">&lt;a&gt;</td>
-                      <td>Un collegamento. È il tag in linea più importante: ha il capitolo 8 tutto per sé.</td>
+                      <td>Un collegamento. È il tag in linea più importante: ha il capitolo 7 tutto per sé.</td>
                       <td>Testo blu sottolineato</td>
                     </tr>
                     <tr>
@@ -500,7 +525,7 @@
                     </tr>
                     <tr>
                       <td class="is-code is-strong">&lt;span&gt;</td>
-                      <td>Nessun significato: contenitore neutro, ne parliamo nel capitolo 12.</td>
+                      <td>Nessun significato: contenitore neutro, ne parliamo nel capitolo 11.</td>
                       <td>Nessuna</td>
                     </tr>
                   </tbody>
@@ -572,74 +597,28 @@
                 <p>Non appaiono nella pagina, ma restano nel file: chiunque può leggerli con "Visualizza sorgente pagina". Non scriverci password, note riservate o commenti sui clienti.</p>
               </div>
 
-              <p>A questo punto hai usato tag che occupano una riga intera e tag che restano dentro la riga. Non è una differenza casuale: è la classificazione su cui si regge tutto l'HTML. Vediamola.</p>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 07 — BLOCCO E IN LINEA -->
-          <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Blocco e in linea: come il browser dispone gli elementi</h2>
-            <section class="guide-subchapter">
-              <p>Perché due <code>&lt;p&gt;</code> finiscono uno sotto l'altro, mentre due <a href="/it/risorse/glossario-html/?q=strong"><code>&lt;strong&gt;</code></a> restano affiancati sulla stessa riga? Perché ogni elemento HTML appartiene, per impostazione predefinita, a una di due categorie.</p>
-
-              <h3>Elementi di blocco</h3>
-              <ul class="guide-list">
-                <li>Iniziano sempre su una riga nuova e spingono a capo ciò che segue.</li>
-                <li>Occupano tutta la larghezza disponibile del loro contenitore, anche se il contenuto è corto.</li>
-                <li>Possono contenere altri blocchi <em>e</em> elementi in linea.</li>
-              </ul>
-              <p>Sono blocchi: <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>…<code>&lt;h6&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;form&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>.</p>
-
-              <h3>Elementi in linea</h3>
-              <ul class="guide-list">
-                <li>Non vanno a capo: scorrono dentro la riga di testo insieme alle parole.</li>
-                <li>Occupano solo lo spazio del loro contenuto, non un millimetro in più.</li>
-                <li>Devono contenere testo o altri elementi in linea, <strong>mai</strong> un elemento di blocco.</li>
-              </ul>
-              <p>Sono in linea: <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;abbr&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>.</p>
-
-              <p>Prova questo esempio: i due paragrafi si impilano, i due <code>&lt;span&gt;</code> restano attaccati.</p>
-
-              <pre><code class="language-html">&lt;p&gt;Primo blocco: prendo tutta la larghezza.&lt;/p&gt;
-&lt;p&gt;Secondo blocco: sto sotto al primo.&lt;/p&gt;
-
-&lt;p&gt;
-  &lt;span&gt;Primo in linea.&lt;/span&gt;
-  &lt;span&gt;Secondo in linea: sto sulla stessa riga.&lt;/span&gt;
-&lt;/p&gt;</code></pre>
-
-              <h3>Perché ti serve saperlo adesso</h3>
-              <p>Perché da questa distinzione discende la regola di annidamento che si viola più spesso:</p>
+              <h3>Blocco e in linea non decidono da soli l'annidamento</h3>
+              <p>La disposizione sullo schermo non basta a stabilire quali tag possano stare dentro altri tag. Ogni elemento HTML ammette determinati tipi di contenuto: per esempio, un <code>&lt;p&gt;</code> può contenere testo ed elementi che marcano le parole, ma non strutture come titoli, altri paragrafi o <code>&lt;div&gt;</code>.</p>
 
               <div class="alert alert--warning">
-                <strong>Un elemento in linea non può contenere un blocco</strong>
-                <p>Scrivere <code>&lt;span&gt;&lt;h2&gt;Titolo&lt;/h2&gt;&lt;/span&gt;</code> o <code>&lt;p&gt;&lt;div&gt;...&lt;/div&gt;&lt;/p&gt;</code> è codice non valido. Il browser non si ferma: riscrive l'albero come gli pare, e ti ritrovi con un risultato che non capisci e un CSS che sembra "non funzionare".</p>
+                <strong>La regola pratica per iniziare</strong>
+                <p>Non inserire elementi strutturali come <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code> o <code>&lt;div&gt;</code> dentro <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code> e gli altri tag usati per marcare porzioni di testo. Codice come <code>&lt;p&gt;&lt;div&gt;...&lt;/div&gt;&lt;/p&gt;</code> non è valido: il browser prova a correggerlo e può produrre una struttura diversa da quella che avevi scritto.</p>
               </div>
 
-              <p>C'è un'eccezione molto importante a questa regola: il tag di collegamento <code>&lt;a&gt;</code>, pur essendo un elemento in linea, <strong>può racchiudere interi blocchi</strong> (come titoli, paragrafi, o interi <code>&lt;div&gt;</code>). Questo è fondamentale per rendere cliccabile un'intera area o una scheda prodotto, anziché solo il suo testo:</p>
+              <p>Il tag <code>&lt;a&gt;</code> è un caso particolare: può racchiudere sia una porzione di testo sia, quando il contesto lo consente, un intero blocco di contenuto. Questo permette di rendere cliccabile un'intera scheda anziché soltanto le sue parole:</p>
 
               <pre><code class="language-html">&lt;a href="/prodotti/tazza/"&gt;
   &lt;h3&gt;Tazza Codedge&lt;/h3&gt;
   &lt;p&gt;Ceramica smaltata, 350 ml.&lt;/p&gt;
 &lt;/a&gt;</code></pre>
 
-              <div class="alert alert--note">
-                <strong>Struttura (HTML) vs Resa Grafica (CSS): non fare confusione</strong>
-                <p>È facile confondere le regole di annidamento dell'HTML con l'aspetto grafico degli elementi:</p>
-                <ul class="guide-list">
-                  <li><strong>Le regole dell'HTML (strutturali):</strong> Definiscono la validità del codice. Ad esempio, non si può inserire un <code>&lt;p&gt;</code> (blocco) dentro uno <code>&lt;span&gt;</code> (in linea). Questa gerarchia è fissa ed è quella che determina come il browser interpreta il documento.</li>
-                  <li><strong>Le proprietà del CSS (estetiche):</strong> Attraverso la proprietà <code>display</code> (es. <code>display: block</code> o <code>display: inline</code>) puoi dire al browser di <em>mostrare</em> graficamente uno <code>&lt;span&gt;</code> a tutta larghezza come fosse un blocco, o un paragrafo sulla stessa riga come fosse in linea.</li>
-                </ul>
-                <p>Ricorda: cambiare il comportamento visivo con il CSS <strong>non cambia le regole dell'HTML</strong>. Anche se applichi <code>display: block</code> a uno <code>&lt;span&gt;</code>, rimane illegale inserire un paragrafo o un titolo al suo interno.</p>
-              </div>
-
-              <p>Sai come si scrivono i tag e come si dispongono. Manca un pezzo trasversale: gli attributi che puoi mettere su qualsiasi tag, e che i prossimi capitoli useranno di continuo.</p>
+              <p>Ora sai riconoscere i due comportamenti più comuni, usare i tag che marcano il testo e non confondere la resa grafica con la struttura del documento. Manca un pezzo trasversale: gli attributi che puoi mettere sui tag e che useremo di continuo nei prossimi capitoli.</p>
             </section>
           </section>
 
           <!-- CAPITOLO 08 — ATTRIBUTI GLOBALI -->
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. Gli attributi universali: dare un'identità ai tag</h2>
+            <h2>6. Gli attributi universali: dare un'identità ai tag</h2>
             <section class="guide-subchapter">
               <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette però a disposizione anche degli <strong>attributi globali</strong> (o universali): attributi che puoi scrivere su <strong>qualsiasi elemento</strong>.</p>
 
@@ -755,7 +734,7 @@
 
           <!-- CAPITOLO 09 — I LINK -->
           <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. I link: collegare le pagine</h2>
+            <h2>7. I link: collegare le pagine</h2>
             <section class="guide-subchapter">
               <p>Il collegamento ipertestuale è ciò che trasforma pagine isolate in un sito, e i siti in un web. Si crea con il tag <code>&lt;a&gt;</code> (<em>anchor</em>, ancora) e il suo attributo <code>href</code> (<em>hypertext reference</em>), che indica la destinazione.</p>
 
@@ -907,7 +886,7 @@
 
           <!-- CAPITOLO 10 — IMMAGINI E MEDIA -->
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. Immagini e contenuti multimediali</h2>
+            <h2>8. Immagini e contenuti multimediali</h2>
             <section class="guide-subchapter">
               <p>Le immagini si inseriscono con <code>&lt;img&gt;</code>, un tag vuoto: non racchiude nulla e non ha tag di chiusura, quindi tutte le informazioni passano dagli attributi.</p>
 
@@ -927,7 +906,7 @@
                   <tbody>
                     <tr>
                       <td class="is-code is-strong">src</td>
-                      <td>Il percorso del file immagine. Segue le stesse regole dei link del capitolo 8.</td>
+                      <td>Il percorso del file immagine. Segue le stesse regole dei link del capitolo 7.</td>
                       <td>Sì</td>
                     </tr>
                     <tr>
@@ -1007,7 +986,7 @@
 
           <!-- CAPITOLO 11 — LE LISTE -->
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Le liste</h2>
+            <h2>9. Le liste</h2>
             <section class="guide-subchapter">
               <p>Le liste servono ogni volta che hai più elementi dello stesso tipo. Non solo elenchi puntati: i menu di navigazione, le gallerie di prodotti e i risultati di ricerca sono tutti, sotto sotto, liste. Marcarli come tali comunica agli screen reader quanti elementi ci sono ancora da leggere.</p>
 
@@ -1079,13 +1058,13 @@
 
           <!-- CAPITOLO 12 — LE TABELLE -->
           <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Le tabelle</h2>
+            <h2>10. Le tabelle</h2>
             <section class="guide-subchapter">
               <p>Una tabella serve per i <strong>dati tabellari</strong>: informazioni che hanno senso solo incrociando una riga e una colonna. Un listino prezzi, un orario ferroviario, un confronto tra piani di abbonamento.</p>
 
               <div class="alert alert--warning">
                 <strong>Mai usare le tabelle per impaginare</strong>
-                <p>Negli anni Novanta si costruivano i layout con tabelle invisibili. Oggi è un errore grave: uno screen reader annuncia righe e colonne che non esistono concettualmente, e la pagina diventa impossibile da adattare agli schermi piccoli. Per il layout esistono il CSS e i tag semantici del capitolo 13.</p>
+                <p>Negli anni Novanta si costruivano i layout con tabelle invisibili. Oggi è un errore grave: uno screen reader annuncia righe e colonne che non esistono concettualmente, e la pagina diventa impossibile da adattare agli schermi piccoli. Per il layout esistono il CSS e i tag semantici del capitolo 12.</p>
               </div>
 
               <h3>La struttura completa</h3>
@@ -1159,7 +1138,7 @@
 
           <!-- CAPITOLO 13 — DIV E SPAN -->
           <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. div e span: i contenitori neutri</h2>
+            <h2>11. div e span: i contenitori neutri</h2>
             <section class="guide-subchapter">
               <p>Tutti i tag visti finora dicono qualcosa: <code>&lt;p&gt;</code> è un paragrafo, <code>&lt;ul&gt;</code> è un elenco, <code>&lt;th&gt;</code> è un'intestazione. Ne esistono due che non dicono <strong>nulla</strong>, ed è esattamente il motivo per cui servono.</p>
 
@@ -1168,7 +1147,7 @@
                 <li><strong><code>&lt;span&gt;</code></strong> è un contenitore <em>in linea</em> senza significato.</li>
               </ul>
 
-              <p>Riconosci la distinzione: è quella del capitolo 6. Un <code>&lt;div&gt;</code> si comporta come un <code>&lt;p&gt;</code> (va a capo, prende tutta la larghezza), un <code>&lt;span&gt;</code> come uno <code>&lt;strong&gt;</code> (resta nella riga).</p>
+              <p>Riconosci la distinzione: è quella del capitolo 5. Un <code>&lt;div&gt;</code> si comporta come un <code>&lt;p&gt;</code> (va a capo, prende tutta la larghezza), un <code>&lt;span&gt;</code> come uno <code>&lt;strong&gt;</code> (resta nella riga).</p>
 
               <h3>A cosa servono</h3>
               <p>A raggruppare elementi per potervi agganciare qualcosa — quasi sempre un <code>class</code> per il CSS, a volte un <code>id</code> per JavaScript — quando quel raggruppamento non ha un significato proprio da comunicare.</p>
@@ -1212,7 +1191,7 @@
 
           <!-- CAPITOLO 14 — HTML SEMANTICO -->
           <section id="chapter-14" class="guide-block guide-chapter">
-            <h2>13. HTML semantico: la struttura della pagina</h2>
+            <h2>12. HTML semantico: la struttura della pagina</h2>
             <section class="guide-subchapter">
               <p>HTML5 mette a disposizione una serie di tag che funzionano esattamente come un <code>&lt;div&gt;</code> — sono contenitori di blocco — con una differenza decisiva: <strong>dichiarano il ruolo</strong> della porzione di pagina che racchiudono.</p>
 
@@ -1344,7 +1323,7 @@
 
           <!-- CAPITOLO 15 — I FORM -->
           <section id="chapter-15" class="guide-block guide-chapter">
-            <h2>14. I form: raccogliere dati dall'utente</h2>
+            <h2>13. I form: raccogliere dati dall'utente</h2>
             <section class="guide-subchapter">
               <p>Finora la pagina parla e l'utente ascolta. Con i moduli — <em>form</em> — il flusso si inverte: ricerche, login, iscrizioni, ordini, commenti passano tutti da qui.</p>
 
@@ -1486,7 +1465,7 @@
 
           <!-- CAPITOLO 16 — L'HEAD -->
           <section id="chapter-16" class="guide-block guide-chapter">
-            <h2>15. L'head: metadati, SEO e anteprime social</h2>
+            <h2>14. L'head: metadati, SEO e anteprime social</h2>
             <section class="guide-subchapter">
               <p>Nel capitolo 3 abbiamo definito il <code>&lt;head&gt;</code> come la parte invisibile del documento. Non contiene ciò che si legge nella pagina, ma tutto ciò che serve <em>per</em> leggerla: come interpretare i caratteri, come comportarsi sui telefoni, quali fogli di stile caricare, cosa mostrare su Google e nelle chat.</p>
 
@@ -1558,7 +1537,7 @@
 
           <!-- CAPITOLO 17 — I 5 ERRORI SEMANTICI PIÙ COMUNI -->
           <section id="chapter-17" class="guide-block guide-chapter">
-            <h2>16. I 5 errori semantici più comuni (e come evitarli)</h2>
+            <h2>15. I 5 errori semantici più comuni (e come evitarli)</h2>
             <section class="guide-subchapter">
               <p>Per concludere in modo pratico, ecco una rassegna degli errori più comuni commessi dai principianti e i consigli di sviluppo per correggerli subito.</p>
 
@@ -1593,7 +1572,7 @@
           
           <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
           <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>17. Sintassi rapida (Cheat Sheet)</h2>
+            <h2>16. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
               
               <p>Ecco i tag semantici essenziali da ricordare per strutturare correttamente i contenuti:</p>
@@ -1641,7 +1620,7 @@
 
           <!-- SEZIONE SFIDA PRATICA -->
           <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>18. Sfida pratica: Mettiti alla prova</h2>
+            <h2>17. Sfida pratica: Mettiti alla prova</h2>
             <section class="guide-subchapter">
               
               <p>Non c'è modo migliore di imparare che sporcarsi le mani. Prova a completare questa piccola sfida nel playground o nel tuo editor prima di passare al quiz:</p>
@@ -1662,7 +1641,7 @@
 
           <!-- CAPITOLO 18 — DOVE CONTINUARE -->
           <section id="chapter-18" class="guide-block guide-chapter">
-            <h2>19. Dove continuare dopo</h2>
+            <h2>18. Dove continuare dopo</h2>
             <section class="guide-subchapter">
               <p>Hai gettato le fondamenta della tua casa nel web. Ora che padroneggi la struttura, puoi iniziare a decorarla e renderla intelligente. Ecco le tappe naturali del tuo percorso di apprendimento:</p>
               <ul class="guide-list">
@@ -1675,7 +1654,7 @@
           </section>
 
           <section id="chapter-quiz" data-quiz-id="html-fondamentali" class="guide-block guide-chapter quiz-section">
-            <h2>20. Verifica la tua preparazione (Quiz)</h2>
+            <h2>19. Verifica la tua preparazione (Quiz)</h2>
             <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
             <div id="quiz-wrapper"></div>
           </section>
