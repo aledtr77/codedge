@@ -394,9 +394,11 @@ body.no-scroll {
    visible. */
 
 /* Utility: testo accessibile a screen reader e motori di ricerca ma non visibile
-   a schermo. Usata per i titoli di pagina il cui titolo visibile vive nella navbar. */
+   a schermo. Usata per i titoli di pagina il cui titolo visibile vive nella navbar.
+   Nessuna altra regola punta a .sr-only: il gemello in main.css arriva dopo con
+   gli stessi valori e la stessa specificita, quindi non serve !important. */
 .sr-only {
-  position: absolute !important;
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
