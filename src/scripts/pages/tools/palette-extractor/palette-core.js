@@ -5,6 +5,7 @@
 // which tests/palette-core.test.js does.
 
 const D65 = { x: 0.95047, y: 1, z: 1.08883 };
+export const DOMINANT_COLOR_COUNT = 5;
 
 export function extractPalette(buckets, size) {
   if (!buckets.length) return [];
@@ -48,15 +49,9 @@ export function extractPalette(buckets, size) {
   const merged = mergeNearbyColors(centers)
     .map((color) => decorateColor(color, totalPixelCount))
     .filter((color) => color.coverage >= 0.005)
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.coverage - a.coverage);
 
   return merged.slice(0, size);
-}
-
-export function normalizePaletteSize(value) {
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed)) return 8;
-  return Math.max(4, Math.min(10, Math.round(parsed)));
 }
 
 export function seedCenters(buckets, size) {
@@ -131,8 +126,6 @@ export function decorateColor(color, total) {
   const hsl = rgbToHsl(color.r, color.g, color.b);
   const hex = rgbToHex(color);
   const text = readableTextColor(color);
-  const chromaBoost = 0.68 + hsl.s / 145;
-  const lightnessPenalty = hsl.l < 8 || hsl.l > 94 ? 0.72 : 1;
 
   return {
     r: color.r,
@@ -144,7 +137,6 @@ export function decorateColor(color, total) {
     text,
     count: color.count,
     coverage: color.count / Math.max(1, total),
-    score: color.count * chromaBoost * lightnessPenalty,
   };
 }
 
@@ -290,6 +282,13 @@ export function contrastRatio(first, second) {
   const light = Math.max(l1, l2);
   const dark = Math.min(l1, l2);
   return (light + 0.05) / (dark + 0.05);
+}
+
+export function wcagLevel(ratio) {
+  if (ratio >= 7) return "aaa";
+  if (ratio >= 4.5) return "aa";
+  if (ratio >= 3) return "aaLarge";
+  return "fail";
 }
 
 const WHITE = { r: 255, g: 255, b: 255 };

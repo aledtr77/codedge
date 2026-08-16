@@ -10,13 +10,13 @@
 <link rel="stylesheet" href="/critical.css" />
 <title>Estrattore palette da immagini | Codedge</title>
   <meta name="description"
-    content="Estrattore palette da immagini per ottenere colori, contrasti, gradienti, variabili CSS e JSON esportabili a partire da una foto.">
+    content="Estrai i cinque colori più presenti da qualsiasi immagine, con percentuali, contrasti WCAG, ruoli UI, variabili CSS e JSON esportabile.">
   <link rel="canonical" href="https://codedge.it/it/strumenti/estrattore-palette/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
   <meta property="og:title" content="Estrattore palette da immagini | Codedge" />
-  <meta property="og:description" content="Estrattore palette da immagini per ottenere colori, contrasti, gradienti, variabili CSS e JSON esportabili a partire da una foto." />
+  <meta property="og:description" content="Estrai i cinque colori più presenti da qualsiasi immagine, con percentuali, contrasti WCAG, ruoli UI, variabili CSS e JSON esportabile." />
   <meta property="og:url" content="https://codedge.it/it/strumenti/estrattore-palette/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -25,7 +25,7 @@
   <meta property="og:image:alt" content="Anteprima CODEDGE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Estrattore palette da immagini | Codedge" />
-  <meta name="twitter:description" content="Estrattore palette da immagini per ottenere colori, contrasti, gradienti, variabili CSS e JSON esportabili a partire da una foto." />
+  <meta name="twitter:description" content="Estrai i cinque colori più presenti da qualsiasi immagine, con percentuali, contrasti WCAG, ruoli UI, variabili CSS e JSON esportabile." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <!-- ICONS: diversi formati per browser, dispositivi Android/iOS e tab pinned -->
@@ -59,7 +59,7 @@
         "price": "0",
         "priceCurrency": "EUR"
       },
-      "description": "Carica un'immagine ed estrai palette dominanti, gradienti e variabili CSS o JSON."
+      "description": "Carica un'immagine ed estrai i cinque colori più presenti, le percentuali, i contrasti WCAG, i ruoli UI e le variabili CSS o JSON."
     }
   </script>
   <script type="application/ld+json">
@@ -72,7 +72,7 @@
           "name": "Come funziona l estrattore palette?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Carichi una foto, il tool analizza i colori dominanti e propone palette, ruoli UI e suggerimenti di contrasto."
+            "text": "Carichi una foto e il tool identifica i cinque colori più presenti, le percentuali, i ruoli UI e i rapporti di contrasto WCAG."
           }
         },
         {
@@ -80,7 +80,7 @@
           "name": "I dati vengono inviati a server esterni?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, l analisi e client-side nel browser e puoi esportare CSS o JSON localmente."
+            "text": "No, l'analisi avviene localmente nel browser e puoi esportare CSS o JSON direttamente dal tuo dispositivo."
           }
         },
         {
@@ -88,7 +88,7 @@
           "name": "Posso usare subito i colori nel mio progetto?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Si, puoi copiare variabili CSS, JSON e gradienti pronti da integrare nel tuo design system."
+            "text": "Sì, puoi copiare variabili CSS o JSON e scaricare file pronti da integrare nel tuo design system."
           }
         }
       ]
@@ -108,7 +108,7 @@
   </header>
   <main class="palette-tool-shell">
     <a href="/it/strumenti/" class="back-link"><i class="fas fa-chevron-left"></i> Tutti gli strumenti</a>
-    <section class="palette-tool-hero">
+    <section class="palette-tool-hero" id="paletteToolHero">
       <div>
         <p class="tool-eyebrow">Codedge Palette Extractor</p>
         <h1>Da foto a palette UI, con colori puliti e riutilizzabili.</h1>
@@ -124,8 +124,8 @@
     </section>
 
     <section class="workspace">
-      <aside class="input-panel">
-        <label class="dropzone" id="dropzone" for="fileInput" role="button" tabindex="0">
+      <aside class="input-panel" aria-label="Sorgente immagine e impostazioni di estrazione">
+        <label class="dropzone" id="dropzone" for="fileInput">
           <input
             class="file-input"
             id="fileInput"
@@ -135,7 +135,7 @@
           />
           <span class="drop-icon" aria-hidden="true"><i class="fas fa-upload"></i></span>
           <span class="drop-title">Carica o trascina una foto</span>
-          <span class="drop-meta" id="dropMeta">Analisi locale nel browser. Nessun upload.</span>
+          <span class="drop-meta" id="dropMeta">PNG, JPG, WebP, GIF o BMP · max 12 MB · mai caricata online</span>
         </label>
 
         <div class="source-actions">
@@ -145,7 +145,7 @@
           </button>
         </div>
 
-        <div class="preview-frame" id="previewFrame">
+        <div class="preview-frame" id="previewFrame" aria-live="polite" aria-label="Anteprima immagine">
           <div class="empty-preview" aria-hidden="true"><i class="fas fa-image"></i></div>
         </div>
 
@@ -160,40 +160,34 @@
           </button>
         </div>
 
-        <div class="control-row">
-          <label for="paletteSize">Colori</label>
-          <output id="paletteSizeValue">8</output>
-        </div>
-        <input class="range" id="paletteSize" type="range" min="4" max="10" value="8" />
-
         <button class="tool-button primary analyze-button" id="analyzeBtn" type="button">
           <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
           <span>Estrai palette</span>
         </button>
 
-        <div class="metrics">
+        <dl class="metrics">
           <div>
-            <span>Immagine</span>
-            <strong id="imageSize">-</strong>
+            <dt>Immagine</dt>
+            <dd id="imageSize">-</dd>
           </div>
           <div>
-            <span>Media</span>
-            <strong id="averageColor">-</strong>
+            <dt>Media</dt>
+            <dd id="averageColor">-</dd>
           </div>
           <div>
-            <span>Pixel letti</span>
-            <strong id="pixelCount">-</strong>
+            <dt>Pixel letti</dt>
+            <dd id="pixelCount">-</dd>
           </div>
-        </div>
+        </dl>
       </aside>
 
-      <section class="results">
+      <section class="results" aria-labelledby="paletteHeading">
         <div class="section-head">
           <div>
-            <h2>Palette dominante</h2>
-            <p>Ordinata per rilevanza percettiva, non solo per numero grezzo di pixel.</p>
+            <h2 id="paletteHeading">Palette dominante</h2>
+            <p>I 5 colori più presenti, ordinati in base alla loro percentuale nell'immagine.</p>
           </div>
-          <div class="sr-only" id="status" role="status" aria-live="polite">Pronto</div>
+          <div class="status" id="status" role="status" aria-live="polite" aria-atomic="true" data-status-key="ready" data-status-tone="neutral">Pronto</div>
         </div>
 
         <div class="palette-grid" id="paletteGrid">
@@ -201,10 +195,10 @@
         </div>
 
         <div class="detail-grid">
-          <section class="tool-panel roles-panel">
+          <section class="tool-panel roles-panel" aria-labelledby="rolesHeading">
             <div class="section-head compact">
               <div>
-                <h2>Ruoli UI</h2>
+                <h2 id="rolesHeading">Ruoli UI</h2>
                 <p>Colori pronti per tema, testi e CTA.</p>
               </div>
             </div>
@@ -212,20 +206,20 @@
             <div class="contrast-card" id="contrastCard"></div>
           </section>
 
-          <section class="tool-panel export-panel">
+          <section class="tool-panel export-panel" aria-labelledby="exportHeading">
             <div class="section-head compact">
               <div>
-                <h2>Export</h2>
+                <h2 id="exportHeading">Export</h2>
                 <p>CSS variables e JSON generati dalla palette corrente.</p>
               </div>
             </div>
             <div class="export-actions">
-              <button class="tool-button secondary" id="copyCssBtn" type="button">CSS</button>
-              <button class="tool-button secondary" id="copyJsonBtn" type="button">JSON</button>
-              <button class="tool-button secondary" id="downloadCssBtn" type="button">.css</button>
-              <button class="tool-button secondary" id="downloadJsonBtn" type="button">.json</button>
+              <button class="tool-button secondary" id="copyCssBtn" type="button" disabled>Copia CSS</button>
+              <button class="tool-button secondary" id="copyJsonBtn" type="button" disabled>Copia JSON</button>
+              <button class="tool-button secondary" id="downloadCssBtn" type="button" disabled>Scarica CSS</button>
+              <button class="tool-button secondary" id="downloadJsonBtn" type="button" disabled>Scarica JSON</button>
             </div>
-            <pre id="codePreview">:root {
+            <pre id="codePreview" tabindex="0" aria-label="Anteprima CSS generato">:root {
   --color-1: ...
 }</pre>
           </section>
@@ -237,7 +231,7 @@
       <h2 id="seo-title-palette" class="faq-section-title">Estrattore Palette Colore da Immagine</h2>
       <div class="seo-text-content">
         <p>
-          L'estrazione dei colori da un'immagine rappresenta un passaggio fondamentale nella definizione della visual identity di un progetto web. Questo <strong>estrattore di palette colore online</strong> ti consente di caricare qualsiasi fotografia o screenshot ed elaborarla localmente nel browser, identificando i toni dominanti in modo scientifico. Attraverso algoritmi di quantizzazione cromatica nello spazio colore CIE L*a*b*, il tool non si limita a contare i pixel simili, ma calcola la rilevanza percettiva di ogni tinta per assicurarti una palette bilanciata e coerente.
+          L'estrazione dei colori da un'immagine rappresenta un passaggio fondamentale nella definizione della visual identity di un progetto web. Questo <strong>estrattore di palette colore online</strong> elabora localmente nel browser qualsiasi fotografia o screenshot. Raggruppa i pixel visivamente simili nello spazio colore CIE L*a*b* e restituisce i cinque colori più presenti in ordine percentuale decrescente.
         </p>
         <p>
           Una volta estratti i colori, lo strumento li organizza per te assegnando ruoli UI strategici: avrai a disposizione un colore di sfondo (background), una tonalità principale (primary) per elementi dominanti, un colore di accento (accent) per le chiamate all'azione e una tinta per il testo, calcolando in tempo reale il rapporto di contrasto WCAG. Questo ti garantisce di progettare interfacce inclusive e accessibili fin dal primo istante.
@@ -251,7 +245,7 @@
         
         <h4>Come funziona il calcolo dei colori dominanti?</h4>
         <p>
-          L'immagine viene analizzata pixel per pixel riducendone la palette tramite quantizzazione (Median Cut). I colori ottenuti vengono convertiti e ordinati in base alla loro copertura percentuale e al contrasto rispetto alle tinte circostanti per garantire l'armonia.
+          L'immagine viene campionata nel browser e i colori simili vengono raggruppati con un processo iterativo nello spazio CIE L*a*b*. I cinque colori risultanti sono ordinati esclusivamente per copertura percentuale, quindi il primo campione è sempre quello più presente.
         </p>
 
         <h4>Posso scaricare i colori estratti?</h4>

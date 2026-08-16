@@ -1,8 +1,8 @@
 import { currentLang, t } from "@/i18n/ui.js";
 import {
   contrastRatio,
+  DOMINANT_COLOR_COUNT,
   extractPalette,
-  normalizePaletteSize,
   paletteToCss,
   paletteToJson,
   pickRoles,
@@ -10,6 +10,7 @@ import {
   rgbToHex,
   rgbToHsl,
   rgbToLab,
+  wcagLevel,
 } from "./palette-core.js";
 const MAX_FILE_SIZE = 12 * 1024 * 1024;
 const MAX_ANALYSIS_SIDE = 760;
@@ -24,8 +25,30 @@ const ACCEPTED_IMAGE_TYPES = new Set([
 // Kept identical to the <pre id="codePreview"> in the page markup, so a reset
 // puts back exactly what the panel showed on load.
 const EMPTY_CSS_PREVIEW = ":root {\n  --color-1: ...\n}";
+const PROBLEM_STATUSES = new Set([
+  "takePhotoFirst",
+  "uploadPhotoFirst",
+  "analysisError",
+  "noColors",
+  "unsupportedFormat",
+  "imageTooHeavy",
+  "cameraUnavailable",
+  "cameraNotDetected",
+  "cameraNotReady",
+  "cameraDenied",
+  "cameraInUse",
+  "generatePaletteFirst",
+  "copyUnavailable",
+]);
+const DONE_STATUSES = new Set(["paletteReady", "somethingCopied", "downloaded"]);
 
 let inited = false;
+
+function statusTone(key) {
+  if (PROBLEM_STATUSES.has(key)) return "problem";
+  if (DONE_STATUSES.has(key)) return "done";
+  return "neutral";
+}
 
 export function initPaletteExtractor() {
   if (inited) return;
@@ -42,9 +65,8 @@ export function initPaletteExtractor() {
     analyzeBtn: document.querySelector("#analyzeBtn"),
     demoBtn: document.querySelector("#demoBtn"),
     resetBtn: document.querySelector("#resetBtn"),
-    paletteSize: document.querySelector("#paletteSize"),
-    paletteSizeValue: document.querySelector("#paletteSizeValue"),
     paletteGrid: document.querySelector("#paletteGrid"),
+    results: document.querySelector(".results"),
     rolesList: document.querySelector("#rolesList"),
     contrastCard: document.querySelector("#contrastCard"),
     imageSize: document.querySelector("#imageSize"),
@@ -60,22 +82,28 @@ export function initPaletteExtractor() {
 
   if (!refs.analyzeBtn || !refs.paletteGrid) return;
 
+  const exportButtons = [
+    refs.copyCssBtn,
+    refs.copyJsonBtn,
+    refs.downloadCssBtn,
+    refs.downloadJsonBtn,
+  ];
+
   let currentSource = null;
   let currentResult = null;
   let cameraStream = null;
+  let cameraVideo = null;
   let currentObjectUrl = null;
+  let analysisToken = 0;
+  let cameraToken = 0;
 
   resetRoles();
-
-  refs.paletteSize?.addEventListener("input", () => {
-    refs.paletteSizeValue.value = refs.paletteSize.value;
-  });
 
   refs.fileInput?.addEventListener("change", async (event) => {
     const file = event.target.files?.[0];
     if (!file || !isValidImageFile(file)) return;
-    stopCamera();
-    await setSource(URL.createObjectURL(file), { objectUrl: true });
+    setSource(URL.createObjectURL(file), { objectUrl: true });
+    await runAnalysis();
   });
 
   refs.dropzone?.addEventListener("dragover", (event) => {
@@ -83,7 +111,8 @@ export function initPaletteExtractor() {
     refs.dropzone.classList.add("is-dragging");
   });
 
-  refs.dropzone?.addEventListener("dragleave", () => {
+  refs.dropzone?.addEventListener("dragleave", (event) => {
+    if (event.relatedTarget instanceof Node && refs.dropzone.contains(event.relatedTarget)) return;
     refs.dropzone.classList.remove("is-dragging");
   });
 
@@ -92,14 +121,8 @@ export function initPaletteExtractor() {
     refs.dropzone.classList.remove("is-dragging");
     const file = event.dataTransfer.files?.[0];
     if (!file || !isValidImageFile(file)) return;
-    stopCamera();
-    await setSource(URL.createObjectURL(file), { objectUrl: true });
-  });
-
-  refs.dropzone?.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    refs.fileInput?.click();
+    setSource(URL.createObjectURL(file), { objectUrl: true });
+    await runAnalysis();
   });
 
   refs.cameraBtn?.addEventListener("click", startCamera);
@@ -107,12 +130,12 @@ export function initPaletteExtractor() {
   refs.closeCameraBtn?.addEventListener("click", () => {
     stopCamera();
     if (!currentSource) renderEmptyPreview();
-    setStatus(t("tool.cameraClosed"));
+    setStatus("cameraClosed");
+    refs.cameraBtn.focus();
   });
   refs.analyzeBtn.addEventListener("click", () => runAnalysis());
   refs.demoBtn?.addEventListener("click", async () => {
-    stopCamera();
-    await setSource(createDemoImage());
+    setSource(createDemoImage());
     await runAnalysis();
   });
   refs.resetBtn?.addEventListener("click", resetApp);
@@ -126,7 +149,9 @@ export function initPaletteExtractor() {
     const target = event.target.closest("[data-copy]");
     if (!target || !refs.paletteGrid.contains(target) && !refs.rolesList.contains(target)) return;
     const ok = await copyText(target.dataset.copy);
-    setStatus(ok ? t("tool.somethingCopied", { what: target.dataset.copy.toUpperCase() }) : t("tool.copyUnavailable"));
+    setStatus(ok ? "somethingCopied" : "copyUnavailable", {
+      what: target.dataset.copy.toUpperCase(),
+    });
   });
 
   // Everything this tool puts on screen is markup built here, so the language
@@ -134,7 +159,7 @@ export function initPaletteExtractor() {
   // fetched twin, which knows nothing about a rendered palette and stops at
   // that branch. The metrics are worse than untranslated — the twin *does*
   // carry their "-" placeholders, so a swap copies those over a real reading
-  // and leaves "Pixels read: -" above eight swatches.
+  // and leaves stale image metrics above the new palette.
   //
   // Re-rendering from the result settles all of it at once: the metrics come
   // back, the swatch and role labels change language, and the contrast card
@@ -143,35 +168,49 @@ export function initPaletteExtractor() {
   window.addEventListener("codedge:lang-changed", () => {
     if (currentResult) {
       renderResult(currentResult);
-      setStatus(t("tool.paletteReady"));
+      setStatus("paletteReady");
       return;
     }
 
     refs.paletteGrid.innerHTML = `<div class="empty-state">${t("tool.emptyPalette")}</div>`;
     resetRoles();
-    setStatus(t("tool.ready"));
+    setStatus("ready");
   });
 
   async function runAnalysis() {
     if (!currentSource) {
-      setStatus(cameraStream ? t("tool.takePhotoFirst") : t("tool.uploadPhotoFirst"));
+      setStatus(cameraStream ? "takePhotoFirst" : "uploadPhotoFirst");
       return;
     }
 
+    const token = (analysisToken += 1);
     refs.analyzeBtn.disabled = true;
-    setStatus(t("tool.analyzing"));
+    setExportsEnabled(false);
+    refs.analyzeBtn.setAttribute("aria-busy", "true");
+    refs.analyzeBtn.querySelector("span").textContent = t("tool.analyzingAction");
+    refs.results.setAttribute("aria-busy", "true");
+    refs.results.classList.add("is-updating");
+    setStatus("analyzing");
 
     try {
-      currentResult = await analyzeImage(currentSource, {
-        paletteSize: Number(refs.paletteSize.value),
-      });
-      renderResult(currentResult);
-      setStatus(t("tool.paletteReady"));
+      const result = await analyzeImage(currentSource);
+      if (token !== analysisToken) return;
+
+      currentResult = result;
+      renderResult(result);
+      setExportsEnabled(Boolean(result.palette.length));
+      setStatus(result.palette.length ? "paletteReady" : "noColors");
     } catch (error) {
       console.error(error);
-      setStatus(t("tool.analysisError"));
+      if (token === analysisToken) setStatus("analysisError");
     } finally {
-      refs.analyzeBtn.disabled = false;
+      if (token === analysisToken) {
+        refs.analyzeBtn.disabled = false;
+        refs.analyzeBtn.removeAttribute("aria-busy");
+        refs.analyzeBtn.querySelector("span").textContent = t("tool.extractAction");
+        refs.results.removeAttribute("aria-busy");
+        refs.results.classList.remove("is-updating");
+      }
     }
   }
 
@@ -182,8 +221,18 @@ export function initPaletteExtractor() {
     refs.pixelCount.textContent = result.meta.pixelCount.toLocaleString(
       currentLang() === "it" ? "it-IT" : "en-US"
     );
-    refs.averageColor.textContent = rgbToHex(result.meta.average).toUpperCase();
-    refs.averageColor.style.color = rgbToHex(result.meta.average);
+    const averageHex = rgbToHex(result.meta.average);
+    refs.averageColor.textContent = averageHex.toUpperCase();
+    refs.averageColor.style.setProperty("--average-color", averageHex);
+    refs.averageColor.dataset.hasValue = "true";
+
+    if (!result.palette.length) {
+      refs.paletteGrid.innerHTML = `<div class="empty-state">${t("tool.noColorsFound")}</div>`;
+      resetRoles();
+      refs.codePreview.textContent = EMPTY_CSS_PREVIEW;
+      return;
+    }
+
     refs.paletteGrid.innerHTML = result.palette.map(renderSwatch).join("");
     refs.rolesList.innerHTML = renderRoles(result.roles);
     refs.contrastCard.innerHTML = renderContrast(result.roles);
@@ -195,7 +244,11 @@ export function initPaletteExtractor() {
     const coverage = Math.round(color.coverage * 1000) / 10;
 
     return `
-      <article class="swatch">
+      <article class="swatch" aria-label="${t("tool.colorCoverage", {
+        n: index + 1,
+        hex: color.hex.toUpperCase(),
+        coverage,
+      })}">
         <button
           class="swatch-chip"
           type="button"
@@ -210,7 +263,7 @@ export function initPaletteExtractor() {
           <button type="button" class="hex-copy" data-copy="${color.hex}">${color.hex.toUpperCase()}</button>
           <span>rgb(${color.r}, ${color.g}, ${color.b})</span>
           <span>hsl(${color.hsl.h} ${color.hsl.s}% ${color.hsl.l}%)</span>
-          <span>Aa ${color.text.ratio.toFixed(1)}:1</span>
+          <span class="swatch-ratio">Aa ${ratioMarkup(color.text.ratio)}</span>
         </div>
       </article>
     `;
@@ -220,10 +273,10 @@ export function initPaletteExtractor() {
     if (!roles) return "";
 
     return [
-      ["Background", roles.background],
-      ["Primary", roles.primary],
-      ["Accent", roles.accent],
-      ["Text", roles.text],
+      [t("tool.roleBackground"), roles.background],
+      [t("tool.rolePrimary"), roles.primary],
+      [t("tool.roleAccent"), roles.accent],
+      [t("tool.roleText"), roles.text],
     ]
       .map(([label, color]) => {
         const hex = color.hex.toUpperCase();
@@ -249,38 +302,51 @@ export function initPaletteExtractor() {
     return `
       <div class="contrast-preview" style="background:${roles.background.hex};color:${roles.text.hex}">
         <span>${t("tool.themePreview")}</span>
-        <strong>Primary ${primaryRatio.toFixed(1)}:1</strong>
-        <button type="button" style="background:${roles.primary.hex};color:${readableTextColor(roles.primary).hex}">
+        <strong>${t("tool.rolePrimary")} ${primaryRatio.toFixed(1)}:1</strong>
+        <span class="preview-cta" style="background:${roles.primary.hex};color:${readableTextColor(roles.primary).hex}">
           CTA
-        </button>
+        </span>
       </div>
       <div class="contrast-list">
-        <span>Text / Background <strong>${textRatio.toFixed(1)}:1</strong></span>
-        <span>Primary / Background <strong>${primaryRatio.toFixed(1)}:1</strong></span>
-        <span>Accent / Background <strong>${accentRatio.toFixed(1)}:1</strong></span>
+        <span>${t("tool.textBackground")} ${ratioMarkup(textRatio)}</span>
+        <span>${t("tool.primaryBackground")} ${ratioMarkup(primaryRatio)}</span>
+        <span>${t("tool.accentBackground")} ${ratioMarkup(accentRatio)}</span>
       </div>
+      <p class="contrast-note">${t("tool.contrastNote")}</p>
     `;
   }
 
-  async function setSource(source, options = {}) {
+  function ratioMarkup(ratio) {
+    const level = wcagLevel(ratio);
+    return `<strong class="ratio">${ratio.toFixed(1)}:1 <span class="wcag" data-level="${level}">${t(
+      `tool.wcag.${level}`,
+    )}</span></strong>`;
+  }
+
+  function setSource(source, options = {}) {
     stopCamera();
     revokeCurrentObjectUrl();
+    cancelAnalysis();
     currentSource = source;
     currentObjectUrl = options.objectUrl ? source : null;
+    clearResult();
     renderImagePreview(source);
-    setStatus(t("tool.imageLoaded"));
+    setStatus("imageLoaded");
   }
 
   function isValidImageFile(file) {
-    if (!ACCEPTED_IMAGE_TYPES.has(file.type)) {
+    const extension = file.name.split(".").pop()?.toLowerCase();
+    const acceptedExtension = ["png", "jpg", "jpeg", "webp", "gif", "bmp"].includes(extension);
+
+    if (!ACCEPTED_IMAGE_TYPES.has(file.type) && !(file.type === "" && acceptedExtension)) {
       refs.fileInput.value = "";
-      setStatus(t("tool.unsupportedFormat"));
+      setStatus("unsupportedFormat");
       return false;
     }
 
     if (file.size > MAX_FILE_SIZE) {
       refs.fileInput.value = "";
-      setStatus(t("tool.imageTooHeavy"));
+      setStatus("imageTooHeavy");
       return false;
     }
 
@@ -303,23 +369,25 @@ export function initPaletteExtractor() {
 
   async function startCamera() {
     if (!navigator.mediaDevices?.getUserMedia) {
-      setStatus(t("tool.cameraUnavailable"));
+      setStatus("cameraUnavailable");
       return;
     }
 
-    stopCamera();
-    revokeCurrentObjectUrl();
+    const requestToken = (cameraToken += 1);
     refs.cameraBtn.disabled = true;
-    setStatus(t("tool.openingCamera"));
+    refs.cameraBtn.setAttribute("aria-busy", "true");
+    setStatus("openingCamera");
 
     try {
       const hasCamera = await hasVideoInput();
+      if (requestToken !== cameraToken) return;
+
       if (hasCamera === false) {
-        setStatus(t("tool.cameraNotDetected"));
+        setStatus("cameraNotDetected");
         return;
       }
 
-      cameraStream = await navigator.mediaDevices.getUserMedia({
+      const nextStream = await navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: { ideal: "environment" },
           width: { ideal: 1280 },
@@ -328,7 +396,12 @@ export function initPaletteExtractor() {
         audio: false,
       });
 
-      currentSource = null;
+      if (requestToken !== cameraToken) {
+        nextStream.getTracks().forEach((track) => track.stop());
+        return;
+      }
+
+      cameraStream = nextStream;
       const video = document.createElement("video");
       video.className = "camera-preview";
       video.id = "cameraPreview";
@@ -339,15 +412,31 @@ export function initPaletteExtractor() {
       refs.previewFrame.replaceChildren(video);
       video.srcObject = cameraStream;
       await video.play();
+
+      if (requestToken !== cameraToken) {
+        video.srcObject = null;
+        return;
+      }
+
+      cameraVideo = video;
+      revokeCurrentObjectUrl();
+      cancelAnalysis();
+      currentSource = null;
+      clearResult();
       refs.cameraActions.hidden = false;
-      setStatus(t("tool.cameraActive"));
+      refs.cameraBtn.hidden = true;
+      refs.captureBtn.focus();
+      setStatus("cameraActive");
     } catch (error) {
       console.error(error);
+      if (requestToken !== cameraToken) return;
       stopCamera();
-      renderEmptyPreview();
-      setStatus(cameraErrorMessage(error));
+      if (currentSource) renderImagePreview(currentSource);
+      else renderEmptyPreview();
+      setStatus(cameraErrorKey(error));
     } finally {
       refs.cameraBtn.disabled = false;
+      refs.cameraBtn.removeAttribute("aria-busy");
     }
   }
 
@@ -362,46 +451,47 @@ export function initPaletteExtractor() {
     }
   }
 
-  function cameraErrorMessage(error) {
+  function cameraErrorKey(error) {
     if (error?.name === "NotFoundError" || error?.name === "OverconstrainedError") {
-      return t("tool.cameraNotDetected");
+      return "cameraNotDetected";
     }
 
     if (error?.name === "NotAllowedError" || error?.name === "SecurityError") {
-      return t("tool.cameraDenied");
+      return "cameraDenied";
     }
 
     if (error?.name === "NotReadableError") {
-      return t("tool.cameraInUse");
+      return "cameraInUse";
     }
 
-    return t("tool.cameraUnavailable");
+    return "cameraUnavailable";
   }
 
-  function captureFromCamera() {
-    const video = document.querySelector("#cameraPreview");
-    if (!video || !video.videoWidth || !video.videoHeight) {
-      setStatus(t("tool.cameraNotReady"));
+  async function captureFromCamera() {
+    if (!cameraVideo?.videoWidth || !cameraVideo.videoHeight) {
+      setStatus("cameraNotReady");
       return;
     }
 
     const canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = cameraVideo.videoWidth;
+    canvas.height = cameraVideo.videoHeight;
     const context = canvas.getContext("2d");
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    context.drawImage(cameraVideo, 0, 0, canvas.width, canvas.height);
     const source = canvas.toDataURL("image/jpeg", 0.92);
-    stopCamera();
     setSource(source);
-    setStatus(t("tool.shotReady"));
+    await runAnalysis();
   }
 
   function stopCamera() {
+    cameraToken += 1;
     if (cameraStream) {
       cameraStream.getTracks().forEach((track) => track.stop());
       cameraStream = null;
     }
+    cameraVideo = null;
     refs.cameraActions.hidden = true;
+    refs.cameraBtn.hidden = false;
   }
 
   function createDemoImage() {
@@ -424,18 +514,40 @@ export function initPaletteExtractor() {
   function resetApp() {
     stopCamera();
     revokeCurrentObjectUrl();
+    cancelAnalysis();
     currentSource = null;
-    currentResult = null;
     refs.fileInput.value = "";
     renderEmptyPreview();
+    clearResult();
+    setStatus("ready");
+  }
+
+  function cancelAnalysis() {
+    analysisToken += 1;
+    refs.analyzeBtn.disabled = false;
+    refs.analyzeBtn.removeAttribute("aria-busy");
+    refs.analyzeBtn.querySelector("span").textContent = t("tool.extractAction");
+    refs.results.removeAttribute("aria-busy");
+    refs.results.classList.remove("is-updating");
+  }
+
+  function clearResult() {
+    currentResult = null;
     refs.paletteGrid.innerHTML = `<div class="empty-state">${t("tool.emptyPalette")}</div>`;
     refs.imageSize.textContent = "-";
     refs.averageColor.textContent = "-";
-    refs.averageColor.style.color = "";
+    refs.averageColor.style.removeProperty("--average-color");
+    delete refs.averageColor.dataset.hasValue;
     refs.pixelCount.textContent = "-";
     refs.codePreview.textContent = EMPTY_CSS_PREVIEW;
     resetRoles();
-    setStatus(t("tool.ready"));
+    setExportsEnabled(false);
+  }
+
+  function setExportsEnabled(enabled) {
+    exportButtons.forEach((button) => {
+      button.disabled = !enabled;
+    });
   }
 
   function renderEmptyPreview() {
@@ -457,29 +569,29 @@ export function initPaletteExtractor() {
   }
 
   function getCss() {
-    if (!currentResult) return "";
+    if (!currentResult?.palette.length) return "";
     return paletteToCss(currentResult.palette, currentResult.roles);
   }
 
   function getJson() {
-    if (!currentResult) return "";
+    if (!currentResult?.palette.length) return "";
     return paletteToJson(currentResult.palette, currentResult.roles, currentResult.meta);
   }
 
   async function copyExport(type) {
     const text = type === "css" ? getCss() : getJson();
     if (!text) {
-      setStatus(t("tool.generatePaletteFirst"));
+      setStatus("generatePaletteFirst");
       return;
     }
 
     const ok = await copyText(text);
-    setStatus(ok ? t("tool.somethingCopied", { what: type.toUpperCase() }) : t("tool.copyUnavailable"));
+    setStatus(ok ? "somethingCopied" : "copyUnavailable", { what: type.toUpperCase() });
   }
 
   function downloadExport(filename, text) {
     if (!text) {
-      setStatus(t("tool.generatePaletteFirst"));
+      setStatus("generatePaletteFirst");
       return;
     }
 
@@ -489,7 +601,7 @@ export function initPaletteExtractor() {
     link.download = filename;
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 500);
-    setStatus(t("tool.downloaded", { what: filename }));
+    setStatus("downloaded", { what: filename });
   }
 
   async function copyText(text) {
@@ -510,16 +622,17 @@ export function initPaletteExtractor() {
     }
   }
 
-  function setStatus(message) {
-    refs.status.textContent = message;
+  function setStatus(key, variables) {
+    refs.status.dataset.statusKey = key;
+    refs.status.dataset.statusTone = statusTone(key);
+    refs.status.textContent = t(`tool.${key}`, variables);
   }
 }
 
-async function analyzeImage(source, options = {}) {
-  const paletteSize = normalizePaletteSize(options.paletteSize);
+async function analyzeImage(source) {
   const image = await loadImage(source);
   const sample = sampleImage(image);
-  const palette = extractPalette(sample.buckets, paletteSize);
+  const palette = extractPalette(sample.buckets, DOMINANT_COLOR_COUNT);
   const roles = pickRoles(palette);
 
   return {
@@ -573,11 +686,6 @@ function sampleImage(image) {
     const r = data[index];
     const g = data[index + 1];
     const b = data[index + 2];
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-
-    if (max > 248 && min > 248) continue;
-    if (max < 6 && min < 6) continue;
 
     const key = `${r >> 3},${g >> 3},${b >> 3}`;
     const bucket = buckets.get(key);
@@ -610,7 +718,7 @@ function sampleImage(image) {
         lab: rgbToLab(rgb),
         hsl,
         count: bucket.count,
-        weight: bucket.count * (0.76 + hsl.s / 180),
+        weight: bucket.count,
       };
     })
     .sort((a, b) => b.weight - a.weight);
