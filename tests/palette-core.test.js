@@ -5,13 +5,13 @@
 
 import { describe, expect, it } from 'vitest';
 import {
+  DOMINANT_COLOR_COUNT,
   clamp,
   contrastRatio,
   extractPalette,
   hueDistance,
   labDistance,
   mergeNearbyColors,
-  normalizePaletteSize,
   paletteToCss,
   paletteToJson,
   pickRoles,
@@ -20,6 +20,7 @@ import {
   rgbToHex,
   rgbToHsl,
   rgbToLab,
+  wcagLevel,
 } from '@/scripts/pages/tools/palette-extractor/palette-core.js';
 
 /** A bucket in the shape sampleImage() hands to extractPalette(). */
@@ -32,7 +33,7 @@ function bucket(r, g, b, count) {
     hsl,
     lab: rgbToLab({ r, g, b }),
     count,
-    weight: count * (0.76 + hsl.s / 180),
+    weight: count,
   };
 }
 
@@ -212,18 +213,18 @@ describe('hueDistance', () => {
   });
 });
 
-describe('normalizePaletteSize', () => {
-  it('keeps the slider inside 4–10', () => {
-    expect(normalizePaletteSize(2)).toBe(4);
-    expect(normalizePaletteSize(99)).toBe(10);
-    expect(normalizePaletteSize('7')).toBe(7);
-    expect(normalizePaletteSize(7.6)).toBe(8);
+describe('product palette size', () => {
+  it('is fixed to five prevalent colors', () => {
+    expect(DOMINANT_COLOR_COUNT).toBe(5);
   });
+});
 
-  it('falls back to 8 when there is no number at all', () => {
-    expect(normalizePaletteSize('abc')).toBe(8);
-    expect(normalizePaletteSize(undefined)).toBe(8);
-    expect(normalizePaletteSize(NaN)).toBe(8);
+describe('wcagLevel', () => {
+  it('maps contrast ratios to their WCAG display level', () => {
+    expect(wcagLevel(7)).toBe('aaa');
+    expect(wcagLevel(4.5)).toBe('aa');
+    expect(wcagLevel(3)).toBe('aaLarge');
+    expect(wcagLevel(2.99)).toBe('fail');
   });
 });
 
@@ -277,13 +278,13 @@ describe('extractPalette', () => {
     }
   });
 
-  it('sorts by score, strongest first', () => {
+  it('sorts by coverage, most prevalent first', () => {
     const palette = extractPalette(
       [bucket(220, 40, 40, 4000), bucket(40, 90, 220, 3000), bucket(30, 160, 90, 500)],
       3,
     );
-    const scores = palette.map((c) => c.score);
-    expect([...scores].sort((a, b) => b - a)).toEqual(scores);
+    const coverage = palette.map((c) => c.coverage);
+    expect([...coverage].sort((a, b) => b - a)).toEqual(coverage);
   });
 
   it('never asks for more centres than there are buckets', () => {
@@ -291,8 +292,8 @@ describe('extractPalette', () => {
     expect(extractPalette([bucket(10, 20, 30, 5)], 10).length).toBeLessThanOrEqual(1);
   });
 
-  // An image with four colours in it cannot yield ten, and the slider is
-  // allowed to ask for ten. Returning fewer is the right answer, not a failure.
+  // An image with fewer distinct colours cannot yield five. Returning fewer
+  // is the right answer, not a failure.
   it('never returns more than it was asked for', () => {
     const buckets = [
       bucket(220, 40, 40, 4000),
