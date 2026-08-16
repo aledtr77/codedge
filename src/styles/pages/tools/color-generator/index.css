@@ -118,7 +118,7 @@ body > main .section h2 {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 3px;
   padding: 2px 6px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   margin-left: 4px;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -189,10 +189,23 @@ body > main .section h2 {
   z-index: 2;
 }
 
-.color-card:hover .color-card-actions {
+/* Hover was the only way in. A keyboard lands on the lock button while it is
+   still invisible and inert, and a touch screen wider than the mobile
+   breakpoint — a tablet — has no hover to offer at all: the controls were
+   simply unreachable there. */
+.color-card:hover .color-card-actions,
+.color-card:focus-within .color-card-actions {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+@media (hover: none) {
+  .color-card-actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }
 
 .card-action-btn {
@@ -249,8 +262,7 @@ body > main .section h2 {
 }
 
 .color-card-name {
-  color: var(--card-ink, #ffffff);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.2px;
   background: rgba(0,0,0,0.2);
@@ -305,14 +317,14 @@ body > main .section h2 {
 }
 
 .shades-header {
-  height: 40px;
+  font-size: 0.9375rem;
+  height: 42px;
   background: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
   color: var(--text-color);
-  font-size: 0.8rem;
   font-weight: 600;
 }
 
@@ -330,7 +342,9 @@ body > main .section h2 {
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  font-size: 0.85rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   font-weight: 700;
   font-family: monospace;
   cursor: pointer;
@@ -522,7 +536,7 @@ body > main .section h2 {
 }
 
 .mockup-badge {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 750;
   text-transform: uppercase;
   padding: 2px 8px;

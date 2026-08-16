@@ -316,7 +316,94 @@ await withPage(async (page) => {
   record('the image compressor estimates first and encodes on request', problems.length ? problems.join(' · ') : null);
 });
 
-// 8. The glossary is a search box over a few hundred entries: if the filter
+// 8. The colour generator, whose mechanics are all keyboard, selection and
+// state: Space belongs to whatever is focused before it belongs to the tool,
+// the contrast checker is pointed at swatches rather than at hex values, a
+// shared link is user input, and the shades panel is the one place on the site
+// where text is painted on colours the reader picked — all four have been
+// wrong, and none of them is visible in a screenshot.
+await withPage(async (page) => {
+  const link = `${BASE}/tools/color-generator/?colors=264653-2A9D8F-E9C46A-F4A261-E76F51`;
+  // The cards are built by a module imported after load, so every arrival here
+  // waits for them rather than for the document.
+  const openWithCards = async (url) => {
+    await page.goto(url, { waitUntil: 'load' });
+    await page.waitForSelector('.color-card .lock-btn', { timeout: 10000 });
+  };
+  await openWithCards(link);
+  const hexes = () => page.$$eval('.color-card-hex', (els) => els.map((e) => e.textContent));
+  const problems = [];
+
+  // Space on a focused control belongs to that control.
+  await page.focus('.color-card .lock-btn');
+  const before = await hexes();
+  await page.keyboard.press('Space');
+  await page.waitForTimeout(150);
+  const locked = await page.$eval('.color-card .lock-btn', (b) => b.getAttribute('aria-pressed'));
+  if (locked !== 'true') problems.push(`Space on a focused lock did not lock it (aria-pressed ${locked})`);
+  if (JSON.stringify(await hexes()) !== JSON.stringify(before)) problems.push('Space on a focused lock also regenerated the palette');
+
+  // Space with nothing focused still generates.
+  await page.evaluate(() => document.activeElement?.blur());
+  await page.keyboard.press('Space');
+  await page.waitForTimeout(150);
+  if (JSON.stringify(await hexes()) === JSON.stringify(before)) problems.push('Space did not generate a new palette');
+
+  // The checker follows the swatches it was pointed at, across a generate.
+  const checker = await page.evaluate(async () => {
+    const bg = document.getElementById('contrast-bg-select');
+    const text = document.getElementById('contrast-text-select');
+    bg.selectedIndex = 2; bg.dispatchEvent(new Event('change', { bubbles: true }));
+    text.selectedIndex = 4; text.dispatchEvent(new Event('change', { bubbles: true }));
+    document.getElementById('btn-generate').click();
+    await new Promise((r) => setTimeout(r, 100));
+    return { bg: bg.selectedIndex, text: text.selectedIndex, bgValue: bg.value, swatch: document.querySelectorAll('.color-card-hex')[2].textContent };
+  });
+  if (checker.bg !== 2 || checker.text !== 4) problems.push(`the checker lost its pair on generate (${checker.bg}/${checker.text})`);
+  if (checker.bgValue.toLowerCase() !== checker.swatch.toLowerCase()) {
+    problems.push(`the checker points at ${checker.bgValue} while swatch 3 is ${checker.swatch}`);
+  }
+
+  // A malformed link is refused, and not written back out.
+  await openWithCards(`${BASE}/tools/color-generator/?colors=zzzzzz-2A9D8F-E9C46A-F4A261-E76F51`);
+  await page.waitForTimeout(150);
+  const recovered = await page.evaluate(() => ({
+    search: location.search,
+    painted: getComputedStyle(document.querySelector('.color-card')).backgroundColor,
+  }));
+  if (/zzzzzz/i.test(recovered.search)) problems.push(`a broken link stayed in the address bar: ${recovered.search}`);
+  if (recovered.painted === 'rgba(0, 0, 0, 0)') problems.push('a broken link left the first swatch unpainted');
+
+  // Every shade the panel offers has to carry readable text: this is the tool
+  // that explains contrast.
+  await openWithCards(`${BASE}/tools/color-generator/?colors=0000FF-2A9D8F-E9C46A-F4A261-E76F51`);
+  await page.evaluate(() => document.querySelector('.color-card .shades-btn').click());
+  await page.waitForTimeout(250);
+  const worstShade = await page.evaluate(() => {
+    const lum = (r, g, b) => {
+      const [R, G, B] = [r, g, b].map((v) => {
+        const c = v / 255;
+        return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+      });
+      return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+    };
+    const nums = (value) => value.match(/[\d.]+/g).map(Number);
+    let worst = Infinity;
+    for (const bar of document.querySelectorAll('.color-card .shade-bar')) {
+      const style = getComputedStyle(bar);
+      const [br, bg, bb] = nums(style.backgroundColor);
+      const [fr, fg, fb] = nums(style.color);
+      const [l1, l2] = [lum(br, bg, bb), lum(fr, fg, fb)];
+      worst = Math.min(worst, (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05));
+    }
+    return worst;
+  });
+  if (!(worstShade >= 4.5)) problems.push(`a shade bar carries text at ${worstShade.toFixed(2)}:1`);
+
+  record('the colour generator answers the keyboard, the link and the checker', problems.length ? problems.join(' · ') : null);
+});
+
+// 9. The glossary is a search box over a few hundred entries: if the filter
 // stops filtering the page still looks perfectly fine.
 await withPage(async (page) => {
   await page.goto(`${BASE}/resources/css-glossary/`, { waitUntil: 'load' });
