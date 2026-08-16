@@ -1,6 +1,18 @@
 
 
 .gradient-page {
+  /* --hover-color, which sixteen rules in this file reached for, is defined
+     nowhere in the repo: every one of them fell back to inherited text colour,
+     so the accent the panel was designed around simply was not there. These
+     are real, and readable — #7fd1ff measures 10.2:1 on this background where
+     the site blue measures 4.7:1. --panel-graphic is for the parts that are
+     shapes rather than words, which only owe 3:1. */
+  --panel-accent: var(--site-link-color);
+  --panel-graphic: var(--color-three);
+  --panel-sm: 0.875rem;
+  --panel-md: 0.9375rem;
+  --panel-readout: 1rem;
+
   width: 95%;
   max-width: 1750px;
   margin: 1.5rem auto 3rem auto;
@@ -22,7 +34,7 @@
 
 .gradient-eyebrow {
   margin-bottom: 0.3rem;
-  color: var(--hover-color);
+  color: var(--panel-accent);
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -79,7 +91,7 @@
   font-size: 1.05rem;
   font-weight: 750;
   margin: 0;
-  color: var(--hover-color);
+  color: var(--panel-accent);
   letter-spacing: 0.02em;
 }
 
@@ -208,12 +220,12 @@
   position: absolute;
   width: 2px;
   height: 28px;
-  background: var(--hover-color);
+  background: var(--panel-graphic);
   top: 5px;
   left: calc(50% - 1px);
   transform-origin: bottom center;
   pointer-events: none;
-  box-shadow: 0 0 6px var(--hover-color);
+  box-shadow: 0 0 6px var(--panel-graphic);
 }
 
 .angle-inputs-details {
@@ -239,7 +251,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: var(--hover-color);
+  background: var(--panel-graphic);
   border: 2px solid #ffffff;
   cursor: pointer;
   transition: transform 0.1s;
@@ -265,7 +277,7 @@
 .angle-num-field {
   background: transparent;
   border: none;
-  color: var(--hover-color);
+  color: var(--panel-accent);
   font-weight: 750;
   font-size: 0.85rem;
   width: 38px;
@@ -301,7 +313,7 @@
 
 .quick-angle-btn:hover {
   border-color: var(--color-three);
-  color: var(--hover-color);
+  color: var(--panel-accent);
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -361,8 +373,8 @@
 .gradient-handle:hover,
 .gradient-handle.is-active {
   transform: translateX(-50%) scale(1.35);
-  border-color: var(--hover-color);
-  box-shadow: 0 0 10px var(--hover-color), 0 2px 6px rgba(0, 0, 0, 0.6);
+  border-color: var(--panel-graphic);
+  box-shadow: 0 0 10px var(--panel-graphic), 0 2px 6px rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
 
@@ -436,9 +448,9 @@
 
 .row-color-hex {
   font-family: monospace;
-  font-size: 0.82rem;
+  font-size: var(--panel-readout);
   font-weight: 750;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-color);
 }
 
 .stop-row-middle {
@@ -469,10 +481,11 @@
 }
 
 .row-position-val {
-  font-size: 0.82rem;
+  font-size: var(--panel-readout);
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-  min-width: 34px;
+  color: var(--text-color);
+  font-variant-numeric: tabular-nums;
+  min-width: 44px;
   text-align: right;
 }
 
@@ -528,7 +541,7 @@
 .btn-add-stop-main:hover {
   background-color: rgba(0, 168, 255, 0.05);
   border-color: var(--color-three);
-  color: var(--hover-color);
+  color: var(--panel-accent);
   transform: translateY(-1px);
 }
 
@@ -579,7 +592,7 @@
 }
 
 .btn-toggle-mockup:hover {
-  color: var(--hover-color);
+  color: var(--panel-accent);
 }
 
 .mockup-ui-card {
@@ -664,9 +677,9 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 0.6rem 1.2rem;
-  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0.65rem 1.2rem;
+  font-size: var(--panel-md);
   font-weight: 750;
   cursor: pointer;
   transition: all 0.2s;
@@ -674,18 +687,21 @@
 }
 
 .export-tab-btn:hover {
-  color: var(--hover-color);
+  color: var(--panel-accent);
 }
 
 .export-tab-btn.active {
-  color: var(--hover-color);
-  border-bottom-color: var(--hover-color);
+  color: var(--panel-accent);
+  border-bottom-color: var(--panel-graphic);
   background: rgba(255, 255, 255, 0.02);
 }
 
 .code-output-container {
   position: relative;
-  padding: 1rem 3.5rem 1rem 1rem;
+  /* The copy button floats over this box, so the room it needs is reserved
+     here. 3.5rem was cut for smaller type and the first line of the gradient
+     ran underneath it — the value it shows was the part covered up. */
+  padding: 1rem 6.5rem 1rem 1rem;
   min-height: 60px;
   display: flex;
   align-items: center;
@@ -700,8 +716,8 @@
 
 .code-output-container code {
   font-family: monospace;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--panel-md);
+  color: var(--text-color);
   white-space: pre-wrap;
   word-break: break-all;
 }
@@ -714,8 +730,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-color);
   font-weight: 750;
-  font-size: 0.72rem;
-  padding: 0.35rem 0.75rem;
+  font-size: var(--panel-sm);
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
@@ -728,7 +744,7 @@
 .btn-copy-code:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: var(--color-three);
-  color: var(--hover-color);
+  color: var(--panel-accent);
 }
 
 .preset-gradients {
@@ -814,7 +830,7 @@ body > main .section {
 .faq-content h4 {
   font-weight: 600;
   margin-top: 1.5rem;
-  color: var(--hover-color);
+  color: var(--panel-accent);
   font-size: 1.05rem;
 }
 

@@ -403,7 +403,89 @@ await withPage(async (page) => {
   record('the colour generator answers the keyboard, the link and the checker', problems.length ? problems.join(' · ') : null);
 });
 
-// 9. The glossary is a search box over a few hundred entries: if the filter
+// 9. The gradient generator is a drag surface, and a drag is exactly what its
+// rendering used to break: the list was rebuilt from innerHTML on every input
+// event, so the position slider destroyed itself under the pointer after one
+// step, and a stop dragged past its neighbour changed places with it mid-drag.
+// The output has its own rule — CSS clamps a stop to the one before it, so the
+// emitted gradient has to come out sorted however the stops are held.
+await withPage(async (page) => {
+  await page.goto(`${BASE}/tools/gradient-generator/`, { waitUntil: 'load' });
+  await page.waitForSelector('.stop-row .row-position-slider', { timeout: 10000 });
+  const problems = [];
+
+  const dragged = await page.evaluate(async () => {
+    const row = document.querySelector('.stop-row');
+    const slider = row.querySelector('.row-position-slider');
+    const identity = row.querySelector('.row-color-hex').textContent;
+    const seen = [];
+    for (const value of [20, 45, 70]) {
+      slider.value = String(value);
+      slider.dispatchEvent(new Event('input', { bubbles: true }));
+      await new Promise((r) => requestAnimationFrame(r));
+      await new Promise((r) => requestAnimationFrame(r));
+      seen.push(row.querySelector('.row-position-val').textContent);
+    }
+    return {
+      seen,
+      sliderSurvived: document.contains(slider),
+      sameRow: document.contains(row),
+      sameColour: row.querySelector('.row-color-hex').textContent === identity,
+    };
+  });
+  if (!dragged.sliderSurvived || !dragged.sameRow) problems.push('the row was rebuilt under the pointer');
+  if (!dragged.sameColour) problems.push('the row changed colour under the pointer');
+  if (dragged.seen.join(',') !== '20%,45%,70%') problems.push(`the slider did not follow the drag: ${dragged.seen.join(' → ')}`);
+
+  // Whatever order the stops are held in, the CSS comes out sorted and matches
+  // what the preview is painted with.
+  const output = await page.evaluate(async () => {
+    const sliders = [...document.querySelectorAll('.row-position-slider')];
+    sliders[0].value = '90';
+    sliders[0].dispatchEvent(new Event('input', { bubbles: true }));
+    sliders[1].value = '10';
+    sliders[1].dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise((r) => requestAnimationFrame(r));
+    await new Promise((r) => requestAnimationFrame(r));
+    const code = document.getElementById('cssCode').textContent;
+    return {
+      code,
+      positions: [...code.matchAll(/(\d+)%/g)].map((m) => Number(m[1])),
+      preview: getComputedStyle(document.getElementById('previewBox')).backgroundImage,
+    };
+  });
+  if (!output.positions.every((v, i, all) => i === 0 || all[i - 1] <= v)) {
+    problems.push(`the exported stops are out of order: ${output.code}`);
+  }
+  if (!output.preview.includes('gradient')) problems.push('the preview is not painting a gradient');
+
+  // Copying mid-drag gives the gradient on screen, not the one before it.
+  const copied = await page.evaluate(async () => {
+    const rect = document.getElementById('gradient-timeline-track').getBoundingClientRect();
+    const handle = document.querySelector('.gradient-handle');
+    handle.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: rect.left, clientY: rect.top + 5 }));
+    window.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: rect.left + rect.width * 0.37, clientY: rect.top + 5 }));
+    await new Promise((r) => requestAnimationFrame(r));
+    await new Promise((r) => requestAnimationFrame(r));
+    let text = '';
+    navigator.clipboard.writeText = (value) => { text = value; return Promise.resolve(); };
+    document.getElementById('btn-copy-code').click();
+    window.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+    return { text, onScreen: document.getElementById('cssCode').textContent };
+  });
+  if (copied.text !== copied.onScreen) problems.push('copy handed over something other than what the code box shows');
+
+  // Two stops is the floor: a gradient needs both ends.
+  const floor = await page.evaluate(() => {
+    const buttons = [...document.querySelectorAll('.btn-delete-row-stop')];
+    return { rows: document.querySelectorAll('.stop-row').length, allDisabled: buttons.every((b) => b.disabled) };
+  });
+  if (floor.rows !== 2 || !floor.allDisabled) problems.push(`the two-stop floor is not held (${floor.rows} rows, disabled ${floor.allDisabled})`);
+
+  record('the gradient generator survives a drag and exports it sorted', problems.length ? problems.join(' · ') : null);
+});
+
+// 10. The glossary is a search box over a few hundred entries: if the filter
 // stops filtering the page still looks perfectly fine.
 await withPage(async (page) => {
   await page.goto(`${BASE}/resources/css-glossary/`, { waitUntil: 'load' });

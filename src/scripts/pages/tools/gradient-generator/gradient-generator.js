@@ -40,19 +40,68 @@ export default function initGeneratorGradienti() {
     { name: "Melon Sunset", type: "linear", angle: 90, stops: [{ color: "#ff4e50", position: 0 }, { color: "#f9d423", position: 100 }] }
   ];
 
+  // Every stop carries an id, and the array is never re-sorted.
+  //
+  // Sorting it on each move is what made a stop change places with its
+  // neighbour mid-drag: the row under the pointer began controlling a different
+  // colour. Order is a rendering question — the CSS is emitted sorted, and the
+  // list shows the rows in position order through flexbox — so the identity a
+  // drag holds on to stays put.
+  let nextStopId = 1;
+  const makeStop = (color, position) => ({ id: nextStopId++, color, position });
+
   const state = {
     gradientType: "linear",
     angle: 90,
-    activeStopIndex: 0,
-    stops: [
-      { color: "#00c6ff", position: 0 },
-      { color: "#0072ff", position: 100 }
-    ],
+    activeStopId: null,
+    stops: [makeStop("#00c6ff", 0), makeStop("#0072ff", 100)],
     exportFormat: "css", // "css" or "tailwind"
     isDraggingCompass: false,
-    draggedStopIndex: null,
+    draggedStopId: null,
     showMockup: true
   };
+  state.activeStopId = state.stops[0].id;
+
+  const sortedStops = () => [...state.stops].sort((a, b) => a.position - b.position);
+  const stopById = (id) => state.stops.find((stop) => stop.id === id) || null;
+
+  // The nodes standing in for each stop, kept by id. Handles and rows are
+  // created when a stop appears and removed when it goes; everything in between
+  // is a value written to a node that stays where it is.
+  //
+  // Both lists used to be rebuilt from innerHTML on every pointer move, which
+  // destroyed the control under the pointer: dragging a position slider moved
+  // it one step and then died, because the slider being dragged no longer
+  // existed. The same rebuild ran on every frame of a handle drag, which is why
+  // the tool's main interaction ran at 17fps.
+  const handles = new Map();
+  const rows = new Map();
+
+  // A mouse reports more often than the screen redraws — 125Hz hardware sends
+  // two moves per frame — and each one used to run a full update. Pointer input
+  // asks for a frame instead, so the work happens once per frame at most.
+  let updateScheduled = false;
+  function requestUpdate() {
+    if (updateScheduled) return;
+    updateScheduled = true;
+    requestAnimationFrame(() => {
+      updateScheduled = false;
+      updateUI();
+    });
+  }
+
+  const isDragging = () => state.draggedStopId !== null || state.isDraggingCompass;
+
+  // Declared with the rest of the state it belongs to: updateUI() runs during
+  // init, and anything it reaches has to exist by then.
+  let codeTimer = null;
+
+  // What was last written to each surface, kept in JavaScript rather than in a
+  // data- attribute: caching the value on the node means writing a long string
+  // into the DOM on every frame of a drag, which is the cost the cache exists
+  // to avoid.
+  let paintedPreview = "";
+  let paintedTrack = "";
 
   initUI();
   bindEvents();
@@ -77,9 +126,9 @@ export default function initGeneratorGradienti() {
         el.addEventListener("click", () => {
           state.gradientType = p.type;
           state.angle = p.angle;
-          state.stops = JSON.parse(JSON.stringify(p.stops));
-          state.activeStopIndex = 0;
-          updateUI();
+          state.stops = p.stops.map((stop) => makeStop(stop.color, stop.position));
+          state.activeStopId = state.stops[0].id;
+          setGradientType(p.type);
         });
         elements.presetContainer.appendChild(el);
       });
@@ -92,15 +141,24 @@ export default function initGeneratorGradienti() {
 
     elements.angleRange.addEventListener("input", (e) => {
       state.angle = parseInt(e.target.value, 10);
+      requestUpdate();
+    });
+
+    elements.angleRange.addEventListener("change", updateUI);
+
+    // An empty field is a field being typed into, not an angle of zero: forcing
+    // the value back on every keystroke meant a backspace became "0" before the
+    // next digit arrived, and the field could never be cleared and retyped.
+    elements.angleNum.addEventListener("input", (e) => {
+      if (e.target.value.trim() === "") return;
+      const parsed = parseInt(e.target.value, 10);
+      if (Number.isNaN(parsed)) return;
+      state.angle = Math.max(0, Math.min(360, parsed));
       updateUI();
     });
 
-    elements.angleNum.addEventListener("input", (e) => {
-      let val = parseInt(e.target.value, 10);
-      if (isNaN(val)) val = 0;
-      val = Math.max(0, Math.min(360, val));
-      state.angle = val;
-      updateUI();
+    elements.angleNum.addEventListener("blur", () => {
+      elements.angleNum.value = state.angle;
     });
 
     document.querySelectorAll(".quick-angle-btn").forEach((btn) => {
@@ -150,16 +208,22 @@ export default function initGeneratorGradienti() {
     elements.btnToggleMockup.addEventListener("click", () => {
       state.showMockup = !state.showMockup;
       const card = document.querySelector(".mockup-ui-card");
-      if (card) {
-        card.classList.toggle("is-hidden", !state.showMockup);
-      }
+      if (card) card.classList.toggle("is-hidden", !state.showMockup);
+      // A toggle that never reports its state reads as a button that did
+      // nothing to anyone not looking at the card.
+      elements.btnToggleMockup.setAttribute("aria-pressed", String(state.showMockup));
     });
+    elements.btnToggleMockup.setAttribute("aria-pressed", String(state.showMockup));
 
     document.querySelectorAll(".export-tab-btn").forEach((tab) => {
+      tab.setAttribute("aria-pressed", String(tab.dataset.format === state.exportFormat));
       tab.addEventListener("click", () => {
-        document.querySelectorAll(".export-tab-btn").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
         state.exportFormat = tab.dataset.format;
+        document.querySelectorAll(".export-tab-btn").forEach((other) => {
+          const on = other.dataset.format === state.exportFormat;
+          other.classList.toggle("active", on);
+          other.setAttribute("aria-pressed", String(on));
+        });
         updateCodeOutput();
       });
     });
@@ -171,16 +235,16 @@ export default function initGeneratorGradienti() {
     state.gradientType = type;
     elements.btnLinear.classList.toggle("active", type === "linear");
     elements.btnRadial.classList.toggle("active", type === "radial");
+    elements.btnLinear.setAttribute("aria-pressed", String(type === "linear"));
+    elements.btnRadial.setAttribute("aria-pressed", String(type === "radial"));
     elements.angleGroupContainer.classList.toggle("active", type === "linear");
     updateUI();
   }
 
   function addStopAtPosition(pct) {
-    const color = getColorAtPercentage(pct);
-    const newStop = { color, position: pct };
-    state.stops.push(newStop);
-    state.stops.sort((a, b) => a.position - b.position);
-    state.activeStopIndex = state.stops.indexOf(newStop);
+    const stop = makeStop(getColorAtPercentage(pct), pct);
+    state.stops.push(stop);
+    state.activeStopId = stop.id;
     updateUI();
   }
 
@@ -188,22 +252,19 @@ export default function initGeneratorGradienti() {
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    if (state.draggedStopIndex !== null) {
+    if (state.draggedStopId !== null) {
       if (e.touches) e.preventDefault(); // prevents page scroll while dragging
+      const stop = stopById(state.draggedStopId);
+      if (!stop) return;
+
       const rect = elements.timelineTrack.getBoundingClientRect();
-      const x = clientX - rect.left;
-      let pct = Math.round((x / rect.width) * 100);
-      pct = Math.max(0, Math.min(100, pct));
+      const pct = Math.round(((clientX - rect.left) / rect.width) * 100);
+      const next = Math.max(0, Math.min(100, pct));
+      if (next === stop.position) return;   // the pointer moved, the value did not
 
-      state.stops[state.draggedStopIndex].position = pct;
-
-      // Keep stops sorted while preserving the selected stop identity
-      const draggedStop = state.stops[state.draggedStopIndex];
-      state.stops.sort((a, b) => a.position - b.position);
-      state.draggedStopIndex = state.stops.indexOf(draggedStop);
-      state.activeStopIndex = state.draggedStopIndex;
-
-      updateUI();
+      stop.position = next;
+      state.activeStopId = stop.id;
+      requestUpdate();
     } else if (state.isDraggingCompass) {
       if (e.touches) e.preventDefault();
       rotateCompassToClientCoords(clientX, clientY);
@@ -211,8 +272,11 @@ export default function initGeneratorGradienti() {
   }
 
   function onGlobalEnd() {
-    state.draggedStopIndex = null;
+    const wasDragging = isDragging();
+    state.draggedStopId = null;
     state.isDraggingCompass = false;
+    // Whatever was held back for the drag lands now.
+    if (wasDragging) updateUI();
   }
 
   function rotateCompassToClientCoords(clientX, clientY) {
@@ -226,146 +290,242 @@ export default function initGeneratorGradienti() {
     if (angleDeg < 0) angleDeg += 360;
     
     state.angle = angleDeg;
-    updateUI();
+    requestUpdate();
   }
 
   function updateUI() {
     const cssGradient = buildGradientCSSString(state.gradientType, state.angle, state.stops);
-    elements.previewBox.style.background = cssGradient;
+    if (paintedPreview !== cssGradient) {
+      elements.previewBox.style.background = cssGradient;
+      paintedPreview = cssGradient;
+    }
 
     // The timeline track is always rendered left-to-right linear, whatever the
-    // gradient type
-    elements.timelineTrack.style.background = buildGradientCSSString("linear", 90, state.stops);
+    // gradient type — so it only changes when a colour or a position does, not
+    // when the angle does.
+    const trackGradient = buildGradientCSSString("linear", 90, state.stops);
+    if (paintedTrack !== trackGradient) {
+      elements.timelineTrack.style.background = trackGradient;
+      paintedTrack = trackGradient;
+    }
 
-    renderHandles();
+    syncHandles();
 
-    elements.angleRange.value = state.angle;
-    elements.angleNum.value = state.angle;
+    // Never while it is being typed into or dragged: writing the value back on
+    // every keystroke is what stopped the field being cleared — a backspace
+    // became "0" before the next digit could be typed.
+    if (document.activeElement !== elements.angleRange) elements.angleRange.value = state.angle;
+    if (document.activeElement !== elements.angleNum) elements.angleNum.value = state.angle;
     elements.angleCompassHand.style.transform = `rotate(${state.angle}deg)`;
 
-    renderStopsList();
+    syncStopRows();
+    scheduleCodeOutput();
+  }
 
+  // Rewriting the export block costs 9ms of frame time on top of the two
+  // gradients a drag already repaints — measured — and nobody reads the code
+  // box while dragging a handle. It catches up on a pause, and always before
+  // anything reads it.
+  function scheduleCodeOutput() {
+    if (!isDragging()) {
+      flushCodeOutput();
+      return;
+    }
+    if (codeTimer) return;
+    codeTimer = window.setTimeout(() => {
+      codeTimer = null;
+      updateCodeOutput();
+    }, 120);
+  }
+
+  function flushCodeOutput() {
+    window.clearTimeout(codeTimer);
+    codeTimer = null;
     updateCodeOutput();
   }
 
-  function renderHandles() {
-    elements.handlesContainer.innerHTML = "";
-    state.stops.forEach((stop, index) => {
-      const handle = document.createElement("div");
-      handle.className = "gradient-handle";
-      if (index === state.activeStopIndex) {
-        handle.classList.add("is-active");
+  function syncHandles() {
+    for (const [id, handle] of handles) {
+      if (!stopById(id)) {
+        handle.remove();
+        handles.delete(id);
       }
-      handle.style.left = `${stop.position}%`;
-      handle.style.backgroundColor = stop.color;
+    }
 
-      handle.addEventListener("mousedown", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        state.activeStopIndex = index;
-        state.draggedStopIndex = index;
-        updateUI();
-      });
+    for (const stop of state.stops) {
+      let handle = handles.get(stop.id);
+      if (!handle) {
+        handle = document.createElement("div");
+        handle.className = "gradient-handle";
 
-      handle.addEventListener("touchstart", (e) => {
-        e.stopPropagation();
-        state.activeStopIndex = index;
-        state.draggedStopIndex = index;
-        updateUI();
-      });
-
-      handle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        state.activeStopIndex = index;
-        updateUI();
-      });
-
-      elements.handlesContainer.appendChild(handle);
-    });
-  }
-
-  function renderStopsList() {
-    elements.stopsList.innerHTML = "";
-    state.stops.forEach((stop, index) => {
-      const row = document.createElement("div");
-      row.className = `stop-row ${index === state.activeStopIndex ? "is-active" : ""}`;
-
-      row.innerHTML = `
-        <div class="stop-row-left">
-          <div class="color-picker-wrapper">
-            <input type="color" class="row-color-input" value="${stop.color}" aria-label="${t("tool.stopColor", { n: index + 1 })}">
-            <span class="row-color-hex">${stop.color.toUpperCase()}</span>
-          </div>
-        </div>
-        <div class="stop-row-middle">
-          <input type="range" class="row-position-slider" min="0" max="100" value="${stop.position}" aria-label="${t("tool.stopPosition", { n: index + 1 })}">
-          <span class="row-position-val">${stop.position}%</span>
-        </div>
-        <div class="stop-row-right">
-          <button type="button" class="btn-delete-row-stop" title="${t("tool.deleteColor")}" aria-label="${t("tool.deleteColor")}">
-            <i class="fas fa-trash-alt" aria-hidden="true"></i>
-          </button>
-        </div>
-      `;
-
-      row.addEventListener("click", () => {
-        if (state.activeStopIndex !== index) {
-          state.activeStopIndex = index;
+        const grab = (e) => {
+          e.stopPropagation();
+          if (e.type === "mousedown") e.preventDefault();
+          state.activeStopId = stop.id;
+          state.draggedStopId = stop.id;
           updateUI();
-        }
-      });
+        };
+        handle.addEventListener("mousedown", grab);
+        handle.addEventListener("touchstart", grab, { passive: true });
+        handle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          state.activeStopId = stop.id;
+          updateUI();
+        });
 
-      const picker = row.querySelector(".row-color-input");
-      picker.addEventListener("input", (e) => {
-        state.stops[index].color = e.target.value;
-        updateUI();
-      });
-
-      const slider = row.querySelector(".row-position-slider");
-      slider.addEventListener("input", (e) => {
-        const pct = parseInt(e.target.value, 10);
-        state.stops[index].position = pct;
-
-        // Re-sort, keeping the same object selected
-        const activeStop = state.stops[state.activeStopIndex];
-        state.stops.sort((a, b) => a.position - b.position);
-        state.activeStopIndex = state.stops.indexOf(activeStop);
-
-        updateUI();
-      });
-
-      const delBtn = row.querySelector(".btn-delete-row-stop");
-      if (state.stops.length <= 2) {
-        delBtn.disabled = true;
+        handles.set(stop.id, handle);
+        elements.handlesContainer.appendChild(handle);
       }
-      delBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // avoid selecting the deleted row
-        state.stops.splice(index, 1);
-        state.activeStopIndex = 0;
-        updateUI();
-      });
 
-      elements.stopsList.appendChild(row);
-    });
+      // Written only when it changed. A drag runs these sixty times a second,
+      // and an assignment that says nothing new still costs the engine a look.
+      const left = `${stop.position}%`;
+      if (handle.style.left !== left) handle.style.left = left;
+      if (handle.painted !== stop.color) {
+        handle.style.backgroundColor = stop.color;
+        handle.painted = stop.color;
+      }
+      handle.classList.toggle("is-active", stop.id === state.activeStopId);
+    }
   }
 
-  function updateCodeOutput() {
-    if (state.exportFormat === "css") {
-      const cssString = buildGradientCSSString(state.gradientType, state.angle, state.stops);
-      elements.cssCode.textContent = `background: ${cssString};`;
-    } else {
-      // Tailwind arbitrary-value format
-      const stopsString = state.stops.map(s => `${s.color}_${s.position}%`).join(",_");
-      if (state.gradientType === "linear") {
-        elements.cssCode.textContent = `class="bg-[linear-gradient(${state.angle}deg,_${stopsString})]"`;
-      } else {
-        elements.cssCode.textContent = `class="bg-[radial-gradient(circle,_${stopsString})]"`;
+  function syncStopRows() {
+    for (const [id, row] of rows) {
+      if (!stopById(id)) {
+        row.element.remove();
+        rows.delete(id);
+      }
+    }
+
+    const order = new Map(sortedStops().map((stop, index) => [stop.id, index]));
+
+    for (const stop of state.stops) {
+      let row = rows.get(stop.id);
+      if (!row) {
+        row = buildStopRow(stop);
+        rows.set(stop.id, row);
+        elements.stopsList.appendChild(row.element);
+      }
+
+      // Position order is shown through flexbox rather than by moving nodes,
+      // so a stop dragged past its neighbour never pulls its own row out from
+      // under the pointer.
+      const rank = String(order.get(stop.id));
+      if (row.element.style.order !== rank) row.element.style.order = rank;
+      row.element.classList.toggle("is-active", stop.id === state.activeStopId);
+
+      if (row.picker.value !== stop.color) row.picker.value = stop.color;
+      const hex = stop.color.toUpperCase();
+      if (row.hex.textContent !== hex) row.hex.textContent = hex;
+      const position = String(stop.position);
+      if (document.activeElement !== row.slider && row.slider.value !== position) row.slider.value = position;
+      const label = `${stop.position}%`;
+      if (row.positionLabel.textContent !== label) row.positionLabel.textContent = label;
+      const locked = state.stops.length <= 2;
+      if (row.deleteBtn.disabled !== locked) row.deleteBtn.disabled = locked;
+
+      // The labels carry the stop's rank and the page language, so they change
+      // when a stop moves past another or the language does — not on every
+      // frame of a drag.
+      const colourLabel = t("tool.stopColor", { n: order.get(stop.id) + 1 });
+      const positionLabel = t("tool.stopPosition", { n: order.get(stop.id) + 1 });
+      const deleteLabel = t("tool.deleteColor");
+      if (row.picker.getAttribute("aria-label") !== colourLabel) row.picker.setAttribute("aria-label", colourLabel);
+      if (row.slider.getAttribute("aria-label") !== positionLabel) row.slider.setAttribute("aria-label", positionLabel);
+      if (row.deleteBtn.getAttribute("aria-label") !== deleteLabel) {
+        row.deleteBtn.title = deleteLabel;
+        row.deleteBtn.setAttribute("aria-label", deleteLabel);
       }
     }
   }
 
+  function buildStopRow(stop) {
+    const element = document.createElement("div");
+    element.className = "stop-row";
+    element.innerHTML = `
+      <div class="stop-row-left">
+        <div class="color-picker-wrapper">
+          <input type="color" class="row-color-input">
+          <span class="row-color-hex"></span>
+        </div>
+      </div>
+      <div class="stop-row-middle">
+        <input type="range" class="row-position-slider" min="0" max="100">
+        <span class="row-position-val"></span>
+      </div>
+      <div class="stop-row-right">
+        <button type="button" class="btn-delete-row-stop">
+          <i class="fas fa-trash-alt" aria-hidden="true"></i>
+        </button>
+      </div>
+    `;
+
+    const row = {
+      element,
+      picker: element.querySelector(".row-color-input"),
+      hex: element.querySelector(".row-color-hex"),
+      slider: element.querySelector(".row-position-slider"),
+      positionLabel: element.querySelector(".row-position-val"),
+      deleteBtn: element.querySelector(".btn-delete-row-stop")
+    };
+
+    element.addEventListener("click", () => {
+      if (state.activeStopId === stop.id) return;
+      state.activeStopId = stop.id;
+      updateUI();
+    });
+
+    row.picker.addEventListener("input", (e) => {
+      stop.color = e.target.value;
+      state.activeStopId = stop.id;
+      requestUpdate();
+    });
+
+    row.picker.addEventListener("change", updateUI);
+
+    row.slider.addEventListener("input", (e) => {
+      stop.position = Math.max(0, Math.min(100, parseInt(e.target.value, 10) || 0));
+      state.activeStopId = stop.id;
+      requestUpdate();
+    });
+
+    row.slider.addEventListener("change", updateUI);
+
+    row.deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // avoid selecting the deleted row
+      if (state.stops.length <= 2) return;
+      state.stops = state.stops.filter((candidate) => candidate.id !== stop.id);
+      if (state.activeStopId === stop.id) state.activeStopId = state.stops[0].id;
+      updateUI();
+    });
+
+    return row;
+  }
+
+  function updateCodeOutput() {
+    const write = (text) => {
+      if (elements.cssCode.textContent !== text) elements.cssCode.textContent = text;
+    };
+    if (state.exportFormat === "css") {
+      const cssString = buildGradientCSSString(state.gradientType, state.angle, state.stops);
+      write(`background: ${cssString};`);
+    } else {
+      // Tailwind arbitrary-value format
+      const stopsString = sortedStops().map(s => `${s.color}_${s.position}%`).join(",_");
+      if (state.gradientType === "linear") {
+        write(`class="bg-[linear-gradient(${state.angle}deg,_${stopsString})]"`);
+      } else {
+        write(`class="bg-[radial-gradient(circle,_${stopsString})]"`);
+      }
+    }
+  }
+
+  // Sorted here, and only here: a gradient whose stops run backwards is not the
+  // same gradient — CSS clamps each stop to the one before it — so the output
+  // is ordered even though the state that produced it is not.
   function buildGradientCSSString(type, angle, stops) {
-    const stopsStr = stops.map(s => `${s.color} ${s.position}%`).join(", ");
+    const ordered = [...stops].sort((a, b) => a.position - b.position);
+    const stopsStr = ordered.map(s => `${s.color} ${s.position}%`).join(", ");
     if (type === "linear") {
       return `linear-gradient(${angle}deg, ${stopsStr})`;
     }
@@ -373,17 +533,18 @@ export default function initGeneratorGradienti() {
   }
 
   function getColorAtPercentage(pct) {
-    if (state.stops.length === 0) return "#3b82f6";
-    if (pct <= state.stops[0].position) return state.stops[0].color;
-    if (pct >= state.stops[state.stops.length - 1].position) return state.stops[state.stops.length - 1].color;
+    const stops = sortedStops();
+    if (stops.length === 0) return "#3b82f6";
+    if (pct <= stops[0].position) return stops[0].color;
+    if (pct >= stops[stops.length - 1].position) return stops[stops.length - 1].color;
 
-    let leftStop = state.stops[0];
-    let rightStop = state.stops[state.stops.length - 1];
+    let leftStop = stops[0];
+    let rightStop = stops[stops.length - 1];
 
-    for (let i = 0; i < state.stops.length - 1; i++) {
-      if (pct >= state.stops[i].position && pct <= state.stops[i + 1].position) {
-        leftStop = state.stops[i];
-        rightStop = state.stops[i + 1];
+    for (let i = 0; i < stops.length - 1; i++) {
+      if (pct >= stops[i].position && pct <= stops[i + 1].position) {
+        leftStop = stops[i];
+        rightStop = stops[i + 1];
         break;
       }
     }
@@ -412,6 +573,7 @@ export default function initGeneratorGradienti() {
   }
 
   function copyOutputToClipboard() {
+    flushCodeOutput();
     const text = elements.cssCode.textContent || "";
     if (navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(text).then(showCopyTooltip);
