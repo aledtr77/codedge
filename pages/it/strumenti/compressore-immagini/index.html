@@ -73,6 +73,12 @@
             <span class="upload-area__title">Seleziona o trascina un'immagine</span>
             <span class="upload-area__subtitle">Supporta formati JPG, PNG, WebP e AVIF</span>
           </div>
+          <div class="upload-area__loaded" id="uploadAreaLoaded" hidden>
+            <img class="upload-area__preview" id="uploadPreview" alt="">
+            <span class="upload-area__filename" id="uploadFilename"></span>
+            <span class="upload-area__meta" id="uploadMeta"></span>
+            <span class="upload-area__hint">Clicca o trascina un'altra immagine per sostituire questa</span>
+          </div>
         </button>
         <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif" aria-label="Scegli un'immagine da comprimere">
 
@@ -142,7 +148,8 @@
 
         <!-- Lista dei File Risultati (Mostrata solo se ci sono file caricati) -->
         <div id="results-container" class="results-container" style="display: none;">
-          <h2>File in elaborazione</h2>
+          <h2>La tua immagine</h2>
+          <p class="results-note">La dimensione stimata si aggiorna mentre muovi i controlli. Nessuna elaborazione parte finché non premi Comprimi.</p>
           <div id="results-list" class="results-list">
             <!-- Le righe dei file verranno inserite dinamicamente qui da JavaScript -->
           </div>

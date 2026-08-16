@@ -192,90 +192,128 @@ await withPage(async (page) => {
   );
 });
 
-// 7. Changing compressor settings after upload must create a new output. The
-// old implementation only changed the strategy label and kept serving the
-// first WebP blob, regardless of the selected format or maximum width.
+// 7. The compressor shows an estimate that follows the controls, and only
+// encodes when asked. Both halves have broken before: an earlier version
+// re-encoded on every slider move (and kept serving the first WebP blob
+// regardless of the format chosen), and the preset chips tracked the last
+// button pressed rather than the values, so changing the format put the light
+// out. What matters here is that the numbers move without the engine running,
+// and that pressing the button is what turns an estimate into a file.
 await withPage(async (page) => {
   await page.goto(`${BASE}/tools/image-compressor/`, { waitUntil: 'load' });
   const fixture = fileURLToPath(new URL('../public/og/opengraph-1200x630.jpg', import.meta.url));
   await page.setInputFiles('#fileInput', fixture);
   await page.waitForFunction(() =>
-    document.querySelector('.row-filename')?.textContent.endsWith('.webp') &&
-    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
-  const webp = await page.locator('.compressed-size-text').textContent().catch(() => '');
-  const webpPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
+    document.querySelector('.savings-badge')?.textContent.includes('≈'), null, { timeout: 15000 }).catch(() => {});
+
+  const details = () => page.locator('.compressed-size-text').textContent().catch(() => '');
+  const action = () => page.locator('.row-action-btn span').textContent().catch(() => '');
+  const filename = () => page.locator('.row-filename').textContent().catch(() => '');
+  const litPresets = () => page.evaluate(() =>
+    Array.from(document.querySelectorAll('[data-preset]'))
+      .filter((chip) => chip.classList.contains('is-active'))
+      .map((chip) => chip.dataset.preset).join(','));
+
+  // Nothing has been encoded yet: the row still carries the source file's name,
+  // and the drop zone holds the image it was handed — without that the drop
+  // leaves the box looking exactly as empty as before it.
+  const idle = {
+    estimate: await details(),
+    action: await action(),
+    name: await filename(),
+    box: await page.evaluate(() => {
+      const preview = document.getElementById('uploadPreview');
+      const rect = preview?.getBoundingClientRect();
+      return {
+        shown: !document.getElementById('uploadAreaLoaded')?.hidden &&
+          Boolean(document.getElementById('uploadAreaEmpty')?.hidden),
+        drawn: Boolean(rect && rect.width > 0 && rect.height > 0 && preview.naturalWidth > 0),
+        name: document.getElementById('uploadFilename')?.textContent || '',
+      };
+    }),
+  };
 
   await page.selectOption('#outputFormat', 'jpeg');
-  await page.waitForFunction(() =>
-    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
-    document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG') &&
-    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
-  const jpeg = await page.locator('.compressed-size-text').textContent().catch(() => '');
-  const jpegPreview = await page.locator('.row-thumbnail').getAttribute('src').catch(() => '');
-  const jpegMessage = await page.locator('#result').textContent().catch(() => '');
+  const asJpeg = await details();
+  // The format is not part of any preset, so the chip must stay lit.
+  const litAfterFormat = await litPresets();
 
-  const presetChecks = [];
+  const presetEstimates = [];
   for (const [preset, quality, maxWidth] of [
     ['balanced', '72', '1600'],
     ['light', '82', '2200'],
     ['strong', '58', '1280'],
   ]) {
     await page.click(`[data-preset="${preset}"]`);
-    await page.waitForFunction(([expectedQuality, expectedWidth]) =>
-      document.querySelector('#outputFormat')?.value === 'jpeg' &&
-      document.querySelector('#quality')?.value === expectedQuality &&
-      document.querySelector('#maxWidth')?.value === expectedWidth &&
-      document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
-      !document.querySelector('.row-spinner'), [quality, maxWidth], { timeout: 15000 }).catch(() => {});
-    presetChecks.push(await page.evaluate(([expectedQuality, expectedWidth]) =>
-      document.querySelector('#outputFormat')?.value === 'jpeg' &&
-      document.querySelector('#quality')?.value === expectedQuality &&
-      document.querySelector('#maxWidth')?.value === expectedWidth &&
-      document.querySelector('.compressed-size-text')?.textContent.startsWith('JPG'), [quality, maxWidth]));
+    presetEstimates.push(await page.evaluate(([expectedQuality, expectedWidth, expected]) => ({
+      quality: document.querySelector('#quality')?.value === expectedQuality,
+      width: document.querySelector('#maxWidth')?.value === expectedWidth,
+      lit: Array.from(document.querySelectorAll('[data-preset]'))
+        .filter((chip) => chip.classList.contains('is-active'))
+        .map((chip) => chip.dataset.preset).join(',') === expected,
+      details: document.querySelector('.compressed-size-text')?.textContent || '',
+    }), [quality, maxWidth, preset]));
   }
+  const presetsAgree = presetEstimates.every((p) => p.quality && p.width && p.lit && p.details.startsWith('JPG'));
 
-  await page.selectOption('#outputFormat', 'png');
-  const pngPresetOutputs = [];
-  for (const preset of ['balanced', 'light', 'strong']) {
-    await page.click(`[data-preset="${preset}"]`);
-    await page.waitForFunction(() =>
-      document.querySelector('#outputFormat')?.value === 'png' &&
-      document.querySelector('.row-filename')?.textContent.endsWith('.png') &&
-      document.querySelector('.compressed-size-text')?.textContent.startsWith('PNG') &&
-      !document.querySelector('.row-spinner'), null, { timeout: 30000 }).catch(() => {});
-    pngPresetOutputs.push(await page.locator('.compressed-size-text').textContent().catch(() => ''));
-  }
-  const pngPresetSizes = pngPresetOutputs.map((details) => {
-    const match = details.match(/([\d.]+) (KB|MB)$/);
-    if (!match) return Number.NaN;
-    return Number.parseFloat(match[1]) * (match[2] === 'MB' ? 1024 : 1);
-  });
-  const pngPresetsDiffer = pngPresetSizes.every(Number.isFinite) &&
-    pngPresetSizes[0] < pngPresetSizes[1] && pngPresetSizes[2] < pngPresetSizes[0];
-
-  await page.selectOption('#outputFormat', 'jpeg');
-  await page.waitForFunction(() =>
-    document.querySelector('.row-filename')?.textContent.endsWith('.jpg') &&
-    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
+  // Sizes for the three presets have to be ordered the way the presets promise.
+  const sizeOf = (text) => {
+    const match = text.match(/([\d.]+) (KB|MB)$/);
+    return match ? Number.parseFloat(match[1]) * (match[2] === 'MB' ? 1024 : 1) : Number.NaN;
+  };
+  const [balanced, light, strong] = presetEstimates.map((p) => sizeOf(p.details));
+  const presetsOrdered = [balanced, light, strong].every(Number.isFinite) &&
+    strong < balanced && balanced < light;
 
   await page.locator('#maxWidth').evaluate((input) => {
     input.value = '640';
     input.dispatchEvent(new Event('input', { bubbles: true }));
   });
-  await page.waitForFunction(() =>
-    document.querySelector('.compressed-size-text')?.textContent.includes('640×336') &&
-    !document.querySelector('.row-spinner'), null, { timeout: 15000 }).catch(() => {});
-  const resized = await page.locator('.compressed-size-text').textContent().catch(() => '');
+  const resized = await details();
 
-  record(
-    'the image compressor reacts to format and width changes',
-    webp.startsWith('WEBP') && jpeg.startsWith('JPG') && jpeg !== webp &&
-      jpegPreview !== webpPreview && jpegMessage.includes('-ottimizzata.jpg') &&
-      !jpegMessage.includes('-ottimizzata.webp') && presetChecks.every(Boolean) &&
-      pngPresetsDiffer && resized.includes('640×336')
-      ? null
-      : `WebP "${webp}", JPEG "${jpeg}", message "${jpegMessage}", presets ${presetChecks.join('/')}, PNG presets "${pngPresetOutputs.join(' / ')}", resized "${resized}"`,
-  );
+  // Only now does anything get encoded.
+  await page.selectOption('#outputFormat', 'webp');
+  await page.click('.row-action-btn');
+  await page.waitForFunction(() =>
+    document.querySelector('.row-action-btn')?.classList.contains('is-download'), null, { timeout: 30000 }).catch(() => {});
+  const compressed = {
+    estimate: await details(),
+    action: await action(),
+    name: await filename(),
+    message: await page.locator('#result').textContent().catch(() => ''),
+  };
+
+  // And changing a control drops it back to an estimate rather than leaving a
+  // stale file behind the Download button.
+  await page.locator('#quality').evaluate((input) => {
+    input.value = '50';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  const afterChange = {
+    estimate: await details(),
+    action: await action(),
+  };
+
+  const problems = [];
+  if (!idle.estimate.startsWith('WEBP') || !idle.estimate.includes('≈')) problems.push(`idle estimate "${idle.estimate}"`);
+  if (idle.name !== 'opengraph-1200x630.jpg') problems.push(`encoded before being asked: "${idle.name}"`);
+  if (!idle.box.shown || !idle.box.drawn || idle.box.name !== 'opengraph-1200x630.jpg') {
+    problems.push(`drop zone after upload ${JSON.stringify(idle.box)}`);
+  }
+  if (!asJpeg.startsWith('JPG') || asJpeg === idle.estimate) problems.push(`jpeg estimate "${asJpeg}"`);
+  if (litAfterFormat !== 'balanced') problems.push(`preset lit after format change: "${litAfterFormat}"`);
+  if (!presetsAgree) problems.push(`presets ${JSON.stringify(presetEstimates)}`);
+  if (!presetsOrdered) problems.push(`preset sizes ${strong}/${balanced}/${light}`);
+  if (!resized.includes('640×336')) problems.push(`resized "${resized}"`);
+  if (compressed.action === idle.action) problems.push(`button unchanged after compressing: "${compressed.action}"`);
+  if (compressed.estimate.includes('≈')) problems.push(`still an estimate after compressing: "${compressed.estimate}"`);
+  if (!compressed.name.endsWith('.webp') || compressed.name === idle.name) problems.push(`output name "${compressed.name}"`);
+  if (!compressed.message.includes(compressed.name)) problems.push(`message "${compressed.message}"`);
+  if (!afterChange.estimate.includes('≈') || afterChange.action !== idle.action) {
+    problems.push(`after changing quality: "${afterChange.estimate}" / "${afterChange.action}"`);
+  }
+
+  record('the image compressor estimates first and encodes on request', problems.length ? problems.join(' · ') : null);
 });
 
 // 8. The glossary is a search box over a few hundred entries: if the filter

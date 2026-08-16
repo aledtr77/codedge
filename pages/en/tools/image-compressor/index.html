@@ -73,6 +73,12 @@
             <span class="upload-area__title">Select or drag an image</span>
             <span class="upload-area__subtitle">Supports JPG, PNG, WebP and AVIF</span>
           </div>
+          <div class="upload-area__loaded" id="uploadAreaLoaded" hidden>
+            <img class="upload-area__preview" id="uploadPreview" alt="">
+            <span class="upload-area__filename" id="uploadFilename"></span>
+            <span class="upload-area__meta" id="uploadMeta"></span>
+            <span class="upload-area__hint">Click or drop another image to replace this one</span>
+          </div>
         </button>
         <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif" aria-label="Choose an image to compress">
 
@@ -142,7 +148,8 @@
 
         <!-- Lista dei File Risultati (Mostrata solo se ci sono file caricati) -->
         <div id="results-container" class="results-container" style="display: none;">
-          <h2>Files being processed</h2>
+          <h2>Your image</h2>
+          <p class="results-note">The estimated size updates as you move the controls. Nothing is encoded until you press Compress.</p>
           <div id="results-list" class="results-list">
             <!-- File rows are inserted here dynamically by JavaScript -->
           </div>
