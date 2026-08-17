@@ -1189,6 +1189,61 @@
                 <p>Se scrivi <code>alt=""</code> dichiari "questa immagine è decorativa, ignorala". Se invece l'attributo manca del tutto, lo screen reader non sa cosa fare e legge il nome del file, con risultati tipo «immagine dsc underscore 0042 punto jpg». Scrivi sempre <code>alt</code>, anche quando è vuoto.</p>
               </div>
 
+              <!-- Interactive Widget: Alt Text Comparator -->
+              <div class="alt-comparator" id="alt-comparator">
+                <div class="alt-scenarios">
+                  <button type="button" class="alt-scenario-btn is-active" data-scenario="bad">
+                    <span class="scenario-num"><i class="fa-solid fa-circle-exclamation"></i></span>
+                    <span class="scenario-lbl">Alt mancante o vuoto</span>
+                  </button>
+                  <button type="button" class="alt-scenario-btn" data-scenario="good">
+                    <span class="scenario-num"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="scenario-lbl">Alt descrittivo</span>
+                  </button>
+                  <button type="button" class="alt-scenario-btn" data-scenario="decorative">
+                    <span class="scenario-num"><i class="fa-solid fa-star"></i></span>
+                    <span class="scenario-lbl">Immagine decorativa</span>
+                  </button>
+                </div>
+
+                <div class="alt-body">
+                  <div class="alt-card">
+                    <div class="alt-card-header">
+                      <i class="fa-solid fa-eye"></i>
+                      <span>Cosa vede l'utente</span>
+                    </div>
+                    <div class="alt-visual">
+                      <div class="alt-visual-content">
+                        <!-- Populated dynamically -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="alt-card">
+                    <div class="alt-card-header">
+                      <i class="fa-solid fa-code"></i>
+                      <span>Struttura HTML</span>
+                    </div>
+                    <div class="alt-code">
+                      <div class="alt-code-content">
+                        <!-- Populated dynamically -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alt-info-box">
+                  <div class="alt-info-content">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert--note">
+                <strong>Regola pratica per l'<code>alt</code></strong>
+                <p>Chiediti: <em>"Se dovessi descrivere questa immagine a qualcuno al telefono, cosa direi?"</em>. Se l'immagine porta informazione (grafico, fotografia, diagramma), descrivila in poche parole. Se è puramente decorativa, lascia <code>alt=""</code>.</p>
+              </div>
+
               <h3>Perché indicare <code>width</code> e <code>height</code></h3>
               <p>Il browser disegna la pagina prima di aver finito di scaricare le immagini. Se non sa quanto spazio riservare, dispone il testo e poi lo fa saltare via quando l'immagine arriva: è il fastidioso <em>layout shift</em>, che ti fa perdere il punto in cui stavi leggendo. Indicando le dimensioni reali del file, lo spazio viene riservato subito.</p>
 

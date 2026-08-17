@@ -8,6 +8,7 @@ import "@/styles/pages/tutorials/git-without-panic/index.css";
 import "@/styles/components/playground.css";
 import "@/styles/pages/tutorials/html-fundamentals/relative-paths.css";
 import "@/styles/pages/tutorials/html-fundamentals/lists-intro.css";
+import "@/styles/pages/tutorials/html-fundamentals/alt-comparator.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -19,6 +20,7 @@ import initGuideQuiz from "@/scripts/components/guide-quiz.js";
 import initGuidePlayground from "@/scripts/components/guide-playground.js";
 import initRelativePathsExplorer from "./relative-paths.js";
 import initListsIntro from "./lists-intro.js";
+import initAltComparator from "./alt-comparator.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -26,4 +28,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initGuidePlayground();
   initRelativePathsExplorer();
   initListsIntro();
+  initAltComparator();
 });
