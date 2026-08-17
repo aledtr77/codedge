@@ -80,7 +80,7 @@
             <li><a href="#chapter-01">Before we start</a></li>
             <li><a href="#chapter-02">1. How HTML thinks (and what it is not)</a></li>
             <li><a href="#chapter-03">2. Anatomy of a tag, and the nesting rule</a></li>
-            <li><a href="#chapter-04">3. The basic skeleton (boilerplate)</a></li>
+            <li><a href="#chapter-04">3. The boilerplate: the starting tags</a></li>
             <li><a href="#chapter-05">4. Text: paragraphs and headings</a></li>
             <li><a href="#chapter-06">5. Block and inline elements</a></li>
             <li><a href="#chapter-08">6. Global attributes: id, class and the rest</a></li>
@@ -275,37 +275,128 @@
 
           <!-- CAPITOLO 04 — LO SCHELETRO BASE -->
           <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. The basic skeleton (boilerplate)</h2>
+            <h2>3. The boilerplate: the starting tags</h2>
             <section class="guide-subchapter">
-              <p>In the previous chapters we covered HTML's theory: how the browser thinks as it builds the tree (the DOM) and the rules for writing individual tags correctly. Now let's take a step forward and combine those ideas to build our first real file.</p>
+              <p>The previous chapters covered how the browser builds the tree and how tags nest without crossing. Now we open a real file.</p>
 
-              <p>Every web page needs a fixed starting structure before the browser can interpret it. That repetitive structure — a genuine blank canvas — is known as the <strong>boilerplate</strong>. In VS Code you can type <code>!</code> and press Enter to generate it instantly, but as good developers we should understand every single line of it:</p>
+              <p>The page's <strong>skeleton</strong> is the whole HTML document: every tag the browser will turn into the DOM. The <strong>boilerplate</strong> is narrower. It is only the starting kit — the few main tags already nested in the right place. In VS Code you type <code>!</code> and press Enter to get it; here we take it apart.</p>
 
-              <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;My first web page&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;!-- The site's visible content goes here --&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+              <div class="boilerplate-explorer" id="boilerplate-explorer" aria-labelledby="boilerplate-explorer-title">
+                <div class="boilerplate-explorer__intro">
+                  <p class="boilerplate-explorer__eyebrow">Interactive example</p>
+                  <h3 id="boilerplate-explorer-title">The boilerplate, piece by piece</h3>
+                  <p>Click the four parts. Watch the nesting: <code>html</code> holds <code>head</code> and <code>body</code>; <code>head</code> holds the <code>meta</code> tags and <code>title</code>.</p>
+                </div>
 
-              <h3>How the structure is organised:</h3>
-              <ul class="guide-list">
-                <li><strong><code>&lt;!DOCTYPE html&gt;</code></strong>: a technical declaration. It shouts at the browser: <em>“Careful, this is a modern HTML file (HTML5), read it using current standards!”</em>. It must be written as the very first line, at the top.</li>
-                <li><strong><code>&lt;html lang="en"&gt;</code></strong>: the root box containing everything else. The <code>lang="en"</code> attribute matters a great deal: it declares that the text is in English, which helps search engines index it and lets screen readers pronounce it with the right intonation.</li>
-                <li><strong>The split into two main areas</strong>: notice how the content inside <code>&lt;html&gt;</code> is divided into two big nested boxes:
-                  <ul>
-                    <li><strong><code>&lt;head&gt;</code> (the control room)</strong>: holds the metadata — information useful to the browser and to Google but invisible to visitors (the <code>UTF-8</code> character encoding for accented letters and emoji, or the tab's title in the <code>&lt;title&gt;</code> tag).</li>
-                    <li><strong><code>&lt;body&gt;</code> (the visible stage)</strong>: the page's body. Everything we put in this block appears on the user's screen.</li>
-                  </ul>
-                </li>
-              </ul>
+                <div class="boilerplate-explorer__scenarios" role="group" aria-label="Parts of the HTML boilerplate">
+                  <button type="button" class="boilerplate-explorer__btn is-active" data-piece="doctype" aria-pressed="true">
+                    <span class="boilerplate-explorer__num" aria-hidden="true">1</span>
+                    <span class="boilerplate-explorer__lbl"><strong>DOCTYPE</strong><small>Declaration</small></span>
+                  </button>
+                  <button type="button" class="boilerplate-explorer__btn" data-piece="html" aria-pressed="false">
+                    <span class="boilerplate-explorer__num" aria-hidden="true">2</span>
+                    <span class="boilerplate-explorer__lbl"><strong>html</strong><small>Root tag</small></span>
+                  </button>
+                  <button type="button" class="boilerplate-explorer__btn" data-piece="head" aria-pressed="false">
+                    <span class="boilerplate-explorer__num" aria-hidden="true">3</span>
+                    <span class="boilerplate-explorer__lbl"><strong>head</strong><small>meta + title</small></span>
+                  </button>
+                  <button type="button" class="boilerplate-explorer__btn" data-piece="body" aria-pressed="false">
+                    <span class="boilerplate-explorer__num" aria-hidden="true">4</span>
+                    <span class="boilerplate-explorer__lbl"><strong>body</strong><small>Visible content</small></span>
+                  </button>
+                </div>
 
-              <p style="margin-top: 1.5rem;">Now that your empty container is set up, it is time to go inside the <code>&lt;body&gt;</code> and start exploring the <strong>catalogue of tags</strong>: the actual bricks we will fill our page with. We begin with the foundation of any communication: writing text.</p>
+                <div class="boilerplate-explorer__body">
+                  <div class="boilerplate-explorer__card">
+                    <div class="boilerplate-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Click a line of the boilerplate</span>
+                    </div>
+                    <div class="boilerplate-explorer__code">
+                      <button type="button" class="boilerplate-explorer__line is-active" data-piece="doctype"><span class="boilerplate-explorer__tok--doctype">&lt;!DOCTYPE html&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="html"><span class="boilerplate-explorer__tok--tag">&lt;html&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;head&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">charset</span>=<span class="boilerplate-explorer__tok--val">"UTF-8"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">name</span>=<span class="boilerplate-explorer__tok--val">"viewport"</span> <span class="boilerplate-explorer__tok--attr">content</span>=<span class="boilerplate-explorer__tok--val">"…"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;title&gt;</span><span class="boilerplate-explorer__tok--text">My first web page</span><span class="boilerplate-explorer__tok--tag">&lt;/title&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;/head&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="body">  <span class="boilerplate-explorer__tok--tag">&lt;body&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="body">    <span class="boilerplate-explorer__tok--comment">&lt;!-- visible content --&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="body">  <span class="boilerplate-explorer__tok--tag">&lt;/body&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="html"><span class="boilerplate-explorer__tok--tag">&lt;/html&gt;</span></button>
+                    </div>
+                  </div>
+
+                  <div class="boilerplate-explorer__card">
+                    <div class="boilerplate-explorer__card-header">
+                      <i class="fa-solid fa-window-maximize" aria-hidden="true"></i>
+                      <span>Where it shows up</span>
+                    </div>
+                    <div class="boilerplate-explorer__window" data-active="doctype">
+                      <div class="boilerplate-explorer__chrome">
+                        <div class="boilerplate-explorer__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <div class="boilerplate-explorer__tabs">
+                          <div class="boilerplate-explorer__tab">
+                            <i class="fa-solid fa-file-code" aria-hidden="true"></i>
+                            <span class="boilerplate-explorer__tab-title">My first web page</span>
+                          </div>
+                        </div>
+                        <span class="boilerplate-explorer__chip boilerplate-explorer__chip--doctype">HTML5</span>
+                      </div>
+                      <div class="boilerplate-explorer__address">
+                        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                        <span>index.html</span>
+                      </div>
+                      <div class="boilerplate-explorer__viewport">
+                        <div class="boilerplate-explorer__page">
+                          <p class="boilerplate-explorer__page-kicker">Visible page</p>
+                          <p class="boilerplate-explorer__page-heading">Hello, world</p>
+                          <p>This paragraph lives in the body: it is what the visitor actually sees.</p>
+                        </div>
+                        <div class="boilerplate-explorer__ghost" aria-hidden="true">Not shown on the page</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boilerplate-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="boilerplate-explorer__explain is-active" data-piece="doctype">
+                      <div class="boilerplate-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-file-circle-check"></i></div>
+                      <div class="boilerplate-explorer__explain-text">
+                        <strong>Not a tag — a declaration.</strong>
+                        <p>It must be the first line, before <code>&lt;html&gt;</code>. It tells the browser to read the file as modern HTML5. Leave it out and the browser may slip into quirks mode.</p>
+                      </div>
+                    </div>
+                    <div class="boilerplate-explorer__explain" data-piece="html">
+                      <div class="boilerplate-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+                      <div class="boilerplate-explorer__explain-text">
+                        <strong><code>&lt;html&gt;</code> is the root tag.</strong>
+                        <p>The whole document sits inside this box: first <code>&lt;head&gt;</code>, then <code>&lt;body&gt;</code>. It is the outermost tag of the boilerplate, not the skeleton by itself.</p>
+                      </div>
+                    </div>
+                    <div class="boilerplate-explorer__explain" data-piece="head">
+                      <div class="boilerplate-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-sliders"></i></div>
+                      <div class="boilerplate-explorer__explain-text">
+                        <strong>Inside <code>&lt;head&gt;</code> live the <code>meta</code> tags and <code>title</code>.</strong>
+                        <p>The <code>&lt;meta&gt;</code> tags talk to the browser: <code>charset="UTF-8"</code> so letters and emoji read correctly, <code>viewport</code> so phones scale the page. <code>&lt;title&gt;</code> is the tab text — also used in bookmarks and as the default search-result heading. None of this is drawn in the page body.</p>
+                      </div>
+                    </div>
+                    <div class="boilerplate-explorer__explain" data-piece="body">
+                      <div class="boilerplate-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
+                      <div class="boilerplate-explorer__explain-text">
+                        <strong><code>&lt;body&gt;</code> is the sibling of <code>&lt;head&gt;</code>.</strong>
+                        <p>Both sit inside <code>&lt;html&gt;</code>, never inside each other. Headings, paragraphs, images, forms: if the visitor should see it, it belongs here.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>The rule to take away is the one from chapter 2: the last tag you open is the first you close. <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> sit entirely inside <code>&lt;html&gt;</code>; the <code>meta</code> tags and <code>title</code> sit entirely inside <code>&lt;head&gt;</code>.</p>
+
+              <p>Now we step into the <code>&lt;body&gt;</code> and start filling it. The first brick is text.</p>
             </section>
           </section>
 

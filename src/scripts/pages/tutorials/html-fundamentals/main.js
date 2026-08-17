@@ -9,6 +9,7 @@ import "@/styles/components/playground.css";
 import "@/styles/pages/tutorials/html-fundamentals/relative-paths.css";
 import "@/styles/pages/tutorials/html-fundamentals/lists-intro.css";
 import "@/styles/pages/tutorials/html-fundamentals/alt-comparator.css";
+import "@/styles/pages/tutorials/html-fundamentals/boilerplate-explorer.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -21,6 +22,7 @@ import initGuidePlayground from "@/scripts/components/guide-playground.js";
 import initRelativePathsExplorer from "./relative-paths.js";
 import initListsIntro from "./lists-intro.js";
 import initAltComparator from "./alt-comparator.js";
+import initBoilerplateExplorer from "./boilerplate-explorer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -29,4 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initRelativePathsExplorer();
   initListsIntro();
   initAltComparator();
+  initBoilerplateExplorer();
 });
