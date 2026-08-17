@@ -1234,7 +1234,57 @@
           <section id="chapter-11" class="guide-block guide-chapter">
             <h2>9. Le liste</h2>
             <section class="guide-subchapter">
-              <p>Le liste servono ogni volta che hai più elementi dello stesso tipo. Non solo elenchi puntati: i menu di navigazione, le gallerie di prodotti e i risultati di ricerca sono tutti, sotto sotto, liste. Marcarli come tali comunica agli screen reader quanti elementi ci sono ancora da leggere.</p>
+              <p>Nel linguaggio di tutti i giorni, una "lista" fa pensare alla lista della spesa o a una lista di cose da fare. Sul web, però, il concetto è molto più ampio: <strong>qualsiasi gruppo di elementi correlati e dello stesso tipo è una lista</strong>.</p>
+              <p>Un menu di navigazione è una lista di link, una galleria e-commerce è una lista di prodotti, e i post di un social network sono una lista di messaggi. Raggrupparli con i tag corretti aiuta i browser e le tecnologie assistive a interpretare la pagina nel modo corretto.</p>
+
+              <!-- Interactive widget -->
+              <div class="lists-explorer" id="lists-explorer">
+                <div class="explorer-scenarios">
+                  <button type="button" class="scenario-btn is-active" data-scenario="menu">
+                    <span class="scenario-num"><i class="fa-solid fa-compass"></i></span>
+                    <span class="scenario-lbl">Menu di Navigazione</span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="products">
+                    <span class="scenario-num"><i class="fa-solid fa-grip"></i></span>
+                    <span class="scenario-lbl">Galleria Prodotti</span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="recipe">
+                    <span class="scenario-num"><i class="fa-solid fa-list-ul"></i></span>
+                    <span class="scenario-lbl">Lista Classica</span>
+                  </button>
+                </div>
+
+                <div class="explorer-body">
+                  <!-- Preview -->
+                  <div class="explorer-preview-card">
+                    <div class="preview-header">
+                      <i class="fa-solid fa-eye"></i>
+                      <span>Resa Grafica (Cosa vede l'utente)</span>
+                    </div>
+                    <div class="preview-content" id="lists-preview-content">
+                      <!-- Popolated dynamically -->
+                    </div>
+                  </div>
+
+                  <!-- Code -->
+                  <div class="explorer-code-card">
+                    <div class="code-header">
+                      <i class="fa-solid fa-code"></i>
+                      <span>Struttura HTML Semantica</span>
+                    </div>
+                    <div class="code-content" id="lists-code-content">
+                      <!-- Popolated dynamically -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Info Box -->
+                <div class="explorer-info-box" id="lists-info-box">
+                  <!-- Popolated dynamically -->
+                </div>
+              </div>
+
+              <p>Vediamo ora come sono fatti i tag per creare e personalizzare questi elenchi.</p>
 
               <h3>Lista non ordinata: <code>&lt;ul&gt;</code></h3>
               <p>Quando l'ordine degli elementi non cambia il significato. Il contenitore è <code>&lt;ul&gt;</code> (<em>unordered list</em>), ogni voce è un <code>&lt;li&gt;</code> (<em>list item</em>).</p>
