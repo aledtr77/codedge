@@ -1,0 +1,298 @@
+/* Styles for the Relative Paths Interactive Explorer widget */
+
+.relative-paths-explorer {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(22, 27, 38, 0.45);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.explorer-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.scenario-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--background-three);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--heading-font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.scenario-btn:hover {
+  background: var(--background-five);
+  border-color: rgba(0, 132, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scenario-btn.is-active {
+  background: rgba(0, 132, 255, 0.12);
+  border-color: var(--color-three);
+  box-shadow: 0 0 16px rgba(0, 132, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.scenario-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--background-five);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffd369;
+  transition: var(--transition-fast);
+}
+
+.scenario-btn.is-active .scenario-num {
+  background: var(--color-three);
+  color: var(--color-three-ink);
+}
+
+.explorer-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 860px) {
+  .explorer-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explorer-tree-card,
+.explorer-explanation-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tree-header,
+.explanation-header {
+  font-family: var(--heading-font);
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.tree-header i {
+  color: var(--color-three);
+}
+
+.explanation-header i {
+  color: #ffd369;
+}
+
+.tree-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid transparent;
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.tree-node.depth-0 { margin-left: 0; }
+.tree-node.depth-1 { margin-left: 1.5rem; }
+.tree-node.depth-2 { margin-left: 3rem; }
+
+.tree-node i {
+  font-size: 1rem;
+  opacity: 0.8;
+  width: 18px;
+  text-align: center;
+}
+
+.tree-node .tree-icon-folder {
+  color: #ffd369;
+}
+
+.tree-node .tree-icon-file {
+  color: #7fd1ff;
+}
+
+.tree-node .tree-icon-image {
+  color: #a78bfa;
+}
+
+.node-name {
+  flex-grow: 1;
+}
+
+/* Node state styling */
+.tree-node.is-source {
+  color: #ffd369;
+  background: rgba(255, 211, 105, 0.08);
+  border-color: rgba(255, 211, 105, 0.4);
+  box-shadow: 0 0 12px rgba(255, 211, 105, 0.15);
+  font-weight: 600;
+}
+
+.tree-node.is-target {
+  color: #00eeff;
+  background: rgba(0, 238, 255, 0.08);
+  border-color: rgba(0, 238, 255, 0.4);
+  box-shadow: 0 0 12px rgba(0, 238, 255, 0.15);
+  font-weight: 600;
+}
+
+.tree-node.is-active-path {
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.node-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.node-badge--src {
+  background: #ffd369;
+  color: #000;
+}
+
+.node-badge--dest {
+  background: #00eeff;
+  color: #000;
+}
+
+/* Explanation column styling */
+.explorer-explanation-card {
+  justify-content: space-between;
+}
+
+.scenario-explanation-wrapper {
+  flex-grow: 1;
+}
+
+.scenario-explanation {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  animation: relative-paths-fade 0.3s ease-in-out;
+}
+
+.scenario-explanation.is-active {
+  display: flex;
+}
+
+@keyframes relative-paths-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanation-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.explanation-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.step-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.explanation-text p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.code-output-box {
+  background: #090d16;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.code-output-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.code-output-line {
+  font-family: monospace;
+  font-size: 1rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.code-tag-a { color: #f43f5e; }
+.code-attr-name { color: #38bdf8; }
+.code-attr-val { color: #34d399; }
+.code-tag-text { color: #f3f4f6; }

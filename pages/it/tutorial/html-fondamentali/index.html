@@ -852,51 +852,233 @@
               </div>
 
               <h3>I percorsi relativi, spiegati una volta per tutte</h3>
-              <p>È il punto in cui si inciampa sempre. Immagina questa struttura di cartelle sul tuo computer:</p>
+              <p>È il punto in cui si inciampa spesso per un motivo preciso: guardando il progetto viene naturale leggere ogni percorso dalla cartella principale <code>sito/</code>. Il browser, invece, usa come punto di partenza <strong>la cartella della pagina che contiene il link</strong>.</p>
 
-              <pre><code class="code-tree">sito/
-├── index.html          ← la home
-├── chi-siamo.html
-├── immagini/
-│   └── logo.png
-└── blog/
-    ├── index.html      ← la home del blog
-    └── primo-post.html</code></pre>
+              <div class="relative-paths-explorer" id="relative-paths-explorer">
+                <div class="explorer-scenarios">
+                  <button type="button" class="scenario-btn is-active" data-scenario="A">
+                    <span class="scenario-num">1</span>
+                    <span class="scenario-lbl">Stessa cartella (Root)</span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="B">
+                    <span class="scenario-num">2</span>
+                    <span class="scenario-lbl">Entrare in una cartella</span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="C">
+                    <span class="scenario-num">3</span>
+                    <span class="scenario-lbl">Uscire con <code>../</code></span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="D">
+                    <span class="scenario-num">4</span>
+                    <span class="scenario-lbl">Uscire e poi entrare</span>
+                  </button>
+                  <button type="button" class="scenario-btn" data-scenario="E">
+                    <span class="scenario-num">5</span>
+                    <span class="scenario-lbl">Stessa cartella (Sub)</span>
+                  </button>
+                </div>
 
-              <p>Un percorso relativo si legge <strong>partendo dalla cartella in cui si trova la pagina che stai scrivendo</strong>. Il simbolo <code>../</code> significa "sali di una cartella".</p>
+                <div class="explorer-body">
+                  <div class="explorer-tree-card">
+                    <div class="tree-header">
+                      <i class="fa-solid fa-folder-open"></i>
+                      <span>Cartelle del Progetto (sito/)</span>
+                    </div>
+                    <div class="tree-content">
+                      <div class="tree-node depth-0" data-node="root">
+                        <i class="fa-solid fa-folder tree-icon-folder"></i>
+                        <span class="node-name">sito/</span>
+                      </div>
+                      <div class="tree-node depth-1" data-node="index">
+                        <i class="fa-solid fa-file-code tree-icon-file"></i>
+                        <span class="node-name">index.html</span>
+                        <span class="node-badge node-badge--src">Partenza</span>
+                        <span class="node-badge node-badge--dest">Arrivo</span>
+                      </div>
+                      <div class="tree-node depth-1" data-node="about">
+                        <i class="fa-solid fa-file-code tree-icon-file"></i>
+                        <span class="node-name">chi-siamo.html</span>
+                        <span class="node-badge node-badge--src">Partenza</span>
+                        <span class="node-badge node-badge--dest">Arrivo</span>
+                      </div>
+                      <div class="tree-node depth-1" data-node="images">
+                        <i class="fa-solid fa-folder tree-icon-folder"></i>
+                        <span class="node-name">immagini/</span>
+                      </div>
+                      <div class="tree-node depth-2" data-node="logo">
+                        <i class="fa-solid fa-file-image tree-icon-image"></i>
+                        <span class="node-name">logo.png</span>
+                        <span class="node-badge node-badge--src">Partenza</span>
+                        <span class="node-badge node-badge--dest">Arrivo</span>
+                      </div>
+                      <div class="tree-node depth-1" data-node="blog">
+                        <i class="fa-solid fa-folder tree-icon-folder"></i>
+                        <span class="node-name">blog/</span>
+                      </div>
+                      <div class="tree-node depth-2" data-node="blog-index">
+                        <i class="fa-solid fa-file-code tree-icon-file"></i>
+                        <span class="node-name">index.html</span>
+                        <span class="node-badge node-badge--src">Partenza</span>
+                        <span class="node-badge node-badge--dest">Arrivo</span>
+                      </div>
+                      <div class="tree-node depth-2" data-node="first-post">
+                        <i class="fa-solid fa-file-code tree-icon-file"></i>
+                        <span class="node-name">primo-post.html</span>
+                        <span class="node-badge node-badge--src">Partenza</span>
+                        <span class="node-badge node-badge--dest">Arrivo</span>
+                      </div>
+                    </div>
+                  </div>
 
-              <div class="table-wrapper">
-                <table class="guide-table">
-                  <thead>
-                    <tr>
-                      <th>Sei in</th>
-                      <th class="is-accent">Vuoi arrivare a</th>
-                      <th>Scrivi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="is-code">index.html</td>
-                      <td class="is-code">chi-siamo.html</td>
-                      <td class="is-code is-strong">chi-siamo.html</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code">index.html</td>
-                      <td class="is-code">blog/primo-post.html</td>
-                      <td class="is-code is-strong">blog/primo-post.html</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code">blog/primo-post.html</td>
-                      <td class="is-code">index.html (la home)</td>
-                      <td class="is-code is-strong">../index.html</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code">blog/primo-post.html</td>
-                      <td class="is-code">immagini/logo.png</td>
-                      <td class="is-code is-strong">../immagini/logo.png</td>
-                    </tr>
-                  </tbody>
-                </table>
+                  <div class="explorer-explanation-card">
+                    <div class="explanation-header">
+                      <i class="fa-solid fa-circle-info"></i>
+                      <span>Come funziona il percorso</span>
+                    </div>
+                    
+                    <div class="scenario-explanation-wrapper">
+                      <!-- Scenario A -->
+                      <div class="scenario-explanation is-active" data-scenario="A">
+                        <ul class="explanation-steps">
+                          <li>
+                            <span class="step-marker">1</span>
+                            <div class="explanation-text">
+                              <p>Partiamo da <code>sito/index.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">2</span>
+                            <div class="explanation-text">
+                              <p>Vogliamo arrivare a <code>sito/chi-siamo.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">3</span>
+                            <div class="explanation-text">
+                              <p>Entrambi i file sono nella stessa cartella. Non serve salire o entrare: basta scrivere direttamente il nome del file.</p>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="code-output-box">
+                          <div class="code-output-title">Risultato in HTML</div>
+                          <div class="code-output-line"><span class="code-tag-a">&lt;a</span> <span class="code-attr-name">href</span>=<span class="code-attr-val">"chi-siamo.html"</span><span class="code-tag-a">&gt;</span><span class="code-tag-text">Chi Siamo</span><span class="code-tag-a">&lt;/a&gt;</span></div>
+                        </div>
+                      </div>
+
+                      <!-- Scenario B -->
+                      <div class="scenario-explanation" data-scenario="B">
+                        <ul class="explanation-steps">
+                          <li>
+                            <span class="step-marker">1</span>
+                            <div class="explanation-text">
+                              <p>Partiamo da <code>sito/index.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">2</span>
+                            <div class="explanation-text">
+                              <p>Vogliamo arrivare a <code>sito/blog/primo-post.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">3</span>
+                            <div class="explanation-text">
+                              <p>Il file di destinazione è dentro una sottocartella. Dobbiamo prima entrare in <code>blog/</code> scrivendo il suo nome, poi il nome del file.</p>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="code-output-box">
+                          <div class="code-output-title">Risultato in HTML</div>
+                          <div class="code-output-line"><span class="code-tag-a">&lt;a</span> <span class="code-attr-name">href</span>=<span class="code-attr-val">"blog/primo-post.html"</span><span class="code-tag-a">&gt;</span><span class="code-tag-text">Leggi il post</span><span class="code-tag-a">&lt;/a&gt;</span></div>
+                        </div>
+                      </div>
+
+                      <!-- Scenario C -->
+                      <div class="scenario-explanation" data-scenario="C">
+                        <ul class="explanation-steps">
+                          <li>
+                            <span class="step-marker">1</span>
+                            <div class="explanation-text">
+                              <p>Partiamo da <code>sito/blog/primo-post.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">2</span>
+                            <div class="explanation-text">
+                              <p>Vogliamo arrivare alla home principale <code>sito/index.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">3</span>
+                            <div class="explanation-text">
+                              <p>Dobbiamo prima uscire da <code>blog/</code> per salire a <code>sito/</code>. Usiamo <code>../</code> per salire di una cartella, dove troviamo subito <code>index.html</code>.</p>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="code-output-box">
+                          <div class="code-output-title">Risultato in HTML</div>
+                          <div class="code-output-line"><span class="code-tag-a">&lt;a</span> <span class="code-attr-name">href</span>=<span class="code-attr-val">"../index.html"</span><span class="code-tag-a">&gt;</span><span class="code-tag-text">Torna alla Home</span><span class="code-tag-a">&lt;/a&gt;</span></div>
+                        </div>
+                      </div>
+
+                      <!-- Scenario D -->
+                      <div class="scenario-explanation" data-scenario="D">
+                        <ul class="explanation-steps">
+                          <li>
+                            <span class="step-marker">1</span>
+                            <div class="explanation-text">
+                              <p>Partiamo da <code>sito/blog/primo-post.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">2</span>
+                            <div class="explanation-text">
+                              <p>Vogliamo arrivare all'immagine <code>sito/immagini/logo.png</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">3</span>
+                            <div class="explanation-text">
+                              <p>Prima usciamo da <code>blog/</code> usando <code>../</code>. Una volta arrivati a <code>sito/</code>, entriamo in <code>immagini/</code> e prendiamo <code>logo.png</code>.</p>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="code-output-box">
+                          <div class="code-output-title">Risultato in HTML</div>
+                          <div class="code-output-line"><span class="code-tag-a">&lt;img</span> <span class="code-attr-name">src</span>=<span class="code-attr-val">"../immagini/logo.png"</span> <span class="code-attr-name">alt</span>=<span class="code-attr-val">"Logo"</span><span class="code-tag-a">&gt;</span></div>
+                        </div>
+                      </div>
+
+                      <!-- Scenario E -->
+                      <div class="scenario-explanation" data-scenario="E">
+                        <ul class="explanation-steps">
+                          <li>
+                            <span class="step-marker">1</span>
+                            <div class="explanation-text">
+                              <p>Partiamo da <code>sito/blog/primo-post.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">2</span>
+                            <div class="explanation-text">
+                              <p>Vogliamo arrivare alla home del blog <code>sito/blog/index.html</code>.</p>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="step-marker">3</span>
+                            <div class="explanation-text">
+                              <p>Entrambi sono dentro la cartella <code>blog/</code>. Non dobbiamo uscire con <code>../</code>: basta indicare direttamente il nome del file.</p>
+                            </div>
+                          </li>
+                        </ul>
+                        <div class="code-output-box">
+                          <div class="code-output-title">Risultato in HTML</div>
+                          <div class="code-output-line"><span class="code-tag-a">&lt;a</span> <span class="code-attr-name">href</span>=<span class="code-attr-val">"index.html"</span><span class="code-tag-a">&gt;</span><span class="code-tag-text">Home Blog</span><span class="code-tag-a">&lt;/a&gt;</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="alert alert--note">
