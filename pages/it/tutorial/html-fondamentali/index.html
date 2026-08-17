@@ -1136,7 +1136,7 @@
             <section class="guide-subchapter">
               <p>Le immagini si inseriscono con <code>&lt;img&gt;</code>, un tag vuoto: non racchiude nulla e non ha tag di chiusura, quindi tutte le informazioni passano dagli attributi.</p>
 
-              <pre><code class="language-html">&lt;img src="/immagini/gatto.jpg"
+              <pre><code class="language-html">&lt;img src="/images/gatto-rosso.webp"
      alt="Gatto rosso addormentato su un divano grigio"
      width="800" height="600"&gt;</code></pre>
 
@@ -1186,23 +1186,28 @@
 
               <div class="alert alert--warning">
                 <strong>Omettere <code>alt</code> non è come lasciarlo vuoto</strong>
-                <p>Se scrivi <code>alt=""</code> dichiari "questa immagine è decorativa, ignorala". Se invece l'attributo manca del tutto, lo screen reader non sa cosa fare e legge il nome del file, con risultati tipo «immagine dsc underscore 0042 punto jpg». Scrivi sempre <code>alt</code>, anche quando è vuoto.</p>
+                <p>Se scrivi <code>alt=""</code> dichiari "questa immagine è decorativa, ignorala". Se invece l'attributo manca del tutto, il risultato dipende dallo screen reader: può arrivare a leggere il nome del file, con risultati tipo «immagine dsc underscore 0042 punto jpg». Scrivi sempre <code>alt</code>, anche quando è vuoto.</p>
               </div>
 
               <!-- Interactive Widget: Alt Text Comparator -->
-              <div class="alt-comparator" id="alt-comparator">
+              <div class="alt-comparator" id="alt-comparator" aria-labelledby="alt-comparator-title">
+                <div class="alt-intro">
+                  <p class="alt-eyebrow">Esempio interattivo</p>
+                  <h4 id="alt-comparator-title">Tre casi: ciò che vedi e ciò che comunica HTML</h4>
+                  <p>Seleziona un caso e confronta ciò che appare a schermo con ciò che comunica il codice HTML.</p>
+                </div>
                 <div class="alt-scenarios">
-                  <button type="button" class="alt-scenario-btn is-active" data-scenario="bad">
-                    <span class="scenario-num"><i class="fa-solid fa-circle-exclamation"></i></span>
-                    <span class="scenario-lbl">Alt mancante o vuoto</span>
+                  <button type="button" class="alt-scenario-btn is-active" data-scenario="missing" aria-pressed="true">
+                    <span class="scenario-num" aria-hidden="true"><i class="fa-solid fa-circle-exclamation"></i></span>
+                    <span class="scenario-lbl"><strong>Alt assente</strong><small>Il gatto non viene descritto</small></span>
                   </button>
-                  <button type="button" class="alt-scenario-btn" data-scenario="good">
-                    <span class="scenario-num"><i class="fa-solid fa-circle-check"></i></span>
-                    <span class="scenario-lbl">Alt descrittivo</span>
+                  <button type="button" class="alt-scenario-btn" data-scenario="descriptive" aria-pressed="false">
+                    <span class="scenario-num" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="scenario-lbl"><strong>Alt descrittivo</strong><small>Il gatto viene raccontato</small></span>
                   </button>
-                  <button type="button" class="alt-scenario-btn" data-scenario="decorative">
-                    <span class="scenario-num"><i class="fa-solid fa-star"></i></span>
-                    <span class="scenario-lbl">Immagine decorativa</span>
+                  <button type="button" class="alt-scenario-btn" data-scenario="functional" aria-pressed="false">
+                    <span class="scenario-num" aria-hidden="true"><i class="fa-solid fa-arrow-pointer"></i></span>
+                    <span class="scenario-lbl"><strong>Logo con funzione</strong><small>Il link dichiara dove porta</small></span>
                   </button>
                 </div>
 
@@ -1210,9 +1215,9 @@
                   <div class="alt-card">
                     <div class="alt-card-header">
                       <i class="fa-solid fa-eye"></i>
-                      <span>Cosa vede l'utente</span>
+                      <span>Anteprima visiva</span>
                     </div>
-                    <div class="alt-visual">
+                    <div class="alt-visual" aria-hidden="true">
                       <div class="alt-visual-content">
                         <!-- Populated dynamically -->
                       </div>
@@ -1233,7 +1238,7 @@
                 </div>
 
                 <div class="alt-info-box">
-                  <div class="alt-info-content">
+                  <div class="alt-info-content" role="status" aria-live="polite">
                     <!-- Populated dynamically -->
                   </div>
                 </div>

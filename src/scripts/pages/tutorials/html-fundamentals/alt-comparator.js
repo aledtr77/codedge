@@ -1,4 +1,4 @@
-// Interactive Widget for Alt Text Comparison
+const CAT_IMAGE_PATH = "/images/gatto-rosso.webp";
 
 export default function initAltComparator() {
   const container = document.getElementById("alt-comparator");
@@ -10,79 +10,72 @@ export default function initAltComparator() {
   const infoBox = container.querySelector(".alt-info-content");
 
   const scenarios = {
-    bad: {
-      altText: "",
-      description: "Nessun attributo alt",
-      altMissing: true,
+    missing: {
       visual: `
-        <div class="alt-visual-placeholder">
-          <img src="/images/percorsi-apprendimento/html-fondamentali/dom-tree.svg" alt="" class="placeholder-img" loading="lazy">
-          <p class="placeholder-label">Immagine senza testo alternativo</p>
-        </div>
+        <figure class="alt-example-figure">
+          <img src="${CAT_IMAGE_PATH}" width="800" height="600">
+          <figcaption>Un gatto rosso dorme su un divano grigio.</figcaption>
+        </figure>
       `,
       code: `
 <span class="alt-tag">&lt;img</span>
-  <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"/immagini/gatto.jpg"</span>
-  <span class="alt-attr-name">alt</span>=<span class="alt-attr-value">""</span>
+  <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"${CAT_IMAGE_PATH}"</span>
   <span class="alt-attr-name">width</span>=<span class="alt-attr-value">"800"</span>
   <span class="alt-attr-name">height</span>=<span class="alt-attr-value">"600"</span>
 <span class="alt-tag">&gt;</span>
       `,
       info: `
-        <div class="alt-info-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <div class="alt-info-icon" aria-hidden="true"><i class="fa-solid fa-circle-exclamation"></i></div>
         <div class="alt-info-text">
-          <strong>Cosa legge uno screen reader?</strong><br>
-          "Immagine". Senza un testo alternativo, l'utente sa solo che c'è un'immagine, ma non sa <em>cosa</em> rappresenta. Per un'immagine che porta informazione (come un grafico o una fotografia), questo è un grave problema di accessibilità.
+          <strong>Visivamente c'è un gatto, ma nel codice manca <code>alt</code>.</strong>
+          <p>Chi usa uno screen reader non riceve una descrizione affidabile: a seconda del software può sentire soltanto “immagine” oppure parte del nome del file. Per una fotografia informativa è un errore.</p>
         </div>
       `
     },
-    good: {
-      altText: "Gatto rosso addormentato su un divano grigio",
-      description: "Testo alternativo descrittivo",
-      altMissing: false,
+    descriptive: {
       visual: `
-        <div class="alt-visual-placeholder">
-          <img src="/images/percorsi-apprendimento/html-fondamentali/dom-tree.svg" alt="Gatto rosso addormentato su un divano grigio" class="placeholder-img" loading="lazy">
-          <p class="placeholder-label">Immagine con alt descrittivo</p>
-        </div>
+        <figure class="alt-example-figure">
+          <img src="${CAT_IMAGE_PATH}" alt="Gatto rosso addormentato su un divano grigio" width="800" height="600">
+          <figcaption>Un gatto rosso dorme su un divano grigio.</figcaption>
+        </figure>
       `,
       code: `
 <span class="alt-tag">&lt;img</span>
-  <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"/immagini/gatto.jpg"</span>
+  <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"${CAT_IMAGE_PATH}"</span>
   <span class="alt-attr-name">alt</span>=<span class="alt-attr-value">"Gatto rosso addormentato su un divano grigio"</span>
   <span class="alt-attr-name">width</span>=<span class="alt-attr-value">"800"</span>
   <span class="alt-attr-name">height</span>=<span class="alt-attr-value">"600"</span>
 <span class="alt-tag">&gt;</span>
       `,
       info: `
-        <div class="alt-info-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="alt-info-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div>
         <div class="alt-info-text">
-          <strong>Cosa legge uno screen reader?</strong><br>
-          "Gatto rosso addormentato su un divano grigio". L'utente sa esattamente cosa rappresenta l'immagine, anche se non può vederla. Questo è un esempio di <strong>alt perfetto</strong> per un'immagine che porta informazione.
+          <strong>Lo screen reader legge: “Gatto rosso addormentato su un divano grigio”.</strong>
+          <p>Il testo comunica l'informazione essenziale senza iniziare con “immagine di”, perché il lettore di schermo annuncia già che si tratta di un'immagine.</p>
         </div>
       `
     },
-    decorative: {
-      altText: "(vuoto)",
-      description: "Immagine decorativa",
-      altMissing: false,
+    functional: {
       visual: `
-        <div class="alt-visual-placeholder">
-          <img src="/icons/codedge-logo.svg" alt="" class="placeholder-img" loading="lazy">
-          <p class="placeholder-label">Logo decorativo (alt vuoto)</p>
+        <div class="alt-logo-example">
+          <img src="/icons/codedge-logo.svg" alt="Codege — torna alla home" width="180" height="80">
+          <span>Il logo è anche un link alla home</span>
         </div>
       `,
       code: `
-<span class="alt-tag">&lt;img</span>
-  <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"/icons/logo.svg"</span>
-  <span class="alt-attr-name">alt</span>=<span class="alt-attr-value">""</span>
-<span class="alt-tag">&gt;</span>
+<span class="alt-tag">&lt;a</span> <span class="alt-attr-name">href</span>=<span class="alt-attr-value">"/"</span><span class="alt-tag">&gt;</span>
+  <span class="alt-tag">&lt;img</span>
+    <span class="alt-attr-name">src</span>=<span class="alt-attr-value">"/icons/codedge-logo.svg"</span>
+    <span class="alt-attr-name">alt</span>=<span class="alt-attr-value">"Codege — torna alla home"</span>
+    <span class="alt-attr-name">width</span>=<span class="alt-attr-value">"180"</span> <span class="alt-attr-name">height</span>=<span class="alt-attr-value">"80"</span>
+  <span class="alt-tag">&gt;</span>
+<span class="alt-tag">&lt;/a&gt;</span>
       `,
       info: `
-        <div class="alt-info-icon"><i class="fa-solid fa-star"></i></div>
+        <div class="alt-info-icon" aria-hidden="true"><i class="fa-solid fa-arrow-pointer"></i></div>
         <div class="alt-info-text">
-          <strong>Cosa legge uno screen reader?</strong><br>
-          Niente. L'immagine viene completamente saltata perché <code>alt=""</code> dichiara che è <strong>decorativa</strong>, non informativa. Questo è corretto per loghi, ornamenti o immagini che servono solo a completare il design.
+          <strong>Per un'immagine cliccabile, l'<code>alt</code> descrive la funzione.</strong>
+          <p>“Codege — torna alla home” chiarisce sia l'identità del logo sia la destinazione del link. Scrivere soltanto <code>alt="logo"</code> non direbbe dove porta.</p>
         </div>
       `
     }
@@ -92,32 +85,20 @@ export default function initAltComparator() {
     const scenario = scenarios[name];
     if (!scenario) return;
 
-    // Update buttons state
-    buttons.forEach(btn => {
-      if (btn.getAttribute("data-scenario") === name) {
-        btn.classList.add("is-active");
-      } else {
-        btn.classList.remove("is-active");
-      }
+    buttons.forEach((button) => {
+      const isSelected = button.dataset.scenario === name;
+      button.classList.toggle("is-active", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
     });
 
-    // Update visual content
-    visualContainer.innerHTML = scenario.visual;
-
-    // Update code content
+    visualContainer.innerHTML = scenario.visual.trim();
     codeContent.innerHTML = `<pre><code>${scenario.code.trim()}</code></pre>`;
-
-    // Update info box
-    infoBox.innerHTML = scenario.info;
+    infoBox.innerHTML = scenario.info.trim();
   }
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const name = btn.getAttribute("data-scenario");
-      selectScenario(name);
-    });
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => selectScenario(button.dataset.scenario));
   });
 
-  // Load default scenario (bad) on load
-  selectScenario("bad");
+  selectScenario("missing");
 }
