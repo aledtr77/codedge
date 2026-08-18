@@ -1,0 +1,28 @@
+export default function initNeutralExplorer() {
+  const explorer = document.getElementById("neutral-explorer");
+  if (!explorer) return;
+
+  const triggers = explorer.querySelectorAll(".neutral-explorer__btn");
+  const defaultPiece = "div";
+
+  const activate = (piece) => {
+    if (!piece) return;
+
+    triggers.forEach((el) => {
+      const isMatch = el.dataset.piece === piece;
+      el.classList.toggle("is-active", isMatch);
+      el.setAttribute("aria-pressed", String(isMatch));
+    });
+
+    explorer.querySelectorAll("[data-piece]").forEach((el) => {
+      if (el.classList.contains("neutral-explorer__btn")) return;
+      el.classList.toggle("is-active", el.dataset.piece === piece);
+    });
+  };
+
+  triggers.forEach((el) => {
+    el.addEventListener("click", () => activate(el.dataset.piece));
+  });
+
+  activate(defaultPiece);
+}

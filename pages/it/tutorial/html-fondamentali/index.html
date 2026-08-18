@@ -279,7 +279,9 @@
             <section class="guide-subchapter">
               <p>Nei capitoli precedenti abbiamo visto come il browser costruisce l'albero e come i tag si annidano senza incrociarsi. Ora apriamo un file vero.</p>
 
-              <p>Lo <strong>scheletro</strong> di una pagina è l'intero documento HTML: ogni tag che il browser trasformerà nel DOM. Il <strong>boilerplate</strong> è più stretto. È solo il kit di partenza: i pochi tag principali già annidati al posto giusto. In VS Code lo ottieni digitando <code>!</code> e premendo Invio; qui lo smontiamo.</p>
+              <p>Lo <strong>scheletro</strong> di una pagina è l'intero documento HTML: ogni tag che il browser trasformerà nel DOM. Il <strong>boilerplate</strong> è più stretto. È solo il kit di partenza: i pochi tag principali già annidati al posto giusto. In VS Code lo ottieni digitando <code>!</code> e premendo Invio.</p>
+
+              <p>Il file inizia con una dichiarazione (<code>DOCTYPE</code>), poi il tag radice <code>&lt;html&gt;</code>. Dentro ci stanno due scatole: <code>&lt;head&gt;</code>, invisibile in pagina, con i <code>meta</code> e il <code>title</code>; e <code>&lt;body&gt;</code>, quello che si vede. Il widget sotto le smonta una alla volta.</p>
 
               <div class="boilerplate-explorer" id="boilerplate-explorer" aria-labelledby="boilerplate-explorer-title">
                 <div class="boilerplate-explorer__intro">
@@ -434,7 +436,11 @@
                 </ol>
               </div>
 
-              <p>Ora che abbiamo chiaro cos'è questo spazio e perché esiste, iniziamo a riempirlo. Partiamo dal testo. Il browser non guarda come vai a capo nel file: solo i tag creano struttura. I titoli non scelgono la grandezza del carattere: scrivono l'indice della pagina.</p>
+              <p>Ora che abbiamo chiaro cos'è questo spazio e perché esiste, iniziamo a riempirlo. Il caso più comune è il testo.</p>
+
+              <p>Se scrivi le frasi nude nel <code>&lt;body&gt;</code> e vai a capo nell'editor, il browser le unisce in una riga sola: gli a capo del file non contano. Per fare un blocco serve il tag <code>&lt;p&gt;</code>.</p>
+
+              <p>Per spezzare un testo lungo servono i titoli, da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>. Il numero non è la grandezza del carattere: è il livello nell'indice della pagina. Il widget sotto mostra le stesse parole in quattro strutture.</p>
 
               <div class="text-structure" id="text-structure-explorer" aria-labelledby="text-structure-title">
                 <div class="text-structure__intro">
@@ -595,7 +601,13 @@
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Elementi a blocco e in linea: come si dispongono i tag</h2>
             <section class="guide-subchapter">
-              <p>Prima di imparare altri tag serve una mappa. Alcuni tag occupano tutta la riga. Altri restano dentro la frase. È tutto il capitolo, visto in un colpo d'occhio:</p>
+              <p>Prima di imparare altri tag serve una mappa di come il browser li dispone nella pagina.</p>
+
+              <p>Un elemento <strong>a blocco</strong> (<em>block</em>) inizia su una nuova riga e prende tutta la larghezza disponibile. Per questo due paragrafi o due titoli finiscono uno sotto l'altro, anche quando il testo è corto.</p>
+
+              <p>Un elemento <strong>in linea</strong> (<em>inline</em>) non apre una nuova riga: occupa solo lo spazio delle sue lettere e resta nel flusso della frase. Serve a marcare una parola senza spezzare il paragrafo. Esempi: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;a&gt;</code>.</p>
+
+              <p>L'in linea vive dentro un blocco, non il contrario. E <code>&lt;br&gt;</code> non serve a fare spazio tra due scatole: serve quando l'a capo è parte del testo, come in un indirizzo. Il widget sotto mostra questi quattro punti.</p>
 
               <div class="flow-explorer" id="flow-explorer" aria-labelledby="flow-explorer-title">
                 <div class="flow-explorer__intro">
@@ -710,9 +722,6 @@
                 </div>
               </div>
 
-              <h3>Elementi a blocco</h3>
-              <p>Un elemento <strong>a blocco</strong> (<em>block</em>) inizia normalmente su una nuova riga e si estende per tutta la larghezza disponibile. Per questo due paragrafi o due titoli vengono disposti uno sotto l'altro, anche quando il loro testo è corto.</p>
-
               <h3>Gli elementi a blocco che userai davvero</h3>
               <div class="table-wrapper">
                 <table class="guide-table">
@@ -779,8 +788,7 @@
               </div>
 
               <h3>Elementi in linea</h3>
-              <p>Un elemento <strong>in linea</strong> (<em>inline</em>) non apre una nuova riga: occupa soltanto lo spazio necessario al suo contenuto e rimane nel flusso della frase. Serve quindi a marcare una parola o una porzione di testo senza spezzare il paragrafo.</p>
-              <p>Tra gli elementi mostrati in linea per impostazione predefinita ci sono <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;abbr&gt;</code> e <code>&lt;img&gt;</code>.</p>
+              <p>Oltre a quelli già visti, restano in linea anche <code>&lt;span&gt;</code>, <code>&lt;abbr&gt;</code> e <code>&lt;img&gt;</code>.</p>
 
               <div class="alert alert--note">
                 <strong>Comportamento visivo e struttura HTML non sono la stessa cosa</strong>
@@ -958,7 +966,16 @@
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>6. Gli attributi universali: dare un'identità ai tag</h2>
             <section class="guide-subchapter">
-              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette anche degli <strong>attributi globali</strong>: li puoi scrivere su <strong>qualsiasi elemento</strong>. I due che contano di più sono <code>id</code> e <code>class</code>. Entrambi sono etichette. Da soli non cambiano nulla a schermo.</p>
+              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette anche degli <strong>attributi globali</strong>: li puoi scrivere su <strong>qualsiasi elemento</strong>.</p>
+
+              <p>I due che contano di più sono <code>id</code> e <code>class</code>. Entrambi sono etichette, così puoi ritrovare un elemento più avanti. Cambia solo quante volte l'etichetta può comparire:</p>
+
+              <ul class="guide-list">
+                <li><strong><code>id</code></strong> è un nome unico, come un numero di matricola. In una pagina può esistere una sola volta.</li>
+                <li><strong><code>class</code></strong> è un nome di gruppo. La stessa classe può stare su quanti elementi vuoi, e un elemento può avere più classi separate da uno spazio.</li>
+              </ul>
+
+              <p>Da soli non cambiano colore, misura o posizione. Preparano il terreno per un link, un foglio di stile o del JavaScript. Nell'HTML si scrive solo il nome: niente <code>#</code> e niente <code>.</code>. Il widget sotto mostra questi quattro punti.</p>
 
               <div class="label-explorer" id="label-explorer" aria-labelledby="label-explorer-title">
                 <div class="label-explorer__intro">
@@ -1801,36 +1818,187 @@
           <section id="chapter-12" class="guide-block guide-chapter">
             <h2>10. Le tabelle</h2>
             <section class="guide-subchapter">
-              <p>Una tabella serve per i <strong>dati tabellari</strong>: informazioni che hanno senso solo incrociando una riga e una colonna. Un listino prezzi, un orario ferroviario, un confronto tra piani di abbonamento.</p>
+              <p>Una tabella non è un rettangolo con delle linee. È un modo di organizzare informazioni che hanno senso solo incrociando una riga e una colonna: il prezzo di un piano, l'orario di un treno, il confronto tra due abbonamenti. Se togli quel numero dalla griglia e continua a stare in piedi da solo, probabilmente la tabella non serviva.</p>
+
+              <p>Il contenitore è <code>&lt;table&gt;</code>. Dentro ci sono le righe (<code>&lt;tr&gt;</code>). In ogni riga stanno le celle: <code>&lt;th&gt;</code> dà un nome a una colonna o a una riga, <code>&lt;td&gt;</code> tiene il dato. Il titolo della tabella è <code>&lt;caption&gt;</code>. <code>&lt;thead&gt;</code> e <code>&lt;tbody&gt;</code> separano la testa dai dati.</p>
 
               <div class="alert alert--warning">
                 <strong>Mai usare le tabelle per impaginare</strong>
                 <p>Negli anni Novanta si costruivano i layout con tabelle invisibili. Oggi è un errore grave: uno screen reader annuncia righe e colonne che non esistono concettualmente, e la pagina diventa impossibile da adattare agli schermi piccoli. Per il layout esistono il CSS e i tag semantici del capitolo 12.</p>
               </div>
 
+              <p>Chi guarda incrocia riga e colonna con gli occhi. Chi ascolta sente le celle una dopo l'altra. Per questo su ogni <code>&lt;th&gt;</code> si mette <code>scope</code>: lo screen reader può dire «Base, prezzo: 9,99 euro» invece di un elenco di numeri. Il widget sotto riprende questi quattro punti.</p>
+
+              <div class="table-explorer" id="table-explorer" aria-labelledby="table-explorer-title">
+                <div class="table-explorer__intro">
+                  <p class="table-explorer__eyebrow">Esempio interattivo</p>
+                  <h3 id="table-explorer-title">Una tabella, pezzo per pezzo</h3>
+                  <p>Gli stessi quattro punti, visti uno alla volta.</p>
+                </div>
+
+                <div class="table-explorer__scenarios" role="group" aria-label="Come è fatta una tabella">
+                  <button type="button" class="table-explorer__btn is-active" data-piece="grid" aria-pressed="true">
+                    <span class="table-explorer__num" aria-hidden="true">1</span>
+                    <span class="table-explorer__lbl"><strong>La griglia</strong><small>Riga × colonna</small></span>
+                  </button>
+                  <button type="button" class="table-explorer__btn" data-piece="parts" aria-pressed="false">
+                    <span class="table-explorer__num" aria-hidden="true">2</span>
+                    <span class="table-explorer__lbl"><strong>I pezzi</strong><small>caption, th, td</small></span>
+                  </button>
+                  <button type="button" class="table-explorer__btn" data-piece="scope" aria-pressed="false">
+                    <span class="table-explorer__num" aria-hidden="true">3</span>
+                    <span class="table-explorer__lbl"><strong>scope</strong><small>Quello che si sente</small></span>
+                  </button>
+                  <button type="button" class="table-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="table-explorer__num" aria-hidden="true">4</span>
+                    <span class="table-explorer__lbl"><strong>La trappola</strong><small>Non è un layout</small></span>
+                  </button>
+                </div>
+
+                <div class="table-explorer__body">
+                  <div class="table-explorer__card">
+                    <div class="table-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Quello che hai scritto</span>
+                    </div>
+                    <pre class="table-explorer__code table-explorer__panel is-active" data-piece="grid"><span class="table-explorer__tok--tag">&lt;table&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;caption&gt;</span><span class="table-explorer__tok--text">Piani 2026</span><span class="table-explorer__tok--tag">&lt;/caption&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Piano</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Prezzo</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Spazio</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">Base</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">9,99 €</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">10 GB</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+<span class="table-explorer__tok--tag">&lt;/table&gt;</span></pre>
+                    <pre class="table-explorer__code table-explorer__panel" data-piece="parts"><span class="table-explorer__tok--tag">&lt;table&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;caption&gt;</span><span class="table-explorer__tok--text">Piani 2026</span><span class="table-explorer__tok--tag">&lt;/caption&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;thead&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+      <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Piano</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+      <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Prezzo</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/thead&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tbody&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+      <span class="table-explorer__tok--tag">&lt;th&gt;</span><span class="table-explorer__tok--text">Base</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+      <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">9,99 €</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tbody&gt;</span>
+<span class="table-explorer__tok--tag">&lt;/table&gt;</span></pre>
+                    <pre class="table-explorer__code table-explorer__panel" data-piece="scope"><span class="table-explorer__tok--tag">&lt;table&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th</span> <span class="table-explorer__tok--attr">scope</span>=<span class="table-explorer__tok--val">"col"</span><span class="table-explorer__tok--tag">&gt;</span><span class="table-explorer__tok--text">Piano</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th</span> <span class="table-explorer__tok--attr">scope</span>=<span class="table-explorer__tok--val">"col"</span><span class="table-explorer__tok--tag">&gt;</span><span class="table-explorer__tok--text">Prezzo</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;th</span> <span class="table-explorer__tok--attr">scope</span>=<span class="table-explorer__tok--val">"row"</span><span class="table-explorer__tok--tag">&gt;</span><span class="table-explorer__tok--text">Base</span><span class="table-explorer__tok--tag">&lt;/th&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">10 €</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+<span class="table-explorer__tok--tag">&lt;/table&gt;</span></pre>
+                    <pre class="table-explorer__code table-explorer__panel" data-piece="trap"><span class="table-explorer__tok--comment">&lt;!-- una pagina, non dei dati --&gt;</span>
+<span class="table-explorer__tok--tag">&lt;table&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;tr&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">Logo</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">Menu</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+    <span class="table-explorer__tok--tag">&lt;td&gt;</span><span class="table-explorer__tok--text">Articolo</span><span class="table-explorer__tok--tag">&lt;/td&gt;</span>
+  <span class="table-explorer__tok--tag">&lt;/tr&gt;</span>
+<span class="table-explorer__tok--tag">&lt;/table&gt;</span></pre>
+                  </div>
+
+                  <div class="table-explorer__card">
+                    <div class="table-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>Quello che esce</span>
+                    </div>
+                    <div class="table-explorer__preview table-explorer__panel is-active" data-piece="grid">
+                      <table class="table-explorer__grid table-explorer__grid--plain">
+                        <caption>Piani 2026</caption>
+                        <tbody>
+                          <tr><th scope="col">Piano</th><th scope="col">Prezzo</th><th scope="col">Spazio</th></tr>
+                          <tr><td>Base</td><td>9,99 €</td><td>10 GB</td></tr>
+                          <tr><td>Premium</td><td>14,99 €</td><td>100 GB</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-explorer__preview table-explorer__panel" data-piece="parts">
+                      <table class="table-explorer__grid">
+                        <caption>Piani 2026</caption>
+                        <thead>
+                          <tr><th scope="col">Piano</th><th scope="col">Prezzo</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><th scope="row">Base</th><td>9,99 €</td></tr>
+                          <tr><th scope="row">Premium</th><td>14,99 €</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-explorer__preview table-explorer__panel" data-piece="scope">
+                      <table class="table-explorer__grid table-explorer__grid--scope">
+                        <tbody>
+                          <tr>
+                            <th scope="col">Piano</th>
+                            <th scope="col">Prezzo</th>
+                          </tr>
+                          <tr>
+                            <th scope="row">Base</th>
+                            <td>10 €</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="table-explorer__preview table-explorer__panel" data-piece="trap">
+                      <table class="table-explorer__layout">
+                        <tbody>
+                          <tr>
+                            <td>Logo</td>
+                            <td>Menu</td>
+                            <td>Articolo</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="table-explorer__explain is-active" data-piece="grid">
+                      <div class="table-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-table"></i></div>
+                      <div class="table-explorer__explain-text">
+                        <strong>Il fatto vive all'incrocio.</strong>
+                        <p>9,99 € da solo non è «un prezzo». È il prezzo del piano Base. Se il numero ha ancora senso dopo che lo togli dalla griglia, probabilmente la tabella non serve.</p>
+                      </div>
+                    </div>
+                    <div class="table-explorer__explain" data-piece="parts">
+                      <div class="table-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                      <div class="table-explorer__explain-text">
+                        <strong><code>&lt;th&gt;</code> dà il nome. <code>&lt;td&gt;</code> tiene il fatto.</strong>
+                        <p><code>&lt;caption&gt;</code> è il titolo della tabella. <code>&lt;thead&gt;</code> è la riga di testa. <code>&lt;tbody&gt;</code> sono i dati. Un <code>&lt;tr&gt;</code> è una riga. Anche la prima colonna può essere un <code>&lt;th&gt;</code>: dà il nome alla riga.</p>
+                      </div>
+                    </div>
+                    <div class="table-explorer__explain" data-piece="scope">
+                      <div class="table-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-ear-listen"></i></div>
+                      <div class="table-explorer__explain-text">
+                        <strong>Due parole: colonna o riga.</strong>
+                        <p><code>scope="col"</code> su Piano e Prezzo: quel nome vale per la colonna sotto. <code>scope="row"</code> su Base: quel nome vale per la riga a destra. Così 10 € non è un numero perso: è il prezzo del piano Base.</p>
+                      </div>
+                    </div>
+                    <div class="table-explorer__explain" data-piece="trap">
+                      <div class="table-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="table-explorer__explain-text">
+                        <strong>Una tabella non è il layout della pagina.</strong>
+                        <p>Logo, menu e articolo non sono una riga di dati. Lo screen reader annuncerà comunque tre colonne. Per il layout usa il CSS e i tag semantici del capitolo 12.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <h3>La struttura completa</h3>
-              <pre><code class="language-html">&lt;table&gt;
-  &lt;caption&gt;Piani di abbonamento 2026&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="col"&gt;Piano&lt;/th&gt;
-      &lt;th scope="col"&gt;Prezzo mensile&lt;/th&gt;
-      &lt;th scope="col"&gt;Spazio&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;Base&lt;/th&gt;
-      &lt;td&gt;9,99 €&lt;/td&gt;
-      &lt;td&gt;10 GB&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th scope="row"&gt;Premium&lt;/th&gt;
-      &lt;td&gt;14,99 €&lt;/td&gt;
-      &lt;td&gt;100 GB&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
 
               <div class="table-wrapper">
                 <table class="guide-table">
@@ -1853,10 +2021,39 @@
                 </table>
               </div>
 
-              <h3>L'attributo che rende accessibile una tabella</h3>
-              <p>Chi vede la tabella incrocia riga e colonna con lo sguardo. Chi la ascolta, no: sente le celle una dopo l'altra. L'attributo <code>scope</code> su ogni <code>&lt;th&gt;</code> risolve il problema dicendo se quell'intestazione vale per una colonna (<code>scope="col"</code>) o per una riga (<code>scope="row"</code>).</p>
+              <p>Sulle celle vanno anche tre attributi. Non sono tag: sono coppie <code>nome="valore"</code> scritte nel tag di apertura.</p>
 
-              <p>Con <code>scope</code> impostato, lo screen reader legge «Premium, prezzo mensile: 14,99 euro» invece di un elenco di numeri privi di riferimento. Sono due parole per cella e cambiano completamente l'usabilità.</p>
+              <div class="table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>Attributo</th>
+                      <th class="is-accent">Su quale tag</th>
+                      <th>Ruolo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="is-code is-strong">scope</td>
+                      <td><code>&lt;th&gt;</code></td>
+                      <td><code>scope="col"</code> nomina una colonna; <code>scope="row"</code> nomina una riga. Serve a chi ascolta, non a chi guarda.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">colspan</td>
+                      <td><code>&lt;th&gt;</code> o <code>&lt;td&gt;</code></td>
+                      <td>Quante colonne occupa quella cella. <code>colspan="2"</code> ne copre due.</td>
+                    </tr>
+                    <tr>
+                      <td class="is-code is-strong">rowspan</td>
+                      <td><code>&lt;th&gt;</code> o <code>&lt;td&gt;</code></td>
+                      <td>Quante righe occupa quella cella. <code>rowspan="2"</code> ne copre due.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>L'attributo che rende accessibile una tabella</h3>
+              <p>Come hai visto nel widget: <code>scope="col"</code> o <code>scope="row"</code> su ogni <code>&lt;th&gt;</code>. Due parole per cella, e l'elenco di numeri diventa una frase.</p>
 
               <h3>Unire più celle</h3>
               <p><code>colspan</code> estende una cella su più colonne, <code>rowspan</code> su più righe:</p>
@@ -1891,15 +2088,119 @@
               <p>Riconosci la distinzione: è quella del capitolo 5. Un <code>&lt;div&gt;</code> si comporta come un <code>&lt;p&gt;</code> (va a capo, prende tutta la larghezza), un <code>&lt;span&gt;</code> come uno <code>&lt;strong&gt;</code> (resta nella riga).</p>
 
               <h3>A cosa servono</h3>
-              <p>A raggruppare elementi per potervi agganciare qualcosa — quasi sempre un <code>class</code> per il CSS, a volte un <code>id</code> per JavaScript — quando quel raggruppamento non ha un significato proprio da comunicare.</p>
+              <p>A raggruppare elementi per potervi agganciare qualcosa — quasi sempre un <code>class</code> per il CSS, a volte un <code>id</code> per JavaScript — quando quel raggruppamento non ha un significato proprio da comunicare. Il widget sotto mostra i quattro punti.</p>
 
-              <pre><code class="language-html">&lt;div class="scheda-prodotto"&gt;
-  &lt;h3&gt;Tazza Codedge&lt;/h3&gt;
-  &lt;p&gt;Ceramica smaltata, 350 ml.&lt;/p&gt;
-  &lt;p&gt;Prezzo: &lt;span class="prezzo-scontato"&gt;12,90 €&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+              <div class="neutral-explorer" id="neutral-explorer" aria-labelledby="neutral-explorer-title">
+                <div class="neutral-explorer__intro">
+                  <p class="neutral-explorer__eyebrow">Esempio interattivo</p>
+                  <h3 id="neutral-explorer-title">div e span</h3>
+                  <p>Una scatola a blocco, una parola nella frase, i due insieme, e l'errore di usare un div al posto di un titolo.</p>
+                </div>
 
-              <p>Il <code>&lt;div&gt;</code> esiste solo per dare al CSS un appiglio con cui disegnare il riquadro, lo sfondo e i bordi della scheda. Lo <code>&lt;span&gt;</code> esiste solo per colorare di rosso il prezzo. Togli il CSS e la pagina resta identica: sono contenitori a significato zero.</p>
+                <div class="neutral-explorer__scenarios" role="group" aria-label="Come si usano div e span">
+                  <button type="button" class="neutral-explorer__btn is-active" data-piece="div" aria-pressed="true">
+                    <span class="neutral-explorer__num" aria-hidden="true">1</span>
+                    <span class="neutral-explorer__lbl"><strong>div</strong><small>Scatola a blocco</small></span>
+                  </button>
+                  <button type="button" class="neutral-explorer__btn" data-piece="span" aria-pressed="false">
+                    <span class="neutral-explorer__num" aria-hidden="true">2</span>
+                    <span class="neutral-explorer__lbl"><strong>span</strong><small>Resta nella frase</small></span>
+                  </button>
+                  <button type="button" class="neutral-explorer__btn" data-piece="together" aria-pressed="false">
+                    <span class="neutral-explorer__num" aria-hidden="true">3</span>
+                    <span class="neutral-explorer__lbl"><strong>Insieme</strong><small>Scatola + parola</small></span>
+                  </button>
+                  <button type="button" class="neutral-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="neutral-explorer__num" aria-hidden="true">4</span>
+                    <span class="neutral-explorer__lbl"><strong>La trappola</strong><small>div non è un titolo</small></span>
+                  </button>
+                </div>
+
+                <div class="neutral-explorer__body">
+                  <div class="neutral-explorer__card">
+                    <div class="neutral-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Quello che hai scritto</span>
+                    </div>
+                    <pre class="neutral-explorer__code neutral-explorer__panel is-active" data-piece="div"><span class="neutral-explorer__tok--tag">&lt;div&gt;</span>
+  <span class="neutral-explorer__tok--tag">&lt;h3&gt;</span><span class="neutral-explorer__tok--text">Tazza</span><span class="neutral-explorer__tok--tag">&lt;/h3&gt;</span>
+  <span class="neutral-explorer__tok--tag">&lt;p&gt;</span><span class="neutral-explorer__tok--text">Ceramica, 350 ml.</span><span class="neutral-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="neutral-explorer__tok--tag">&lt;/div&gt;</span></pre>
+                    <pre class="neutral-explorer__code neutral-explorer__panel" data-piece="span"><span class="neutral-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="neutral-explorer__tok--text">Prezzo: </span><span class="neutral-explorer__tok--tag">&lt;span&gt;</span><span class="neutral-explorer__tok--text">12,90 €</span><span class="neutral-explorer__tok--tag">&lt;/span&gt;</span>
+<span class="neutral-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="neutral-explorer__code neutral-explorer__panel" data-piece="together"><span class="neutral-explorer__tok--tag">&lt;div&gt;</span>
+  <span class="neutral-explorer__tok--tag">&lt;h3&gt;</span><span class="neutral-explorer__tok--text">Tazza</span><span class="neutral-explorer__tok--tag">&lt;/h3&gt;</span>
+  <span class="neutral-explorer__tok--tag">&lt;p&gt;</span>
+    <span class="neutral-explorer__tok--text">Prezzo: </span><span class="neutral-explorer__tok--tag">&lt;span&gt;</span><span class="neutral-explorer__tok--text">12,90 €</span><span class="neutral-explorer__tok--tag">&lt;/span&gt;</span>
+  <span class="neutral-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="neutral-explorer__tok--tag">&lt;/div&gt;</span></pre>
+                    <pre class="neutral-explorer__code neutral-explorer__panel" data-piece="trap"><span class="neutral-explorer__tok--tag">&lt;div&gt;</span><span class="neutral-explorer__tok--text">Come si scrive l'HTML</span><span class="neutral-explorer__tok--tag">&lt;/div&gt;</span>
+<span class="neutral-explorer__tok--tag">&lt;h1&gt;</span><span class="neutral-explorer__tok--text">Come si scrive l'HTML</span><span class="neutral-explorer__tok--tag">&lt;/h1&gt;</span></pre>
+                  </div>
+
+                  <div class="neutral-explorer__card">
+                    <div class="neutral-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>Quello che esce</span>
+                    </div>
+                    <div class="neutral-explorer__preview neutral-explorer__panel is-active" data-piece="div">
+                      <div class="neutral-explorer__box">
+                        <p class="neutral-explorer__title">Tazza</p>
+                        <p class="neutral-explorer__copy">Ceramica, 350 ml.</p>
+                      </div>
+                    </div>
+                    <div class="neutral-explorer__preview neutral-explorer__panel" data-piece="span">
+                      <p class="neutral-explorer__copy">Prezzo: <span class="neutral-explorer__word">12,90 €</span></p>
+                    </div>
+                    <div class="neutral-explorer__preview neutral-explorer__panel" data-piece="together">
+                      <div class="neutral-explorer__box">
+                        <p class="neutral-explorer__title">Tazza</p>
+                        <p class="neutral-explorer__copy">Prezzo: <span class="neutral-explorer__word">12,90 €</span></p>
+                      </div>
+                    </div>
+                    <div class="neutral-explorer__preview neutral-explorer__panel" data-piece="trap">
+                      <p class="neutral-explorer__fake">Come si scrive l'HTML</p>
+                      <p class="neutral-explorer__real">Come si scrive l'HTML</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="neutral-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="neutral-explorer__explain is-active" data-piece="div">
+                      <div class="neutral-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-square"></i></div>
+                      <div class="neutral-explorer__explain-text">
+                        <strong><code>&lt;div&gt;</code> è una scatola. Non dice cosa c'è dentro.</strong>
+                        <p>Prende tutta la riga, come un paragrafo. Il titolo e il testo restano titolo e testo. Il <code>&lt;div&gt;</code> serve solo a tenerli insieme, per esempio per il CSS.</p>
+                      </div>
+                    </div>
+                    <div class="neutral-explorer__explain" data-piece="span">
+                      <div class="neutral-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-i-cursor"></i></div>
+                      <div class="neutral-explorer__explain-text">
+                        <strong><code>&lt;span&gt;</code> è una parola nella frase. Non dice cosa significa.</strong>
+                        <p>Non va a capo. Marca «12,90 €» e il resto della riga continua accanto. Serve se vuoi agganciarci un <code>class</code>, non se la parola è importante: per quello c'è <code>&lt;strong&gt;</code>.</p>
+                      </div>
+                    </div>
+                    <div class="neutral-explorer__explain" data-piece="together">
+                      <div class="neutral-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                      <div class="neutral-explorer__explain-text">
+                        <strong>Il <code>&lt;div&gt;</code> avvolge la scheda. Lo <code>&lt;span&gt;</code> avvolge il prezzo.</strong>
+                        <p>Togli il CSS e la pagina dice le stesse cose: tazza, prezzo. I due tag non aggiungono significato. Aggiungono solo un appiglio.</p>
+                      </div>
+                    </div>
+                    <div class="neutral-explorer__explain" data-piece="trap">
+                      <div class="neutral-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="neutral-explorer__explain-text">
+                        <strong>La prima riga è un <code>&lt;div&gt;</code>. La seconda è un <code>&lt;h1&gt;</code>.</strong>
+                        <p>Stesse parole. Solo la seconda è un titolo: entra nell'indice, Google e gli screen reader la trovano. Un <code>&lt;div&gt;</code> non diventa un titolo nemmeno se lo fai grande col CSS.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>Togli il CSS e la pagina resta identica: sono contenitori a significato zero.</p>
 
               <div class="alert alert--note">
                 <strong>Il test per capire se ti serve un div</strong>

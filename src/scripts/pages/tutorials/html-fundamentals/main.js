@@ -13,6 +13,8 @@ import "@/styles/pages/tutorials/html-fundamentals/boilerplate-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/text-structure.css";
 import "@/styles/pages/tutorials/html-fundamentals/flow-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/label-explorer.css";
+import "@/styles/pages/tutorials/html-fundamentals/table-explorer.css";
+import "@/styles/pages/tutorials/html-fundamentals/neutral-explorer.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -29,6 +31,8 @@ import initBoilerplateExplorer from "./boilerplate-explorer.js";
 import initTextStructureExplorer from "./text-structure.js";
 import initFlowExplorer from "./flow-explorer.js";
 import initLabelExplorer from "./label-explorer.js";
+import initTableExplorer from "./table-explorer.js";
+import initNeutralExplorer from "./neutral-explorer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -41,4 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTextStructureExplorer();
   initFlowExplorer();
   initLabelExplorer();
+  initTableExplorer();
+  initNeutralExplorer();
 });
