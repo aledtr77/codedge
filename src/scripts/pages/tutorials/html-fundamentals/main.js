@@ -17,6 +17,7 @@ import "@/styles/pages/tutorials/html-fundamentals/table-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/neutral-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/page-map.css";
 import "@/styles/pages/tutorials/html-fundamentals/form-lab.css";
+import "@/styles/pages/tutorials/html-fundamentals/head-stage.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -37,6 +38,7 @@ import initTableExplorer from "./table-explorer.js";
 import initNeutralExplorer from "./neutral-explorer.js";
 import initPageMap from "./page-map.js";
 import initFormLab from "./form-lab.js";
+import initHeadStage from "./head-stage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -53,4 +55,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initNeutralExplorer();
   initPageMap();
   initFormLab();
+  initHeadStage();
 });
