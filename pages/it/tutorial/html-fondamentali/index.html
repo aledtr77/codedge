@@ -2697,102 +2697,63 @@
                 <li><strong><code>title</code></strong>: il titolo della scheda del browser, il nome del segnalibro e il titolo blu nei risultati di ricerca. È diverso dall'<code>&lt;h1&gt;</code>, che sta nel body: tienilo entro i 60 caratteri.</li>
               </ul>
 
-              <p>Queste righe non si vedono nella pagina. Si vedono intorno: sulla scheda, su Google, nella chat, sul telefono. Il widget sotto le segue fino a lì.</p>
+              <p>Queste righe non si vedono nel body. Clicca una riga dell'head: si accende il posto dove finisce.</p>
 
               <div class="head-stage" id="head-stage" aria-labelledby="head-stage-title">
                 <div class="head-stage__intro">
                   <p class="head-stage__eyebrow">Esempio interattivo</p>
-                  <h3 id="head-stage-title">Dove finisce l'head</h3>
-                  <p>Stessa pagina, quattro posti fuori dal body.</p>
+                  <h3 id="head-stage-title">Tre righe, tre posti</h3>
+                  <p><code>&lt;title&gt;</code> va sulla scheda. La description va su Google. Open Graph va nella chat.</p>
                 </div>
 
-                <div class="head-stage__chips" role="group" aria-label="Dove compare l'head">
-                  <button type="button" class="head-stage__chip is-active" data-piece="tab" aria-pressed="true">Scheda</button>
-                  <button type="button" class="head-stage__chip" data-piece="search" aria-pressed="false">Google</button>
-                  <button type="button" class="head-stage__chip" data-piece="share" aria-pressed="false">Chat</button>
-                  <button type="button" class="head-stage__chip" data-piece="phone" aria-pressed="false">Telefono</button>
-                </div>
-
-                <div class="head-stage__scene head-stage__panel is-active" data-piece="tab">
-                  <div class="head-stage__browser">
-                    <div class="head-stage__chrome">
-                      <span class="head-stage__dot"></span>
-                      <span class="head-stage__dot"></span>
-                      <span class="head-stage__dot"></span>
-                      <div class="head-stage__tab">Corso di HTML per principianti | Codedge</div>
+                <div class="head-stage__board">
+                  <button type="button" class="head-stage__place is-active" data-piece="title" aria-pressed="true">
+                    <p class="head-stage__where">Scheda del browser</p>
+                    <div class="head-stage__browser">
+                      <div class="head-stage__chrome">
+                        <div class="head-stage__tab">Corso di HTML per principianti | Codedge</div>
+                      </div>
                     </div>
-                    <div class="head-stage__page">La pagina, nel body, è un'altra cosa.</div>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="search">
-                  <div class="head-stage__serp">
+                  </button>
+                  <button type="button" class="head-stage__place" data-piece="description" aria-pressed="false">
+                    <p class="head-stage__where">Risultato su Google</p>
                     <p class="head-stage__serp-title">Corso di HTML per principianti | Codedge</p>
-                    <p class="head-stage__serp-url">https://codedge.it › tutorial › html-fondamentali</p>
-                    <p class="head-stage__serp-desc">Guida pratica all'HTML: struttura, tag semantici, link, immagini e form spiegati passo passo.</p>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="share">
-                  <div class="head-stage__card">
+                    <p class="head-stage__serp-url">codedge.it › tutorial</p>
+                    <p class="head-stage__serp-desc">Guida pratica all'HTML: struttura, tag semantici, link e form.</p>
+                  </button>
+                  <button type="button" class="head-stage__place" data-piece="share" aria-pressed="false">
+                    <p class="head-stage__where">Link incollato in chat</p>
                     <div class="head-stage__card-img" aria-hidden="true"></div>
                     <p class="head-stage__card-title">Corso di HTML per principianti</p>
-                    <p class="head-stage__card-desc">Struttura, semantica, link, immagini e form spiegati passo passo.</p>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="phone">
-                  <div class="head-stage__phones">
-                    <div class="head-stage__phone head-stage__phone--tiny">
-                      <div class="head-stage__phone-page">
-                        <p>Corso di HTML</p>
-                        <p>Il browser finge che lo schermo sia un desktop.</p>
-                      </div>
-                    </div>
-                    <div class="head-stage__phone head-stage__phone--fit">
-                      <div class="head-stage__phone-page">
-                        <p>Corso di HTML</p>
-                        <p>Il testo usa la larghezza vera.</p>
-                      </div>
-                    </div>
-                  </div>
+                    <p class="head-stage__card-desc">Struttura, semantica, link e form spiegati passo passo.</p>
+                  </button>
                 </div>
 
-                <pre class="head-stage__code head-stage__panel is-active" data-piece="tab"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">Corso di HTML per principianti | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="search"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">Corso di HTML per principianti | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"description"</span>
-  <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"Guida pratica all'HTML…"</span><span class="head-stage__tok--tag">&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:title"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"Corso di HTML per principianti"</span><span class="head-stage__tok--tag">&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:description"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"…"</span><span class="head-stage__tok--tag">&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:image"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"https://…/anteprima.jpg"</span><span class="head-stage__tok--tag">&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="phone"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"viewport"</span>
-  <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"width=device-width, initial-scale=1"</span><span class="head-stage__tok--tag">&gt;</span></pre>
+                <div class="head-stage__code">
+                  <button type="button" class="head-stage__line is-active" data-piece="title"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">Corso di HTML per principianti | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="description"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"description"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"Guida pratica all'HTML…"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:title"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"Corso di HTML per principianti"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:image"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"https://codedge.it/anteprima.jpg"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                </div>
 
                 <div class="head-stage__info">
                   <div role="status" aria-live="polite">
-                    <div class="head-stage__explain is-active" data-piece="tab">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-window-restore"></i></div>
+                    <div class="head-stage__explain is-active" data-piece="title">
                       <div class="head-stage__explain-text">
-                        <strong><code>&lt;title&gt;</code> è il nome della scheda.</strong>
-                        <p>Non è l'<code>&lt;h1&gt;</code> del body. È quello che vedi in alto, nei preferiti e, di default, su Google. Tienilo corto.</p>
+                        <strong>Questa riga è il nome della scheda.</strong>
+                        <p>Non è l'<code>&lt;h1&gt;</code> del body. È il testo in alto nel browser e, di solito, il titolo blu su Google.</p>
                       </div>
                     </div>
-                    <div class="head-stage__explain" data-piece="search">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="head-stage__explain" data-piece="description">
                       <div class="head-stage__explain-text">
-                        <strong>Il titolo blu e il riassunto grigio escono dall'head.</strong>
-                        <p><code>title</code> è la riga cliccabile. <code>description</code> è il testo sotto. Non decide il posto in classifica: decide se qualcuno clicca.</p>
+                        <strong>Questa riga è il riassunto sotto il titolo su Google.</strong>
+                        <p>Non decide la posizione in classifica. Decide se qualcuno clicca. Circa 150 caratteri.</p>
                       </div>
                     </div>
                     <div class="head-stage__explain" data-piece="share">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-share-nodes"></i></div>
                       <div class="head-stage__explain-text">
-                        <strong>Incolli il link e compare questo riquadro.</strong>
-                        <p>Lo riempiono i metadati Open Graph. Senza, la chat mostra un link nudo. L'immagine vuole un indirizzo completo, con <code>https://</code>.</p>
-                      </div>
-                    </div>
-                    <div class="head-stage__explain" data-piece="phone">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-mobile-screen"></i></div>
-                      <div class="head-stage__explain-text">
-                        <strong>A sinistra manca il viewport. A destra c'è.</strong>
-                        <p>Senza quella riga il telefono finge di essere un desktop e rimpicciolisce tutto. Con <code>width=device-width</code> usa lo schermo vero.</p>
+                        <strong>Queste righe riempiono il riquadro quando incolli il link.</strong>
+                        <p>Senza, la chat mostra solo l'indirizzo. L'immagine vuole un URL intero, con <code>https://</code>.</p>
                       </div>
                     </div>
                   </div>

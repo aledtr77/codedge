@@ -2587,102 +2587,63 @@
                 <li><strong><code>title</code></strong>: the browser tab's title, the bookmark's name and the blue title in search results. It is different from the <code>&lt;h1&gt;</code>, which lives in the body: keep it under 60 characters.</li>
               </ul>
 
-              <p>These lines do not appear on the page. They appear around it: on the tab, on Google, in chat, on the phone. The widget below follows them there.</p>
+              <p>These lines do not appear in the body. Click a line of the head: the place it ends up lights up.</p>
 
               <div class="head-stage" id="head-stage" aria-labelledby="head-stage-title">
                 <div class="head-stage__intro">
                   <p class="head-stage__eyebrow">Interactive example</p>
-                  <h3 id="head-stage-title">Where the head ends up</h3>
-                  <p>The same page, four places outside the body.</p>
+                  <h3 id="head-stage-title">Three lines, three places</h3>
+                  <p><code>&lt;title&gt;</code> goes on the tab. The description goes on Google. Open Graph goes in the chat.</p>
                 </div>
 
-                <div class="head-stage__chips" role="group" aria-label="Where the head appears">
-                  <button type="button" class="head-stage__chip is-active" data-piece="tab" aria-pressed="true">Tab</button>
-                  <button type="button" class="head-stage__chip" data-piece="search" aria-pressed="false">Google</button>
-                  <button type="button" class="head-stage__chip" data-piece="share" aria-pressed="false">Chat</button>
-                  <button type="button" class="head-stage__chip" data-piece="phone" aria-pressed="false">Phone</button>
-                </div>
-
-                <div class="head-stage__scene head-stage__panel is-active" data-piece="tab">
-                  <div class="head-stage__browser">
-                    <div class="head-stage__chrome">
-                      <span class="head-stage__dot"></span>
-                      <span class="head-stage__dot"></span>
-                      <span class="head-stage__dot"></span>
-                      <div class="head-stage__tab">HTML course for beginners | Codedge</div>
+                <div class="head-stage__board">
+                  <button type="button" class="head-stage__place is-active" data-piece="title" aria-pressed="true">
+                    <p class="head-stage__where">Browser tab</p>
+                    <div class="head-stage__browser">
+                      <div class="head-stage__chrome">
+                        <div class="head-stage__tab">HTML course for beginners | Codedge</div>
+                      </div>
                     </div>
-                    <div class="head-stage__page">The page, in the body, is something else.</div>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="search">
-                  <div class="head-stage__serp">
+                  </button>
+                  <button type="button" class="head-stage__place" data-piece="description" aria-pressed="false">
+                    <p class="head-stage__where">Google result</p>
                     <p class="head-stage__serp-title">HTML course for beginners | Codedge</p>
-                    <p class="head-stage__serp-url">https://codedge.it › tutorials › html-fundamentals</p>
-                    <p class="head-stage__serp-desc">A practical guide to HTML: structure, semantic tags, links, images and forms explained step by step.</p>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="share">
-                  <div class="head-stage__card">
+                    <p class="head-stage__serp-url">codedge.it › tutorials</p>
+                    <p class="head-stage__serp-desc">A practical guide to HTML: structure, semantic tags, links and forms.</p>
+                  </button>
+                  <button type="button" class="head-stage__place" data-piece="share" aria-pressed="false">
+                    <p class="head-stage__where">Link pasted in chat</p>
                     <div class="head-stage__card-img" aria-hidden="true"></div>
                     <p class="head-stage__card-title">HTML course for beginners</p>
-                    <p class="head-stage__card-desc">Structure, semantics, links, images and forms explained step by step.</p>
-                  </div>
-                </div>
-                <div class="head-stage__scene head-stage__panel" data-piece="phone">
-                  <div class="head-stage__phones">
-                    <div class="head-stage__phone head-stage__phone--tiny">
-                      <div class="head-stage__phone-page">
-                        <p>HTML course</p>
-                        <p>The browser pretends the screen is a desktop.</p>
-                      </div>
-                    </div>
-                    <div class="head-stage__phone head-stage__phone--fit">
-                      <div class="head-stage__phone-page">
-                        <p>HTML course</p>
-                        <p>The text uses the real width.</p>
-                      </div>
-                    </div>
-                  </div>
+                    <p class="head-stage__card-desc">Structure, semantics, links and forms explained step by step.</p>
+                  </button>
                 </div>
 
-                <pre class="head-stage__code head-stage__panel is-active" data-piece="tab"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">HTML course for beginners | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="search"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">HTML course for beginners | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"description"</span>
-  <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"A practical guide to HTML…"</span><span class="head-stage__tok--tag">&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:title"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"HTML course for beginners"</span><span class="head-stage__tok--tag">&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:description"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"…"</span><span class="head-stage__tok--tag">&gt;</span>
-<span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:image"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"https://…/preview.jpg"</span><span class="head-stage__tok--tag">&gt;</span></pre>
-                <pre class="head-stage__code head-stage__panel" data-piece="phone"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"viewport"</span>
-  <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"width=device-width, initial-scale=1"</span><span class="head-stage__tok--tag">&gt;</span></pre>
+                <div class="head-stage__code">
+                  <button type="button" class="head-stage__line is-active" data-piece="title"><span class="head-stage__tok--tag">&lt;title&gt;</span><span class="head-stage__tok--text">HTML course for beginners | Codedge</span><span class="head-stage__tok--tag">&lt;/title&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="description"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">name</span>=<span class="head-stage__tok--val">"description"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"A practical guide to HTML…"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:title"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"HTML course for beginners"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                  <button type="button" class="head-stage__line" data-piece="share"><span class="head-stage__tok--tag">&lt;meta</span> <span class="head-stage__tok--attr">property</span>=<span class="head-stage__tok--val">"og:image"</span> <span class="head-stage__tok--attr">content</span>=<span class="head-stage__tok--val">"https://codedge.it/preview.jpg"</span><span class="head-stage__tok--tag">&gt;</span></button>
+                </div>
 
                 <div class="head-stage__info">
                   <div role="status" aria-live="polite">
-                    <div class="head-stage__explain is-active" data-piece="tab">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-window-restore"></i></div>
+                    <div class="head-stage__explain is-active" data-piece="title">
                       <div class="head-stage__explain-text">
-                        <strong><code>&lt;title&gt;</code> is the tab's name.</strong>
-                        <p>It is not the <code>&lt;h1&gt;</code> in the body. It is what you see at the top, in bookmarks and, by default, on Google. Keep it short.</p>
+                        <strong>This line is the tab's name.</strong>
+                        <p>It is not the <code>&lt;h1&gt;</code> in the body. It is the text at the top of the browser and, usually, the blue title on Google.</p>
                       </div>
                     </div>
-                    <div class="head-stage__explain" data-piece="search">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="head-stage__explain" data-piece="description">
                       <div class="head-stage__explain-text">
-                        <strong>The blue title and the grey summary come from the head.</strong>
-                        <p><code>title</code> is the clickable line. <code>description</code> is the text under it. It does not decide rank: it decides whether anyone clicks.</p>
+                        <strong>This line is the summary under the title on Google.</strong>
+                        <p>It does not decide rank. It decides whether anyone clicks. About 150 characters.</p>
                       </div>
                     </div>
                     <div class="head-stage__explain" data-piece="share">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-share-nodes"></i></div>
                       <div class="head-stage__explain-text">
-                        <strong>You paste the link and this card appears.</strong>
-                        <p>Open Graph metadata fills it. Without it, the chat shows a bare link. The image needs a full address, with <code>https://</code>.</p>
-                      </div>
-                    </div>
-                    <div class="head-stage__explain" data-piece="phone">
-                      <div class="head-stage__explain-icon" aria-hidden="true"><i class="fa-solid fa-mobile-screen"></i></div>
-                      <div class="head-stage__explain-text">
-                        <strong>The left phone has no viewport. The right one does.</strong>
-                        <p>Without that line the phone pretends to be a desktop and shrinks everything. With <code>width=device-width</code> it uses the real screen.</p>
+                        <strong>These lines fill the card when you paste the link.</strong>
+                        <p>Without them, the chat shows only the address. The image needs a full URL, with <code>https://</code>.</p>
                       </div>
                     </div>
                   </div>
