@@ -2183,48 +2183,109 @@
               </div>
 
               <h3>A complete page</h3>
-              <p>Here is how they fit together. Compare this structure with the field of <code>&lt;div&gt;</code> elements from the previous chapter: the on-screen result can be the same, the information conveyed is not.</p>
+              <p>Here is how they fit together. Compare this structure with the field of <code>&lt;div&gt;</code> elements from the previous chapter: the on-screen result can be the same, the information conveyed is not. Click a region of the page or a line of the code.</p>
 
-              <pre><code class="language-html">&lt;body&gt;
-  &lt;header&gt;
-    &lt;h1&gt;The Codedge blog&lt;/h1&gt;
-    &lt;nav&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="/blog/"&gt;Blog&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="/contact/"&gt;Contact&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/nav&gt;
-  &lt;/header&gt;
+              <div class="page-map" id="page-map" aria-labelledby="page-map-title">
+                <div class="page-map__intro">
+                  <p class="page-map__eyebrow">Interactive example</p>
+                  <h3 id="page-map-title">The page, region by region</h3>
+                  <p>Each box is a <code>&lt;div&gt;</code> that has learned to say who it is.</p>
+                </div>
 
-  &lt;main&gt;
-    &lt;article&gt;
-      &lt;h2&gt;How to write clean HTML&lt;/h2&gt;
-      &lt;p&gt;Published on &lt;time datetime="2026-03-14"&gt;14 March 2026&lt;/time&gt;.&lt;/p&gt;
+                <div class="page-map__chips" role="group" aria-label="Page regions">
+                  <button type="button" class="page-map__chip is-active" data-piece="header" aria-pressed="true">&lt;header&gt;</button>
+                  <button type="button" class="page-map__chip" data-piece="nav" aria-pressed="false">&lt;nav&gt;</button>
+                  <button type="button" class="page-map__chip" data-piece="main" aria-pressed="false">&lt;main&gt;</button>
+                  <button type="button" class="page-map__chip" data-piece="article" aria-pressed="false">&lt;article&gt;</button>
+                  <button type="button" class="page-map__chip" data-piece="aside" aria-pressed="false">&lt;aside&gt;</button>
+                  <button type="button" class="page-map__chip" data-piece="footer" aria-pressed="false">&lt;footer&gt;</button>
+                </div>
 
-      &lt;section&gt;
-        &lt;h3&gt;Start from the structure&lt;/h3&gt;
-        &lt;p&gt;Content first, styling second.&lt;/p&gt;
-      &lt;/section&gt;
+                <div class="page-map__stage">
+                  <div class="page-map__frame">
+                    <div class="page-map__slot page-map__header is-active" data-piece="header" tabindex="0" role="button">
+                      <p class="page-map__site">The Codedge blog</p>
+                    </div>
+                    <div class="page-map__slot page-map__nav" data-piece="nav" tabindex="0" role="button">
+                      <p class="page-map__links">Home · Blog · Contact</p>
+                    </div>
+                    <div class="page-map__mid" data-piece="main">
+                      <div class="page-map__slot page-map__article" data-piece="article" tabindex="0" role="button">
+                        <p class="page-map__post-title">How to write clean HTML</p>
+                        <p class="page-map__post-copy">Content first, styling second.</p>
+                      </div>
+                      <div class="page-map__slot page-map__aside" data-piece="aside" tabindex="0" role="button">
+                        <p class="page-map__side-copy">Related articles</p>
+                      </div>
+                    </div>
+                    <div class="page-map__slot page-map__footer" data-piece="footer" tabindex="0" role="button">
+                      <p class="page-map__foot-copy">© 2026 Codedge</p>
+                    </div>
+                  </div>
 
-      &lt;section&gt;
-        &lt;h3&gt;Choose the right tags&lt;/h3&gt;
-        &lt;p&gt;Every tag has a meaning: use it for that.&lt;/p&gt;
-      &lt;/section&gt;
-    &lt;/article&gt;
+                  <div class="page-map__code">
+                    <button type="button" class="page-map__line" data-piece="header"><span class="page-map__tok--tag">&lt;header&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="header">  <span class="page-map__tok--tag">&lt;h1&gt;</span><span class="page-map__tok--text">The Codedge blog</span><span class="page-map__tok--tag">&lt;/h1&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="nav">  <span class="page-map__tok--tag">&lt;nav&gt;</span><span class="page-map__tok--text">Home · Blog · Contact</span><span class="page-map__tok--tag">&lt;/nav&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="header"><span class="page-map__tok--tag">&lt;/header&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="main"><span class="page-map__tok--tag">&lt;main&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="article">  <span class="page-map__tok--tag">&lt;article&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="article">    <span class="page-map__tok--tag">&lt;h2&gt;</span><span class="page-map__tok--text">How to write clean HTML</span><span class="page-map__tok--tag">&lt;/h2&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="article">    <span class="page-map__tok--tag">&lt;p&gt;</span><span class="page-map__tok--text">Content first.</span><span class="page-map__tok--tag">&lt;/p&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="article">  <span class="page-map__tok--tag">&lt;/article&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="aside">  <span class="page-map__tok--tag">&lt;aside&gt;</span><span class="page-map__tok--text">Related articles</span><span class="page-map__tok--tag">&lt;/aside&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="main"><span class="page-map__tok--tag">&lt;/main&gt;</span></button>
+                    <button type="button" class="page-map__line" data-piece="footer"><span class="page-map__tok--tag">&lt;footer&gt;</span><span class="page-map__tok--text">© 2026 Codedge</span><span class="page-map__tok--tag">&lt;/footer&gt;</span></button>
+                  </div>
+                </div>
 
-    &lt;aside&gt;
-      &lt;h2&gt;Related articles&lt;/h2&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href="/blog/css-basics/"&gt;Introduction to CSS&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/aside&gt;
-  &lt;/main&gt;
-
-  &lt;footer&gt;
-    &lt;p&gt;&amp;copy; 2026 Codedge&lt;/p&gt;
-  &lt;/footer&gt;
-&lt;/body&gt;</code></pre>
+                <div class="page-map__info">
+                  <div role="status" aria-live="polite">
+                    <div class="page-map__explain is-active" data-piece="header">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-window-maximize"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;header&gt;</code> is the heading area.</strong>
+                        <p>Logo, site title, sometimes the menu. It can also sit inside an article. On screen it is a strip at the top: to the browser it says “the page starts here”.</p>
+                      </div>
+                    </div>
+                    <div class="page-map__explain" data-piece="nav">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-compass"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;nav&gt;</code> is the menu, not just any list.</strong>
+                        <p>Only the links you move around the site with. A shopping list stays a <code>&lt;ul&gt;</code>. A listener can ask: “take me to the menu”.</p>
+                      </div>
+                    </div>
+                    <div class="page-map__explain" data-piece="main">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-file-lines"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;main&gt;</code> is this page's own content.</strong>
+                        <p>Exactly one. Inside it sit the article and, if needed, the side column. The menu and the copyright stay outside: they repeat on every page.</p>
+                      </div>
+                    </div>
+                    <div class="page-map__explain" data-piece="article">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-newspaper"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;article&gt;</code> stands on its own.</strong>
+                        <p>A post, a review, a product card. If you lift it off the page and publish it elsewhere, it still makes sense. That is why it is not a <code>&lt;div&gt;</code>.</p>
+                      </div>
+                    </div>
+                    <div class="page-map__explain" data-piece="aside">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-ellipsis"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;aside&gt;</code> sits beside the point.</strong>
+                        <p>Related articles, a callout box. Useful, but if you remove it the main article is still whole.</p>
+                      </div>
+                    </div>
+                    <div class="page-map__explain" data-piece="footer">
+                      <div class="page-map__explain-icon" aria-hidden="true"><i class="fa-solid fa-shoe-prints"></i></div>
+                      <div class="page-map__explain-text">
+                        <strong><code>&lt;footer&gt;</code> closes.</strong>
+                        <p>Copyright, contacts, legal links. Like <code>&lt;header&gt;</code>, it can also sit at the end of a single article.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <h3><code>&lt;article&gt;</code>, <code>&lt;section&gt;</code> or <code>&lt;div&gt;</code>?</h3>
               <p>This is the recurring question. Answer these three in order:</p>

@@ -15,6 +15,7 @@ import "@/styles/pages/tutorials/html-fundamentals/flow-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/label-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/table-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/neutral-explorer.css";
+import "@/styles/pages/tutorials/html-fundamentals/page-map.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -33,6 +34,7 @@ import initFlowExplorer from "./flow-explorer.js";
 import initLabelExplorer from "./label-explorer.js";
 import initTableExplorer from "./table-explorer.js";
 import initNeutralExplorer from "./neutral-explorer.js";
+import initPageMap from "./page-map.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -47,4 +49,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initLabelExplorer();
   initTableExplorer();
   initNeutralExplorer();
+  initPageMap();
 });
