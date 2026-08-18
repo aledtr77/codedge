@@ -344,7 +344,6 @@
                             <span class="boilerplate-explorer__tab-title">Document</span>
                           </div>
                         </div>
-                        <span class="boilerplate-explorer__chip boilerplate-explorer__chip--doctype">HTML5</span>
                       </div>
                       <div class="boilerplate-explorer__address">
                         <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -352,7 +351,6 @@
                       </div>
                       <div class="boilerplate-explorer__viewport">
                         <div class="boilerplate-explorer__page">
-                          <p class="boilerplate-explorer__page-kicker">Visible page</p>
                           <p class="boilerplate-explorer__page-heading">Still empty</p>
                           <p>The <code>&lt;body&gt;</code> is here, but nothing has been written inside it yet.</p>
                         </div>
@@ -495,16 +493,13 @@
                       <span>What the browser shows</span>
                     </div>
                     <div class="text-structure__preview text-structure__panel is-active" data-piece="naked">
-                      <span class="text-structure__badge">One line</span>
                       <p class="text-structure__runon">Cookery course This is the first sentence. This should be a separate sentence.</p>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="paragraphs">
-                      <span class="text-structure__badge text-structure__badge--ok">Two blocks</span>
                       <p class="text-structure__block">This is the first sentence.</p>
                       <p class="text-structure__block">This is a separate sentence.</p>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="outline">
-                      <span class="text-structure__badge text-structure__badge--ok">A table of contents</span>
                       <div class="text-structure__page">
                         <p class="text-structure__h text-structure__h--1">Cookery course</p>
                         <p class="text-structure__h text-structure__h--2">The equipment</p>
@@ -522,7 +517,6 @@
                       </div>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="mistake">
-                      <span class="text-structure__badge text-structure__badge--warn">Looks smaller — outline broken</span>
                       <div class="text-structure__page">
                         <p class="text-structure__h text-structure__h--1">Cookery course</p>
                         <p class="text-structure__h text-structure__h--4">The equipment</p>
@@ -601,7 +595,120 @@
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Block and inline elements: how tags flow on the page</h2>
             <section class="guide-subchapter">
-              <p>Before learning more tags, you need a clear map. In the page's normal flow, browsers give HTML elements two very common default behaviours: some form a block and start on a new line; others remain inline and flow alongside the words around them.</p>
+              <p>Before learning more tags, you need a clear map. Some tags take the whole row. Others stay inside the sentence. That is the whole chapter, seen at a glance:</p>
+
+              <div class="flow-explorer" id="flow-explorer" aria-labelledby="flow-explorer-title">
+                <div class="flow-explorer__intro">
+                  <p class="flow-explorer__eyebrow">Interactive example</p>
+                  <h3 id="flow-explorer-title">Block or inline</h3>
+                  <p>Click each view. The dashed boxes are the full row. The highlighted words stay in the sentence.</p>
+                </div>
+
+                <div class="flow-explorer__scenarios" role="group" aria-label="How tags flow on the page">
+                  <button type="button" class="flow-explorer__btn is-active" data-piece="block" aria-pressed="true">
+                    <span class="flow-explorer__num" aria-hidden="true">1</span>
+                    <span class="flow-explorer__lbl"><strong>Block</strong><small>A new row each time</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="inline" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">2</span>
+                    <span class="flow-explorer__lbl"><strong>Inline</strong><small>Stays in the sentence</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="together" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">3</span>
+                    <span class="flow-explorer__lbl"><strong>Together</strong><small>Inline lives inside a block</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">4</span>
+                    <span class="flow-explorer__lbl"><strong>The trap</strong><small>&lt;br&gt; is not a spacer</small></span>
+                  </button>
+                </div>
+
+                <div class="flow-explorer__body">
+                  <div class="flow-explorer__card">
+                    <div class="flow-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>What you wrote</span>
+                    </div>
+                    <pre class="flow-explorer__code flow-explorer__panel is-active" data-piece="block"><span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Short.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Also short.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="inline"><span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">The </span><span class="flow-explorer__tok--tag">&lt;strong&gt;</span><span class="flow-explorer__tok--text">title</span><span class="flow-explorer__tok--tag">&lt;/strong&gt;</span>
+  <span class="flow-explorer__tok--text"> tag is </span><span class="flow-explorer__tok--tag">&lt;code&gt;</span><span class="flow-explorer__tok--text">mandatory</span><span class="flow-explorer__tok--tag">&lt;/code&gt;</span><span class="flow-explorer__tok--text">.</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="together"><span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">First block.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">Inside here, </span><span class="flow-explorer__tok--tag">&lt;strong&gt;</span><span class="flow-explorer__tok--text">I stay inline</span><span class="flow-explorer__tok--tag">&lt;/strong&gt;</span><span class="flow-explorer__tok--text">.</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="trap"><span class="flow-explorer__tok--comment">&lt;!-- wrong: making space --&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Above</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Below</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+
+<span class="flow-explorer__tok--comment">&lt;!-- right: the break is the content --&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">Codedge Ltd</span><span class="flow-explorer__tok--tag">&lt;br&gt;</span>
+  <span class="flow-explorer__tok--text">12 Roma Street</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                  </div>
+
+                  <div class="flow-explorer__card">
+                    <div class="flow-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>How it sits on the page</span>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel is-active" data-piece="block">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">block · p</span>Short.</div>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">block · p</span>Also short.</div>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="inline">
+                      <p class="flow-explorer__sentence">The <span class="flow-explorer__mark">title</span> tag is <span class="flow-explorer__mark flow-explorer__mark--code">mandatory</span>.</p>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="together">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">block · p</span>First block.</div>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">block · p</span>Inside here, <span class="flow-explorer__mark">I stay inline</span>.</div>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="trap">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">p</span>Above</div>
+                      <p class="flow-explorer__gaps">· · · three &lt;br&gt;</p>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">p</span>Below</div>
+                      <p class="flow-explorer__address">Codedge Ltd<br>12 Roma Street</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flow-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="flow-explorer__explain is-active" data-piece="block">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-square"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>A block takes the whole row.</strong>
+                        <p>The text is short, yet each <code>&lt;p&gt;</code> starts below the one before it. The browser gives it the full width, like two boxes stacked. Headings work the same way.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="inline">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-i-cursor"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>Inline stays in the sentence.</strong>
+                        <p><code>&lt;strong&gt;</code> and <code>&lt;code&gt;</code> do not start a new row. They mark a word, and the rest of the phrase continues beside it. They take only as much space as the letters need.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="together">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>Inline lives inside a block.</strong>
+                        <p>The paragraphs are the boxes. Inside a box, marked words stay in a line. Not the other way around: a <code>&lt;p&gt;</code> cannot sit inside a <code>&lt;strong&gt;</code>.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="trap">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong><code>&lt;br&gt;</code> is not for making space.</strong>
+                        <p>Three <code>&lt;br&gt;</code> in a row to push two pieces apart is the beginner mistake. Use <code>&lt;br&gt;</code> when the new line is part of the text: an address, a verse. Space between boxes is CSS's job.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <h3>Block elements</h3>
               <p>A <strong>block</strong> element normally starts on a new line and stretches across the available width. That is why two paragraphs or two headings appear one below the other even when their text is short.</p>
@@ -674,16 +781,6 @@
               <h3>Inline elements</h3>
               <p>An <strong>inline</strong> element does not start a new line: it takes up only the space its content needs and remains within the sentence's flow. It can therefore mark a word or a stretch of text without breaking the paragraph.</p>
               <p>Elements displayed inline by default include <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;abbr&gt;</code> and <code>&lt;img&gt;</code>.</p>
-
-              <p>This example makes the difference visible:</p>
-
-              <pre><code class="language-html">&lt;p&gt;First block: I start on a new line.&lt;/p&gt;
-&lt;p&gt;Second block: I appear below the first.&lt;/p&gt;
-
-&lt;p&gt;
-  Inside this block, &lt;strong&gt;I remain inline&lt;/strong&gt;
-  and &lt;code&gt;this fragment&lt;/code&gt; continues on the same line too.
-&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>Visual behaviour and HTML structure are not the same thing</strong>
@@ -861,18 +958,129 @@
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>6. Universal attributes: giving tags an identity</h2>
             <section class="guide-subchapter">
-              <p>So far we have seen attributes that only work on certain tags: <code>href</code>, for example, makes sense on a link but not on a paragraph. HTML also provides <strong>global attributes</strong> (or universal ones): attributes you can write on <strong>any element</strong>.</p>
+              <p>So far we have seen attributes that only work on certain tags: <code>href</code>, for example, makes sense on a link but not on a paragraph. HTML also provides <strong>global attributes</strong>: you can write them on <strong>any element</strong>. The two that matter most are <code>id</code> and <code>class</code>. Both are labels. On their own they change nothing on the screen.</p>
 
-              <p>The two most important are <code>id</code> and <code>class</code>, and both do the same job: <strong>giving an element a label</strong> so you can find it again later. The only difference is how many times that label may appear on the page:</p>
+              <div class="label-explorer" id="label-explorer" aria-labelledby="label-explorer-title">
+                <div class="label-explorer__intro">
+                  <p class="label-explorer__eyebrow">Interactive example</p>
+                  <h3 id="label-explorer-title">id and class</h3>
+                  <p>One name for one element. One name for a group. Neither paints the page.</p>
+                </div>
 
-              <ul class="guide-list">
-                <li><strong><code>id</code>:</strong> like a student's registration number. It belongs to <strong>one single</strong> element: two elements on the same page cannot share an <code>id</code>.</li>
-                <li><strong><code>class</code>:</strong> like saying “the students in class 3A”. It can be repeated on <strong>as many elements as you like</strong>, and an element can belong to several classes at once.</li>
-              </ul>
+                <div class="label-explorer__scenarios" role="group" aria-label="How id and class work">
+                  <button type="button" class="label-explorer__btn is-active" data-piece="invisible" aria-pressed="true">
+                    <span class="label-explorer__num" aria-hidden="true">1</span>
+                    <span class="label-explorer__lbl"><strong>Invisible</strong><small>The page does not change</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="id" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">2</span>
+                    <span class="label-explorer__lbl"><strong>id</strong><small>One name, one element</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="class" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">3</span>
+                    <span class="label-explorer__lbl"><strong>class</strong><small>A group, can repeat</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">4</span>
+                    <span class="label-explorer__lbl"><strong>The trap</strong><small>No # or . in HTML</small></span>
+                  </button>
+                </div>
 
-              <div class="alert alert--note">
-                <strong>On their own, they show nothing.</strong>
-                <p>Writing an <code>id</code> or a <code>class</code> changes neither the appearance nor the behaviour of the page: the browser displays nothing different. They are names that <em>prepare the ground</em>, and they become useful when something goes looking for them: a link, a CSS stylesheet or some JavaScript.</p>
+                <div class="label-explorer__body">
+                  <div class="label-explorer__card">
+                    <div class="label-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>What you wrote</span>
+                    </div>
+                    <pre class="label-explorer__code label-explorer__panel is-active" data-piece="invisible"><span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contact"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Where to find us</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"notice"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Shipping is fine.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">No label.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="id"><span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contact"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Where to find us</span><span class="label-explorer__tok--tag">&lt;/h2&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">12 Roma Street.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="class"><span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"notice"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Shipping is fine.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"notice urgent"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Last day to order.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">Not in the group.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="trap"><span class="label-explorer__tok--comment">&lt;!-- wrong --&gt;</span>
+<span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--bad">"#contact"</span><span class="label-explorer__tok--tag">&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--bad">".notice"</span><span class="label-explorer__tok--tag">&gt;</span>
+
+<span class="label-explorer__tok--comment">&lt;!-- right --&gt;</span>
+<span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contact"</span><span class="label-explorer__tok--tag">&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"notice"</span><span class="label-explorer__tok--tag">&gt;</span></pre>
+                  </div>
+
+                  <div class="label-explorer__card">
+                    <div class="label-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>What the page looks like</span>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel is-active" data-piece="invisible">
+                      <div class="label-explorer__item">Where to find us</div>
+                      <div class="label-explorer__item">Shipping is fine.</div>
+                      <div class="label-explorer__item">No label.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="id">
+                      <div class="label-explorer__item is-unique">
+                        <span class="label-explorer__tags"><span class="label-explorer__chip label-explorer__chip--id">id = contact</span></span>
+                        Where to find us
+                      </div>
+                      <div class="label-explorer__item">12 Roma Street.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="class">
+                      <div class="label-explorer__item is-group">
+                        <span class="label-explorer__tags"><span class="label-explorer__chip label-explorer__chip--class">class = notice</span></span>
+                        Shipping is fine.
+                      </div>
+                      <div class="label-explorer__item is-group-hot">
+                        <span class="label-explorer__tags">
+                          <span class="label-explorer__chip label-explorer__chip--class">notice</span>
+                          <span class="label-explorer__chip label-explorer__chip--class2">urgent</span>
+                        </span>
+                        Last day to order.
+                      </div>
+                      <div class="label-explorer__item">Not in the group.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="trap">
+                      <div class="label-explorer__compare">
+                        <div class="label-explorer__pair label-explorer__pair--bad">id="#contact" · class=".notice"</div>
+                        <div class="label-explorer__pair label-explorer__pair--ok">id="contact" · class="notice"</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="label-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="label-explorer__explain is-active" data-piece="invisible">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong>The labels are in the code. The page looks the same.</strong>
+                        <p>An <code>id</code> or a <code>class</code> does not change colour, size or position. They are names, ready for a link, a stylesheet or some JavaScript to look them up later.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="id">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-fingerprint"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong><code>id</code> is a unique name.</strong>
+                        <p>Like a registration number: it belongs to one element only. On this page there can be only one <code>contact</code>. Use it when you need that precise spot: a section to jump to, a field to label.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="class">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong><code>class</code> is a group name.</strong>
+                        <p>The same class can sit on as many elements as you like. A space separates two classes: <code>notice urgent</code> is not one name with a space in it, it is two groups. When in doubt, use <code>class</code>.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="trap">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong>In HTML you write only the name.</strong>
+                        <p>CSS will later look them up as <code>#contact</code> and <code>.notice</code>. Those symbols are the search, not the name. Put them in the tag and the name becomes wrong. The one exception is a link to an id: <code>href="#contact"</code>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <h3>1. The <code>id</code> attribute: a unique name</h3>

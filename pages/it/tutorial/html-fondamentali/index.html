@@ -344,7 +344,6 @@
                             <span class="boilerplate-explorer__tab-title">Document</span>
                           </div>
                         </div>
-                        <span class="boilerplate-explorer__chip boilerplate-explorer__chip--doctype">HTML5</span>
                       </div>
                       <div class="boilerplate-explorer__address">
                         <i class="fa-solid fa-lock" aria-hidden="true"></i>
@@ -352,7 +351,6 @@
                       </div>
                       <div class="boilerplate-explorer__viewport">
                         <div class="boilerplate-explorer__page">
-                          <p class="boilerplate-explorer__page-kicker">Pagina visibile</p>
                           <p class="boilerplate-explorer__page-heading">Ancora vuoto</p>
                           <p>Il <code>&lt;body&gt;</code> c'è, ma dentro non è stato scritto ancora niente.</p>
                         </div>
@@ -495,16 +493,13 @@
                       <span>Quello che mostra il browser</span>
                     </div>
                     <div class="text-structure__preview text-structure__panel is-active" data-piece="naked">
-                      <span class="text-structure__badge">Una riga</span>
                       <p class="text-structure__runon">Corso di cucina Questa è la prima frase. Questa dovrebbe essere una frase separata.</p>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="paragraphs">
-                      <span class="text-structure__badge text-structure__badge--ok">Due blocchi</span>
                       <p class="text-structure__block">Questa è la prima frase.</p>
                       <p class="text-structure__block">Questa è una frase separata.</p>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="outline">
-                      <span class="text-structure__badge text-structure__badge--ok">Un indice</span>
                       <div class="text-structure__page">
                         <p class="text-structure__h text-structure__h--1">Corso di cucina</p>
                         <p class="text-structure__h text-structure__h--2">Gli attrezzi</p>
@@ -522,7 +517,6 @@
                       </div>
                     </div>
                     <div class="text-structure__preview text-structure__panel" data-piece="mistake">
-                      <span class="text-structure__badge text-structure__badge--warn">Sembra più piccolo — indice rotto</span>
                       <div class="text-structure__page">
                         <p class="text-structure__h text-structure__h--1">Corso di cucina</p>
                         <p class="text-structure__h text-structure__h--4">Gli attrezzi</p>
@@ -601,7 +595,120 @@
           <section id="chapter-06" class="guide-block guide-chapter">
             <h2>5. Elementi a blocco e in linea: come si dispongono i tag</h2>
             <section class="guide-subchapter">
-              <p>Prima di imparare altri tag serve una mappa chiara. Nel normale flusso della pagina, il browser mostra gli elementi HTML con due comportamenti predefiniti molto comuni: alcuni formano un blocco e iniziano su una nuova riga; altri restano in linea e scorrono insieme alle parole che li circondano.</p>
+              <p>Prima di imparare altri tag serve una mappa. Alcuni tag occupano tutta la riga. Altri restano dentro la frase. È tutto il capitolo, visto in un colpo d'occhio:</p>
+
+              <div class="flow-explorer" id="flow-explorer" aria-labelledby="flow-explorer-title">
+                <div class="flow-explorer__intro">
+                  <p class="flow-explorer__eyebrow">Esempio interattivo</p>
+                  <h3 id="flow-explorer-title">A blocco o in linea</h3>
+                  <p>Clicca ogni vista. Le scatole tratteggiate sono tutta la riga. Le parole evidenziate restano nella frase.</p>
+                </div>
+
+                <div class="flow-explorer__scenarios" role="group" aria-label="Come si dispongono i tag">
+                  <button type="button" class="flow-explorer__btn is-active" data-piece="block" aria-pressed="true">
+                    <span class="flow-explorer__num" aria-hidden="true">1</span>
+                    <span class="flow-explorer__lbl"><strong>A blocco</strong><small>Ogni volta una riga nuova</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="inline" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">2</span>
+                    <span class="flow-explorer__lbl"><strong>In linea</strong><small>Resta nella frase</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="together" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">3</span>
+                    <span class="flow-explorer__lbl"><strong>Insieme</strong><small>L'in linea sta nel blocco</small></span>
+                  </button>
+                  <button type="button" class="flow-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="flow-explorer__num" aria-hidden="true">4</span>
+                    <span class="flow-explorer__lbl"><strong>La trappola</strong><small>&lt;br&gt; non fa spazio</small></span>
+                  </button>
+                </div>
+
+                <div class="flow-explorer__body">
+                  <div class="flow-explorer__card">
+                    <div class="flow-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Quello che hai scritto</span>
+                    </div>
+                    <pre class="flow-explorer__code flow-explorer__panel is-active" data-piece="block"><span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Corto.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Corto anche questo.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="inline"><span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">Il tag </span><span class="flow-explorer__tok--tag">&lt;strong&gt;</span><span class="flow-explorer__tok--text">title</span><span class="flow-explorer__tok--tag">&lt;/strong&gt;</span>
+  <span class="flow-explorer__tok--text"> è </span><span class="flow-explorer__tok--tag">&lt;code&gt;</span><span class="flow-explorer__tok--text">obbligatorio</span><span class="flow-explorer__tok--tag">&lt;/code&gt;</span><span class="flow-explorer__tok--text">.</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="together"><span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Primo blocco.</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">Qui dentro </span><span class="flow-explorer__tok--tag">&lt;strong&gt;</span><span class="flow-explorer__tok--text">resto in linea</span><span class="flow-explorer__tok--tag">&lt;/strong&gt;</span><span class="flow-explorer__tok--text">.</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="flow-explorer__code flow-explorer__panel" data-piece="trap"><span class="flow-explorer__tok--comment">&lt;!-- sbagliato: fare spazio --&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Sopra</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span><span class="flow-explorer__tok--text">Sotto</span><span class="flow-explorer__tok--tag">&lt;/p&gt;</span>
+
+<span class="flow-explorer__tok--comment">&lt;!-- giusto: l'a capo è il contenuto --&gt;</span>
+<span class="flow-explorer__tok--tag">&lt;p&gt;</span>
+  <span class="flow-explorer__tok--text">Codedge S.r.l.</span><span class="flow-explorer__tok--tag">&lt;br&gt;</span>
+  <span class="flow-explorer__tok--text">Via Roma 12</span>
+<span class="flow-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                  </div>
+
+                  <div class="flow-explorer__card">
+                    <div class="flow-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>Come sta in pagina</span>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel is-active" data-piece="block">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">blocco · p</span>Corto.</div>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">blocco · p</span>Corto anche questo.</div>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="inline">
+                      <p class="flow-explorer__sentence">Il tag <span class="flow-explorer__mark">title</span> è <span class="flow-explorer__mark flow-explorer__mark--code">obbligatorio</span>.</p>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="together">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">blocco · p</span>Primo blocco.</div>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">blocco · p</span>Qui dentro <span class="flow-explorer__mark">resto in linea</span>.</div>
+                    </div>
+                    <div class="flow-explorer__preview flow-explorer__panel" data-piece="trap">
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">p</span>Sopra</div>
+                      <p class="flow-explorer__gaps">· · · tre &lt;br&gt;</p>
+                      <div class="flow-explorer__box"><span class="flow-explorer__box-label">p</span>Sotto</div>
+                      <p class="flow-explorer__address">Codedge S.r.l.<br>Via Roma 12</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flow-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="flow-explorer__explain is-active" data-piece="block">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-square"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>Un blocco prende tutta la riga.</strong>
+                        <p>Il testo è corto, eppure ogni <code>&lt;p&gt;</code> inizia sotto il precedente. Il browser gli dà tutta la larghezza, come due scatole una sopra l'altra. I titoli fanno lo stesso.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="inline">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-i-cursor"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>L'in linea resta nella frase.</strong>
+                        <p><code>&lt;strong&gt;</code> e <code>&lt;code&gt;</code> non vanno a capo. Marcano una parola e il resto della frase continua accanto. Occupano solo lo spazio delle lettere.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="together">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong>L'in linea vive dentro il blocco.</strong>
+                        <p>I paragrafi sono le scatole. Dentro una scatola, le parole marcate restano in fila. Non il contrario: un <code>&lt;p&gt;</code> non può stare dentro uno <code>&lt;strong&gt;</code>.</p>
+                      </div>
+                    </div>
+                    <div class="flow-explorer__explain" data-piece="trap">
+                      <div class="flow-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="flow-explorer__explain-text">
+                        <strong><code>&lt;br&gt;</code> non serve a fare spazio.</strong>
+                        <p>Tre <code>&lt;br&gt;</code> di fila per allontanare due pezzi è l'errore da principiante. <code>&lt;br&gt;</code> si usa quando l'a capo è parte del testo: un indirizzo, un verso. Lo spazio tra le scatole lo fa il CSS.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <h3>Elementi a blocco</h3>
               <p>Un elemento <strong>a blocco</strong> (<em>block</em>) inizia normalmente su una nuova riga e si estende per tutta la larghezza disponibile. Per questo due paragrafi o due titoli vengono disposti uno sotto l'altro, anche quando il loro testo è corto.</p>
@@ -674,16 +781,6 @@
               <h3>Elementi in linea</h3>
               <p>Un elemento <strong>in linea</strong> (<em>inline</em>) non apre una nuova riga: occupa soltanto lo spazio necessario al suo contenuto e rimane nel flusso della frase. Serve quindi a marcare una parola o una porzione di testo senza spezzare il paragrafo.</p>
               <p>Tra gli elementi mostrati in linea per impostazione predefinita ci sono <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;abbr&gt;</code> e <code>&lt;img&gt;</code>.</p>
-
-              <p>Questo esempio rende visibile la differenza:</p>
-
-              <pre><code class="language-html">&lt;p&gt;Primo blocco: inizio su una nuova riga.&lt;/p&gt;
-&lt;p&gt;Secondo blocco: mi dispongo sotto il primo.&lt;/p&gt;
-
-&lt;p&gt;
-  Dentro questo blocco, &lt;strong&gt;io resto in linea&lt;/strong&gt;
-  e anche &lt;code&gt;questo frammento&lt;/code&gt; continua sulla stessa riga.
-&lt;/p&gt;</code></pre>
 
               <div class="alert alert--note">
                 <strong>Comportamento visivo e struttura HTML non sono la stessa cosa</strong>
@@ -861,18 +958,129 @@
           <section id="chapter-08" class="guide-block guide-chapter">
             <h2>6. Gli attributi universali: dare un'identità ai tag</h2>
             <section class="guide-subchapter">
-              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette però a disposizione anche degli <strong>attributi globali</strong> (o universali): attributi che puoi scrivere su <strong>qualsiasi elemento</strong>.</p>
+              <p>Fino ad ora abbiamo visto attributi che funzionano solo su alcuni tag: <code>href</code>, per esempio, ha senso su un link ma non su un paragrafo. L'HTML mette anche degli <strong>attributi globali</strong>: li puoi scrivere su <strong>qualsiasi elemento</strong>. I due che contano di più sono <code>id</code> e <code>class</code>. Entrambi sono etichette. Da soli non cambiano nulla a schermo.</p>
 
-              <p>I due più importanti sono <code>id</code> e <code>class</code>, e servono entrambi alla stessa cosa: <strong>dare un'etichetta a un elemento</strong>, così da poterlo ritrovare più avanti. Cambia solo quante volte quell'etichetta può comparire nella pagina:</p>
+              <div class="label-explorer" id="label-explorer" aria-labelledby="label-explorer-title">
+                <div class="label-explorer__intro">
+                  <p class="label-explorer__eyebrow">Esempio interattivo</p>
+                  <h3 id="label-explorer-title">id e class</h3>
+                  <p>Un nome per un elemento. Un nome per un gruppo. Nessuno dei due dipinge la pagina.</p>
+                </div>
 
-              <ul class="guide-list">
-                <li><strong><code>id</code>:</strong> è come il numero di matricola di uno studente. Appartiene a <strong>un solo</strong> elemento: nella stessa pagina non possono esistere due elementi con lo stesso <code>id</code>.</li>
-                <li><strong><code>class</code>:</strong> è come dire "studenti della 3A". Può essere ripetuta su <strong>quanti elementi vuoi</strong>, e un elemento può appartenere a più classi insieme.</li>
-              </ul>
+                <div class="label-explorer__scenarios" role="group" aria-label="Come funzionano id e class">
+                  <button type="button" class="label-explorer__btn is-active" data-piece="invisible" aria-pressed="true">
+                    <span class="label-explorer__num" aria-hidden="true">1</span>
+                    <span class="label-explorer__lbl"><strong>Invisibili</strong><small>La pagina non cambia</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="id" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">2</span>
+                    <span class="label-explorer__lbl"><strong>id</strong><small>Un nome, un elemento</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="class" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">3</span>
+                    <span class="label-explorer__lbl"><strong>class</strong><small>Un gruppo, si ripete</small></span>
+                  </button>
+                  <button type="button" class="label-explorer__btn" data-piece="trap" aria-pressed="false">
+                    <span class="label-explorer__num" aria-hidden="true">4</span>
+                    <span class="label-explorer__lbl"><strong>La trappola</strong><small>Niente # o . nell'HTML</small></span>
+                  </button>
+                </div>
 
-              <div class="alert alert--note">
-                <strong>Da soli non si vedono.</strong>
-                <p>Scrivere <code>id</code> o <code>class</code> non cambia né l'aspetto né il comportamento della pagina: il browser non mostra nulla di diverso. Sono nomi che <em>preparano il terreno</em>, e diventano utili quando qualcosa va a cercarli: un link, un foglio di stile CSS o del codice JavaScript.</p>
+                <div class="label-explorer__body">
+                  <div class="label-explorer__card">
+                    <div class="label-explorer__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Quello che hai scritto</span>
+                    </div>
+                    <pre class="label-explorer__code label-explorer__panel is-active" data-piece="invisible"><span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contatti"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Dove trovarci</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"avviso"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Spedizioni regolari.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">Nessuna etichetta.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="id"><span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contatti"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Dove trovarci</span><span class="label-explorer__tok--tag">&lt;/h2&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">Via Roma 12.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="class"><span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"avviso"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Spedizioni regolari.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"avviso urgente"</span><span class="label-explorer__tok--tag">&gt;</span><span class="label-explorer__tok--text">Ultimo giorno per ordinare.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p&gt;</span><span class="label-explorer__tok--text">Fuori dal gruppo.</span><span class="label-explorer__tok--tag">&lt;/p&gt;</span></pre>
+                    <pre class="label-explorer__code label-explorer__panel" data-piece="trap"><span class="label-explorer__tok--comment">&lt;!-- sbagliato --&gt;</span>
+<span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--bad">"#contatti"</span><span class="label-explorer__tok--tag">&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--bad">".avviso"</span><span class="label-explorer__tok--tag">&gt;</span>
+
+<span class="label-explorer__tok--comment">&lt;!-- giusto --&gt;</span>
+<span class="label-explorer__tok--tag">&lt;h2</span> <span class="label-explorer__tok--attr">id</span>=<span class="label-explorer__tok--val">"contatti"</span><span class="label-explorer__tok--tag">&gt;</span>
+<span class="label-explorer__tok--tag">&lt;p</span> <span class="label-explorer__tok--attr">class</span>=<span class="label-explorer__tok--val">"avviso"</span><span class="label-explorer__tok--tag">&gt;</span></pre>
+                  </div>
+
+                  <div class="label-explorer__card">
+                    <div class="label-explorer__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>Come appare la pagina</span>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel is-active" data-piece="invisible">
+                      <div class="label-explorer__item">Dove trovarci</div>
+                      <div class="label-explorer__item">Spedizioni regolari.</div>
+                      <div class="label-explorer__item">Nessuna etichetta.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="id">
+                      <div class="label-explorer__item is-unique">
+                        <span class="label-explorer__tags"><span class="label-explorer__chip label-explorer__chip--id">id = contatti</span></span>
+                        Dove trovarci
+                      </div>
+                      <div class="label-explorer__item">Via Roma 12.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="class">
+                      <div class="label-explorer__item is-group">
+                        <span class="label-explorer__tags"><span class="label-explorer__chip label-explorer__chip--class">class = avviso</span></span>
+                        Spedizioni regolari.
+                      </div>
+                      <div class="label-explorer__item is-group-hot">
+                        <span class="label-explorer__tags">
+                          <span class="label-explorer__chip label-explorer__chip--class">avviso</span>
+                          <span class="label-explorer__chip label-explorer__chip--class2">urgente</span>
+                        </span>
+                        Ultimo giorno per ordinare.
+                      </div>
+                      <div class="label-explorer__item">Fuori dal gruppo.</div>
+                    </div>
+                    <div class="label-explorer__preview label-explorer__panel" data-piece="trap">
+                      <div class="label-explorer__compare">
+                        <div class="label-explorer__pair label-explorer__pair--bad">id="#contatti" · class=".avviso"</div>
+                        <div class="label-explorer__pair label-explorer__pair--ok">id="contatti" · class="avviso"</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="label-explorer__info">
+                  <div role="status" aria-live="polite">
+                    <div class="label-explorer__explain is-active" data-piece="invisible">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong>Le etichette stanno nel codice. La pagina è uguale.</strong>
+                        <p>Un <code>id</code> o una <code>class</code> non cambiano colore, misura o posizione. Sono nomi, pronti per quando un link, un foglio di stile o del JavaScript li andranno a cercare.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="id">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-fingerprint"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong><code>id</code> è un nome unico.</strong>
+                        <p>Come un numero di matricola: appartiene a un solo elemento. In questa pagina può esistere un solo <code>contatti</code>. Serve quando ti serve quel punto preciso: una sezione a cui saltare, un campo da etichettare.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="class">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong><code>class</code> è un nome di gruppo.</strong>
+                        <p>La stessa classe può stare su quanti elementi vuoi. Uno spazio separa due classi: <code>avviso urgente</code> non è un nome con lo spazio dentro, sono due gruppi. Nel dubbio, usa <code>class</code>.</p>
+                      </div>
+                    </div>
+                    <div class="label-explorer__explain" data-piece="trap">
+                      <div class="label-explorer__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="label-explorer__explain-text">
+                        <strong>Nell'HTML scrivi solo il nome.</strong>
+                        <p>Il CSS più avanti li cercherà come <code>#contatti</code> e <code>.avviso</code>. Quei simboli sono la ricerca, non il nome. Li metti nel tag e il nome diventa sbagliato. L'unica eccezione è un link verso un id: <code>href="#contatti"</code>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <h3>1. L'attributo <code>id</code>: un nome unico</h3>

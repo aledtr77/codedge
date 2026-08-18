@@ -282,21 +282,6 @@
   white-space: nowrap;
 }
 
-.boilerplate-explorer__chip {
-  align-items: center;
-  align-self: center;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  display: none;
-  font-family: var(--heading-font);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.4rem;
-  padding: 0.2rem 0.5rem;
-  text-transform: uppercase;
-}
-
 .boilerplate-explorer__address {
   align-items: center;
   background: #0d1320;
@@ -325,16 +310,6 @@
   padding: 1.15rem 1.2rem;
   position: relative;
   transition: var(--transition-fast);
-}
-
-.boilerplate-explorer .boilerplate-explorer__page-kicker {
-  color: #ffd369;
-  font-family: var(--heading-font);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0 0 0.35rem;
-  text-transform: uppercase;
 }
 
 .boilerplate-explorer .boilerplate-explorer__page-heading {
@@ -366,13 +341,6 @@
   letter-spacing: 0.02em;
   position: absolute;
   text-align: center;
-}
-
-.boilerplate-explorer__window[data-active="doctype"] .boilerplate-explorer__chip--doctype {
-  background: #c084fc24;
-  border-color: #c084fc80;
-  color: #e9d5ff;
-  display: inline-flex;
 }
 
 .boilerplate-explorer__window[data-active="head"] .boilerplate-explorer__chrome,

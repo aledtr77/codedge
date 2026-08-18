@@ -11,6 +11,8 @@ import "@/styles/pages/tutorials/html-fundamentals/lists-intro.css";
 import "@/styles/pages/tutorials/html-fundamentals/alt-comparator.css";
 import "@/styles/pages/tutorials/html-fundamentals/boilerplate-explorer.css";
 import "@/styles/pages/tutorials/html-fundamentals/text-structure.css";
+import "@/styles/pages/tutorials/html-fundamentals/flow-explorer.css";
+import "@/styles/pages/tutorials/html-fundamentals/label-explorer.css";
 
 import "@/scripts/components/navbar.js";
 import "@/scripts/components/navbar-loader.js";
@@ -25,6 +27,8 @@ import initListsIntro from "./lists-intro.js";
 import initAltComparator from "./alt-comparator.js";
 import initBoilerplateExplorer from "./boilerplate-explorer.js";
 import initTextStructureExplorer from "./text-structure.js";
+import initFlowExplorer from "./flow-explorer.js";
+import initLabelExplorer from "./label-explorer.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
@@ -35,4 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAltComparator();
   initBoilerplateExplorer();
   initTextStructureExplorer();
+  initFlowExplorer();
+  initLabelExplorer();
 });
