@@ -2333,6 +2333,120 @@
                 <p>HTML builds the form and sends it. Receiving the data, checking it and storing it requires a program on the server (in PHP, Python, Node.js…) or some JavaScript. If you open a form from your own computer and press Submit, nothing useful will happen: that is normal.</p>
               </div>
 
+              <p>Three things to understand before all the field types: <code>type</code> changes the field, the <code>&lt;label&gt;</code> gives it a clickable name, and <code>name</code> is what leaves for the server. The widget below shows them.</p>
+
+              <div class="form-lab" id="form-lab" aria-labelledby="form-lab-title">
+                <div class="form-lab__intro">
+                  <p class="form-lab__eyebrow">Interactive example</p>
+                  <h3 id="form-lab-title">One field, three rules</h3>
+                  <p>On the right you can type and click. Nothing is sent: it is only to see how it works.</p>
+                </div>
+
+                <div class="form-lab__chips" role="group" aria-label="Parts of a form">
+                  <button type="button" class="form-lab__chip is-active" data-piece="type" aria-pressed="true">type</button>
+                  <button type="button" class="form-lab__chip" data-piece="label" aria-pressed="false">label</button>
+                  <button type="button" class="form-lab__chip" data-piece="name" aria-pressed="false">name</button>
+                  <button type="button" class="form-lab__chip" data-piece="trap" aria-pressed="false">placeholder</button>
+                </div>
+
+                <div class="form-lab__stage">
+                  <div>
+                    <pre class="form-lab__code form-lab__panel is-active" data-piece="type"><span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">type</span>=<span class="form-lab__tok--val">"text"</span><span class="form-lab__tok--tag">&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">type</span>=<span class="form-lab__tok--val">"email"</span><span class="form-lab__tok--tag">&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">type</span>=<span class="form-lab__tok--val">"password"</span><span class="form-lab__tok--tag">&gt;</span></pre>
+                    <pre class="form-lab__code form-lab__panel" data-piece="label"><span class="form-lab__tok--tag">&lt;label</span> <span class="form-lab__tok--attr">for</span>=<span class="form-lab__tok--val">"email"</span><span class="form-lab__tok--tag">&gt;</span><span class="form-lab__tok--text">Email</span><span class="form-lab__tok--tag">&lt;/label&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">type</span>=<span class="form-lab__tok--val">"email"</span> <span class="form-lab__tok--attr">id</span>=<span class="form-lab__tok--val">"email"</span><span class="form-lab__tok--tag">&gt;</span></pre>
+                    <pre class="form-lab__code form-lab__panel" data-piece="name"><span class="form-lab__tok--tag">&lt;label</span> <span class="form-lab__tok--attr">for</span>=<span class="form-lab__tok--val">"with-name"</span><span class="form-lab__tok--tag">&gt;</span><span class="form-lab__tok--text">With name</span><span class="form-lab__tok--tag">&lt;/label&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">id</span>=<span class="form-lab__tok--val">"with-name"</span> <span class="form-lab__tok--attr">name</span>=<span class="form-lab__tok--val">"email"</span><span class="form-lab__tok--tag">&gt;</span>
+
+<span class="form-lab__tok--tag">&lt;label</span> <span class="form-lab__tok--attr">for</span>=<span class="form-lab__tok--val">"without-name"</span><span class="form-lab__tok--tag">&gt;</span><span class="form-lab__tok--text">Without name</span><span class="form-lab__tok--tag">&lt;/label&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">id</span>=<span class="form-lab__tok--val">"without-name"</span><span class="form-lab__tok--tag">&gt;</span>
+
+<span class="form-lab__tok--tag">&lt;button&gt;</span><span class="form-lab__tok--text">Send</span><span class="form-lab__tok--tag">&lt;/button&gt;</span></pre>
+                    <pre class="form-lab__code form-lab__panel" data-piece="trap"><span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">placeholder</span>=<span class="form-lab__tok--val">"Email"</span><span class="form-lab__tok--tag">&gt;</span>
+<span class="form-lab__tok--tag">&lt;label</span> <span class="form-lab__tok--attr">for</span>=<span class="form-lab__tok--val">"ok"</span><span class="form-lab__tok--tag">&gt;</span><span class="form-lab__tok--text">Email</span><span class="form-lab__tok--tag">&lt;/label&gt;</span>
+<span class="form-lab__tok--tag">&lt;input</span> <span class="form-lab__tok--attr">id</span>=<span class="form-lab__tok--val">"ok"</span><span class="form-lab__tok--tag">&gt;</span></pre>
+                  </div>
+
+                  <div>
+                    <div class="form-lab__live form-lab__panel is-active" data-piece="type">
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-t-text">text</label>
+                        <input class="form-lab__input" id="formlab-t-text" type="text" autocomplete="off">
+                      </div>
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-t-email">email</label>
+                        <input class="form-lab__input" id="formlab-t-email" type="email" autocomplete="off">
+                      </div>
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-t-pass">password</label>
+                        <input class="form-lab__input" id="formlab-t-pass" type="password" autocomplete="off">
+                      </div>
+                    </div>
+                    <form class="form-lab__live form-lab__panel" data-piece="label" action="#" method="get">
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-l-email">Email</label>
+                        <input class="form-lab__input" id="formlab-l-email" type="email" autocomplete="off">
+                      </div>
+                    </form>
+                    <form class="form-lab__live form-lab__panel" data-piece="name" action="#" method="get">
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-n-ok">With name</label>
+                        <input class="form-lab__input" id="formlab-n-ok" type="text" name="email" autocomplete="off">
+                      </div>
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-n-no">Without name</label>
+                        <input class="form-lab__input" id="formlab-n-no" type="text" autocomplete="off">
+                      </div>
+                      <button class="form-lab__go" type="submit">Send</button>
+                      <p class="form-lab__sent" data-empty="Nothing was sent."></p>
+                    </form>
+                    <div class="form-lab__live form-lab__panel" data-piece="trap">
+                      <div class="form-lab__field">
+                        <input class="form-lab__input" type="email" placeholder="Email" autocomplete="off">
+                      </div>
+                      <div class="form-lab__field">
+                        <label class="form-lab__label" for="formlab-p-ok">Email</label>
+                        <input class="form-lab__input" id="formlab-p-ok" type="email" autocomplete="off">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-lab__info">
+                  <div role="status" aria-live="polite">
+                    <div class="form-lab__explain is-active" data-piece="type">
+                      <div class="form-lab__explain-icon" aria-hidden="true"><i class="fa-solid fa-sliders"></i></div>
+                      <div class="form-lab__explain-text">
+                        <strong>Same tag. Only <code>type</code> changes.</strong>
+                        <p>Type in the three fields. The first is text. The second wants an @. The third hides the letters. They are not three different tags: it is <code>&lt;input&gt;</code> with three attributes.</p>
+                      </div>
+                    </div>
+                    <div class="form-lab__explain" data-piece="label">
+                      <div class="form-lab__explain-icon" aria-hidden="true"><i class="fa-solid fa-tag"></i></div>
+                      <div class="form-lab__explain-text">
+                        <strong>Click the word “Email”, not the field.</strong>
+                        <p>The cursor still goes in. <code>for</code> and <code>id</code> are the same name: that is how the label and the field become one thing. Without that link it is a mute box.</p>
+                      </div>
+                    </div>
+                    <div class="form-lab__explain" data-piece="name">
+                      <div class="form-lab__explain-icon" aria-hidden="true"><i class="fa-solid fa-paper-plane"></i></div>
+                      <div class="form-lab__explain-text">
+                        <strong>Type something and press Send.</strong>
+                        <p>Only the field with <code>name</code> leaves. The other vanishes, with no error. <code>id</code> is for the label. <code>name</code> is for sending. You need both.</p>
+                      </div>
+                    </div>
+                    <div class="form-lab__explain" data-piece="trap">
+                      <div class="form-lab__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="form-lab__explain-text">
+                        <strong>The grey text is not a label.</strong>
+                        <p>Type in the first field: “Email” disappears. In the second the word stays above, always. The <code>placeholder</code> is a format example, not the field's name.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <h3>The fields: <code>&lt;input&gt;</code> and its <code>type</code></h3>
               <p><code>&lt;input&gt;</code> is an empty tag that changes appearance and behaviour completely according to its <code>type</code> attribute:</p>
 
