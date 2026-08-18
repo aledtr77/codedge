@@ -315,15 +315,17 @@
                     </div>
                     <div class="boilerplate-explorer__code">
                       <button type="button" class="boilerplate-explorer__line is-active" data-piece="doctype"><span class="boilerplate-explorer__tok--doctype">&lt;!DOCTYPE html&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="html"><span class="boilerplate-explorer__tok--tag">&lt;html&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;head&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">charset</span>=<span class="boilerplate-explorer__tok--val">"UTF-8"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">name</span>=<span class="boilerplate-explorer__tok--val">"viewport"</span> <span class="boilerplate-explorer__tok--attr">content</span>=<span class="boilerplate-explorer__tok--val">"…"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="head">    <span class="boilerplate-explorer__tok--tag">&lt;title&gt;</span><span class="boilerplate-explorer__tok--text">La mia prima pagina web</span><span class="boilerplate-explorer__tok--tag">&lt;/title&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;/head&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="body">  <span class="boilerplate-explorer__tok--tag">&lt;body&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="body">    <span class="boilerplate-explorer__tok--comment">&lt;!-- contenuti visibili --&gt;</span></button>
-                      <button type="button" class="boilerplate-explorer__line" data-piece="body">  <span class="boilerplate-explorer__tok--tag">&lt;/body&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="html"><span class="boilerplate-explorer__tok--tag">&lt;html</span> <span class="boilerplate-explorer__tok--attr">lang</span>=<span class="boilerplate-explorer__tok--val">"it"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head"><span class="boilerplate-explorer__tok--tag">&lt;head&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">charset</span>=<span class="boilerplate-explorer__tok--val">"UTF-8"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;meta</span> <span class="boilerplate-explorer__tok--attr">name</span>=<span class="boilerplate-explorer__tok--val">"viewport"</span> <span class="boilerplate-explorer__tok--attr">content</span>=<span class="boilerplate-explorer__tok--val">"width=device-width, initial-scale=1.0"</span><span class="boilerplate-explorer__tok--tag">&gt;</span></button>
+                      <span class="boilerplate-explorer__blank" aria-hidden="true"></span>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head">  <span class="boilerplate-explorer__tok--tag">&lt;title&gt;</span><span class="boilerplate-explorer__tok--text">Document</span><span class="boilerplate-explorer__tok--tag">&lt;/title&gt;</span></button>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="head"><span class="boilerplate-explorer__tok--tag">&lt;/head&gt;</span></button>
+                      <span class="boilerplate-explorer__blank" aria-hidden="true"></span>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="body"><span class="boilerplate-explorer__tok--tag">&lt;body&gt;</span></button>
+                      <span class="boilerplate-explorer__blank" aria-hidden="true"></span>
+                      <button type="button" class="boilerplate-explorer__line" data-piece="body"><span class="boilerplate-explorer__tok--tag">&lt;/body&gt;</span></button>
                       <button type="button" class="boilerplate-explorer__line" data-piece="html"><span class="boilerplate-explorer__tok--tag">&lt;/html&gt;</span></button>
                     </div>
                   </div>
@@ -339,7 +341,7 @@
                         <div class="boilerplate-explorer__tabs">
                           <div class="boilerplate-explorer__tab">
                             <i class="fa-solid fa-file-code" aria-hidden="true"></i>
-                            <span class="boilerplate-explorer__tab-title">La mia prima pagina web</span>
+                            <span class="boilerplate-explorer__tab-title">Document</span>
                           </div>
                         </div>
                         <span class="boilerplate-explorer__chip boilerplate-explorer__chip--doctype">HTML5</span>
@@ -351,8 +353,8 @@
                       <div class="boilerplate-explorer__viewport">
                         <div class="boilerplate-explorer__page">
                           <p class="boilerplate-explorer__page-kicker">Pagina visibile</p>
-                          <p class="boilerplate-explorer__page-heading">Ciao, mondo</p>
-                          <p>Questo paragrafo vive nel body: è ciò che il visitatore vede davvero.</p>
+                          <p class="boilerplate-explorer__page-heading">Ancora vuoto</p>
+                          <p>Il <code>&lt;body&gt;</code> c'è, ma dentro non è stato scritto ancora niente.</p>
                         </div>
                         <div class="boilerplate-explorer__ghost" aria-hidden="true">Non compare nella pagina</div>
                       </div>
@@ -394,6 +396,16 @@
                 </div>
               </div>
 
+              <div class="alert alert--note">
+                <strong>Tre extra che il boilerplate ha già scritto</strong>
+                <ul class="guide-list">
+                  <li><strong><code>lang="it"</code></strong> non è un tag: è un <strong>attributo</strong> di <code>&lt;html&gt;</code>, una coppia <code>nome="valore"</code> solo nel tag di apertura. Dice al browser, ai motori di ricerca e agli screen reader che la pagina è in italiano. Gli attributi non si chiudono.</li>
+                  <li><strong><code>&lt;meta&gt;</code></strong> è un <strong>tag</strong>, e un tag vuoto: non ha contenuto né chiusura. Cosa fa dipende dai suoi attributi. <code>charset="UTF-8"</code> dice al browser come leggere i caratteri del file, così lettere accentate ed emoji non escono illeggibili.</li>
+                  <li>Il secondo <code>&lt;meta&gt;</code> usa due attributi: <code>name="viewport"</code> dà il nome all'impostazione, <code>content="…"</code> ne dà il valore. Insieme dicono ai telefoni di non fingere che la pagina sia uno schermo da desktop rimpicciolito. <code>width=device-width</code> segue lo schermo vero; <code>initial-scale=1.0</code> parte allo zoom 100%.</li>
+                </ul>
+                <p>Lasciali tutti e tre così. Torneremo sugli attributi più avanti; questi tre stanno già facendo il loro lavoro.</p>
+              </div>
+
               <p>La regola da portarsi dietro è quella del capitolo 2: l'ultimo tag aperto è il primo che chiudi. <code>&lt;head&gt;</code> e <code>&lt;body&gt;</code> stanno interamente dentro <code>&lt;html&gt;</code>; i tag <code>meta</code> e il <code>title</code> stanno interamente dentro <code>&lt;head&gt;</code>.</p>
 
               <p>Ora entriamo nel <code>&lt;body&gt;</code> e iniziamo a riempirlo. Il primo mattone è il testo.</p>
@@ -424,39 +436,142 @@
                 </ol>
               </div>
 
-              <p>Ora che abbiamo chiaro cos'è questo spazio e perché esiste, iniziamo a riempirlo. Partiamo dal caso più comune e frequente in assoluto: del testo.</p>
+              <p>Ora che abbiamo chiaro cos'è questo spazio e perché esiste, iniziamo a riempirlo. Partiamo dal testo. Il browser non guarda come vai a capo nel file: solo i tag creano struttura. I titoli non scelgono la grandezza del carattere: scrivono l'indice della pagina.</p>
 
-              <h3>Perché il testo "nudo" non basta</h3>
-              <p>La prima reazione istintiva è scrivere il testo direttamente dentro il body, andando a capo dove serve:</p>
+              <div class="text-structure" id="text-structure-explorer" aria-labelledby="text-structure-title">
+                <div class="text-structure__intro">
+                  <p class="text-structure__eyebrow">Esempio interattivo</p>
+                  <h3 id="text-structure-title">Le stesse parole, quattro strutture</h3>
+                  <p>Clicca ogni vista. A sinistra c'è il codice; a destra ciò che il browser mostra davvero — e, per i titoli, l'indice che costruisce.</p>
+                </div>
 
-              <pre><code class="language-html">&lt;body&gt;
-  Corso di HTML
-  Questa è la prima frase.
-  Questa dovrebbe essere una frase separata.
-&lt;/body&gt;</code></pre>
+                <div class="text-structure__scenarios" role="group" aria-label="Come si struttura il testo">
+                  <button type="button" class="text-structure__btn is-active" data-piece="naked" aria-pressed="true">
+                    <span class="text-structure__num" aria-hidden="true">1</span>
+                    <span class="text-structure__lbl"><strong>Testo nudo</strong><small>Invio non fa niente</small></span>
+                  </button>
+                  <button type="button" class="text-structure__btn" data-piece="paragraphs" aria-pressed="false">
+                    <span class="text-structure__num" aria-hidden="true">2</span>
+                    <span class="text-structure__lbl"><strong>&lt;p&gt;</strong><small>Il tag fa il blocco</small></span>
+                  </button>
+                  <button type="button" class="text-structure__btn" data-piece="outline" aria-pressed="false">
+                    <span class="text-structure__num" aria-hidden="true">3</span>
+                    <span class="text-structure__lbl"><strong>h1 · h2 · h3</strong><small>Profondità, non misura</small></span>
+                  </button>
+                  <button type="button" class="text-structure__btn" data-piece="mistake" aria-pressed="false">
+                    <span class="text-structure__num" aria-hidden="true">4</span>
+                    <span class="text-structure__lbl"><strong>La trappola</strong><small>h4 perché sembra piccolo</small></span>
+                  </button>
+                </div>
 
-              <p>Apri questo file nel browser e vedrai una cosa sola, tutta su una riga:</p>
+                <div class="text-structure__body">
+                  <div class="text-structure__card">
+                    <div class="text-structure__card-header">
+                      <i class="fa-solid fa-code" aria-hidden="true"></i>
+                      <span>Quello che hai scritto</span>
+                    </div>
+                    <pre class="text-structure__code text-structure__panel is-active" data-piece="naked"><span class="text-structure__tok--tag">&lt;body&gt;</span>
+  <span class="text-structure__tok--text">Corso di cucina</span>
+  <span class="text-structure__tok--text">Questa è la prima frase.</span>
+  <span class="text-structure__tok--text">Questa dovrebbe essere una frase separata.</span>
+<span class="text-structure__tok--tag">&lt;/body&gt;</span></pre>
+                    <pre class="text-structure__code text-structure__panel" data-piece="paragraphs"><span class="text-structure__tok--tag">&lt;body&gt;</span>
+  <span class="text-structure__tok--tag">&lt;p&gt;</span><span class="text-structure__tok--text">Questa è la prima frase.</span><span class="text-structure__tok--tag">&lt;/p&gt;</span>
+  <span class="text-structure__tok--tag">&lt;p&gt;</span><span class="text-structure__tok--text">Questa è una frase separata.</span><span class="text-structure__tok--tag">&lt;/p&gt;</span>
+<span class="text-structure__tok--tag">&lt;/body&gt;</span></pre>
+                    <pre class="text-structure__code text-structure__panel" data-piece="outline"><span class="text-structure__tok--tag">&lt;h1&gt;</span><span class="text-structure__tok--text">Corso di cucina</span><span class="text-structure__tok--tag">&lt;/h1&gt;</span>
+<span class="text-structure__tok--tag">&lt;h2&gt;</span><span class="text-structure__tok--text">Gli attrezzi</span><span class="text-structure__tok--tag">&lt;/h2&gt;</span>
+<span class="text-structure__tok--tag">&lt;h3&gt;</span><span class="text-structure__tok--text">I coltelli</span><span class="text-structure__tok--tag">&lt;/h3&gt;</span>
+<span class="text-structure__tok--tag">&lt;h3&gt;</span><span class="text-structure__tok--text">Le pentole</span><span class="text-structure__tok--tag">&lt;/h3&gt;</span>
+<span class="text-structure__tok--tag">&lt;h2&gt;</span><span class="text-structure__tok--text">Le prime ricette</span><span class="text-structure__tok--tag">&lt;/h2&gt;</span></pre>
+                    <pre class="text-structure__code text-structure__panel" data-piece="mistake"><span class="text-structure__tok--comment">&lt;!-- «h2 è troppo grosso, uso h4» --&gt;</span>
+<span class="text-structure__tok--tag">&lt;h1&gt;</span><span class="text-structure__tok--text">Corso di cucina</span><span class="text-structure__tok--tag">&lt;/h1&gt;</span>
+<span class="text-structure__tok--tag">&lt;h4&gt;</span><span class="text-structure__tok--text">Gli attrezzi</span><span class="text-structure__tok--tag">&lt;/h4&gt;</span></pre>
+                  </div>
 
-              <pre><code>Corso di HTML Questa è la prima frase. Questa dovrebbe essere una frase separata.</code></pre>
+                  <div class="text-structure__card">
+                    <div class="text-structure__card-header">
+                      <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                      <span>Quello che mostra il browser</span>
+                    </div>
+                    <div class="text-structure__preview text-structure__panel is-active" data-piece="naked">
+                      <span class="text-structure__badge">Una riga</span>
+                      <p class="text-structure__runon">Corso di cucina Questa è la prima frase. Questa dovrebbe essere una frase separata.</p>
+                    </div>
+                    <div class="text-structure__preview text-structure__panel" data-piece="paragraphs">
+                      <span class="text-structure__badge text-structure__badge--ok">Due blocchi</span>
+                      <p class="text-structure__block">Questa è la prima frase.</p>
+                      <p class="text-structure__block">Questa è una frase separata.</p>
+                    </div>
+                    <div class="text-structure__preview text-structure__panel" data-piece="outline">
+                      <span class="text-structure__badge text-structure__badge--ok">Un indice</span>
+                      <div class="text-structure__page">
+                        <p class="text-structure__h text-structure__h--1">Corso di cucina</p>
+                        <p class="text-structure__h text-structure__h--2">Gli attrezzi</p>
+                        <p class="text-structure__h text-structure__h--3">I coltelli</p>
+                        <p class="text-structure__h text-structure__h--3">Le pentole</p>
+                        <p class="text-structure__h text-structure__h--2">Le prime ricette</p>
+                      </div>
+                      <div class="text-structure__toc">
+                        <span class="text-structure__toc-label">Indice</span>
+                        <div class="text-structure__toc-row text-structure__toc-row--1"><span>Corso di cucina</span><span class="text-structure__toc-tag">h1</span></div>
+                        <div class="text-structure__toc-row text-structure__toc-row--2"><span>Gli attrezzi</span><span class="text-structure__toc-tag">h2</span></div>
+                        <div class="text-structure__toc-row text-structure__toc-row--3"><span>I coltelli</span><span class="text-structure__toc-tag">h3</span></div>
+                        <div class="text-structure__toc-row text-structure__toc-row--3"><span>Le pentole</span><span class="text-structure__toc-tag">h3</span></div>
+                        <div class="text-structure__toc-row text-structure__toc-row--2"><span>Le prime ricette</span><span class="text-structure__toc-tag">h2</span></div>
+                      </div>
+                    </div>
+                    <div class="text-structure__preview text-structure__panel" data-piece="mistake">
+                      <span class="text-structure__badge text-structure__badge--warn">Sembra più piccolo — indice rotto</span>
+                      <div class="text-structure__page">
+                        <p class="text-structure__h text-structure__h--1">Corso di cucina</p>
+                        <p class="text-structure__h text-structure__h--4">Gli attrezzi</p>
+                      </div>
+                      <div class="text-structure__toc">
+                        <span class="text-structure__toc-label">Indice</span>
+                        <div class="text-structure__toc-row text-structure__toc-row--1"><span>Corso di cucina</span><span class="text-structure__toc-tag">h1</span></div>
+                        <div class="text-structure__toc-row text-structure__toc-row--hole"><span>Gli attrezzi</span><span class="text-structure__toc-tag">h4 · buco</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-              <p>Non è un bug. È la regola più importante da capire sul testo in HTML:</p>
-
-              <div class="alert alert--note">
-                <strong>Come il browser tratta gli spazi</strong>
-                <p>Qualsiasi sequenza di spazi, tabulazioni e andate a capo che scrivi nel codice viene compressa dal browser in <strong>un unico spazio</strong>. Premere Invio nell'editor non manda a capo nella pagina, e mettere venti spazi non allontana di venti spazi.</p>
+                <div class="text-structure__info">
+                  <div role="status" aria-live="polite">
+                    <div class="text-structure__explain is-active" data-piece="naked">
+                      <div class="text-structure__explain-icon" aria-hidden="true"><i class="fa-solid fa-compress"></i></div>
+                      <div class="text-structure__explain-text">
+                        <strong>Invio nel file non spezza la pagina.</strong>
+                        <p>Nel codice vai a capo tre volte, eppure in pagina resta <strong>una riga sola</strong>. Il browser ignora quegli a capo: per lui è un unico pezzo di testo. Per spezzare la riga sullo schermo serve un tag, non il tasto Invio.</p>
+                      </div>
+                    </div>
+                    <div class="text-structure__explain" data-piece="paragraphs">
+                      <div class="text-structure__explain-icon" aria-hidden="true"><i class="fa-solid fa-paragraph"></i></div>
+                      <div class="text-structure__explain-text">
+                        <strong>Adesso sono due pezzi distinti.</strong>
+                        <p>Stesse parole di prima, ma ognuna sta in un <code>&lt;p&gt;</code>. Il browser le mette una sotto l'altra, con un po' di aria in mezzo. È il tag che decide i blocchi: puoi andare a capo dieci volte nel codice, e resta comunque un paragrafo solo.</p>
+                      </div>
+                    </div>
+                    <div class="text-structure__explain" data-piece="outline">
+                      <div class="text-structure__explain-icon" aria-hidden="true"><i class="fa-solid fa-list-ol"></i></div>
+                      <div class="text-structure__explain-text">
+                        <strong>1, 2, 3 sono i piani dell'indice, non la grandezza.</strong>
+                        <p><code>&lt;h1&gt;</code> è il titolo del libro. <code>&lt;h2&gt;</code> è un capitolo. <code>&lt;h3&gt;</code> è un paragrafo di quel capitolo. A destra vedi l'indice che ne esce: niente buchi, ogni titolo al suo posto. Il fatto che h1 si veda più grosso è solo il default del browser.</p>
+                      </div>
+                    </div>
+                    <div class="text-structure__explain" data-piece="mistake">
+                      <div class="text-structure__explain-icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                      <div class="text-structure__explain-text">
+                        <strong>h4 non è «il titolo piccolo».</strong>
+                        <p>Il browser lo disegna più piccolo, e viene la tentazione di usarlo al posto di h2. Ma 4 vuol dire «quarto gradino», non «carattere piccolo». Qui si salta da h1 a h4: nell'indice manca il capitolo e il sotto-capitolo, come un libro che dal 1 passa al 4. Se h2 ti sembra troppo grosso, tieni h2: la grandezza la cambi dopo, con il CSS.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <p>Questo significa che l'aspetto della pagina non dipende da <em>come formatti il codice</em>, ma solo <em>dai tag che usi</em>. L'indentazione nel file serve a te per leggere, non al browser. Per separare davvero due blocchi di testo servono i tag.</p>
-
               <h3>Il paragrafo: <code>&lt;p&gt;</code></h3>
-              <p>Il tag <code>&lt;p&gt;</code> (<em>paragraph</em>) racchiude un blocco di testo compiuto. Ogni paragrafo occupa la sua riga, va a capo da solo e il browser gli lascia un po' di spazio sopra e sotto.</p>
-
-              <pre><code class="language-html">&lt;body&gt;
-  &lt;p&gt;Questa è la prima frase.&lt;/p&gt;
-  &lt;p&gt;Questa è una frase separata, in un blocco tutto suo.&lt;/p&gt;
-&lt;/body&gt;</code></pre>
-
-              <p>Ora i due testi sono davvero due blocchi distinti. Nota che dentro un paragrafo puoi scrivere il testo come vuoi, anche su più righe nel codice: sarà comunque un blocco unico, perché è il tag a definire il blocco, non l'andata a capo.</p>
+              <p>Un <code>&lt;p&gt;</code> racchiude un pensiero compiuto. Hai già visto che è il tag, non Invio, a creare il blocco. Una regola in più, perché il browser non ti avvisa:</p>
 
               <div class="alert alert--warning">
                 <strong>Un paragrafo non può contenere un altro paragrafo</strong>
@@ -464,36 +579,7 @@
               </div>
 
               <h3>I titoli: da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code></h3>
-              <p>Un testo lungo fatto solo di paragrafi è illeggibile: serve dividerlo in sezioni con dei titoli. HTML mette a disposizione sei tag di intestazione (<em>heading</em>), da <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>.</p>
-
-              <p>Il numero <strong>non indica la grandezza del carattere</strong>: indica il <strong>livello di profondità</strong>, esattamente come i numeri di un indice. <code>&lt;h1&gt;</code> è il titolo dell'intera pagina, <code>&lt;h2&gt;</code> apre una sezione principale, <code>&lt;h3&gt;</code> una sotto-sezione di quella sezione, e così via.</p>
-
-              <pre><code class="language-html">&lt;h1&gt;Corso di cucina&lt;/h1&gt;
-&lt;p&gt;Benvenuto nel corso. Ecco cosa vedremo.&lt;/p&gt;
-
-&lt;h2&gt;Gli attrezzi&lt;/h2&gt;
-&lt;p&gt;Prima di cucinare servono gli strumenti giusti.&lt;/p&gt;
-
-&lt;h3&gt;I coltelli&lt;/h3&gt;
-&lt;p&gt;Ne bastano tre per iniziare.&lt;/p&gt;
-
-&lt;h3&gt;Le pentole&lt;/h3&gt;
-&lt;p&gt;Meglio poche e di buona qualità.&lt;/p&gt;
-
-&lt;h2&gt;Le prime ricette&lt;/h2&gt;
-&lt;p&gt;Iniziamo da qualcosa di semplice.&lt;/p&gt;</code></pre>
-
-              <p>I tag che vedi scritti descrivono questa struttura, che è l'indice della pagina:</p>
-
-              <pre><code class="code-tree">Corso di cucina                 [h1]  ← titolo della pagina
- │
- ├── Gli attrezzi               [h2]  ← sezione
- │    ├── I coltelli            [h3]  ← sotto-sezione
- │    └── Le pentole            [h3]  ← sotto-sezione
- │
- └── Le prime ricette           [h2]  ← sezione</code></pre>
-
-              <p>Questa gerarchia non è solo teoria: viene usata da Google per comprendere la struttura dei contenuti e dagli screen reader per permettere alle persone non vedenti di orientarsi e saltare rapidamente da una sezione all'altra.</p>
+              <p>Ci sono sei tag di intestazione. Il widget ha mostrato l'idea: il numero è la profondità nell'indice, come i numeri del sommario di un libro. Quell'indice è ciò che Google e gli screen reader usano per saltare da una sezione all'altra.</p>
 
               <h3>Le tre regole dei titoli</h3>
               <ul class="guide-list">
@@ -504,7 +590,7 @@
 
               <div class="alert alert--warning">
                 <strong>L'errore classico</strong>
-                <p>«Questo <code>&lt;h2&gt;</code> viene troppo grosso, uso un <code>&lt;h4&gt;</code> che è più piccolo.» Così facendo hai rotto l'indice del documento per un motivo grafico. Usa il tag giusto per la gerarchia e rimpicciolisci con il CSS: sono due problemi diversi, e HTML si occupa solo del primo.</p>
+                <p>«Questo <code>&lt;h2&gt;</code> viene troppo grosso, uso un <code>&lt;h4&gt;</code>.» h4 non è una versione piccola di h2: è un titolo di quarto livello. Nell'indice spariscono due gradini. Tieni il livello giusto e cambia la grandezza con il CSS.</p>
               </div>
 
               <p>Con titoli e paragrafi si stabilisce l'ossatura generale di una pagina. Avrai però notato che questi elementi iniziano su una nuova riga, mentre altri tag possono marcare singole parole senza interrompere il testo. Nel prossimo capitolo mettiamo a confronto questi due comportamenti — <strong>a blocco</strong> e <strong>in linea</strong> — prima di scoprire i tag che lavorano dentro le frasi.</p>
