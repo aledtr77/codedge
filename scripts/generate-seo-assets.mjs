@@ -88,7 +88,7 @@ function priorityForRoute(route) {
   const shape = canonicalShape(route);
   if (shape === '/it/') return '1.0';
   if (/^\/it\/(risorse|strumenti|componenti-ui)\/$/.test(shape)) return '0.9';
-  if (shape === '/it/tutorial/' || shape === '/it/template/') return '0.8';
+  if (shape === '/it/tutorial/' || shape === '/it/portfolio/') return '0.8';
   if (/^\/it\/(chi-sono|contatti|privacy-policy|termini-servizio)\/$/.test(shape)) return '0.3';
   return '0.7';
 }
@@ -96,7 +96,7 @@ function priorityForRoute(route) {
 function sortWeight(route) {
   const shape = canonicalShape(route);
   if (shape === '/it/') return 0;
-  if (/^\/it\/(risorse|strumenti|componenti-ui|tutorial|template)\//.test(shape)) return 1;
+  if (/^\/it\/(risorse|strumenti|componenti-ui|tutorial|portfolio)\//.test(shape)) return 1;
   if (/^\/it\/(chi-sono|contatti|privacy-policy|termini-servizio)\//.test(shape)) return 3;
   return 2;
 }

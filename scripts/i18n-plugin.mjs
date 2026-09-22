@@ -70,7 +70,7 @@ const NAV_HREFS = {
     TOOLS_HREF: '/it/strumenti/',
     COMPONENTS_HREF: '/it/componenti-ui/',
     TUTORIALS_HREF: '/it/tutorial/',
-    TEMPLATES_HREF: '/it/template/'
+    TEMPLATES_HREF: '/it/portfolio/'
   },
   en: {
     HOME_HREF: '/',
@@ -78,7 +78,7 @@ const NAV_HREFS = {
     TOOLS_HREF: '/tools/',
     COMPONENTS_HREF: '/ui-components/',
     TUTORIALS_HREF: '/tutorials/',
-    TEMPLATES_HREF: '/templates/'
+    TEMPLATES_HREF: '/portfolio/'
   }
 };
 

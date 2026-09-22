@@ -25,7 +25,7 @@ const REPLACEMENTS = [
   ['<i class="fas fa-chevron-left"></i> Tutte le risorse', '<i class="fas fa-chevron-left"></i> All resources'],
   ['<strong>Obiettivo della sfida:</strong>', '<strong>Challenge goal:</strong>'],
   ['<strong>Istruzioni passo-passo:</strong>', '<strong>Step-by-step instructions:</strong>'],
-  ['>Esplora i template</a>', '>Explore the templates</a>'],
+  ['>Esplora il portfolio</a>', '>Explore the portfolio</a>'],
   ['<h2>Indice guida</h2>', '<h2>Guide contents</h2>'],
   ['aria-label="Navigazione principale"', 'aria-label="Main navigation"'],
   ['content="Anteprima CODEDGE"', 'content="CODEDGE preview"'],
