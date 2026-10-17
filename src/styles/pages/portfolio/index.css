@@ -26,11 +26,23 @@
   line-height: 1.75;
 }
 
-.portfolio-layout p,
-.portfolio-layout li {
-  text-align: left !important;
-  text-align-last: auto;
-  text-justify: auto;
+.portfolio-layout :is(
+  .portfolio-intro > p:not(.section-kicker),
+  .portfolio-path-content > p:not(.shop-card-eyebrow),
+  .tallero-copy > p,
+  .tallero-feature > p,
+  .tallero-personalize-copy > p:not(.shop-section-kicker),
+  .tallero-rate-note > p
+) {
+  text-align: justify !important;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.portfolio-intro > .section-kicker {
+  text-align: center !important;
+  text-align-last: center !important;
 }
 
 .portfolio-paths {
@@ -105,7 +117,8 @@
   margin: 2.25rem auto 0;
   max-width: var(--shop-content-width);
   color: var(--shop-muted);
-  text-align: center;
+  text-align: center !important;
+  text-align-last: center !important;
 }
 
 .portfolio-footnote a,

@@ -126,6 +126,19 @@
   line-height: 1.75;
 }
 
+.shop-layout :is(
+  .shop-hero-main .shop-lead,
+  .shop-hero-notes p,
+  .shop-section-body p,
+  .shop-card-content > p:not(.shop-card-eyebrow),
+  .shop-custom-copy > p:not(.shop-section-kicker)
+) {
+  text-align: justify !important;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
 .shop-hero-notes p:last-child,
 .shop-section-body > p:last-child {
   margin-bottom: 0;
