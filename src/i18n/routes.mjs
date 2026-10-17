@@ -35,6 +35,8 @@ export const ROUTE_MAP = {
   '/it/privacy-policy/': '/privacy-policy/',
   '/it/termini-servizio/': '/terms-of-service/',
   '/it/portfolio/': '/portfolio/',
+  '/it/portfolio/siti-template/': '/portfolio/websites-templates/',
+  '/it/portfolio/tallero/': '/portfolio/tallero/',
 
   // Resources
   '/it/risorse/': '/resources/',
@@ -91,9 +93,9 @@ export const LEGACY_REDIRECTS = {
   '/percorsi-apprendimento/git-pratico-senza-panico/': '/it/tutorial/git-pratico-senza-panico/',
   '/percorsi-apprendimento/visual-studio-code-senza-panico/': '/it/tutorial/vscode-essenziale/',
   '/tutorial/visual-studio-code-senza-panico/': '/it/tutorial/vscode-essenziale/',
-  '/template/': '/it/portfolio/',
-  '/templates/': '/portfolio/',
-  '/shop-template/': '/it/portfolio/',
+  '/template/': '/it/portfolio/siti-template/',
+  '/templates/': '/portfolio/websites-templates/',
+  '/shop-template/': '/it/portfolio/siti-template/',
   '/footer/chi-sono/': '/it/chi-sono/',
   '/footer/contatti/': '/it/contatti/',
   '/footer/privacy-policy/': '/it/privacy-policy/',

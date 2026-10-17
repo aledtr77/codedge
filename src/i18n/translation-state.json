@@ -2,17 +2,17 @@
   "version": 1,
   "routes": {
     "/it/": {
-      "translatedAt": "2026-09-22",
+      "translatedAt": "2026-10-17",
       "units": {
         "meta": "725338416ef9",
-        "page": "e84a767ca8ed"
+        "page": "f84a24741dcc"
       }
     },
     "/it/chi-sono/": {
-      "translatedAt": "2026-09-22",
+      "translatedAt": "2026-10-17",
       "units": {
         "meta": "a7e15776de23",
-        "page": "39b8407380ec"
+        "page": "215901e4c70a"
       }
     },
     "/it/componenti-ui/": {
@@ -135,10 +135,10 @@
       }
     },
     "/it/portfolio/": {
-      "translatedAt": "2026-09-22",
+      "translatedAt": "2026-10-17",
       "units": {
-        "meta": "35fbd62e5641",
-        "page": "39865bae7cb0"
+        "meta": "ceeca8e5de44",
+        "page": "7b046a289ea2"
       }
     },
     "/it/termini-servizio/": {
@@ -426,6 +426,20 @@
         "chapter-challenge": "3b6be4163454",
         "chapter-quiz": "804071585adf",
         "quiz": "6e0331eef7bd"
+      }
+    },
+    "/it/portfolio/siti-template/": {
+      "translatedAt": "2026-10-17",
+      "units": {
+        "meta": "13013fa1c88f",
+        "page": "83f676f55017"
+      }
+    },
+    "/it/portfolio/tallero/": {
+      "translatedAt": "2026-10-17",
+      "units": {
+        "meta": "4a8b929b5ad9",
+        "page": "a0ef34dc44b5"
       }
     }
   }
