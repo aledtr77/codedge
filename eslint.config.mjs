@@ -47,11 +47,11 @@ export default [
     rules: js.configs.recommended.rules,
   },
 
-  // The two checks that drive a real Chrome: the callbacks they hand to
+  // The checks that drive a real Chrome: the callbacks they hand to
   // page.evaluate() are executed in the page, so they legitimately reach for
   // document, location and NodeFilter from inside a Node file.
   {
-    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs', 'scripts/a11y.mjs'],
+    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs', 'scripts/a11y.mjs', 'scripts/css-labs-check.mjs'],
     languageOptions: {
       globals: { ...globals.node, ...globals.browser },
     },

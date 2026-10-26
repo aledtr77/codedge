@@ -274,133 +274,133 @@ export const quizzesData = {
   ],
   "css-fondamentali": [
     {
-      q: "What is the primary purpose of CSS (Cascading Style Sheets)?",
-      options: [
-        "Defining the semantic structure of the document.",
-        "Controlling the visual presentation, the layout and the colours of an HTML page.",
-        "Turning the site into an installable PWA."
+      "q": "In <code>p { color: blue; }</code>, which part is the selector?",
+      "options": [
+        "<code>color</code>",
+        "<code>p</code>",
+        "<code>blue</code>"
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! CSS describes how HTML elements should be presented on screen, on paper or on any other medium.",
-        wrong: "No. Structure belongs to HTML, and PWA installability is handled by the manifest and the service worker."
+      "correct": 1,
+      "feedback": {
+        "correct": "<code>p</code> selects paragraphs. <code>color</code> is the property; <code>blue</code> is its value.",
+        "wrong": "<code>p</code> selects paragraphs. <code>color</code> is the property; <code>blue</code> is its value."
       }
     },
     {
-      q: "What does 'Cascading' mean in CSS?",
-      options: [
-        "Laying elements out from top to bottom.",
-        "The way style rules stack up and get applied according to specificity and order.",
-        "Loading CSS files lazily in the background."
+      "q": "Paragraph B is inside a section, which is inside .group. Which selector reaches B?",
+      "options": [
+        "<code>.group &gt; p</code>",
+        "<code>.group p</code>",
+        "<code>p.group</code>"
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! The cascade sets the priority rules for when several styles target the same element, deciding which one wins.",
-        wrong: "Wrong. It has nothing to do with asynchronous loading or with where elements sit in the layout."
+      "correct": 1,
+      "feedback": {
+        "correct": "A space reaches descendants at any depth. > requires a direct child; p.group requires the group class on the paragraph.",
+        "wrong": "A space reaches descendants at any depth. > requires a direct child; p.group requires the group class on the paragraph."
       }
     },
     {
-      q: "Which CSS selector has the highest specificity (priority)?",
-      options: [
-        "The class selector (e.g. `.button`).",
-        "The ID selector (e.g. `#main-section`).",
-        "The element selector (e.g. `p`)."
+      "q": "In the same stylesheet, without !important or layers: <code>.note { color: orange; }</code> comes before <code>p { color: blue; }</code>. A p with class note is…",
+      "options": [
+        "blue, because p is written later.",
+        "orange, because .note is more specific.",
+        "without a color, because the rules cancel out."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! An ID selector (#id) carries far higher specificity than classes (.class) or elements (tags).",
-        wrong: "No. The element selector is the weakest of the three, and a class beats an element but still loses to an ID."
+      "correct": 1,
+      "feedback": {
+        "correct": "The class has specificity (0,1,0); the p type has (0,0,1). Specificity decides first; order only decides a tie.",
+        "wrong": "The class has specificity (0,1,0); the p type has (0,0,1). Specificity decides first; order only decides a tie."
       }
     },
     {
-      q: "In the CSS Box Model, which areas make up an element (from the inside out)?",
-      options: [
-        "Content, Margin, Border, Padding.",
-        "Content, Padding, Border, Margin.",
-        "Padding, Content, Margin, Border."
+      "q": "A div has color: orange and a border. Its p has no rules of its own. What does the p normally inherit?",
+      "options": [
+        "The color, but not the border.",
+        "Both color and border.",
+        "The border, but not the color."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! Starting at the centre you have the actual content, then the padding (inner space), the element's border, and finally the margin (outer space).",
-        wrong: "Wrong. Remember the right sequence: Content -> inner space (Padding) -> Border -> outer space (Margin)."
+      "correct": 0,
+      "feedback": {
+        "correct": "color normally inherits; border does not. The parent’s frame is not duplicated on the child.",
+        "wrong": "color normally inherits; border does not. The parent’s frame is not duplicated on the child."
       }
     },
     {
-      q: "What is the difference between margin and padding?",
-      options: [
-        "Margin is the space inside the element; padding is the space outside it.",
-        "Padding is the inner space between the content and the border; margin is the empty space outside the element's border.",
-        "There is no difference, they are interchangeable synonyms."
+      "q": "Two spans have display: block. How are they arranged in normal flow with horizontal writing?",
+      "options": [
+        "Always side by side.",
+        "Each starts on a new line.",
+        "They take no space."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! Padding pushes the text or content away from the element's own inner border. Margin pushes the whole element away from the boxes around it.",
-        wrong: "Wrong. The distinction matters for layout: padding sits inside the border and picks up the background, margin sits outside it and stays transparent."
+      "correct": 1,
+      "feedback": {
+        "correct": "display: block makes each box start a new line. This behavior does not need Flexbox.",
+        "wrong": "display: block makes each box start a new line. This behavior does not need Flexbox."
       }
     },
     {
-      q: "What does the box-sizing: border-box property do?",
-      options: [
-        "It includes padding and border in the element's total width and height.",
-        "It colours the border of block-level elements.",
-        "It hides negative outer margins."
+      "q": "A box has width: 100px, padding: 10px, border: 2px solid and box-sizing: content-box. How wide is it to the outer border?",
+      "options": [
+        "100px",
+        "120px",
+        "124px"
       ],
-      correct: 0,
-      feedback: {
-        correct: "Exactly! With border-box, an element you declare 300px wide stays 300px wide even once you add padding and a border, which makes layout maths far easier.",
-        wrong: "No. The default box-sizing (content-box) adds padding on top of the width, growing the element. border-box fixes that by absorbing them into the width you set."
+      "correct": 2,
+      "feedback": {
+        "correct": "100 + 10 + 10 + 2 + 2 = 124px. With border-box the 100px would include padding and border. Margins remain outside.",
+        "wrong": "100 + 10 + 10 + 2 + 2 = 124px. With border-box the 100px would include padding and border. Margins remain outside."
       }
     },
     {
-      q: "Which display value lays elements out on a two-dimensional grid (rows and columns)?",
-      options: [
-        "`display: flex;`",
-        "`display: grid;`",
-        "`display: inline-block;`"
+      "q": "An element has font-size: 20px and padding: 1em. How much padding is there on each side?",
+      "options": [
+        "16px, always.",
+        "20px, because em padding uses the element’s own font.",
+        "The font size of html."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! CSS Grid is built for two-dimensional layouts (rows and columns at the same time), unlike Flexbox, which is essentially one-dimensional.",
-        wrong: "No. Flexbox handles alignment along a single direction at a time (a row or a column), not a full two-dimensional grid."
+      "correct": 1,
+      "feedback": {
+        "correct": "For padding, em uses the element’s own font size. In font-size, em uses the parent’s font size instead. rem uses the root html font size.",
+        "wrong": "For padding, em uses the element’s own font size. In font-size, em uses the parent’s font size instead. rem uses the root html font size."
       }
     },
     {
-      q: "In Flexbox, which property aligns items along the main axis?",
-      options: [
-        "`align-items`",
-        "`justify-content`",
-        "`flex-direction`"
+      "q": "A flex container has flex-direction: column. Which axis does justify-content affect with horizontal writing?",
+      "options": [
+        "Horizontal, always.",
+        "Vertical, because it is the main axis here.",
+        "Both at once."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! `justify-content` aligns items along the main axis (horizontal by default). `align-items` handles the cross axis instead.",
-        wrong: "Wrong. `align-items` works on the cross axis, and `flex-direction` is what defines which way the main axis runs."
+      "correct": 1,
+      "feedback": {
+        "correct": "justify-content affects the main axis. With column, in this example, that axis is vertical; align-items affects the cross axis.",
+        "wrong": "justify-content affects the main axis. With column, in this example, that axis is vertical; align-items affects the cross axis."
       }
     },
     {
-      q: "What is the main difference between the rem and em units?",
-      options: [
-        "rem is relative to the root (html) font-size; em is relative to the parent element's font-size.",
-        "rem is a fixed unit (pixels); em is a dynamic percentage unit.",
-        "rem is only for margins; em is only for text."
+      "q": "A grid has grid-template-columns: 1fr 1fr and four children without explicit placement. How are they arranged?",
+      "options": [
+        "Four columns.",
+        "Two columns and two rows.",
+        "One column and four rows."
       ],
-      correct: 0,
-      feedback: {
-        correct: "Exactly! Both are relative, but rem refers back to the base HTML font size (keeping the layout proportional), while em refers to the direct parent, which can compound in surprising ways.",
-        wrong: "Wrong. Both are relative, dynamic units (not fixed like pixels) and both can be used for any property (width, padding, font-size)."
+      "correct": 1,
+      "feedback": {
+        "correct": "The container defines two columns. The browser places two children in the first row and two in the second, following HTML order.",
+        "wrong": "The container defines two columns. The browser places two children in the first row and two in the second, following HTML order."
       }
     },
     {
-      q: "What are Media Queries used for in CSS?",
-      options: [
-        "Making asynchronous HTTP requests to a server.",
-        "Applying different styles depending on the device's characteristics (e.g. screen width).",
-        "Playing audio and video files in the browser."
+      "q": "The @media (min-width: 640px) condition is true when the viewport measures…",
+      "options": [
+        "639px.",
+        "640px and above.",
+        "Only exactly 640px."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! Media Queries are the backbone of Responsive Web Design, letting you adapt the site's appearance across phones, tablets and desktops.",
-        wrong: "No. Asynchronous requests belong to JavaScript (the Fetch API), and media playback is handled by the HTML5 audio/video tags."
+      "correct": 1,
+      "feedback": {
+        "correct": "min-width includes the threshold. Below 640px the group’s rules do not apply; from 640px they join the other relevant rules.",
+        "wrong": "min-width includes the threshold. Below 640px the group’s rules do not apply; from 640px they join the other relevant rules."
       }
     }
   ],

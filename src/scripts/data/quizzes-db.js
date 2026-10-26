@@ -137,133 +137,133 @@ export const quizzesData = {
   ],
   "css-fondamentali": [
     {
-      q: "Qual è lo scopo primario dei CSS (Cascading Style Sheets)?",
-      options: [
-        "Definire la struttura semantica del documento.",
-        "Controllare la presentazione visiva, il layout ed i colori della pagina HTML.",
-        "Rendere il sito un'applicazione PWA installabile."
+      "q": "In <code>p { color: blue; }</code>, quale parte è il selettore?",
+      "options": [
+        "<code>color</code>",
+        "<code>p</code>",
+        "<code>blue</code>"
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! I CSS servono a descrivere come gli elementi HTML debbano essere visualizzati sullo schermo, sulla carta o su altri media.",
-        wrong: "No. La struttura appartiene all'HTML, e l'installazione PWA è gestita dal manifest e dal service worker."
+      "correct": 1,
+      "feedback": {
+        "correct": "<code>p</code> seleziona i paragrafi. <code>color</code> è la proprietà; <code>blue</code> è il valore.",
+        "wrong": "<code>p</code> seleziona i paragrafi. <code>color</code> è la proprietà; <code>blue</code> è il valore."
       }
     },
     {
-      q: "Cosa si intende per 'Cascata' (Cascading) nei CSS?",
-      options: [
-        "La disposizione degli elementi dall'alto verso il basso.",
-        "Il modo in cui le regole di stile si sovrappongono e vengono applicate in base a specificità e ordine.",
-        "Il caricamento ritardato dei file CSS in background."
+      "q": "Il paragrafo B è dentro una section, a sua volta dentro .group. Quale selettore raggiunge B?",
+      "options": [
+        "<code>.group &gt; p</code>",
+        "<code>.group p</code>",
+        "<code>p.group</code>"
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! La cascata stabilisce le regole di priorità nel caso in cui più stili si riferiscano allo stesso elemento, decidendo quale applicare.",
-        wrong: "Errato. Non c'entra con il caricamento asincrono né con il posizionamento degli elementi nel layout."
+      "correct": 1,
+      "feedback": {
+        "correct": "Lo spazio raggiunge i discendenti a qualsiasi profondità. > richiede un figlio diretto; p.group richiede la classe group sul paragrafo.",
+        "wrong": "Lo spazio raggiunge i discendenti a qualsiasi profondità. > richiede un figlio diretto; p.group richiede la classe group sul paragrafo."
       }
     },
     {
-      q: "Quale selettore CSS ha la specificità (priorità) più alta?",
-      options: [
-        "Il selettore di classe (es. `.pulsante`).",
-        "Il selettore di ID (es. `#sezione-principale`).",
-        "Il selettore di elemento (es. `p`)."
+      "q": "Nello stesso foglio, senza !important né livelli: <code>.note { color: orange; }</code> viene prima di <code>p { color: blue; }</code>. Un p con classe note è…",
+      "options": [
+        "blu, perché p è scritto dopo.",
+        "arancione, perché .note è più specifico.",
+        "senza colore, perché le regole si annullano."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! Un selettore di ID (#id) ha una specificità nettamente superiore rispetto a classi (.classe) ed elementi (tag).",
-        wrong: "No. Il selettore di elemento è il più debole, e la classe è più forte dell'elemento ma inferiore all'ID."
+      "correct": 1,
+      "feedback": {
+        "correct": "La classe ha specificità (0,1,0), il tipo p ha (0,0,1). Decide prima la specificità; l’ordine decide solo a parità.",
+        "wrong": "La classe ha specificità (0,1,0), il tipo p ha (0,0,1). Decide prima la specificità; l’ordine decide solo a parità."
       }
     },
     {
-      q: "Nel Box Model di CSS, da quali aree è composto un elemento (dall'interno verso l'esterno)?",
-      options: [
-        "Content, Margin, Border, Padding.",
-        "Content, Padding, Border, Margin.",
-        "Padding, Content, Margin, Border."
+      "q": "Un div ha color: orange e un bordo. Il suo p non ha regole proprie. Che cosa eredita normalmente il p?",
+      "options": [
+        "Il colore, ma non il bordo.",
+        "Colore e bordo.",
+        "Il bordo, ma non il colore."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! Partendo dal centro abbiamo il contenuto reale, poi il padding (spazio interno), il bordo dell'elemento, ed infine il margin (spazio esterno).",
-        wrong: "Sbagliato. Ricorda la sequenza corretta: Contenuto -> Spazio interno (Padding) -> Bordo (Border) -> Margine esterno (Margin)."
+      "correct": 0,
+      "feedback": {
+        "correct": "color si eredita normalmente; border no. La cornice del genitore non viene duplicata sul figlio.",
+        "wrong": "color si eredita normalmente; border no. La cornice del genitore non viene duplicata sul figlio."
       }
     },
     {
-      q: "Qual è la differenza tra margin e padding?",
-      options: [
-        "Il margin è lo spazio interno all'elemento; il padding è lo spazio esterno.",
-        "Il padding è lo spazio interno tra il contenuto ed il bordo; il margin è lo spazio vuoto esterno al bordo dell'elemento.",
-        "Non c'è alcuna differenza, sono sinonimi intercambiabili."
+      "q": "Due span hanno display: block. Come si dispongono nel flusso normale con scrittura orizzontale?",
+      "options": [
+        "Sempre affiancati.",
+        "Ognuno inizia su una nuova riga.",
+        "Non occupano spazio."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! Il padding distanzia il testo/contenuto dal proprio bordo interno. Il margin distanzia l'elemento intero dalle altre scatole circostanti.",
-        wrong: "Errato. La differenza è fondamentale per il layout: il padding è interno al bordo e risente dello sfondo, il margin è esterno e neutro."
+      "correct": 1,
+      "feedback": {
+        "correct": "display: block fa iniziare ogni scatola su una nuova riga. Non serve Flexbox per questo comportamento.",
+        "wrong": "display: block fa iniziare ogni scatola su una nuova riga. Non serve Flexbox per questo comportamento."
       }
     },
     {
-      q: "A cosa serve la proprietà box-sizing: border-box?",
-      options: [
-        "A includere padding e border nel calcolo della larghezza e altezza totale dell'elemento.",
-        "A colorare il bordo degli elementi a blocco.",
-        "A nascondere i margini esterni negativi."
+      "q": "Una scatola ha width: 100px, padding: 10px, border: 2px solid e box-sizing: content-box. Quanto è larga fino al bordo esterno?",
+      "options": [
+        "100px",
+        "120px",
+        "124px"
       ],
-      correct: 0,
-      feedback: {
-        correct: "Esatto! Con border-box, se definisci un width di 300px, l'elemento rimarrà largo 300px anche aggiungendo padding e bordo, facilitando il calcolo del layout.",
-        wrong: "No. Il box-sizing standard (content-box) somma il padding al width, allargando l'elemento. border-box risolve questo problema assorbendoli nel width impostato."
+      "correct": 2,
+      "feedback": {
+        "correct": "100 + 10 + 10 + 2 + 2 = 124px. Con border-box i 100px includerebbero padding e bordo. I margini restano fuori.",
+        "wrong": "100 + 10 + 10 + 2 + 2 = 124px. Con border-box i 100px includerebbero padding e bordo. I margini restano fuori."
       }
     },
     {
-      q: "Quale valore di display permette di allineare gli elementi su una griglia bidimensionale (righe e colonne)?",
-      options: [
-        "`display: flex;`",
-        "`display: grid;`",
-        "`display: inline-block;`"
+      "q": "Un elemento ha font-size: 20px e padding: 1em. Quanto misura il padding su ogni lato?",
+      "options": [
+        "16px, sempre.",
+        "20px, perché il padding in em usa il font dell’elemento.",
+        "La dimensione del font di html."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! CSS Grid è progettato per layout bidimensionali (griglie con righe e colonne simultanee), a differenza di Flexbox che è prevalentemente monodimensionale.",
-        wrong: "No. Flexbox gestisce l'allineamento lungo una singola direzione alla volta (riga o colonna), non una griglia complessa bidimensionale."
+      "correct": 1,
+      "feedback": {
+        "correct": "Per padding, em usa il font dell’elemento stesso. In font-size, em usa invece il font del genitore. rem usa il font della radice html.",
+        "wrong": "Per padding, em usa il font dell’elemento stesso. In font-size, em usa invece il font del genitore. rem usa il font della radice html."
       }
     },
     {
-      q: "In Flexbox, quale proprietà si usa per allineare gli elementi lungo l'asse principale (main axis)?",
-      options: [
-        "`align-items`",
-        "`justify-content`",
-        "`flex-direction`"
+      "q": "Un contenitore flex ha flex-direction: column. Su quale asse agisce justify-content, con scrittura orizzontale?",
+      "options": [
+        "Orizzontale, sempre.",
+        "Verticale, perché è l’asse principale in questo caso.",
+        "Su entrambi contemporaneamente."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! `justify-content` allinea gli elementi lungo l'asse di scorrimento principale (di default orizzontale). `align-items` gestisce invece l'asse secondario (verticale).",
-        wrong: "Errato. `align-items` agisce sull'asse secondario (cross axis) e `flex-direction` definisce la direzione dell'asse principale."
+      "correct": 1,
+      "feedback": {
+        "correct": "justify-content agisce sull’asse principale. Con column, in questo esempio, quell’asse è verticale; align-items agisce sull’asse trasversale.",
+        "wrong": "justify-content agisce sull’asse principale. Con column, in questo esempio, quell’asse è verticale; align-items agisce sull’asse trasversale."
       }
     },
     {
-      q: "Qual è la differenza principale tra le unità di misura rem ed em?",
-      options: [
-        "rem fa riferimento al font-size della root (html); em fa riferimento al font-size dell'elemento genitore.",
-        "rem è un'unità fissa (pixel); em è un'unità percentuale dinamica.",
-        "rem si usa solo per i margini; em si usa solo per i testi."
+      "q": "Una griglia ha grid-template-columns: 1fr 1fr e quattro figli senza posizionamenti espliciti. Come li dispone?",
+      "options": [
+        "Quattro colonne.",
+        "Due colonne e due righe.",
+        "Una colonna e quattro righe."
       ],
-      correct: 0,
-      feedback: {
-        correct: "Esatto! Entrambe sono relative, ma rem fa riferimento alla dimensione font di base dell'HTML (rendendo il layout proporzionato), mentre em è relativo al genitore diretto, rischiando effetti a cascata complessi.",
-        wrong: "Sbagliato. Entrambe sono unità relative e dinamiche (non fisse come i pixel) e possono essere utilizzate per qualsiasi proprietà (width, padding, font-size)."
+      "correct": 1,
+      "feedback": {
+        "correct": "Il contenitore definisce due colonne. Il browser colloca due figli nella prima riga e due nella seconda, seguendo l’ordine HTML.",
+        "wrong": "Il contenitore definisce due colonne. Il browser colloca due figli nella prima riga e due nella seconda, seguendo l’ordine HTML."
       }
     },
     {
-      q: "A cosa servono le Media Queries nei CSS?",
-      options: [
-        "A fare richieste HTTP asincrone verso un server.",
-        "Ad applicare stili diversi in base alle caratteristiche del dispositivo (es. larghezza dello schermo).",
-        "A riprodurre file audio e video nel browser."
+      "q": "La condizione @media (min-width: 640px) è vera quando il viewport misura…",
+      "options": [
+        "639px.",
+        "640px e oltre.",
+        "Solo esattamente 640px."
       ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! Le Media Queries sono il pilastro del Responsive Web Design, permettendo di adattare l'aspetto del sito su smartphone, tablet e desktop.",
-        wrong: "No. Le richieste asincrone appartengono a JavaScript (Fetch API) ed i media sono gestiti dai tag HTML5 audio/video."
+      "correct": 1,
+      "feedback": {
+        "correct": "min-width include la soglia. Sotto 640px le regole del gruppo non si applicano; da 640px si aggiungono alle altre regole pertinenti.",
+        "wrong": "min-width include la soglia. Sotto 640px le regole del gruppo non si applicano; da 640px si aggiungono alle altre regole pertinenti."
       }
     }
   ],

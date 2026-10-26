@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="630" viewBox="0 0 400 630" role="img" aria-labelledby="title desc">
+  <title id="title">CSS Box Model</title>
+  <desc id="desc">Content, padding, border and margin shown as nested areas, followed by content-box and border-box width calculations.</desc>
+  <rect width="400" height="630" rx="20" fill="#101d2e"/>
+  <text x="24" y="43" fill="#e4ebf3" font-family="system-ui,sans-serif" font-size="25" font-weight="700">box model</text>
+
+  <rect x="20" y="66" width="360" height="302" rx="13" fill="#162b3d" stroke="#6f839a" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="35" y="92" fill="#bac9d9" font-family="ui-monospace,monospace" font-size="17" font-weight="700">margin</text>
+
+  <rect x="43" y="112" width="314" height="232" rx="9" fill="#aa794c"/>
+  <text x="57" y="138" fill="#172130" font-family="ui-monospace,monospace" font-size="17" font-weight="700">border · 2px</text>
+
+  <rect x="61" y="157" width="278" height="165" rx="7" fill="#3a657d"/>
+  <text x="75" y="183" fill="#e7f3f9" font-family="ui-monospace,monospace" font-size="17" font-weight="700">padding · 10px</text>
+
+  <rect x="88" y="205" width="224" height="94" rx="5" fill="#143e3b" stroke="#8fd2b8" stroke-width="2"/>
+  <text x="200" y="247" fill="#bcebd8" font-family="ui-monospace,monospace" font-size="19" font-weight="700" text-anchor="middle">content</text>
+  <text x="200" y="274" fill="#9dd5c2" font-family="ui-monospace,monospace" font-size="14" text-anchor="middle">width: 120px</text>
+
+  <rect x="20" y="388" width="360" height="99" rx="10" fill="#1b3043" stroke="#57738d"/>
+  <text x="38" y="418" fill="#badced" font-family="ui-monospace,monospace" font-size="18" font-weight="700">content-box</text>
+  <text x="38" y="448" fill="#e8eef4" font-family="ui-monospace,monospace" font-size="19">120 + 20 + 4</text>
+  <text x="38" y="474" fill="#f4c587" font-family="ui-monospace,monospace" font-size="18" font-weight="700">= 144px</text>
+
+  <rect x="20" y="502" width="360" height="103" rx="10" fill="#1b3043" stroke="#57738d"/>
+  <text x="38" y="532" fill="#badced" font-family="ui-monospace,monospace" font-size="18" font-weight="700">border-box</text>
+  <text x="38" y="561" fill="#e8eef4" font-family="ui-monospace,monospace" font-size="19">96 + 20 + 4</text>
+  <text x="38" y="588" fill="#bcebd8" font-family="ui-monospace,monospace" font-size="18" font-weight="700">= 120px</text>
+</svg>
