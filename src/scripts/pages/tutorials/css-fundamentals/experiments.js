@@ -21,21 +21,19 @@ export function cssExperiments(lang) {
       inspect: (doc) => [reading(L('Colore calcolato', 'Computed color'), doc.defaultView.getComputedStyle(doc.querySelector('p')).color)],
     },
     selectors: {
-      scene: L('Tre paragrafi: A, B e C', 'Three paragraphs: A, B and C'),
-      height: 130,
-      controls: [choice('selector', L('Elementi selezionati', 'Matched elements'), 'p', [
-        option('p', 'p', 'A, B, C'), option('.group p', '.group p', 'A, B'), option('.group > p', '.group > p', 'A'),
+      scene: L('Anteprima: due messaggi', 'Preview: two messages'),
+      height: 110,
+      controls: [choice('selector', L('Quale testo diventa azzurro?', 'Which text turns blue?'), 'p', [
+        option('p', 'p', L('Entrambi i paragrafi', 'Both paragraphs')),
+        option('.avviso', '.avviso', L('Solo il messaggio importante', 'Only the important message')),
       ])],
       render: (s) => ({
-        html: '<div class="group">\n  <p class="note" id="intro">A</p>\n  <section>\n    <p class="note">B</p>\n  </section>\n</div>\n<p>C</p>',
+        html: `<p class="avviso">${L('Messaggio importante', 'Important message')}</p>\n<p>${L('Messaggio normale', 'Regular message')}</p>`,
         css: `${s.selector} {\n  color: #8bc9ef;\n}`,
-        note: ({
-          p: L('p seleziona tutti e tre i paragrafi. A, B e C sono azzurri.', 'p matches all three paragraphs. A, B and C are blue.'),
-          '.group p': L('Lo spazio seleziona i paragrafi dentro .group anche se annidati: A e B. C è fuori da .group.', 'The space matches paragraphs inside .group, including nested ones: A and B. C is outside .group.'),
-          '.group > p': L('> seleziona solo i paragrafi figli diretti di .group: A. Il genitore immediato di B è section, quindi B resta escluso.', '> only matches paragraphs that are direct children of .group: A. B’s immediate parent is section, so B is excluded.'),
-        })[s.selector],
+        note: s.selector === 'p'
+          ? L('Entrambi i messaggi sono azzurri: il selettore p trova tutti e due i paragrafi.', 'Both messages are blue: the p selector matches both paragraphs.')
+          : L('Solo «Messaggio importante» è azzurro: è l’unico paragrafo con la classe avviso. L’altro non cambia.', 'Only “Important message” is blue: it is the only paragraph with the avviso class. The other does not change.'),
       }),
-      inspect: (doc, s) => [reading(L('Paragrafi selezionati', 'Matched paragraphs'), [...doc.querySelectorAll(s.selector)].map((el) => el.textContent).join(', '))],
     },
     cascade: {
       scene: L('Due regole sullo stesso paragrafo', 'Two rules on the same paragraph'),

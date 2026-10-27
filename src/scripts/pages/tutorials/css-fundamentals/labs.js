@@ -1,3 +1,4 @@
+import Prism from "./syntax.js";
 import { cssExperiments } from "./experiments.js";
 
 const words = {
@@ -22,7 +23,7 @@ function showCode(code, source, result) {
     line.className = "css-lab__line";
     if (result.dimLines?.includes(index)) line.classList.add("css-lab__line--overridden");
     if (result.activeLines?.includes(index)) line.classList.add("css-lab__line--active");
-    line.textContent = text + (index < lines.length - 1 ? "\n" : "");
+    line.innerHTML = Prism.highlight(text, Prism.languages.css, "css") + (index < lines.length - 1 ? "\n" : "");
     code.append(line);
   });
 }
@@ -63,6 +64,7 @@ export default function initCssLabs(savedStates = {}) {
     `;
     body.querySelector(".css-lab__window-name").textContent = experiment.scene;
     body.querySelector(".css-lab__base code").textContent = baseCSS.trim();
+    if (key === "selectors") body.querySelector(".css-lab__base").remove();
     body.querySelector("form").hidden = experiment.controls.length === 0;
     const controls = body.querySelector(".css-lab__controls");
     const syncControls = [];
@@ -182,7 +184,7 @@ export default function initCssLabs(savedStates = {}) {
     const update = () => {
       const result = experiment.render(state);
       showCode(cssCode, result.css, result);
-      htmlCode.textContent = result.html;
+      htmlCode.innerHTML = Prism.highlight(result.html, Prism.languages.markup, "markup");
       note.textContent = result.note;
       body.querySelector(".css-lab__state").textContent = result.css === baseline.css ? w.before : w.changed;
       const doc = frame.contentDocument;

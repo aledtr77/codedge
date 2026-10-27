@@ -44,9 +44,12 @@ try {
     await choose('rule', 'color', '#efb38b');
     assert.equal(await css('rule', 'p', 'color'), 'rgb(239, 179, 139)');
     assert.equal(await (await frame('rule')).locator('p').textContent(), textBefore);
-    for (const [selector, count] of [['p', 3], ['.group p', 2], ['.group > p', 1]]) {
+    assert.ok(await lab('selectors').locator('.css-lab__html .token.tag').count());
+    for (const [selector, count] of [['p', 2], ['.avviso', 1]]) {
       await choose('selectors', 'selector', selector);
       assert.equal(await (await frame('selectors')).locator('p').evaluateAll((nodes) => nodes.filter((el) => getComputedStyle(el).color === 'rgb(139, 201, 239)').length), count);
+      assert.equal((await lab('selectors').locator('.css-lab__source .token.selector').textContent()).trim(), selector);
+      assert.equal(await lab('selectors').locator('.css-lab__source .token.property').textContent(), 'color');
     }
     for (const [value, color] of [['specificity', 'rgb(239, 179, 139)'], ['order', 'rgb(139, 201, 239)'], ['reverse', 'rgb(239, 179, 139)']]) {
       await choose('cascade', 'case', value);
@@ -152,7 +155,7 @@ try {
     await page.waitForFunction((lang) => document.documentElement.lang === lang, route.startsWith('/it/') ? 'en' : 'it');
     await ready();
     assert.equal(await lab('box').locator('button[value="border-box"]').getAttribute('aria-pressed'), 'true');
-    assert.equal(await lab('selectors').locator('.css-lab__window-name').textContent(), route.startsWith('/it/') ? 'Three paragraphs: A, B and C' : 'Tre paragrafi: A, B e C');
+    assert.equal(await lab('selectors').locator('.css-lab__window-name').textContent(), route.startsWith('/it/') ? 'Preview: two messages' : 'Anteprima: due messaggi');
     assert.equal(await (await frame('rule')).locator('p').textContent(), route.startsWith('/it/') ? 'This is a paragraph.' : 'Questo è un paragrafo.');
     assert.deepEqual(errors, []);
     await context.close();
@@ -164,6 +167,11 @@ try {
     await page.goto(`${base}${route}`);
     assert.equal(await page.locator('.css-lab noscript').count(), 13);
     assert.ok(await page.locator('.css-lab noscript').first().isVisible());
+    assert.ok(await page.locator('#chapter-04 pre .token.tag').count());
+    assert.ok(await page.locator('#chapter-04 pre .token.property').count());
+    const tagColor = await page.locator('#chapter-04 pre .token.tag').first().evaluate((el) => getComputedStyle(el).color);
+    const propertyColor = await page.locator('#chapter-04 pre .token.property').first().evaluate((el) => getComputedStyle(el).color);
+    assert.notEqual(tagColor, propertyColor);
   }
   await noJS.close();
   console.log('PASS explanations and fallback remain readable without JavaScript');
