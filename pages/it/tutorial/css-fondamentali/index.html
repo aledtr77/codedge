@@ -111,10 +111,18 @@
         <article class="guide-content" aria-label="Contenuto guida CSS: concetti fondamentali">
 
 <section id="chapter-01" class="guide-block guide-chapter">
+<div class="guide-intro-layout">
+<div class="guide-intro-copy">
 <h2>Prima di iniziare</h2>
 <section class="guide-subchapter"><p>Il CSS descrive come il browser mostra gli elementi HTML: testo, colori, dimensioni e disposizione nella pagina. Per usarlo devi capire come vengono scelte le regole e come gli elementi occupano spazio.</p>
-<p><strong>Prerequisiti:</strong> devi saper leggere un tag HTML, una classe e una struttura con elementi annidati. Se questi termini sono nuovi, parti dalla <a href="/it/tutorial/html-fondamentali/">guida HTML</a>. Per gli esempi bastano un editor di testo e un browser.</p>
-<p>Il percorso segue questo ordine: scrivere e applicare regole; capire cascata ed ereditarietà; capire flusso, scatole e misure; usare Flexbox, Grid e media query. Ogni esempio spiega il risultato prima dei controlli. Non serve scoprire da soli quale modifica funziona.</p></section>
+<p><strong>Prerequisiti:</strong> devi saper leggere un tag HTML, una classe e una struttura con elementi annidati. Se questi termini sono nuovi, parti dalla <a href="/it/tutorial/html-fondamentali/">guida HTML</a>. Usa un editor di codice, come <a href="/it/tutorial/vscode-essenziale/">Visual Studio Code</a>, per scrivere e modificare gli esempi; aprili nel browser per vedere il risultato e sperimentare.</p>
+<p>Il percorso segue questo ordine: scrivere e applicare regole; capire cascata ed ereditarietà; capire flusso, scatole e misure; usare Flexbox, Grid e media query. Ogni esempio spiega il risultato prima dei controlli. Non serve scoprire da soli quale modifica funziona.</p>
+<p><strong>Nota bene:</strong> questa guida raccoglie quelli che considero i concetti più importanti per iniziare, ma non copre tutte le proprietà e le funzionalità del CSS. È una base da cui partire e approfondire secondo le esigenze dei tuoi progetti.</p></section>
+</div>
+<figure class="guide-figure guide-figure--editorial">
+<img src="/images/percorsi-apprendimento/css-fondamentali/cascata-editoriale.webp" alt="Illustrazione di livelli di regole CSS che convergono verso una pagina web." decoding="async" width="864" height="1080">
+</figure>
+</div>
 </section>
 
 <section id="chapter-02" class="guide-block guide-chapter">
@@ -122,10 +130,14 @@
 <section class="guide-subchapter"><p>Una <strong>regola CSS</strong> contiene un selettore e un blocco tra parentesi graffe. Il selettore indica quali elementi riceveranno le dichiarazioni del blocco.</p><pre><code>p {
   color: royalblue;
   font-size: 20px;
-}</code></pre><ul class="guide-list"><li><code>p</code> è il selettore: trova tutti i paragrafi.</li><li><code>color: royalblue;</code> è una dichiarazione: proprietà <code>color</code>, valore <code>royalblue</code>.</li><li><code>font-size: 20px;</code> è un'altra dichiarazione, indipendente dalla prima.</li></ul><p>I due punti separano proprietà e valore. Il punto e virgola separa le dichiarazioni. Gli spazi e gli a capo servono a leggere meglio il codice. I commenti si scrivono tra <code>/*</code> e <code>*/</code>.</p><p>Il browser ignora una dichiarazione con un valore non valido: <code>color: 20px;</code> non assegna un colore. Le altre dichiarazioni valide della regola continuano ad applicarsi.</p><section class="css-lab" data-css-lab="rule" aria-labelledby="css-lab-rule-title">
+}</code></pre><ul class="guide-list"><li><code>p</code> è il selettore: trova tutti i paragrafi.</li><li><code>color: royalblue;</code> è una dichiarazione: proprietà <code>color</code>, valore <code>royalblue</code>.</li><li><code>font-size: 20px;</code> è un'altra dichiarazione, indipendente dalla prima.</li></ul><p>I due punti separano proprietà e valore. Il punto e virgola separa le dichiarazioni. Gli spazi e gli a capo servono a leggere meglio il codice.</p><p>Il browser ignora una dichiarazione con un valore non valido: <code>color: 20px;</code> non assegna un colore. Le altre dichiarazioni valide della regola continuano ad applicarsi.</p><section class="css-lab" data-css-lab="rule" aria-labelledby="css-lab-rule-title">
 <p class="css-lab__eyebrow">Esempio interattivo</p>
 <h3 id="css-lab-rule-title">Una proprietà cambia un solo aspetto</h3><p class="css-lab__task">Il paragrafo ha sempre lo stesso testo. Con <code>color: #8bc9ef</code> il testo è azzurro; con <code>color: #efb38b</code> è arancione. Dimensione e posizione restano uguali.</p>
-<noscript><p>I controlli richiedono JavaScript. Il codice e il risultato sono spiegati nel capitolo.</p></noscript></section></section>
+<noscript><p>I controlli richiedono JavaScript. Il codice e il risultato sono spiegati nel capitolo.</p></noscript></section>
+<h3>Commenti nel CSS</h3><p>Un commento serve a lasciare una spiegazione nel codice: il browser lo ignora. Si apre con <code>/*</code> e si chiude con <code>*/</code>.</p><pre><code>/* Colore dei paragrafi */
+p {
+  color: royalblue;
+}</code></pre></section>
 </section>
 
 <section id="chapter-03" class="guide-block guide-chapter">

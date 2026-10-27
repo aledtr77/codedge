@@ -111,10 +111,18 @@
         <article class="guide-content" aria-label="CSS: fundamental concepts guide content">
 
 <section id="chapter-01" class="guide-block guide-chapter">
+<div class="guide-intro-layout">
+<div class="guide-intro-copy">
 <h2>Before you start</h2>
 <section class="guide-subchapter"><p>CSS describes how a browser presents HTML elements: text, colors, dimensions and page layout. To use it, you need to understand how rules are chosen and how elements take up space.</p>
-<p><strong>Prerequisites:</strong> you should be able to read an HTML tag, a class and a structure with nested elements. If these terms are new, start with the <a href="/tutorials/html-fundamentals/">HTML guide</a>. The examples only need a text editor and a browser.</p>
-<p>The order is: write and apply rules; understand the cascade and inheritance; understand flow, boxes and measurements; use Flexbox, Grid and media queries. Each example explains its result before the controls. You do not have to guess which change works.</p></section>
+<p><strong>Prerequisites:</strong> you should be able to read an HTML tag, a class and a structure with nested elements. If these terms are new, start with the <a href="/tutorials/html-fundamentals/">HTML guide</a>. Use a code editor such as <a href="/tutorials/vscode-essentials/">Visual Studio Code</a> to write and change the examples; open them in a browser to see the result and experiment.</p>
+<p>The order is: write and apply rules; understand the cascade and inheritance; understand flow, boxes and measurements; use Flexbox, Grid and media queries. Each example explains its result before the controls. You do not have to guess which change works.</p>
+<p><strong>Note:</strong> this guide brings together what I consider the most important concepts for getting started, but it does not cover every CSS property and feature. It provides a foundation for further learning as your projects require.</p></section>
+</div>
+<figure class="guide-figure guide-figure--editorial">
+<img src="/images/percorsi-apprendimento/css-fondamentali/cascata-editoriale.webp" alt="Illustration of layers of CSS rules converging on a web page." decoding="async" width="864" height="1080">
+</figure>
+</div>
 </section>
 
 <section id="chapter-02" class="guide-block guide-chapter">
@@ -122,10 +130,14 @@
 <section class="guide-subchapter"><p>A <strong>CSS rule</strong> contains a selector and a block in curly braces. The selector identifies the elements that receive the declarations in the block.</p><pre><code>p {
   color: royalblue;
   font-size: 20px;
-}</code></pre><ul class="guide-list"><li><code>p</code> is the selector: it matches every paragraph.</li><li><code>color: royalblue;</code> is a declaration: property <code>color</code>, value <code>royalblue</code>.</li><li><code>font-size: 20px;</code> is another declaration, independent of the first.</li></ul><p>A colon separates a property from its value. A semicolon separates declarations. Spaces and line breaks make the code easier to read. Comments go between <code>/*</code> and <code>*/</code>.</p><p>The browser ignores a declaration with an invalid value: <code>color: 20px;</code> does not set a color. The other valid declarations in the rule still apply.</p><section class="css-lab" data-css-lab="rule" aria-labelledby="css-lab-rule-title">
+}</code></pre><ul class="guide-list"><li><code>p</code> is the selector: it matches every paragraph.</li><li><code>color: royalblue;</code> is a declaration: property <code>color</code>, value <code>royalblue</code>.</li><li><code>font-size: 20px;</code> is another declaration, independent of the first.</li></ul><p>A colon separates a property from its value. A semicolon separates declarations. Spaces and line breaks make the code easier to read.</p><p>The browser ignores a declaration with an invalid value: <code>color: 20px;</code> does not set a color. The other valid declarations in the rule still apply.</p><section class="css-lab" data-css-lab="rule" aria-labelledby="css-lab-rule-title">
 <p class="css-lab__eyebrow">Interactive example</p>
 <h3 id="css-lab-rule-title">One property changes one aspect</h3><p class="css-lab__task">The paragraph always has the same text. With <code>color: #8bc9ef</code> the text is blue; with <code>color: #efb38b</code> it is orange. Its size and position stay the same.</p>
-<noscript><p>The controls need JavaScript. The chapter explains the code and its result.</p></noscript></section></section>
+<noscript><p>The controls need JavaScript. The chapter explains the code and its result.</p></noscript></section>
+<h3>CSS comments</h3><p>A comment lets you leave an explanation in the code; the browser ignores it. It starts with <code>/*</code> and ends with <code>*/</code>.</p><pre><code>/* Paragraph color */
+p {
+  color: royalblue;
+}</code></pre></section>
 </section>
 
 <section id="chapter-03" class="guide-block guide-chapter">
