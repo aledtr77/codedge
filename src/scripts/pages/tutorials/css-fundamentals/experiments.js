@@ -16,7 +16,7 @@ export function cssExperiments(lang) {
         html: `<p>${L('Questo è un paragrafo.', 'This is a paragraph.')}</p>`,
         css: `p {\n  color: ${s.color};\n}`,
         activeLines: [1],
-        note: L(`Il selettore p trova il paragrafo. La proprietà color assegna ${s.color} al testo. Nessuna regola cambia dimensioni o posizione.`, `The p selector matches the paragraph. The color property assigns ${s.color} to the text. No rule changes its size or position.`),
+        note: L(`Il selettore p trova il paragrafo. La proprietà color assegna ${s.color} al testo.`, `The p selector matches the paragraph. The color property assigns ${s.color} to the text.`),
       }),
       inspect: (doc) => [reading(L('Colore calcolato', 'Computed color'), doc.defaultView.getComputedStyle(doc.querySelector('p')).color)],
     },

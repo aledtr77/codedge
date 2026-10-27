@@ -85,25 +85,26 @@
           <ol class="guide-toc-list">
 <li><a href="#chapter-01">Before you start</a></li>
 <li><a href="#chapter-02">1. Rules, properties and values</a></li>
-<li><a href="#chapter-03">2. Connect a CSS file</a></li>
-<li><a href="#chapter-04">3. Selectors: choose the elements</a></li>
-<li><a href="#chapter-05">4. Cascade and specificity</a></li>
-<li><a href="#chapter-inheritance">5. Inheritance: values passed to children</a></li>
-<li><a href="#chapter-flow">6. Normal flow and display</a></li>
-<li><a href="#chapter-06">7. Box Model: content, padding, border and margin</a></li>
-<li><a href="#chapter-units">8. Units, sizing and overflow</a></li>
-<li><a href="#chapter-07">9. Text and colors</a></li>
-<li><a href="#chapter-states">10. Attributes, pseudo-classes and pseudo-elements</a></li>
-<li><a href="#chapter-08">11. Flexbox: container, children and axes</a></li>
-<li><a href="#chapter-09">12. Grid: columns, rows and tracks</a></li>
-<li><a href="#chapter-11">13. Position and stacking</a></li>
-<li><a href="#chapter-12">14. Media queries and responsive pages</a></li>
-<li><a href="#chapter-13">15. CSS variables: shared values and scope</a></li>
-<li><a href="#chapter-debug">16. Find out why a rule does not work</a></li>
-<li><a href="#chapter-14">17. Further reading: transform and transition</a></li>
-<li><a href="#chapter-cheatsheet">18. Concept reference</a></li>
-<li><a href="#chapter-challenge">19. Exercise with an explained solution</a></li>
-<li><a href="#chapter-quiz">20. Check the fundamentals</a></li>
+<li><a href="#chapter-comments">2. CSS comments</a></li>
+<li><a href="#chapter-03">3. Apply CSS to a page</a></li>
+<li><a href="#chapter-04">4. Selectors: choose the elements</a></li>
+<li><a href="#chapter-05">5. Cascade and specificity</a></li>
+<li><a href="#chapter-inheritance">6. Inheritance: values passed to children</a></li>
+<li><a href="#chapter-flow">7. Normal flow and display</a></li>
+<li><a href="#chapter-06">8. Box Model: content, padding, border and margin</a></li>
+<li><a href="#chapter-units">9. Units, sizing and overflow</a></li>
+<li><a href="#chapter-07">10. Text and colors</a></li>
+<li><a href="#chapter-states">11. Attributes, pseudo-classes and pseudo-elements</a></li>
+<li><a href="#chapter-08">12. Flexbox: container, children and axes</a></li>
+<li><a href="#chapter-09">13. Grid: columns, rows and tracks</a></li>
+<li><a href="#chapter-11">14. Position and stacking</a></li>
+<li><a href="#chapter-12">15. Media queries and responsive pages</a></li>
+<li><a href="#chapter-13">16. CSS variables: shared values and scope</a></li>
+<li><a href="#chapter-debug">17. Find out why a rule does not work</a></li>
+<li><a href="#chapter-14">18. Further reading: transform and transition</a></li>
+<li><a href="#chapter-cheatsheet">19. Concept reference</a></li>
+<li><a href="#chapter-challenge">20. Exercise with an explained solution</a></li>
+<li><a href="#chapter-quiz">21. Check the fundamentals</a></li>
 <li><a href="#chapter-15">Sources and further reading</a></li>
 </ol>
         </aside>
@@ -132,17 +133,41 @@
   font-size: 20px;
 }</code></pre><ul class="guide-list"><li><code>p</code> is the selector: it matches every paragraph.</li><li><code>color: royalblue;</code> is a declaration: property <code>color</code>, value <code>royalblue</code>.</li><li><code>font-size: 20px;</code> is another declaration, independent of the first.</li></ul><p>A colon separates a property from its value. A semicolon separates declarations. Spaces and line breaks make the code easier to read.</p><p>The browser ignores a declaration with an invalid value: <code>color: 20px;</code> does not set a color. The other valid declarations in the rule still apply.</p><section class="css-lab" data-css-lab="rule" aria-labelledby="css-lab-rule-title">
 <p class="css-lab__eyebrow">Interactive example</p>
-<h3 id="css-lab-rule-title">One property changes one aspect</h3><p class="css-lab__task">The paragraph always has the same text. With <code>color: #8bc9ef</code> the text is blue; with <code>color: #efb38b</code> it is orange. Its size and position stay the same.</p>
-<noscript><p>The controls need JavaScript. The chapter explains the code and its result.</p></noscript></section>
-<h3>CSS comments</h3><p>A comment lets you leave an explanation in the code; the browser ignores it. It starts with <code>/*</code> and ends with <code>*/</code>.</p><pre><code>/* Paragraph color */
+<h3 id="css-lab-rule-title">One property changes one aspect</h3><p class="css-lab__task">The paragraph always has the same text. With <code>color: #8bc9ef</code> the text is blue; with <code>color: #efb38b</code> it is orange.</p>
+<noscript><p>The controls need JavaScript. The chapter explains the code and its result.</p></noscript></section></section>
+</section>
+
+<section id="chapter-comments" class="guide-block guide-chapter">
+<h2>2. CSS comments</h2>
+<section class="guide-subchapter">
+<p>A comment is a note for people reading the code. The browser ignores it when applying styles, so the comment does not change the appearance of the page.</p>
+<h3>A single-line comment</h3>
+<p>Write the text between <code>/*</code> and <code>*/</code>:</p>
+<pre><code>/* Paragraph text color */
 p {
   color: royalblue;
-}</code></pre></section>
+}</code></pre>
+<p>The comment describes the rule. The declaration <code>color: royalblue;</code> makes the paragraph text blue.</p>
+<h3>A multi-line comment</h3>
+<p>The same symbols can enclose a longer comment:</p>
+<pre><code>/* The link color needs to remain
+   readable on the light background. */
+a {
+  color: darkblue;
+}</code></pre>
+<p>The note explains the color choice; the <code>a</code> rule applies <code>darkblue</code> to link text. Always close a comment with <code>*/</code>, otherwise the code that follows can also be ignored.</p>
+</section>
 </section>
 
 <section id="chapter-03" class="guide-block guide-chapter">
-<h2>2. Connect a CSS file</h2>
-<section class="guide-subchapter"><p>Create a folder with two files: <code>index.html</code> and <code>style.css</code>. Keep them in the same folder to use the path in this example.</p><h3>The index.html file</h3><pre><code>&lt;!doctype html&gt;
+<h2>3. Apply CSS to a page</h2>
+<section class="guide-subchapter"><p>There are three ways to apply CSS to a page:</p>
+<ul class="guide-list"><li><strong>External file:</strong> write rules in a <code>.css</code> file and connect it to the HTML with <code>&lt;link&gt;</code>.</li><li><strong>Internal styles:</strong> write rules in a <code>&lt;style&gt;</code> element in the page's <code>&lt;head&gt;</code>.</li><li><strong>Inline style:</strong> write declarations in the <code>style</code> attribute of an individual HTML element.</li></ul>
+<p>For a site with multiple pages, an external file is generally the recommended choice: it separates styles from HTML and lets you reuse the same rules. Internal styles can be useful for a single page; inline styles can target one specific element, but are less convenient to maintain when repeated.</p>
+<h3>Internal and inline styles</h3><p>With internal styles, the rule goes in the <code>&lt;head&gt;</code> and matches the page's paragraphs:</p><pre><code>&lt;style&gt;
+  p { color: blue; }
+&lt;/style&gt;</code></pre><p>With an inline style, the declaration applies directly to that paragraph:</p><pre><code>&lt;p style="color: blue;"&gt;This text is blue.&lt;/p&gt;</code></pre><p>In both cases, the affected text turns blue. Inline styles can override other rules: the cascade chapter explains how the browser chooses a value.</p>
+<h3>External file: complete example</h3><p>Create a folder with two files: <code>index.html</code> and <code>style.css</code>. Keep them in the same folder to use the path in this example.</p><h3>The index.html file</h3><pre><code>&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
   &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -155,11 +180,26 @@ p {
 &lt;/body&gt;
 &lt;/html&gt;</code></pre><h3>The style.css file</h3><pre><code>p {
   color: blue;
-}</code></pre><p>Open <code>index.html</code> in your browser: the paragraph is blue. Change <code>blue</code> to <code>red</code>, save the CSS and reload the page: the text turns red. The <code>link</code> element connects the file; <code>href</code> gives its path. If you move the CSS into a <code>css</code> folder, the path becomes <code>css/style.css</code>.</p><p>You can also write CSS in a <code>&lt;style&gt;</code> element inside <code>head</code>, or in an element's <code>style</code> attribute. An external file lets you reuse the same rules on several pages.</p><h3>Browser default styles</h3><p>Even without your CSS, the browser applies styles: for example, margins on paragraphs and larger text for headings. A reset changes these defaults; you do not need one to connect CSS. We will cover <code>box-sizing</code> after the Box Model.</p></section>
+}</code></pre><p>Open <code>index.html</code> in your browser: the paragraph is blue. Change <code>blue</code> to <code>red</code>, save the CSS and reload the page: the text turns red. The <code>link</code> element connects the file; <code>href</code> gives its path. If you move the CSS into a <code>css</code> folder, the path becomes <code>css/style.css</code>.</p><h3>Browser defaults and CSS resets</h3><p>The browser applies some styles even without your CSS: for example, it adds margins to the <code>body</code> and paragraphs. These values can vary between browsers and affect the layout of elements.</p><p>To start from a more consistent base, many projects use a <strong>CSS reset</strong>: a set of rules that changes or removes some default styles. This code is only an example to show what a reset can look like. It is not a universal standard to copy: every project has its own structure and content, so its reset should reflect its needs.</p><pre><code>*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, ul, ol, figure {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}</code></pre><p>The first rule makes sizing more predictable; the Box Model chapter explains how. The second removes the default margins from the listed elements so you can set the spacing yourself. Images do not exceed the available width, and form controls use the inherited font.</p></section>
 </section>
 
 <section id="chapter-04" class="guide-block guide-chapter">
-<h2>3. Selectors: choose the elements</h2>
+<h2>4. Selectors: choose the elements</h2>
 <section class="guide-subchapter"><p>A selector matches elements in the HTML structure. The same rule applies to every element matching the selector.</p><pre><code>&lt;div class=&quot;group&quot;&gt;
   &lt;p class=&quot;note&quot; id=&quot;intro&quot;&gt;A&lt;/p&gt;
   &lt;section&gt;
@@ -173,7 +213,7 @@ p {
 </section>
 
 <section id="chapter-05" class="guide-block guide-chapter">
-<h2>4. Cascade and specificity</h2>
+<h2>5. Cascade and specificity</h2>
 <section class="guide-subchapter"><p>When declarations assign different values to the same property on the same element, the <strong>cascade</strong> decides which value to use. It decides separately for each property: one rule may provide the color, another the text size.</p><p>Start with normal declarations, without <code>!important</code>, in the same stylesheet and without <code>@layer</code>. Under these conditions:</p><ol class="guide-list"><li>The selector with higher specificity wins.</li><li>When specificity is equal, the later declaration wins.</li></ol><pre><code>&lt;p class=&quot;note&quot;&gt;Testo / Text&lt;/p&gt;</code></pre><pre><code>.note { color: orange; }
 p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> contains a class and wins over <code>p</code>, even though <code>p</code> is written later.</p><h3>How to compare specificity</h3><p>Count three groups and compare them from the left: <strong>IDs; classes, attributes and pseudo-classes; types and pseudo-elements</strong>. <code>#intro</code> is (1,0,0), <code>.note</code> (0,1,0), <code>p</code> (0,0,1), <code>.group p</code> (0,1,1). The first unequal group decides. Spaces and <code>&gt;</code> add no specificity.</p><p>The full cascade also considers style origin, importance and <code>@layer</code> layers before specificity. Normal inline styles beat normal rules in author stylesheets. <code>!important</code> changes a declaration's precedence, not its selector's specificity. Identify the conflict before adding it.</p><section class="css-lab" data-css-lab="cascade" aria-labelledby="css-lab-cascade-title">
 <p class="css-lab__eyebrow">Interactive example</p>
@@ -182,7 +222,7 @@ p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> co
 </section>
 
 <section id="chapter-inheritance" class="guide-block guide-chapter">
-<h2>5. Inheritance: values passed to children</h2>
+<h2>6. Inheritance: values passed to children</h2>
 <section class="guide-subchapter"><p>Some properties pass from a parent to its children when no value is specified on the child. This mechanism is called <strong>inheritance</strong>.</p><pre><code>&lt;div class=&quot;parent&quot;&gt;
   &lt;p&gt;Testo / Text&lt;/p&gt;
 &lt;/div&gt;</code></pre><pre><code>.parent {
@@ -195,7 +235,7 @@ p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> co
 </section>
 
 <section id="chapter-flow" class="guide-block guide-chapter">
-<h2>6. Normal flow and display</h2>
+<h2>7. Normal flow and display</h2>
 <section class="guide-subchapter"><p><strong>Normal flow</strong> is how the browser lays out elements before Flexbox, Grid or positioning. These examples use horizontal, left-to-right text.</p><ul class="guide-list"><li><code>display: block</code>: the element starts on a new line and, with an automatic width, takes the available horizontal space. Paragraphs and <code>div</code> elements normally behave this way.</li><li><code>display: inline</code>: the element participates in a line of text. On a normal <code>span</code>, <code>width</code> and <code>height</code> do not set its dimensions.</li><li><code>display: inline-block</code>: it stays in the line but accepts <code>width</code> and <code>height</code>.</li><li><code>display: none</code>: the element and its descendants generate no boxes and take no layout space. They normally disappear from the accessibility tree too.</li></ul><pre><code>&lt;span class=&quot;item&quot;&gt;A&lt;/span&gt;
 &lt;span class=&quot;item&quot;&gt;B&lt;/span&gt;</code></pre><p>With <code>.item { display: block; }</code>, A and B occupy two lines. With <code>inline</code> they participate in the same line if there is room. The box behavior changes; the HTML order stays the same.</p><p><code>visibility: hidden</code> hides an element while keeping its space. <code>opacity: 0</code> makes it transparent but may leave it clickable and keyboard-focusable: it is not a substitute for <code>display: none</code>.</p><section class="css-lab" data-css-lab="flow" aria-labelledby="css-lab-flow-title">
 <p class="css-lab__eyebrow">Interactive example</p>
@@ -204,7 +244,7 @@ p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> co
 </section>
 
 <section id="chapter-06" class="guide-block guide-chapter">
-<h2>7. Box Model: content, padding, border and margin</h2>
+<h2>8. Box Model: content, padding, border and margin</h2>
 <section class="guide-subchapter"><p>Element boxes have four areas, from the inside out:</p><ol class="guide-list"><li><strong>Content:</strong> text, an image or child elements.</li><li><strong>Padding:</strong> space between content and border. It receives the element's background.</li><li><strong>Border:</strong> the edge around content and padding.</li><li><strong>Margin:</strong> space outside the border. It is transparent.</li></ol><figure class="guide-figure"><picture><source media="(max-width: 600px)" srcset="/images/percorsi-apprendimento/css-fondamentali/box-model-mobile.svg" width="400" height="630"><img src="/images/percorsi-apprendimento/css-fondamentali/box-model.svg" alt="Content, padding, border, margin" loading="lazy" decoding="async" width="1200" height="520"></picture></figure><pre><code>.box {
   width: 120px;
   padding: 10px;
@@ -219,7 +259,7 @@ p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> co
 </section>
 
 <section id="chapter-units" class="guide-block guide-chapter">
-<h2>8. Units, sizing and overflow</h2>
+<h2>9. Units, sizing and overflow</h2>
 <section class="guide-subchapter"><p>A relative measurement needs a reference. <code>50%</code> does not generally mean “half the screen”. For <code>width</code>, in this guide's examples, it means half the containing block's width.</p><ul class="guide-list"><li><code>px</code>: CSS pixels, not necessarily physical screen pixels.</li><li><code>%</code>: The reference depends on the property: for width, normally the containing block’s width.</li><li><code>rem</code>: The root html element’s font size.</li><li><code>em</code>: For font-size: the parent’s font size. For padding and many other lengths: the element’s own font size.</li><li><code>vw / vh</code>: 1vw is 1% of viewport width; 1vh is 1% of its height. On mobile, dvh follows the dynamic visible height.</li></ul><p>If <code>html</code> has a 16px font, <code>2rem</code> is 32px. If the parent has a 20px font, <code>font-size: 1.5em</code> on the child gives 30px; on that same child, <code>padding: 1em</code> gives 30px.</p><h3>Automatic sizing and limits</h3><pre><code>.box {
   width: 100%;
   max-width: 600px;
@@ -231,7 +271,7 @@ p { color: royalblue; }</code></pre><p>The text is orange. <code>.note</code> co
 </section>
 
 <section id="chapter-07" class="guide-block guide-chapter">
-<h2>9. Text and colors</h2>
+<h2>10. Text and colors</h2>
 <section class="guide-subchapter"><p><code>color</code> sets the text color. <code>background-color</code> sets the box background. They are independent properties.</p><pre><code>body {
   font-family: Arial, sans-serif;
   font-size: 1rem;
@@ -245,7 +285,7 @@ p {
 </section>
 
 <section id="chapter-states" class="guide-block guide-chapter">
-<h2>10. Attributes, pseudo-classes and pseudo-elements</h2>
+<h2>11. Attributes, pseudo-classes and pseudo-elements</h2>
 <section class="guide-subchapter"><p>A selector can depend on an element's attributes or state:</p><ul class="guide-list"><li><code>[type="email"]</code> matches elements with that attribute and value.</li><li><code>:hover</code> matches the element under the pointer.</li><li><code>:focus-visible</code> matches a focused element when the browser determines that a visible indicator is needed, normally during keyboard navigation.</li><li><code>:first-child</code> matches an element that is its parent's first child.</li></ul><pre><code>a:hover { color: orange; }
 a:focus-visible { outline: 3px solid royalblue; }
 input[type=&quot;email&quot;] { border: 1px solid; }
@@ -257,7 +297,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-08" class="guide-block guide-chapter">
-<h2>11. Flexbox: container, children and axes</h2>
+<h2>12. Flexbox: container, children and axes</h2>
 <section class="guide-subchapter"><p>Apply <code>display: flex</code> to the <strong>container</strong>. Its direct children become flex items. You do not need to set <code>display: flex</code> on every child.</p><pre><code>.container {
   display: flex;
   flex-direction: row;
@@ -271,7 +311,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-09" class="guide-block guide-chapter">
-<h2>12. Grid: columns, rows and tracks</h2>
+<h2>13. Grid: columns, rows and tracks</h2>
 <section class="guide-subchapter"><p>With <code>display: grid</code>, direct children become grid items. The container defines <strong>columns and rows</strong>, also called tracks. Without explicit placement, the browser puts children into the available cells in order.</p><pre><code>.container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -283,7 +323,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-11" class="guide-block guide-chapter">
-<h2>13. Position and stacking</h2>
+<h2>14. Position and stacking</h2>
 <section class="guide-subchapter"><p><code>position</code> changes how an element participates in flow and the reference for its offsets.</p><ul class="guide-list"><li><code>static</code>: the initial behavior. <code>top</code>, <code>right</code>, <code>bottom</code> and <code>left</code> do not move the element.</li><li><code>relative</code>: keeps its space in flow; offsets start from its original position.</li><li><code>absolute</code>: leaves flow, so other elements reserve no space for it. In this example it uses the nearest ancestor with a <code>position</code> other than <code>static</code> as its reference.</li><li><code>fixed</code>: leaves flow and normally uses the viewport as its reference, staying in place during scrolling.</li><li><code>sticky</code>: keeps its space and sticks at the specified threshold, such as <code>top: 0</code>, during scrolling in the relevant container and within its containing block's limits.</li></ul><pre><code>.parent {
   position: relative;
 }
@@ -298,7 +338,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-12" class="guide-block guide-chapter">
-<h2>14. Media queries and responsive pages</h2>
+<h2>15. Media queries and responsive pages</h2>
 <section class="guide-subchapter"><p>A <strong>media query</strong> applies a group of rules only when a condition is true. The viewport is the area where the browser displays the page, measured here in CSS pixels.</p><pre><code>.container {
   display: grid;
   grid-template-columns: 1fr;
@@ -315,7 +355,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-13" class="guide-block guide-chapter">
-<h2>15. CSS variables: shared values and scope</h2>
+<h2>16. CSS variables: shared values and scope</h2>
 <section class="guide-subchapter"><p>A <strong>custom property</strong>, often called a CSS variable, stores a value under a name starting with <code>--</code>. <code>var()</code> uses that value in another declaration.</p><pre><code>:root {
   --accent: royalblue;
 }
@@ -331,12 +371,12 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-debug" class="guide-block guide-chapter">
-<h2>16. Find out why a rule does not work</h2>
+<h2>17. Find out why a rule does not work</h2>
 <section class="guide-subchapter"><p>Open the browser's developer tools by choosing <strong>Inspect</strong> on the element. <strong>Styles</strong> shows declarations; <strong>Computed</strong> shows their resulting values. Check in this order:</p><ol class="guide-list"><li><strong>Did the file load?</strong> In Network, check that the CSS loaded without errors and that the path is correct.</li><li><strong>Does the selector match?</strong> Check the selected element's tag, classes and nesting.</li><li><strong>Is the declaration valid and does it win?</strong> A warning may indicate an invalid value. A crossed-out declaration may have been overridden: find the active one.</li><li><strong>Is the value inherited?</strong> Distinguish the element's rules from values coming from its parents.</li><li><strong>Does the property act in this context?</strong> <code>width</code> does not size an inline span; <code>justify-content</code> does not distribute free space when there is none.</li><li><strong>How large is the box?</strong> Read content, padding, border and margin. If there is a media query, check the viewport width.</li></ol><p>Change one declaration at a time and check the computed value. Edits in developer tools are temporary: copy them into the CSS file to keep them.</p></section>
 </section>
 
 <section id="chapter-14" class="guide-block guide-chapter">
-<h2>17. Further reading: transform and transition</h2>
+<h2>18. Further reading: transform and transition</h2>
 <section class="guide-subchapter"><p>These properties come after the fundamentals. <code>transform</code> changes an element's visual rendering: it can translate, rotate or scale it. <code>translateX(8px)</code> displays it 8px to the right without moving neighboring elements in flow.</p><pre><code>.box {
   transform: translateX(0);
   transition: transform 200ms ease;
@@ -350,12 +390,12 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-<h2>18. Concept reference</h2>
+<h2>19. Concept reference</h2>
 <section class="guide-subchapter"><dl><dt><strong>Which elements receive the rule?</strong></dt><dd><code>selettore / selector</code></dd><dt><strong>Which declaration wins?</strong></dt><dd><code>cascata / cascade</code></dd><dt><strong>Where does the child’s value come from?</strong></dt><dd><code>ereditarietà / inheritance</code></dd><dt><strong>How does it participate in flow?</strong></dt><dd><code>display, position</code></dd><dt><strong>How much space does it take?</strong></dt><dd><code>width, padding, border, margin, box-sizing</code></dd><dt><strong>What is the measurement relative to?</strong></dt><dd><code>%, rem, em, viewport</code></dd><dt><strong>How are children arranged?</strong></dt><dd><code>flex, grid</code></dd><dt><strong>When does the rule group apply?</strong></dt><dd><code>@media</code></dd></dl></section>
 </section>
 
 <section id="chapter-challenge" class="guide-block guide-chapter">
-<h2>19. Exercise with an explained solution</h2>
+<h2>20. Exercise with an explained solution</h2>
 <section class="guide-subchapter"><p>This exercise checks two concepts already explained: inheritance and the Box Model. The paragraph has no margins in this example. Calculate the width <strong>to the outer border</strong>, excluding any browser margins.</p><pre><code>&lt;div class=&quot;parent&quot;&gt;
   &lt;p class=&quot;note&quot;&gt;Testo / Text&lt;/p&gt;
 &lt;/div&gt;</code></pre><pre><code>.parent { color: orange; }
@@ -369,7 +409,7 @@ li:first-child { font-weight: bold; }
 </section>
 
 <section id="chapter-quiz" data-quiz-id="css-fondamentali" class="guide-block guide-chapter quiz-section">
-<h2>20. Check the fundamentals</h2>
+<h2>21. Check the fundamentals</h2>
 <section class="guide-subchapter"><p class="quiz-intro">Ten questions on the concepts in this guide. Every answer includes an explanation.</p><div id="quiz-wrapper"></div></section>
 </section>
 
