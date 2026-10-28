@@ -1655,3 +1655,26 @@
     margin-top: 0.95rem;
   }
 }
+
+/* Syntax colors for the guide examples and the interactive lab code. */
+.guide-content pre code .token.comment { color: #a8b4a0; font-style: italic; }
+.guide-content pre code .token.punctuation { color: #d6deeb; }
+.guide-content pre code .token.selector,
+.guide-content pre code .token.tag { color: #e2bb80; }
+.guide-content pre code .token.property,
+.guide-content pre code .token.attr-name { color: #8ccdf3; }
+.guide-content pre code .token.value,
+.guide-content pre code .token.string,
+.guide-content pre code .token.attr-value,
+.guide-content pre code .token.url { color: #ddaa93; }
+.guide-content pre code .token.atrule,
+.guide-content pre code .token.keyword,
+.guide-content pre code .token.important { color: #d2a9e9; }
+.guide-content pre code .token.function { color: #d9dca7; }
+
+.guide-content pre code .token.number,
+.guide-content pre code .token.boolean,
+.guide-content pre code .token.constant { color: #b5d5a4; }
+.guide-content pre code .token.operator { color: #d6deeb; }
+.guide-content pre code .token.command,
+.guide-content pre code .token.builtin { color: #e2bb80; }

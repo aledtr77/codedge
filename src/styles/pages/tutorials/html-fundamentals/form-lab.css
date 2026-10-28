@@ -95,9 +95,9 @@
   white-space: pre;
 }
 
-.form-lab__tok--tag { color: #f43f5e; }
-.form-lab__tok--attr { color: #38bdf8; }
-.form-lab__tok--val { color: #34d399; }
+.form-lab__tok--tag { color: #e2bb80; }
+.form-lab__tok--attr { color: #8ccdf3; }
+.form-lab__tok--val { color: #ddaa93; }
 .form-lab__tok--text { color: #f3f4f6; }
 
 .form-lab__live {

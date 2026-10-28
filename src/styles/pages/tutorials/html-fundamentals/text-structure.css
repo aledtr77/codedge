@@ -173,9 +173,9 @@
   white-space: pre;
 }
 
-.text-structure__tok--tag { color: #f43f5e; }
+.text-structure__tok--tag { color: #e2bb80; }
 .text-structure__tok--text { color: #f3f4f6; }
-.text-structure__tok--comment { color: #6b7280; font-style: italic; }
+.text-structure__tok--comment { color: #a8b4a0; font-style: italic; }
 
 .text-structure__preview {
   background: #111827;

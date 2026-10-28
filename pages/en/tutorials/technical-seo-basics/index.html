@@ -214,10 +214,10 @@
             <h2>4. The essential HTML head</h2>
             <section class="guide-subchapter">
               <p>The <a href="/resources/html-glossary/?q=head"><code>&lt;head&gt;</code></a> section is invisible on the page, but it holds important signals. At the start you do not need to stuff it: you need to get a few elements right.</p>
-              <pre><code>&lt;title&gt;Technical SEO basics without panic | Practical guide | Codedge&lt;/title&gt;
-&lt;meta name="description" content="An essential guide to technical SEO: title, description, URLs, content, internal links, sitemap, robots.txt, canonical, performance, structured data and Search Console."&gt;
-&lt;link rel="canonical" href="https://codedge.it/tutorials/technical-seo-basics/"&gt;
-&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Technical SEO basics without panic | Practical guide | Codedge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>An essential guide to technical SEO: title, description, URLs, content, internal links, sitemap, robots.txt, canonical, performance, structured data and Search Console.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canonical<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/tutorials/technical-seo-basics/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width,initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
               <p>This small block does not solve everything, but it creates a clean foundation.</p>
             </section>
             <section class="guide-subchapter">
@@ -238,7 +238,7 @@
               <h3>Meta description</h3>
               <p>The meta description is not a magic wand for ranking. It mainly summarises the page, and it can be used as the snippet in results, although Google may rewrite it when it thinks something else is more useful.</p>
               <p>A good description says what the user will find and why they should open the page. It should not repeat keywords at random.</p>
-              <pre><code>&lt;meta name="description" content="A practical guide to Git from scratch: commits, branches, merges, remotes and recovering from mistakes without panic."&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A practical guide to Git from scratch: commits, branches, merges, remotes and recovering from mistakes without panic.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
             </section>
             <section class="guide-subchapter">
               <h3>H1 and title are not the same thing</h3>
@@ -298,29 +298,29 @@
             <section class="guide-subchapter">
               <h3>XML sitemap</h3>
               <p>A sitemap is a file listing the URLs you want search engines to discover. It does not guarantee indexing, but it is a useful signal, especially as a site grows or when some pages are new.</p>
-              <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
-  &lt;url&gt;
-    &lt;loc&gt;https://codedge.it/tutorials/technical-seo-basics/&lt;/loc&gt;
-    &lt;lastmod&gt;2026-06-25T00:00:00.000Z&lt;/lastmod&gt;
-    &lt;priority&gt;0.7&lt;/priority&gt;
-  &lt;/url&gt;
-&lt;/urlset&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>urlset</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.sitemaps.org/schemas/sitemap/0.9<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>loc</span><span class="token punctuation">></span></span>https://codedge.it/tutorials/technical-seo-basics/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>loc</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>lastmod</span><span class="token punctuation">></span></span>2026-06-25T00:00:00.000Z<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>lastmod</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>priority</span><span class="token punctuation">></span></span>0.7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>priority</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>urlset</span><span class="token punctuation">></span></span></code></pre>
               <p>The most important part: put canonical, indexable, public URLs in the sitemap. Do not use it as a dumping ground for every possible URL.</p>
             </section>
             <section class="guide-subchapter">
               <h3>robots.txt</h3>
               <p><code>robots.txt</code> tells crawlers which paths they may or may not crawl. It is mainly for managing crawling, not for hiding private information.</p>
-              <pre><code>User-agent: *
-Allow: /
+              <pre><code class="language-robots"><span class="token property">User-agent</span><span class="token punctuation">:</span> <span class="token value">*</span>
+<span class="token property">Allow</span><span class="token punctuation">:</span> <span class="token value">/</span>
 
-Sitemap: https://codedge.it/sitemap.xml</code></pre>
+<span class="token property">Sitemap</span><span class="token punctuation">:</span> <span class="token value">https://codedge.it/sitemap.xml</span></code></pre>
               <p>A classic mistake: using <code>robots.txt</code> to remove a page from Google. It is the wrong tool. If a page must not be indexed, use <code>noindex</code>, or genuinely protect it if it holds private data.</p>
             </section>
             <section class="guide-subchapter">
               <h3>noindex</h3>
               <p><code>noindex</code> tells search engines not to index a page.</p>
-              <pre><code>&lt;meta name="robots" content="noindex,follow"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>robots<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noindex,follow<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
               <p>Use it for technical pages, intentional duplicates, internal pages that are no use in search, or temporary content. Do not use it on pages you want to rank.</p>
               <p>Careful: if you block a page via <code>robots.txt</code>, Google may never read the <code>noindex</code> meta tag inside it. The signals have to be chosen coherently.</p>
             </section>
@@ -330,7 +330,7 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
             <h2>7. Canonical and duplicates</h2>
             <section class="guide-subchapter">
               <p>The canonical tag indicates which URL you consider the main version of a piece of content.</p>
-              <pre><code>&lt;link rel="canonical" href="https://codedge.it/tutorials/technical-seo-basics/"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canonical<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/tutorials/technical-seo-basics/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
               <p>This is useful when identical or very similar content can be reached from several URLs.</p>
               <p>Common examples:</p>
               <ul class="guide-list">
@@ -366,13 +366,13 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
                 <li>write useful alt text when the image carries information;</li>
                 <li>leave <code>alt=""</code> only for purely decorative images.</li>
               </ul>
-              <pre><code>&lt;img
-  src="/images/tutorial/schema-seo.svg"
-  alt="Diagram of the SEO steps: crawl, index and result"
-  loading="lazy"
-  decoding="async"
-  width="1200"
-  height="520"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/images/tutorial/schema-seo.svg<span class="token punctuation">"</span></span>
+  <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Diagram of the SEO steps: crawl, index and result<span class="token punctuation">"</span></span>
+  <span class="token attr-name">loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span>
+  <span class="token attr-name">decoding</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>async<span class="token punctuation">"</span></span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1200<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>520<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
             </section>
             <section class="guide-subchapter">
               <h3>Mobile</h3>
@@ -408,28 +408,28 @@ Sitemap: https://codedge.it/sitemap.xml</code></pre>
               <p>Structured data helps describe the type of content more explicitly: article, product, FAQ, organisation, breadcrumb, recipe, course and so on.</p>
               <p>It should not be added at random. It has to represent content genuinely present on the page.</p>
               <p>For most sites, the most practical format is JSON-LD:</p>
-              <pre><code>&lt;script type="application/ld+json"&gt;
-{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Technical SEO basics without panic",
-  "description": "An essential guide to technical SEO for static sites and front-end projects.",
-  "author": {
-    "@type": "Person",
-    "name": "Alessandro"
-  }
-}
-&lt;/script&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/ld+json<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token punctuation">{</span>
+  <span class="token string-property property">"@context"</span><span class="token operator">:</span> <span class="token string">"https://schema.org"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"@type"</span><span class="token operator">:</span> <span class="token string">"TechArticle"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"headline"</span><span class="token operator">:</span> <span class="token string">"Technical SEO basics without panic"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"description"</span><span class="token operator">:</span> <span class="token string">"An essential guide to technical SEO for static sites and front-end projects."</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"author"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">"@type"</span><span class="token operator">:</span> <span class="token string">"Person"</span><span class="token punctuation">,</span>
+    <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"Alessandro"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
               <p>This guarantees no special treatment in the SERP, but it makes the content more explicit where the markup is supported and consistent.</p>
             </section>
             <section class="guide-subchapter">
               <h3>Open Graph and Twitter cards</h3>
               <p>Open Graph is not “Google SEO” in the strict sense. It mainly controls how a page looks when it is shared on social networks, chat apps and platforms that generate previews.</p>
-              <pre><code>&lt;meta property="og:title" content="Technical SEO basics without panic"&gt;
-&lt;meta property="og:description" content="An essential guide to genuinely useful technical SEO."&gt;
-&lt;meta property="og:url" content="https://codedge.it/tutorials/technical-seo-basics/"&gt;
-&lt;meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg"&gt;
-&lt;meta name="twitter:card" content="summary_large_image"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:title<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Technical SEO basics without panic<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>An essential guide to genuinely useful technical SEO.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:url<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/tutorials/technical-seo-basics/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:image<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/og/opengraph-1200x630.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>twitter:card<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>summary_large_image<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
               <p>For a well-kept site these previews matter: they do not improve ranking by themselves, but they improve the presentation when a link travels outside the site.</p>
             </section>
           </section>

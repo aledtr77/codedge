@@ -224,7 +224,7 @@
               <div style="border-left: 4px solid #ff4d4d; padding-left: 1rem; margin: 1.5rem 0; background: rgba(255, 77, 77, 0.05);">
                 <h4 style="color: #ff4d4d; margin-top: 0; font-size: 1.1rem;">❌ The most common mistake (crossed tags)</h4>
                 <p>Imagine you want to put a word in bold (with <code>&lt;strong&gt;</code>) inside a paragraph (with <code>&lt;p&gt;</code>):</p>
-                <pre><code>&lt;p&gt;This text is &lt;strong&gt;very important.&lt;/p&gt;&lt;/strong&gt;</code></pre>
+                <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This text is <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>very important.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span></code></pre>
                 <p>Draw it as boxes and the mistake jumps out:</p>
                 <div class="nesting-diagram incorrect">
                   <span class="nesting-header-badge">Crossed (wrong)</span>
@@ -248,7 +248,7 @@
               <div style="border-left: 4px solid #4dffb4; padding-left: 1rem; margin: 1.5rem 0; background: rgba(77, 255, 180, 0.05);">
                 <h4 style="color: #4dffb4; margin-top: 0; font-size: 1.1rem;">✅ The correct structure (tidy boxes)</h4>
                 <p>To fix it, we make sure the smaller box (the bold) closes before the bigger one (the paragraph):</p>
-                <pre><code>&lt;p&gt;This text is &lt;strong&gt;very important.&lt;/strong&gt;&lt;/p&gt;</code></pre>
+                <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This text is <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>very important.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
                 <p>Now the boxes sit perfectly one inside the other:</p>
                 <div class="nesting-diagram correct">
                   <span class="nesting-header-badge">Tidy (correct)</span>
@@ -804,7 +804,7 @@
                 <p>Use the tags in this chapter only when you want to give a word a precise meaning (to make clear to Google or a screen reader that a term is crucial, or that it is an abbreviation). If your aim is purely decorative or visual, reach for CSS instead.</p>
               </div>
 
-              <pre><code class="language-html">&lt;p&gt;Remember: the &lt;code&gt;&amp;lt;title&amp;gt;&lt;/code&gt; tag is &lt;strong&gt;mandatory&lt;/strong&gt; on every page.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Remember: the <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&lt;">&amp;lt;</span>title<span class="token entity named-entity" title="&gt;">&amp;gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">></span></span> tag is <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">></span></span>mandatory<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">></span></span> on every page.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The sentence stays a single sentence: <code>&lt;strong&gt;</code> and <code>&lt;code&gt;</code> do not create a new block, they mark up part of existing text.</p>
 
@@ -878,11 +878,11 @@
                 </table>
               </div>
 
-              <pre><code class="language-html">&lt;p&gt;
-  &lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt; was born in
-  &lt;time datetime="1991"&gt;1991&lt;/time&gt;. The formula for water is
-  H&lt;sub&gt;2&lt;/sub&gt;O and the price is &lt;del&gt;£20&lt;/del&gt; &lt;ins&gt;£15&lt;/ins&gt;.
-&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>abbr</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>HyperText Markup Language<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>abbr</span><span class="token punctuation">></span></span> was born in
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1991<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>1991<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">></span></span>. The formula for water is
+  H<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sub</span><span class="token punctuation">></span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sub</span><span class="token punctuation">></span></span>O and the price is <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>del</span><span class="token punctuation">></span></span>£20<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>del</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ins</span><span class="token punctuation">></span></span>£15<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ins</span><span class="token punctuation">></span></span>.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <h3><code>&lt;strong&gt;</code> or <code>&lt;b&gt;</code>? <code>&lt;em&gt;</code> or <code>&lt;i&gt;</code>?</h3>
               <p><code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> also exist, and on screen they give exactly the same result (bold and italic). They have not been removed from the standard, but they mean something different: they mark text as <em>visually distinct</em> without attaching importance to it (a scientific name in italics, say, or an article's keywords in bold).</p>
@@ -895,11 +895,11 @@
               <h3>Breaking lines for real: <code>&lt;br&gt;</code> and <code>&lt;hr&gt;</code></h3>
               <p>We said that pressing Enter in the code does not break the line. When the line break is <em>part of the content</em> — a postal address, the lines of a poem — you use the empty tag <code>&lt;br&gt;</code>:</p>
 
-              <pre><code class="language-html">&lt;p&gt;
-  Codedge Ltd&lt;br&gt;
-  12 Roma Street&lt;br&gt;
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Codedge Ltd<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+  12 Roma Street<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
   00100 Rome
-&lt;/p&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <div class="alert alert--warning">
                 <strong>Never use <code>&lt;br&gt;</code> to create space</strong>
@@ -935,8 +935,8 @@
               <h3>Comments</h3>
               <p>You can leave notes in the code that the browser ignores entirely, by wrapping them in <code>&lt;!--</code> and <code>--&gt;</code>:</p>
 
-              <pre><code class="language-html">&lt;!-- Offers section: update every Monday --&gt;
-&lt;p&gt;20% off the whole catalogue.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token comment">&lt;!-- Offers section: update every Monday --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>20% off the whole catalogue.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <div class="alert alert--warning">
                 <strong>Comments are visible to anyone</strong>
@@ -953,10 +953,10 @@
 
               <p>The <code>&lt;a&gt;</code> tag is a special case: it can wrap either a stretch of text or, when the context permits it, a whole block of content. This makes it possible to turn an entire card into a link rather than only its words:</p>
 
-              <pre><code class="language-html">&lt;a href="/products/mug/"&gt;
-  &lt;h3&gt;Codedge mug&lt;/h3&gt;
-  &lt;p&gt;Glazed ceramic, 350 ml.&lt;/p&gt;
-&lt;/a&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/products/mug/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Codedge mug<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Glazed ceramic, 350 ml.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
 
               <p>You can now recognise the two most common layout behaviours, use tags that mark up text and avoid confusing visual rendering with document structure. One cross-cutting piece is missing: the attributes you can put on tags and will use constantly in the coming chapters.</p>
             </section>
@@ -1102,8 +1102,8 @@
 
               <h3>1. The <code>id</code> attribute: a unique name</h3>
               <p><code>id</code> assigns a name identifying a single element on the page. You write it like any other attribute, inside the opening tag:</p>
-              <pre><code class="language-html">&lt;h2 id="contact"&gt;Where to find us&lt;/h2&gt;
-&lt;p&gt;We are at 12 Roma Street, open Monday to Friday.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>contact<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Where to find us<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>We are at 12 Roma Street, open Monday to Friday.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <p><strong>What is a unique name good for?</strong></p>
               <ul class="guide-list">
@@ -1124,12 +1124,12 @@
 
               <h3>2. The <code>class</code> attribute: a group label</h3>
               <p><code>class</code> groups elements under a common category. The same class can appear on as many elements as you like:</p>
-              <pre><code class="language-html">&lt;p class="notice"&gt;Shipping is running normally.&lt;/p&gt;
-&lt;p class="notice"&gt;Last day to order!&lt;/p&gt;
-&lt;p&gt;This paragraph has no classes: it is not part of the group.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>notice<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Shipping is running normally.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>notice<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Last day to order!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>This paragraph has no classes: it is not part of the group.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <p>An element can also belong to several groups at once: just write the names <strong>separated by a space</strong>. That is not “one class with a space in it”, it is two distinct classes:</p>
-              <pre><code class="language-html">&lt;p class="notice urgent"&gt;Deliveries suspended today.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>notice urgent<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Deliveries suspended today.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
 
               <p><strong>What is grouping good for?</strong></p>
               <ul class="guide-list">
@@ -1191,7 +1191,7 @@
               </div>
 
               <p>For instance, if you drop a phrase or a quotation in another language into an English page, it is good practice to flag it like this:</p>
-              <pre><code class="language-html">&lt;p&gt;The company's motto is &lt;span lang="it"&gt;chi va piano va sano&lt;/span&gt;.&lt;/p&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The company's motto is <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>it<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>chi va piano va sano<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
               <p>That way the screen readers used by people with visual impairments will pronounce the phrase in Italian, rather than reading it as if it were English.</p>
 
               <p>Now that you know how to give an element an <code>id</code>, we can tackle the tag that turned the web into a web: the link.</p>
@@ -1204,7 +1204,7 @@
             <section class="guide-subchapter">
               <p>The hyperlink is what turns isolated pages into a site, and sites into a web. You create one with the <code>&lt;a&gt;</code> tag (<em>anchor</em>) and its <code>href</code> attribute (<em>hypertext reference</em>), which gives the destination.</p>
 
-              <pre><code class="language-html">&lt;a href="https://codedge.it"&gt;Go to the Codedge site&lt;/a&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Go to the Codedge site<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The text between the two tags is the visible, clickable part; <code>href</code> is the address, which the user does not see. An <code>&lt;a&gt;</code> without an <code>href</code> is not a link: it is just text.</p>
 
@@ -1491,9 +1491,9 @@
               <h3>Opening in a new tab</h3>
               <p>The <code>target="_blank"</code> attribute opens the destination in a new tab, leaving the starting page open.</p>
 
-              <pre><code class="language-html">&lt;a href="https://github.com" target="_blank" rel="noopener noreferrer"&gt;
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noopener noreferrer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   Open GitHub in a new tab
-&lt;/a&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The <code>rel="noopener"</code> attribute stops the destination page manipulating the originating one via JavaScript; <code>noreferrer</code> also avoids telling it where the visitor came from. Recent browsers apply <code>noopener</code> themselves with <code>target="_blank"</code>, but writing it remains the right habit and covers older browsers.</p>
 
@@ -1538,9 +1538,9 @@
             <section class="guide-subchapter">
               <p>Images are inserted with <code>&lt;img&gt;</code>, an empty tag: it encloses nothing and has no closing tag, so all the information travels through attributes.</p>
 
-              <pre><code class="language-html">&lt;img src="/images/cat.jpg"
-     alt="Ginger cat asleep on a grey sofa"
-     width="800" height="600"&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/images/cat.jpg<span class="token punctuation">"</span></span>
+     <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Ginger cat asleep on a grey sofa<span class="token punctuation">"</span></span>
+     <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>800<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>600<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
 
               <div class="table-wrapper">
                 <table class="guide-table">
@@ -1610,21 +1610,21 @@
               <h3>An image with a caption: <code>&lt;figure&gt;</code></h3>
               <p>When an image has a caption, do not put it in an ordinary <code>&lt;p&gt;</code>: there would be no connection between the two. Use <code>&lt;figure&gt;</code> to group them and <code>&lt;figcaption&gt;</code> for the caption.</p>
 
-              <pre><code class="language-html">&lt;figure&gt;
-  &lt;img src="/images/client-server-diagram.png"
-       alt="The browser sends a request to the server, which responds with the page"
-       width="600" height="400" loading="lazy"&gt;
-  &lt;figcaption&gt;Figure 1 — The request/response cycle between client and server.&lt;/figcaption&gt;
-&lt;/figure&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/images/client-server-diagram.png<span class="token punctuation">"</span></span>
+       <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>The browser sends a request to the server, which responds with the page<span class="token punctuation">"</span></span>
+       <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>600<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>400<span class="token punctuation">"</span></span> <span class="token attr-name">loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">></span></span>Figure 1 — The request/response cycle between client and server.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The caption describes the image for people who can see it; <code>alt</code> replaces it for people who cannot. They are two different texts with two different purposes: do not copy one into the other.</p>
 
               <h3>Video and audio</h3>
               <p>Video and audio work the same way, with the <code>controls</code> attribute showing the playback controls:</p>
 
-              <pre><code class="language-html">&lt;video src="/media/demo.mp4" controls width="640" poster="/media/preview.jpg"&gt;
-  Your browser does not support video. &lt;a href="/media/demo.mp4"&gt;Download the file&lt;/a&gt;.
-&lt;/video&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/media/demo.mp4<span class="token punctuation">"</span></span> <span class="token attr-name">controls</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>640<span class="token punctuation">"</span></span> <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/media/preview.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Your browser does not support video. <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/media/demo.mp4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Download the file<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The text inside the tag appears only if the browser cannot play the file. The <code>poster</code> attribute gives the image to show before playback starts. Avoid <code>autoplay</code>: a video that starts by itself with sound is the fastest way to get the page closed.</p>
 
@@ -1641,35 +1641,35 @@
               <h3>Unordered list: <code>&lt;ul&gt;</code></h3>
               <p>For when the order of the items does not change the meaning. The container is <code>&lt;ul&gt;</code> (<em>unordered list</em>), each entry is an <code>&lt;li&gt;</code> (<em>list item</em>).</p>
 
-              <pre><code class="language-html">&lt;ul&gt;
-  &lt;li&gt;Flour&lt;/li&gt;
-  &lt;li&gt;Sugar&lt;/li&gt;
-  &lt;li&gt;Eggs&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Flour<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Sugar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Eggs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
 
               <h3>Ordered list: <code>&lt;ol&gt;</code></h3>
               <p>For when the order matters: instructions, rankings, steps. The browser handles the numbering; you do not write the numbers.</p>
 
-              <pre><code class="language-html">&lt;ol&gt;
-  &lt;li&gt;Heat the oven to 180 °C&lt;/li&gt;
-  &lt;li&gt;Mix the ingredients&lt;/li&gt;
-  &lt;li&gt;Bake for 40 minutes&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Heat the oven to 180 °C<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Mix the ingredients<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Bake for 40 minutes<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">></span></span></code></pre>
 
               <p>On <code>&lt;ol&gt;</code> you can use <code>start="5"</code> to begin from a different number, <code>reversed</code> to count backwards and <code>type="a"</code> to number with letters.</p>
 
               <h3>Lists inside lists</h3>
               <p>This is where the most common mistake hides. The child list goes <strong>inside the <code>&lt;li&gt;</code></strong> it belongs to, not between one <code>&lt;li&gt;</code> and the next:</p>
 
-              <pre><code class="language-html">&lt;ul&gt;
-  &lt;li&gt;Drinks
-    &lt;ul&gt;
-      &lt;li&gt;Water&lt;/li&gt;
-      &lt;li&gt;Wine&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Desserts&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Drinks
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Water<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Wine<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Desserts<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
 
               <div class="alert alert--warning">
                 <strong>Only <code>&lt;li&gt;</code> goes inside <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code></strong>
@@ -1679,24 +1679,24 @@
               <h3>Description list: <code>&lt;dl&gt;</code></h3>
               <p>For term/explanation pairs: glossaries, FAQs, spec sheets. The container is <code>&lt;dl&gt;</code>, the term is <code>&lt;dt&gt;</code>, the description is <code>&lt;dd&gt;</code>.</p>
 
-              <pre><code class="language-html">&lt;dl&gt;
-  &lt;dt&gt;URL&lt;/dt&gt;
-  &lt;dd&gt;The unique address of a resource on the web.&lt;/dd&gt;
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>URL<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>The unique address of a resource on the web.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span>
 
-  &lt;dt&gt;DOM&lt;/dt&gt;
-  &lt;dd&gt;The tree the browser builds as it reads the HTML.&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span><span class="token punctuation">></span></span>DOM<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span><span class="token punctuation">></span></span>The tree the browser builds as it reads the HTML.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">></span></span></code></pre>
 
               <p>A <code>&lt;dt&gt;</code> can have several <code>&lt;dd&gt;</code> elements (one term with several meanings), and several <code>&lt;dt&gt;</code> elements can share a <code>&lt;dd&gt;</code> (synonyms).</p>
 
               <h3>The practical case: a navigation menu</h3>
               <p>A menu is a list of links. Written this way, a screen reader announces “list of 3 items” and lets the user skip the whole thing.</p>
 
-              <pre><code class="language-html">&lt;ul&gt;
-  &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="/services/"&gt;Services&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="/contact/"&gt;Contact&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/services/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Services<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/contact/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Contact<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The bullets and the vertical stacking are removed with CSS: looking like a horizontal bar is a visual choice, while the list remains the correct structure.</p>
 
@@ -1948,10 +1948,10 @@
               <h3>Merging cells</h3>
               <p><code>colspan</code> stretches a cell across several columns, <code>rowspan</code> across several rows:</p>
 
-              <pre><code class="language-html">&lt;tr&gt;
-  &lt;td colspan="2"&gt;This cell spans two columns&lt;/td&gt;
-  &lt;td&gt;Normal&lt;/td&gt;
-&lt;/tr&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">colspan</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>This cell spans two columns<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Normal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span></code></pre>
 
               <p>Use them sparingly: tables with too many merged cells become hard to read and hard to announce correctly.</p>
 
@@ -2100,15 +2100,15 @@
               <h3>The mistake to avoid: “divitis”</h3>
               <p>Because <code>&lt;div&gt;</code> always works and never errors, the temptation is to build the whole page out of it:</p>
 
-              <pre><code>&lt;div class="header"&gt;
-  &lt;div class="nav"&gt;...&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="main"&gt;
-  &lt;div class="article"&gt;
-    &lt;div class="title"&gt;How to write HTML&lt;/div&gt;
-    &lt;div class="text"&gt;...&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nav<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>article<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>How to write HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 
               <p>On screen, with the right CSS, this page can look identical to a well-written one. But to anything without eyes it is a field of anonymous boxes: the browser does not know what the main content is, Google cannot tell where the article begins, and a screen reader can offer no shortcuts because there is nothing to announce. Note too that <code>&lt;div class="title"&gt;</code> is not a heading: it appears in no document outline, whereas an <code>&lt;h1&gt;</code> does.</p>
 
@@ -2306,9 +2306,9 @@
 
               <p>The same principle applies to keyboard users. By making the first element of the <code>&lt;body&gt;</code> a link pointing at the <code>&lt;main&gt;</code>, you offer the same shortcut:</p>
 
-              <pre><code class="language-html">&lt;a href="#content" class="skip-to-content"&gt;Skip to content&lt;/a&gt;
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#content<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>skip-to-content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Skip to content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
 ...
-&lt;main id="content"&gt; ... &lt;/main&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The page is structured and readable. One last thing it cannot do: receive something from the user.</p>
             </section>
@@ -2321,7 +2321,7 @@
               <p>Until now the page speaks and the user listens. With forms the flow reverses: searches, logins, sign-ups, orders and comments all go through here.</p>
 
               <h3>The <code>&lt;form&gt;</code> container</h3>
-              <pre><code class="language-html">&lt;form action="/signup" method="post"&gt; ... &lt;/form&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/signup<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> ... <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></code></pre>
 
               <ul class="guide-list">
                 <li><strong><code>action</code></strong>: the address the data is sent to.</li>
@@ -2478,8 +2478,8 @@
               <h3>Every field needs a <code>&lt;label&gt;</code></h3>
               <p>A field without a label is an empty box whose purpose nobody knows. The label is connected to the field by matching its <code>for</code> with the field's <code>id</code>:</p>
 
-              <pre><code class="language-html">&lt;label for="email"&gt;Email address&lt;/label&gt;
-&lt;input type="email" id="email" name="email"&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Email address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
 
               <p>The connection has two effects: the screen reader announces “email address, text field” when the user reaches it, and clicking the label moves the cursor into the field, widening the clickable area — a real benefit on a touchscreen.</p>
 
@@ -2528,41 +2528,41 @@
               <p>These checks improve the user's experience, but they must always be repeated on the server: anyone can bypass the browser's validation.</p>
 
               <h3>A complete form</h3>
-              <pre><code class="language-html">&lt;form action="/contact" method="post"&gt;
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/contact<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;label for="name"&gt;Full name&lt;/label&gt;
-  &lt;input type="text" id="name" name="name" required autocomplete="name"&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Full name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">required</span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;label for="email"&gt;Email&lt;/label&gt;
-  &lt;input type="email" id="email" name="email" required
-         placeholder="name@example.com" autocomplete="email"&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">required</span>
+         <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name@example.com<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;label for="reason"&gt;Reason for getting in touch&lt;/label&gt;
-  &lt;select id="reason" name="reason"&gt;
-    &lt;option value="info"&gt;Request for information&lt;/option&gt;
-    &lt;option value="quote"&gt;Quote&lt;/option&gt;
-    &lt;option value="support"&gt;Support&lt;/option&gt;
-  &lt;/select&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>reason<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Reason for getting in touch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>reason<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>reason<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>info<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Request for information<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>quote<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Quote<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>support<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Support<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
 
-  &lt;fieldset&gt;
-    &lt;legend&gt;How would you prefer to be contacted?&lt;/legend&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legend</span><span class="token punctuation">></span></span>How would you prefer to be contacted?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legend</span><span class="token punctuation">></span></span>
 
-    &lt;input type="radio" id="by-email" name="contact" value="email" checked&gt;
-    &lt;label for="by-email"&gt;By email&lt;/label&gt;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>by-email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>contact<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">checked</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>by-email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>By email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
 
-    &lt;input type="radio" id="by-phone" name="contact" value="phone"&gt;
-    &lt;label for="by-phone"&gt;By phone&lt;/label&gt;
-  &lt;/fieldset&gt;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>by-phone<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>contact<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phone<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>by-phone<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>By phone<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">></span></span>
 
-  &lt;label for="message"&gt;Message&lt;/label&gt;
-  &lt;textarea id="message" name="message" rows="5" required&gt;&lt;/textarea&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Message<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span> <span class="token attr-name">rows</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span> <span class="token attr-name">required</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">></span></span>
 
-  &lt;input type="checkbox" id="privacy" name="privacy" required&gt;
-  &lt;label for="privacy"&gt;I have read the privacy policy&lt;/label&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>privacy<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>privacy<span class="token punctuation">"</span></span> <span class="token attr-name">required</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>privacy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>I have read the privacy policy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
 
-  &lt;button type="submit"&gt;Send request&lt;/button&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Send request<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
 
-&lt;/form&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></code></pre>
 
               <p>Look at the two <code>radio</code> inputs: they have different <code>id</code> values (which must be unique) but the <strong>same <code>name</code></strong>. It is that shared <code>name</code> that makes them alternatives to each other: change it and they become two independent choices the user can select at the same time.</p>
 
@@ -2577,9 +2577,9 @@
               <p>In chapter 3 we defined the <code>&lt;head&gt;</code> as the document's invisible part. It does not hold what you read on the page, but everything needed <em>in order to</em> read it: how to interpret the characters, how to behave on phones, which stylesheets to load, what to show on Google and in chat apps.</p>
 
               <h3>The three lines you cannot do without</h3>
-              <pre><code class="language-html">&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-&lt;title&gt;HTML course for beginners | Codedge&lt;/title&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>HTML course for beginners | Codedge<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span></code></pre>
 
               <ul class="guide-list">
                 <li><strong><code>charset</code></strong>: declares the character encoding. Without it, accents and emoji turn into gibberish. Write it among the very first lines of the head.</li>
@@ -2651,8 +2651,8 @@
               </div>
 
               <h3>Getting found: metadata for search engines</h3>
-              <pre><code class="language-html">&lt;meta name="description" content="A practical guide to HTML: structure, semantic tags, links, images and forms explained step by step."&gt;
-&lt;link rel="canonical" href="https://codedge.it/tutorials/html-fundamentals/"&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A practical guide to HTML: structure, semantic tags, links, images and forms explained step by step.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canonical<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/tutorials/html-fundamentals/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
 
               <ul class="guide-list">
                 <li><strong><code>description</code></strong>: the roughly 150-character summary that appears under the title in search results. It does not directly affect ranking, but it decides whether anyone clicks.</li>
@@ -2662,11 +2662,11 @@
               <h3>The preview when a link is shared</h3>
               <p>When you paste an address into WhatsApp, LinkedIn or Slack and a card appears with a title, a description and an image, that data comes from the <strong>Open Graph</strong> metadata. If you do not write it, the preview will be a bare link or a random crop of the page.</p>
 
-              <pre><code class="language-html">&lt;meta property="og:title" content="HTML course for beginners"&gt;
-&lt;meta property="og:description" content="Structure, semantics, links, images and forms explained step by step."&gt;
-&lt;meta property="og:image" content="https://codedge.it/images/preview.jpg"&gt;
-&lt;meta property="og:url" content="https://codedge.it/tutorials/html-fundamentals/"&gt;
-&lt;meta property="og:type" content="article"&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:title<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>HTML course for beginners<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Structure, semantics, links, images and forms explained step by step.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:image<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/images/preview.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:url<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://codedge.it/tutorials/html-fundamentals/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>article<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
 
               <div class="alert alert--note">
                 <strong>The preview image</strong>
@@ -2676,30 +2676,30 @@
               <h3>Linking CSS and JavaScript</h3>
               <p>The head is also where you declare the external files the page needs:</p>
 
-              <pre><code class="language-html">&lt;link rel="stylesheet" href="/css/style.css"&gt;
-&lt;script src="/js/app.js" defer&gt;&lt;/script&gt;</code></pre>
+              <pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/css/style.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/app.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 
               <p>The stylesheet goes in the head because it is needed before the page is painted. For scripts, the <code>defer</code> attribute tells the browser to download them in parallel and run them only once the page is ready: you avoid blocking rendering and you make sure the elements you want to manipulate already exist.</p>
 
               <p>The head is rounded out by the tab icon: <code>&lt;link rel="icon" href="/favicon.ico"&gt;</code>.</p>
 
               <h3>A head you can copy</h3>
-              <pre><code>&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;title&gt;Page title | Site name&lt;/title&gt;
-  &lt;meta name="description" content="A summary of the page in about 150 characters."&gt;
-  &lt;link rel="canonical" href="https://example.com/page/"&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Page title | Site name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A summary of the page in about 150 characters.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canonical<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/page/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;meta property="og:title" content="Page title"&gt;
-  &lt;meta property="og:description" content="A summary of the page."&gt;
-  &lt;meta property="og:image" content="https://example.com/preview.jpg"&gt;
-  &lt;meta property="og:url" content="https://example.com/page/"&gt;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:title<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Page title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A summary of the page.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:image<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/preview.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:url<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.com/page/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-  &lt;link rel="icon" href="/favicon.ico"&gt;
-  &lt;link rel="stylesheet" href="/css/style.css"&gt;
-&lt;/head&gt;</code></pre>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/favicon.ico<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/css/style.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></code></pre>
 
               <p>You have now seen the whole path: from the file's skeleton to the content tags, from semantic structure to forms, right through to the metadata. Before moving on to practice, let's look at the mistakes worth avoiding from the outset.</p>
             </section>

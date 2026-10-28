@@ -163,11 +163,11 @@
   white-space: pre;
 }
 
-.table-explorer__tok--tag { color: #f43f5e; }
-.table-explorer__tok--attr { color: #38bdf8; }
-.table-explorer__tok--val { color: #34d399; }
+.table-explorer__tok--tag { color: #e2bb80; }
+.table-explorer__tok--attr { color: #8ccdf3; }
+.table-explorer__tok--val { color: #ddaa93; }
 .table-explorer__tok--text { color: #f3f4f6; }
-.table-explorer__tok--comment { color: #6b7280; font-style: italic; }
+.table-explorer__tok--comment { color: #a8b4a0; font-style: italic; }
 
 .table-explorer__preview {
   background: #111827;

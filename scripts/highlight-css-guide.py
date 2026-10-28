@@ -20,10 +20,11 @@ console.log(JSON.stringify(JSON.parse(input).map(text => {
   return { lang, html: Prism.highlight(text, Prism.languages[lang], lang) };
 })));'''
 pattern = re.compile(r'<pre><code(?: class="language-(?:markup|css)")?>(.*?)</code></pre>', re.S)
+token_tag = re.compile(r"</?span\b(?:\"[^\"]*\"|'[^']*'|[^'\">])*>")
 for path in paths:
     source = path.read_text()
     matches = list(pattern.finditer(source))
-    examples = [html.unescape(re.sub(r'</?span(?: class="[^"]+")?>', '', match.group(1))) for match in matches]
+    examples = [html.unescape(token_tag.sub('', match.group(1))) for match in matches]
     result = subprocess.run(
         ['node', '--input-type=module', '-e', node_script],
         input=json.dumps(examples), text=True, capture_output=True, check=True,

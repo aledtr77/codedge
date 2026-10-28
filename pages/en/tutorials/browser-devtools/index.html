@@ -144,9 +144,9 @@
               <p>The Console is where the browser talks to you most directly. When JavaScript breaks, the first serious clue is usually there.</p>
               <p>Don't just read it as "red = panic". Look at three things: the message, the file involved and the line number. Together they are already a small map.</p>
               <p>You can also use it for quick experiments:</p>
-              <pre><code>document.querySelector("h1")
-document.querySelector(".button-simple")?.textContent
-localStorage.getItem("theme")</code></pre>
+              <pre><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"h1"</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".button-simple"</span><span class="token punctuation">)</span><span class="token operator">?.</span>textContent
+localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"theme"</span><span class="token punctuation">)</span></code></pre>
               <p>These experiments don't replace your project code, but they help you check whether a selector is right, whether an element exists, or whether a value really was stored.</p>
             </section>
             <section class="guide-subchapter">

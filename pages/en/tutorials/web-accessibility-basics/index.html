@@ -183,20 +183,20 @@
             <section class="guide-subchapter">
               <p>The simplest way to improve accessibility is to use the right HTML before inventing complicated solutions.</p>
               <p>HTML is not just there to “show things”. It conveys meaning: a button is an action, a link takes you elsewhere, a heading organises content, a label describes an input, a nav groups navigation links.</p>
-              <pre><code>&lt;header&gt;
-  &lt;nav aria-label="Main navigation"&gt;
-    &lt;a href="/"&gt;Home&lt;/a&gt;
-    &lt;a href="/tutorials/"&gt;Tutorials&lt;/a&gt;
-  &lt;/nav&gt;
-&lt;/header&gt;
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Main navigation<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/tutorials/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Tutorials<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
 
-&lt;main&gt;
-  &lt;h1&gt;Web accessibility basics&lt;/h1&gt;
-  &lt;section&gt;
-    &lt;h2&gt;Semantic HTML&lt;/h2&gt;
-    &lt;p&gt;The section's main content.&lt;/p&gt;
-  &lt;/section&gt;
-&lt;/main&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Web accessibility basics<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Semantic HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>The section's main content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span></code></pre>
               <p>This code is clearer for browsers, developers and assistive technologies than a long series of meaningless <code>&lt;div&gt;</code> elements.</p>
             </section>
             <section class="guide-subchapter">
@@ -227,12 +227,12 @@
                   <h3 class="sr-only">Links and buttons compared</h3>
               <h4>Link</h4>
                   <p>Takes you to another page, section, file or URL.</p>
-                  <pre><code>&lt;a href="/tutorials/"&gt;Go to the tutorials&lt;/a&gt;</code></pre>
+                  <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/tutorials/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Go to the tutorials<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
                 </div>
                 <div class="guide-compare-card">
                   <h4>Button</h4>
                   <p>Performs an action in the page or in an interface.</p>
-                  <pre><code>&lt;button type="button"&gt;Open menu&lt;/button&gt;</code></pre>
+                  <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Open menu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
                 </div>
               </div>
               <p>If you use a clickable <code>&lt;div&gt;</code> instead of a button, you lose native behaviour, focus, semantics and often keyboard support as well.</p>
@@ -269,17 +269,17 @@
             <section class="guide-subchapter">
               <h3>Do not remove focus</h3>
               <p>This is one of the worst mistakes:</p>
-              <pre><code>*:focus {
-  outline: none;
-}</code></pre>
+              <pre><code class="language-syntax-css"><span class="token selector">*:focus</span> <span class="token punctuation">{</span>
+  <span class="token property">outline</span><span class="token punctuation">:</span> <span class="token value">none</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
               <p>If you remove the outline without replacing it with a visible state, someone navigating by keyboard no longer knows where they are.</p>
               <p>Better to build a focus style that fits the design:</p>
-              <pre><code>a:focus-visible,
+              <pre><code class="language-syntax-css"><span class="token selector">a:focus-visible,
 button:focus-visible,
-input:focus-visible {
-  outline: 3px solid #7ddcff;
-  outline-offset: 3px;
-}</code></pre>
+input:focus-visible</span> <span class="token punctuation">{</span>
+  <span class="token property">outline</span><span class="token punctuation">:</span> <span class="token value">3px solid #7ddcff</span><span class="token punctuation">;</span>
+  <span class="token property">outline-offset</span><span class="token punctuation">:</span> <span class="token value">3px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
             </section>
             <section class="guide-subchapter">
               <h3>Tabindex: sparingly and deliberately</h3>
@@ -293,11 +293,11 @@ input:focus-visible {
             <section class="guide-subchapter">
               <p>The <code>alt</code> attribute is not a mandatory description to be filled in the same way every time. It is a text alternative for when an image carries information.</p>
               <p>The useful question is: if this image does not load, what information does the user lose?</p>
-              <pre><code>&lt;img
-  src="/images/percorsi-apprendimento/accessibilita-web-base/panoramica-accessibilita-web-base.svg"
-  alt="Overview of the four principles of web accessibility: perceivable, operable, understandable and robust"
-  width="1200"
-  height="520"&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>
+  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/images/percorsi-apprendimento/accessibilita-web-base/panoramica-accessibilita-web-base.svg<span class="token punctuation">"</span></span>
+  <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Overview of the four principles of web accessibility: perceivable, operable, understandable and robust<span class="token punctuation">"</span></span>
+  <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1200<span class="token punctuation">"</span></span>
+  <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>520<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
             </section>
             <section class="guide-subchapter">
               <h3>Three common cases</h3>
@@ -367,15 +367,15 @@ input:focus-visible {
                 <li>errors are never signalled by colour alone;</li>
                 <li>submitting does not wipe data without warning.</li>
               </ul>
-              <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
-&lt;input
-  id="email"
-  name="email"
-  type="email"
-  autocomplete="email"
-  aria-describedby="email-help email-error"&gt;
-&lt;p id="email-help"&gt;We will only use this address to reply.&lt;/p&gt;
-&lt;p id="email-error"&gt;Enter a valid email address.&lt;/p&gt;</code></pre>
+              <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+  <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+  <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span>
+  <span class="token attr-name">aria-describedby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-help email-error<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-help<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>We will only use this address to reply.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-error<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Enter a valid email address.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
             </section>
             <section class="guide-subchapter">
               <h3>Labels, placeholders and instructions</h3>
@@ -440,15 +440,15 @@ input:focus-visible {
               <h3>Motion and animation</h3>
               <p>Animation can improve the experience, but it must not make a page hard to use.</p>
               <p>If you are using significant movement, consider <code>prefers-reduced-motion</code>:</p>
-              <pre><code>@media (prefers-reduced-motion: reduce) {
-  *,
+              <pre><code class="language-syntax-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">prefers-reduced-motion</span><span class="token punctuation">:</span> reduce<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">*,
   *::before,
-  *::after {
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-    scroll-behavior: auto;
-  }
-}</code></pre>
+  *::after</span> <span class="token punctuation">{</span>
+    <span class="token property">animation-duration</span><span class="token punctuation">:</span> <span class="token value">0.01ms</span><span class="token punctuation">;</span>
+    <span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> <span class="token value">1</span><span class="token punctuation">;</span>
+    <span class="token property">scroll-behavior</span><span class="token punctuation">:</span> <span class="token value">auto</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
               <p>You do not need to strip out every micro-interaction. You need to avoid movement that is excessive, unavoidable or impossible to stop.</p>
             </section>
             <section class="guide-subchapter">

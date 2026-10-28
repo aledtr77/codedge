@@ -125,17 +125,17 @@
             <section class="guide-subchapter">
               <p>The <code>package.json</code> file is a kind of technical ID card for the project.</p>
               <p>Inside you'll find things like the name, version, scripts and dependencies. You don't have to memorize it all, but you do need to know where to look when you want to work out how the project starts or builds.</p>
-              <pre><code>{
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "vite": "^8.0.7"
-  }
-}</code></pre>
+              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"vite"</span><span class="token punctuation">,</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"vite build"</span><span class="token punctuation">,</span>
+    <span class="token property">"preview"</span><span class="token operator">:</span> <span class="token string">"vite preview"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"vite"</span><span class="token operator">:</span> <span class="token string">"^8.0.7"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
               <p>The most useful part early on is <code>scripts</code>: it holds the project's official commands. Whether you work in a team or pick a project back up after months, it's the first place to check.</p>
             </section>
           </section>
@@ -144,10 +144,10 @@
             <h2>3. Scripts: the project's commands</h2>
             <section class="guide-subchapter">
               <p>Scripts are shared shortcuts. Instead of remembering every internal command, you use stable ones like these:</p>
-              <pre><code>npm install
-npm run dev
-npm run build
-npm run preview</code></pre>
+              <pre><code class="language-bash"><span class="token command">npm</span> <span class="token function">install</span>
+<span class="token command">npm</span> run dev
+<span class="token command">npm</span> run build
+<span class="token command">npm</span> run preview</code></pre>
               <ul class="guide-list">
                 <li><code>npm install</code> installs the dependencies the project declares;</li>
                 <li><code>npm run dev</code> starts the local development server;</li>
@@ -226,8 +226,8 @@ npm run preview</code></pre>
               <p>During development you use the local server. It's fast, convenient and built for working.</p>
               <p>The build is a different step: Vite takes the sources, resolves imports, optimizes assets and generates the final files. In most projects those files land in <code>dist</code>.</p>
               <p>That's why it's worth running at least one local build before publishing:</p>
-              <pre><code>npm run build
-npm run preview</code></pre>
+              <pre><code class="language-bash"><span class="token command">npm</span> run build
+<span class="token command">npm</span> run preview</code></pre>
               <p>If the build fails locally, it will very likely fail on the hosting service too. Better to find out first, when you can read the error calmly and fix it.</p>
             </section>
           </section>

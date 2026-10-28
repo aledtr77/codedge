@@ -125,17 +125,17 @@
             <section class="guide-subchapter">
               <p>Il file <code>package.json</code> è una specie di carta d'identità tecnica del progetto.</p>
               <p>Dentro trovi informazioni come nome, versione, script e dipendenze. Non devi ricordare tutto a memoria, ma devi sapere dove guardare quando vuoi capire come si avvia o si costruisce il progetto.</p>
-              <pre><code>{
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "vite": "^8.0.7"
-  }
-}</code></pre>
+              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"dev"</span><span class="token operator">:</span> <span class="token string">"vite"</span><span class="token punctuation">,</span>
+    <span class="token property">"build"</span><span class="token operator">:</span> <span class="token string">"vite build"</span><span class="token punctuation">,</span>
+    <span class="token property">"preview"</span><span class="token operator">:</span> <span class="token string">"vite preview"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"vite"</span><span class="token operator">:</span> <span class="token string">"^8.0.7"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
               <p>La parte più utile all'inizio è <code>scripts</code>: contiene i comandi ufficiali del progetto. Se lavori in team o riprendi un progetto dopo mesi, è il primo posto da controllare.</p>
             </section>
           </section>
@@ -144,10 +144,10 @@
             <h2>3. Script: comandi del progetto</h2>
             <section class="guide-subchapter">
               <p>Gli script sono scorciatoie condivise. Invece di ricordare ogni comando interno, usi comandi stabili come questi:</p>
-              <pre><code>npm install
-npm run dev
-npm run build
-npm run preview</code></pre>
+              <pre><code class="language-bash"><span class="token command">npm</span> <span class="token function">install</span>
+<span class="token command">npm</span> run dev
+<span class="token command">npm</span> run build
+<span class="token command">npm</span> run preview</code></pre>
               <ul class="guide-list">
                 <li><code>npm install</code> installa le dipendenze dichiarate nel progetto;</li>
                 <li><code>npm run dev</code> avvia il server locale di sviluppo;</li>
@@ -226,8 +226,8 @@ npm run preview</code></pre>
               <p>Durante lo sviluppo usi il server locale. È veloce, comodo e pensato per lavorare.</p>
               <p>La build invece è un passaggio diverso: Vite prende i sorgenti, risolve import, ottimizza asset e genera file finali. In molti progetti questi file finiscono in <code>dist</code>.</p>
               <p>Per questo è utile fare almeno una build locale prima di pubblicare:</p>
-              <pre><code>npm run build
-npm run preview</code></pre>
+              <pre><code class="language-bash"><span class="token command">npm</span> run build
+<span class="token command">npm</span> run preview</code></pre>
               <p>Se la build fallisce in locale, fallirà molto probabilmente anche sul servizio di hosting. Meglio scoprirlo prima, quando puoi leggere l'errore con calma e sistemarlo.</p>
             </section>
           </section>

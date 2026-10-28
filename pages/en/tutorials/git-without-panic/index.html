@@ -269,15 +269,15 @@
               <p>On macOS you can use Homebrew or Apple's tools.</p>
               <p>On Linux you will almost always find it in your distribution's repositories.</p>
               <p>The first thing to do after installing is to check that Git works.</p>
-              <pre><code class="language-bash">git --version</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token parameter variable">--version</span></code></pre>
               <p>Then it is worth setting at least your name and email, because Git uses them in commits.</p>
-              <pre><code class="language-bash">git config --global user.name &quot;Your Name&quot;
-git config --global user.email &quot;you@example.com&quot;
-git config --global init.defaultBranch main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"Your Name"</span>
+<span class="token command">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"you@example.com"</span>
+<span class="token command">git</span> config <span class="token parameter variable">--global</span> init.defaultBranch main</code></pre>
               <p>If you use Visual Studio Code, setting it as the default editor can be handy too:</p>
-              <pre><code class="language-bash">git config --global core.editor &quot;code --wait&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--global</span> core.editor <span class="token string">"code --wait"</span></code></pre>
               <p>To see the current configuration:</p>
-              <pre><code class="language-bash">git config --list</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--list</span></code></pre>
               <p>This stage is simple but important. Better to do it now than to reach your first commit and find Git complaining that your name and email are missing.</p>
             </section>
             <section class="guide-subchapter">
@@ -285,8 +285,8 @@ git config --global init.defaultBranch main</code></pre>
               <p>Here is where it really begins.</p>
               <p>Imagine you have a folder with a small project, perhaps a static site.</p>
               <p>You go into the folder and initialise Git.</p>
-              <pre><code class="language-bash">cd my-project
-git init</code></pre>
+              <pre><code class="language-bash"><span class="token command">cd</span> my-project
+<span class="token command">git</span> init</code></pre>
               <p>From that moment the folder is no longer just a folder. It has become a Git repository.</p>
               <p>Straight afterwards it is worth checking the status:</p>
               <h4>git status</h4>
@@ -298,8 +298,8 @@ git init</code></pre>
                 <li>which are ready to commit.</li>
               </ul>
               <p>Then you can add the files and make your first commit:</p>
-              <pre><code class="language-bash">git add .
-git commit -m &quot;First commit: initial project structure&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"First commit: initial project structure"</span></code></pre>
               <h4>What you actually did</h4>
               <p>You did four fundamental things:</p>
               <ul class="guide-list">
@@ -326,20 +326,20 @@ git commit -m &quot;First commit: initial project structure&quot;</code></pre>
               <p>It is the command that stops you working blindfolded.</p>
               <p>Use it often.</p>
               <h4>git diff</h4>
-              <pre><code class="language-bash">git diff</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">diff</span></code></pre>
               <p>It shows you the lines that changed in files not yet staged. It is the most practical check before deciding what goes into the commit.</p>
               <h4>git add</h4>
-              <pre><code class="language-bash">git add style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> style.css</code></pre>
               <p>It stages the current version of the files you want to include in the next commit.</p>
               <p>You can use it on specific files or, when that makes sense, on the whole project.</p>
-              <pre><code class="language-bash">git add .</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span></code></pre>
               <p>But be careful: git add . is not pure evil, yet using it every time without thinking can mix together changes that would be better kept apart.</p>
               <h4>git commit</h4>
-              <pre><code class="language-bash">git commit -m &quot;Improve the hero's mobile layout&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Improve the hero's mobile layout"</span></code></pre>
               <p>It creates a commit in the history using what you prepared in staging.</p>
               <p>In other words: it takes the staged state of the files, records a snapshot of it and saves it as a new stage in the story.</p>
               <h4>git log, when you need to reconstruct the story</h4>
-              <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> log <span class="token parameter variable">--oneline</span> <span class="token parameter variable">--graph</span> <span class="token parameter variable">--decorate</span> <span class="token parameter variable">--all</span></code></pre>
               <p>It is not a required step after every commit. It is useful when you want to see how the project evolved or track down a specific stage.</p>
               <h4>The right mental flow</h4>
               <div class="guide-qa-card">
@@ -381,12 +381,12 @@ git commit -m &quot;First commit: initial project structure&quot;</code></pre>
               <p>.gitignore is the file where you tell Git which files or folders to ignore.</p>
               <p>Not everything belongs in the history.</p>
               <p>In a typical front-end project it is usually worth ignoring things like:</p>
-              <pre><code class="language-text">node_modules/
-dist/
-.env
-.DS_Store
-Thumbs.db
-.vscode/</code></pre>
+              <pre><code class="language-ignore"><span class="token value">node_modules/</span>
+<span class="token value">dist/</span>
+<span class="token value">.env</span>
+<span class="token value">.DS_Store</span>
+<span class="token value">Thumbs.db</span>
+<span class="token value">.vscode/</span></code></pre>
               <h4>Why it matters</h4>
               <p>A good .gitignore:</p>
               <ul class="guide-list">
@@ -398,7 +398,7 @@ Thumbs.db
               <h4>An important caveat</h4>
               <p>If a file is already tracked, adding it to .gitignore afterwards is not enough to make it disappear from the repository.</p>
               <p>In that case you first have to remove it from the index:</p>
-              <pre><code class="language-bash">git rm --cached filename</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">rm</span> <span class="token parameter variable">--cached</span> filename</code></pre>
               <p>Then you commit.</p>
               <p>This point confuses an awful lot of beginners.</p>
             </section>
@@ -414,7 +414,7 @@ Thumbs.db
               <p>A branch is a separate line of work.</p>
               <p>It lets you develop a change without immediately messing up the main branch, which is usually called main.</p>
               <p>For example, if you want to try a new mobile navbar, instead of working directly on main you can create a dedicated branch.</p>
-              <pre><code class="language-bash">git switch -c feature/navbar-mobile</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch <span class="token parameter variable">-c</span> feature/navbar-mobile</code></pre>
               <p>From then on you work in there.</p>
               <h4>Why they matter</h4>
               <p>Branches let you:</p>
@@ -439,8 +439,8 @@ Thumbs.db
               <h3>Merges and conflicts without panic</h3>
               <p>When you have finished working on a branch, you can merge it into main.</p>
               <p>This is called a merge.</p>
-              <pre><code class="language-bash">git switch main
-git merge feature/navbar-mobile</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch main
+<span class="token command">git</span> merge feature/navbar-mobile</code></pre>
               <p>If Git can combine everything on its own, the merge goes through quietly.</p>
               <p>If instead two lines of work changed the same part of the same file in incompatible ways, you get a conflict.</p>
               <h4>A conflict is not a disaster</h4>
@@ -448,15 +448,15 @@ git merge feature/navbar-mobile</code></pre>
               <p>It is Git telling you:</p>
               <p>I cannot decide this on my own. Tell me which version to keep.</p>
               <p>In the file you will see markers like this:</p>
-              <pre><code class="language-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-&lt;nav class=&quot;main-nav dark&quot;&gt;
+              <pre><code class="language-markup">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-nav dark<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 =======
-&lt;nav class=&quot;main-nav glass&quot;&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-nav glass<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/header-style</code></pre>
               <p>You have to read them, understand the two versions and choose which to keep, or combine them by hand.</p>
               <p>Then you save the file, add it again and complete the process:</p>
-              <pre><code class="language-bash">git add index.html
-git commit</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html
+<span class="token command">git</span> commit</code></pre>
               <figure class="guide-figure guide-figure--teaching">
                 <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/conflitto-merge-risoluzione.svg" alt="A Git conflict between the main branch and another branch on the same line" loading="lazy" decoding="async" width="1200" height="560">
                 <figcaption>The simple idea: the main branch and another branch changed the same line; you pick one clean final version and complete the commit.</figcaption>
@@ -467,23 +467,23 @@ git commit</code></pre>
               <p>A remote is a copy of the repository hosted elsewhere, on GitHub for instance.</p>
               <p>The conventional name for the main remote is usually origin.</p>
               <h4>Connecting a local repository to GitHub</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/yourname/repo-name.git
-git remote -v
-git push -u origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> remote <span class="token function">add</span> origin https://github.com/yourname/repo-name.<span class="token command">git</span>
+<span class="token command">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin main</code></pre>
               <h4>The four verbs worth understanding</h4>
               <h4>clone</h4>
-              <pre><code class="language-bash">git clone https://github.com/user/project.git</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> clone https://github.com/user/project.<span class="token command">git</span></code></pre>
               <p>Downloads an existing remote repository to your machine.</p>
               <h4>fetch</h4>
-              <pre><code class="language-bash">git fetch origin</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> fetch origin</code></pre>
               <p>Updates the information from the remote, without automatically integrating it into the current branch.</p>
               <p>Very useful, because it lets you look first and decide afterwards.</p>
               <h4>pull</h4>
-              <pre><code class="language-bash">git pull origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> pull origin main</code></pre>
               <p>Downloads and integrates into the current branch.</p>
               <p>In the most common configuration it is equivalent to fetch plus merge. In some workflows it may integrate using rebase, so it is worth knowing how your environment is set up.</p>
               <h4>push</h4>
-              <pre><code class="language-bash">git push origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> push origin main</code></pre>
               <p>Publishes the commits you made locally to the remote.</p>
               <figure class="guide-figure">
 <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Diagram of the local and remote repositories" loading="lazy" decoding="async" width="1200" height="500">
@@ -501,15 +501,15 @@ git push -u origin main</code></pre>
               <p>In reality you just need to understand that these three commands do different things.</p>
               <h4>restore</h4>
               <p>Mainly used to discard local changes or restore a file.</p>
-              <pre><code class="language-bash">git restore style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> restore style.css</code></pre>
               <p>If you have made a mess of a file and want to undo local changes that are not yet committed, restore is often the simplest choice.</p>
               <p>By default <code>git restore style.css</code> returns the file to the state currently recorded in the index. If you have nothing staged, for a beginner that usually coincides with the last commit. If you want to be explicit, you can also name the source:</p>
-              <pre><code class="language-bash">git restore --source=HEAD -- style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> restore <span class="token parameter variable">--source</span><span class="token operator">=</span>HEAD -- style.css</code></pre>
               <h4>reset</h4>
               <p>reset is more powerful and more delicate.</p>
               <p>It can move the history pointer and, depending on the option used, affect the staging area and the working tree.</p>
-              <pre><code class="language-bash">git reset --soft HEAD~1
-git reset --hard HEAD~1</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> reset <span class="token parameter variable">--soft</span> HEAD~1
+<span class="token command">git</span> reset <span class="token parameter variable">--hard</span> HEAD~1</code></pre>
               <ul class="guide-list">
                 <li><code>--soft</code> steps back in the history but keeps the changes in staging;</li>
                 <li><code>--hard</code> realigns history, staging and working tree drastically, and can wipe out unsaved changes.</li>
@@ -518,7 +518,7 @@ git reset --hard HEAD~1</code></pre>
               <h4>revert</h4>
               <p>revert is different.</p>
               <p>It does not delete a commit from the history. It creates a new commit that undoes the effect of the chosen one.</p>
-              <pre><code class="language-bash">git revert abc1234</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> revert abc1234</code></pre>
               <p>Which is why it is often the safest choice once the history has already been published.</p>
               <h4>A quick mental model</h4>
               <ul class="guide-list">
@@ -537,8 +537,8 @@ git reset --hard HEAD~1</code></pre>
               <p>It records the movements of HEAD and other references. In practice it helps you find points in the history that looked lost.</p>
               <p>Plenty of times when someone says “I've lost everything”, Git answers: “maybe not”.</p>
               <h4>Example</h4>
-              <pre><code class="language-bash">git reflog
-git reset --hard HEAD@{2}</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> reflog
+<span class="token command">git</span> reset <span class="token parameter variable">--hard</span> HEAD@<span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span></code></pre>
               <p>With reflog you look at recent movements. Then you can decide to go back to an earlier point.</p>
               <p>It is not eternal magic and it does not replace common sense, but knowing it exists completely changes your psychological relationship with Git.</p>
             </section>
@@ -570,39 +570,39 @@ git reset --hard HEAD@{2}</code></pre>
                 <li>images/</li>
               </ul>
               <h4>Step 1: initialise Git</h4>
-              <pre><code class="language-bash">cd showcase-site
-git init
-git status</code></pre>
+              <pre><code class="language-bash"><span class="token command">cd</span> showcase-site
+<span class="token command">git</span> init
+<span class="token command">git</span> status</code></pre>
               <h4>Step 2: create a .gitignore if you need one</h4>
               <p>For instance, if this is a project with a build or dependencies:</p>
-              <pre><code class="language-text">node_modules/
-dist/
-.env</code></pre>
+              <pre><code class="language-ignore"><span class="token value">node_modules/</span>
+<span class="token value">dist/</span>
+<span class="token value">.env</span></code></pre>
               <h4>Step 3: first commit</h4>
-              <pre><code class="language-bash">git add .
-git commit -m &quot;First commit: initial site structure&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"First commit: initial site structure"</span></code></pre>
               <h4>Step 4: make one focused change</h4>
               <p>Imagine improving the hero title and the navbar's padding.</p>
               <p>Check what changed:</p>
-              <pre><code class="language-bash">git status
-git diff</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> status
+<span class="token command">git</span> <span class="token function">diff</span></code></pre>
               <p>If it all hangs together:</p>
-              <pre><code class="language-bash">git add index.html style.css
-git commit -m &quot;Update the hero and improve navbar spacing&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html style.css
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Update the hero and improve navbar spacing"</span></code></pre>
               <h4>Step 5: create a branch for a new feature</h4>
-              <pre><code class="language-bash">git switch -c feature/testimonials</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch <span class="token parameter variable">-c</span> feature/testimonials</code></pre>
               <p>Add a new section and make a dedicated commit:</p>
-              <pre><code class="language-bash">git add index.html
-git commit -m &quot;Add testimonials section markup&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add testimonials section markup"</span></code></pre>
               <p>Then perhaps add the styling:</p>
-              <pre><code class="language-bash">git add style.css
-git commit -m &quot;Add responsive styling for testimonials&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> style.css
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Add responsive styling for testimonials"</span></code></pre>
               <h4>Step 6: go back to main and merge</h4>
-              <pre><code class="language-bash">git switch main
-git merge feature/testimonials</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch main
+<span class="token command">git</span> merge feature/testimonials</code></pre>
               <h4>Step 7: connect GitHub and push</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/user/showcase-site.git
-git push -u origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> remote <span class="token function">add</span> origin https://github.com/user/showcase-site.<span class="token command">git</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin main</code></pre>
               <h4>What you actually did</h4>
               <p>You have already used the practical heart of Git:</p>
               <ul class="guide-list">

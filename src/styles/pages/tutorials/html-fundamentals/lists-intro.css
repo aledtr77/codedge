@@ -144,11 +144,11 @@
   white-space: pre;
 }
 
-.code-tag { color: #f43f5e; }
-.code-attr-name { color: #38bdf8; }
-.code-attr-val { color: #34d399; }
+.code-tag { color: #e2bb80; }
+.code-attr-name { color: #8ccdf3; }
+.code-attr-val { color: #ddaa93; }
 .code-text { color: #f3f4f6; }
-.code-comment { color: #6b7280; font-style: italic; }
+.code-comment { color: #a8b4a0; font-style: italic; }
 
 /* Visual Previews Implementation styles */
 .lists-preview-navbar {

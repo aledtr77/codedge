@@ -269,15 +269,15 @@
               <p>Su macOS puoi usare Homebrew o gli strumenti Apple.</p>
               <p>Su Linux lo trovi quasi sempre nei repository della distribuzione.</p>
               <p>La prima cosa da fare dopo l’installazione è controllare che Git funzioni.</p>
-              <pre><code class="language-bash">git --version</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token parameter variable">--version</span></code></pre>
               <p>Poi conviene impostare almeno nome ed email, perché Git userà questi dati nei commit.</p>
-              <pre><code class="language-bash">git config --global user.name &quot;Il Tuo Nome&quot;
-git config --global user.email &quot;tuamail@example.com&quot;
-git config --global init.defaultBranch main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"Il Tuo Nome"</span>
+<span class="token command">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"tuamail@example.com"</span>
+<span class="token command">git</span> config <span class="token parameter variable">--global</span> init.defaultBranch main</code></pre>
               <p>Se usi Visual Studio Code, può essere utile anche impostarlo come editor predefinito:</p>
-              <pre><code class="language-bash">git config --global core.editor &quot;code --wait&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--global</span> core.editor <span class="token string">"code --wait"</span></code></pre>
               <p>Per vedere la configurazione corrente:</p>
-              <pre><code class="language-bash">git config --list</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> config <span class="token parameter variable">--list</span></code></pre>
               <p>Questa fase è semplice ma importante. Meglio fare queste cose subito invece di arrivare al primo commit e scoprire che Git si lamenta perché mancano nome ed email.</p>
             </section>
             <section class="guide-subchapter">
@@ -285,8 +285,8 @@ git config --global init.defaultBranch main</code></pre>
               <p>Qui iniziamo davvero.</p>
               <p>Immagina di avere una cartella con un piccolo progetto, magari un sito statico.</p>
               <p>Entri nella cartella e inizializzi Git.</p>
-              <pre><code class="language-bash">cd mio-progetto
-git init</code></pre>
+              <pre><code class="language-bash"><span class="token command">cd</span> mio-progetto
+<span class="token command">git</span> init</code></pre>
               <p>Da quel momento quella cartella non è più solo una cartella. È diventata un repository Git.</p>
               <p>Subito dopo conviene controllare lo stato:</p>
               <h4>git status</h4>
@@ -298,8 +298,8 @@ git init</code></pre>
                 <li>quali sono pronti per il commit.</li>
               </ul>
               <p>Poi puoi aggiungere i file e fare il primo commit:</p>
-              <pre><code class="language-bash">git add .
-git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Primo commit: struttura iniziale del progetto"</span></code></pre>
               <h4>Cosa hai fatto davvero</h4>
               <p>Hai fatto quattro cose fondamentali:</p>
               <ul class="guide-list">
@@ -326,20 +326,20 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>È il comando che ti impedisce di lavorare bendato.</p>
               <p>Usalo spesso.</p>
               <h4>git diff</h4>
-              <pre><code class="language-bash">git diff</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">diff</span></code></pre>
               <p>Ti mostra le righe cambiate nei file non ancora staged. È il controllo più pratico prima di decidere cosa mettere nel commit.</p>
               <h4>git add</h4>
-              <pre><code class="language-bash">git add style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> style.css</code></pre>
               <p>Serve a mettere nello staging la versione attuale dei file che vuoi includere nel prossimo commit.</p>
               <p>Puoi usarlo su file specifici oppure, se ha senso, su tutto il progetto.</p>
-              <pre><code class="language-bash">git add .</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span></code></pre>
               <p>Ma attenzione: git add . non è il male assoluto, però usato sempre senza pensare può mischiare modifiche che sarebbe meglio tenere separate.</p>
               <h4>git commit</h4>
-              <pre><code class="language-bash">git commit -m &quot;Migliora il layout mobile della hero&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Migliora il layout mobile della hero"</span></code></pre>
               <p>Crea un commit nella cronologia usando quello che hai preparato in staging.</p>
               <p>In altre parole: prende lo stato staged dei file, ne registra uno snapshot e lo salva come nuova tappa della storia.</p>
               <h4>git log quando devi ricostruire la storia</h4>
-              <pre><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> log <span class="token parameter variable">--oneline</span> <span class="token parameter variable">--graph</span> <span class="token parameter variable">--decorate</span> <span class="token parameter variable">--all</span></code></pre>
               <p>Non è un passaggio obbligatorio dopo ogni commit. È utile quando vuoi capire come si è evoluto il progetto o ritrovare una tappa precisa.</p>
               <h4>Il flusso mentale giusto</h4>
               <div class="guide-qa-card">
@@ -381,12 +381,12 @@ git commit -m &quot;Primo commit: struttura iniziale del progetto&quot;</code></
               <p>.gitignore è il file in cui dici a Git quali file o cartelle ignorare.</p>
               <p>Non tutto deve entrare nella cronologia.</p>
               <p>In un progetto frontend tipico, spesso conviene ignorare cose come:</p>
-              <pre><code class="language-text">node_modules/
-dist/
-.env
-.DS_Store
-Thumbs.db
-.vscode/</code></pre>
+              <pre><code class="language-ignore"><span class="token value">node_modules/</span>
+<span class="token value">dist/</span>
+<span class="token value">.env</span>
+<span class="token value">.DS_Store</span>
+<span class="token value">Thumbs.db</span>
+<span class="token value">.vscode/</span></code></pre>
               <h4>Perché è importante</h4>
               <p>Un buon .gitignore:</p>
               <ul class="guide-list">
@@ -398,7 +398,7 @@ Thumbs.db
               <h4>Attenzione importante</h4>
               <p>Se un file è già stato tracciato, aggiungerlo dopo a .gitignore non basta a farlo sparire dal repository.</p>
               <p>In quel caso devi prima rimuoverlo dall’indice:</p>
-              <pre><code class="language-bash">git rm --cached nomefile</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">rm</span> <span class="token parameter variable">--cached</span> nomefile</code></pre>
               <p>Poi fai un commit.</p>
               <p>Questo punto confonde tantissimi principianti.</p>
             </section>
@@ -414,7 +414,7 @@ Thumbs.db
               <p>Un branch è una linea di lavoro separata.</p>
               <p>Ti permette di sviluppare una modifica senza sporcare subito il branch principale, che di solito si chiama main.</p>
               <p>Per esempio, se vuoi provare una nuova navbar mobile, invece di lavorare direttamente su main puoi creare un branch dedicato.</p>
-              <pre><code class="language-bash">git switch -c feature/navbar-mobile</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch <span class="token parameter variable">-c</span> feature/navbar-mobile</code></pre>
               <p>Da quel momento lavori lì dentro.</p>
               <h4>Perché servono</h4>
               <p>I branch ti permettono di:</p>
@@ -439,8 +439,8 @@ Thumbs.db
               <h3>Merge e conflitti senza panico</h3>
               <p>Quando hai finito di lavorare su un branch, puoi unirlo a main.</p>
               <p>Questo si chiama merge.</p>
-              <pre><code class="language-bash">git switch main
-git merge feature/navbar-mobile</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch main
+<span class="token command">git</span> merge feature/navbar-mobile</code></pre>
               <p>Se Git riesce a combinare tutto da solo, il merge fila via tranquillo.</p>
               <p>Se invece due linee di lavoro hanno modificato la stessa parte di uno stesso file in modi incompatibili, nasce un conflitto.</p>
               <h4>Il conflitto non è una tragedia</h4>
@@ -448,15 +448,15 @@ git merge feature/navbar-mobile</code></pre>
               <p>È Git che ti dice:</p>
               <p>Qui non posso decidere da solo. Dimmi tu quale versione tenere.</p>
               <p>Nel file vedrai marcatori di questo tipo:</p>
-              <pre><code class="language-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-&lt;nav class=&quot;main-nav dark&quot;&gt;
+              <pre><code class="language-markup">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-nav dark<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 =======
-&lt;nav class=&quot;main-nav glass&quot;&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-nav glass<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/header-style</code></pre>
               <p>Tu devi leggere, capire le due versioni e scegliere cosa tenere oppure combinarle manualmente.</p>
               <p>Poi salvi il file, lo aggiungi di nuovo e completi il processo:</p>
-              <pre><code class="language-bash">git add index.html
-git commit</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html
+<span class="token command">git</span> commit</code></pre>
               <figure class="guide-figure guide-figure--teaching">
                 <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/conflitto-merge-risoluzione.svg" alt="Conflitto Git tra branch main e branch alternativo sulla stessa riga" loading="lazy" decoding="async" width="1200" height="560">
                 <figcaption>Idea semplice: branch main e branch alternativo hanno cambiato la stessa riga; scegli una versione finale pulita e completi il commit.</figcaption>
@@ -467,23 +467,23 @@ git commit</code></pre>
               <p>Un remoto è una copia del repository ospitata altrove, per esempio su GitHub.</p>
               <p>Il nome convenzionale del remoto principale è spesso origin.</p>
               <h4>Collegare un repository locale a GitHub</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/tuonome/nome-repo.git
-git remote -v
-git push -u origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> remote <span class="token function">add</span> origin https://github.com/tuonome/nome-repo.<span class="token command">git</span>
+<span class="token command">git</span> remote <span class="token parameter variable">-v</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin main</code></pre>
               <h4>I quattro verbi da capire bene</h4>
               <h4>clone</h4>
-              <pre><code class="language-bash">git clone https://github.com/utente/progetto.git</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> clone https://github.com/utente/progetto.<span class="token command">git</span></code></pre>
               <p>Scarica in locale un repository remoto già esistente.</p>
               <h4>fetch</h4>
-              <pre><code class="language-bash">git fetch origin</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> fetch origin</code></pre>
               <p>Aggiorna le informazioni dal remoto, ma senza integrare automaticamente nel branch corrente.</p>
               <p>È molto utile perché ti fa vedere prima e decidere poi.</p>
               <h4>pull</h4>
-              <pre><code class="language-bash">git pull origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> pull origin main</code></pre>
               <p>Scarica e integra nel branch corrente.</p>
               <p>Nella configurazione più comune equivale a fetch più merge. In alcuni workflow può integrare usando rebase, quindi è bene sapere come è configurato il tuo ambiente.</p>
               <h4>push</h4>
-              <pre><code class="language-bash">git push origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> push origin main</code></pre>
               <p>Pubblica sul remoto i commit che hai fatto in locale.</p>
               <figure class="guide-figure">
 <img src="/images/percorsi-apprendimento/git-pratico-senza-panico/remoti-git-sync.svg" alt="Schema repository locale e remoto" loading="lazy" decoding="async" width="1200" height="500">
@@ -501,15 +501,15 @@ git push -u origin main</code></pre>
               <p>In realtà basta capire che questi tre comandi non fanno la stessa cosa.</p>
               <h4>restore</h4>
               <p>Serve soprattutto a scartare modifiche locali o a ripristinare un file.</p>
-              <pre><code class="language-bash">git restore style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> restore style.css</code></pre>
               <p>Se hai pasticciato un file e vuoi annullare le modifiche locali non ancora committate, restore è spesso la scelta più semplice.</p>
               <p>Di default <code>git restore style.css</code> riporta il file allo stato attualmente registrato nell'index. Se non hai nulla in staging, per un principiante questo di solito coincide con l'ultimo commit. Se vuoi essere esplicito puoi anche indicare la sorgente:</p>
-              <pre><code class="language-bash">git restore --source=HEAD -- style.css</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> restore <span class="token parameter variable">--source</span><span class="token operator">=</span>HEAD -- style.css</code></pre>
               <h4>reset</h4>
               <p>reset è più potente e più delicato.</p>
               <p>Può spostare il puntatore della cronologia e, a seconda dell’opzione usata, influenzare staging area e working tree.</p>
-              <pre><code class="language-bash">git reset --soft HEAD~1
-git reset --hard HEAD~1</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> reset <span class="token parameter variable">--soft</span> HEAD~1
+<span class="token command">git</span> reset <span class="token parameter variable">--hard</span> HEAD~1</code></pre>
               <ul class="guide-list">
                 <li><code>--soft</code> torna indietro nella cronologia ma mantiene le modifiche nello staging;</li>
                 <li><code>--hard</code> riallinea cronologia, staging e working tree in modo drastico e può eliminare modifiche non salvate.</li>
@@ -518,7 +518,7 @@ git reset --hard HEAD~1</code></pre>
               <h4>revert</h4>
               <p>revert è diverso.</p>
               <p>Non cancella un commit dalla storia. Crea un nuovo commit che annulla l’effetto del commit scelto.</p>
-              <pre><code class="language-bash">git revert abc1234</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> revert abc1234</code></pre>
               <p>Per questo è spesso la scelta più sicura quando la cronologia è già stata pubblicata.</p>
               <h4>Schema mentale rapido</h4>
               <ul class="guide-list">
@@ -537,8 +537,8 @@ git reset --hard HEAD~1</code></pre>
               <p>Registra i movimenti di HEAD e di altri riferimenti. In pratica ti aiuta a ritrovare punti della cronologia che sembravano spariti.</p>
               <p>Molte volte quando uno dice “ho perso tutto”, Git risponde: “forse no”.</p>
               <h4>Esempio</h4>
-              <pre><code class="language-bash">git reflog
-git reset --hard HEAD@{2}</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> reflog
+<span class="token command">git</span> reset <span class="token parameter variable">--hard</span> HEAD@<span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span></code></pre>
               <p>Con reflog guardi i movimenti recenti. Poi puoi decidere di tornare a un punto precedente.</p>
               <p>Non è magia eterna e non sostituisce il buon senso, ma sapere che esiste cambia tantissimo il rapporto psicologico con Git.</p>
             </section>
@@ -570,39 +570,39 @@ git reset --hard HEAD@{2}</code></pre>
                 <li>images/</li>
               </ul>
               <h4>Passo 1: inizializza Git</h4>
-              <pre><code class="language-bash">cd sito-vetrina
-git init
-git status</code></pre>
+              <pre><code class="language-bash"><span class="token command">cd</span> sito-vetrina
+<span class="token command">git</span> init
+<span class="token command">git</span> status</code></pre>
               <h4>Passo 2: crea .gitignore se serve</h4>
               <p>Per esempio, se è un progetto con build o dipendenze:</p>
-              <pre><code class="language-text">node_modules/
-dist/
-.env</code></pre>
+              <pre><code class="language-ignore"><span class="token value">node_modules/</span>
+<span class="token value">dist/</span>
+<span class="token value">.env</span></code></pre>
               <h4>Passo 3: primo commit</h4>
-              <pre><code class="language-bash">git add .
-git commit -m &quot;Primo commit: struttura iniziale del sito&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Primo commit: struttura iniziale del sito"</span></code></pre>
               <h4>Passo 4: fai una modifica mirata</h4>
               <p>Immagina di migliorare il titolo hero e il padding della navbar.</p>
               <p>Controlla cosa è cambiato:</p>
-              <pre><code class="language-bash">git status
-git diff</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> status
+<span class="token command">git</span> <span class="token function">diff</span></code></pre>
               <p>Se tutto è coerente:</p>
-              <pre><code class="language-bash">git add index.html style.css
-git commit -m &quot;Aggiorna hero e migliora spacing della navbar&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html style.css
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Aggiorna hero e migliora spacing della navbar"</span></code></pre>
               <h4>Passo 5: crea un branch per una nuova funzione</h4>
-              <pre><code class="language-bash">git switch -c feature/testimonials</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch <span class="token parameter variable">-c</span> feature/testimonials</code></pre>
               <p>Aggiungi una nuova sezione e fai un commit dedicato:</p>
-              <pre><code class="language-bash">git add index.html
-git commit -m &quot;Aggiunge markup sezione testimonials&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> index.html
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Aggiunge markup sezione testimonials"</span></code></pre>
               <p>Poi magari aggiungi lo stile:</p>
-              <pre><code class="language-bash">git add style.css
-git commit -m &quot;Aggiunge stile responsive per testimonials&quot;</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> style.css
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Aggiunge stile responsive per testimonials"</span></code></pre>
               <h4>Passo 6: torna su main e fai merge</h4>
-              <pre><code class="language-bash">git switch main
-git merge feature/testimonials</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch main
+<span class="token command">git</span> merge feature/testimonials</code></pre>
               <h4>Passo 7: collega GitHub e fai push</h4>
-              <pre><code class="language-bash">git remote add origin https://github.com/utente/sito-vetrina.git
-git push -u origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> remote <span class="token function">add</span> origin https://github.com/utente/sito-vetrina.<span class="token command">git</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin main</code></pre>
               <h4>Cosa hai fatto davvero</h4>
               <p>Hai già usato il cuore pratico di Git:</p>
               <ul class="guide-list">

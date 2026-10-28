@@ -339,15 +339,15 @@
             <section class="guide-subchapter">
               <p>To connect a local project to GitHub, let's look at the two most useful cases.</p>
               <p><strong>Case A: you only use Git.</strong> Here the GitHub repository must already exist.</p>
-              <pre><code class="language-text">git init
-git add .
-git commit -m "First commit"
-git branch -M main
-git remote add origin https://github.com/USERNAME/REPO-NAME.git
-git push -u origin main</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> init
+<span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"First commit"</span>
+<span class="token command">git</span> branch <span class="token parameter variable">-M</span> main
+<span class="token command">git</span> remote <span class="token function">add</span> origin https://github.com/USERNAME/REPO-NAME.<span class="token command">git</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin main</code></pre>
               <p><strong>Case B: you do everything from the terminal.</strong> If you would rather not open the GitHub site, use the GitHub CLI (<code>gh</code>) to create the remote repository.</p>
-              <pre><code class="language-text">gh auth login
-gh repo create REPO-NAME --private --source=. --remote=origin --push</code></pre>
+              <pre><code class="language-bash"><span class="token command">gh</span> auth login
+<span class="token command">gh</span> repo create REPO-NAME <span class="token parameter variable">--private</span> <span class="token parameter variable">--source</span><span class="token operator">=</span>. <span class="token parameter variable">--remote</span><span class="token operator">=</span>origin <span class="token parameter variable">--push</span></code></pre>
               <p>If you want a public repository, use <code>--public</code> instead of <code>--private</code>.</p>
               <p>This command assumes the current folder is already a local Git repository, or that you want to initialise it through the CLI's guided flow. If you have not prepared the project locally yet, sort out the repository, the initial commit and the files to publish first.</p>
               <p><strong>Practical tip:</strong> think of it this way: <code>git</code> manages the local project, <code>gh</code> creates the repository on GitHub from the terminal.</p>
@@ -375,9 +375,9 @@ gh repo create REPO-NAME --private --source=. --remote=origin --push</code></pre
               <p>Many beginners think that saving a file or making a commit already updates GitHub. It does not.</p>
               <p>A commit saves the work in the local history. A push sends those commits online too.</p>
               <p>A typical example:</p>
-              <pre><code class="language-text">git add .
-git commit -m &quot;Update contact section&quot;
-git push</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Update contact section"</span>
+<span class="token command">git</span> push</code></pre>
               <p><strong>Practical tip:</strong> always run <code>git status</code> before pushing. It helps you avoid committing files you did not mean to.</p>
               <h3>Pull: bringing online changes down locally</h3>
               <p>Push's counterpart is pull.</p>
@@ -389,7 +389,7 @@ git push</code></pre>
                 <li>you made changes online and want them back on your machine</li>
               </ul>
               <p>The basic command:</p>
-              <pre><code class="language-text">git pull</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> pull</code></pre>
               <p>And here is the part that often catches beginners out: <code>pull</code> does not only mean “download”.</p>
               <p><code>pull</code> downloads and also tries to integrate those changes into the branch you are currently on.</p>
               <p>In the most common configuration it is equivalent to <code>fetch</code> + <code>merge</code>. In some workflows it may use <code>rebase</code>. So it is not a harmless button to press at random.</p>
@@ -423,10 +423,10 @@ git push</code></pre>
                 <li>you merge when everything is in order</li>
               </ol>
               <h3>A simple example</h3>
-              <pre><code class="language-text">git switch -c feature/faq-home
-git add .
-git commit -m "add FAQ section on the home page"
-git push -u origin feature/faq-home</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> switch <span class="token parameter variable">-c</span> feature/faq-home
+<span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"add FAQ section on the home page"</span>
+<span class="token command">git</span> push <span class="token parameter variable">-u</span> origin feature/faq-home</code></pre>
               <p>At that point, on GitHub, you can open a PR from <code>feature/faq-home</code> into <code>main</code>.</p>
               <p>The practical thing to understand is this: a PR does not change the main branch's code by itself. A PR opens a comparison and a proposal to merge.</p>
               <h3>What to look at inside a PR</h3>
@@ -477,11 +477,11 @@ git push -u origin feature/faq-home</code></pre>
                 <li>the project's status</li>
               </ul>
               <p>READMEs are almost always written in Markdown, a simple format that lets you create headings, lists, links and code blocks.</p>
-              <pre><code class="language-text"># Main heading
-## Subheading
-**bold text**
-- list item
-- another item</code></pre>
+              <pre><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> Main heading</span>
+<span class="token title important"><span class="token punctuation">##</span> Subheading</span>
+<span class="token bold"><span class="token punctuation">**</span><span class="token content">bold text</span><span class="token punctuation">**</span></span>
+<span class="token list punctuation">-</span> list item
+<span class="token list punctuation">-</span> another item</code></pre>
               <p>Markdown stays readable while you write it and needs no complicated syntax.</p>
               <p><strong>Practical tip:</strong> always add a “Quick start” section with 2-3 commands. It is the part readers look for first.</p>
             </section>
@@ -534,9 +534,9 @@ git push -u origin feature/faq-home</code></pre>
               </ul>
               <p>Even working alone this is essential: after a few days you may no longer remember what you touched, or why.</p>
               <p>The basic flow:</p>
-              <pre><code class="language-text">git add .
-git commit -m "update contact section"
-git push</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token command">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"update contact section"</span>
+<span class="token command">git</span> push</code></pre>
               <p>The most important part is the commit message: it should explain in one line what you changed.</p>
               <p>A simple rule: <strong>verb + what changed</strong>.</p>
               <p>Vague messages to avoid:</p>
@@ -595,7 +595,7 @@ git push</code></pre>
               <h4>Clone</h4>
               <p>The clone command downloads an existing repository to your computer.</p>
               <p>Example:</p>
-              <pre><code class="language-text">git clone REPOSITORY_URL</code></pre>
+              <pre><code class="language-bash"><span class="token command">git</span> clone REPOSITORY_URL</code></pre>
               <p>Useful when:</p>
               <ul class="guide-list">
                 <li>you want to work on a repository that is already on GitHub</li>

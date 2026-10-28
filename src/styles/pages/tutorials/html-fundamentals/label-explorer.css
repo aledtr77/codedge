@@ -167,9 +167,9 @@
   white-space: pre;
 }
 
-.label-explorer__tok--tag { color: #f43f5e; }
-.label-explorer__tok--attr { color: #38bdf8; }
-.label-explorer__tok--val { color: #34d399; }
+.label-explorer__tok--tag { color: #e2bb80; }
+.label-explorer__tok--attr { color: #8ccdf3; }
+.label-explorer__tok--val { color: #ddaa93; }
 .label-explorer__tok--text { color: #f3f4f6; }
 .label-explorer__tok--bad { color: #fca5a5; text-decoration: line-through; }
 

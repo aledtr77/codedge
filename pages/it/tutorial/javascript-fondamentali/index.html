@@ -143,11 +143,11 @@
             <section class="guide-subchapter">
               <p>Per agganciare un file JavaScript a una pagina HTML usiamo il tag `&lt;script src="script.js"&gt;&lt;/script&gt;`. Ma dove va posizionato questo tag? Di default, quando il browser incontra uno script mentre analizza l'HTML, interrompe la costruzione della pagina per scaricare ed eseguire il file, rallentando drasticamente il caricamento visivo.</p>
               <p>Per risolvere questo problema, gli sviluppatori moderni inseriscono il tag nell'head della pagina usando due attributi magici:</p>
-              <pre><code>&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --&gt;
-&lt;script src="statistiche.js" async&gt;&lt;/script&gt;
+              <pre><code class="language-markup"><span class="token comment">&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>statistiche.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 
-&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --&gt;
-&lt;script src="app-logica.js" defer&gt;&lt;/script&gt;</code></pre>
+<span class="token comment">&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app-logica.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
               <h3>Quale scegliere?</h3>
               <ul class="guide-list">
                 <li><strong>`async`</strong>: perfetto per script esterni che non dipendono da altri file e non hanno bisogno di interagire subito con la pagina (es. i pixel di tracciamento di Google Analytics o Facebook). Non viene garantito l'ordine di esecuzione.</li>
@@ -168,18 +168,18 @@
               </ul>
               <h3>Il problema di var e la stabilità di let/const</h3>
               <p>In passato in JavaScript si usava solo `var`. Tuttavia, `var` **ignora completamente lo scope di blocco**, "scappando" all'esterno di cicli e condizioni e creando bug silenziosi e difficili da trovare. JavaScript moderno introduce `let` e `const` che rispettano rigorosamente lo scope di blocco:</p>
-              <pre><code>if (true) {
-  var scappa = "Sono visibile fuori!";
-  let protetta = "Rimango qui dentro.";
-}
-console.log(scappa);    // Stampa "Sono visibile fuori!"
-console.log(protetta);  // ReferenceError! (Corretto e sicuro)</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> scappa <span class="token operator">=</span> <span class="token string">"Sono visibile fuori!"</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> protetta <span class="token operator">=</span> <span class="token string">"Rimango qui dentro."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scappa<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// Stampa "Sono visibile fuori!"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>protetta<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ReferenceError! (Corretto e sicuro)</span></code></pre>
               <h3>const blocca il riferimento, non l'oggetto</h3>
               <p>Molti sviluppatori credono erroneamente che dichiarare un oggetto con `const` lo renda immutabile. Non è così: `const` impedisce di **riassegnare il valore** della variabile ad un altro oggetto, ma ti permette di **modificare le proprietà interne** dell'oggetto stesso:</p>
-              <pre><code>const utente = { nome: "Chiara" };
-utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
+              <pre><code class="language-javascript"><span class="token keyword">const</span> utente <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">nome</span><span class="token operator">:</span> <span class="token string">"Chiara"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+utente<span class="token punctuation">.</span>nome <span class="token operator">=</span> <span class="token string">"Sofia"</span><span class="token punctuation">;</span> <span class="token comment">// Funziona perfettamente! L'oggetto viene modificato.</span>
 
-// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</code></pre>
+<span class="token comment">// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</span></code></pre>
               <p><strong>Regola aurea</strong>: usa sempre `const` come scelta predefinita. Passa a `let` solo se sai che il valore di quella variabile dovrà essere riassegnato (es. nei contatori dei cicli). Bandisci definitivamente `var` dal tuo codice.</p>
             </section>
           </section>
@@ -193,20 +193,20 @@ utente.nome = "Sofia"; // Funziona perfettamente! L'oggetto viene modificato.
                 <li><strong>Tipi Primitivi</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): vengono passati **per valore**. Se copi una variabile, crei un clone del tutto indipendente.</li>
                 <li><strong>Tipi di Riferimento</strong> (Object, Array, Function): vengono passati **per riferimento** (indirizzo di memoria). Copiare un oggetto copia solo la chiave per aprirlo in memoria: modificando la copia, modificherai l'originale.</li>
               </ul>
-              <pre><code>let nome1 = "Alice";
-let nome2 = nome1; // Copia il valore
-nome2 = "Bob";
-console.log(nome1); // "Alice" (Rimane intatta)
+              <pre><code class="language-javascript"><span class="token keyword">let</span> nome1 <span class="token operator">=</span> <span class="token string">"Alice"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> nome2 <span class="token operator">=</span> nome1<span class="token punctuation">;</span> <span class="token comment">// Copia il valore</span>
+nome2 <span class="token operator">=</span> <span class="token string">"Bob"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>nome1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Alice" (Rimane intatta)</span>
 
-let array1 = [1, 2];
-let array2 = array1; // Copia il riferimento in memoria
-array2.push(3);
-console.log(array1); // [1, 2, 3] (Modificata anche l'originale!)</code></pre>
+<span class="token keyword">let</span> array1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> array2 <span class="token operator">=</span> array1<span class="token punctuation">;</span> <span class="token comment">// Copia il riferimento in memoria</span>
+array2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [1, 2, 3] (Modificata anche l'originale!)</span></code></pre>
               <h3>L'uguaglianza debole (==) vs stretta (===)</h3>
               <p>Non usare mai l'operatore di uguaglianza debole `==`. Tenta di convertire automaticamente i tipi diversi prima di confrontarli, producendo risultati insensati come `"" == 0` (true) o `0 == false` (true).</p>
               <p>Usa **sempre** l'operatore di uguaglianza stretta `===` (e il suo opposto `!==`), che controlla sia il valore sia il tipo senza compiere conversioni:</p>
-              <pre><code>console.log(5 == "5");  // true (Conversione automatica di tipo)
-console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
+              <pre><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">==</span> <span class="token string">"5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// true (Conversione automatica di tipo)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">===</span> <span class="token string">"5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false (Tipi diversi: Number vs String)</span></code></pre>
             </section>
           </section>
 
@@ -216,22 +216,22 @@ console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
             <section class="guide-subchapter">
               <p>Le funzioni racchiudono blocchi di codice riutilizzabili. Oltre alle funzioni classiche, in JavaScript moderno usiamo molto le <a href="/it/risorse/glossario-js/?q=arrow%20function">Arrow Functions</a> (funzioni a freccia).</p>
               <p>Le funzioni classiche godono dell'**hoisting**: puoi invocarle nel file prima ancora della riga in cui le hai dichiarate, perché il browser le carica in memoria all'avvio dello script. Le Arrow Functions non hanno questa proprietà e offrono una sintassi ultra-compatta:</p>
-              <pre><code>const quadrato = x => x * x; // Ritorno implicito ad una riga</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">quadrato</span> <span class="token operator">=</span> <span class="token parameter">x</span> <span class="token operator">=></span> x <span class="token operator">*</span> x<span class="token punctuation">;</span> <span class="token comment">// Ritorno implicito ad una riga</span></code></pre>
               <h3>Il grande dilemma di 'this'</h3>
               <p>La differenza fondamentale risiede nel funzionamento della parola chiave `this`:</p>
               <ul class="guide-list">
                 <li>Nelle **funzioni classiche**, `this` fa riferimento a *chi chiama la funzione* a runtime (contesto dinamico).</li>
                 <li>Nelle **Arrow Functions**, `this` è **lessicale**: eredita il valore dal contesto circostante in cui la funzione è stata scritta, senza curarsi di chi la invoca.</li>
               </ul>
-              <pre><code>const carrello = {
-  prodotti: ["Libro", "Penna"],
-  stampa() {
-    // Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)
-    this.prodotti.forEach(prodotto => {
-      console.log(this); // Stampa l'oggetto carrello
-    });
-  }
-};</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">const</span> carrello <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">prodotti</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"Libro"</span><span class="token punctuation">,</span> <span class="token string">"Penna"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">stampa</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>prodotti<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">prodotto</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Stampa l'oggetto carrello</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
             </section>
           </section>
 
@@ -242,12 +242,12 @@ console.log(5 === "5"); // false (Tipi diversi: Number vs String)</code></pre>
               <p>Per scrivere codice elegante e pulito, devi conoscere le scorciatoie sintattiche introdotte di recente.</p>
               <h3>Destrutturazione (Destructuring)</h3>
               <p>Permette di estrarre proprietà da oggetti o elementi da array e memorizzarli in variabili dedicate in un colpo solo:</p>
-              <pre><code>const impostazioni = { tema: "dark", volume: 80 };
-const { tema, volume } = impostazioni; // Estratti in variabili indipendenti</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">const</span> impostazioni <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">tema</span><span class="token operator">:</span> <span class="token string">"dark"</span><span class="token punctuation">,</span> <span class="token literal-property property">volume</span><span class="token operator">:</span> <span class="token number">80</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> tema<span class="token punctuation">,</span> volume <span class="token punctuation">}</span> <span class="token operator">=</span> impostazioni<span class="token punctuation">;</span> <span class="token comment">// Estratti in variabili indipendenti</span></code></pre>
               <h3>Operatore Spread (...)</h3>
               <p>Rappresentato da tre punti, "distribuisce" gli elementi di un array o le proprietà di un oggetto all'interno di un nuovo contenitore. È il modo standard per clonare o unire dati in modo sicuro senza modificarli all'origine:</p>
-              <pre><code>const votiMatematica = [7, 8];
-const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clonato)</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">const</span> votiMatematica <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> tuttiVoti <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>votiMatematica<span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [7, 8, 9, 10] (Nuovo array clonato)</span></code></pre>
               <h3>Evitare i cicli manuali</h3>
               <p>Non usare cicli `for` manuali per trasformare i dati degli array. JavaScript offre metodi funzionali pronti all'uso come `.map()` per modificare ogni elemento, `.filter()` per scremare gli elementi secondo una condizione, e `.reduce()` per accumulare i valori.</p>
             </section>
@@ -267,9 +267,9 @@ const tuttiVoti = [...votiMatematica, 9, 10]; // [7, 8, 9, 10] (Nuovo array clon
               <h3>Modificare lo stile in sicurezza</h3>
               <p>Non scrivere mai proprietà CSS direttamente nel codice JavaScript (es. `elemento.style.color = "red"`). È una cattiva pratica che rende la manutenzione difficilissima.</p>
               <p>La prassi corretta è **definire gli stati grafici nel CSS** (es. creare una classe `.is-active` con le sue regole) e usare JavaScript unicamente per **aggiungere o rimuovere quella classe** nel DOM:</p>
-              <pre><code>const popup = document.querySelector(".popup");
-popup.classList.add("is-active");
-popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">const</span> popup <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".popup"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+popup<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"is-active"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+popup<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">toggle</span><span class="token punctuation">(</span><span class="token string">"is-open"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Aggiunge se manca, rimuove se c'è</span></code></pre>
               <h3>textContent vs innerHTML: Sicurezza XSS</h3>
               <p>Se devi stampare un testo inserito dall'utente in una pagina, usa sempre `textContent`. Evita `innerHTML`, poiché interpreta i tag HTML e potrebbe permettere a malintenzionati di iniettare script dannosi nel tuo sito (attacco Cross-Site Scripting - XSS).</p>
 
@@ -286,14 +286,14 @@ popup.classList.toggle("is-open"); // Aggiunge se manca, rimuove se c'è</code><
             <section class="guide-subchapter">
               <p>Il browser genera un evento ogni volta che accade qualcosa (un click, il movimento del mouse, la digitazione su tastiera o il caricamento completato).</p>
               <p>Legare un comportamento ad un evento si fa agganciando un ascoltatore direttamente da JavaScript:</p>
-              <pre><code>const pulsante = document.querySelector("#btn-invia");
+              <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#btn-invia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-function gestisciInvio(event) {
-  event.preventDefault(); // Blocca l'invio del form e il ricaricamento della pagina!
-  console.log("Dati inviati in modo asincrono.");
-}
+<span class="token keyword">function</span> <span class="token function">gestisciInvio</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Blocca l'invio del form e il ricaricamento della pagina!</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Dati inviati in modo asincrono."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-pulsante.addEventListener("click", gestisciInvio);</code></pre>
+pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> gestisciInvio<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
               <p>L'uso di `event.preventDefault()` è cruciale nei form per fermare il comportamento predefinito del browser e permetterci di gestire l'invio in background tramite JavaScript.</p>
             </section>
           </section>
@@ -306,19 +306,19 @@ pulsante.addEventListener("click", gestisciInvio);</code></pre>
               <p>Una Promise può trovarsi in tre stati: `Pending` (in attesa), `Fulfilled` (risolta con successo), `Rejected` (fallita con un errore).</p>
               <h3>La semplicità di async/await</h3>
               <p>Per non scrivere codice disordinato basato su costrutti complessi, usiamo la sintassi moderna `async/await`. Questa ti permette di scrivere codice asincrono con la stessa struttura lineare del codice sincrono riga per riga:</p>
-              <pre><code>// Contrassegniamo la funzione come asincrona
-async function caricaDati() {
-  console.log("Caricamento avviato...");
+              <pre><code class="language-javascript"><span class="token comment">// Contrassegniamo la funzione come asincrona</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">caricaDati</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Caricamento avviato..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
-  // Il browser aspetta la risposta della fetch senza bloccare il resto della pagina
-  const risposta = await fetch("https://api.esempio.com/prodotti");
-  const prodotti = await risposta.json();
+  <span class="token comment">// Il browser aspetta la risposta della fetch senza bloccare il resto della pagina</span>
+  <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://api.esempio.com/prodotti"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> prodotti <span class="token operator">=</span> <span class="token keyword">await</span> risposta<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
-  console.log("Prodotti ricevuti:", prodotti);
-}
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Prodotti ricevuti:"</span><span class="token punctuation">,</span> prodotti<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-caricaDati();
-console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!");</code></pre>
+<span class="token function">caricaDati</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Questo log appare PRIMA dei prodotti, perché l'API è asincrona!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             </section>
           </section>
 
@@ -328,20 +328,20 @@ console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!")
             <section class="guide-subchapter">
               <p>Se JavaScript incontra un errore irreversibile (ad esempio una chiamata API che fallisce per assenza di rete o un JSON corrotto), interrompe bruscamente l'esecuzione. In questo stato, tutti i tuoi script smetteranno di funzionare.</p>
               <p>Per evitare crash catastrofici, avvolgi il codice a rischio in un blocco `try/catch` per gestire l'errore con grazia:</p>
-              <pre><code>async function scaricaProfilo() {
-  try {
-    const risposta = await fetch("https://api.esempio.com/profilo");
-    const dati = await risposta.json();
-    console.log("Profilo caricato:", dati.nome);
-  } catch (errore) {
-    // Eseguito solo in caso di errore nel blocco try
-    console.error("Non è stato possibile caricare il profilo:", errore.message);
-    mostraMessaggioDiErroreAllUtente();
-  } finally {
-    // Eseguito sempre, a prescindere dal successo o dal fallimento
-    nascondiSpinnerCaricamento();
-  }
-}</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">scaricaProfilo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://api.esempio.com/profilo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> dati <span class="token operator">=</span> <span class="token keyword">await</span> risposta<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Profilo caricato:"</span><span class="token punctuation">,</span> dati<span class="token punctuation">.</span>nome<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>errore<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Eseguito solo in caso di errore nel blocco try</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Non è stato possibile caricare il profilo:"</span><span class="token punctuation">,</span> errore<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mostraMessaggioDiErroreAllUtente</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Eseguito sempre, a prescindere dal successo o dal fallimento</span>
+    <span class="token function">nascondiSpinnerCaricamento</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
             </section>
           </section>
 
@@ -356,24 +356,24 @@ console.log("Questo log appare PRIMA dei prodotti, perché l'API è asincrona!")
                 <li><strong>`localStorage`</strong>: i dati non hanno scadenza e rimangono memorizzati nel browser finché non vengono cancellati via codice o dall'utente.</li>
                 <li><strong>`sessionStorage`</strong>: i dati vengono persi immediatamente non appena la scheda (tab) del browser viene chiusa.</li>
               </ul>
-              <pre><code>// Salvare un dato
-localStorage.setItem("temaScuro", "true");
+              <pre><code class="language-javascript"><span class="token comment">// Salvare un dato</span>
+localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-// Leggere un dato
-const tema = localStorage.getItem("temaScuro");
+<span class="token comment">// Leggere un dato</span>
+<span class="token keyword">const</span> tema <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-// Rimuovere un dato
-localStorage.removeItem("temaScuro");</code></pre>
+<span class="token comment">// Rimuovere un dato</span>
+localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
               <h3>Salvare oggetti complessi</h3>
               <p>Poiché il localStorage accetta **solo stringhe**, se provi a salvare un oggetto direttamente, verrà convertito nel testo inutile `"[object Object]"`. Per salvare strutture complesse (oggetti o array), dobbiamo prima convertirli in stringhe JSON con `JSON.stringify`, e riconvertirli in oggetti all'estrazione con `JSON.parse`:</p>
-              <pre><code>const carrello = ["Scarpe", "Zaino"];
+              <pre><code class="language-javascript"><span class="token keyword">const</span> carrello <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Scarpe"</span><span class="token punctuation">,</span> <span class="token string">"Zaino"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-// Salvataggio (conversione in stringa JSON)
-localStorage.setItem("carrello_utente", JSON.stringify(carrello));
+<span class="token comment">// Salvataggio (conversione in stringa JSON)</span>
+localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"carrello_utente"</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>carrello<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-// Estrazione (conversione in array utilizzabile)
-const datiSalvati = localStorage.getItem("dati_utente");
-const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
+<span class="token comment">// Estrazione (conversione in array utilizzabile)</span>
+<span class="token keyword">const</span> datiSalvati <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"dati_utente"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> carrelloArray <span class="token operator">=</span> datiSalvati <span class="token operator">?</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>datiSalvati<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
               <p><strong>Avviso di sicurezza</strong>: non salvare mai password, token di autenticazione o dati personali sensibili nel localStorage. Qualsiasi script JavaScript in esecuzione sulla pagina può accedervi liberamente, rendendoli facili bersagli in caso di attacchi XSS.</p>
             </section>
           </section>
@@ -387,19 +387,19 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">Non è un errore di JavaScript, ma del modo in cui i computer convertono i numeri decimali in frazioni binarie. Per confrontare i prezzi in un e-commerce senza frazioni microscopiche storte, arrotonda sempre i decimali usando `toFixed()` o lavorando con i numeri interi (es. converti in centesimi prima di fare i calcoli):</p>
-                <pre style="margin-top: 0.5rem;"><code>const totale = (0.1 * 10 + 0.2 * 10) / 10; // Restituisce esattamente 0.3!</code></pre>
+                <pre style="margin-top: 0.5rem;"><code class="language-javascript"><span class="token keyword">const</span> totale <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0.1</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token number">0.2</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// Restituisce esattamente 0.3!</span></code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>2. typeof null === "object"</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">Questo è un vero e proprio bug storico del motore originale di JavaScript del 1995. Non può essere rimosso o corretto perché farlo romperebbe milioni di siti web attualmente attivi su internet. Per controllare se una variabile è effettivamente un oggetto escludendo `null`, fai un doppio controllo:</p>
-                <pre style="margin-top: 0.5rem;"><code>if (variabile &amp;&amp; typeof variabile === "object") { ... }</code></pre>
+                <pre style="margin-top: 0.5rem;"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>variabile <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> variabile <span class="token operator">===</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span></code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
                 <strong>3. NaN !== NaN (Not-a-Number non è uguale a se stesso)</strong>
                 <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` rappresenta il risultato matematico di un'operazione non valida (es. `"ciao" * 5`). In JavaScript, `NaN` è l'unico valore al mondo che non è uguale a se stesso se confrontato con `===`. Per verificare se un valore è `NaN`, usa il metodo nativo:</p>
-                <pre style="margin-top: 0.5rem;"><code>Number.isNaN(valore); // Restituisce true o false in modo affidabile</code></pre>
+                <pre style="margin-top: 0.5rem;"><code class="language-javascript">Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span>valore<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Restituisce true o false in modo affidabile</span></code></pre>
               </div>
 
               <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
@@ -420,11 +420,11 @@ const carrelloArray = datiSalvati ? JSON.parse(datiSalvati) : [];</code></pre>
               </ul>
               <h3>La forza dell'istruzione debugger</h3>
               <p>Se inserisci la parola chiave **`debugger;`** nel tuo script e tieni aperti gli strumenti sviluppatori del browser, l'esecuzione del codice si congelerà all'istante in quel punto preciso:</p>
-              <pre><code>function calcolaPrezzo(base) {
-  const tasse = 1.22;
-  debugger; // Il browser congela la pagina ed evidenzia questa riga nei DevTools
-  return base * tasse;
-}</code></pre>
+              <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">calcolaPrezzo</span><span class="token punctuation">(</span><span class="token parameter">base</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> tasse <span class="token operator">=</span> <span class="token number">1.22</span><span class="token punctuation">;</span>
+  <span class="token keyword">debugger</span><span class="token punctuation">;</span> <span class="token comment">// Il browser congela la pagina ed evidenzia questa riga nei DevTools</span>
+  <span class="token keyword">return</span> base <span class="token operator">*</span> tasse<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
               <p>Potrai ispezionare il valore corrente di ogni variabile in quel millisecondo e procedere riga per riga, trovando i problemi senza sporcare il codice con log di prova.</p>
             </section>
           </section>

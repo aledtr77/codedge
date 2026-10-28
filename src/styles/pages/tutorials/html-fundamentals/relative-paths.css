@@ -292,7 +292,7 @@
   word-break: break-all;
 }
 
-.code-tag-a { color: #f43f5e; }
-.code-attr-name { color: #38bdf8; }
-.code-attr-val { color: #34d399; }
+.code-tag-a { color: #e2bb80; }
+.code-attr-name { color: #8ccdf3; }
+.code-attr-val { color: #ddaa93; }
 .code-tag-text { color: #f3f4f6; }

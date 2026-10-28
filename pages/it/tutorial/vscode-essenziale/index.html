@@ -259,34 +259,34 @@
             <section class="guide-subchapter">
               <h3>Un file `.vscode/settings.json` pronto all'uso</h3>
               <p>Questo è un punto di partenza collaudato per un progetto web. Copialo e incollalo nel file <code>settings.json</code> dentro la cartella <code>.vscode</code> che hai appena creato:</p>
-              <pre><code class="language-json">{
-  // Impostazioni dell'editor
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
+              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token comment">// Impostazioni dell'editor</span>
+  <span class="token property">"editor.tabSize"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.insertSpaces"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.detectIndentation"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   
-  // Formattazione automatica al salvataggio
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  <span class="token comment">// Formattazione automatica al salvataggio</span>
+  <span class="token property">"editor.formatOnSave"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.defaultFormatter"</span><span class="token operator">:</span> <span class="token string">"esbenp.prettier-vscode"</span><span class="token punctuation">,</span>
   
-  // Esegui correzioni linting automatiche salvando
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
+  <span class="token comment">// Esegui correzioni linting automatiche salvando</span>
+  <span class="token property">"editor.codeActionsOnSave"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"source.fixAll.eslint"</span><span class="token operator">:</span> <span class="token string">"explicit"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
   
-  // Interfaccia pulita e produttiva
-  "editor.minimap.enabled": false,
-  "editor.stickyScroll.enabled": true,
-  "editor.wordWrap": "on",
+  <span class="token comment">// Interfaccia pulita e produttiva</span>
+  <span class="token property">"editor.minimap.enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.stickyScroll.enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.wordWrap"</span><span class="token operator">:</span> <span class="token string">"on"</span><span class="token punctuation">,</span>
   
-  // Escludi file ridondanti dalla ricerca globale
-  "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/dist": true
-  }
-}</code></pre>
+  <span class="token comment">// Escludi file ridondanti dalla ricerca globale</span>
+  <span class="token property">"files.exclude"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"**/.git"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"**/.DS_Store"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"**/node_modules"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"**/dist"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
               
               <h4>Cosa fanno esattamente queste impostazioni? (Spiegazione dettagliata)</h4>
               <p>Copiare questo file all'interno del progetto è comodo, ma capire il significato di ciascuna chiave ti eviterà molti mal di testa. Ecco come funzionano le regole principali che abbiamo inserito:</p>
@@ -340,13 +340,13 @@
               <p>Invece di scrivere una lista di estensioni su un foglio di testo sperando che gli altri le installino manualemente, puoi creare un file speciale dentro la cartella <code>.vscode</code> chiamato <code>extensions.json</code>.</p>
               
               <p>Al suo interno inserisci questo semplice testo:</p>
-              <pre><code class="language-json">{
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "usernamehw.errorlens"
-  ]
-}</code></pre>
+              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"recommendations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"esbenp.prettier-vscode"</span><span class="token punctuation">,</span>
+    <span class="token string">"dbaeumer.vscode-eslint"</span><span class="token punctuation">,</span>
+    <span class="token string">"usernamehw.errorlens"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
               <p>Da quel momento, quando un altro programmatore aprirà la cartella del progetto, VS Code leggerà questo file e gli mostrerà un piccolo avviso in basso a destra: <em>"Questo progetto raccomanda alcune estensioni. Vuoi installarle?"</em>. Con un solo clic, installerà tutto ciò che serve, senza perdite di tempo.</p>
             </section>
             
@@ -357,21 +357,21 @@
               <p>Aprire la cartella principale gigante che le contiene entrambe rischia di appesantire lo schermo con file inutili. Per risolvere questo problema, VS Code ti permette di salvare uno <strong>Spazio di lavoro (Workspace)</strong> personalizzato, che raggruppa solo le cartelle su cui vuoi lavorare davvero, mostrandole affiancate nella barra laterale.</p>
               
               <p>Questo viene fatto tramite un piccolo file di testo con estensione <code>.code-workspace</code> che ha questa struttura:</p>
-              <pre><code class="language-json">{
-  "folders": [
-    {
-      "name": "Sito Web Frontend",
-      "path": "./sito-web"
-    },
-    {
-      "name": "Database Backend",
-      "path": "./database"
-    }
-  ],
-  "settings": {
-    "editor.tabSize": 2
-  }
-}</code></pre>
+              <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"folders"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Sito Web Frontend"</span><span class="token punctuation">,</span>
+      <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"./sito-web"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Database Backend"</span><span class="token punctuation">,</span>
+      <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"./database"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"editor.tabSize"</span><span class="token operator">:</span> <span class="token number">2</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
               <p>Per avviare il tuo spazio di lavoro, ti basterà fare doppio clic sul file <code>.code-workspace</code>. Se per ora lavori da solo su progetti semplici a cartella singola non ne avrai bisogno, ma è importante sapere che esiste questa possibilità per quando i tuoi progetti diventeranno più complessi.</p>
             </section>
           </section>
@@ -639,18 +639,18 @@
                 <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6; list-style-type: decimal;">
                   <li style="margin-bottom: 0.5rem;"><strong>Apri una cartella di progetto:</strong> Crea una nuova cartella vuota sul computer. In VS Code, seleziona <em>File -> Open Folder</em> (Apri cartella) e seleziona quella cartella. Ora hai un Workspace attivo.</li>
                   <li style="margin-bottom: 0.5rem;"><strong>Crea le impostazioni locali:</strong> Crea una cartella chiamata <code>.vscode</code> nella radice del tuo workspace. All'interno di essa, crea un file chiamato <code>settings.json</code> e incollaci questa configurazione di base per allineare l'editor:
-                    <pre><code class="language-json">{
-  "editor.formatOnSave": true,
-  "editor.stickyScroll.enabled": true,
-  "editor.tabSize": 2
-}</code></pre>
+                    <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"editor.formatOnSave"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.stickyScroll.enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"editor.tabSize"</span><span class="token operator">:</span> <span class="token number">2</span>
+<span class="token punctuation">}</span></code></pre>
                   </li>
                   <li style="margin-bottom: 0.5rem;"><strong>Crea le estensioni consigliate:</strong> Nella stessa cartella <code>.vscode</code>, crea un file chiamato <code>extensions.json</code> e indica l'estensione di formattazione ufficiale (Prettier) in modo che chiunque collabori con te riceva il suggerimento per installarla:
-                    <pre><code class="language-json">{
-  "recommendations": [
-    "esbenp.prettier-vscode"
-  ]
-}</code></pre>
+                    <pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"recommendations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"esbenp.prettier-vscode"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
                   </li>
                   <li style="margin-bottom: 0.5rem;"><strong>Testa l'auto-formattazione:</strong> Crea un file chiamato <code>index.html</code> nella radice del progetto. Scrivi del codice disallineato (es. tag indentati male o righe sparpagliate). Salva il file (<code>Ctrl + S</code> o <code>Cmd + S</code>) e osserva come l'editor riallinea e ordina il codice in automatico grazie al <code>formatOnSave</code>.</li>
                   <li style="margin-bottom: 0.5rem;"><strong>Naviga senza mouse:</strong> Chiudi tutte le schede aperte premendo <code>Ctrl + K W</code> (o <code>Cmd + K W</code>). Ora premi <code>Ctrl + P</code> (o <code>Cmd + P</code>), scrivi <code>set</code>, seleziona <code>settings.json</code> usando le frecce della tastiera e premi Invio. Hai riaperto il file in un secondo senza toccare il mouse!</li>

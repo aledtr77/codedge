@@ -173,9 +173,9 @@
   white-space: pre;
 }
 
-.flow-explorer__tok--tag { color: #f43f5e; }
+.flow-explorer__tok--tag { color: #e2bb80; }
 .flow-explorer__tok--text { color: #f3f4f6; }
-.flow-explorer__tok--comment { color: #6b7280; font-style: italic; }
+.flow-explorer__tok--comment { color: #a8b4a0; font-style: italic; }
 
 .flow-explorer__preview {
   background: #111827;
