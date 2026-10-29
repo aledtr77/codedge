@@ -6,14 +6,12 @@
 header {
   position: sticky;
   top: 0;
-  background-color: rgba(9, 13, 22, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #090d16;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 1000;
   width: 100%;
   padding-top: env(safe-area-inset-top, 0px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   touch-action: none; /* Prevents touch drags on the header from triggering a window scroll/canceling clicks */
 }
 
@@ -27,7 +25,6 @@ header {
 }
 
 header.header-scrolled {
-  background-color: rgba(9, 13, 22, 0.9);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
