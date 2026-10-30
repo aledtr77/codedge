@@ -3,7 +3,7 @@
 import { scrollBehavior } from "@/scripts/utils/motion.js";
 
 export default function initGuideToc() {
-  const tocLinks = Array.from(document.querySelectorAll('.guide-toc a[href^="#"]'));
+  const tocLinks = Array.from(document.querySelectorAll('.guide-toc a[href^="#"], .guide-mobile-toc a[href^="#"]'));
   const sections = tocLinks
     .map((link) => {
       const href = link.getAttribute("href");
@@ -74,7 +74,7 @@ export default function initGuideToc() {
       link.classList.toggle("is-active", isActive);
       if (isActive) {
         link.setAttribute("aria-current", "location");
-        activeLink = link;
+        if (desktopToc.matches && tocContainer?.contains(link)) activeLink = link;
       } else {
         link.removeAttribute("aria-current");
       }
@@ -140,6 +140,7 @@ export default function initGuideToc() {
       if (!target) return;
 
       event.preventDefault();
+      link.closest(".guide-mobile-toc")?.removeAttribute("open");
 
       const top =
         target.getBoundingClientRect().top + window.pageYOffset - getHeaderOffset();
