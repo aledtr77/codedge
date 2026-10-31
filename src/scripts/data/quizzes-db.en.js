@@ -1206,34 +1206,34 @@ export const quizzesData = {
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! AI generates code from statistical probability, not from real understanding of your system; it always needs human verification.",
-        wrong: "No. It is the risk of importing silent bugs or security holes through laziness at review time."
+        correct: "A plausible answer may still miss the expected behaviour or project context. Check it before adding it.",
+        wrong: "Generated code can look correct and still contain bugs, unhandled cases or security risks."
       }
     },
     {
-      q: "What does 'prompt engineering' mean in software development?",
+      q: "What makes an AI request useful during software development?",
       options: [
         "Filling in the AI's support forms.",
-        "The craft of writing clear, contextualised, constrained instructions so the AI produces precise, targeted code.",
+        "Describe the expected result, provide relevant context and state the constraints that matter.",
         "Installing AI servers on your computer."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Supplying examples, syntactic rules and clear context steers the AI towards better code that matches your style.",
-        wrong: "No. It is about structuring the request (input) so you get optimal, consistent answers (output)."
+        correct: "A clear request reduces the decisions left to the assistant; you still need to check the answer.",
+        wrong: "Goal, context and relevant constraints help the assistant understand what you need."
       }
     },
     {
-      q: "How should an AI assistant (Copilot, for instance) fit into your daily workflow?",
+      q: "How can an AI assistant help with your work?",
       options: [
         "By letting it write whole code files that you never inspect.",
-        "As a copilot for speeding up repetitive work (boilerplate, unit tests) while you keep supervision and logical direction of the code.",
+        "It can explain code, draft a change or look for problems while you check whether the result fits the project.",
         "By using it only for Google searches."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! AI excels at writing supporting code quickly, but the system's logic and the responsibility stay with the programmer.",
-        wrong: "No. Think of it as a junior assistant that speeds things up, while the human keeps decision-making control."
+        correct: "An assistant can help with different tasks, but compare the result with the expected behaviour and verify it.",
+        wrong: "An assistant can propose work; it cannot certify by itself that the result is right for the project."
       }
     },
     {
@@ -1253,13 +1253,13 @@ export const quizzesData = {
       q: "What does 'critical review' of AI-generated code mean?",
       options: [
         "Sending the code to a senior colleague before deploying.",
-        "Reading it, understanding it line by line and testing it before integrating it, checking that it is safe and correct.",
+        "Check the change against the goal, review relevant cases and run appropriate checks before integrating it.",
         "Using an automatic debugger."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Never incorporate code you do not understand. Analyse it as if someone else had written it, looking for potential weaknesses.",
-        wrong: "No. It is the careful, deliberate check of the code you received before approving it into the project."
+        correct: "Check the change against the goal, important cases and relevant checks before integrating it.",
+        wrong: "Review means understanding the change's impact and checking that the expected behaviour holds."
       }
     },
     {
@@ -1289,16 +1289,16 @@ export const quizzesData = {
       }
     },
     {
-      q: "Why should you never paste sensitive data (passwords, API keys, customer data) into AI prompts?",
+      q: "What is the difference between MCP and a skill?",
       options: [
-        "Because AI servers reject requests containing phone numbers.",
-        "Because that data is sent to third-party servers and may be reused to train models, risking a leak.",
-        "Because it increases the cost of your monthly subscription."
+        "MCP provides reusable instructions; a skill connects the assistant to external services.",
+        "MCP connects an AI application to external data or tools; a skill describes a reusable procedure.",
+        "They are two names for the same feature."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Your prompts are stored and could surface in answers given to other users later. Take privacy seriously.",
-        wrong: "No. It is a security breach: sensitive data leaves your protected environment."
+        correct: "MCP provides connections to tools or data; a skill explains how to complete a workflow. Always check access and permissions.",
+        wrong: "MCP connects to tools and data; a skill provides instructions and resources for a procedure."
       }
     },
     {
@@ -1310,21 +1310,21 @@ export const quizzesData = {
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! You can hand a function to the AI and ask it to write tests covering both valid and invalid input, which saves a lot of time.",
-        wrong: "No. It helps write boilerplate and test combinations, speeding up coverage of the code's edge cases."
+        correct: "It can suggest test cases, but you need to check and run them to see whether they catch the problems.",
+        wrong: "Generated tests are suggestions: check they cover the required behaviour, then run them."
       }
     },
     {
-      q: "What is the best attitude for a modern developer to take towards AI?",
+      q: "If you are learning, how can you use AI without skipping the learning?",
       options: [
         "Ignoring it as a passing fad with no practical use.",
-        "Using it to accelerate productivity and learning, while remaining ultimately responsible for the quality and logic of the code.",
+        "Ask it to explain a concept, try an exercise and check whether you can apply the idea to a similar case.",
         "Delegating every design decision so you can program without studying."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! AI amplifies your own abilities. The more competent you are as a developer, the more you will get out of it.",
-        wrong: "No. It means using it actively as an efficiency multiplier without giving up critical study and logical control."
+        correct: "Using the answer as an explanation, then trying it yourself, helps you check whether you understood.",
+        wrong: "Copying a solution without understanding it does not show that you can apply the concept."
       }
     }
   ],

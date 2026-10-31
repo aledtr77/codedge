@@ -1465,34 +1465,34 @@ export const quizzesData = {
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! L'AI genera codice basandosi su probabilità statistiche, non su reale comprensione del tuo sistema; necessita sempre di verifica umana.",
-        wrong: "No. È il rischio di importare bug silenziosi o falle di sicurezza per pigrizia nella revisione del codice."
+        correct: "Esatto. Una risposta plausibile può comunque non rispettare il comportamento atteso o il contesto del progetto: controllala prima di integrarla.",
+        wrong: "Il codice generato può sembrare corretto e contenere comunque bug, casi non gestiti o rischi di sicurezza."
       }
     },
     {
-      q: "Cosa si intende per 'Prompt Engineering' nello sviluppo software?",
+      q: "Cosa rende utile una richiesta all'AI durante lo sviluppo?",
       options: [
         "La compilazione dei moduli di assistenza dell'AI.",
-        "L'arte di formulare istruzioni chiare, contestualizzate e vincolate per ottenere dall'AI codice preciso e mirato.",
+        "Descrivere il risultato atteso, fornire il contesto necessario e indicare i vincoli rilevanti.",
         "L'installazione di server di intelligenza artificiale sul computer."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Fornire esempi, regole sintattiche e contesti chiari istruisce l'AI a generare codice di qualità superiore e aderente al tuo stile.",
-        wrong: "No. Consiste nello strutturare la richiesta (input) per ottenere risposte (output) ottimali e coerenti."
+        correct: "Esatto. Una richiesta chiara riduce le decisioni lasciate all'assistente; la risposta va comunque verificata.",
+        wrong: "Obiettivo, contesto e vincoli pertinenti aiutano l'assistente a capire cosa chiedi."
       }
     },
     {
-      q: "Come andrebbe integrato un assistente AI (es. Copilot) nel flusso di lavoro quotidiano?",
+      q: "Come può aiutare un assistente AI nel flusso di lavoro?",
       options: [
         "Lasciando che scriva interi file di codice senza mai ispezionarli.",
-        "Come copilota per velocizzare compiti ripetitivi (boilerplates, test unitari) mantenendo sempre la supervisione e la guida logica del codice.",
+        "Può spiegare codice, proporre una bozza o cercare problemi, mentre tu controlli che il risultato sia adatto al progetto.",
         "Utilizzandolo solo per fare ricerche su Google."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! L'AI eccelle nella velocità di scrittura del codice di contorno, ma la logica del sistema e la responsabilità restano del programmatore.",
-        wrong: "No. Va visto come assistente junior velocizzatore, tenendo fermo il controllo decisionale umano."
+        correct: "Esatto. L'assistente può aiutare in compiti diversi, ma il risultato va confrontato con il comportamento atteso e verificato.",
+        wrong: "L'assistente può proporre lavoro; non può certificare da solo che sia giusto per il progetto."
       }
     },
     {
@@ -1512,13 +1512,13 @@ export const quizzesData = {
       q: "Cosa si intende per 'Revisione Critica' del codice generato dall'AI?",
       options: [
         "L'invio del codice a un collega senior prima del deploy.",
-        "Leggere, comprendere riga per riga e testare il codice generato prima di integrarlo, verificando che sia sicuro e corretto.",
+        "Esaminare la modifica rispetto all'obiettivo, controllare i casi pertinenti ed eseguire le verifiche prima di integrarla.",
         "L'uso di un debugger automatico."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Non devi mai incorporare codice che non capisci. Devi analizzarlo come se lo avesse scritto qualcun altro, trovando potenziali debolezze.",
-        wrong: "No. È il controllo minuzioso e consapevole del codice ricevuto prima di approvarne l'inserimento nel progetto."
+        correct: "Esatto. Controlla la modifica rispetto all'obiettivo, ai casi importanti e alle verifiche pertinenti prima di integrarla.",
+        wrong: "La revisione significa capire l'impatto della modifica e controllare che il comportamento atteso regga."
       }
     },
     {
@@ -1548,16 +1548,16 @@ export const quizzesData = {
       }
     },
     {
-      q: "Perché non si dovrebbero mai incollare dati sensibili (es. password, chiavi API o dati di clienti) nei prompt dell'AI?",
+      q: "Qual è la differenza tra MCP e una skill?",
       options: [
-        "Perché i server dell'AI rifiutano richieste contenenti numeri di telefono.",
-        "Perché tali dati vengono inviati a server di terze parti e potrebbero essere riutilizzati per addestrare i modelli, rischiando fughe di dati.",
-        "Perché aumenta il costo della sottoscrizione mensile."
+        "MCP fornisce istruzioni riutilizzabili; una skill collega l'assistente a servizi esterni.",
+        "MCP collega l'app AI a dati o strumenti esterni; una skill descrive una procedura riutilizzabile.",
+        "Sono due nomi per la stessa funzione."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! I tuoi prompt vengono memorizzati e potrebbero comparire nelle risposte fornite ad altri utenti in futuro. Attenzione alla privacy.",
-        wrong: "No. Rappresenta una violazione di sicurezza dei dati sensibili che vengono inviati all'esterno del tuo ambiente protetto."
+        correct: "Esatto. MCP espone connessioni a strumenti o dati; una skill spiega come svolgere un flusso di lavoro. Verifica sempre permessi e accessi.",
+        wrong: "MCP riguarda il collegamento a strumenti e dati; una skill raccoglie istruzioni e risorse per una procedura."
       }
     },
     {
@@ -1569,21 +1569,21 @@ export const quizzesData = {
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Puoi dare in pasto una funzione all'AI e chiederle di scrivere test per verificare input corretti ed errati, risparmiando molto tempo.",
-        wrong: "No. Aiuta a scrivere boilerplate e combinazioni di test, velocizzando la copertura dei casi limite del codice."
+        correct: "Esatto. Può proporre casi di test, ma devi controllarli ed eseguirli per sapere se rilevano davvero i problemi.",
+        wrong: "I test generati sono suggerimenti: verifica che coprano i comportamenti richiesti e poi eseguili."
       }
     },
     {
-      q: "Qual è l'attitudine migliore per uno sviluppatore moderno nei confronti dell'AI?",
+      q: "Se stai imparando, come puoi usare l'AI senza saltare l'apprendimento?",
       options: [
         "Ignorarla considerandola una moda passeggera senza utilità pratica.",
-        "Sfruttarla come acceleratore di produttività e apprendimento, rimanendo sempre il responsabile finale della qualità e della logica del codice.",
+        "Chiederle una spiegazione, provare un esercizio e verificare se sai applicare il concetto a un caso simile.",
         "Delegare ogni decisione progettuale per programmare senza studiare."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! L'AI è uno strumento di amplificazione delle proprie capacità. Più sei competente come sviluppatore, più saprai usarla con profitto.",
-        wrong: "No. Consiste nell'utilizzarla attivamente come moltiplicatore di efficienza senza rinunciare allo studio critico ed al controllo logico."
+        correct: "Esatto. Usare la risposta come spiegazione e poi provare da solo ti aiuta a controllare se hai capito.",
+        wrong: "Copiare una soluzione senza capirla non ti dice se sai applicare il concetto."
       }
     }
   ]

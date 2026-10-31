@@ -11,13 +11,13 @@
   <title>Sviluppare con l'AI senza perdere il controllo | Codedge</title>
   <meta
     name="description"
-    content="Guida pratica per integrare l'AI nel flusso di sviluppo: specifiche chiare, prompt efficaci, una pipeline in 8 step e la revisione del codice generato. Il metodo prima degli strumenti.">
+    content="Una guida pratica per usare l'AI nello sviluppo: capirne i limiti, provarla su codice e documentazione, lavorare con assistenti e agenti e verificare ogni risultato.">
   <link rel="canonical" href="https://codedge.it/it/tutorial/ai-sviluppo-solido/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
   <meta property="og:title" content="Sviluppare con l'AI senza perdere il controllo | Codedge" />
-  <meta property="og:description" content="Guida pratica per integrare l'AI nel flusso di sviluppo: specifiche chiare, prompt efficaci, una pipeline in 8 step e la revisione del codice generato. Il metodo prima degli strumenti." />
+  <meta property="og:description" content="Una guida pratica per usare l'AI nello sviluppo: capirne i limiti, provarla su codice e documentazione, lavorare con assistenti e agenti e verificare ogni risultato." />
   <meta property="og:url" content="https://codedge.it/it/tutorial/ai-sviluppo-solido/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="Anteprima guida Sviluppare con l'AI senza perdere il controllo" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sviluppare con l'AI senza perdere il controllo | Codedge" />
-  <meta name="twitter:description" content="Guida pratica per integrare l'AI nel flusso di sviluppo: specifiche chiare, prompt efficaci, una pipeline in 8 step e la revisione del codice generato. Il metodo prima degli strumenti." />
+  <meta name="twitter:description" content="Una guida pratica per usare l'AI nello sviluppo: capirne i limiti, provarla su codice e documentazione, lavorare con assistenti e agenti e verificare ogni risultato." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
@@ -194,17 +194,17 @@
           <h2>Indice guida</h2>
           <ol class="guide-toc-list">
             <li><a href="#chapter-01">Introduzione</a></li>
-            <li><a href="#chapter-02">1. Programmatore o orchestratore?</a></li>
-            <li><a href="#chapter-03">2. Come ragiona un modello AI</a></li>
+            <li><a href="#chapter-02">1. Le basi: cosa fa un modello AI</a></li>
+            <li><a href="#chapter-03">2. AI e programmazione: compiti e limiti</a></li>
             <li><a href="#chapter-04">3. Prima del prompt: la specifica</a></li>
-            <li><a href="#chapter-05">4. Estensioni, editor e agenti</a></li>
-            <li><a href="#chapter-06">5. Contesto e regole di progetto</a></li>
+            <li><a href="#chapter-05">4. Assistenti e agenti di coding</a></li>
+            <li><a href="#chapter-06">5. Contesto, MCP e skills</a></li>
             <li><a href="#chapter-07">6. Scrivere prompt efficaci</a></li>
             <li><a href="#chapter-08">7. Il metodo dei piccoli passi</a></li>
             <li><a href="#chapter-pipeline">8. La pipeline in 8 step</a></li>
             <li><a href="#chapter-09">9. Revisionare il codice generato</a></li>
-            <li><a href="#chapter-10">10. Ha ancora senso imparare?</a></li>
-            <li><a href="#chapter-11">11. Lo sviluppatore tra 3-5 anni</a></li>
+            <li><a href="#chapter-10">10. Perché le basi tecniche contano</a></li>
+            <li><a href="#chapter-11">11. Competenze trasferibili</a></li>
             <li><a href="#chapter-12">12. Checklist quotidiana</a></li>
             <li><a href="#chapter-13">13. Dove continuare dopo</a></li>
             <li><a href="#chapter-cheatsheet">14. Sintassi rapida (Cheat Sheet)</a></li>
@@ -220,9 +220,9 @@
                 <p class="guide-intro-kicker">Guida pratica per sviluppatori</p>
                 <h2>Sviluppare con l'AI senza perdere il controllo</h2>
                 <section class="guide-subchapter">
-                  <p>L'intelligenza artificiale ha cambiato il modo di scrivere software più in fretta di qualunque tecnologia arrivata prima. Ogni mese escono modelli più capaci, editor riprogettati intorno all'AI e agenti in grado di leggere, modificare e spiegare interi progetti. Inseguire ogni novità è una corsa persa in partenza.</p>
-                  <p>Per questo la guida non parte dagli strumenti, ma dal metodo. Gli strumenti cambiano nome ogni sei mesi; i principi per usarli bene restano gli stessi: un obiettivo chiaro, un contesto pulito, richieste piccole e verificabili, e una revisione finale che resta nelle tue mani.</p>
-                  <p>Il valore dello sviluppatore non sta sparendo: si sta spostando. Conta sempre meno la velocità con cui digiti e sempre di più la capacità di dirigere il lavoro, riconoscere una buona soluzione, proteggere la qualità del progetto e decidere che cosa vale davvero la pena costruire. Questa guida serve esattamente a questo: usare l'AI come leva, senza cederle il volante.</p>
+                  <p>L'AI può aiutarti a capire codice, preparare una prima bozza, esplorare alternative e sbrigare attività ripetitive. Può anche introdurre errori o modifiche che non corrispondono a ciò che volevi.</p>
+                  <p>Questa guida mostra come provarla nel lavoro di sviluppo: dalle basi dei modelli ai casi d'uso, dai prompt agli agenti, fino a MCP e skills. Il filo conduttore è pratico: dare un compito chiaro, controllare cosa produce e verificare il risultato nel progetto.</p>
+                  <p>Qui impari a usare l'AI mentre sviluppi software. Costruire applicazioni che integrano modelli o API AI è un percorso diverso e richiede altri argomenti.</p>
                 </section>
               </div>
               <figure class="guide-figure guide-figure--editorial">
@@ -232,39 +232,44 @@
           </section>
 
           <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. Programmatore o orchestratore? Un falso dilemma</h2>
+            <h2>1. Le basi: cosa fa un modello AI</h2>
             <section class="guide-subchapter">
-              <p>Intorno all'AI il dibattito si è polarizzato in due scuole di pensiero. Conviene conoscerle entrambe, perché ognuna contiene una verità e un errore.</p>
-              <ul class="guide-list">
-                <li><strong>«L'AI farà tutto»</strong>: secondo questa visione, presto nessuno leggerà più il codice riga per riga. Descriverai il risultato, l'AI scriverà, correggerà e collegherà i pezzi, e a te resteranno direzione, priorità e gusto. La verità che contiene: la delega aumenterà davvero, e molto. L'errore: senza capacità di giudizio non ti accorgi nemmeno di quando l'AI sta sbagliando, e sbaglia con la stessa sicurezza con cui azzecca.</li>
-                <li><strong>«Il codice si scrive a mano»</strong>: secondo la visione opposta, delegare troppo atrofizza il ragionamento. Se non sai fare debug, non capisci le strutture dati e non leggi il codice con occhio critico, assembli sistemi fragili che reggono solo fino al primo problema serio. La verità che contiene: le basi restano indispensabili, oggi più di prima. L'errore: rifiutare per principio la leva più potente mai arrivata nelle mani di uno sviluppatore.</li>
+              <p>In questa guida, per AI intendiamo soprattutto gli assistenti basati su modelli linguistici (LLM), usati per generare o analizzare testo e codice. Un LLM elabora il testo in unità chiamate <em>token</em> e genera una risposta un pezzo alla volta, usando il contesto ricevuto e gli schemi appresi durante l'addestramento.</p>
+              <p>Il modello da solo non apre il tuo progetto né esegue il codice. Un'applicazione può collegarlo a file e strumenti, ma anche in quel caso una risposta plausibile non è automaticamente corretta o adatta al progetto.</p>
+              <p>È utile distinguere il <strong>modello</strong> dall'<strong>assistente</strong> che lo usa. Una chat può rispondere soltanto con testo; un assistente collegato all'editor può anche leggere file o proporre modifiche; un agente può disporre di strumenti per modificare file, lanciare comandi o consultare servizi esterni. Queste capacità dipendono dall'applicazione e dai permessi che le concedi.</p>
+              <h3>Cosa può andare storto</h3>
+              <ul class="guide-list guide-list-bad">
+                <li><strong>Risposte inventate</strong>: può citare funzioni, API o convenzioni che nel progetto non esistono.</li>
+                <li><strong>Contesto insufficiente</strong>: se non vede i file o le regole pertinenti, può proporre una soluzione incompatibile con il resto del codice.</li>
+                <li><strong>Risultati da verificare</strong>: codice che sembra corretto può contenere errori, casi non gestiti o rischi di sicurezza.</li>
               </ul>
-              <h3>La sintesi: orchestrare senza abdicare</h3>
-              <p>La strada solida le attraversa entrambe. L'AI accelera scrittura, ricerca, refactoring e debug, e ti toglie dalle mani quasi tutto il lavoro ripetitivo. Ma <strong>orchestrare non significa abdicare</strong>: la responsabilità di ciò che entra nel progetto resta tua.</p>
-              <p>Lo sviluppatore moderno assomiglia a un regista. Non monta ogni fotogramma con le proprie mani, ma capisce ritmo, luce, tono e direzione — e soprattutto riconosce una scena debole quando la vede. Senza quell'occhio, nessuna troupe al mondo gli consegnerà un buon film.</p>
-              <p>Con il codice funziona allo stesso modo, e questa guida segue proprio quel percorso: prima capisci come ragiona la macchina, poi impari a trasformare richieste vaghe in specifiche chiare, infine costruisci un metodo in cui AI, Git, test e revisione lavorano insieme.</p>
+              <p>Per questo tratta la risposta come una proposta: chiarisci cosa deve fare, controlla su quali informazioni si basa e verifica il comportamento prima di integrarla.</p>
             </section>
           </section>
 
           <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Come ragiona un modello AI (e dove sbaglia)</h2>
+            <h2>2. AI e programmazione: compiti e limiti</h2>
             <section class="guide-subchapter">
-              <p><em>Nota dell'assistente AI: per usare bene uno strumento devi sapere dove può tradirti. Questo capitolo è il punto di vista della macchina, raccontato dalla macchina.</em></p>
-              <p>Un modello di AI non vive il software come lo vivi tu. Non sente il peso di un server lento, non conosce la pressione di una release, non ha un gusto estetico suo. Lavora su pattern, probabilità e relazioni tra informazioni: produce la continuazione più plausibile di ciò che gli hai dato, non necessariamente quella giusta per il tuo progetto.</p>
-              <p>Questa natura lo rende fortissimo nei compiti ben delimitati, ma genera anche errori ricorrenti — e prevedibili. Sono proprio questi che devi imparare a intercettare:</p>
-              <ul class="guide-list guide-list-bad">
-                <li><strong>Compiacenza</strong>: se gli proponi una scelta debole, il modello tende ad assecondarti invece di fermarti — è addestrato a essere collaborativo, non a farti da revisore severo. Chiedigli esplicitamente un parere critico («cosa non funziona in questo approccio?»), non solo conferme.</li>
-                <li><strong>Mancanza di intenzione</strong>: il modello può scrivere una funzione tecnicamente perfetta senza sapere se quella funzione serva davvero al prodotto. Decidere cosa è utile, semplice e sensato non si delega: resta compito tuo.</li>
-                <li><strong>Fragilità davanti al contesto sporco</strong>: con file confusi, istruzioni vaghe o troppe informazioni irrilevanti, il modello riempie i vuoti inventando: API che non esistono, convenzioni mai adottate, strutture che il progetto non ha. Non lo fa per «bugia» — completa un pattern con il materiale che ha.</li>
+              <p>Scrivere il codice direttamente e farsi aiutare dall'AI sono due modi di lavorare che puoi combinare. La scelta dipende dal compito e da quanto sai controllare il risultato.</p>
+              <ul class="guide-list">
+                <li><strong>Scrivi o correggi il codice direttamente</strong> quando il cambiamento è breve, conosci già la soluzione o vuoi esercitarti sulle basi.</li>
+                <li><strong>Chiedi una spiegazione</strong> quando incontri codice sconosciuto o un errore che non sai ancora interpretare. Poi confronta la risposta con il progetto e la documentazione.</li>
+                <li><strong>Usa l'AI per esplorare alternative o preparare una prima bozza</strong> quando il compito è chiaro e puoi valutare le opzioni.</li>
               </ul>
-              <p>Niente di tutto questo rende l'AI inutile o inaffidabile: la rende uno strumento da guidare. Più il perimetro della richiesta è chiaro, più il risultato diventa solido — ed è esattamente ciò che costruiremo nei prossimi capitoli.</p>
+              <h3>Esempi nel lavoro di sviluppo</h3>
+              <ul class="guide-list">
+                <li><strong>Revisione del codice</strong>: chiedi di individuare difetti, casi limite o rischi in una modifica. La revisione è un aiuto per trovare problemi, non una certificazione di correttezza.</li>
+                <li><strong>Refactoring</strong>: chiedi di rendere un pezzo di codice più leggibile mantenendone il comportamento; poi controlla la differenza e prova i casi importanti.</li>
+                <li><strong>Documentazione</strong>: chiedi una bozza partendo dal codice o da appunti aggiornati, quindi verifica nomi, passaggi e affermazioni.</li>
+              </ul>
+              <p>Per imparare, prova anche a risolvere un piccolo esercizio prima di chiedere la soluzione: confrontare il tuo tentativo con una spiegazione ti insegna più che copiare codice che non sai ancora leggere.</p>
             </section>
           </section>
 
           <section id="chapter-04" class="guide-block guide-chapter">
             <h2>3. Prima del prompt: la specifica</h2>
             <section class="guide-subchapter">
-              <p>Molti pensano che usare bene l'AI significhi scrivere prompt brillanti. In realtà il salto di qualità avviene un passo prima: devi sapere <strong>tu</strong> cosa vuoi costruire. Se chiedi codice quando l'idea è ancora confusa, ricevi una risposta confusa — magari scritta bene, ma fragile.</p>
+              <p>Prima di chiedere codice, chiarisci <strong>che cosa deve succedere</strong>. Se l'idea è ancora confusa, l'assistente dovrà riempire i vuoti con decisioni proprie, e potresti ricevere una soluzione diversa da quella che ti serve.</p>
               <p>Prima di generare qualunque cosa, trasforma l'intuizione in una piccola specifica. Bastano quattro righe, una per domanda:</p>
               <ul class="guide-list">
                 <li><strong>Scopo</strong>: quale problema risolve questa modifica, per l'utente o per il progetto?</li>
@@ -277,29 +282,27 @@
 Confini: solo js/form.js; markup e CSS non si toccano.
 Successo: input errato → messaggio sotto il campo; input valido → invio normale.
 Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del file.</code></pre>
-              <p>Scriverla sembra un rallentamento, ed è invece l'abitudine che fa risparmiare più tempo di tutte. Una specifica chiara evita le patch chilometriche, azzera i fraintendimenti e — soprattutto — ti dà criteri concreti per giudicare il risultato, invece di valutarlo «a sensazione».</p>
+              <p>Queste poche righe rendono più chiaro cosa chiedi e ti danno un criterio per valutare la risposta.</p>
             </section>
           </section>
 
           <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Gli strumenti: estensioni, editor e agenti</h2>
+            <h2>4. Assistenti e agenti di coding</h2>
             <section class="guide-subchapter">
-              <p>Chiarito il metodo, puoi scegliere lo strumento. Oggi l'AI entra nello sviluppo in tre forme, in ordine crescente di autonomia: <strong>suggerimenti inline</strong> mentre scrivi, <strong>chat integrata</strong> nell'editor per spiegare e modificare porzioni di codice, e <strong>agenti</strong> capaci di leggere più file, proporre un piano e applicare modifiche coordinate sotto la tua supervisione.</p>
-              <h3>Estensioni per VS Code</h3>
-              <p>Se usi VS Code, resisti alla tentazione di installare tutto. Parti con una sola integrazione, imparala a fondo e inseriscila nel tuo modo di lavorare; potrai sempre cambiarla dopo, con cognizione di causa.</p>
+              <p>Gli strumenti di coding con AI offrono diversi livelli di aiuto. I nomi e le funzioni cambiano; riconoscere il tipo di flusso ti aiuta a scegliere senza legarti a un prodotto.</p>
               <ul class="guide-list">
-                <li><strong>GitHub Copilot</strong>: il più diffuso. Suggerimenti inline, chat, spiegazione del codice e flussi sempre più orientati agli agenti.</li>
-                <li><strong>Gemini Code Assist</strong>: una buona scelta se lavori vicino all'ecosistema Google Cloud o vuoi un assistente conversazionale ben integrato negli IDE supportati.</li>
-                <li><strong>Cody / Continue</strong>: le opzioni più flessibili, per chi vuole scegliere tra modelli diversi, controllare con precisione il contesto e personalizzare il flusso di lavoro.</li>
+                <li><strong>Suggerimenti mentre scrivi</strong>: completano o propongono brevi porzioni di codice. Sono comodi per attività piccole, ma devi comunque rileggere ciò che accetti.</li>
+                <li><strong>Chat nell'editor</strong>: risponde a domande e propone modifiche a una selezione o a un file, con il codice vicino.</li>
+                <li><strong>Agente di coding</strong>: può analizzare più file e, se gli dai accesso, modificarli o eseguire comandi. Prima di iniziare, chiarisci il compito e controlla quali azioni richiedono la tua approvazione.</li>
               </ul>
-              <h3>Editor nativi AI e agenti</h3>
-              <p>Editor come Cursor o Windsurf portano l'AI al centro dell'esperienza: leggono più file insieme, propongono piani di lavoro, applicano modifiche coordinate e ti aiutano a ragionare su porzioni ampie del progetto. Più potere in cambio di più responsabilità: con questi strumenti la precisione nel definire il perimetro non è un'opzione, è il prerequisito.</p>
-              <p><strong>Consiglio pratico:</strong> se stai iniziando, preferisci gli strumenti che ti obbligano a leggere e approvare ogni modifica prima di applicarla. Quel passaggio «lento» è esattamente il momento in cui impari — ed è la rete di sicurezza che ti manca finché non sai ancora riconoscere una patch sbagliata a colpo d'occhio.</p>
+              <h3>Come scegliere uno strumento</h3>
+              <p>Parti dall'editor e dal flusso che già conosci. Poi controlla quattro cose: quali file e servizi l'assistente può vedere; se puoi esaminare le modifiche prima di applicarle; quali comandi o azioni può eseguire; come vengono trattati codice e dati. Considera anche costo e compatibilità con il tuo progetto.</p>
+              <p>Per imparare, usa un progetto piccolo o una copia e mantieni le modifiche facili da annullare. Non serve adottare subito un agente: una chat che spiega una funzione può essere più utile di un'automazione che cambia molti file.</p>
             </section>
           </section>
 
           <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Contesto e regole di progetto: dal codice generico al tuo codice</h2>
+            <h2>5. Contesto, MCP e skills</h2>
             <section class="guide-subchapter">
               <p>Il contesto è ciò che separa una risposta da manuale da una risposta per il <em>tuo</em> progetto. Senza contesto, anche il modello migliore produce codice che potrebbe appartenere a qualunque codebase del mondo. Ma vale anche l'eccesso opposto: se rovesci nella chat mezzi progetti e istruzioni alla rinfusa, il modello perde il filo e inizia a mescolare le cose.</p>
               <p>La regola è: <strong>non dare tutto, dai ciò che serve</strong>. Quando chiedi una modifica, includi sempre:</p>
@@ -310,31 +313,35 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
                 <li>i vincoli tecnici: framework in uso, librerie vietate, browser da supportare, stile CSS esistente;</li>
                 <li>come verificherai la modifica una volta applicata.</li>
               </ul>
-              <p>Se lavori con assistenti agentici, fai un passo in più: scrivi le <strong>regole di progetto</strong> in un file dedicato che lo strumento legge a ogni sessione. Stile dei commit, convenzioni dei componenti, limiti sulle dipendenze, comandi di test, preferenza per modifiche piccole. Sono poche righe, ma cambiano la natura dello strumento: l'AI smette di comportarsi come un generatore generico e inizia a muoversi dentro il tuo ambiente, con le tue regole.</p>
+              <p>Per un progetto ricorrente, puoi raccogliere le regole essenziali in un file di istruzioni: struttura, convenzioni, limiti e comandi utili. Il nome e il formato dipendono dallo strumento; non dare per scontato che ogni assistente li legga automaticamente.</p>
               <pre><code>"Prima di modificare il codice, leggi i file coinvolti, riassumi il comportamento attuale e proponi un piano breve. Mantieni lo stile esistente, non aggiungere dipendenze e modifica solo i file necessari."</code></pre>
+              <h3>Skills: istruzioni riutilizzabili</h3>
+              <p>Una <strong>skill</strong> raccoglie una procedura da riusare per un tipo di compito, per esempio controllare una pagina prima del rilascio. Può contenere istruzioni, esempi e, in alcuni sistemi, file di supporto o script. Non aggiunge da sola nuove capacità all'assistente: gli spiega quando e come seguire quella procedura. Il formato e il supporto variano tra strumenti.</p>
+              <h3>MCP: collegare l'assistente ad altri strumenti</h3>
+              <p><strong>MCP</strong> è un protocollo aperto che permette alle applicazioni AI compatibili di collegarsi a fonti di dati e strumenti esterni. Per esempio, un collegamento può consentire di consultare documentazione o cercare in un servizio. MCP fornisce il collegamento; non decide se la risposta è corretta né sostituisce la skill che spiega come svolgere il compito.</p>
+              <p>Prima di attivare un collegamento, controlla quali dati espone e quali azioni permette. Un accesso in scrittura o l'esecuzione di comandi richiedono più attenzione di una ricerca in sola lettura. Collega solo servizi di cui conosci provenienza, permessi e modalità di revoca.</p>
             </section>
           </section>
 
           <section id="chapter-07" class="guide-block guide-chapter">
             <h2>6. Scrivere prompt efficaci</h2>
             <section class="guide-subchapter">
-              <p>Un prompt efficace non è una formula magica: è una richiesta chiara, completa e verificabile. Se scrivi «fammi una pagina di login», stai lasciando all'AI decine di decisioni non dette — struttura, stile, validazione, gestione errori. Le riempirà da sola: a volte indovinando, spesso no.</p>
-              <p>Il prompt migliore è quello che non lascia spazio alle interpretazioni inutili. In cinque blocchi dice tutto: chi deve essere l'assistente, in quale progetto lavora, cosa deve produrre, quali limiti deve rispettare e come controllerai il risultato.</p>
-              <pre><code>[Ruolo] Agisci come sviluppatore front-end esperto.
-[Contesto] Il progetto usa Vite, JavaScript vanilla e CSS puro.
-[Obiettivo] Crea una funzione JS per validare email e password.
+              <p>Un prompt è un insieme di istruzioni per un compito. Per renderlo utile, chiarisci il risultato che vuoi, aggiungi il contesto necessario e indica i vincoli che cambiano davvero la soluzione. Non serve assegnare un ruolo all'assistente o compilare sempre uno schema fisso.</p>
+              <p>Se il formato conta, mostrane uno con un esempio o chiedi un output preciso, come una lista di casi di test. Se il lavoro è ampio, dividilo in passaggi e controlla ciascun risultato prima di proseguire.</p>
+              <pre><code>[Contesto] Il progetto usa Vite, JavaScript e CSS. Il form controlla email e password.
+[Obiettivo] Crea una funzione JS che verifichi i due campi.
 [Vincoli] Non usare librerie esterne. La password deve avere almeno 8 caratteri e una cifra.
-[Output atteso] Restituisci { isValid: boolean, error: string } e mostra 3 esempi di input/output.</code></pre>
-              <p>Una richiesta così non rende l'AI infallibile, ma la costringe dentro binari chiari: il codice generato sarà più vicino allo stile del progetto, più facile da controllare e molto meno incline alle soluzioni inventate. Nota il blocco finale, il più sottovalutato: chiedere esempi di input/output ti consegna già i primi casi di test.</p>
-              <p>La regola da portarsi a casa: <strong>un buon prompt non è lungo, è controllabile</strong>. Se non sai dire come verificherai la risposta, la richiesta è troppo grande o troppo vaga — spezzala prima di inviarla.</p>
+[Output e verifica] Restituisci { isValid: boolean, error: string } e mostra 3 esempi di input/output.</code></pre>
+              <p>La richiesta non rende l'AI infallibile, ma riduce le decisioni lasciate all'immaginazione. Gli esempi aiutano quando hai bisogno di un formato o comportamento preciso; per una domanda semplice, spesso basta una frase chiara.</p>
+              <p>Prima di inviarla, chiediti come controllerai la risposta. Se non sai verificarla o contiene troppi obiettivi, chiarisci il criterio o dividila in compiti più piccoli.</p>
             </section>
           </section>
 
           <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. Il metodo dei piccoli passi (anti-frustrazione)</h2>
+            <h2>7. Lavorare a piccoli passi</h2>
             <section class="guide-subchapter">
-              <p>La frustrazione con l'AI nasce quasi sempre dallo stesso copione: chiedi troppo, ricevi troppo, qualcosa si rompe, chiedi una correzione ancora più grande e il progetto peggiora. Dopo tre giri di questo tipo non sai più cosa è cambiato, né dove è nato l'errore — e la colpa non è del modello, è della dimensione delle richieste.</p>
-              <p>L'antidoto è una routine semplice: non usare l'AI per fare tutto in un colpo solo. Usala per avanzare a blocchi piccoli, leggibili e verificabili. Quattro regole bastano.</p>
+              <p>Se una richiesta comprende molti cambiamenti, quando qualcosa non funziona è più difficile capire quale modifica ha causato il problema. Dividere il lavoro in passaggi piccoli rende ogni risultato più facile da leggere e controllare.</p>
+              <p>Puoi usare queste quattro regole come promemoria mentre lavori:</p>
 
               <h3 class="sr-only">Le regole del metodo</h3>
               <h4>Regola 1: Fai piccoli passi isolati</h4>
@@ -360,52 +367,52 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
           <section id="chapter-pipeline" class="guide-block guide-chapter">
             <h2>8. La pipeline in 8 step: dal brief al progetto finito</h2>
             <section class="guide-subchapter">
-              <p>Quando inizi un progetto con l'AI, la tentazione è chiedere subito il risultato finale: <em>«Fammi una landing page per una palestra»</em>. Sembra efficiente, ma è la ricetta del disastro: costringi l'agente a indovinare da solo centinaia di decisioni — struttura, contenuti, stile, architettura dei file — e ricevi in cambio un blocco monolitico che non puoi revisionare, pieno di scelte che nessuno ha mai preso davvero.</p>
-              <p>Il salto di qualità sta nel rovesciare l'approccio: tratta l'assistente come un <strong>team di sviluppo in miniatura</strong> e guidalo lungo una <strong>pipeline di 8 step</strong>, uno alla volta. Ogni step ha un obiettivo unico, produce un risultato piccolo e si chiude con una verifica tua. L'agente affronta così un solo problema per volta — la condizione in cui i modelli lavorano meglio — e tu mantieni il controllo su ogni decisione che entra nel progetto.</p>
+              <p>Una richiesta come <em>«fammi una landing page per una palestra»</em> lascia aperte molte decisioni: contenuti, struttura, stile e organizzazione dei file. Prima di generare il codice, chiarisci almeno le scelte che cambiano il risultato.</p>
+              <p>La sequenza qui sotto divide il lavoro in <strong>8 passaggi</strong>. Puoi adattarla alla dimensione del progetto: ogni passaggio produce un risultato da leggere e verificare prima di continuare.</p>
 
               <div class="roles-showcase">
                 <div class="roles-showcase-title">
-                  <i class="fas fa-users-cog"></i> La filosofia del team in miniatura
+                  <i class="fas fa-users-cog"></i> Le fasi del lavoro
                 </div>
-                <p class="roles-showcase-intro">Un buon team non fa lavorare la stessa persona su tutto: ogni figura ha un'attitudine diversa. Con l'AI vale lo stesso principio — assegnale il ruolo giusto per la fase in cui ti trovi:</p>
+                <p class="roles-showcase-intro">La stessa assistente può aiutarti in fasi diverse. Specifica il compito e il risultato atteso; non serve trasformare ogni richiesta in un personaggio:</p>
                 <div class="roles-grid">
                   <div class="role-card role-card--architect">
                     <div class="role-card-header">
                       <div class="role-icon"><i class="fas fa-sitemap"></i></div>
-                      <h3 class="sr-only">I ruoli dell'AI nel workflow</h3>
-              <h4>Architetto</h4>
+                      <h3 class="sr-only">Le fasi del lavoro assistito dall'AI</h3>
+              <h4>Definire</h4>
                     </div>
-                    <p>Progetta struttura ed esperienza utente, definisce l'alberatura dei file e assegna le responsabilità — tutto prima che esista una riga di codice.</p>
+                    <p>Chiarisci obiettivo, contenuti e vincoli prima di chiedere modifiche al codice.</p>
                   </div>
                   <div class="role-card role-card--developer">
                     <div class="role-card-header">
                       <div class="role-icon"><i class="fas fa-laptop-code"></i></div>
-                      <h4>Sviluppatore</h4>
+                      <h4>Realizzare</h4>
                     </div>
-                    <p>Costruisce l'interfaccia a blocchi isolati, una sezione alla volta, e aggiunge la logica dinamica solo quando struttura e stili sono stabili.</p>
+                    <p>Procedi per modifiche circoscritte e leggibili, una parte alla volta.</p>
                   </div>
                   <div class="role-card role-card--reviewer">
                     <div class="role-card-header">
                       <div class="role-icon"><i class="fas fa-search"></i></div>
-                      <h4>Revisore</h4>
+                      <h4>Rivedere</h4>
                     </div>
-                    <p>Rilegge il codice con occhio ostile: cerca bug latenti, duplicazioni e debolezze strutturali, e giudica quanto sarà facile mantenerlo.</p>
+                    <p>Chiedi di cercare errori e casi limite; poi controlla personalmente le proposte.</p>
                   </div>
                   <div class="role-card role-card--optimizer">
                     <div class="role-card-header">
                       <div class="role-icon"><i class="fas fa-tachometer-alt"></i></div>
-                      <h4>Ottimizzatore</h4>
+                      <h4>Verificare</h4>
                     </div>
-                    <p>Rifinisce il progetto ormai funzionante: pulisce i fogli di stile, alleggerisce gli asset e cura performance, SEO e accessibilità (a11y).</p>
+                    <p>Apri il progetto, esegui test o controlli manuali e confronta il risultato con l'obiettivo.</p>
                   </div>
                 </div>
                 <div class="roles-showcase-footer">
-                  Stesso strumento, quattro cappelli diversi: dichiarare il ruolo a inizio richiesta orienta il modello sul tipo di lavoro — e di severità — che ti aspetti.
+                  Le etichette aiutano a ricordare le fasi; contesto, richiesta chiara e verifica contano più del ruolo assegnato all'assistente.
                 </div>
               </div>
 
               <h3>La pipeline, step per step</h3>
-              <p>Nell'esempio che segue il progetto è una landing page per una palestra, ma la sequenza è identica per qualunque progetto: <strong>prima si decide, poi si costruisce, infine si rifinisce</strong>. La regola che tiene insieme tutto: non si passa allo step successivo finché il risultato di quello corrente non è stato verificato da te.</p>
+              <p>L'esempio seguente usa una landing page per una palestra. La sequenza si può adattare ad altri progetti: <strong>definisci, realizza, verifica</strong>. Non passare al punto successivo finché non hai controllato il risultato corrente.</p>
 
               <h4>STEP 1 — Il brief: si progetta, non si programma</h4>
               <p>Il primo prompt non chiede codice: chiede un progetto. Struttura della pagina, esperienza utente, organizzazione delle sezioni. Il divieto esplicito («non scrivere codice») è la parte più importante della richiesta: senza, il modello salta dritto all'implementazione.</p>
@@ -464,8 +471,8 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
               <p><strong>Prima di proseguire:</strong> prova ogni componente appena aggiunto, incluso qualche uso «sbagliato» — doppio click, campi vuoti, resize della finestra.</p>
 
               <h4>STEP 6 — Refactoring e pulizia</h4>
-              <p>Quando tutto funziona, cambia cappello all'AI: da sviluppatore a revisore. Chiedi un'analisi dell'intero progetto come la farebbe un senior esterno appena arrivato, con un vincolo esplicito: il comportamento non deve cambiare.</p>
-              <pre><code>"Analizza l'intero progetto come se fossi un senior developer. Cerca codice duplicato, CSS ridondante, JavaScript inutile, possibili bug e proponi un refactoring senza modificare il comportamento."</code></pre>
+              <p>Quando tutto funziona, chiedi una revisione mirata. Specifica cosa deve controllare e chiedi di motivare ogni proposta prima che venga applicata. Per un refactoring, indica anche che il comportamento deve restare invariato.</p>
+              <pre><code>"Controlla questi file per codice duplicato, CSS ridondante e possibili bug. Per ogni problema indica la parte coinvolta e una proposta contenuta. Non modificare i file e non cambiare il comportamento."</code></pre>
               <p><strong>Prima di proseguire:</strong> fai un commit <em>prima</em> di applicare il refactoring (è il paracadute della Regola 2), poi verifica che tutto funzioni esattamente come prima.</p>
 
               <h4>STEP 7 — Ottimizzazione</h4>
@@ -477,13 +484,9 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
               </ul>
 
               <h4>STEP 8 — La review finale: pensare a fra sei mesi</h4>
-              <p>L'ultimo passaggio non cerca bug: cerca debolezze. Chiedi una code review spietata orientata alla manutenibilità, con domande che costringono il modello a esporsi invece di farti i complimenti:</p>
-              <pre><code>"Esegui una code review completa del codice e del progetto. Dimmi:
-- Cosa non ti piace della struttura attuale
-- Cosa cambieresti se potessi rifarlo
-- Quali parti potrebbero creare problemi o colli di bottiglia tra sei mesi
-- In quale sezione il codice potrebbe essere ulteriormente semplificato"</code></pre>
-              <p>Non tutto ciò che emerge va corretto subito: alcune risposte diventeranno interventi immediati, altre semplici note per il futuro. L'importante è che le debolezze siano note a te, non solo al codice.</p>
+              <p>Per la revisione finale, chiedi problemi specifici e prove a sostegno, non un giudizio generico sul progetto:</p>
+              <pre><code>"Rivedi queste modifiche. Cerca regressioni, casi limite non gestiti e problemi di accessibilità. Per ogni rilievo indica la riga o il comportamento coinvolto e spiega come verificarlo. Se non trovi prove sufficienti, dillo."</code></pre>
+              <p>Valuta ogni rilievo prima di intervenire. Una lista più lunga non è automaticamente una revisione migliore.</p>
 
               <figure class="guide-figure">
                 <img src="/images/percorsi-apprendimento/ai-sviluppo-solido/pipeline-sviluppo.svg?v=3" alt="Diagramma della pipeline di sviluppo in 8 step" loading="lazy" decoding="async" width="1200" height="680">
@@ -514,30 +517,23 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
           </section>
 
           <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>10. Ha ancora senso imparare a programmare oggi?</h2>
+            <h2>10. Perché le basi tecniche contano</h2>
             <section class="guide-subchapter">
-              <p>È la domanda che chiunque si fa, prima o poi, davanti allo schermo: se una macchina scrive codice al posto mio, ha ancora senso studiare scope, cicli, asincronia, database e architettura?</p>
-              <p>La risposta è <strong>sì</strong> — ma è cambiato il motivo. Non studi più per diventare qualcuno che digita codice velocemente: quella gara con un modello l'hai già persa. Studi per capire i problemi, scegliere le soluzioni, giudicare ciò che viene generato e costruire sistemi che restano in piedi. In altre parole: studi per essere la persona che può dire «questo va bene» — o «questo no» — con cognizione di causa.</p>
-              <p>Tre ragioni concrete:</p>
+              <p>Per controllare una soluzione generata dall'AI devi saper leggere il codice e capire almeno il comportamento che ti aspetti. Le basi non servono a competere con il modello: servono a non dipendere da una risposta che non sai valutare.</p>
               <ul class="guide-list">
-                <li><strong>Leva tecnologica</strong>: chi sa programmare e usa l'AI progetta, integra e distribuisce a una velocità impensabile prima. Meno energia nella scrittura meccanica significa più energia nel valore del prodotto.</li>
-                <li><strong>Pensiero computazionale</strong>: programmare insegna a scomporre problemi complessi in passaggi chiari e verificabili. Che è, alla lettera, la stessa capacità che serve per guidare bene un assistente AI.</li>
-                <li><strong>Qualità dell'intento</strong>: l'AI traduce il tuo intento in codice. Se l'intento è debole, il codice sarà fragile per quanto sia scritto bene. Chi capisce sistemi, dati, rete e vincoli sa chiedere meglio — e ottiene risultati migliori dallo stesso identico strumento.</li>
+                <li>HTML, CSS e JavaScript ti aiutano a capire cosa cambia nell'interfaccia e nel comportamento della pagina.</li>
+                <li>Git ti permette di confrontare e annullare modifiche che non vuoi tenere.</li>
+                <li>Test e strumenti di debug ti aiutano a controllare il comportamento, anche quando il codice sembra corretto.</li>
               </ul>
-              <p>Parafrasando una riflessione molto citata di Andrej Karpathy: l'inglese sta diventando un linguaggio di programmazione. Ma per usarlo bene nel software devi comunque pensare come un ingegnere — conoscere i sistemi, pesare i compromessi e distinguere una soluzione elegante da una scorciatoia fragile.</p>
+              <p>Se stai iniziando, usa l'AI anche per farti spiegare un concetto o un errore. Poi prova a risolvere da solo una piccola variazione: è un modo concreto per controllare se hai capito.</p>
             </section>
           </section>
 
           <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>11. Cosa farà uno sviluppatore tra 3-5 anni?</h2>
+            <h2>11. Competenze che si trasferiscono ad altri progetti</h2>
             <section class="guide-subchapter">
-              <p>Nessuno può prevedere i prossimi anni con precisione, ma la direzione è già leggibile: lo sviluppo software si sta spostando dalla digitazione del codice alla progettazione di sistemi, flussi e decisioni. Tre tendenze in particolare:</p>
-              <ul class="guide-list">
-                <li><strong>Agenti sempre più presenti</strong>: non userai una chat per farti scrivere singole funzioni; coordinerai strumenti diversi che si occupano di analisi, implementazione, test, sicurezza e documentazione. Il tuo lavoro assomiglierà sempre più a dirigere, sempre meno a digitare.</li>
-                <li><strong>Più peso a gusto e utilità</strong>: quando il codice diventa abbondante ed economico, smette di essere il collo di bottiglia. La differenza la farà ciò che scegli di costruire, quanto è utile e quanto è piacevole da usare.</li>
-                <li><strong>Team piccoli con grande leva</strong>: una o poche persone potranno realizzare prodotti che oggi richiedono team interi, combinando AI, automazioni, template e infrastrutture cloud.</li>
-              </ul>
-              <p>Il futuro non appartiene a chi rifiuta l'AI per orgoglio, né a chi accetta tutto passivamente. Appartiene a chi usa strumenti potenti con lucidità, gusto e metodo — cioè esattamente le tre cose che questa guida ha provato a costruire.</p>
+              <p>Il flusso mostrato qui vale anche quando cambi editor, linguaggio o tipo di progetto: chiarisci il risultato, dai il contesto che serve, limita il compito e controlla la modifica. Non rende uguali tutti i lavori: API, dati, accessibilità e sicurezza richiedono verifiche specifiche per il progetto.</p>
+              <p>La guida usa esempi di sviluppo front-end, ma puoi applicare lo stesso metodo a codice back-end, mobile o strumenti interni. Cambiano le competenze tecniche necessarie per giudicare il risultato; resta utile separare una risposta plausibile da una soluzione verificata.</p>
             </section>
           </section>
 
@@ -561,10 +557,13 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
           <section id="chapter-13" class="guide-block guide-chapter">
             <h2>13. Dove continuare dopo</h2>
             <section class="guide-subchapter">
-              <p>Usare bene l'AI richiede basi solide: più conosci gli strumenti intorno al codice, meglio saprai valutare ciò che l'assistente ti propone. Il percorso naturale dopo questa guida passa da qui:</p>
+              <p>Per continuare, parti dalle guide pratiche e consulta le fonti ufficiali dei protocolli citati:</p>
               <ul class="guide-list">
-                <li><a href="/it/tutorial/vscode-essenziale/">VS Code essenziale</a>: per lavorare in un editor pulito, ordinato e davvero tuo — la base su cui ogni estensione AI si appoggia.</li>
-                <li><a href="/it/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>: per padroneggiare il paracadute di cui questa guida ha parlato in continuazione, e sperimentare con l'AI senza paura di rompere nulla.</li>
+                <li><a href="/it/tutorial/vscode-essenziale/">VS Code essenziale</a>: per conoscere l'editor e lavorare con file e progetti.</li>
+                <li><a href="/it/tutorial/git-pratico-senza-panico/">Git pratico senza panico</a>: per confrontare le modifiche e ripristinare quelle che non vuoi tenere.</li>
+                <li><a href="https://roadmap.sh/frontend" target="_blank" rel="noopener">Roadmap.sh: Frontend</a>: una mappa delle competenze front-end.</li>
+                <li><a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener">Model Context Protocol</a>: introduzione e documentazione ufficiale di MCP.</li>
+                <li><a href="https://agentskills.io/specification" target="_blank" rel="noopener">Agent Skills</a>: specifica del formato aperto per le skills supportate dagli strumenti compatibili.</li>
                 <li><a href="/it/tutorial/">Tutti i tutorial</a>: per continuare a costruire basi pratiche, una guida alla volta.</li>
               </ul>
             </section>
@@ -577,7 +576,7 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
             <h2>14. Sintassi rapida (Cheat Sheet)</h2>
             <section class="guide-subchapter">
 
-              <p>I quattro blocchi di un prompt professionale, in una tabella da tenere sott'occhio finché non diventano automatici:</p>
+              <p>Prima di inviare una richiesta, controlla questi punti. Non servono tutti per ogni compito:</p>
               <div class="table-wrapper">
                 <table class="guide-table">
                   <thead>
@@ -589,9 +588,9 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="is-strong">1. Ruolo / Identità</td>
-                      <td>Assegna un'identità o competenza specifica all'AI.</td>
-                      <td class="is-code">"Agisci come esperto sviluppatore front-end..."</td>
+                      <td class="is-strong">1. Obiettivo</td>
+                      <td>Descrivi il risultato che ti serve.</td>
+                      <td class="is-code">"Trova perché il form accetta un'email non valida."</td>
                     </tr>
                     <tr>
                       <td class="is-strong">2. Contesto / Stack</td>
@@ -599,14 +598,14 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
                       <td class="is-code">"Il progetto usa HTML5, CSS puro, niente framework..."</td>
                     </tr>
                     <tr>
-                      <td class="is-strong">3. Obiettivo / Output</td>
-                      <td>Descrivi esattamente cosa deve produrre.</td>
-                      <td class="is-code">"Scrivi una funzione JavaScript per calcolare..."</td>
+                      <td class="is-strong">3. Vincoli</td>
+                      <td>Indica cosa deve rispettare o lasciare invariato.</td>
+                      <td class="is-code">"Modifica solo js/form.js; non aggiungere librerie."</td>
                     </tr>
                     <tr>
-                      <td class="is-strong">4. Vincoli / Limiti</td>
-                      <td>Definisci cosa NON deve fare per evitare errori.</td>
-                      <td class="is-code">"Non importare pacchetti esterni, usa solo metodi ES6..."</td>
+                      <td class="is-strong">4. Verifica e formato</td>
+                      <td>Chiedi il risultato nel formato utile e stabilisci come controllarlo.</td>
+                      <td class="is-code">"Spiega il problema e indica tre casi da provare."</td>
                     </tr>
                   </tbody>
                 </table>
@@ -623,13 +622,13 @@ Stile: niente librerie esterne, funzioni pure, nomi coerenti con il resto del fi
               <p>Il modo migliore per fissare il metodo è usarlo subito, su un caso piccolo e reale:</p>
               <div class="alert alert--note">
                 <strong>Obiettivo della sfida:</strong>
-                <p>Far riscrivere all'AI una funzione JavaScript disordinata, applicando l'intero ciclo visto nella guida: prompt strutturato, lettura critica del risultato e verifica sui casi limite.</p>
+                <p>Chiedere all'AI di rendere più leggibile una funzione JavaScript, capire la proposta e controllare che i casi importanti continuino a funzionare.</p>
                 <strong>Istruzioni passo-passo:</strong>
                 <ol>
                   <li>Scegli una funzione JavaScript un po' contorta — tua o trovata in giro — che contenga calcoli o trasformazioni di dati.</li>
-                  <li>Scrivi il prompt seguendo lo schema completo: ruolo, stack del progetto, obiettivo mirato e almeno un vincolo esplicito (per esempio: <em>restituisci solo codice, senza spiegazioni testuali</em>).</li>
-                  <li>Quando arriva la risposta, non incollarla nel progetto: rileggila riga per riga e verifica che rispetti la logica richiesta e i vincoli imposti.</li>
-                  <li>Solo alla fine testa la funzione con 3 casi limite — numeri negativi, stringhe vuote, valori non definiti — e decidi se merita di essere salvata. Il giudizio finale è la parte della sfida che non si delega.</li>
+                  <li>Indica il comportamento atteso, il contesto utile e cosa deve restare invariato. Chiedi una spiegazione delle modifiche insieme al codice.</li>
+                  <li>Esamina la proposta e confrontala con la funzione originale prima di applicarla.</li>
+                  <li>Prova almeno tre casi, per esempio un valore negativo, una stringa vuota e un valore mancante. Tieni la modifica solo se il risultato è corretto e comprensibile.</li>
                 </ol>
               </div>
 
