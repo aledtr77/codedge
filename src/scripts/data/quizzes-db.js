@@ -397,42 +397,6 @@ export const quizzesData = {
         correct: "Il valore della variabile è lo stato da cui parte il prossimo clic.",
         wrong: "Cambiare solo il testo non cambia la variabile che il primo pulsante usa."
       }
-    },
-    {
-      q: "Quale risultato produce 3 + \"1\" in JavaScript?",
-      options: ["4", "\"31\"", "NaN"],
-      correct: 1,
-      feedback: { correct: "Con una stringa, + unisce il testo: 3 + \"1\" produce \"31\".", wrong: "Il campo HTML restituisce testo; usa Number() se vuoi una somma numerica." }
-    },
-    {
-      q: "Cosa restituisce Number(\"tre\")?",
-      options: ["3", "undefined", "NaN"],
-      correct: 2,
-      feedback: { correct: "Il testo non numerico non può essere convertito: il risultato è NaN.", wrong: "Number() non interpreta la parola tre come numero; restituisce NaN." }
-    },
-    {
-      q: "Quando è vera la condizione valido && clic >= traguardo?",
-      options: ["Quando entrambe le parti sono vere.", "Quando almeno una parte è vera.", "Sempre dopo un clic."],
-      correct: 0,
-      feedback: { correct: "&& richiede che il traguardo sia valido e sia stato raggiunto.", wrong: "&& significa che entrambe le condizioni devono essere vere; || ne richiede almeno una." }
-    },
-    {
-      q: "Dove puoi leggere una variabile const testo dichiarata dentro una funzione?",
-      options: ["Solo dentro quella funzione e i suoi blocchi interni.", "In qualsiasi script della pagina.", "Solo nell’HTML."],
-      correct: 0,
-      feedback: { correct: "Una variabile locale resta nello scope del blocco in cui è dichiarata.", wrong: "const e let hanno scope di blocco: testo non è disponibile fuori dalla funzione." }
-    },
-    {
-      q: "Che cosa esamina for (const traguardo of traguardi)?",
-      options: ["Le proprietà CSS della pagina.", "Un elemento dell’array per volta.", "Solo il primo elemento dell’array."],
-      correct: 1,
-      feedback: { correct: "for...of prende in sequenza i valori presenti nell’array.", wrong: "Il ciclo for...of attraversa i valori dell’array, uno per iterazione." }
-    },
-    {
-      q: "Cosa succede alla pagina mentre una funzione async aspetta una Promise con await?",
-      options: ["Resta bloccata fino alla fine dell’attesa.", "Continua a rispondere; la funzione riprende dopo.", "Cancella le variabili del contatore."],
-      correct: 1,
-      feedback: { correct: "await sospende quella funzione, non l’intera pagina.", wrong: "L’attesa riguarda la funzione async; il browser può continuare a gestire i clic." }
     }
   ],
   "vscode-essenziale": [

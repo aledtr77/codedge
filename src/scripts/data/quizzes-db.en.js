@@ -534,42 +534,6 @@ export const quizzesData = {
         correct: "The variable is the state used by the next click.",
         wrong: "Changing only the visible text does not change the variable used by the first button."
       }
-    },
-    {
-      q: "What does 3 + \"1\" produce in JavaScript?",
-      options: ["4", "\"31\"", "NaN"],
-      correct: 1,
-      feedback: { correct: "With a string, + joins text: 3 + \"1\" produces \"31\".", wrong: "An HTML input returns text; use Number() for numerical addition." }
-    },
-    {
-      q: "What does Number(\"three\") return?",
-      options: ["3", "undefined", "NaN"],
-      correct: 2,
-      feedback: { correct: "Non-numeric text cannot be converted: the result is NaN.", wrong: "Number() does not interpret the word three as a number; it returns NaN." }
-    },
-    {
-      q: "When is valid && clicks >= goal true?",
-      options: ["When both parts are true.", "When either part is true.", "After every click."],
-      correct: 0,
-      feedback: { correct: "&& requires a valid goal that has also been reached.", wrong: "&& requires both conditions; || requires at least one." }
-    },
-    {
-      q: "Where can you read a const text variable declared inside a function?",
-      options: ["Inside that function and its inner blocks.", "In any script on the page.", "Only in HTML."],
-      correct: 0,
-      feedback: { correct: "A local variable remains in the scope of the block where it was declared.", wrong: "const and let have block scope: text is unavailable outside the function." }
-    },
-    {
-      q: "What does for (const goal of goals) examine?",
-      options: ["The page's CSS properties.", "One array item at a time.", "Only the first array item."],
-      correct: 1,
-      feedback: { correct: "for...of takes each value in the array in sequence.", wrong: "The for...of loop visits array values, one per iteration." }
-    },
-    {
-      q: "What happens to the page while an async function awaits a Promise?",
-      options: ["It stops responding until the wait ends.", "It keeps responding; the function resumes later.", "It deletes the counter variables."],
-      correct: 1,
-      feedback: { correct: "await pauses that function, not the whole page.", wrong: "The async function waits; the browser can still handle clicks." }
     }
   ],
   "deploy-base": [

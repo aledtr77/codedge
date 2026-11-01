@@ -76,23 +76,26 @@
 <li><a href="#chapter-05">Change the response on the third click</a></li>
 <li><a href="#chapter-06">Give the decision a name</a></li>
 </ul>
-<p class="guide-toc-group">The language behind the page</p><ul class="guide-toc-list">
+<p class="guide-toc-group">The page takes shape</p><ul class="guide-toc-list">
 <li><a href="#chapter-07">Bring a name into the message</a></li>
+<li><a href="#chapter-debug">When a click does not give the expected result</a></li>
+<li><a href="#chapter-challenge">Your turn: add Reset</a></li>
+<li><a href="#chapter-cheatsheet">Five questions to guide you through the code</a></li>
+<li><a href="#chapter-quiz">Check what you have understood</a></li>
+</ul>
+<p class="guide-toc-group">The fundamentals continue</p><ul class="guide-toc-list">
+<li><a href="#chapter-comments">Leave a note in the file</a></li>
+<li><a href="#chapter-08">When you have more than one value</a></li>
 <li><a href="#chapter-values">Values have different types</a></li>
 <li><a href="#chapter-logic">Combine conditions</a></li>
 <li><a href="#chapter-scope">Know where a variable exists</a></li>
-<li><a href="#chapter-08">Use arrays, objects and loops</a></li>
-<li><a href="#chapter-11">Wait for a result while the page stays responsive</a></li>
-</ul>
-<p class="guide-toc-group">Try it yourself</p><ul class="guide-toc-list">
-<li><a href="#chapter-debug">When a click does not give the expected result</a></li>
-<li><a href="#chapter-challenge">Your turn: add Reset</a></li>
-<li><a href="#chapter-cheatsheet">Questions to guide you through the code</a></li>
-<li><a href="#chapter-quiz">Check what you have understood</a></li>
-</ul>
-<p class="guide-toc-group">To continue</p><ul class="guide-toc-list">
-<li><a href="#chapter-comments">Leave a note in the file</a></li>
+<li><a href="#chapter-collections-practice">Use arrays, objects and loops</a></li>
+<li><a href="#chapter-data-change">Change an array and an object</a></li>
+<li><a href="#chapter-list-on-page">Put arrays, objects and a loop on the page</a></li>
+<li><a href="#chapter-errors-practice">Recognise and handle an error</a></li>
+<li><a href="#chapter-async-practice">Wait for a result while the page stays responsive</a></li>
 <li><a href="#chapter-10">Keep a value after reloading</a></li>
+<li><a href="#chapter-11">Wait for a response from a server</a></li>
 <li><a href="#chapter-12">Choose when a script starts</a></li>
 <li><a href="#chapter-15">Where to go next</a></li>
 </ul>
@@ -109,23 +112,26 @@
               <li><a href="#chapter-05">Change the response on the third click</a></li>
               <li><a href="#chapter-06">Give the decision a name</a></li>
             </ul>
-            <p class="js-mobile-index__group">The language behind the page</p><ul>
+            <p class="js-mobile-index__group">The page takes shape</p><ul>
               <li><a href="#chapter-07">Bring a name into the message</a></li>
+              <li><a href="#chapter-debug">When a click does not give the expected result</a></li>
+              <li><a href="#chapter-challenge">Your turn: add Reset</a></li>
+              <li><a href="#chapter-cheatsheet">Five questions to guide you through the code</a></li>
+              <li><a href="#chapter-quiz">Check what you have understood</a></li>
+            </ul>
+            <p class="js-mobile-index__group">The fundamentals continue</p><ul>
+              <li><a href="#chapter-comments">Leave a note in the file</a></li>
+              <li><a href="#chapter-08">When you have more than one value</a></li>
               <li><a href="#chapter-values">Values have different types</a></li>
               <li><a href="#chapter-logic">Combine conditions</a></li>
               <li><a href="#chapter-scope">Know where a variable exists</a></li>
-              <li><a href="#chapter-08">Use arrays, objects and loops</a></li>
-              <li><a href="#chapter-11">Wait for a result while the page stays responsive</a></li>
-            </ul>
-            <p class="js-mobile-index__group">Try it yourself</p><ul>
-              <li><a href="#chapter-debug">When a click does not give the expected result</a></li>
-              <li><a href="#chapter-challenge">Your turn: add Reset</a></li>
-              <li><a href="#chapter-cheatsheet">Questions to guide you through the code</a></li>
-              <li><a href="#chapter-quiz">Check what you have understood</a></li>
-            </ul>
-            <p class="js-mobile-index__group">To continue</p><ul>
-              <li><a href="#chapter-comments">Leave a note in the file</a></li>
+              <li><a href="#chapter-collections-practice">Use arrays, objects and loops</a></li>
+              <li><a href="#chapter-data-change">Change an array and an object</a></li>
+              <li><a href="#chapter-list-on-page">Put arrays, objects and a loop on the page</a></li>
+              <li><a href="#chapter-errors-practice">Recognise and handle an error</a></li>
+              <li><a href="#chapter-async-practice">Wait for a result while the page stays responsive</a></li>
               <li><a href="#chapter-10">Keep a value after reloading</a></li>
+              <li><a href="#chapter-11">Wait for a response from a server</a></li>
               <li><a href="#chapter-12">Choose when a script starts</a></li>
               <li><a href="#chapter-15">Where to go next</a></li>
             </ul>
@@ -144,7 +150,7 @@
               </div>
             </div>
             <p>To make this example yourself, you need a browser and a code editor such as <a href="/tutorials/vscode-essentials/">Visual Studio Code</a>: edit the files, save and check the result in the browser. If HTML buttons and attributes are still unfamiliar, start with the <a href="/tutorials/html-fundamentals/">HTML guide</a>.</p>
-            <p>Follow the project and the language experiments through to the Reset button. Each experiment says whether it belongs in the Console or in your files. If the button here is unavailable, the examples and instructions in the chapters remain readable.</p>
+            <p>Follow the project through the Reset button. Then use the final sections when you want to explore more of the language. If the button here is unavailable, the examples and instructions in the chapters remain readable.</p>
           </section>
           <section id="chapter-02" class="guide-block guide-chapter"><h2>Bring the first click into your files</h2><section class="guide-subchapter">
             <p>Create a folder named <code>js-practice</code> and open it in your editor. Create <code>index.html</code> and <code>script.js</code> inside it. Write this in <code>index.html</code>:</p>
@@ -247,6 +253,42 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Reload, type “Ada” and press the button: you see “Hello, Ada. Clicks: 1”. Leave the field empty and you see just the count. <code>value</code> reads what you typed; <code>trim()</code> removes spaces at either end. <code>condition ? value1 : value2</code> chooses between two pieces of text. <code>textContent</code> displays the name as text without interpreting it as HTML: enter <code>&lt;b&gt;Ada&lt;/b&gt;</code> to see this.</p>
           </section></section>
+          <section id="chapter-debug" class="guide-block guide-chapter"><h2>When a click does not give the expected result</h2><section class="guide-subchapter">
+            <p>Open your browser developer tools and the <strong>Console</strong> tab. If the page does not react, check in order: is <code>script.js</code> in the same folder? Do the HTML IDs match the <code>querySelector</code> calls? Did you save and reload?</p>
+            <p>You can temporarily add <code>console.log(clicks);</code> after <code>clicks = clicks + 1;</code>. Each button press should print 1, 2, 3 in the Console. The log appears in the tools, not on the page. Remove the line when done. A red error with a line number shows where to start looking; a click without a log suggests checking the file connection or listener.</p>
+          </section></section>
+          <section id="chapter-challenge" class="guide-block guide-chapter"><h2>Your turn: add Reset</h2><section class="guide-subchapter">
+            <p>Goal: after some clicks, the “Reset” button should put the count back to zero and show “Clicks: 0”. The name field can stay as it is. First, add a second button below the existing one in <code>index.html</code>:</p>
+            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>reset<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+            <p>In the JS file, find that button, listen for its click, assign <code>0</code> to <code>clicks</code> and update <code>result.textContent</code>. Try this sequence: two clicks on the first button, reset, one more click. The text should show 1, 2, 0, 1. This checks that the state really reset.</p>
+            <details class="guide-deeper"><summary>Show one possible solution</summary><p>Append this to your existing <code>script.js</code>; it is not a new file:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> resetButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#reset"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+resetButton<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clicks <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Clicks: 0"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>The reset changes the same variable used by the first button. If you change only the visible text, the old count returns on the next click.</p></details>
+          </section></section>
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter"><h2>Five questions to guide you through the code</h2><section class="guide-subchapter"><dl>
+            <dt><strong>Where is the element?</strong></dt><dd><code>document.querySelector("#id")</code>; for an ID you can also use <code>document.getElementById("id")</code>.</dd>
+            <dt><strong>When does the code run?</strong></dt><dd><code>addEventListener("click", function)</code> reacts to a browser event.</dd>
+            <dt><strong>Which value changes?</strong></dt><dd><code>let</code> for a value you reassign; <code>const</code> when you do not reassign the name.</dd>
+            <dt><strong>How do you choose the result?</strong></dt><dd><code>if</code> and <code>===</code> check a condition; <code>return</code> returns a function result.</dd>
+            <dt><strong>How do you update the page?</strong></dt><dd><code>textContent</code> writes text into an element; <code>value</code> reads a field.</dd>
+          </dl></section></section>
+          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>Check what you have understood</h2><section class="guide-subchapter"><p class="quiz-intro">Ten questions about the examples in this guide. Each answer includes an explanation.</p><div id="quiz-wrapper"></div></section></section>
+          <section id="chapter-comments" class="guide-block guide-chapter"><h2>Leave a note in the file</h2><section class="guide-subchapter">
+            <p>A comment explains a choice in the file; the browser does not execute it. Use <code>//</code> for one line or <code>/*</code> and <code>*/</code> for several. For example, above the two selections you can note why they must match the HTML:</p>
+            <pre><code class="language-javascript"><span class="token comment">// These IDs must match the ones in index.html.</span>
+<span class="token keyword">const</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Add the comment and reload: the page behaves exactly as before. You do not need to comment on every instruction; here you are recording a dependency between two files.</p>
+          </section></section>
+          <section id="chapter-08" class="guide-block guide-chapter"><h2>When you have more than one value</h2><section class="guide-subchapter"><p>To collect several milestones, an <strong>array</strong> keeps an ordered list; an <strong>object</strong> associates names with values. They organise data differently. Try these lines in the Console and read the two <code>console.log</code> results:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> milestones <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> settings <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Ada"</span><span class="token punctuation">,</span> <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>milestones<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3: the first item has index 0</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>settings<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Ada: a property by name</span></code></pre><p>This example is separate from the counter: you do not need to copy it into <code>script.js</code> to finish the exercise.</p></section></section>
           <section id="chapter-values" class="guide-block guide-chapter"><h2>Values have different types</h2><section class="guide-subchapter">
             <p>The <code>clicks</code> count is a number; a name read from a field is a string. Conditions produce <code>true</code> or <code>false</code>, boolean values. Open the browser Console and run this block: each line prints a type and a value.</p>
 <pre><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// number 3</span>
@@ -294,7 +336,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span></code></pre>
             <p><code>text</code> and <code>clickCount</code> exist inside the function; you cannot read them outside it. Variables declared with <code>let</code> and <code>const</code> stay inside their <code>{ ... }</code> block. This separation stops one part of a program from accidentally changing another part's temporary data.</p>
           </section></section>
-          <section id="chapter-08" class="guide-block guide-chapter"><h2>Use arrays, objects and loops</h2><section class="guide-subchapter">
+          <section id="chapter-collections-practice" class="guide-block guide-chapter"><h2>Use arrays, objects and loops</h2><section class="guide-subchapter">
             <p>An <strong>array</strong> keeps values in order. An <strong>object</strong> groups named properties. A <strong>loop</strong> checks several values without writing a separate line for each one. Try this in the Console: with five clicks, goals 3 and 5 should appear, but not 10.</p>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
   <span class="token keyword">const</span> goals <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -310,22 +352,64 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span></code></pre>
             <p><code>goals[0]</code> is the first item: indexes start at zero. <code>state.clicks</code> reads the object's <code>clicks</code> property. <code>for...of</code> takes one array item at a time; <code>if</code> decides whether to show it. Change <code>clicks: 5</code> to <code>clicks: 10</code> and check that all three goals appear.</p>
             <p>You can add a goal with <code>goals.push(15)</code> and change the count with <code>state.clicks = 6</code>. <code>const</code> prevents reassigning <code>goals</code> or <code>state</code> to another value, but it does not freeze the contents of an array or the properties of an object. This experiment is separate from the counter file: do not copy it into <code>script.js</code>.</p>
-            <p>Now use the array to show a result on your page. In <code>index.html</code>, just after the paragraph with <code>id="result"</code>, add this empty list:</p>
-            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>goal-list<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Goals reached<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
-            <p>In <code>script.js</code>, add these two lines after <code>const nameField = ...</code> and before <code>let clicks = 0</code>:</p>
-            <pre><code class="language-javascript"><span class="token keyword">const</span> goalList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#goal-list"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> goals <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
-            <p>In the main button listener, add this after the line assigning <code>result.textContent</code> and before <code>});</code>:</p>
-            <pre><code class="language-javascript"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> goal <span class="token keyword">of</span> goals<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>clicks <span class="token operator">===</span> goal<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> item <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    item<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Reached </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>goal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> clicks</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
-    goalList<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          </section></section>
+          <section id="chapter-data-change" class="guide-block guide-chapter"><h2>Change an array and an object</h2><section class="guide-subchapter">
+            <p>The earlier experiment read data. Now change it: paste this block into the Console. The first milestone stays <code>3</code>, but the array has four items and the object’s limit becomes <code>15</code>.</p>
+            <pre><code class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> milestones <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> settings <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Ada"</span><span class="token punctuation">,</span> <span class="token literal-property property">limit</span><span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  milestones<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  settings<span class="token punctuation">.</span>limit <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>milestones<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 3</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>milestones<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 4</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>milestones<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>settings<span class="token punctuation">.</span>limit<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 15</span>
+<span class="token punctuation">}</span></code></pre>
+            <p><code>push</code> adds a value to the end of an array; <code>length</code> counts items; <code>includes</code> looks for a value. The <code>limit</code> property changes with <code>=</code>. <code>const</code> prevents assigning a different array or object to the same variable, but does not prevent changes to its contents. Change <code>15</code> to <code>8</code> in the <code>push</code> call: <code>includes(15)</code> becomes <code>false</code>.</p>
+            <p>Use an array for an ordered sequence and an object for named data. You can also put objects inside an array: you will do that on the page in the next step.</p>
+          </section></section>
+          <section id="chapter-list-on-page" class="guide-block guide-chapter"><h2>Put arrays, objects and a loop on the page</h2><section class="guide-subchapter">
+            <p>Add something to the counter you have already finished. In <code>index.html</code>, after the result paragraph, add a button and an empty list:</p>
+            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>show-milestones<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Show milestones<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>milestone-list<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Milestones reached<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+            <p>At the end of <code>script.js</code>, after the Reset code, add this block. It uses the same <code>clicks</code> variable as the project; it does not replace the earlier code.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> milestones <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"First milestone"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Second milestone"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Third milestone"</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> showMilestonesButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#show-milestones"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> milestoneList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#milestone-list"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+showMilestonesButton<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  milestoneList<span class="token punctuation">.</span><span class="token function">replaceChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> milestone <span class="token keyword">of</span> milestones<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>clicks <span class="token operator">>=</span> milestone<span class="token punctuation">.</span>threshold<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> item <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      item<span class="token punctuation">.</span>textContent <span class="token operator">=</span> milestone<span class="token punctuation">.</span>label<span class="token punctuation">;</span>
+      milestoneList<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Save, reload and click the counter five times. Press “Show milestones”: two items appear. Press Reset and then “Show milestones” again: the list becomes empty. <code>for...of</code> examines each object; <code>if</code> keeps only reached thresholds; <code>createElement</code> and <code>append</code> build the list. <code>replaceChildren()</code> rebuilds it from the current count, so you do not need to change the Reset code.</p>
+          </section></section>
+          <section id="chapter-errors-practice" class="guide-block guide-chapter"><h2>Recognise and handle an error</h2><section class="guide-subchapter">
+            <p>You have seen that <code>querySelector</code> returns <code>null</code> for a missing ID. Reading <code>textContent</code> from <code>null</code> causes an error. Check the value first; try this in the Console:</p>
+            <pre><code class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> element <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#missing"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>element <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Element not found"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-            <p>Save and reload. A new list item appears at clicks 3, 5 and 10. The loop checks every goal on every click, but creates an item only when the count matches. <code>createElement</code> prepares an <code>li</code>; <code>append</code> adds it to the list. You have used data and a loop to change the page itself.</p>
+            <p>Other operations can fail while running. <code>try/catch</code> lets you react to an error. This experiment creates one deliberately; you will see “Example error” in the Console:</p>
+            <pre><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Example error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+            <p>An <code>if</code> check is clearer for predictable problems such as a missing element. Use <code>try/catch</code> when an operation can still fail, such as a network request. When an error appears, read its message, file and line in the Console before changing code.</p>
           </section></section>
-          <section id="chapter-11" class="guide-block guide-chapter"><h2>Wait for a result while the page stays responsive</h2><section class="guide-subchapter">
+          <section id="chapter-async-practice" class="guide-block guide-chapter"><h2>Wait for a result while the page stays responsive</h2><section class="guide-subchapter">
             <p>The listener waits for a click without blocking the browser. A timer or network request also produces a result later. This experiment runs in your page's Console without a server: you should see “Start” immediately and “Finished waiting” about a second later. The counter button still works in the meantime.</p>
 <pre><code class="language-javascript"><span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token function-variable function">wait</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">milliseconds</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
@@ -343,48 +427,24 @@ console<span class="token punctuation">.</span><span class="token function">log<
             <p><code>setTimeout</code> schedules an action for later. The <code>Promise</code> represents a result that will arrive. <code>async</code> lets you use <code>await</code>: the function pauses until the Promise resolves, while the page remains responsive. Change <code>1000</code> to <code>2000</code> and observe the difference.</p>
             <p><code>fetch()</code> uses the same mechanism for network requests and returns a Promise. A server response can fail: in a real app you would check <code>response.ok</code> and handle errors with <code>try/catch</code>. Here you first learn to wait with an example you can actually run.</p>
           </section></section>
-          <section id="chapter-debug" class="guide-block guide-chapter"><h2>When a click does not give the expected result</h2><section class="guide-subchapter">
-            <p>Open your browser developer tools and the <strong>Console</strong> tab. If the page does not react, check in order: is <code>script.js</code> in the same folder? Do the HTML IDs match the <code>querySelector</code> calls? Did you save and reload?</p>
-            <p>You can temporarily add <code>console.log(clicks);</code> after <code>clicks = clicks + 1;</code>. Each button press should print 1, 2, 3 in the Console. The log appears in the tools, not on the page. Remove the line when done. A red error with a line number shows where to start looking; a click without a log suggests checking the file connection or listener.</p>
-          </section></section>
-          <section id="chapter-challenge" class="guide-block guide-chapter"><h2>Your turn: add Reset</h2><section class="guide-subchapter">
-            <p>Goal: after some clicks, the “Reset” button should put the count back to zero and show “Clicks: 0”. The name field can stay as it is; the goal list should become empty. First, add a second button below the existing one in <code>index.html</code>:</p>
-            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>reset<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
-            <p>In the JS file, find that button, listen for its click, assign <code>0</code> to <code>clicks</code>, update <code>result.textContent</code> and clear <code>goalList</code>. Try this sequence: two clicks on the first button, reset, one more click. The text should show 1, 2, 0, 1. This checks that the state really reset. Repeat with three clicks before Reset: the goal item should disappear.</p>
-            <details class="guide-deeper"><summary>Show one possible solution</summary><p>Append this to your existing <code>script.js</code>; it is not a new file:</p>
-            <pre><code class="language-javascript"><span class="token keyword">const</span> resetButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#reset"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-resetButton<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  clicks <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Clicks: 0"</span><span class="token punctuation">;</span>
-  goalList<span class="token punctuation">.</span><span class="token function">replaceChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>The reset changes the same variable used by the first button. If you change only the visible text, the old count returns on the next click. <code>replaceChildren()</code> removes the list items; a new one appears at the next goal.</p></details>
-          </section></section>
-          <section id="chapter-cheatsheet" class="guide-block guide-chapter"><h2>Questions to guide you through the code</h2><section class="guide-subchapter"><dl>
-            <dt><strong>Where is the element?</strong></dt><dd><code>document.querySelector("#id")</code>; for an ID you can also use <code>document.getElementById("id")</code>.</dd>
-            <dt><strong>When does the code run?</strong></dt><dd><code>addEventListener("click", function)</code> reacts to a browser event.</dd>
-            <dt><strong>Which value changes?</strong></dt><dd><code>let</code> for a value you reassign; <code>const</code> when you do not reassign the name.</dd>
-            <dt><strong>How do you choose the result?</strong></dt><dd><code>if</code> and <code>===</code> check a condition; <code>return</code> returns a function result.</dd>
-            <dt><strong>How do you update the page?</strong></dt><dd><code>textContent</code> writes text into an element; <code>value</code> reads a field.</dd>
-            <dt><strong>What kind of value do you have?</strong></dt><dd><code>typeof</code> distinguishes numbers, strings and booleans; <code>Number()</code> converts numeric text.</dd>
-            <dt><strong>Where does the value exist?</strong></dt><dd>Parameters and local <code>let</code>/<code>const</code> values stay in their function or block.</dd>
-            <dt><strong>How do you handle several values?</strong></dt><dd>An array stores ordered values; an object stores named properties; <code>for...of</code> visits array values.</dd>
-            <dt><strong>What if the result arrives later?</strong></dt><dd>A Promise represents a future result; <code>await</code> pauses only its <code>async</code> function.</dd>
-          </dl></section></section>
-          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>Check what you have understood</h2><section class="guide-subchapter"><p class="quiz-intro">Sixteen questions about the examples in this guide. Each answer includes an explanation.</p><div id="quiz-wrapper"></div></section></section>
-          <section id="chapter-comments" class="guide-block guide-chapter"><h2>Leave a note in the file</h2><section class="guide-subchapter">
-            <p>A comment explains a choice in the file; the browser does not execute it. Use <code>//</code> for one line or <code>/*</code> and <code>*/</code> for several. For example, above the two selections you can note why they must match the HTML:</p>
-            <pre><code class="language-javascript"><span class="token comment">// These IDs must match the ones in index.html.</span>
-<span class="token keyword">const</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> result <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            <p>Add the comment and reload: the page behaves exactly as before. You do not need to comment on every instruction; here you are recording a dependency between two files.</p>
-          </section></section>
           <section id="chapter-10" class="guide-block guide-chapter"><h2>Keep a value after reloading</h2><section class="guide-subchapter"><p>The <code>clicks</code> variable resets whenever you reload. <code>localStorage</code> can keep a string in the browser. Convert it when reading it back as a number:</p>
             <pre><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"clicks"</span><span class="token punctuation">,</span> <span class="token function">String</span><span class="token punctuation">(</span>clicks<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> savedValue <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"clicks"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> savedClicks <span class="token operator">=</span> savedValue <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token function">Number</span><span class="token punctuation">(</span>savedValue<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>These lines show the operations; they are not a complete new <code>script.js</code>. The data stays in the browser until you delete it. Do not store passwords or sensitive information there.</p></section></section>
+          <section id="chapter-11" class="guide-block guide-chapter"><h2>Wait for a response from a server</h2><section class="guide-subchapter"><p>A click is an event that arrives later. A network request also finishes later: <code>async</code> and <code>await</code> let a function wait for a result without blocking the whole page. This example needs a server responding at <code>/api/message</code>; it will not work by opening the HTML file alone.</p>
+            <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">loadMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"/api/message"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Invalid response"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> data<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Could not load the message."</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p><code>try/catch</code> handles errors, such as a lost connection. The example shows where the function waits and where it displays the result; it does not replace the counter project.</p></section></section>
           <section id="chapter-12" class="guide-block guide-chapter"><h2>Choose when a script starts</h2><section class="guide-subchapter"><p>In the project we used <code>defer</code>: the browser downloads the file while parsing HTML and runs it once parsing is complete. A classic script without attributes in the <code>head</code> can pause HTML parsing. <code>async</code> runs the script as soon as it is ready, so it does not guarantee that page elements exist yet or preserve order relative to other scripts. <code>type="module"</code> scripts are deferred by default.</p>
-            <p>While a function waits for a network request, the browser can handle other work, then resume the function when the result arrives. This coordination involves the <em>event loop</em>. In this project, the listener code starts on a click, not when the page loads.</p>
+            <p>While a function waits for a network request, the browser can handle other work, then resume the function when the result arrives. This coordination involves the <em>event loop</em>. For the first experiment, it is enough to know that the listener code starts on a click, not when the page loads.</p>
           </section></section>
           <section id="chapter-15" class="guide-block guide-chapter"><h2>Where to go next</h2><section class="guide-subchapter"><ul class="guide-list">
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">MDN: JavaScript Guide</a> to continue learning the language.</li>
