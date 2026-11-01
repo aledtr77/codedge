@@ -476,6 +476,61 @@ export const quizzesData = {
         wrong: "for...of ripete le istruzioni per ogni valore dell’array."
       }
     }
+,
+    {
+      q: "Cosa inserisce un template literal scritto con backtick e ${nome}?",
+      options: ["Il valore di nome dentro il testo.", "Il nome del file JavaScript.", "Il contenuto HTML della variabile."],
+      correct: 0,
+      feedback: { correct: "${...} inserisce il valore dell’espressione nella stringa.", wrong: "Nei template literal i backtick delimitano il testo e ${...} inserisce un valore." }
+    },
+    {
+      q: "Che cosa restituisce map su un array?",
+      options: ["Un nuovo array con ogni elemento trasformato.", "Sempre il primo elemento.", "Lo stesso array ordinato."],
+      correct: 0,
+      feedback: { correct: "map applica una funzione a ogni elemento e restituisce un nuovo array.", wrong: "map trasforma gli elementi e restituisce un nuovo array." }
+    },
+    {
+      q: "Dopo const copia = originale per un array, cosa succede se cambi copia?",
+      options: ["Entrambi i nomi indicano lo stesso array.", "copia diventa automaticamente indipendente.", "JavaScript vieta la modifica perché è const."],
+      correct: 0,
+      feedback: { correct: "L’assegnazione copia il riferimento: i nomi indicano lo stesso array.", wrong: "const impedisce di riassegnare il nome, non crea una copia né blocca l’array." }
+    },
+    {
+      q: "A cosa serve new Contatore(...) quando Contatore è una class?",
+      options: ["A creare un’istanza della classe.", "A importare la classe da un file.", "A convertire un numero in testo."],
+      correct: 0,
+      feedback: { correct: "new crea un’istanza e avvia il suo constructor.", wrong: "new crea un’istanza; import collega moduli." }
+    },
+    {
+      q: "Cosa fa evento.preventDefault() nel listener submit?",
+      options: ["Ferma l’invio predefinito del browser.", "Convalida tutti i dati.", "Svuota i campi."],
+      correct: 0,
+      feedback: { correct: "Annulla l’azione predefinita; il codice deve poi gestire l’esito.", wrong: "preventDefault ferma l’azione predefinita ma non convalida né svuota i campi." }
+    },
+    {
+      q: "Come controlli che un testo convertito sia un numero finito?",
+      options: ["Number.isFinite(Number(testo)).", "testo === 0.", "testo.length === Number."],
+      correct: 0,
+      feedback: { correct: "Number converte il testo e Number.isFinite esclude NaN e infinito.", wrong: "Converti prima il testo e poi controlla il risultato numerico." }
+    },
+    {
+      q: "Che tipo di valori conserva localStorage?",
+      options: ["Stringhe.", "Solo numeri.", "Oggetti JavaScript direttamente."],
+      correct: 0,
+      feedback: { correct: "localStorage conserva stringhe; JSON converte strutture in testo e viceversa.", wrong: "I valori di localStorage sono stringhe." }
+    },
+    {
+      q: "Perché controllare response.ok dopo fetch?",
+      options: ["Una risposta 404 non rifiuta necessariamente la Promise.", "fetch restituisce sempre HTML.", "ok converte la risposta in JSON."],
+      correct: 0,
+      feedback: { correct: "Controlla lo stato HTTP prima di considerare riuscita la richiesta.", wrong: "response.ok indica l’esito HTTP; non converte il corpo." }
+    },
+    {
+      q: "Che cosa indica import { messaggioPer } da un modulo?",
+      options: ["Un import nominato che corrisponde a un export nominato.", "Una lettura di localStorage.", "Una funzione globale del browser."],
+      correct: 0,
+      feedback: { correct: "Il nome tra graffe deve essere esportato dal modulo indicato.", wrong: "import collega moduli; il nome deve corrispondere a un export." }
+    }
   ],
   "vscode-essenziale": [
     {

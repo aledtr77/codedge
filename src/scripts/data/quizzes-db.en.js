@@ -613,6 +613,61 @@ export const quizzesData = {
         wrong: "for...of repeats its instructions for each array value."
       }
     }
+,
+    {
+      q: "What does a template literal with backticks and ${name} insert?",
+      options: ["The value of name into the text.", "The JavaScript file name.", "The variable's HTML content."],
+      correct: 0,
+      feedback: { correct: "${...} inserts an expression's value into the string.", wrong: "Backticks delimit the text and ${...} inserts a value." }
+    },
+    {
+      q: "What does map return for an array?",
+      options: ["A new array with each item transformed.", "Always the first item.", "The same array sorted."],
+      correct: 0,
+      feedback: { correct: "map applies a function to each item and returns a new array.", wrong: "map transforms the items and returns a new array." }
+    },
+    {
+      q: "After const copy = original for an array, what happens if you change copy?",
+      options: ["Both names refer to the same array.", "copy automatically becomes independent.", "JavaScript blocks the change because it is const."],
+      correct: 0,
+      feedback: { correct: "The assignment copies the reference: both names refer to the same array.", wrong: "const prevents reassignment; it does not copy or freeze the array." }
+    },
+    {
+      q: "What does new Counter(...) do when Counter is a class?",
+      options: ["Creates an instance of the class.", "Imports the class from a file.", "Converts a number to text."],
+      correct: 0,
+      feedback: { correct: "new creates an instance and runs its constructor.", wrong: "new creates an instance; import connects modules." }
+    },
+    {
+      q: "What does event.preventDefault() do in a submit listener?",
+      options: ["Stops the browser's default submission.", "Validates every value.", "Clears the fields."],
+      correct: 0,
+      feedback: { correct: "It cancels the default action; code must then handle the result.", wrong: "preventDefault stops the default action but does not validate or clear fields." }
+    },
+    {
+      q: "How do you check whether converted text is a finite number?",
+      options: ["Number.isFinite(Number(text)).", "text === 0.", "text.length === Number."],
+      correct: 0,
+      feedback: { correct: "Number converts the text and Number.isFinite excludes NaN and infinity.", wrong: "Convert the text first, then check the numeric result." }
+    },
+    {
+      q: "What kind of values does localStorage keep?",
+      options: ["Strings.", "Numbers only.", "JavaScript objects directly."],
+      correct: 0,
+      feedback: { correct: "localStorage keeps strings; JSON converts structures to and from text.", wrong: "localStorage values are strings." }
+    },
+    {
+      q: "Why check response.ok after fetch?",
+      options: ["A 404 response does not necessarily reject the Promise.", "fetch always returns HTML.", "ok converts the response to JSON."],
+      correct: 0,
+      feedback: { correct: "Check the HTTP status before treating the request as successful.", wrong: "response.ok reports the HTTP result; it does not convert the body." }
+    },
+    {
+      q: "What does import { messageFor } from a module indicate?",
+      options: ["A named import matching a named export.", "A localStorage read.", "A global browser function."],
+      correct: 0,
+      feedback: { correct: "The name in braces must be exported by the module.", wrong: "import connects modules; its name must match an export." }
+    }
   ],
   "deploy-base": [
     {
@@ -1405,6 +1460,7 @@ export const quizzesData = {
         wrong: "Copying a solution without understanding it does not show that you can apply the concept."
       }
     }
+
   ],
   "vscode-essenziale": [
     {

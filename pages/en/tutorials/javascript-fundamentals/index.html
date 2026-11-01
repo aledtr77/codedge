@@ -11,13 +11,13 @@
   <title>JavaScript: the fundamentals | Learn with a practical page | Codedge</title>
   <meta
     name="description"
-    content="Learn JavaScript by changing one page step by step: first clicks, variables, conditions, functions, the DOM and a reset exercise.">
+    content="A JavaScript guide from the basics: values, operators, conditions, functions, arrays, objects, classes, the DOM, events, modules, and async examples.">
   <link rel="canonical" href="https://codedge.it/tutorials/javascript-fundamentals/">
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
   <meta property="og:title" content="JavaScript: the fundamentals | Learn with a practical page | Codedge" />
-  <meta property="og:description" content="Learn JavaScript by changing one page step by step: first clicks, variables, conditions, functions, the DOM and a reset exercise." />
+  <meta property="og:description" content="A JavaScript guide from the basics: values, operators, conditions, functions, arrays, objects, classes, the DOM, events, modules, and async examples." />
   <meta property="og:url" content="https://codedge.it/tutorials/javascript-fundamentals/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -26,7 +26,7 @@
   <meta property="og:image:alt" content="JavaScript fundamentals guide preview" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="JavaScript: the fundamentals | Learn with a practical page | Codedge" />
-  <meta name="twitter:description" content="Learn JavaScript by changing one page step by step: first clicks, variables, conditions, functions, the DOM and a reset exercise." />
+  <meta name="twitter:description" content="A JavaScript guide from the basics: values, operators, conditions, functions, arrays, objects, classes, the DOM, events, modules, and async examples." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
@@ -72,64 +72,99 @@
 <li><a href="#chapter-01">Press the button. Watch what changes.</a></li>
 <li><a href="#chapter-02">Bring the first click into your files</a></li>
 <li><a href="#chapter-read">Read the code behind the first click</a></li>
+<li><a href="#chapter-dom">Read and update the page: the DOM</a></li>
 </ul>
 <p class="guide-toc-group">Values and choices</p><ul class="guide-toc-list">
 <li><a href="#chapter-values">Before counting: what values does JavaScript use?</a></li>
+<li><a href="#chapter-operators">Operators: calculate, compare, combine</a></li>
+<li><a href="#chapter-strings">Strings and template literals</a></li>
+<li><a href="#chapter-equality">Compare values and types without surprises</a></li>
+<li><a href="#chapter-truth">Truthy and falsy values</a></li>
 <li><a href="#chapter-state">A variable remembers the clicks</a></li>
 <li><a href="#chapter-choice">A question leads to a choice</a></li>
+<li><a href="#chapter-branches">More cases: else if and switch</a></li>
 <li><a href="#chapter-function">Give a repeatable job a name</a></li>
+<li><a href="#chapter-function-forms">Function forms and default parameters</a></li>
 <li><a href="#chapter-scope">Where does a variable exist?</a></li>
 <li><a href="#chapter-input">Read a name entered on the page</a></li>
+<li><a href="#chapter-events">Events beyond clicks</a></li>
+<li><a href="#chapter-forms">Forms and data validation</a></li>
 <li><a href="#chapter-reset">Your turn: add Reset</a></li>
 <li><a href="#chapter-conversion">A number typed in a field is still text</a></li>
 </ul>
 <p class="guide-toc-group">More data, same project</p><ul class="guide-toc-list">
 <li><a href="#chapter-arrays">A list of values: the array</a></li>
+<li><a href="#chapter-array-methods">Array methods: map, filter, and find</a></li>
 <li><a href="#chapter-objects">Name the data: the object</a></li>
+<li><a href="#chapter-object-methods">Properties, methods, and this</a></li>
+<li><a href="#chapter-classes">Classes and instances</a></li>
+<li><a href="#chapter-references">Copying arrays and objects: values and references</a></li>
 <li><a href="#chapter-loop">Repeat without copying the same code</a></li>
+<li><a href="#chapter-loop-forms">for and while loops</a></li>
+<li><a href="#chapter-storage">Persistence: localStorage and JSON</a></li>
 <li><a href="#chapter-errors">Read errors before changing code</a></li>
 <li><a href="#chapter-async">When a result arrives later</a></li>
-</ul>
-<p class="guide-toc-group">Check and continue</p><ul class="guide-toc-list">
+<li><a href="#chapter-fetch">Fetch and asynchronous requests</a></li>
+<li><a href="#chapter-modules">Modules: import and export</a></li>
 <li><a href="#chapter-comments">Annotate a choice in the file</a></li>
+</ul>
+<p class="guide-toc-group">Review and continue</p><ul class="guide-toc-list">
 <li><a href="#chapter-recap">Read the project without skipping steps</a></li>
 <li><a href="#chapter-quiz">Check what you have understood</a></li>
 <li><a href="#chapter-next">When you want to continue</a></li>
 </ul>
+
         </aside>
 
         <article class="guide-content" aria-label="JavaScript: the fundamentals guide content">
 
           <details class="guide-mobile-toc js-mobile-index"><summary>Choose a step</summary><nav aria-label="Steps in the JavaScript guide">
-            <p class="js-mobile-index__group">The first click</p><ul>
-              <li><a href="#chapter-01">Press the button. Watch what changes.</a></li>
-              <li><a href="#chapter-02">Bring the first click into your files</a></li>
-              <li><a href="#chapter-read">Read the code behind the first click</a></li>
-            </ul>
-            <p class="js-mobile-index__group">Values and choices</p><ul>
-              <li><a href="#chapter-values">Before counting: what values does JavaScript use?</a></li>
-              <li><a href="#chapter-state">A variable remembers the clicks</a></li>
-              <li><a href="#chapter-choice">A question leads to a choice</a></li>
-              <li><a href="#chapter-function">Give a repeatable job a name</a></li>
-              <li><a href="#chapter-scope">Where does a variable exist?</a></li>
-              <li><a href="#chapter-input">Read a name entered on the page</a></li>
-              <li><a href="#chapter-reset">Your turn: add Reset</a></li>
-              <li><a href="#chapter-conversion">A number typed in a field is still text</a></li>
-            </ul>
-            <p class="js-mobile-index__group">More data, same project</p><ul>
-              <li><a href="#chapter-arrays">A list of values: the array</a></li>
-              <li><a href="#chapter-objects">Name the data: the object</a></li>
-              <li><a href="#chapter-loop">Repeat without copying the same code</a></li>
-              <li><a href="#chapter-errors">Read errors before changing code</a></li>
-              <li><a href="#chapter-async">When a result arrives later</a></li>
-            </ul>
-            <p class="js-mobile-index__group">Check and continue</p><ul>
-              <li><a href="#chapter-comments">Annotate a choice in the file</a></li>
-              <li><a href="#chapter-recap">Read the project without skipping steps</a></li>
-              <li><a href="#chapter-quiz">Check what you have understood</a></li>
-              <li><a href="#chapter-next">When you want to continue</a></li>
-            </ul>
-          </nav></details>
+<p class="js-mobile-index__group">The first click</p><ul>
+<li><a href="#chapter-01">Press the button. Watch what changes.</a></li>
+<li><a href="#chapter-02">Bring the first click into your files</a></li>
+<li><a href="#chapter-read">Read the code behind the first click</a></li>
+<li><a href="#chapter-dom">Read and update the page: the DOM</a></li>
+</ul>
+<p class="js-mobile-index__group">Values and choices</p><ul>
+<li><a href="#chapter-values">Before counting: what values does JavaScript use?</a></li>
+<li><a href="#chapter-operators">Operators: calculate, compare, combine</a></li>
+<li><a href="#chapter-strings">Strings and template literals</a></li>
+<li><a href="#chapter-equality">Compare values and types without surprises</a></li>
+<li><a href="#chapter-truth">Truthy and falsy values</a></li>
+<li><a href="#chapter-state">A variable remembers the clicks</a></li>
+<li><a href="#chapter-choice">A question leads to a choice</a></li>
+<li><a href="#chapter-branches">More cases: else if and switch</a></li>
+<li><a href="#chapter-function">Give a repeatable job a name</a></li>
+<li><a href="#chapter-function-forms">Function forms and default parameters</a></li>
+<li><a href="#chapter-scope">Where does a variable exist?</a></li>
+<li><a href="#chapter-input">Read a name entered on the page</a></li>
+<li><a href="#chapter-events">Events beyond clicks</a></li>
+<li><a href="#chapter-forms">Forms and data validation</a></li>
+<li><a href="#chapter-reset">Your turn: add Reset</a></li>
+<li><a href="#chapter-conversion">A number typed in a field is still text</a></li>
+</ul>
+<p class="js-mobile-index__group">More data, same project</p><ul>
+<li><a href="#chapter-arrays">A list of values: the array</a></li>
+<li><a href="#chapter-array-methods">Array methods: map, filter, and find</a></li>
+<li><a href="#chapter-objects">Name the data: the object</a></li>
+<li><a href="#chapter-object-methods">Properties, methods, and this</a></li>
+<li><a href="#chapter-classes">Classes and instances</a></li>
+<li><a href="#chapter-references">Copying arrays and objects: values and references</a></li>
+<li><a href="#chapter-loop">Repeat without copying the same code</a></li>
+<li><a href="#chapter-loop-forms">for and while loops</a></li>
+<li><a href="#chapter-storage">Persistence: localStorage and JSON</a></li>
+<li><a href="#chapter-errors">Read errors before changing code</a></li>
+<li><a href="#chapter-async">When a result arrives later</a></li>
+<li><a href="#chapter-fetch">Fetch and asynchronous requests</a></li>
+<li><a href="#chapter-modules">Modules: import and export</a></li>
+<li><a href="#chapter-comments">Annotate a choice in the file</a></li>
+</ul>
+<p class="js-mobile-index__group">Review and continue</p><ul>
+<li><a href="#chapter-recap">Read the project without skipping steps</a></li>
+<li><a href="#chapter-quiz">Check what you have understood</a></li>
+<li><a href="#chapter-next">When you want to continue</a></li>
+</ul>
+</nav></details>
           <section id="chapter-01" class="guide-block guide-chapter js-opening">
             <p class="js-opening__eyebrow">Your first click</p>
             <h2>Press the button. Watch what changes.</h2>
@@ -180,6 +215,14 @@ button<span class="token punctuation">.</span><span class="token function">addEv
             <p>The <code>addEventListener</code> line tells the browser: “when a click arrives, run the instructions inside the braces”. The function in <code>() =&gt; { ... }</code> is code to run later. <code>textContent</code> changes the paragraph text. This changeable page structure is called the <strong>DOM</strong>. Loading the script does not display the new message yet: you must click.</p>
             <p>Parentheses <code>()</code> pass data to a function; braces <code>{}</code> group instructions; <code>=</code> assigns a value; a dot accesses a property or function on an element. Here we use a semicolon to mark the end of an instruction. Read the earlier code again in this order: find the elements, wait for a click, change the text.</p>
           </section></section>
+          <section id="chapter-dom" class="guide-block guide-chapter"><h2>Read and update the page: the DOM</h2><section class="guide-subchapter">
+            <p>A page is more than the text written in HTML. When the browser reads it, it builds a structure of elements JavaScript can find and change: the <strong>DOM</strong>. <code>document</code> gives access to the page; <code>querySelector</code> returns the first element matching a CSS selector.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> title <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"h1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>title<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Message updated"</span><span class="token punctuation">;</span></code></pre>
+            <p><code>textContent</code> reads or replaces text. If a selector finds nothing, the result is <code>null</code>: check that an element exists before using its properties. To add elements, use <code>createElement</code> and <code>append</code>. For text typed by a user, prefer <code>textContent</code>; <code>innerHTML</code> interprets markup and can run unwanted HTML when given untrusted data. This guide does not need it to show a sentence.</p>
+          </section></section>
           <section id="chapter-values" class="guide-block guide-chapter"><h2>Before counting: what values does JavaScript use?</h2><section class="guide-subchapter">
             <p>A value is a piece of data the program works with. <code>"You pressed the button!"</code> is text, called a <strong>string</strong>; <code>0</code> and <code>3</code> are numbers; <code>true</code> and <code>false</code> are <strong>boolean</strong> values for yes/no questions. <code>===</code> asks whether two values are equal and have the same type. Open the Console tab in your browser tools, paste one line at a time and press Enter. <code>console.log</code> displays a value in the tools without changing the page.</p>
             <pre><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Clicks: "</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Clicks: 1</span>
@@ -187,6 +230,35 @@ console<span class="token punctuation">.</span><span class="token function">log<
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// true</span></code></pre>
             <p>The first line joins text and a number: the result is text. The second adds two numbers. The third asks whether the numbers are equal and returns a boolean. Text after <code>//</code> is a note for readers; JavaScript does not run it. <code>typeof 1</code> shows <code>"number"</code>, while <code>typeof "1"</code> shows <code>"string"</code>: the digit looks alike, but its type changes what operations do.</p>
             <p>Some values describe an absence. <code>undefined</code> often means a value has not been assigned; <code>null</code> is what <code>querySelector</code> returns when it finds no element. You do not need to memorise every type now: first recognise number, text, boolean and absence, because you will meet them in the counter.</p>
+          </section></section>
+          <section id="chapter-operators" class="guide-block guide-chapter"><h2>Operators: calculate, compare, combine</h2><section class="guide-subchapter">
+            <p>An <strong>operator</strong> performs an operation on values. <code>+</code> adds numbers or joins strings; <code>%</code> returns a remainder; <code>===</code> compares value and type; <code>&gt;=</code> compares size. Comparisons return a boolean: <code>true</code> or <code>false</code>.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> total <span class="token operator">=</span> <span class="token number">4</span> <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> remainder <span class="token operator">=</span> <span class="token number">7</span> <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> reachedGoal <span class="token operator">=</span> total <span class="token operator">>=</span> <span class="token number">7</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> canContinue <span class="token operator">=</span> reachedGoal <span class="token operator">&amp;&amp;</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>total<span class="token punctuation">,</span> remainder<span class="token punctuation">,</span> canContinue<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 7, 1, true</span></code></pre>
+            <p><code>&amp;&amp;</code> requires both conditions to be true; <code>||</code> requires at least one; <code>!</code> reverses a boolean. <code>+=</code> updates a variable by adding a value: <code>clicks += 1</code> is the same as <code>clicks = clicks + 1</code>. Parentheses make groups clear, for example <code>(validName &amp;&amp; reachedGoal) || specialAccess</code>. Use them when a rule combines operators so the order remains readable.</p>
+          </section></section>
+          <section id="chapter-strings" class="guide-block guide-chapter"><h2>Strings and template literals</h2><section class="guide-subchapter">
+            <p>A string is text surrounded by single quotes, double quotes, or backticks. To insert values into a message, <strong>template literals</strong> use backticks and <code>${...}</code>:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"Ada"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> clicks <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hi </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, you clicked </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clicks<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> times.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hi Ada, you clicked 3 times.</span></code></pre>
+            <p>Inside <code>${...}</code>, you can put a variable or an expression such as <code>${clicks + 1}</code>. Quote marks do not interpolate: <code>"Hi ${name}"</code> contains those characters literally. Backticks also allow strings across multiple lines. Change <code>name</code> and <code>clicks</code>; the message is composed from the new values.</p>
+          </section></section>
+          <section id="chapter-equality" class="guide-block guide-chapter"><h2>Compare values and types without surprises</h2><section class="guide-subchapter"><p><code>===</code> compares both value and type; <code>==</code> may convert types before comparing. That is why <code>3 == "3"</code> is true while <code>3 === "3"</code> is false. For most program comparisons, use <code>===</code> and convert data explicitly when you mean to compare numbers.</p><pre><code class="language-javascript"><span class="token keyword">const</span> inputValue <span class="token operator">=</span> <span class="token string">"3"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> number <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>inputValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>inputValue <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>number <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></code></pre><p><code>NaN</code> marks an invalid numeric calculation; use <code>Number.isNaN</code> to detect it rather than comparing it with <code>===</code>. Also, <code>typeof null</code> returns <code>"object"</code> because of a historical language quirk: to check whether a value is specifically <code>null</code>, use <code>value === null</code>. Explicit checks avoid invisible conversions and unexpected results.</p></section></section>
+          <section id="chapter-truth" class="guide-block guide-chapter"><h2>Truthy and falsy values</h2><section class="guide-subchapter">
+            <p><code>if</code> can check a value directly: JavaScript treats it as <strong>truthy</strong> or <strong>falsy</strong>. <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, and <code>undefined</code> are falsy; a string containing a space is truthy. That is why checking an input with <code>name.trim() !== ""</code> is safer than only using <code>if (name)</code>.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"Ada"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> greeting <span class="token operator">=</span> name <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hi </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token operator">:</span> <span class="token string">"Enter your name"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeting<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>The conditional operator is <code>condition ? valueIfTrue : valueIfFalse</code>, useful for a short choice. <code>value ?? fallback</code> uses the fallback only for <code>null</code> and <code>undefined</code>; <code>value || fallback</code> uses it for any falsy value, including zero and an empty string. If zero is valid, <code>??</code> avoids replacing it by mistake.</p>
           </section></section>
           <section id="chapter-state" class="guide-block guide-chapter"><h2>A variable remembers the clicks</h2><section class="guide-subchapter">
             <p>The first script responds but does not remember how many clicks happened. A <strong>variable</strong> is a name associated with a value. Write <code>let clicks = 0</code> before the listener: it starts at zero and can receive a new number. Replace all of <code>script.js</code> with this complete version:</p>
@@ -214,6 +286,22 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Reload: the first two clicks show the number; the third shows the special message; the fourth shows “Clicks: 4”. Change <code>3</code> to <code>2</code>, save and reload: the special message moves to the second click. You changed a rule, not the HTML. <code>clicks === "3"</code> would be false because <code>"3"</code> is text and <code>clicks</code> is a number.</p>
           </section></section>
+          <section id="chapter-branches" class="guide-block guide-chapter"><h2>More cases: else if and switch</h2><section class="guide-subchapter">
+            <p>With <code>else if</code>, JavaScript checks several conditions in order and uses the first true block. The final <code>else</code> covers the remaining cases. This is clear for ranges or combined rules:</p>
+            <pre><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>clicks <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Start with one click"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>clicks <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clicks: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clicks<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Goal reached"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+            <p><code>switch</code> compares one expression against exact values. Each <code>case</code> names a value; <code>break</code> prevents continuing into the next case. <code>default</code> handles the rest. For numeric ranges, <code>if</code> is clearer; for many outcomes of one exact value, <code>switch</code> can read better.</p>
+            <pre><code class="language-javascript"><span class="token keyword">switch</span> <span class="token punctuation">(</span>clicks<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span> result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"No clicks"</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span> result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Three clicks"</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">default</span><span class="token operator">:</span> result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clicks: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clicks<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+          </section></section>
           <section id="chapter-function" class="guide-block guide-chapter"><h2>Give a repeatable job a name</h2><section class="guide-subchapter">
             <p>The message choice can live in a <strong>function</strong>: a named group of instructions you can call when needed. Inside the parentheses you write the <strong>parameter</strong>, the name of the data the function receives. <code>return</code> gives the result back to the place that called the function and ends that call. Here the result is text. Replace <code>script.js</code> with this complete version:</p>
             <pre><code class="language-javascript"><span class="token keyword">const</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -233,6 +321,16 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Reload and click four times: the result matches the previous chapter. When you write <code>messageFor(clicks)</code>, you pass the current <code>clicks</code> value into the function. Inside, that value is called <code>clickCount</code>: it is a <strong>parameter</strong>. <code>return</code> gives text back to the call; the function ends at <code>return</code>.</p>
             <p>Try <code>messageFor(2)</code> and <code>messageFor(3)</code> in the Console: you get different text without changing the visible counter. The function prepares text; the listener decides when to use it and writes it into the DOM. This helps you see which code calculates and which code changes the page.</p>
+          </section></section>
+          <section id="chapter-function-forms" class="guide-block guide-chapter"><h2>Function forms and default parameters</h2><section class="guide-subchapter">
+            <p>You have seen <code>function</code> and an arrow function used as a callback. If an arrow function body has one expression, that expression is returned implicitly; multiple statements need braces and <code>return</code>.</p>
+            <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">double</span><span class="token punctuation">(</span><span class="token parameter">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> number <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> <span class="token function-variable function">triple</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">number</span><span class="token punctuation">)</span> <span class="token operator">=></span> number <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> greet <span class="token operator">=</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> greeting <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>greeting<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">double</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">triple</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">greet</span><span class="token punctuation">(</span><span class="token string">"Ada"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Names in a definition are <strong>parameters</strong>; values passed to a call are <strong>arguments</strong>. In <code>greet("Ada")</code>, <code>greeting</code> uses its default. Arrow and declared functions are not always interchangeable: an arrow does not create its own <code>this</code>. Choose the form that makes the function clear. <code>triple</code> is the function; <code>triple(4)</code> runs it.</p>
           </section></section>
           <section id="chapter-scope" class="guide-block guide-chapter"><h2>Where does a variable exist?</h2><section class="guide-subchapter">
             <p>A variable declared inside a function’s braces is <strong>local</strong>: the rest of the script cannot read it directly. <code>clickCount</code> exists inside <code>messageFor</code>; <code>clicks</code> is declared outside, so the listener can read it. Try this small experiment in the Console:</p>
@@ -272,6 +370,44 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Reload, type “Ada” and click: you see “Hello, Ada. Clicks: 1”. Clear the name and click again: you see only the count. <code>value</code> reads the field’s current text; <code>trim()</code> removes spaces at both ends; <code>!== ""</code> asks whether nonempty text remains. <code>name</code> is created inside the listener and read again on each click.</p>
             <p><code>textContent</code> displays what you type as text without interpreting it as HTML. Enter <code>&lt;b&gt;Ada&lt;/b&gt;</code> in the field: you will see the characters, not a bold name.</p>
+          </section></section>
+          <section id="chapter-events" class="guide-block guide-chapter"><h2>Events beyond clicks</h2><section class="guide-subchapter">
+            <p><code>addEventListener</code> connects a function to an event; the browser calls it when the event happens. The function is a <strong>callback</strong>. <code>input</code> fires while a field changes; <code>change</code> signals a committed change; <code>submit</code> is for sending a form.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> field <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> preview <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#preview"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+field<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  preview<span class="token punctuation">.</span>textContent <span class="token operator">=</span> field<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Here the preview follows what you type. For a form, listen for <code>submit</code>. Wrap the field and submit button in this structure, with a place for the message:</p>
+            <pre><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>greeting-form<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Your name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Send<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>form-response<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+            <p>The callback receives an event object; <code>event.preventDefault()</code> stops the browser's normal submission when JavaScript will handle the page:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> form <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#greeting-form"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> nameField <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> formResponse <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#form-response"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+form<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  formResponse<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nameField<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>After stopping submission, show a clear result: do not leave the button without a response. Keyboard input can produce the same events: submitting with Enter should work as well as clicking the button.</p>
+          </section></section>
+          <section id="chapter-forms" class="guide-block guide-chapter"><h2>Forms and data validation</h2><section class="guide-subchapter">
+            <p>Inputs can be empty or contain invalid values. Read the text, trim surrounding spaces, and check a number before using it. An empty string converted with <code>Number()</code> becomes zero; non-numeric text becomes <code>NaN</code>.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> text <span class="token operator">=</span> goalField<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> goal <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>text <span class="token operator">===</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Enter a value"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Number<span class="token punctuation">.</span><span class="token function">isFinite</span><span class="token punctuation">(</span>goal<span class="token punctuation">)</span> <span class="token operator">||</span> goal <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Enter a number greater than zero"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Goal: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>goal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+            <p><code>Number.isFinite</code> excludes <code>NaN</code> and infinities. Checking the text distinguishes an empty field from a valid zero. HTML also provides <code>required</code>, <code>min</code>, and <code>max</code>, but code still needs to handle the values it receives. Try an empty field, zero, letters, and a valid number; invalid and valid input should produce different messages.</p>
           </section></section>
           <section id="chapter-reset" class="guide-block guide-chapter"><h2>Your turn: add Reset</h2><section class="guide-subchapter">
             <p>Before moving on, add a second button below the counter button. The expected result is exact: two clicks on the first button, Reset, then another click should show 1, 2, 0, 1. The name may remain in the field.</p>
@@ -323,6 +459,15 @@ checkGoalButton<span class="token punctuation">.</span><span class="token functi
             <p>The first item has index <code>0</code>; the second has index <code>1</code>. <code>length</code> tells you how many items there are. <code>push(15)</code> adds a value at the end, so the second reading of <code>length</code> is <code>4</code>. <code>includes(5)</code> returns <code>true</code> because <code>5</code> is in the list. Change <code>5</code> to <code>8</code> in the <code>includes</code> call and run the whole block again: you will see <code>false</code>.</p>
             <p><code>const</code> stops you from assigning a new array to the name <code>milestones</code>, but <code>push</code> can change the existing array. If you want a list to stay unchanged, avoid methods that change it. An array is useful when order matters or when you will perform the same action on several items.</p>
           </section></section>
+          <section id="chapter-array-methods" class="guide-block guide-chapter"><h2>Array methods: map, filter, and find</h2><section class="guide-subchapter">
+            <p><code>for...of</code> visits items one at a time. Other methods describe a result directly: <code>map</code> transforms each item into a new array; <code>filter</code> keeps items that pass a condition; <code>find</code> returns the first item that passes it.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> milestones <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> labels <span class="token operator">=</span> milestones<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">At </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>n<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> clicks</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> larger <span class="token operator">=</span> milestones<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token operator">=></span> n <span class="token operator">>=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> next <span class="token operator">=</span> milestones<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token operator">=></span> n <span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labels<span class="token punctuation">,</span> larger<span class="token punctuation">,</span> next<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>The passed function receives each item; the one passed to <code>filter</code> must return a truthy value to keep it. <code>find</code> returns <code>undefined</code> if nothing matches. These methods do not change the starting array; <code>push</code> does. Choose a method based on the result you need and check whether it changes shared data.</p>
+          </section></section>
           <section id="chapter-objects" class="guide-block guide-chapter"><h2>Name the data: the object</h2><section class="guide-subchapter">
             <p>A threshold alone does not tell the whole story. An <strong>object</strong> groups named data, called <strong>properties</strong>. Here a milestone has a threshold and a label; braces create the object and colons separate names from values. A dot reads a property: <code>milestone.threshold</code> is a number and <code>milestone.label</code> is a string.</p>
             <pre><code class="language-javascript"><span class="token punctuation">{</span>
@@ -336,6 +481,42 @@ checkGoalButton<span class="token punctuation">.</span><span class="token functi
             <p>A dot reads a property: <code>milestone.threshold</code> is a number, <code>milestone.label</code> is a string. You can also write <code>milestone["threshold"]</code>, useful when the property name comes from a variable. To change a property, assign <code>milestone.threshold = 5</code>. As with arrays, <code>const</code> protects the name from reassignment; it does not freeze the object’s contents.</p>
             <p>Arrays and objects serve different needs: an array holds a sequence; an object names the parts of one piece of data. For several complete milestones, put several objects inside an array. Now you will use them to build a visible list.</p>
           </section></section>
+          <section id="chapter-object-methods" class="guide-block guide-chapter"><h2>Properties, methods, and this</h2><section class="guide-subchapter">
+            <p>An object can contain functions: a function in a property is a <strong>method</strong>. Properties describe data; methods describe operations on that data.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> counter <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">clicks</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token function">increase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>clicks <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>clicks<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">.</span><span class="token function">increase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span></code></pre>
+            <p>In <code>counter.increase()</code>, <code>this</code> refers to the object receiving the call. If you take the method out and call it alone, its context can change. Arrow functions do not have their own <code>this</code>, so this example uses method syntax. One structured value only needs an object; use a class when you need many instances with the same shape.</p>
+          </section></section>
+          <section id="chapter-classes" class="guide-block guide-chapter"><h2>Classes and instances</h2><section class="guide-subchapter">
+            <p>A <strong>class</strong> describes a shared shape for creating objects; each created object is an <strong>instance</strong>. <code>constructor</code> sets starting data and <code>new</code> creates an instance.</p>
+            <pre><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Counter</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>clicks <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">increase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>clicks <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> first <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Counter</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> second <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Counter</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+first<span class="token punctuation">.</span><span class="token function">increase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>first<span class="token punctuation">.</span>clicks<span class="token punctuation">,</span> second<span class="token punctuation">.</span>clicks<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1, 0</span></code></pre>
+            <p>Each instance shares methods but keeps separate data. Classes are useful when this shape recurs; one object often only needs <code>{ name: "A" }</code>. This guide introduces syntax you will see in real code. Inheritance and prototypes are later topics; they are not needed for simple classes.</p>
+          </section></section>
+          <section id="chapter-references" class="guide-block guide-chapter"><h2>Copying arrays and objects: values and references</h2><section class="guide-subchapter"><p>When you assign a number to a new name, that name receives the value. With arrays and objects, a simple assignment creates another name for the same object: changing it through either name is visible through both.</p><pre><code class="language-javascript"><span class="token keyword">const</span> first <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> alias <span class="token operator">=</span> first<span class="token punctuation">;</span>
+alias<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>first<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [3, 5, 10]</span>
+
+<span class="token keyword">const</span> copy <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>first<span class="token punctuation">]</span><span class="token punctuation">;</span>
+copy<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>first<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [3, 5, 10]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>copy<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// [3, 5, 10, 12]</span></code></pre><p>The <code>[...first]</code> syntax creates a shallow new array. For objects you can also write <code>{ ...settings }</code>. “Shallow” means nested values are still shared: if an object contains another object, this copy does not duplicate it deeply. Knowing whether data is shared helps explain changes that seem to appear in several places.</p></section></section>
           <section id="chapter-loop" class="guide-block guide-chapter"><h2>Repeat without copying the same code</h2><section class="guide-subchapter">
             <p>With three milestones, you could write three separate conditions. A <strong>loop</strong> does the same work for each item of an array. <code>for...of</code> takes one item at a time. In <code>index.html</code>, after the goal elements, add:</p>
             <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>show-milestones<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Show milestones<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
@@ -361,6 +542,27 @@ showMilestonesButton<span class="token punctuation">.</span><span class="token f
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Reload, click the counter five times and press “Show milestones”: two items appear. Press Reset and then “Show milestones” again: the list is empty. <code>for...of</code> visits each object; <code>if</code> checks whether its threshold is reached. <code>createElement("li")</code> creates an item; <code>append</code> adds it to the list. <code>replaceChildren()</code> removes previous items before rebuilding, so the earlier Reset code still works.</p>
             <p>Try adding a fourth object with threshold <code>12</code>. You do not need a fourth <code>if</code>: the loop will include it automatically. That is the practical difference between a list of data and copied instructions.</p>
+          </section></section>
+          <section id="chapter-loop-forms" class="guide-block guide-chapter"><h2>for and while loops</h2><section class="guide-subchapter">
+            <p>Use <code>for...of</code> to visit array items. The classic <code>for</code> is useful when you need an index: it contains a starting value, condition, and update. <code>while</code> repeats while its condition is true.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> milestones <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> milestones<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> milestones<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> wait <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>wait <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  wait <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+            <p>Indexes start at zero, and the last one is <code>length - 1</code>. In a <code>while</code> loop, update the checked value: otherwise the condition may remain true forever. <code>break</code> ends a loop and <code>continue</code> skips to the next turn; use them when they make the rule clearer.</p>
+          </section></section>
+          <section id="chapter-storage" class="guide-block guide-chapter"><h2>Persistence: localStorage and JSON</h2><section class="guide-subchapter">
+            <p>Variables reset when you close the page. <code>localStorage</code> keeps strings between visits. Convert numbers and structures: <code>JSON.stringify</code> creates JSON text and <code>JSON.parse</code> rebuilds the value.</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> settings <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">clicks</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token string">"light"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"settings"</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>settings<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> text <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"settings"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> loaded <span class="token operator">=</span> text <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>loaded<span class="token operator">?.</span>clicks<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3</span></code></pre>
+            <p>A missing key returns <code>null</code>; <code>?.</code> reads a property only when the value is not <code>null</code> or <code>undefined</code>. A real project should also handle malformed saved data, which can make <code>JSON.parse</code> fail. Do not store passwords or private data here: anyone using the browser can read it. Persistence is a project choice, not a requirement for the counter.</p>
           </section></section>
           <section id="chapter-errors" class="guide-block guide-chapter"><h2>Read errors before changing code</h2><section class="guide-subchapter">
             <p>If a click does not produce the expected result, open the Console. Check that <code>script.js</code> is in the same folder as the HTML, that you saved and reloaded, and that IDs match across the two files. A red error often shows the file and line to start from. You can temporarily put <code>console.log(clicks)</code> inside the listener to see whether the count changes.</p>
@@ -401,6 +603,31 @@ waitButton<span class="token punctuation">.</span><span class="token function">a
             <p>Press “Start waiting”: you immediately see “Waiting...” and about a second later “Wait finished.”. The counter still responds to clicks during the wait. <code>setTimeout</code> schedules an action for later; a <code>Promise</code> represents a result that will arrive. <code>async</code> lets you use <code>await</code>: this function pauses until the Promise finishes while the rest of the page keeps working.</p>
             <p>A request with <code>fetch()</code> also returns a Promise, but needs an address that actually responds. You have seen the mechanism in an experiment that works by opening your files. To use server data, you will also need to check the response and handle errors.</p>
           </section></section>
+          <section id="chapter-fetch" class="guide-block guide-chapter"><h2>Fetch and asynchronous requests</h2><section class="guide-subchapter">
+            <p>A timer finishes later; a <code>fetch</code> request also returns a <strong>Promise</strong>, a value representing a future result. The HTTP response and its content are separate steps:</p>
+            <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">loadData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://example.com/data.json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">HTTP </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>response<span class="token punctuation">.</span>status<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Request failed"</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+            <p>The URL is a placeholder: replace it with a real address that returns JSON and allows the request. <code>fetch</code> can complete with a 404 status, so check <code>response.ok</code>. <code>await</code> waits for the response and then JSON conversion; the browser keeps responding while it waits. <code>try/catch</code> lets you handle network or reading errors. To try real requests, start a local server: opening a file with <code>file://</code> is not the same as serving a website.</p>
+          </section></section>
+          <section id="chapter-modules" class="guide-block guide-chapter"><h2>Modules: import and export</h2><section class="guide-subchapter">
+            <p>As <code>script.js</code> grows, you can move functions into other files. <code>export</code> makes a function available; <code>import</code> uses it. Each module has its own scope.</p>
+            <pre><code class="language-javascript"><span class="token comment">// messages.js</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">messageFor</span><span class="token punctuation">(</span><span class="token parameter">clicks</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clicks: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clicks<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// script.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> messageFor <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./messages.js"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">messageFor</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>In HTML, load the entry file with <code>&lt;script type="module" src="script.js"&gt;</code>. Braces indicate a named export, and the names must match. Modules use paths relative to the importing file and the browser loads them over HTTP, so this structure needs a development server. Split a project when separate files make each part's responsibility clearer; you do not need one module per function.</p>
+          </section></section>
           <section id="chapter-comments" class="guide-block guide-chapter"><h2>Annotate a choice in the file</h2><section class="guide-subchapter">
             <p>A <strong>comment</strong> is a note for someone reading the code: JavaScript does not run it. <code>//</code> starts a one-line comment; <code>/* ... */</code> encloses a multi-line one. You have already seen comments in the Console examples, where they marked expected results.</p>
             <pre><code class="language-javascript"><span class="token comment">// These IDs must match those in index.html.</span>
@@ -409,18 +636,14 @@ waitButton<span class="token punctuation">.</span><span class="token function">a
             <p>Add this note above the first two lines of <code>script.js</code>: after reloading, the page behaves as before. Write a comment when it explains a choice or a dependency between files; you do not need to repeat what every instruction already says.</p>
           </section></section>
           <section id="chapter-recap" class="guide-block guide-chapter"><h2>Read the project without skipping steps</h2><section class="guide-subchapter">
-            <p>Before the quiz, follow the full path: HTML creates elements with IDs; <code>querySelector</code> finds them; <code>addEventListener</code> waits for an event; <code>let clicks</code> keeps a number; a condition chooses the message; a function prepares it; <code>textContent</code> displays it. An input returns text and <code>Number()</code> converts it when you need a number.</p>
-            <p>Arrays keep several values in order; objects name the parts of a value; <code>for...of</code> repeats work for each item. The timer shows that a function can wait for a result without stopping the page. If something fails, read the Console and check which value you actually had.</p>
-            <p>Check three things yourself before opening the quiz: the third click shows the special message; with goal <code>5</code> and two clicks there are <code>3</code> clicks to go; with five clicks the list shows two milestones and becomes empty when you update it after Reset. If a check fails, return to the chapter that introduced that rule.</p>
+            <p>Read the project in order: HTML creates elements; the DOM makes them findable; a listener waits for an event; a variable stores state; operators and conditions choose what to do; a function prepares a result; JavaScript updates the page. Fields provide text: trim it, convert it only when needed, and validate the value.</p>
+            <p>Arrays and objects organize data; methods and loops transform it; references and copies explain when a change is shared. Classes create instances with a similar structure. Modules separate files. Timers and <code>fetch</code> show asynchronous results: check responses and errors. <code>localStorage</code> keeps strings between visits. These are distinct ideas, each introduced in its own chapter.</p>
+            <p>Before the quiz, check three results yourself: the special message appears on click three; with a goal of <code>5</code> and two clicks, three remain; after five clicks, the list shows two milestones and becomes empty after Reset and refresh. If a result differs, return to the chapter that introduced that rule.</p>
           </section></section>
           <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>Check what you have understood</h2><section class="guide-subchapter">
-            <p class="quiz-intro">Sixteen questions about the ideas and experiments in this guide. Each answer includes an explanation.</p><div id="quiz-wrapper"></div>
+            <p class="quiz-intro">Twenty-five questions about the ideas and experiments in this guide. Each answer includes an explanation.</p><div id="quiz-wrapper"></div>
           </section></section>
-          <section id="chapter-next" class="guide-block guide-chapter"><h2>When you want to continue</h2><section class="guide-subchapter">
-            <p>This guide gives you the tools to read and change small programs on a page. You can then learn to save data with <code>localStorage</code>, request server data with <code>fetch</code> and split a project into files with modules. Those are later steps: the counter works without them.</p>
-            <p><code>localStorage</code> keeps strings in the browser; a value read from it must be checked and converted if you need a number. <code>fetch</code> needs a real address and a response you can verify. When trying these APIs, use a small local server instead of assuming every example works by opening an HTML file alone.</p>
-            <ul class="guide-list"><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">MDN: JavaScript Guide</a> to learn more of the language.</li><li><a href="/tutorials/browser-devtools/">Browser developer tools</a> to read errors and requests.</li><li><a href="/tutorials/npm-vite-project-structure/">NPM and Vite</a> as your project grows.</li><li><a href="/tutorials/web-accessibility-basics/">Web accessibility</a> to check keyboard and assistive technology use.</li></ul>
-          </section></section>
+          <section id="chapter-next" class="guide-block guide-chapter"><h2>When you want to continue</h2><section class="guide-subchapter"><p>This guide also introduces arrays and objects, methods, classes, modules, browser storage, and asynchronous requests. The next step is to use them in more realistic projects: validate and transform external data, handle loading and errors, organize multiple screens, and learn prototypes and inheritance when a real case calls for them.</p><p>The <code>localStorage</code> and <code>fetch</code> examples are introductions: a complete application must handle invalid saved data, unexpected network responses, and permissions. For deeper study, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">MDN JavaScript Guide</a>.</p></section></section>
 
           <!-- Invito ai template a fine guida (stile pulito .guide-next-step, condiviso) -->
           <aside class="guide-next-step" aria-labelledby="next-step-title">
