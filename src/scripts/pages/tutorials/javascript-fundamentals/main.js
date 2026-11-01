@@ -20,4 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   initGuideToc();
   initGuideQuiz();
   initGuidePlayground();
+
+  const firstDemo = document.querySelector("[data-js-first-demo]");
+  const demoButton = firstDemo?.querySelector("[data-js-demo-button]");
+  const demoOutput = firstDemo?.querySelector("[data-js-demo-output]");
+  if (demoButton && demoOutput) {
+    demoButton.addEventListener("click", () => {
+      demoOutput.textContent = document.documentElement.lang === "it"
+        ? "Hai premuto il pulsante!"
+        : "You pressed the button!";
+    });
+    demoButton.disabled = false;
+  }
 });

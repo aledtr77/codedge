@@ -269,133 +269,133 @@ export const quizzesData = {
   ],
   "javascript-fondamentali": [
     {
-      q: "Qual è lo scopo primario di JavaScript in una pagina web?",
+      q: "Cosa fa JavaScript nella prima prova?",
       options: [
-        "Definire lo scheletro e l'architettura semantica del testo.",
-        "Applicare regole di stile grafico, allineamento spaziale e colori.",
-        "Aggiungere comportamento dinamico, logica ed interattività in tempo reale."
-      ],
-      correct: 2,
-      feedback: {
-        correct: "Esatto! Se l'HTML è lo scheletro e il CSS è la vernice, JavaScript è il motore che permette di reagire al click, inviare dati in background o aggiornare parti di pagina al volo.",
-        wrong: "No. La struttura è definita dall'HTML e lo stile dai CSS. JavaScript serve a rendere gli elementi intelligenti e reattivi."
-      }
-    },
-    {
-      q: "Come si dichiara una variabile in JavaScript il cui valore può essere modificato e riassegnato nel corso del programma?",
-      options: [
-        "Utilizzando la parola chiave 'const'.",
-        "Utilizzando la parola chiave 'let'.",
-        "Inserendo il valore direttamente all'interno del tag HTML &lt;var&gt;."
+        "Crea il pulsante HTML.",
+        "Reagisce al clic e cambia il testo del paragrafo.",
+        "Imposta il colore del pulsante."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Le variabili create con 'let' possono essere modificate liberamente. Quelle create con 'const' sono costanti ed un tentativo di riassegnarle causerà un errore.",
-        wrong: "Errato. La parola chiave 'const' serve a definire valori costanti non riassegnabili. Il tag HTML &lt;var&gt; serve solo ad indicare semanticamente una variabile matematica nel testo."
+        correct: "Il listener riceve il clic e textContent aggiorna il paragrafo.",
+        wrong: "La struttura del pulsante è HTML; JavaScript reagisce al clic e aggiorna il testo."
       }
     },
     {
-      q: "Qual è la differenza principale tra l'operatore di uguaglianza '==' (doppio uguale) e quello di uguaglianza stretta '===' (triplo uguale)?",
+      q: "Perché il progetto usa defer nel tag script?",
       options: [
-        "'==' confronta unicamente il valore (convertendo i tipi se diversi), mentre '===' confronta sia il valore che il tipo di dato (senza conversioni automatiche).",
-        "'===' è un operatore obsoleto ed è stato rimosso dalle versioni moderne di JavaScript.",
-        "'==' controlla solo i numeri, mentre '===' controlla solo le stringhe di testo."
+        "Per eseguire lo script dopo l’analisi dell’HTML.",
+        "Per salvare i clic nel browser.",
+        "Per eseguire lo script solo al clic."
       ],
       correct: 0,
       feedback: {
-        correct: "Esatto! Il triplo uguale '===' (uguaglianza stretta) evita brutte sorprese perché non effettua la conversione di tipo automatica (ad esempio, per '===' il numero 5 è diverso dalla stringa '5').",
-        wrong: "No. Entrambi sono operatori attivi. Il doppio uguale converte i dati prima di confrontarli, mentre il triplo uguale fa un controllo rigoroso sul tipo di dato."
+        correct: "Quando lo script parte, gli elementi HTML sono già stati analizzati.",
+        wrong: "defer riguarda il momento in cui parte lo script, non il salvataggio o gli eventi."
       }
     },
     {
-      q: "Quale delle seguenti sintassi definisce un Array (elenco ordinato) in JavaScript?",
+      q: "Cosa trova document.querySelector(\"#risultato\")?",
       options: [
-        "let lista = {primo: 'mela', secondo: 'banana'};",
-        "let lista = ['mela', 'banana', 'arancia'];",
-        "let lista = 'mela, banana, arancia';"
+        "Tutti i paragrafi della pagina.",
+        "L’elemento con id=\"risultato\".",
+        "Un file chiamato risultato."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Gli array si definiscono utilizzando le parentesi quadre '[ ]' e contengono un elenco ordinato di elementi separati da virgole.",
-        wrong: "Errato. Le parentesi graffe '{ }' definiscono un oggetto (coppie chiave-valore), mentre l'uso delle virgolette crea una semplice stringa di testo singola."
+        correct: "Il simbolo # indica un selettore per ID.",
+        wrong: "querySelector cerca un elemento nella pagina; # indica l’ID."
       }
     },
     {
-      q: "Cosa rappresenta una Funzione in JavaScript?",
+      q: "Quale parola usi per il conteggio che viene riassegnato a ogni clic?",
       options: [
-        "Un file CSS speciale che applica stili di colore al click del mouse.",
-        "Un blocco di codice riutilizzabile progettato per eseguire una specifica operazione ogni volta che viene richiamato.",
-        "Un ciclo di ripetizione che blocca l'esecuzione della pagina finché l'utente non inserisce un dato."
+        "const",
+        "let",
+        "defer"
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Le funzioni permettono di racchiudere una logica ripetitiva sotto un unico nome, rendendola invocabile ovunque ed evitando di riscrivere lo stesso codice.",
-        wrong: "No. Le funzioni sono i mattoni della programmazione imperativa: svolgono compiti logici e non hanno a che fare con fogli di stile o blocchi forzati del browser."
+        correct: "let permette di assegnare un nuovo valore a clic.",
+        wrong: "Il conteggio cambia: let permette la riassegnazione."
       }
     },
     {
-      q: "A cosa serve il metodo del DOM 'document.getElementById()'?",
+      q: "Cosa fa addEventListener(\"click\", ...)?",
       options: [
-        "A creare da zero un nuovo elemento HTML all'interno della pagina.",
-        "A selezionare un elemento HTML esistente nella pagina partendo dal valore del suo attributo 'id'.",
-        "A modificare l'indirizzo IP del server ospitante."
-      ],
-      correct: 1,
-      feedback: {
-        correct: "Esatto! È uno dei metodi storici per accedere al DOM (la struttura della pagina) e manipolare un elemento specifico tramite il suo identificativo unico.",
-        wrong: "Errato. Per creare elementi si usa 'document.createElement()', e JavaScript lato client nel browser non ha potere di modificare l'IP del server."
-      }
-    },
-    {
-      q: "Qual è l'effetto dell'istruzione 'console.log()'?",
-      options: [
-        "Mostra un messaggio nella console degli Strumenti per Sviluppatori (DevTools) del browser, utilissimo per il debug.",
-        "Mostra una finestra pop-up bloccante a centro schermo per catturar l'attenzione dell'utente.",
-        "Salva in modo permanente i dati all'interno del database del server."
+        "Registra codice da eseguire quando arriva un clic.",
+        "Esegue il codice ogni secondo.",
+        "Apre automaticamente la Console."
       ],
       correct: 0,
       feedback: {
-        correct: "Esatto! 'console.log()' stampa messaggi invisibili all'utente comune, ma fondamentali per lo sviluppatore per ispezionare variabili e capire se il codice scorre bene.",
-        wrong: "No. Le finestre pop-up bloccanti sono generate da 'alert()', e 'console.log()' non scrive in nessun database né server."
+        correct: "Il browser chiama la funzione registrata quando il pulsante riceve un clic.",
+        wrong: "Il listener risponde a un evento; non è un timer o uno strumento di debug."
       }
     },
     {
-      q: "Qual è la differenza principale tra un Oggetto e un Array in JavaScript?",
+      q: "Nel contatore, cosa significa clic === 3?",
       options: [
-        "L'Array organizza i dati come una lista ordinata con indici numerici (0, 1, 2...); l'Oggetto organizza i dati tramite coppie di 'chiave: valore'.",
-        "L'Array memorizza esclusivamente stringhe, mentre l'Oggetto memorizza solo numeri.",
-        "Non c'è alcuna differenza, sono lo stesso tipo di dato sotto due nomi diversi."
+        "Aumenta clic di tre.",
+        "Controlla se clic è il numero 3 senza conversioni automatiche.",
+        "Trasforma clic nel testo \"3\"."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "=== confronta i valori senza convertire automaticamente i tipi.",
+        wrong: "=== è un confronto; non assegna o converte il valore."
+      }
+    },
+    {
+      q: "Cosa fa return nella funzione messaggioPer?",
+      options: [
+        "Restituisce il testo al punto in cui la funzione è stata chiamata.",
+        "Ricarica la pagina.",
+        "Azzera il contatore."
       ],
       correct: 0,
       feedback: {
-        correct: "Esatto! Si usa l'array quando l'ordine degli elementi è importante (es. una coda di messaggi). Si usa l'oggetto per descrivere un'entità con proprietà specifiche (es. utente con nome, età, e-mail).",
-        wrong: "No. Entrambi possono memorizzare qualsiasi tipo di dato (numeri, stringhe, funzioni, o altri oggetti/array), ma cambia la loro struttura logica."
+        correct: "La funzione restituisce un testo che il listener usa per aggiornare la pagina.",
+        wrong: "return restituisce un valore dalla funzione; non ricarica la pagina né cambia clic da solo."
       }
     },
     {
-      q: "Che cos'è un 'Evento' in JavaScript?",
+      q: "Quale proprietà legge il testo scritto nel campo nome?",
       options: [
-        "Una conferenza di programmatori per concordare lo sviluppo di nuove API.",
-        "Un segnale inviato dal browser (es. click del mouse, caricamento ultimato, tasto premuto) a cui possiamo associare del codice da eseguire in risposta.",
-        "Un ciclo di temporizzazione programmato che esegue un'operazione ogni ora."
+        "textContent",
+        "value",
+        "src"
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! Gli eventi (come 'click', 'submit', 'keydown') sono la base della programmazione asincrona nel browser, consentendo al codice di reagire alle azioni dell'utente.",
-        wrong: "Errato. I cicli temporizzati si gestiscono con 'setInterval', mentre gli eventi sono legati ad accadimenti reattivi sulla pagina."
+        correct: "value contiene il valore corrente del campo di input.",
+        wrong: "textContent legge o scrive testo di un elemento; src indica un file."
       }
     },
     {
-      q: "Qual è lo scopo della parola chiave 'return' in una funzione?",
+      q: "Perché il progetto usa textContent per mostrare il nome?",
       options: [
-        "Interrompere l'intero programma JavaScript e chiudere la finestra del browser dell'utente.",
-        "Restituire un valore specifico all'esterno, verso il punto in cui la funzione è stata invocata.",
-        "Riavviare la funzione dall'inizio creando un ciclo continuo."
+        "Interpreta il nome come HTML.",
+        "Mostra il nome come testo senza interpretarlo come HTML.",
+        "Salva il nome in localStorage."
       ],
       correct: 1,
       feedback: {
-        correct: "Esatto! 'return' interrompe l'esecuzione della funzione ed invia il valore specificato a chi l'ha chiamata (es. una funzione di calcolo restituisce il risultato numerico).",
-        wrong: "No. Non chiude il browser (per quello si usa window.close) né riavvia la funzione. Serve unicamente ad esportare l'output finale del blocco di codice."
+        correct: "textContent inserisce testo, anche se il nome contiene caratteri simili a tag HTML.",
+        wrong: "textContent non interpreta markup e non salva dati nel browser."
+      }
+    },
+    {
+      q: "Perché il reset assegna clic = 0 oltre a cambiare il testo visibile?",
+      options: [
+        "Per evitare che il conteggio precedente ritorni al clic successivo.",
+        "Per chiudere il browser.",
+        "Per cancellare script.js."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Il valore della variabile è lo stato da cui parte il prossimo clic.",
+        wrong: "Cambiare solo il testo non cambia la variabile che il primo pulsante usa."
       }
     }
   ],

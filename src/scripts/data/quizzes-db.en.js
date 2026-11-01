@@ -406,133 +406,133 @@ export const quizzesData = {
   ],
   "javascript-fondamentali": [
     {
-      q: "What is JavaScript's primary purpose in a web page?",
+      q: "What does JavaScript do in the first experiment?",
       options: [
-        "Defining the skeleton and the semantic architecture of the text.",
-        "Applying visual styling rules, spacing and colours.",
-        "Adding dynamic behaviour, logic and real-time interactivity."
-      ],
-      correct: 2,
-      feedback: {
-        correct: "Exactly! If HTML is the skeleton and CSS is the paint, JavaScript is the engine that lets a page react to a click, send data in the background or refresh part of itself on the fly.",
-        wrong: "No. Structure comes from HTML and styling from CSS. JavaScript is what makes elements smart and responsive."
-      }
-    },
-    {
-      q: "How do you declare a variable whose value can be changed and reassigned later in the program?",
-      options: [
-        "With the 'const' keyword.",
-        "With the 'let' keyword.",
-        "By putting the value straight inside an HTML &lt;var&gt; tag."
+        "It creates the HTML button.",
+        "It reacts to the click and changes the paragraph text.",
+        "It sets the button colour."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Variables created with 'let' can be reassigned freely. Those created with 'const' are constants, and trying to reassign one throws an error.",
-        wrong: "Wrong. The 'const' keyword defines constant values that cannot be reassigned. The HTML &lt;var&gt; tag only marks up a mathematical variable semantically in text."
+        correct: "The listener receives the click and textContent updates the paragraph.",
+        wrong: "HTML provides the button structure; JavaScript reacts to the click and changes the text."
       }
     },
     {
-      q: "What is the main difference between the equality operator '==' and the strict equality operator '==='?",
+      q: "Why does the project use defer on the script tag?",
       options: [
-        "'==' compares values only (converting types when they differ), while '===' compares both value and data type (with no automatic conversion).",
-        "'===' is deprecated and has been removed from modern versions of JavaScript.",
-        "'==' only checks numbers, while '===' only checks text strings."
+        "To run the script after HTML parsing.",
+        "To save clicks in the browser.",
+        "To run the script only on a click."
       ],
       correct: 0,
       feedback: {
-        correct: "Exactly! Strict equality '===' avoids nasty surprises because it performs no automatic type coercion (for '===', the number 5 is not the same as the string '5').",
-        wrong: "No. Both operators are alive and well. The double equals coerces the values before comparing them, while the triple equals checks the type strictly."
+        correct: "The HTML elements have been parsed by the time the script runs.",
+        wrong: "defer controls when the script starts, not storage or events."
       }
     },
     {
-      q: "Which of these declares an Array (an ordered list) in JavaScript?",
+      q: "What does document.querySelector(\"#result\") find?",
       options: [
-        "let list = {first: 'apple', second: 'banana'};",
-        "let list = ['apple', 'banana', 'orange'];",
-        "let list = 'apple, banana, orange';"
+        "Every paragraph on the page.",
+        "The element with id=\"result\".",
+        "A file named result."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Arrays are written with square brackets '[ ]' and hold an ordered list of comma-separated items.",
-        wrong: "Wrong. Curly braces '{ }' define an object (key-value pairs), and wrapping it in quotes just makes a single plain string."
+        correct: "The # character denotes an ID selector.",
+        wrong: "querySelector searches the page; # denotes an ID."
       }
     },
     {
-      q: "What is a Function in JavaScript?",
+      q: "Which keyword fits a count that is reassigned on each click?",
       options: [
-        "A special CSS file that applies colour styles on a mouse click.",
-        "A reusable block of code designed to carry out a specific task every time it is called.",
-        "A loop that blocks the page until the user enters some data."
+        "const",
+        "let",
+        "defer"
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Functions let you wrap repetitive logic under a single name, callable from anywhere, so you never rewrite the same code twice.",
-        wrong: "No. Functions are the building blocks of imperative programming: they perform logical tasks and have nothing to do with stylesheets or blocking the browser."
+        correct: "let allows a new value to be assigned to clicks.",
+        wrong: "The count changes: let permits reassignment."
       }
     },
     {
-      q: "What does the DOM method 'document.getElementById()' do?",
+      q: "What does addEventListener(\"click\", ...) do?",
       options: [
-        "It creates a brand new HTML element inside the page.",
-        "It selects an existing HTML element in the page by the value of its 'id' attribute.",
-        "It changes the IP address of the hosting server."
-      ],
-      correct: 1,
-      feedback: {
-        correct: "Exactly! It is one of the classic ways to reach into the DOM (the page's structure) and work with one specific element through its unique identifier.",
-        wrong: "Wrong. Creating elements is 'document.createElement()', and client-side JavaScript in the browser has no power to change a server's IP."
-      }
-    },
-    {
-      q: "What does 'console.log()' do?",
-      options: [
-        "It prints a message to the browser's DevTools console, which is invaluable for debugging.",
-        "It shows a blocking pop-up in the middle of the screen to grab the user's attention.",
-        "It saves data permanently in the server's database."
+        "It registers code to run when a click occurs.",
+        "It runs the code every second.",
+        "It opens the Console automatically."
       ],
       correct: 0,
       feedback: {
-        correct: "Exactly! 'console.log()' prints messages that ordinary visitors never see but that let a developer inspect variables and check whether the code is flowing as expected.",
-        wrong: "No. Blocking pop-ups come from 'alert()', and 'console.log()' writes to no database and no server."
+        correct: "The browser calls the registered function when the button receives a click.",
+        wrong: "A listener responds to an event; it is not a timer or a debugging tool."
       }
     },
     {
-      q: "What is the main difference between an Object and an Array in JavaScript?",
+      q: "In the counter, what does clicks === 3 mean?",
       options: [
-        "An Array organises data as an ordered list with numeric indexes (0, 1, 2…); an Object organises data as 'key: value' pairs.",
-        "An Array stores only strings, while an Object stores only numbers.",
-        "There is no difference, they are the same data type under two names."
+        "It increases clicks by three.",
+        "It checks whether clicks is the number 3 without automatic conversion.",
+        "It turns clicks into the text \"3\"."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "=== compares values without automatically converting types.",
+        wrong: "=== compares; it does not assign or convert the value."
+      }
+    },
+    {
+      q: "What does return do in the messageFor function?",
+      options: [
+        "It gives text back to the place that called the function.",
+        "It reloads the page.",
+        "It resets the counter."
       ],
       correct: 0,
       feedback: {
-        correct: "Exactly! Use an array when the order of the items matters (a queue of messages, say). Use an object to describe an entity with named properties (a user with a name, an age, an email).",
-        wrong: "No. Both can hold any type of data (numbers, strings, functions, other objects or arrays) — what differs is how they are structured."
+        correct: "The function returns text that the listener uses to update the page.",
+        wrong: "return gives back a value; it does not reload the page or change clicks by itself."
       }
     },
     {
-      q: "What is an 'Event' in JavaScript?",
+      q: "Which property reads text entered in the name field?",
       options: [
-        "A developer conference where new APIs are agreed on.",
-        "A signal sent by the browser (a mouse click, a finished load, a key press) that you can attach code to and run in response.",
-        "A scheduled timer that runs an operation once an hour."
+        "textContent",
+        "value",
+        "src"
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! Events such as 'click', 'submit' and 'keydown' are the foundation of asynchronous programming in the browser, letting your code react to what the user does.",
-        wrong: "Wrong. Timed loops are handled by 'setInterval'; events are tied to things that actually happen on the page."
+        correct: "value holds the current input value.",
+        wrong: "textContent reads or writes element text; src points to a file."
       }
     },
     {
-      q: "What is the 'return' keyword for in a function?",
+      q: "Why does the project use textContent to show the name?",
       options: [
-        "Halting the entire JavaScript program and closing the user's browser window.",
-        "Sending a specific value back out to wherever the function was called from.",
-        "Restarting the function from the top, creating an endless loop."
+        "It interprets the name as HTML.",
+        "It shows the name as text without interpreting it as HTML.",
+        "It saves the name in localStorage."
       ],
       correct: 1,
       feedback: {
-        correct: "Exactly! 'return' stops the function right there and hands the given value back to the caller (a calculation function returning its numeric result, for instance).",
-        wrong: "No. It neither closes the browser (that would be window.close) nor restarts the function. Its only job is to hand the block's final output back out."
+        correct: "textContent inserts text even if the name contains characters resembling HTML tags.",
+        wrong: "textContent does not interpret markup or save data in the browser."
+      }
+    },
+    {
+      q: "Why does reset assign clicks = 0 as well as changing the visible text?",
+      options: [
+        "So the old count does not return on the next click.",
+        "To close the browser.",
+        "To delete script.js."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "The variable is the state used by the next click.",
+        wrong: "Changing only the visible text does not change the variable used by the first button."
       }
     }
   ],

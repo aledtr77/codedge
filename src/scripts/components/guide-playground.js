@@ -373,7 +373,7 @@ export default function initGuidePlayground() {
       copyBtn.innerHTML = `<i class="fas fa-copy"></i> ${t("playground.copy")}`;
       toolbar.appendChild(copyBtn);
 
-      if (lang === "html" || lang === "css") {
+      if ((lang === "html" || lang === "css") && !codeEl.hasAttribute("data-no-live")) {
         const editBtn = document.createElement("button");
         editBtn.type = "button";
         editBtn.className = "code-btn";
@@ -383,7 +383,7 @@ export default function initGuidePlayground() {
       }
 
       wrapper.appendChild(toolbar);
-    } else if (lang === "html" || lang === "css") {
+    } else if ((lang === "html" || lang === "css") && !codeEl.hasAttribute("data-no-live")) {
       // snippet-box: one "Prova Live" in the title-box, next to the other box
       // actions (desktop and mobile share the same placement)
       const titleBox = snippetBox.querySelector('.title-box');

@@ -8,16 +8,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/critical.css" />
-  <title>JavaScript: i fondamentali | Basi pratiche ed errori da evitare | Codedge</title>
+  <title>JavaScript: i fondamentali | Impara con una pagina pratica | Codedge</title>
   <meta
     name="description"
-    content="Una guida pratica e approfondita su JavaScript: scoping, variabili, uguaglianza, funzioni, DOM, eventi ed asincronia con async/await. Cose che gli altri tutorial non spiegano chiaramente.">
+    content="Impara JavaScript con una pagina da modificare passo dopo passo: primi clic, variabili, condizioni, funzioni, DOM e un esercizio di reset.">
   <link rel="canonical" href="https://codedge.it/it/tutorial/javascript-fondamentali/">
   <meta property="og:locale" content="it_IT" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CODEDGE" />
-  <meta property="og:title" content="JavaScript: i fondamentali | Basi pratiche ed errori da evitare | Codedge" />
-  <meta property="og:description" content="Una guida pratica e approfondita su JavaScript: scoping, variabili, uguaglianza, funzioni, DOM, eventi ed asincronia con async/await. Cose che gli altri tutorial non spiegano chiaramente." />
+  <meta property="og:title" content="JavaScript: i fondamentali | Impara con una pagina pratica | Codedge" />
+  <meta property="og:description" content="Impara JavaScript con una pagina da modificare passo dopo passo: primi clic, variabili, condizioni, funzioni, DOM e un esercizio di reset." />
   <meta property="og:url" content="https://codedge.it/it/tutorial/javascript-fondamentali/" />
   <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -25,8 +25,8 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Anteprima guida JavaScript fondamentali" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="JavaScript: i fondamentali | Basi pratiche ed errori da evitare | Codedge" />
-  <meta name="twitter:description" content="Una guida pratica e approfondita su JavaScript: scoping, variabili, uguaglianza, funzioni, DOM, eventi ed asincronia con async/await. Cose che gli altri tutorial non spiegano chiaramente." />
+  <meta name="twitter:title" content="JavaScript: i fondamentali | Impara con una pagina pratica | Codedge" />
+  <meta name="twitter:description" content="Impara JavaScript con una pagina da modificare passo dopo passo: primi clic, variabili, condizioni, funzioni, DOM e un esercizio di reset." />
   <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
 
   <link rel="icon" href="/icons/favicon-mask.svg" sizes="any" type="image/svg+xml" />
@@ -52,7 +52,7 @@
   </style>
 </head>
 
-<body>
+<body class="learning-guide">
   <header>
     <nav class="navbar" aria-label="Navigazione principale">
       <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
@@ -68,452 +68,228 @@
       <div class="guide-layout">
         <aside class="guide-toc" aria-label="Indice navigabile guida JavaScript: i fondamentali">
           <h2>Indice guida</h2>
-          <ol class="guide-toc-list">
-            <li><a href="#chapter-01">Nota iniziale</a></li>
-            <li><a href="#chapter-02">1. La mente del Browser: cos'è JS e come funziona</a></li>
-            <li><a href="#chapter-03">2. Il tag Script: la battaglia di async vs defer</a></li>
-            <li><a href="#chapter-04">3. Variabili, Scope e addio definitivo a var</a></li>
-            <li><a href="#chapter-05">4. Tipi di dati, Referenze e l'uguaglianza dei cloni</a></li>
-            <li><a href="#chapter-06">5. Funzioni: Classic vs Arrow (e il mistero di this)</a></li>
-            <li><a href="#chapter-07">6. Oggetti, Array ed operatori moderni</a></li>
-            <li><a href="#chapter-08">7. DOM Manipulation: l'interfaccia si risveglia</a></li>
-            <li><a href="#chapter-09">8. Catturare i click: la gestione degli Eventi</a></li>
-            <li><a href="#chapter-10">9. L'Asincronia spiegata agli umani: async/await</a></li>
-            <li><a href="#chapter-11">10. Evitare l'autodistruzione: try/catch</a></li>
-            <li><a href="#chapter-12">11. Web Storage: salvare le preferenze dell'utente</a></li>
-            <li><a href="#chapter-13">12. I comportamenti più folli di JavaScript (e come sopravvivere)</a></li>
-            <li><a href="#chapter-14">13. Debugging professionale: oltre il console.log</a></li>
-            <li><a href="#chapter-cheatsheet">14. Sintassi rapida (Cheat Sheet)</a></li>
-            <li><a href="#chapter-challenge">15. Sfida pratica: Mettiti alla prova</a></li>
-            <li><a href="#chapter-15">16. Dove continuare dopo</a></li>
-            <li><a href="#chapter-quiz">17. Verifica la preparazione (Quiz)</a></li>
-          </ol>
+<p class="guide-toc-group">Percorso essenziale</p><ol class="guide-toc-list">
+<li><a href="#chapter-01">Prima di iniziare</a></li>
+<li><a href="#chapter-goal">Cosa vedrai nel browser</a></li>
+<li><a href="#chapter-02">1. Creare la pagina e collegare JavaScript</a></li>
+<li><a href="#chapter-03">2. Leggere le istruzioni appena usate</a></li>
+<li><a href="#chapter-comments">3. Aggiungere un commento</a></li>
+<li><a href="#chapter-04">4. Ricordare i clic con una variabile</a></li>
+<li><a href="#chapter-05">5. Scegliere un messaggio con if</a></li>
+<li><a href="#chapter-06">6. Mettere la scelta in una funzione</a></li>
+<li><a href="#chapter-07">7. Leggere un valore scritto nella pagina</a></li>
+<li><a href="#chapter-debug">8. Capire perché qualcosa non funziona</a></li>
+<li><a href="#chapter-challenge">9. Esercizio: aggiungere un pulsante di reset</a></li>
+<li><a href="#chapter-cheatsheet">10. Riepilogo dei concetti</a></li>
+<li><a href="#chapter-quiz">11. Verifica dei fondamentali</a></li>
+</ol>
+<p class="guide-toc-group">Approfondimenti</p><ol class="guide-toc-list">
+<li><a href="#chapter-08">12. Approfondimento: array e oggetti</a></li>
+<li><a href="#chapter-10">13. Approfondimento: conservare il conteggio</a></li>
+<li><a href="#chapter-11">14. Approfondimento: attendere un risultato</a></li>
+<li><a href="#chapter-12">15. Approfondimento: quando parte uno script</a></li>
+<li><a href="#chapter-15">Fonti e prossimi passi</a></li>
+</ol>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida JavaScript: i fondamentali">
 
-          <!-- CAPITOLO 01 — NOTA INIZIALE -->
+          <details class="guide-mobile-toc"><summary>Apri l’indice della guida</summary><nav aria-label="Indice della guida JavaScript"><ol>
+          <li><a href="#chapter-01">Prima di iniziare</a></li>
+<li><a href="#chapter-goal">Cosa vedrai nel browser</a></li>
+<li><a href="#chapter-02">1. Creare la pagina e collegare JavaScript</a></li>
+<li><a href="#chapter-03">2. Leggere le istruzioni appena usate</a></li>
+<li><a href="#chapter-comments">3. Aggiungere un commento</a></li>
+<li><a href="#chapter-04">4. Ricordare i clic con una variabile</a></li>
+<li><a href="#chapter-05">5. Scegliere un messaggio con if</a></li>
+<li><a href="#chapter-06">6. Mettere la scelta in una funzione</a></li>
+<li><a href="#chapter-07">7. Leggere un valore scritto nella pagina</a></li>
+<li><a href="#chapter-debug">8. Capire perché qualcosa non funziona</a></li>
+<li><a href="#chapter-challenge">9. Esercizio: aggiungere un pulsante di reset</a></li>
+<li><a href="#chapter-cheatsheet">10. Riepilogo dei concetti</a></li>
+<li><a href="#chapter-quiz">11. Verifica dei fondamentali</a></li>
+<li><a href="#chapter-08">12. Approfondimento: array e oggetti</a></li>
+<li><a href="#chapter-10">13. Approfondimento: conservare il conteggio</a></li>
+<li><a href="#chapter-11">14. Approfondimento: attendere un risultato</a></li>
+<li><a href="#chapter-12">15. Approfondimento: quando parte uno script</a></li>
+<li><a href="#chapter-15">Fonti e prossimi passi</a></li>
+          </ol></nav></details>
           <section id="chapter-01" class="guide-block guide-chapter">
-            <div class="guide-intro-layout">
-              <div class="guide-intro-copy">
-                <p class="guide-intro-kicker">Programmazione dinamica per il web</p>
-                <h2>Nota iniziale</h2>
-                <section class="guide-subchapter">
-                  <p>Se l'HTML rappresenta lo scheletro e il CSS l'estetica visiva, JavaScript è la mente logica e i muscoli della pagina web. È lo strumento che trasforma un documento di testo statico in un'applicazione vivente, capace di reagire al passaggio del mouse, inviare e ricevere informazioni dal server in background e mutare aspetto dinamicamente.</p>
-                  <p>In questa guida non ti sommergerò di sintassi astratta ed esercizi puramente accademici. Lavoreremo invece sulla costruzione di solidi modelli mentali: capiremo come ragiona il motore del browser, come domare l'asincronia delle chiamate web e come gestire l'interfaccia utente in modo pulito e sicuro.</p>
-                  <p>Apri la console degli strumenti sviluppatori e iniziamo a scrivere la logica del nostro codice.</p>
-                </section>
-              </div>
-              <figure class="guide-figure guide-figure--editorial">
-                <img src="/images/percorsi-apprendimento/javascript-fondamentali/copertina-editoriale.webp" alt="Illustrazione di apertura della guida JavaScript fondamentali" decoding="async" width="1024" height="1024">
-              </figure>
-            </div>
+            <div class="guide-intro-layout"><div class="guide-intro-copy">
+              <h2>Prima di iniziare</h2><section class="guide-subchapter">
+                <p>Qui prenderai confidenza con JavaScript modificando una sola piccola pagina. All’inizio un pulsante cambierà un testo; poi aggiungerai un contatore e un campo per scrivere il tuo nome. A ogni passaggio salverai i file, ricaricherai il browser e vedrai cosa è cambiato.</p>
+                <p>Ti servono un browser e un editor di codice, per esempio <a href="/it/tutorial/vscode-essenziale/">Visual Studio Code</a>. Se tag, attributi e pulsanti HTML sono nuovi per te, consulta prima la <a href="/it/tutorial/html-fondamentali/">guida HTML</a>. JavaScript aggiunge comportamento a quella struttura; il CSS può curarne l’aspetto, ma qui ci concentriamo su ciò che accade quando interagisci con la pagina.</p>
+                <p>Non copriremo tutto il linguaggio. Imparerai le istruzioni che servono per questa prova; gli argomenti successivi sono raccolti negli approfondimenti.</p>
+                <div class="guide-quick-path"><strong>Il percorso breve</strong><p>Segui <a href="#chapter-02">i due file iniziali</a>, <a href="#chapter-03">la prima modifica</a>, <a href="#chapter-04">il contatore</a>, <a href="#chapter-05">la condizione</a>, <a href="#chapter-06">la funzione</a> e <a href="#chapter-challenge">l’esercizio finale</a>. Puoi tornare agli altri capitoli quando ti servono.</p></div>
+              </section></div><figure class="guide-figure guide-figure--editorial"><img src="/images/percorsi-apprendimento/javascript-fondamentali/copertina-editoriale.webp" alt="Illustrazione di apertura della guida JavaScript fondamentali" decoding="async" width="1024" height="1024"></figure></div>
           </section>
+          <section id="chapter-goal" class="guide-block guide-chapter"><h2>Cosa vedrai nel browser</h2><section class="guide-subchapter">
+            <p>Questa è la prima prova: il testo cambia quando premi il pulsante. La stessa cosa accadrà nella pagina che creerai. Il pulsante è HTML; JavaScript ascolta il clic e aggiorna il paragrafo.</p>
+            <div class="guide-project-step" data-js-first-demo><button class="button-simple" type="button" data-js-demo-button disabled>Mostra messaggio</button><p data-js-demo-output aria-live="polite">Nessun clic, per ora.</p></div>
+            <p>Se la prova qui sopra non reagisce, puoi comunque seguire tutti i passaggi nei tuoi file: il codice completo è nel capitolo seguente.</p>
+          </section></section>
+          <section id="chapter-02" class="guide-block guide-chapter"><h2>1. Creare la pagina e collegare JavaScript</h2><section class="guide-subchapter">
+            <p>Crea una cartella <code>prova-js</code> e aprila nell’editor. Dentro crea <code>index.html</code> e <code>script.js</code>. In <code>index.html</code> scrivi:</p>
+            <pre><code class="language-markup" data-no-live><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>it<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>La mia prima prova JavaScript<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>La mia prima prova<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pulsante<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Mostra messaggio<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>risultato<span class="token punctuation">"</span></span> <span class="token attr-name">aria-live</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>polite<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Nessun clic, per ora.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+            <p>In <code>script.js</code> scrivi:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-          <!-- CAPITOLO 02 — COS'È JS E COME FUNZIONA -->
-          <section id="chapter-02" class="guide-block guide-chapter">
-            <h2>1. La mente del Browser: cos'è JS e come funziona</h2>
-            <section class="guide-subchapter">
-              <p>Nota storica importante per fare bella figura alle interviste di lavoro: <strong>JavaScript non ha nulla a che fare con Java</strong>. Hanno in comune solo le prime quattro lettere per pure ragioni di marketing risalenti alla metà degli anni '90. JS è nato per girare direttamente nei browser, rendendo le pagine interattive.</p>
-              <p>I browser moderni eseguono JavaScript a velocità supersonica grazie a motori complessi come **V8** (usato da Chrome, Edge e Node.js). Questi motori compiono una compilazione chiamata **JIT (Just-In-Time)**: convertono il codice sorgente in codice macchina super-ottimizzato una frazione di secondo prima di eseguirlo.</p>
-              
-              <h3>La metafora della cucina con un solo chef (Single Thread ed Event Loop)</h3>
-              <p>Il concetto più importante da tenere a mente è che JavaScript è **single-threaded**: ha una sola linea di esecuzione, il che significa che può fare una sola cosa alla volta.</p>
-              <p>Immagina la linea di esecuzione come una **cucina con un solo chef**. Se un cliente ordina una bistecca che richiede 20 minuti di cottura (una richiesta di rete o l'attesa di un file dal server), lo chef non può bloccarsi fermo davanti alla griglia senza fare nient'altro, altrimenti la cucina (il tuo sito) rimarrebbe congelata e i clienti se ne andrebbero infuriati.</p>
-              <p>Ecco come risolve il problema JavaScript:</p>
-              <ul class="guide-list">
-                <li>Lo chef mette la bistecca sulla griglia ed imposta un timer.</li>
-                <li>Nel frattempo, lo chef continua a preparare antipasti e insalate per gli altri ordini (continua l'esecuzione del codice sincrono).</li>
-                <li>Il controllo della cottura viene delegato a un assistente esterno alla cucina (le **Web API del browser**).</li>
-                <li>Quando il timer suona, l'assistente inserisce la bistecca cotta in un nastro trasportatore che scorre all'ingresso della cucina (la **Callback Queue**).</li>
-                <li>Lo chef controlla costantemente se il tagliere principale è libero. Non appena finisce di preparare gli ordini correnti (grazie all'**Event Loop**), prende la bistecca dal nastro e la impiatta per servirla.</li>
-              </ul>
-              <p>Questo permette a JavaScript di gestire operazioni lunghissime senza mai congelare l'interfaccia utente.</p>
+pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Hai premuto il pulsante!"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Salva i file e apri <code>index.html</code> nel browser. Prima del clic leggi “Nessun clic, per ora.”; dopo il clic leggi “Hai premuto il pulsante!”. Cambia il testo tra virgolette in <code>script.js</code>, salva e ricarica: il messaggio nuovo apparirà al prossimo clic.</p>
+            <p><code>src="script.js"</code> indica il file nella stessa cartella. <code>defer</code> fa eseguire questo script dopo che il browser ha letto l’HTML: il pulsante esiste già quando JavaScript lo cerca. Se non succede nulla, controlla il nome del file e apri la console del browser per cercare un errore.</p>
+          </section></section>
+          <section id="chapter-03" class="guide-block guide-chapter"><h2>2. Leggere le istruzioni appena usate</h2><section class="guide-subchapter">
+            <p><code>document.querySelector("#pulsante")</code> trova l’elemento con <code>id="pulsante"</code>. Il simbolo <code>#</code> segue la sintassi dei selettori CSS. La seconda riga trova il paragrafo. <code>const</code> dà un nome a ciascun elemento trovato, così puoi usarlo nelle righe successive.</p>
+            <p><code>addEventListener("click", ...)</code> registra una funzione da eseguire quando arriva un clic. Le istruzioni tra <code>{</code> e <code>}</code> non partono subito. Al clic, <code>textContent</code> sostituisce il testo del paragrafo. Questo è il <strong>DOM</strong>: la struttura della pagina che JavaScript può leggere e modificare.</p>
+            <p>Prova a cambiare <code>#risultato</code> in <code>#inesistente</code> e ricarica. Il clic non funziona: il selettore non trova un elemento, quindi <code>risultato</code> vale <code>null</code>. Rimetti <code>#risultato</code>. Il nome nell’HTML e quello nello script devono coincidere.</p>
+            <p>Per un elemento con ID puoi usare anche <code>document.getElementById("risultato")</code>: qui usiamo <code>querySelector</code> perché permette anche selettori di classe e di elemento.</p>
+          </section></section>
+          <section id="chapter-comments" class="guide-block guide-chapter"><h2>3. Aggiungere un commento</h2><section class="guide-subchapter">
+            <p>Un commento serve a spiegare una scelta nel file; il browser non lo esegue. Puoi scriverlo su una riga con <code>//</code> oppure su più righe tra <code>/*</code> e <code>*/</code>. Per esempio, sopra le due selezioni puoi ricordare perché devono corrispondere all’HTML:</p>
+            <pre><code class="language-javascript"><span class="token comment">// Gli ID devono coincidere con quelli in index.html.</span>
+<span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Aggiungi il commento e ricarica: la pagina si comporta esattamente come prima. Non serve commentare ogni istruzione; qui stai segnando una dipendenza tra due file.</p>
+          </section></section>
+          <section id="chapter-04" class="guide-block guide-chapter"><h2>4. Ricordare i clic con una variabile</h2><section class="guide-subchapter">
+            <p>Ora il messaggio è sempre uguale. Vogliamo contare quante volte premi il pulsante. Sostituisci tutto il contenuto di <code>script.js</code> con questo:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> clic <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-              <figure class="guide-figure">
-                <img src="/images/percorsi-apprendimento/javascript-fondamentali/event-loop.svg" alt="Diagramma dell'Event Loop in JavaScript" loading="lazy" decoding="async" width="1200" height="520">
-                <figcaption>Rappresentazione del ciclo asincrono controllato dall'Event Loop per far comunicare Call Stack, Web APIs e Callback Queue.</figcaption>
-              </figure>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 03 — COLLEGAMENTO -->
-          <section id="chapter-03" class="guide-block guide-chapter">
-            <h2>2. Il tag Script: la battaglia di async vs defer</h2>
-            <section class="guide-subchapter">
-              <p>Per agganciare un file JavaScript a una pagina HTML usiamo il tag `&lt;script src="script.js"&gt;&lt;/script&gt;`. Ma dove va posizionato questo tag? Di default, quando il browser incontra uno script mentre analizza l'HTML, interrompe la costruzione della pagina per scaricare ed eseguire il file, rallentando drasticamente il caricamento visivo.</p>
-              <p>Per risolvere questo problema, gli sviluppatori moderni inseriscono il tag nell'head della pagina usando due attributi magici:</p>
-              <pre><code class="language-markup"><span class="token comment">&lt;!-- Scarica in background, esegue IMMEDIATAMENTE appena pronto (può bloccare l'HTML) --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>statistiche.js<span class="token punctuation">"</span></span> <span class="token attr-name">async</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-
-<span class="token comment">&lt;!-- Scarica in background, esegue SOLO quando l'HTML è stato interamente analizzato --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app-logica.js<span class="token punctuation">"</span></span> <span class="token attr-name">defer</span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
-              <h3>Quale scegliere?</h3>
-              <ul class="guide-list">
-                <li><strong>`async`</strong>: perfetto per script esterni che non dipendono da altri file e non hanno bisogno di interagire subito con la pagina (es. i pixel di tracciamento di Google Analytics o Facebook). Non viene garantito l'ordine di esecuzione.</li>
-                <li><strong>`defer`</strong>: lo standard per i tuoi file di logica. Garantisce che gli script vengano eseguiti nell'ordine esatto in cui sono scritti nell'HTML, e solo dopo che la struttura della pagina è del tutto pronta, evitando errori in cui il codice tenta di modificare tag non ancora creati.</li>
-              </ul>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 04 — VARIABILI E SCOPE -->
-          <section id="chapter-04" class="guide-block guide-chapter">
-            <h2>3. Variabili, Scope e addio definitivo a var</h2>
-            <section class="guide-subchapter">
-              <p>In JavaScript lo **Scope** definisce la zona del codice in cui una variabile è visibile e utilizzabile. Esistono tre livelli di scope:</p>
-              <ul class="guide-list">
-                <li><strong>Scope Globale</strong>: visibile ovunque nel file.</li>
-                <li><strong>Scope di Funzione</strong>: visibile solo all'interno della funzione in cui è stata dichiarata.</li>
-                <li><strong>Scope di Blocco</strong>: visibile solo all'interno di una coppia di parentesi graffe `{ ... }` (come in un ciclo `for` o un costrutto `if`).</li>
-              </ul>
-              <h3>Il problema di var e la stabilità di let/const</h3>
-              <p>In passato in JavaScript si usava solo `var`. Tuttavia, `var` **ignora completamente lo scope di blocco**, "scappando" all'esterno di cicli e condizioni e creando bug silenziosi e difficili da trovare. JavaScript moderno introduce `let` e `const` che rispettano rigorosamente lo scope di blocco:</p>
-              <pre><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">var</span> scappa <span class="token operator">=</span> <span class="token string">"Sono visibile fuori!"</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> protetta <span class="token operator">=</span> <span class="token string">"Rimango qui dentro."</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>scappa<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// Stampa "Sono visibile fuori!"</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>protetta<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ReferenceError! (Corretto e sicuro)</span></code></pre>
-              <h3>const blocca il riferimento, non l'oggetto</h3>
-              <p>Molti sviluppatori credono erroneamente che dichiarare un oggetto con `const` lo renda immutabile. Non è così: `const` impedisce di **riassegnare il valore** della variabile ad un altro oggetto, ma ti permette di **modificare le proprietà interne** dell'oggetto stesso:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> utente <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">nome</span><span class="token operator">:</span> <span class="token string">"Chiara"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-utente<span class="token punctuation">.</span>nome <span class="token operator">=</span> <span class="token string">"Sofia"</span><span class="token punctuation">;</span> <span class="token comment">// Funziona perfettamente! L'oggetto viene modificato.</span>
-
-<span class="token comment">// utente = { nome: "Marco" }; // TypeError! (La riassegnazione è bloccata)</span></code></pre>
-              <p><strong>Regola aurea</strong>: usa sempre `const` come scelta predefinita. Passa a `let` solo se sai che il valore di quella variabile dovrà essere riassegnato (es. nei contatori dei cicli). Bandisci definitivamente `var` dal tuo codice.</p>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 05 — DATA TYPES E UGUAGLIANZA -->
-          <section id="chapter-05" class="guide-block guide-chapter">
-            <h2>4. Tipi di dati, Referenze e l'uguaglianza dei cloni</h2>
-            <section class="guide-subchapter">
-              <p>I tipi di dati in JavaScript si dividono in due grandi categorie logiche:</p>
-              <ul class="guide-list">
-                <li><strong>Tipi Primitivi</strong> (String, Number, Boolean, Null, Undefined, Symbol, BigInt): vengono passati **per valore**. Se copi una variabile, crei un clone del tutto indipendente.</li>
-                <li><strong>Tipi di Riferimento</strong> (Object, Array, Function): vengono passati **per riferimento** (indirizzo di memoria). Copiare un oggetto copia solo la chiave per aprirlo in memoria: modificando la copia, modificherai l'originale.</li>
-              </ul>
-              <pre><code class="language-javascript"><span class="token keyword">let</span> nome1 <span class="token operator">=</span> <span class="token string">"Alice"</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> nome2 <span class="token operator">=</span> nome1<span class="token punctuation">;</span> <span class="token comment">// Copia il valore</span>
-nome2 <span class="token operator">=</span> <span class="token string">"Bob"</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>nome1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Alice" (Rimane intatta)</span>
-
-<span class="token keyword">let</span> array1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> array2 <span class="token operator">=</span> array1<span class="token punctuation">;</span> <span class="token comment">// Copia il riferimento in memoria</span>
-array2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [1, 2, 3] (Modificata anche l'originale!)</span></code></pre>
-              <h3>L'uguaglianza debole (==) vs stretta (===)</h3>
-              <p>Non usare mai l'operatore di uguaglianza debole `==`. Tenta di convertire automaticamente i tipi diversi prima di confrontarli, producendo risultati insensati come `"" == 0` (true) o `0 == false` (true).</p>
-              <p>Usa **sempre** l'operatore di uguaglianza stretta `===` (e il suo opposto `!==`), che controlla sia il valore sia il tipo senza compiere conversioni:</p>
-              <pre><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">==</span> <span class="token string">"5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// true (Conversione automatica di tipo)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">===</span> <span class="token string">"5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false (Tipi diversi: Number vs String)</span></code></pre>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 06 — FUNZIONI -->
-          <section id="chapter-06" class="guide-block guide-chapter">
-            <h2>5. Funzioni: Classic vs Arrow (e il mistero di this)</h2>
-            <section class="guide-subchapter">
-              <p>Le funzioni racchiudono blocchi di codice riutilizzabili. Oltre alle funzioni classiche, in JavaScript moderno usiamo molto le <a href="/it/risorse/glossario-js/?q=arrow%20function">Arrow Functions</a> (funzioni a freccia).</p>
-              <p>Le funzioni classiche godono dell'**hoisting**: puoi invocarle nel file prima ancora della riga in cui le hai dichiarate, perché il browser le carica in memoria all'avvio dello script. Le Arrow Functions non hanno questa proprietà e offrono una sintassi ultra-compatta:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">quadrato</span> <span class="token operator">=</span> <span class="token parameter">x</span> <span class="token operator">=></span> x <span class="token operator">*</span> x<span class="token punctuation">;</span> <span class="token comment">// Ritorno implicito ad una riga</span></code></pre>
-              <h3>Il grande dilemma di 'this'</h3>
-              <p>La differenza fondamentale risiede nel funzionamento della parola chiave `this`:</p>
-              <ul class="guide-list">
-                <li>Nelle **funzioni classiche**, `this` fa riferimento a *chi chiama la funzione* a runtime (contesto dinamico).</li>
-                <li>Nelle **Arrow Functions**, `this` è **lessicale**: eredita il valore dal contesto circostante in cui la funzione è stata scritta, senza curarsi di chi la invoca.</li>
-              </ul>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> carrello <span class="token operator">=</span> <span class="token punctuation">{</span>
-  <span class="token literal-property property">prodotti</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"Libro"</span><span class="token punctuation">,</span> <span class="token string">"Penna"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token function">stampa</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// Arrow function eredita 'this' dal metodo stampa (quindi fa riferimento a carrello)</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>prodotti<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">prodotto</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Stampa l'oggetto carrello</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clic <span class="token operator">=</span> clic <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clic: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Ricarica e premi tre volte: vedi “Clic: 1”, poi “Clic: 2”, poi “Clic: 3”. <code>let</code> crea una variabile che riassegni a ogni clic. <code>const</code> va bene per <code>pulsante</code> e <code>risultato</code>, perché non assegni loro un altro elemento. Il testo tra accenti gravi è una <em>template string</em>: <code>${clic}</code> inserisce il valore corrente.</p>
+            <p>Ricaricando la pagina il conteggio riparte da zero: la variabile esiste solo finché la pagina resta aperta.</p>
+          </section></section>
+          <section id="chapter-05" class="guide-block guide-chapter"><h2>5. Scegliere un messaggio con if</h2><section class="guide-subchapter">
+            <p>Al terzo clic vogliamo un messaggio diverso. Lascia le prime tre righe come sono e sostituisci l’intero blocco <code>pulsante.addEventListener(...)</code>:</p>
+            <pre><code class="language-javascript">pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clic <span class="token operator">=</span> clic <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>clic <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Hai raggiunto tre clic!"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clic: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>clic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-            </section>
-          </section>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Ricarica: ai primi due clic vedi il numero; al terzo compare il messaggio speciale; al quarto torna “Clic: 4”. <code>if</code> controlla una condizione. <code>===</code> confronta senza convertire automaticamente tipi diversi: il numero <code>3</code> è diverso dal testo <code>"3"</code>. <code>else</code> gestisce gli altri casi.</p>
+          </section></section>
+          <section id="chapter-06" class="guide-block guide-chapter"><h2>6. Mettere la scelta in una funzione</h2><section class="guide-subchapter">
+            <p>La decisione sul testo può avere un nome. Sostituisci <code>script.js</code> con questa versione completa:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> clic <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-          <!-- CAPITOLO 07 — ARRAY ED OGGETTI -->
-          <section id="chapter-07" class="guide-block guide-chapter">
-            <h2>6. Oggetti, Array ed operatori moderni</h2>
-            <section class="guide-subchapter">
-              <p>Per scrivere codice elegante e pulito, devi conoscere le scorciatoie sintattiche introdotte di recente.</p>
-              <h3>Destrutturazione (Destructuring)</h3>
-              <p>Permette di estrarre proprietà da oggetti o elementi da array e memorizzarli in variabili dedicate in un colpo solo:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> impostazioni <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">tema</span><span class="token operator">:</span> <span class="token string">"dark"</span><span class="token punctuation">,</span> <span class="token literal-property property">volume</span><span class="token operator">:</span> <span class="token number">80</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token punctuation">{</span> tema<span class="token punctuation">,</span> volume <span class="token punctuation">}</span> <span class="token operator">=</span> impostazioni<span class="token punctuation">;</span> <span class="token comment">// Estratti in variabili indipendenti</span></code></pre>
-              <h3>Operatore Spread (...)</h3>
-              <p>Rappresentato da tre punti, "distribuisce" gli elementi di un array o le proprietà di un oggetto all'interno di un nuovo contenitore. È il modo standard per clonare o unire dati in modo sicuro senza modificarli all'origine:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> votiMatematica <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> tuttiVoti <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>votiMatematica<span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [7, 8, 9, 10] (Nuovo array clonato)</span></code></pre>
-              <h3>Evitare i cicli manuali</h3>
-              <p>Non usare cicli `for` manuali per trasformare i dati degli array. JavaScript offre metodi funzionali pronti all'uso come `.map()` per modificare ogni elemento, `.filter()` per scremare gli elementi secondo una condizione, e `.reduce()` per accumulare i valori.</p>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 08 — DOM MANIPULATION -->
-          <section id="chapter-08" class="guide-block guide-chapter">
-            <h2>7. DOM Manipulation: l'interfaccia si risveglia</h2>
-            <section class="guide-subchapter">
-              <p>Il <a href="/it/risorse/glossario-js/?q=DOM">DOM</a> (Document Object Model) è la struttura ad albero creata dal browser che rappresenta la tua pagina. JavaScript la interroga e modifica in tempo reale.</p>
-              <h3>Selezionare elementi con querySelector</h3>
-              <p>Usa esclusivamente i metodi moderni basati sui selettori CSS:</p>
-              <ul class="guide-list">
-                <li><strong>`document.querySelector(".classe")`</strong>: restituisce il *primo* elemento corrispondente alla classe.</li>
-                <li><strong>`document.querySelectorAll(".classe")`</strong>: restituisce una collezione ciclabile di *tutti* gli elementi corrispondenti.</li>
-              </ul>
-              <h3>Modificare lo stile in sicurezza</h3>
-              <p>Non scrivere mai proprietà CSS direttamente nel codice JavaScript (es. `elemento.style.color = "red"`). È una cattiva pratica che rende la manutenzione difficilissima.</p>
-              <p>La prassi corretta è **definire gli stati grafici nel CSS** (es. creare una classe `.is-active` con le sue regole) e usare JavaScript unicamente per **aggiungere o rimuovere quella classe** nel DOM:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> popup <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".popup"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-popup<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"is-active"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-popup<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">toggle</span><span class="token punctuation">(</span><span class="token string">"is-open"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Aggiunge se manca, rimuove se c'è</span></code></pre>
-              <h3>textContent vs innerHTML: Sicurezza XSS</h3>
-              <p>Se devi stampare un testo inserito dall'utente in una pagina, usa sempre `textContent`. Evita `innerHTML`, poiché interpreta i tag HTML e potrebbe permettere a malintenzionati di iniettare script dannosi nel tuo sito (attacco Cross-Site Scripting - XSS).</p>
-
-              <figure class="guide-figure">
-                <img src="/images/percorsi-apprendimento/javascript-fondamentali/dom-manipulation.svg" alt="Diagramma della manipolazione del DOM" loading="lazy" decoding="async" width="1200" height="520">
-                <figcaption>Rappresentazione del flusso con cui JavaScript seleziona gli elementi dell'albero HTML e ne altera dinamicamente proprietà e contenuti.</figcaption>
-              </figure>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 09 — EVENTI -->
-          <section id="chapter-09" class="guide-block guide-chapter">
-            <h2>8. Catturare i click: la gestione degli Eventi</h2>
-            <section class="guide-subchapter">
-              <p>Il browser genera un evento ogni volta che accade qualcosa (un click, il movimento del mouse, la digitazione su tastiera o il caricamento completato).</p>
-              <p>Legare un comportamento ad un evento si fa agganciando un ascoltatore direttamente da JavaScript:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#btn-invia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">function</span> <span class="token function">gestisciInvio</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Blocca l'invio del form e il ricaricamento della pagina!</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Dati inviati in modo asincrono."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">messaggioPer</span><span class="token punctuation">(</span><span class="token parameter">numeroClic</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>numeroClic <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Hai raggiunto tre clic!"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clic: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>numeroClic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> gestisciInvio<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-              <p>L'uso di `event.preventDefault()` è cruciale nei form per fermare il comportamento predefinito del browser e permetterci di gestire l'invio in background tramite JavaScript.</p>
-            </section>
-          </section>
+pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clic <span class="token operator">=</span> clic <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token function">messaggioPer</span><span class="token punctuation">(</span>clic<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Ricarica e ripeti i quattro clic: il risultato è lo stesso del capitolo precedente. <code>messaggioPer</code> riceve un numero come parametro e restituisce il testo con <code>return</code>. La funzione del clic usa quel testo per aggiornare la pagina. Separare la scelta del messaggio dall’azione sul browser rende più facile controllare le due cose.</p>
+          </section></section>
+          <section id="chapter-07" class="guide-block guide-chapter"><h2>7. Leggere un valore scritto nella pagina</h2><section class="guide-subchapter">
+            <p>Aggiungi un campo per il nome. In <code>index.html</code>, subito prima del pulsante, inserisci:</p>
+            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nome<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Il tuo nome<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nome<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+            <p>Ora sostituisci <code>script.js</code> con questa versione. La funzione per il messaggio resta la stessa; il clic legge il campo e aggiunge un saluto se contiene testo:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> campoNome <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#nome"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> clic <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-          <!-- CAPITOLO 10 — ASINCRONIA -->
-          <section id="chapter-10" class="guide-block guide-chapter">
-            <h2>9. L'Asincronia spiegata agli umani: async/await</h2>
-            <section class="guide-subchapter">
-              <p>Quando interroghi un server esterno per scaricare dei dati, non puoi sapere quanto tempo ci vorrà per ricevere la risposta. JavaScript gestisce queste attese tramite le **Promise**.</p>
-              <p>Una Promise può trovarsi in tre stati: `Pending` (in attesa), `Fulfilled` (risolta con successo), `Rejected` (fallita con un errore).</p>
-              <h3>La semplicità di async/await</h3>
-              <p>Per non scrivere codice disordinato basato su costrutti complessi, usiamo la sintassi moderna `async/await`. Questa ti permette di scrivere codice asincrono con la stessa struttura lineare del codice sincrono riga per riga:</p>
-              <pre><code class="language-javascript"><span class="token comment">// Contrassegniamo la funzione come asincrona</span>
-<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">caricaDati</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Caricamento avviato..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  
-  <span class="token comment">// Il browser aspetta la risposta della fetch senza bloccare il resto della pagina</span>
-  <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://api.esempio.com/prodotti"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">const</span> prodotti <span class="token operator">=</span> <span class="token keyword">await</span> risposta<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Prodotti ricevuti:"</span><span class="token punctuation">,</span> prodotti<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">messaggioPer</span><span class="token punctuation">(</span><span class="token parameter">numeroClic</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>numeroClic <span class="token operator">===</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Hai raggiunto tre clic!"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Clic: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>numeroClic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token function">caricaDati</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Questo log appare PRIMA dei prodotti, perché l'API è asincrona!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </section>
-          </section>
+pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clic <span class="token operator">=</span> clic <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> nome <span class="token operator">=</span> campoNome<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> saluto <span class="token operator">=</span> nome <span class="token operator">?</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Ciao, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>nome<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">. </span><span class="token template-punctuation string">`</span></span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+  risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> saluto <span class="token operator">+</span> <span class="token function">messaggioPer</span><span class="token punctuation">(</span>clic<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Ricarica, scrivi “Ada” e premi: vedi “Ciao, Ada. Clic: 1”. Se lasci il campo vuoto, vedi solo il conteggio. <code>value</code> legge ciò che hai scritto; <code>trim()</code> toglie gli spazi all’inizio e alla fine. La forma <code>condizione ? valore1 : valore2</code> sceglie tra due testi. <code>textContent</code> mostra il nome come testo, senza interpretarlo come HTML: prova a scrivere <code>&lt;b&gt;Ada&lt;/b&gt;</code> per verificarlo.</p>
+          </section></section>
+          <section id="chapter-debug" class="guide-block guide-chapter"><h2>8. Capire perché qualcosa non funziona</h2><section class="guide-subchapter">
+            <p>Apri gli strumenti di sviluppo del browser e la scheda <strong>Console</strong>. Se la pagina non reagisce, controlla in ordine: <code>script.js</code> è nella stessa cartella? Gli ID nell’HTML coincidono con quelli di <code>querySelector</code>? Hai salvato e ricaricato?</p>
+            <p>Puoi aggiungere temporaneamente <code>console.log(clic);</code> dopo <code>clic = clic + 1;</code>. Alla pressione del pulsante, in Console devono apparire 1, 2, 3. Il messaggio di log compare negli strumenti, non nella pagina. Togli la riga quando hai finito. Un errore rosso con numero di riga indica dove iniziare a cercare; un clic che non produce log suggerisce di controllare il collegamento del file o il listener.</p>
+          </section></section>
+          <section id="chapter-challenge" class="guide-block guide-chapter"><h2>9. Esercizio: aggiungere un pulsante di reset</h2><section class="guide-subchapter">
+            <p>Obiettivo: dopo alcuni clic, il pulsante “Azzera” deve riportare il conteggio a zero e mostrare “Clic: 0”. Il campo del nome può restare com’è. Prima aggiungi in <code>index.html</code> un secondo pulsante sotto quello esistente:</p>
+            <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>azzera<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Azzera<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+            <p>Nel file JS cerca quel pulsante, ascolta il suo clic, assegna <code>0</code> a <code>clic</code> e aggiorna <code>risultato.textContent</code>. Prova questa sequenza: due clic sul primo pulsante, reset, un altro clic. Il testo deve mostrare 1, 2, 0, 1. Così verifichi che lo stato si sia davvero azzerato.</p>
+            <details class="guide-deeper"><summary>Mostra una soluzione possibile</summary><p>Questa è un’aggiunta in fondo al tuo <code>script.js</code>, non un nuovo file:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> pulsanteAzzera <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#azzera"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-          <!-- CAPITOLO 11 — TRY/CATCH -->
-          <section id="chapter-11" class="guide-block guide-chapter">
-            <h2>10. Evitare l'autodistruzione: try/catch</h2>
-            <section class="guide-subchapter">
-              <p>Se JavaScript incontra un errore irreversibile (ad esempio una chiamata API che fallisce per assenza di rete o un JSON corrotto), interrompe bruscamente l'esecuzione. In questo stato, tutti i tuoi script smetteranno di funzionare.</p>
-              <p>Per evitare crash catastrofici, avvolgi il codice a rischio in un blocco `try/catch` per gestire l'errore con grazia:</p>
-              <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">scaricaProfilo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+pulsanteAzzera<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  clic <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Clic: 0"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Il reset modifica la stessa variabile usata dal primo pulsante. Se modifichi solo il testo visibile, al clic successivo il vecchio conteggio ricompare.</p></details>
+          </section></section>
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter"><h2>10. Riepilogo dei concetti</h2><section class="guide-subchapter"><dl>
+            <dt><strong>Dove si trova l’elemento?</strong></dt><dd><code>document.querySelector("#id")</code>; con un ID puoi usare anche <code>document.getElementById("id")</code>.</dd>
+            <dt><strong>Quando parte il codice?</strong></dt><dd><code>addEventListener("click", funzione)</code> reagisce a un evento del browser.</dd>
+            <dt><strong>Quale dato cambia?</strong></dt><dd><code>let</code> per un valore da riassegnare; <code>const</code> quando non riassegni il nome.</dd>
+            <dt><strong>Come scegli il risultato?</strong></dt><dd><code>if</code> e <code>===</code> controllano una condizione; <code>return</code> restituisce il risultato di una funzione.</dd>
+            <dt><strong>Come aggiorni la pagina?</strong></dt><dd><code>textContent</code> scrive testo nell’elemento; <code>value</code> legge un campo.</dd>
+          </dl></section></section>
+          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>11. Verifica dei fondamentali</h2><section class="guide-subchapter"><p class="quiz-intro">Dieci domande sugli esempi della guida. Ogni risposta include una spiegazione.</p><div id="quiz-wrapper"></div></section></section>
+          <section id="chapter-08" class="guide-block guide-chapter"><h2>12. Approfondimento: array e oggetti</h2><section class="guide-subchapter"><p>Se vuoi raccogliere più traguardi, un <strong>array</strong> mantiene una lista in ordine; un <strong>oggetto</strong> associa nomi a valori. Sono due modi diversi di organizzare dati. Puoi provare queste righe nella Console e leggere il risultato dei due <code>console.log</code>:</p>
+            <pre><code class="language-javascript"><span class="token keyword">const</span> traguardi <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> impostazioni <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">nome</span><span class="token operator">:</span> <span class="token string">"Ada"</span><span class="token punctuation">,</span> <span class="token literal-property property">limite</span><span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>traguardi<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3: il primo elemento ha indice 0</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>impostazioni<span class="token punctuation">.</span>nome<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Ada: una proprietà per nome</span></code></pre><p>Questo esempio è separato dal contatore: non devi copiarlo in <code>script.js</code> per completare la prova.</p></section></section>
+          <section id="chapter-10" class="guide-block guide-chapter"><h2>13. Approfondimento: conservare il conteggio</h2><section class="guide-subchapter"><p>La variabile <code>clic</code> riparte da zero a ogni ricarica. <code>localStorage</code> può conservare una stringa nel browser. Per un numero occorre convertirla quando la rileggi:</p>
+            <pre><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"clic"</span><span class="token punctuation">,</span> <span class="token function">String</span><span class="token punctuation">(</span>clic<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> valoreSalvato <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"clic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> clicSalvati <span class="token operator">=</span> valoreSalvato <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token function">Number</span><span class="token punctuation">(</span>valoreSalvato<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Queste righe mostrano le operazioni, non sono un nuovo <code>script.js</code> completo. Il dato resta nel browser finché non lo cancelli. Non usare questo spazio per password o informazioni sensibili.</p></section></section>
+          <section id="chapter-11" class="guide-block guide-chapter"><h2>14. Approfondimento: attendere un risultato</h2><section class="guide-subchapter"><p>Un clic è un evento che arriva più tardi. Anche una richiesta di rete termina più tardi: <code>async</code> e <code>await</code> permettono a una funzione di aspettare il risultato senza bloccare tutta la pagina. Questo esempio richiede un server che risponda a <code>/api/messaggio</code>; non funzionerà aprendo il file HTML da solo.</p>
+            <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">caricaMessaggio</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">try</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"https://api.esempio.com/profilo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"/api/messaggio"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>risposta<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Risposta non valida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> dati <span class="token operator">=</span> <span class="token keyword">await</span> risposta<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Profilo caricato:"</span><span class="token punctuation">,</span> dati<span class="token punctuation">.</span>nome<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> dati<span class="token punctuation">.</span>messaggio<span class="token punctuation">;</span>
   <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>errore<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// Eseguito solo in caso di errore nel blocco try</span>
-    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Non è stato possibile caricare il profilo:"</span><span class="token punctuation">,</span> errore<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">mostraMessaggioDiErroreAllUtente</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
-    <span class="token comment">// Eseguito sempre, a prescindere dal successo o dal fallimento</span>
-    <span class="token function">nascondiSpinnerCaricamento</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Impossibile caricare il messaggio."</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>errore<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 12 — WEB STORAGE -->
-          <section id="chapter-12" class="guide-block guide-chapter">
-            <h2>11. Web Storage: salvare le preferenze dell'utente</h2>
-            <section class="guide-subchapter">
-              <p>Se l'utente imposta il tema scuro sul tuo sito, vuoi che questa scelta rimanga salvata anche se chiude il browser e torna il giorno dopo. Per farlo usiamo il localStorage.</p>
-              <h3>localStorage vs sessionStorage</h3>
-              <p>Entrambi salvano dati in coppia chiave-valore nel browser sotto forma di stringhe, ma con una differenza di ciclo di vita:</p>
-              <ul class="guide-list">
-                <li><strong>`localStorage`</strong>: i dati non hanno scadenza e rimangono memorizzati nel browser finché non vengono cancellati via codice o dall'utente.</li>
-                <li><strong>`sessionStorage`</strong>: i dati vengono persi immediatamente non appena la scheda (tab) del browser viene chiusa.</li>
-              </ul>
-              <pre><code class="language-javascript"><span class="token comment">// Salvare un dato</span>
-localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Leggere un dato</span>
-<span class="token keyword">const</span> tema <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Rimuovere un dato</span>
-localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">"temaScuro"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-              <h3>Salvare oggetti complessi</h3>
-              <p>Poiché il localStorage accetta **solo stringhe**, se provi a salvare un oggetto direttamente, verrà convertito nel testo inutile `"[object Object]"`. Per salvare strutture complesse (oggetti o array), dobbiamo prima convertirli in stringhe JSON con `JSON.stringify`, e riconvertirli in oggetti all'estrazione con `JSON.parse`:</p>
-              <pre><code class="language-javascript"><span class="token keyword">const</span> carrello <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Scarpe"</span><span class="token punctuation">,</span> <span class="token string">"Zaino"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Salvataggio (conversione in stringa JSON)</span>
-localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"carrello_utente"</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>carrello<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// Estrazione (conversione in array utilizzabile)</span>
-<span class="token keyword">const</span> datiSalvati <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"dati_utente"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> carrelloArray <span class="token operator">=</span> datiSalvati <span class="token operator">?</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>datiSalvati<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
-              <p><strong>Avviso di sicurezza</strong>: non salvare mai password, token di autenticazione o dati personali sensibili nel localStorage. Qualsiasi script JavaScript in esecuzione sulla pagina può accedervi liberamente, rendendoli facili bersagli in caso di attacchi XSS.</p>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 13 — COMPORTAMENTI FOLLI -->
-          <section id="chapter-13" class="guide-block guide-chapter">
-            <h2>12. I comportamenti più folli di JavaScript (e come sopravvivere)</h2>
-            <section class="guide-subchapter">
-              <p>JavaScript è stato scritto di fretta nei primi anni '90 e si trascina dietro alcune stranezze storiche che fanno sorridere gli sviluppatori ma disorientano i principianti. Vediamo le 4 più celebri e come risolverle:</p>
-
-              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
-                <strong>1. 0.1 + 0.2 === 0.30000000000000004</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Non è un errore di JavaScript, ma del modo in cui i computer convertono i numeri decimali in frazioni binarie. Per confrontare i prezzi in un e-commerce senza frazioni microscopiche storte, arrotonda sempre i decimali usando `toFixed()` o lavorando con i numeri interi (es. converti in centesimi prima di fare i calcoli):</p>
-                <pre style="margin-top: 0.5rem;"><code class="language-javascript"><span class="token keyword">const</span> totale <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0.1</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token number">0.2</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// Restituisce esattamente 0.3!</span></code></pre>
-              </div>
-
-              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
-                <strong>2. typeof null === "object"</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Questo è un vero e proprio bug storico del motore originale di JavaScript del 1995. Non può essere rimosso o corretto perché farlo romperebbe milioni di siti web attualmente attivi su internet. Per controllare se una variabile è effettivamente un oggetto escludendo `null`, fai un doppio controllo:</p>
-                <pre style="margin-top: 0.5rem;"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>variabile <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> variabile <span class="token operator">===</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span></code></pre>
-              </div>
-
-              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
-                <strong>3. NaN !== NaN (Not-a-Number non è uguale a se stesso)</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem;">`NaN` rappresenta il risultato matematico di un'operazione non valida (es. `"ciao" * 5`). In JavaScript, `NaN` è l'unico valore al mondo che non è uguale a se stesso se confrontato con `===`. Per verificare se un valore è `NaN`, usa il metodo nativo:</p>
-                <pre style="margin-top: 0.5rem;"><code class="language-javascript">Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span>valore<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Restituisce true o false in modo affidabile</span></code></pre>
-              </div>
-
-              <div class="alert alert--note" style="padding: 1rem; margin: 1.5rem 0; background: rgba(245, 158, 66, 0.05); border-radius: 6px;">
-                <strong>4. Coercizione automatica dei tipi bizzarra</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem;">Se sommi un array vuoto a un altro array vuoto (`[] + []`) ottieni una stringa vuota `""`. Se sommi un array vuoto ad un oggetto vuoto (`[] + {}`) ottieni la stringa `"[object Object]"`. Per evitare questi bug silenziosi, usa sempre l'uguaglianza stretta `===` ed evita di sommare variabili di tipo diverso senza averle prima convertite esplicitamente (es. usando `Number()` o `String()`).</p>
-              </div>
-            </section>
-          </section>
-
-          <!-- CAPITOLO 14 — DEBUGGING -->
-          <section id="chapter-14" class="guide-block guide-chapter">
-            <h2>13. Debugging professionale: oltre il console.log</h2>
-            <section class="guide-subchapter">
-              <p>Stampare variabili ovunque con `console.log()` è il metodo più immediato ma disordinato per fare debug. I browser offrono strumenti avanzati per analizzare lo stato del codice.</p>
-              <ul class="guide-list">
-                <li><strong>`console.table()`</strong>: se gli passi un array di oggetti, lo formatta in una magnifica tabella ordinabile nella console.</li>
-                <li><strong>`console.dir()`</strong>: mostra l'elenco delle proprietà dell'oggetto DOM come oggetto JavaScript puro, anziché stamparne l'HTML.</li>
-              </ul>
-              <h3>La forza dell'istruzione debugger</h3>
-              <p>Se inserisci la parola chiave **`debugger;`** nel tuo script e tieni aperti gli strumenti sviluppatori del browser, l'esecuzione del codice si congelerà all'istante in quel punto preciso:</p>
-              <pre><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">calcolaPrezzo</span><span class="token punctuation">(</span><span class="token parameter">base</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> tasse <span class="token operator">=</span> <span class="token number">1.22</span><span class="token punctuation">;</span>
-  <span class="token keyword">debugger</span><span class="token punctuation">;</span> <span class="token comment">// Il browser congela la pagina ed evidenzia questa riga nei DevTools</span>
-  <span class="token keyword">return</span> base <span class="token operator">*</span> tasse<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-              <p>Potrai ispezionare il valore corrente di ogni variabile in quel millisecondo e procedere riga per riga, trovando i problemi senza sporcare il codice con log di prova.</p>
-            </section>
-          </section>
-
-          <!-- SEZIONE QUIZ INTERATTIVO PILOTA -->
-          
-          <!-- SEZIONE SINTASSI RAPIDA / CHEAT SHEET -->
-          <section id="chapter-cheatsheet" class="guide-block guide-chapter">
-            <h2>14. Sintassi rapida (Cheat Sheet)</h2>
-            <section class="guide-subchapter">
-              
-              <p>Ecco un riepilogo rapido delle principali logiche di interrogazione e modifica del DOM:</p>
-              <div class="table-wrapper">
-                <table class="guide-table">
-                  <thead>
-                    <tr>
-                      <th>Metodo</th>
-                      <th class="is-accent">Parametro / Uso</th>
-                      <th>Cosa fa</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="is-code is-strong">querySelector()</td>
-                      <td class="is-code">'.classe' | '#id'</td>
-                      <td>Seleziona il primo elemento corrispondente al selettore CSS indicato.</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code is-strong">addEventListener()</td>
-                      <td class="is-code">'click', callback</td>
-                      <td>Aggancia un ascoltatore per eseguire codice JavaScript in risposta all'evento.</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code is-strong">classList.add()</td>
-                      <td class="is-code">'is-active'</td>
-                      <td>Aggiunge una classe CSS all'elemento per cambiarne lo stato visivo in sicurezza.</td>
-                    </tr>
-                    <tr>
-                      <td class="is-code is-strong">textContent</td>
-                      <td class="is-code">'Testo puro'</td>
-                      <td>Legge o scrive il testo all'interno dell'elemento (sicuro contro attacchi XSS).</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-    
-            </section>
-          </section>
-
-          <!-- SEZIONE SFIDA PRATICA -->
-          <section id="chapter-challenge" class="guide-block guide-chapter">
-            <h2>15. Sfida pratica: Mettiti alla prova</h2>
-            <section class="guide-subchapter">
-              
-              <p>Metti in pratica le logiche del DOM e degli eventi in JavaScript:</p>
-              <div class="alert alert--note">
-                <strong>Obiettivo della sfida:</strong>
-                <p style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.6;">Crea un contatore dinamico di caratteri in tempo reale per una casella di testo (textarea), che cambi colore (es. diventa rosso) quando si supera il limite di caratteri impostato.</p>
-                <strong>Istruzioni passo-passo:</strong>
-                <ol style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
-                  <li>Seleziona la textarea usando <code class="language-javascript">document.querySelector('.messaggio')</code> ed il contatore usando <code class="language-javascript">document.querySelector('.counter')</code>.</li>
-                  <li>Aggiungi un ascoltatore di eventi per l'evento <code class="language-javascript">'input'</code> alla tua casella di testo.</li>
-                  <li>All'interno della funzione di callback dell'ascoltatore, leggi la lunghezza corrente del testo digitato.</li>
-                  <li>Aggiorna la proprietà <code class="language-javascript">textContent</code> del contatore mostrando i caratteri correnti (es. <code class="language-javascript">msgLen + " / 100"</code>).</li>
-                </ol>
-              </div>
-    
-            </section>
-          </section>
-
-          <!-- CAPITOLO 15 — DOVE CONTINUARE -->
-          <section id="chapter-15" class="guide-block guide-chapter">
-            <h2>16. Dove continuare dopo</h2>
-            <section class="guide-subchapter">
-              <p>Hai fatto i primi grandi passi nella logica di programmazione per il web. Ecco dove orientare le tue prossime letture per integrare queste competenze:</p>
-              <ul class="guide-list">
-                <li><a href="/it/tutorial/npm-vite-struttura-progetto/">NPM e Vite</a>: il tutorial indispensabile per organizzare progetti complessi dividendo il codice in file autonomi (moduli import/export) anziché scrivere script singoli enormi.</li>
-                <li><a href="/it/tutorial/browser-devtools/">DevTools del Browser</a>: approfondisci il funzionamento del pannello Network e dello strumento di ispezione del codice sorgente.</li>
-                <li><a href="/it/tutorial/accessibilita-web-base/">Accessibilità web di base</a>: scopri come garantire che il tuo codice JavaScript non ostacoli la navigazione tramite tastiera o screen reader.</li>
-                <li><a href="/it/tutorial/">Tutti i tutorial</a>: torna all'indice delle guide per continuare a imparare.</li>
-              </ul>
-            </section>
-          </section>
-
-          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section">
-            <h2>17. Verifica la tua preparazione (Quiz)</h2>
-            <p class="quiz-intro">Metti alla prova quello che hai imparato in questa guida con questo rapido test di 10 domande a scelta multipla.</p>
-            <div id="quiz-wrapper"></div>
-          </section>
+<span class="token punctuation">}</span></code></pre><p><code>try/catch</code> gestisce gli errori, per esempio una connessione interrotta. L’esempio mostra il punto in cui si aspetta e quello in cui si mostra il risultato; non sostituisce il progetto del contatore.</p></section></section>
+          <section id="chapter-12" class="guide-block guide-chapter"><h2>15. Approfondimento: quando parte uno script</h2><section class="guide-subchapter"><p>Nel progetto abbiamo usato <code>defer</code>: il file viene scaricato mentre il browser legge l’HTML e viene eseguito dopo che l’HTML è stato analizzato. Uno script classico senza attributi eseguito nell’<code>head</code> può fermare la lettura dell’HTML. <code>async</code> esegue lo script non appena è pronto, quindi non garantisce che gli elementi della pagina esistano già né l’ordine rispetto ad altri script. I moduli <code>type="module"</code> sono differiti per impostazione predefinita.</p>
+            <p>Quando una funzione aspetta una richiesta di rete, il browser può continuare a gestire altre attività; poi riprende la funzione quando il risultato è disponibile. Questo coordinamento coinvolge l’<em>event loop</em>. Per la prima prova basta sapere che il codice dentro il listener parte al clic, non quando la pagina viene caricata.</p>
+          </section></section>
+          <section id="chapter-15" class="guide-block guide-chapter"><h2>Fonti e prossimi passi</h2><section class="guide-subchapter"><ul class="guide-list">
+            <li><a href="https://developer.mozilla.org/it/docs/Web/JavaScript/Guide">MDN: guida JavaScript</a> per ampliare le basi del linguaggio.</li>
+            <li><a href="/it/tutorial/browser-devtools/">Strumenti del browser</a> per seguire errori, Console e richieste.</li>
+            <li><a href="/it/tutorial/npm-vite-struttura-progetto/">NPM e Vite</a> quando vorrai organizzare un progetto più grande.</li>
+            <li><a href="/it/tutorial/accessibilita-web-base/">Accessibilità web</a> per verificare anche l’uso da tastiera e le tecnologie assistive.</li>
+          </ul></section></section>
 
           <!-- Invito ai template a fine guida (stile pulito .guide-next-step, condiviso) -->
           <aside class="guide-next-step" aria-labelledby="next-step-title">
