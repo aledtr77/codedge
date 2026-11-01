@@ -5,6 +5,7 @@ import "@/styles/components/button.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "@/styles/pages/tutorials/git-without-panic/index.css";
+import "@/styles/pages/tutorials/javascript-fundamentals/index.css";
 import "@/styles/components/playground.css";
 
 import "@/scripts/components/navbar.js";
@@ -24,11 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstDemo = document.querySelector("[data-js-first-demo]");
   const demoButton = firstDemo?.querySelector("[data-js-demo-button]");
   const demoOutput = firstDemo?.querySelector("[data-js-demo-output]");
+  const demoState = firstDemo?.querySelector("[data-js-demo-state]");
   if (demoButton && demoOutput) {
     demoButton.addEventListener("click", () => {
-      demoOutput.textContent = document.documentElement.lang === "it"
-        ? "Hai premuto il pulsante!"
-        : "You pressed the button!";
+      const isItalian = document.documentElement.lang === "it";
+      demoOutput.textContent = isItalian ? "Hai premuto il pulsante!" : "You pressed the button!";
+      if (demoState) demoState.textContent = isItalian ? "Clic ricevuto" : "Click received";
     });
     demoButton.disabled = false;
   }

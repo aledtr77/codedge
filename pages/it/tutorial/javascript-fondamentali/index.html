@@ -52,7 +52,7 @@
   </style>
 </head>
 
-<body class="learning-guide">
+<body class="learning-guide js-tutorial">
   <header>
     <nav class="navbar" aria-label="Navigazione principale">
       <!-- Stub: la navbar servita viene interamente sostituita da src/partials/navbar.html
@@ -68,67 +68,75 @@
       <div class="guide-layout">
         <aside class="guide-toc" aria-label="Indice navigabile guida JavaScript: i fondamentali">
           <h2>Indice guida</h2>
-<p class="guide-toc-group">Percorso essenziale</p><ol class="guide-toc-list">
-<li><a href="#chapter-01">Prima di iniziare</a></li>
-<li><a href="#chapter-goal">Cosa vedrai nel browser</a></li>
-<li><a href="#chapter-02">1. Creare la pagina e collegare JavaScript</a></li>
-<li><a href="#chapter-03">2. Leggere le istruzioni appena usate</a></li>
-<li><a href="#chapter-comments">3. Aggiungere un commento</a></li>
-<li><a href="#chapter-04">4. Ricordare i clic con una variabile</a></li>
-<li><a href="#chapter-05">5. Scegliere un messaggio con if</a></li>
-<li><a href="#chapter-06">6. Mettere la scelta in una funzione</a></li>
-<li><a href="#chapter-07">7. Leggere un valore scritto nella pagina</a></li>
-<li><a href="#chapter-debug">8. Capire perché qualcosa non funziona</a></li>
-<li><a href="#chapter-challenge">9. Esercizio: aggiungere un pulsante di reset</a></li>
-<li><a href="#chapter-cheatsheet">10. Riepilogo dei concetti</a></li>
-<li><a href="#chapter-quiz">11. Verifica dei fondamentali</a></li>
-</ol>
-<p class="guide-toc-group">Approfondimenti</p><ol class="guide-toc-list">
-<li><a href="#chapter-08">12. Approfondimento: array e oggetti</a></li>
-<li><a href="#chapter-10">13. Approfondimento: conservare il conteggio</a></li>
-<li><a href="#chapter-11">14. Approfondimento: attendere un risultato</a></li>
-<li><a href="#chapter-12">15. Approfondimento: quando parte uno script</a></li>
-<li><a href="#chapter-15">Fonti e prossimi passi</a></li>
-</ol>
+<p class="guide-toc-group">La pagina reagisce</p><ul class="guide-toc-list">
+<li><a href="#chapter-01">Premi il pulsante. Guarda cosa cambia.</a></li>
+<li><a href="#chapter-02">Porta il primo clic nei tuoi file</a></li>
+<li><a href="#chapter-03">Segui il percorso del clic</a></li>
+<li><a href="#chapter-04">Fai ricordare i clic alla pagina</a></li>
+<li><a href="#chapter-05">Al terzo clic, cambia risposta</a></li>
+<li><a href="#chapter-06">Dai un nome alla decisione</a></li>
+</ul>
+<p class="guide-toc-group">La pagina prende forma</p><ul class="guide-toc-list">
+<li><a href="#chapter-07">Fai entrare il nome nel messaggio</a></li>
+<li><a href="#chapter-debug">Quando il clic non dà il risultato atteso</a></li>
+<li><a href="#chapter-challenge">Ora prova tu: aggiungi Azzera</a></li>
+<li><a href="#chapter-cheatsheet">Cinque domande per orientarti nel codice</a></li>
+<li><a href="#chapter-quiz">Controlla cosa hai capito</a></li>
+</ul>
+<p class="guide-toc-group">Quando vuoi andare oltre</p><ul class="guide-toc-list">
+<li><a href="#chapter-comments">Scrivere una nota nel file</a></li>
+<li><a href="#chapter-08">Quando i dati sono più di uno</a></li>
+<li><a href="#chapter-10">Conservare un valore dopo la ricarica</a></li>
+<li><a href="#chapter-11">Aspettare una risposta dal server</a></li>
+<li><a href="#chapter-12">Decidere quando parte lo script</a></li>
+<li><a href="#chapter-15">Da qui puoi continuare</a></li>
+</ul>
         </aside>
 
         <article class="guide-content" aria-label="Contenuto guida JavaScript: i fondamentali">
 
-          <details class="guide-mobile-toc"><summary>Apri l’indice della guida</summary><nav aria-label="Indice della guida JavaScript"><ol>
-          <li><a href="#chapter-01">Prima di iniziare</a></li>
-<li><a href="#chapter-goal">Cosa vedrai nel browser</a></li>
-<li><a href="#chapter-02">1. Creare la pagina e collegare JavaScript</a></li>
-<li><a href="#chapter-03">2. Leggere le istruzioni appena usate</a></li>
-<li><a href="#chapter-comments">3. Aggiungere un commento</a></li>
-<li><a href="#chapter-04">4. Ricordare i clic con una variabile</a></li>
-<li><a href="#chapter-05">5. Scegliere un messaggio con if</a></li>
-<li><a href="#chapter-06">6. Mettere la scelta in una funzione</a></li>
-<li><a href="#chapter-07">7. Leggere un valore scritto nella pagina</a></li>
-<li><a href="#chapter-debug">8. Capire perché qualcosa non funziona</a></li>
-<li><a href="#chapter-challenge">9. Esercizio: aggiungere un pulsante di reset</a></li>
-<li><a href="#chapter-cheatsheet">10. Riepilogo dei concetti</a></li>
-<li><a href="#chapter-quiz">11. Verifica dei fondamentali</a></li>
-<li><a href="#chapter-08">12. Approfondimento: array e oggetti</a></li>
-<li><a href="#chapter-10">13. Approfondimento: conservare il conteggio</a></li>
-<li><a href="#chapter-11">14. Approfondimento: attendere un risultato</a></li>
-<li><a href="#chapter-12">15. Approfondimento: quando parte uno script</a></li>
-<li><a href="#chapter-15">Fonti e prossimi passi</a></li>
-          </ol></nav></details>
-          <section id="chapter-01" class="guide-block guide-chapter">
-            <div class="guide-intro-layout"><div class="guide-intro-copy">
-              <h2>Prima di iniziare</h2><section class="guide-subchapter">
-                <p>Qui prenderai confidenza con JavaScript modificando una sola piccola pagina. All’inizio un pulsante cambierà un testo; poi aggiungerai un contatore e un campo per scrivere il tuo nome. A ogni passaggio salverai i file, ricaricherai il browser e vedrai cosa è cambiato.</p>
-                <p>Ti servono un browser e un editor di codice, per esempio <a href="/it/tutorial/vscode-essenziale/">Visual Studio Code</a>. Se tag, attributi e pulsanti HTML sono nuovi per te, consulta prima la <a href="/it/tutorial/html-fondamentali/">guida HTML</a>. JavaScript aggiunge comportamento a quella struttura; il CSS può curarne l’aspetto, ma qui ci concentriamo su ciò che accade quando interagisci con la pagina.</p>
-                <p>Non copriremo tutto il linguaggio. Imparerai le istruzioni che servono per questa prova; gli argomenti successivi sono raccolti negli approfondimenti.</p>
-                <div class="guide-quick-path"><strong>Il percorso breve</strong><p>Segui <a href="#chapter-02">i due file iniziali</a>, <a href="#chapter-03">la prima modifica</a>, <a href="#chapter-04">il contatore</a>, <a href="#chapter-05">la condizione</a>, <a href="#chapter-06">la funzione</a> e <a href="#chapter-challenge">l’esercizio finale</a>. Puoi tornare agli altri capitoli quando ti servono.</p></div>
-              </section></div><figure class="guide-figure guide-figure--editorial"><img src="/images/percorsi-apprendimento/javascript-fondamentali/copertina-editoriale.webp" alt="Illustrazione di apertura della guida JavaScript fondamentali" decoding="async" width="1024" height="1024"></figure></div>
+          <details class="guide-mobile-toc js-mobile-index"><summary>Scegli una tappa</summary><nav aria-label="Tappe della guida JavaScript">
+            <p class="js-mobile-index__group">La pagina reagisce</p><ul>
+              <li><a href="#chapter-01">Premi il pulsante. Guarda cosa cambia.</a></li>
+              <li><a href="#chapter-02">Porta il primo clic nei tuoi file</a></li>
+              <li><a href="#chapter-03">Segui il percorso del clic</a></li>
+              <li><a href="#chapter-04">Fai ricordare i clic alla pagina</a></li>
+              <li><a href="#chapter-05">Al terzo clic, cambia risposta</a></li>
+              <li><a href="#chapter-06">Dai un nome alla decisione</a></li>
+            </ul>
+            <p class="js-mobile-index__group">La pagina prende forma</p><ul>
+              <li><a href="#chapter-07">Fai entrare il nome nel messaggio</a></li>
+              <li><a href="#chapter-debug">Quando il clic non dà il risultato atteso</a></li>
+              <li><a href="#chapter-challenge">Ora prova tu: aggiungi Azzera</a></li>
+              <li><a href="#chapter-cheatsheet">Cinque domande per orientarti nel codice</a></li>
+              <li><a href="#chapter-quiz">Controlla cosa hai capito</a></li>
+            </ul>
+            <p class="js-mobile-index__group">Quando vuoi andare oltre</p><ul>
+              <li><a href="#chapter-comments">Scrivere una nota nel file</a></li>
+              <li><a href="#chapter-08">Quando i dati sono più di uno</a></li>
+              <li><a href="#chapter-10">Conservare un valore dopo la ricarica</a></li>
+              <li><a href="#chapter-11">Aspettare una risposta dal server</a></li>
+              <li><a href="#chapter-12">Decidere quando parte lo script</a></li>
+              <li><a href="#chapter-15">Da qui puoi continuare</a></li>
+            </ul>
+          </nav></details>
+          <section id="chapter-01" class="guide-block guide-chapter js-opening">
+            <p class="js-opening__eyebrow">Il primo clic</p>
+            <h2>Premi il pulsante. Guarda cosa cambia.</h2>
+            <div class="js-opening__layout">
+              <div class="js-opening__copy">
+                <p>Qui JavaScript fa una cosa precisa: aspetta un clic e cambia una frase nella pagina. Prima del clic leggerai “Nessun clic, per ora.”; dopo leggerai “Hai premuto il pulsante!”. Prova e guarda la risposta.</p>
+                <p>Il pulsante e la frase sono elementi HTML. Il codice JavaScript collega l’azione sul pulsante alla modifica della frase. Nei passaggi successivi userai questa stessa idea per contare i clic, scegliere una risposta e leggere un nome scritto nella pagina.</p>
+              </div>
+              <div class="js-demo" data-js-first-demo>
+                <div class="js-demo__bar"><span>La pagina nel browser</span><span data-js-demo-state aria-hidden="true">In attesa</span></div>
+                <div class="js-demo__body"><button class="button-simple" type="button" data-js-demo-button disabled>Mostra messaggio</button><p data-js-demo-output aria-live="polite">Nessun clic, per ora.</p></div>
+              </div>
+            </div>
+            <p>Per rifare la prova ti serviranno un browser e un editor di codice, per esempio <a href="/it/tutorial/vscode-essenziale/">Visual Studio Code</a>: scrivi nei file, salvi e controlli il risultato nel browser. Se i pulsanti e gli attributi HTML ti sono ancora poco familiari, puoi partire dalla <a href="/it/tutorial/html-fondamentali/">guida HTML</a>.</p>
+            <p>Segui il progetto fino al pulsante “Azzera”. Poi usa le sezioni finali quando vuoi esplorare altre possibilità del linguaggio. Se il pulsante qui non è attivo, gli esempi e le istruzioni nei capitoli restano leggibili.</p>
           </section>
-          <section id="chapter-goal" class="guide-block guide-chapter"><h2>Cosa vedrai nel browser</h2><section class="guide-subchapter">
-            <p>Questa è la prima prova: il testo cambia quando premi il pulsante. La stessa cosa accadrà nella pagina che creerai. Il pulsante è HTML; JavaScript ascolta il clic e aggiorna il paragrafo.</p>
-            <div class="guide-project-step" data-js-first-demo><button class="button-simple" type="button" data-js-demo-button disabled>Mostra messaggio</button><p data-js-demo-output aria-live="polite">Nessun clic, per ora.</p></div>
-            <p>Se la prova qui sopra non reagisce, puoi comunque seguire tutti i passaggi nei tuoi file: il codice completo è nel capitolo seguente.</p>
-          </section></section>
-          <section id="chapter-02" class="guide-block guide-chapter"><h2>1. Creare la pagina e collegare JavaScript</h2><section class="guide-subchapter">
+          <section id="chapter-02" class="guide-block guide-chapter"><h2>Porta il primo clic nei tuoi file</h2><section class="guide-subchapter">
             <p>Crea una cartella <code>prova-js</code> e aprila nell’editor. Dentro crea <code>index.html</code> e <code>script.js</code>. In <code>index.html</code> scrivi:</p>
             <pre><code class="language-markup" data-no-live><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>it<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -154,20 +162,13 @@ pulsante<span class="token punctuation">.</span><span class="token function">add
             <p>Salva i file e apri <code>index.html</code> nel browser. Prima del clic leggi “Nessun clic, per ora.”; dopo il clic leggi “Hai premuto il pulsante!”. Cambia il testo tra virgolette in <code>script.js</code>, salva e ricarica: il messaggio nuovo apparirà al prossimo clic.</p>
             <p><code>src="script.js"</code> indica il file nella stessa cartella. <code>defer</code> fa eseguire questo script dopo che il browser ha letto l’HTML: il pulsante esiste già quando JavaScript lo cerca. Se non succede nulla, controlla il nome del file e apri la console del browser per cercare un errore.</p>
           </section></section>
-          <section id="chapter-03" class="guide-block guide-chapter"><h2>2. Leggere le istruzioni appena usate</h2><section class="guide-subchapter">
+          <section id="chapter-03" class="guide-block guide-chapter"><h2>Segui il percorso del clic</h2><section class="guide-subchapter">
             <p><code>document.querySelector("#pulsante")</code> trova l’elemento con <code>id="pulsante"</code>. Il simbolo <code>#</code> segue la sintassi dei selettori CSS. La seconda riga trova il paragrafo. <code>const</code> dà un nome a ciascun elemento trovato, così puoi usarlo nelle righe successive.</p>
             <p><code>addEventListener("click", ...)</code> registra una funzione da eseguire quando arriva un clic. Le istruzioni tra <code>{</code> e <code>}</code> non partono subito. Al clic, <code>textContent</code> sostituisce il testo del paragrafo. Questo è il <strong>DOM</strong>: la struttura della pagina che JavaScript può leggere e modificare.</p>
             <p>Prova a cambiare <code>#risultato</code> in <code>#inesistente</code> e ricarica. Il clic non funziona: il selettore non trova un elemento, quindi <code>risultato</code> vale <code>null</code>. Rimetti <code>#risultato</code>. Il nome nell’HTML e quello nello script devono coincidere.</p>
             <p>Per un elemento con ID puoi usare anche <code>document.getElementById("risultato")</code>: qui usiamo <code>querySelector</code> perché permette anche selettori di classe e di elemento.</p>
           </section></section>
-          <section id="chapter-comments" class="guide-block guide-chapter"><h2>3. Aggiungere un commento</h2><section class="guide-subchapter">
-            <p>Un commento serve a spiegare una scelta nel file; il browser non lo esegue. Puoi scriverlo su una riga con <code>//</code> oppure su più righe tra <code>/*</code> e <code>*/</code>. Per esempio, sopra le due selezioni puoi ricordare perché devono corrispondere all’HTML:</p>
-            <pre><code class="language-javascript"><span class="token comment">// Gli ID devono coincidere con quelli in index.html.</span>
-<span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            <p>Aggiungi il commento e ricarica: la pagina si comporta esattamente come prima. Non serve commentare ogni istruzione; qui stai segnando una dipendenza tra due file.</p>
-          </section></section>
-          <section id="chapter-04" class="guide-block guide-chapter"><h2>4. Ricordare i clic con una variabile</h2><section class="guide-subchapter">
+          <section id="chapter-04" class="guide-block guide-chapter"><h2>Fai ricordare i clic alla pagina</h2><section class="guide-subchapter">
             <p>Ora il messaggio è sempre uguale. Vogliamo contare quante volte premi il pulsante. Sostituisci tutto il contenuto di <code>script.js</code> con questo:</p>
             <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -180,7 +181,7 @@ pulsante<span class="token punctuation">.</span><span class="token function">add
             <p>Ricarica e premi tre volte: vedi “Clic: 1”, poi “Clic: 2”, poi “Clic: 3”. <code>let</code> crea una variabile che riassegni a ogni clic. <code>const</code> va bene per <code>pulsante</code> e <code>risultato</code>, perché non assegni loro un altro elemento. Il testo tra accenti gravi è una <em>template string</em>: <code>${clic}</code> inserisce il valore corrente.</p>
             <p>Ricaricando la pagina il conteggio riparte da zero: la variabile esiste solo finché la pagina resta aperta.</p>
           </section></section>
-          <section id="chapter-05" class="guide-block guide-chapter"><h2>5. Scegliere un messaggio con if</h2><section class="guide-subchapter">
+          <section id="chapter-05" class="guide-block guide-chapter"><h2>Al terzo clic, cambia risposta</h2><section class="guide-subchapter">
             <p>Al terzo clic vogliamo un messaggio diverso. Lascia le prime tre righe come sono e sostituisci l’intero blocco <code>pulsante.addEventListener(...)</code>:</p>
             <pre><code class="language-javascript">pulsante<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   clic <span class="token operator">=</span> clic <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
@@ -192,7 +193,7 @@ pulsante<span class="token punctuation">.</span><span class="token function">add
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Ricarica: ai primi due clic vedi il numero; al terzo compare il messaggio speciale; al quarto torna “Clic: 4”. <code>if</code> controlla una condizione. <code>===</code> confronta senza convertire automaticamente tipi diversi: il numero <code>3</code> è diverso dal testo <code>"3"</code>. <code>else</code> gestisce gli altri casi.</p>
           </section></section>
-          <section id="chapter-06" class="guide-block guide-chapter"><h2>6. Mettere la scelta in una funzione</h2><section class="guide-subchapter">
+          <section id="chapter-06" class="guide-block guide-chapter"><h2>Dai un nome alla decisione</h2><section class="guide-subchapter">
             <p>La decisione sul testo può avere un nome. Sostituisci <code>script.js</code> con questa versione completa:</p>
             <pre><code class="language-javascript"><span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -211,7 +212,7 @@ pulsante<span class="token punctuation">.</span><span class="token function">add
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Ricarica e ripeti i quattro clic: il risultato è lo stesso del capitolo precedente. <code>messaggioPer</code> riceve un numero come parametro e restituisce il testo con <code>return</code>. La funzione del clic usa quel testo per aggiornare la pagina. Separare la scelta del messaggio dall’azione sul browser rende più facile controllare le due cose.</p>
           </section></section>
-          <section id="chapter-07" class="guide-block guide-chapter"><h2>7. Leggere un valore scritto nella pagina</h2><section class="guide-subchapter">
+          <section id="chapter-07" class="guide-block guide-chapter"><h2>Fai entrare il nome nel messaggio</h2><section class="guide-subchapter">
             <p>Aggiungi un campo per il nome. In <code>index.html</code>, subito prima del pulsante, inserisci:</p>
             <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nome<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Il tuo nome<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nome<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">autocomplete</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
@@ -236,11 +237,11 @@ pulsante<span class="token punctuation">.</span><span class="token function">add
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
             <p>Ricarica, scrivi “Ada” e premi: vedi “Ciao, Ada. Clic: 1”. Se lasci il campo vuoto, vedi solo il conteggio. <code>value</code> legge ciò che hai scritto; <code>trim()</code> toglie gli spazi all’inizio e alla fine. La forma <code>condizione ? valore1 : valore2</code> sceglie tra due testi. <code>textContent</code> mostra il nome come testo, senza interpretarlo come HTML: prova a scrivere <code>&lt;b&gt;Ada&lt;/b&gt;</code> per verificarlo.</p>
           </section></section>
-          <section id="chapter-debug" class="guide-block guide-chapter"><h2>8. Capire perché qualcosa non funziona</h2><section class="guide-subchapter">
+          <section id="chapter-debug" class="guide-block guide-chapter"><h2>Quando il clic non dà il risultato atteso</h2><section class="guide-subchapter">
             <p>Apri gli strumenti di sviluppo del browser e la scheda <strong>Console</strong>. Se la pagina non reagisce, controlla in ordine: <code>script.js</code> è nella stessa cartella? Gli ID nell’HTML coincidono con quelli di <code>querySelector</code>? Hai salvato e ricaricato?</p>
             <p>Puoi aggiungere temporaneamente <code>console.log(clic);</code> dopo <code>clic = clic + 1;</code>. Alla pressione del pulsante, in Console devono apparire 1, 2, 3. Il messaggio di log compare negli strumenti, non nella pagina. Togli la riga quando hai finito. Un errore rosso con numero di riga indica dove iniziare a cercare; un clic che non produce log suggerisce di controllare il collegamento del file o il listener.</p>
           </section></section>
-          <section id="chapter-challenge" class="guide-block guide-chapter"><h2>9. Esercizio: aggiungere un pulsante di reset</h2><section class="guide-subchapter">
+          <section id="chapter-challenge" class="guide-block guide-chapter"><h2>Ora prova tu: aggiungi Azzera</h2><section class="guide-subchapter">
             <p>Obiettivo: dopo alcuni clic, il pulsante “Azzera” deve riportare il conteggio a zero e mostrare “Clic: 0”. Il campo del nome può restare com’è. Prima aggiungi in <code>index.html</code> un secondo pulsante sotto quello esistente:</p>
             <pre><code class="language-markup" data-no-live><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>azzera<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Azzera<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
             <p>Nel file JS cerca quel pulsante, ascolta il suo clic, assegna <code>0</code> a <code>clic</code> e aggiorna <code>risultato.textContent</code>. Prova questa sequenza: due clic sul primo pulsante, reset, un altro clic. Il testo deve mostrare 1, 2, 0, 1. Così verifichi che lo stato si sia davvero azzerato.</p>
@@ -252,24 +253,31 @@ pulsanteAzzera<span class="token punctuation">.</span><span class="token functio
   risultato<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Clic: 0"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Il reset modifica la stessa variabile usata dal primo pulsante. Se modifichi solo il testo visibile, al clic successivo il vecchio conteggio ricompare.</p></details>
           </section></section>
-          <section id="chapter-cheatsheet" class="guide-block guide-chapter"><h2>10. Riepilogo dei concetti</h2><section class="guide-subchapter"><dl>
+          <section id="chapter-cheatsheet" class="guide-block guide-chapter"><h2>Cinque domande per orientarti nel codice</h2><section class="guide-subchapter"><dl>
             <dt><strong>Dove si trova l’elemento?</strong></dt><dd><code>document.querySelector("#id")</code>; con un ID puoi usare anche <code>document.getElementById("id")</code>.</dd>
             <dt><strong>Quando parte il codice?</strong></dt><dd><code>addEventListener("click", funzione)</code> reagisce a un evento del browser.</dd>
             <dt><strong>Quale dato cambia?</strong></dt><dd><code>let</code> per un valore da riassegnare; <code>const</code> quando non riassegni il nome.</dd>
             <dt><strong>Come scegli il risultato?</strong></dt><dd><code>if</code> e <code>===</code> controllano una condizione; <code>return</code> restituisce il risultato di una funzione.</dd>
             <dt><strong>Come aggiorni la pagina?</strong></dt><dd><code>textContent</code> scrive testo nell’elemento; <code>value</code> legge un campo.</dd>
           </dl></section></section>
-          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>11. Verifica dei fondamentali</h2><section class="guide-subchapter"><p class="quiz-intro">Dieci domande sugli esempi della guida. Ogni risposta include una spiegazione.</p><div id="quiz-wrapper"></div></section></section>
-          <section id="chapter-08" class="guide-block guide-chapter"><h2>12. Approfondimento: array e oggetti</h2><section class="guide-subchapter"><p>Se vuoi raccogliere più traguardi, un <strong>array</strong> mantiene una lista in ordine; un <strong>oggetto</strong> associa nomi a valori. Sono due modi diversi di organizzare dati. Puoi provare queste righe nella Console e leggere il risultato dei due <code>console.log</code>:</p>
+          <section id="chapter-quiz" data-quiz-id="javascript-fondamentali" class="guide-block guide-chapter quiz-section"><h2>Controlla cosa hai capito</h2><section class="guide-subchapter"><p class="quiz-intro">Dieci domande sugli esempi della guida. Ogni risposta include una spiegazione.</p><div id="quiz-wrapper"></div></section></section>
+          <section id="chapter-comments" class="guide-block guide-chapter"><h2>Scrivere una nota nel file</h2><section class="guide-subchapter">
+            <p>Un commento serve a spiegare una scelta nel file; il browser non lo esegue. Puoi scriverlo su una riga con <code>//</code> oppure su più righe tra <code>/*</code> e <code>*/</code>. Per esempio, sopra le due selezioni puoi ricordare perché devono corrispondere all’HTML:</p>
+            <pre><code class="language-javascript"><span class="token comment">// Gli ID devono coincidere con quelli in index.html.</span>
+<span class="token keyword">const</span> pulsante <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#pulsante"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> risultato <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#risultato"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+            <p>Aggiungi il commento e ricarica: la pagina si comporta esattamente come prima. Non serve commentare ogni istruzione; qui stai segnando una dipendenza tra due file.</p>
+          </section></section>
+          <section id="chapter-08" class="guide-block guide-chapter"><h2>Quando i dati sono più di uno</h2><section class="guide-subchapter"><p>Se vuoi raccogliere più traguardi, un <strong>array</strong> mantiene una lista in ordine; un <strong>oggetto</strong> associa nomi a valori. Sono due modi diversi di organizzare dati. Puoi provare queste righe nella Console e leggere il risultato dei due <code>console.log</code>:</p>
             <pre><code class="language-javascript"><span class="token keyword">const</span> traguardi <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> impostazioni <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">nome</span><span class="token operator">:</span> <span class="token string">"Ada"</span><span class="token punctuation">,</span> <span class="token literal-property property">limite</span><span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>traguardi<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3: il primo elemento ha indice 0</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>impostazioni<span class="token punctuation">.</span>nome<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Ada: una proprietà per nome</span></code></pre><p>Questo esempio è separato dal contatore: non devi copiarlo in <code>script.js</code> per completare la prova.</p></section></section>
-          <section id="chapter-10" class="guide-block guide-chapter"><h2>13. Approfondimento: conservare il conteggio</h2><section class="guide-subchapter"><p>La variabile <code>clic</code> riparte da zero a ogni ricarica. <code>localStorage</code> può conservare una stringa nel browser. Per un numero occorre convertirla quando la rileggi:</p>
+          <section id="chapter-10" class="guide-block guide-chapter"><h2>Conservare un valore dopo la ricarica</h2><section class="guide-subchapter"><p>La variabile <code>clic</code> riparte da zero a ogni ricarica. <code>localStorage</code> può conservare una stringa nel browser. Per un numero occorre convertirla quando la rileggi:</p>
             <pre><code class="language-javascript">localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"clic"</span><span class="token punctuation">,</span> <span class="token function">String</span><span class="token punctuation">(</span>clic<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> valoreSalvato <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"clic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> clicSalvati <span class="token operator">=</span> valoreSalvato <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token function">Number</span><span class="token punctuation">(</span>valoreSalvato<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>Queste righe mostrano le operazioni, non sono un nuovo <code>script.js</code> completo. Il dato resta nel browser finché non lo cancelli. Non usare questo spazio per password o informazioni sensibili.</p></section></section>
-          <section id="chapter-11" class="guide-block guide-chapter"><h2>14. Approfondimento: attendere un risultato</h2><section class="guide-subchapter"><p>Un clic è un evento che arriva più tardi. Anche una richiesta di rete termina più tardi: <code>async</code> e <code>await</code> permettono a una funzione di aspettare il risultato senza bloccare tutta la pagina. Questo esempio richiede un server che risponda a <code>/api/messaggio</code>; non funzionerà aprendo il file HTML da solo.</p>
+          <section id="chapter-11" class="guide-block guide-chapter"><h2>Aspettare una risposta dal server</h2><section class="guide-subchapter"><p>Un clic è un evento che arriva più tardi. Anche una richiesta di rete termina più tardi: <code>async</code> e <code>await</code> permettono a una funzione di aspettare il risultato senza bloccare tutta la pagina. Questo esempio richiede un server che risponda a <code>/api/messaggio</code>; non funzionerà aprendo il file HTML da solo.</p>
             <pre><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">caricaMessaggio</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">try</span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> risposta <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"/api/messaggio"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -281,10 +289,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>errore<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre><p><code>try/catch</code> gestisce gli errori, per esempio una connessione interrotta. L’esempio mostra il punto in cui si aspetta e quello in cui si mostra il risultato; non sostituisce il progetto del contatore.</p></section></section>
-          <section id="chapter-12" class="guide-block guide-chapter"><h2>15. Approfondimento: quando parte uno script</h2><section class="guide-subchapter"><p>Nel progetto abbiamo usato <code>defer</code>: il file viene scaricato mentre il browser legge l’HTML e viene eseguito dopo che l’HTML è stato analizzato. Uno script classico senza attributi eseguito nell’<code>head</code> può fermare la lettura dell’HTML. <code>async</code> esegue lo script non appena è pronto, quindi non garantisce che gli elementi della pagina esistano già né l’ordine rispetto ad altri script. I moduli <code>type="module"</code> sono differiti per impostazione predefinita.</p>
+          <section id="chapter-12" class="guide-block guide-chapter"><h2>Decidere quando parte lo script</h2><section class="guide-subchapter"><p>Nel progetto abbiamo usato <code>defer</code>: il file viene scaricato mentre il browser legge l’HTML e viene eseguito dopo che l’HTML è stato analizzato. Uno script classico senza attributi eseguito nell’<code>head</code> può fermare la lettura dell’HTML. <code>async</code> esegue lo script non appena è pronto, quindi non garantisce che gli elementi della pagina esistano già né l’ordine rispetto ad altri script. I moduli <code>type="module"</code> sono differiti per impostazione predefinita.</p>
             <p>Quando una funzione aspetta una richiesta di rete, il browser può continuare a gestire altre attività; poi riprende la funzione quando il risultato è disponibile. Questo coordinamento coinvolge l’<em>event loop</em>. Per la prima prova basta sapere che il codice dentro il listener parte al clic, non quando la pagina viene caricata.</p>
           </section></section>
-          <section id="chapter-15" class="guide-block guide-chapter"><h2>Fonti e prossimi passi</h2><section class="guide-subchapter"><ul class="guide-list">
+          <section id="chapter-15" class="guide-block guide-chapter"><h2>Da qui puoi continuare</h2><section class="guide-subchapter"><ul class="guide-list">
             <li><a href="https://developer.mozilla.org/it/docs/Web/JavaScript/Guide">MDN: guida JavaScript</a> per ampliare le basi del linguaggio.</li>
             <li><a href="/it/tutorial/browser-devtools/">Strumenti del browser</a> per seguire errori, Console e richieste.</li>
             <li><a href="/it/tutorial/npm-vite-struttura-progetto/">NPM e Vite</a> quando vorrai organizzare un progetto più grande.</li>

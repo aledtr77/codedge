@@ -1,0 +1,157 @@
+.js-tutorial .guide-toc {
+  --nav-link-active-color: #f3d685;
+}
+
+.js-tutorial .guide-toc .guide-toc-group,
+.js-tutorial .guide-mobile-toc summary,
+.js-tutorial .js-mobile-index__group {
+  color: #f3d685;
+}
+
+.js-tutorial .guide-mobile-toc {
+  border-color: rgba(243, 214, 133, 0.35);
+}
+
+.js-tutorial .guide-mobile-toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.js-tutorial .guide-mobile-toc a[aria-current] {
+  color: #f3d685;
+}
+
+.js-tutorial .guide-content .js-mobile-index__group {
+  margin: 0.9rem 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.js-tutorial .guide-content .js-mobile-index__group:first-child {
+  margin-top: 0;
+}
+
+.js-tutorial .guide-block:not(.js-opening) {
+  border-left: 3px solid rgba(243, 214, 133, 0.5);
+  border-radius: 5px 12px 12px 5px;
+  background: var(--guide-panel);
+  box-shadow: none;
+}
+
+.js-tutorial .guide-block:not(.js-opening).is-active {
+  border-color: rgba(243, 214, 133, 0.5);
+  border-left-color: #f3d685;
+  background: linear-gradient(90deg, rgba(243, 214, 133, 0.06), transparent 28%), var(--guide-panel);
+  box-shadow: none;
+}
+
+.js-tutorial .guide-block.is-active h2 {
+  color: #f3d685;
+}
+
+.js-tutorial .js-opening {
+  padding: clamp(1.1rem, 2.4vw, 1.8rem);
+  border-color: rgba(243, 214, 133, 0.42);
+  background: radial-gradient(circle at top right, rgba(243, 214, 133, 0.1), transparent 45%), #131d2b;
+}
+
+.js-tutorial .js-opening__eyebrow {
+  margin: 0 0 0.55rem;
+  color: #f3d685;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.js-tutorial .js-opening h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.js-opening__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+  gap: clamp(1rem, 2vw, 1.8rem);
+  align-items: center;
+  margin: 1.2rem 0;
+}
+
+.js-demo {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(243, 214, 133, 0.45);
+  border-radius: 10px;
+  background: #0c1421;
+}
+
+.js-demo__bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(243, 214, 133, 0.2);
+  color: #d5dfea;
+  font-size: 0.73rem;
+}
+
+.js-demo__bar [data-js-demo-state] {
+  color: #f3d685;
+  white-space: nowrap;
+}
+
+.js-demo__body {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.js-demo__body button {
+  min-height: 44px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #f3d685;
+  border-radius: 6px;
+  background: #f3d685;
+  color: #132033;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.js-demo__body button:disabled {
+  opacity: 0.58;
+  cursor: default;
+}
+
+.js-demo__body button:focus-visible {
+  outline: 2px solid #fff1c6;
+  outline-offset: 3px;
+}
+
+.js-tutorial .guide-content .js-demo__body p {
+  width: 100%;
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  border-left: 2px solid #f3d685;
+  background: rgba(243, 214, 133, 0.07);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.js-tutorial .guide-deeper {
+  border-color: rgba(243, 214, 133, 0.32);
+}
+
+.js-tutorial .guide-deeper summary {
+  color: #f3d685;
+}
+
+@media (max-width: 760px) {
+  .js-opening__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
