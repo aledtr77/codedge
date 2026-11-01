@@ -397,6 +397,84 @@ export const quizzesData = {
         correct: "Il valore della variabile è lo stato da cui parte il prossimo clic.",
         wrong: "Cambiare solo il testo non cambia la variabile che il primo pulsante usa."
       }
+    },
+    {
+      q: "Qual è la differenza tra 3 e \"3\"?",
+      options: [
+        "Sono entrambi numeri.",
+        "3 è un numero; \"3\" è testo.",
+        "\"3\" è un booleano."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Le virgolette creano una stringa: il tipo cambia.",
+        wrong: "Il numero non ha virgolette; la stringa sì."
+      }
+    },
+    {
+      q: "Se un campo contiene \"3\", quanto vale Number(\"3\") + 1?",
+      options: [
+        "4",
+        "\"31\"",
+        "NaN"
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Number converte il testo numerico prima della somma.",
+        wrong: "Il campo restituisce testo: Number lo trasforma in numero per fare la somma."
+      }
+    },
+    {
+      q: "Nella verifica dell’obiettivo, cosa significa ||?",
+      options: [
+        "Devono essere vere tutte le condizioni.",
+        "Basta che una condizione sia vera.",
+        "Ripete il codice due volte."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "|| è l’operatore oppure: una condizione vera basta.",
+        wrong: "&& richiede tutte le condizioni; || ne richiede almeno una."
+      }
+    },
+    {
+      q: "Dove esiste un parametro dichiarato nella funzione messaggioPer?",
+      options: [
+        "Dentro quella funzione.",
+        "In ogni file del sito.",
+        "Solo nell’HTML."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Il parametro è un nome locale della funzione.",
+        wrong: "Il parametro vive dentro la funzione che lo dichiara."
+      }
+    },
+    {
+      q: "In [3, 5, 10], quale valore ha l’indice 0?",
+      options: [
+        "0",
+        "3",
+        "5"
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Gli indici degli array partono da zero: il primo valore è 3.",
+        wrong: "L’indice 0 indica il primo elemento dell’array."
+      }
+    },
+    {
+      q: "Cosa fa for...of nella lista dei traguardi?",
+      options: [
+        "Visita un traguardo per volta.",
+        "Controlla solo il primo traguardo.",
+        "Salva i traguardi nel browser."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Il ciclo visita ogni oggetto dell’array in sequenza.",
+        wrong: "for...of ripete le istruzioni per ogni valore dell’array."
+      }
     }
   ],
   "vscode-essenziale": [

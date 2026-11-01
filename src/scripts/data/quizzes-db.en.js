@@ -534,6 +534,84 @@ export const quizzesData = {
         correct: "The variable is the state used by the next click.",
         wrong: "Changing only the visible text does not change the variable used by the first button."
       }
+    },
+    {
+      q: "What is the difference between 3 and \"3\"?",
+      options: [
+        "Both are numbers.",
+        "3 is a number; \"3\" is text.",
+        "\"3\" is a boolean."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Quotes create a string: the type changes.",
+        wrong: "The number has no quotes; the string does."
+      }
+    },
+    {
+      q: "If a field contains \"3\", what is Number(\"3\") + 1?",
+      options: [
+        "4",
+        "\"31\"",
+        "NaN"
+      ],
+      correct: 0,
+      feedback: {
+        correct: "Number converts numeric text before addition.",
+        wrong: "The field returns text: Number converts it for arithmetic."
+      }
+    },
+    {
+      q: "In the goal check, what does || mean?",
+      options: [
+        "Every condition must be true.",
+        "One true condition is enough.",
+        "Run the code twice."
+      ],
+      correct: 1,
+      feedback: {
+        correct: "|| means or: one true condition is enough.",
+        wrong: "&& requires all conditions; || requires at least one."
+      }
+    },
+    {
+      q: "Where does a parameter of messageFor exist?",
+      options: [
+        "Inside that function.",
+        "In every file of the site.",
+        "Only in HTML."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "The parameter is a local name inside the function.",
+        wrong: "A parameter lives inside the function declaring it."
+      }
+    },
+    {
+      q: "In [3, 5, 10], which value has index 0?",
+      options: [
+        "0",
+        "3",
+        "5"
+      ],
+      correct: 1,
+      feedback: {
+        correct: "Array indexes start at zero: the first value is 3.",
+        wrong: "Index 0 points to the first array item."
+      }
+    },
+    {
+      q: "What does for...of do in the milestone list?",
+      options: [
+        "It visits one milestone at a time.",
+        "It checks only the first milestone.",
+        "It saves milestones in the browser."
+      ],
+      correct: 0,
+      feedback: {
+        correct: "The loop visits each object in the array in sequence.",
+        wrong: "for...of repeats its instructions for each array value."
+      }
     }
   ],
   "deploy-base": [
