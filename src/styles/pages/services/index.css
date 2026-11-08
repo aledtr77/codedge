@@ -53,8 +53,7 @@
 .services-platform-note {
   max-width: 660px;
   margin: 1.25rem 0 0;
-  padding: 0.75rem 0 0.75rem 1rem;
-  border-left: 3px solid #64bfff;
+  padding-block: 0.25rem;
   color: #b9c9d8;
   font-size: 0.91rem;
   line-height: 1.55;
