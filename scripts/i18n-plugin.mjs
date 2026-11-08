@@ -70,6 +70,7 @@ const NAV_HREFS = {
     TOOLS_HREF: '/it/strumenti/',
     COMPONENTS_HREF: '/it/componenti-ui/',
     TUTORIALS_HREF: '/it/tutorial/',
+    SERVICES_HREF: '/it/servizi/',
     TEMPLATES_HREF: '/it/portfolio/'
   },
   en: {
@@ -78,6 +79,7 @@ const NAV_HREFS = {
     TOOLS_HREF: '/tools/',
     COMPONENTS_HREF: '/ui-components/',
     TUTORIALS_HREF: '/tutorials/',
+    SERVICES_HREF: '/services/',
     TEMPLATES_HREF: '/portfolio/'
   }
 };
@@ -139,6 +141,7 @@ function navbarTokens(route, lang) {
     NAV_TOOLS: s['nav.tools'],
     NAV_COMPONENTS: s['nav.uiComponents'],
     NAV_TUTORIALS: s['nav.tutorials'],
+    NAV_SERVICES: s['nav.services'],
     NAV_TEMPLATES: s['nav.templates'],
     SWITCH_HREF: twin || fallbackHome,
     SWITCH_LANG: other,

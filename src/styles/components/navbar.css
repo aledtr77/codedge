@@ -487,5 +487,6 @@ body[data-css-ready="pending"] .lang-switch-thumb {
   .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.17s; }
   .nav-menu.active .nav-item:nth-child(5) { transition-delay: 0.21s; }
   .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.25s; }
+  .nav-menu.active .nav-item:nth-child(7) { transition-delay: 0.29s; }
 }
 

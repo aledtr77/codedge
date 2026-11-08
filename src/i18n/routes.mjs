@@ -32,6 +32,7 @@ export const ROUTE_MAP = {
   // Top-level pages
   '/it/chi-sono/': '/about/',
   '/it/contatti/': '/contact/',
+  '/it/servizi/': '/services/',
   '/it/privacy-policy/': '/privacy-policy/',
   '/it/termini-servizio/': '/terms-of-service/',
   '/it/portfolio/': '/portfolio/',
