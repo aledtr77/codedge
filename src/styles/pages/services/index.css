@@ -409,7 +409,7 @@
   display: block;
   overflow: hidden;
   margin: 0;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1;
   border: 1px solid var(--services-line-strong);
   border-radius: 10px;
   background:
@@ -433,7 +433,7 @@
 }
 
 .services-case-media--web img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .services-case-media:hover img {
@@ -659,14 +659,6 @@
     order: 0;
   }
 
-  .services-case-media {
-    aspect-ratio: 16 / 9;
-  }
-
-  .services-case-media--poster {
-    aspect-ratio: 4 / 5;
-  }
-
   .services-brief {
     grid-template-columns: 1fr;
     gap: 1.8rem;
@@ -735,14 +727,6 @@
 
   .services-case {
     padding-block: 1.5rem;
-  }
-
-  .services-case-media {
-    aspect-ratio: 4 / 3;
-  }
-
-  .services-case-media--poster {
-    aspect-ratio: 4 / 5;
   }
 
   .services-brief {
