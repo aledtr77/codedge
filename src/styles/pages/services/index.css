@@ -316,8 +316,6 @@
 }
 
 .services-process .services-section-head {
-  position: sticky;
-  top: 2rem;
   grid-template-columns: 1fr;
   gap: 1.1rem;
 }
@@ -645,7 +643,6 @@
   }
 
   .services-process .services-section-head {
-    position: static;
     gap: 1rem;
   }
 
