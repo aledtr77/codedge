@@ -80,7 +80,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   min-height: 3rem;
   padding: 0.7rem 1.15rem;
   border: 1px solid #75c8ff;
@@ -142,9 +141,6 @@
 }
 
 .services-offer-item {
-  display: grid;
-  grid-template-columns: 1.8rem minmax(0, 1fr);
-  gap: 0.7rem;
   min-width: 0;
   padding: 0.2rem 0 1.25rem;
 }
@@ -152,14 +148,6 @@
 .services-offer-item:nth-child(n + 3) {
   padding-top: 1.25rem;
   border-top: 1px solid rgba(167, 199, 224, 0.14);
-}
-
-.services-number {
-  padding-top: 0.22rem;
-  color: #85caff;
-  font-size: 0.76rem;
-  font-weight: 750;
-  letter-spacing: 0.04em;
 }
 
 .services-offer-item h3 {
@@ -184,10 +172,7 @@
 }
 
 .services-proof-links a {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  display: block;
   min-width: 0;
   padding: 1.1rem;
   border: 1px solid rgba(167, 199, 224, 0.22);
