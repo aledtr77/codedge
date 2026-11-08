@@ -98,39 +98,14 @@
 }
 
 .services-spec {
-  position: relative;
   min-width: 0;
   padding: 1.15rem 1.3rem 1rem;
   border: 1px solid var(--services-line-strong);
-  border-radius: 6px;
+  border-radius: 16px;
   background: rgba(8, 16, 26, 0.66);
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-.services-spec::before,
-.services-spec::after {
-  content: "";
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-color: var(--services-accent);
-  opacity: 0.7;
-}
-
-.services-spec::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1px solid;
-  border-left: 1px solid;
-}
-
-.services-spec::after {
-  right: -1px;
-  bottom: -1px;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
 }
 
 .services-spec-head {
