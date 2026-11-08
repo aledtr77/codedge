@@ -2,7 +2,6 @@ import "@/styles/components/main.css";
 import "@/styles/components/navbar.css";
 import "@/styles/components/footer.css";
 import "@/styles/components/button.css";
-import "@/styles/pages/templates/index.css";
 import "@/styles/pages/services/index.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
