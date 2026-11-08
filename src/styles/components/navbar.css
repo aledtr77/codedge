@@ -271,10 +271,19 @@ body[data-css-ready="pending"] .lang-switch-thumb {
   }
 }
 
-@media screen and (max-width: 860px) {
-  .logo {
-    width: 48px;
-    max-width: 48px;
+@media screen and (max-width: 1700px) {
+  .navbar-container {
+    gap: 1.5rem;
+  }
+
+  .nav-menu {
+    gap: 0.3rem;
+  }
+
+  .nav-link {
+    min-width: 0;
+    padding-inline: 0.45rem;
+    font-size: 1rem;
   }
 
   .resize-text,
@@ -283,7 +292,14 @@ body[data-css-ready="pending"] .lang-switch-thumb {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 860px) {
+  .logo {
+    width: 48px;
+    max-width: 48px;
+  }
+}
+
+@media screen and (max-width: 950px) {
   body {
     font-size: 1em;
   }
