@@ -86,15 +86,15 @@
 .services-text-link {
   color: #cfe9ff;
   font-weight: 650;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(143, 211, 255, 0.35);
-  padding-bottom: 0.12rem;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: rgba(143, 211, 255, 0.6);
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .services-text-link:hover {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.8);
+  text-decoration-color: #fff;
 }
 
 .services-spec {
@@ -453,21 +453,19 @@
 }
 
 .services-case-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-block;
   margin-top: 1.2rem;
   color: #9fdcff;
   font-weight: 650;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(159, 220, 255, 0.4);
-  padding-bottom: 0.1rem;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: rgba(159, 220, 255, 0.6);
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .services-case-link:hover {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.8);
+  text-decoration-color: #fff;
 }
 
 .services-brief {
