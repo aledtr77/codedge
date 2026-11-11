@@ -1681,7 +1681,11 @@
 
 /* Shared navigation and learning blocks for the CSS and JavaScript guides. */
 .guide-mobile-toc { display: none; }
-.learning-guide .guide-content .guide-block p { text-align: left; }
+.learning-guide .guide-content .guide-block p {
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+}
 .guide-toc .guide-toc-group {
   margin: 1.05rem 0 0.45rem;
   padding: 0 0.22rem;

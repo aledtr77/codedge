@@ -14,21 +14,18 @@
   padding: 2.25rem 2rem 0;
 }
 
-/* The global justified-paragraph rule (main.css) creates rivers of whitespace
-   in these columns; its :not() chain carries ~(0,7,9) specificity, so the
-   opt-out needs !important. Paragraphs follow their container's alignment;
-   text-align-last must be reset too or last lines stay left-flushed even in
-   centered blocks. */
+/* Contact paragraphs follow the layout of their container, with the lead and
+   short form notes setting their own alignment below. */
 .contact-page p {
-  text-align: inherit !important;
-  text-align-last: auto !important;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
 }
 
-/* Both footnotes stay centered regardless of their card's alignment.
-   (0,2,0)!important outranks the (0,1,1)!important opt-out above. */
+/* Both footnotes stay centered regardless of their card's alignment. */
 .contact-page .contact-form-note,
 .contact-page .contact-report-note {
-  text-align: center !important;
+  text-align: center;
 }
 
 /* ---------- Intro ---------- */
@@ -48,15 +45,14 @@
   color: #fff;
 }
 
-/* Justified like the site's other body copy (the title above stays centered).
-   (0,2,0)!important outranks the .contact-page p opt-out. */
+/* The title above stays centered while the lead copy is justified. */
 .contact-page .contact-lead {
   font-size: 1.05rem;
   line-height: 1.65;
   color: rgba(242, 242, 242, 0.85);
-  text-align: justify !important;
+  text-align: justify;
   text-justify: inter-word;
-  text-align-last: center !important;
+  text-align-last: center;
 }
 
 /* ---------- Twin cards ---------- */

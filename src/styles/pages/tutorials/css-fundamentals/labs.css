@@ -66,7 +66,8 @@
 .css-lab__base summary { min-height: 44px; padding: 0.6rem 0; color: #a8c8e6; font-size: 0.78rem; cursor: pointer; }
 .guide-content :is(.css-lab__html, .css-lab__base) pre { padding: 1rem; }
 .css-lab [hidden] { display: none; }
-#main-content .css-lab :is(p, legend, summary) { text-align: left; text-align-last: auto; }
+#main-content .css-lab p { text-align: justify; text-justify: inter-word; text-align-last: left; }
+#main-content .css-lab :is(legend, summary) { text-align: left; text-align-last: auto; }
 .css-lab[data-css-lab="responsive"] .css-lab__workspace { grid-template-columns: minmax(0, 1fr); }
 .css-lab[data-css-lab="responsive"] .css-lab__tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
 .css-lab[data-css-lab="responsive"] .css-lab__source { margin-top: 0; }

@@ -232,12 +232,14 @@ body > main .learning-shell {
   vertical-align: -0.12em;
 }
 
-.learning-card h2,
 .learning-card p {
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
 }
 
 .learning-card h2 {
+  text-align: left;
   font-size: clamp(1.24rem, 1.6vw, 1.5rem);
   line-height: 1.2;
   margin-bottom: 0.72rem;

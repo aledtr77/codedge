@@ -15,7 +15,27 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
 }
 
-#main-content .services-layout p {
+#main-content .services-layout p:not(
+  .services-eyebrow,
+  .services-spec-head,
+  .services-entry-label,
+  .services-step-output,
+  .services-case-meta,
+  .services-brief-note
+) {
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+}
+
+#main-content .services-layout :is(
+  .services-eyebrow,
+  .services-spec-head,
+  .services-entry-label,
+  .services-step-output,
+  .services-case-meta,
+  .services-brief-note
+) {
   text-align: left;
   text-align-last: left;
 }

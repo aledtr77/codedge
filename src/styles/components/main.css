@@ -129,7 +129,7 @@ body {
   overscroll-behavior-x: none;
 }
 
-main p:not(.card p):not(.tool-card p):not(.resource-card p):not(.project-card p):not(.learning-card p):not(.glossario-term-def p):not(.tooltip p):not(.guide-next-step p):not(.learning-guide .guide-content p) {
+main p:not(.tooltip p) {
   text-align: justify;
   text-justify: inter-word;
   text-align-last: left;
@@ -247,16 +247,6 @@ img {
   body > main {
     margin: 1rem auto 1.5rem;
     padding: 0 var(--mobile-page-gutter);
-  }
-
-  body > main .section,
-  body > main .unified-section {
-    padding-left: 0;
-    padding-right: 0;
-    background-color: transparent;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
   }
 
   body > main .intro,

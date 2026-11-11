@@ -310,7 +310,8 @@
 }
 
 #main-content .relative-paths-explorer .explanation-text p {
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
   text-align-last: left;
 }
 
