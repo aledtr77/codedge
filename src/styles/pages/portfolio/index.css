@@ -77,8 +77,16 @@
   object-fit: cover;
 }
 
-.portfolio-path-media.app-collection-preview {
+.portfolio-path-media--gymlog {
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  background: #0a0b0e;
+}
+
+.portfolio-path-media--gymlog img {
   height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .portfolio-path--project {
