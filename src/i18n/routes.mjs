@@ -38,6 +38,7 @@ export const ROUTE_MAP = {
   '/it/portfolio/': '/portfolio/',
   '/it/portfolio/siti-template/': '/portfolio/websites-templates/',
   '/it/portfolio/app-android/': '/portfolio/android-apps/',
+  '/it/portfolio/pwa/': '/portfolio/pwas/',
   '/it/portfolio/tallero/': '/portfolio/tallero/',
 
   // Resources

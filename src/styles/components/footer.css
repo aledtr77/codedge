@@ -20,7 +20,9 @@ footer {
 }
  .footer-links a {
   color: var(--text-color);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.18em;
   margin-left: 1rem;
   font-size: 1rem;
   cursor: pointer;
@@ -28,6 +30,13 @@ footer {
 }
 .footer-links a:hover {
   color: var(--color-three);
+}
+.footer-links a[aria-current="page"],
+.footer-links a[aria-current="page"]:hover {
+  color: var(--color-three);
+  font-weight: 600;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.24em;
 }
 .footer-social {
   width: auto;

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it" data-page-ready="false">
+
+<head>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<title>PWA: Codedge e GymLog | Codedge</title>
+  <meta name="description" content="Codedge e GymLog sono due Progressive Web App pubbliche. Scopri come gestiscono installazione, cache e uso offline e consulta il codice su GitHub.">
+  <link rel="canonical" href="https://codedge.it/it/portfolio/pwa/">
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="PWA: Codedge e GymLog | Codedge" />
+  <meta property="og:description" content="Codedge e GymLog sono due Progressive Web App pubbliche. Scopri come gestiscono installazione, cache e uso offline e consulta il codice su GitHub." />
+  <meta property="og:url" content="https://codedge.it/it/portfolio/pwa/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anteprima CODEDGE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PWA: Codedge e GymLog | Codedge" />
+  <meta name="twitter:description" content="Codedge e GymLog sono due Progressive Web App pubbliche. Scopri come gestiscono installazione, cache e uso offline e consulta il codice su GitHub." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon.svg?v=4" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png?v=4" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png?v=4" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico?v=4" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg?v=2" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Navigazione principale">
+      <span class="navbar-title resize-text">PWA</span>
+    </nav>
+  </header>
+  <main id="main-content">
+    <section class="section shop-layout portfolio-layout portfolio-pwa-layout" aria-labelledby="pwa-title">
+      <div class="portfolio-intro">
+        <p class="section-kicker"><a href="/it/portfolio/">Portfolio</a> / PWA</p>
+        <h1 id="pwa-title">Due Progressive Web App</h1>
+        <p class="shop-lead">Una Progressive Web App è un’applicazione web installabile dal browser. Il manifest ne definisce nome, icone e modalità di avvio; un service worker può memorizzare pagine e risorse per renderle disponibili offline. La connessione resta necessaria per i contenuti non ancora salvati.</p>
+        <p class="portfolio-pwa-context">Qui trovi due esempi pubblici: Codedge, il sito che stai visitando, permette di riaprire offline la home e le pagine già caricate; GymLog è un diario di allenamento che salva i dati sul dispositivo e consente di registrare sessioni senza rete. Il codice di entrambi è su GitHub.</p>
+      </div>
+      <div class="portfolio-paths" aria-label="Esempi di PWA">
+        <article class="portfolio-path portfolio-path--project" id="codedge-pwa" aria-labelledby="codedge-pwa-title">
+          <div class="portfolio-path-media"><img src="/images/portfolio/codedge-home-pwa.png" alt="Homepage di Codedge, sito con risorse per lo sviluppo web" width="1280" height="800" loading="lazy" decoding="async"></div>
+          <div class="portfolio-path-content">
+            <p class="shop-card-eyebrow">Sito bilingue · Installabile</p>
+            <h2 id="codedge-pwa-title">Codedge</h2>
+            <p>Codedge è una PWA: il manifest permette di aggiungerlo alla schermata Home e avviarlo in una finestra dedicata. Il service worker salva in cache la home e, dopo una visita online, le pagine e le risorse dello stesso sito. Se manca la rete, puoi riaprire ciò che è già in cache; una pagina mai visitata può invece richiedere la connessione.</p>
+            <div class="portfolio-actions">
+              <a class="button-simple" href="/it/">Apri Codedge</a>
+              <a class="portfolio-text-link" href="https://github.com/aledtr77/codedge" target="_blank" rel="noopener noreferrer">Codice su GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="portfolio-path portfolio-path--project" id="gymlog-pwa" aria-labelledby="gymlog-pwa-title">
+          <div class="portfolio-path-media portfolio-path-media--gymlog"><img src="/images/portfolio/gymlog-today.jpg" alt="Schermata di GymLog con il riepilogo dell’allenamento" width="1600" height="800" loading="lazy" decoding="async"></div>
+          <div class="portfolio-path-content">
+            <p class="shop-card-eyebrow">Diario di allenamento · Offline-first</p>
+            <h2 id="gymlog-pwa-title">GymLog</h2>
+            <p>GymLog è una PWA installabile per pianificare gli allenamenti, registrare le serie e rivedere i progressi. Dopo il primo caricamento, la cache dell’app permette di avviarla offline; gli allenamenti e le impostazioni sono salvati localmente nel browser, senza account né sincronizzazione con un server. Puoi esportare un backup per conservare una copia dei tuoi dati.</p>
+            <div class="portfolio-actions">
+              <a class="button-simple" href="https://gymlog.aledtr-77.workers.dev/" target="_blank" rel="noopener noreferrer">Apri GymLog</a>
+              <a class="portfolio-text-link" href="https://github.com/aledtr77/gymlog" target="_blank" rel="noopener noreferrer">Codice su GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="portfolio-footnote"><a href="/it/portfolio/siti-template/">Esplora anche siti e template</a></p>
+    </section>
+  </main>
+  <script type="module" src="/src/scripts/pages/portfolio/main.js"></script>
+</body>
+</html>

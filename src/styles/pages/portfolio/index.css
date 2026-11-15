@@ -359,3 +359,26 @@
     justify-content: center;
   }
 }
+
+.portfolio-pwa-layout .portfolio-intro {
+  max-width: 900px;
+  text-align: left;
+}
+
+.portfolio-pwa-layout .portfolio-intro > .section-kicker {
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+.portfolio-pwa-layout .portfolio-intro > :is(.shop-lead, .portfolio-pwa-context) {
+  max-width: 75ch;
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 1.05rem;
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.portfolio-pwa-layout .portfolio-intro > .portfolio-pwa-context {
+  margin-top: 0.85rem;
+}

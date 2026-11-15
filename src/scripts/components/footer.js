@@ -13,10 +13,17 @@
 
   function initFooterLinks(container) {
     if (!container) return;
+    const currentPath = normalizePath(window.location.pathname);
     container.querySelectorAll('a').forEach(a => {
       if (!a.getAttribute('href') && a.dataset && a.dataset.href) {
         a.setAttribute('href', a.dataset.href);
         delete a.dataset.href;
+      }
+      if (a.hasAttribute('href')) {
+        const linkUrl = new URL(a.href, window.location.href);
+        if (linkUrl.origin === window.location.origin && normalizePath(linkUrl.pathname) === currentPath) {
+          a.setAttribute('aria-current', 'page');
+        }
       }
       a.addEventListener('click', function (ev) {
         if (!this.getAttribute('href') && this.dataset && this.dataset.href) {
@@ -25,6 +32,11 @@
         }
       });
     });
+  }
+
+  function normalizePath(path) {
+    const normalized = path.replace(/\/+$/, '');
+    return normalized || '/';
   }
 
   function initFooterAdjustment(footerEl) {

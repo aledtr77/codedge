@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-page-ready="false">
+
+<head>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-v20-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/jakarta-v12-latin.woff2" crossorigin>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="/critical.css" />
+<title>PWAs: Codedge and GymLog | Codedge</title>
+  <meta name="description" content="Codedge and GymLog are two public progressive web apps. See how they handle installation, caching and offline use, and browse their source on GitHub.">
+  <link rel="canonical" href="https://codedge.it/portfolio/pwas/">
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CODEDGE" />
+  <meta property="og:title" content="PWAs: Codedge and GymLog | Codedge" />
+  <meta property="og:description" content="Codedge and GymLog are two public progressive web apps. See how they handle installation, caching and offline use, and browse their source on GitHub." />
+  <meta property="og:url" content="https://codedge.it/portfolio/pwas/" />
+  <meta property="og:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CODEDGE preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PWAs: Codedge and GymLog | Codedge" />
+  <meta name="twitter:description" content="Codedge and GymLog are two public progressive web apps. See how they handle installation, caching and offline use, and browse their source on GitHub." />
+  <meta name="twitter:image" content="https://codedge.it/og/opengraph-1200x630.jpg" />
+
+  <link rel="icon" href="/icons/favicon.svg?v=4" sizes="any" type="image/svg+xml" />
+  <link rel="icon" href="/icons/favicon-32.png?v=4" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/icons/favicon-16.png?v=4" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/icons/android-chrome-512.png" sizes="512x512" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.ico?v=4" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/icons/favicon-mask.svg?v=2" color="#00A8FF" />
+  <meta name="theme-color" content="#00A8FF" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main navigation">
+      <span class="navbar-title resize-text">PWAs</span>
+    </nav>
+  </header>
+  <main id="main-content">
+    <section class="section shop-layout portfolio-layout portfolio-pwa-layout" aria-labelledby="pwa-title">
+      <div class="portfolio-intro">
+        <p class="section-kicker"><a href="/portfolio/">Portfolio</a> / PWAs</p>
+        <h1 id="pwa-title">Two progressive web apps</h1>
+        <p class="shop-lead">A progressive web app is a web application you can install from the browser. Its manifest defines its name, icons and launch behaviour; a service worker can cache pages and assets for offline use. You still need a connection to load content that has not been cached.</p>
+        <p class="portfolio-pwa-context">Here are two public examples: Codedge, the site you are visiting, lets you reopen the home page and pages you have already loaded offline; GymLog is a training journal that stores data on your device and lets you log sessions without a connection. Both projects are on GitHub.</p>
+      </div>
+      <div class="portfolio-paths" aria-label="PWA examples">
+        <article class="portfolio-path portfolio-path--project" id="codedge-pwa" aria-labelledby="codedge-pwa-title">
+          <div class="portfolio-path-media"><img src="/images/portfolio/codedge-home-pwa.png" alt="Codedge homepage, a website with web development resources" width="1280" height="800" loading="lazy" decoding="async"></div>
+          <div class="portfolio-path-content">
+            <p class="shop-card-eyebrow">Bilingual site · Installable</p>
+            <h2 id="codedge-pwa-title">Codedge</h2>
+            <p>Codedge is a PWA: its manifest lets you add it to your home screen and launch it in a standalone window. The service worker caches the home page and, after an online visit, pages and assets from this site. Without a connection, you can reopen what is already cached; a page you have never visited may still need the network.</p>
+            <div class="portfolio-actions">
+              <a class="button-simple" href="/">Open Codedge</a>
+              <a class="portfolio-text-link" href="https://github.com/aledtr77/codedge" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="portfolio-path portfolio-path--project" id="gymlog-pwa" aria-labelledby="gymlog-pwa-title">
+          <div class="portfolio-path-media portfolio-path-media--gymlog"><img src="/images/portfolio/gymlog-today.jpg" alt="GymLog screen showing the workout overview" width="1600" height="800" loading="lazy" decoding="async"></div>
+          <div class="portfolio-path-content">
+            <p class="shop-card-eyebrow">Training journal · Offline-first</p>
+            <h2 id="gymlog-pwa-title">GymLog</h2>
+            <p>GymLog is an installable PWA for planning workouts, logging sets and reviewing progress. After the first load, its cached app shell lets it start offline; workouts and settings stay in the browser on your device, with no account or server sync. You can export a backup to keep a copy of your data.</p>
+            <div class="portfolio-actions">
+              <a class="button-simple" href="https://gymlog.aledtr-77.workers.dev/" target="_blank" rel="noopener noreferrer">Open GymLog</a>
+              <a class="portfolio-text-link" href="https://github.com/aledtr77/gymlog" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="portfolio-footnote"><a href="/portfolio/websites-templates/">Explore websites and templates too</a></p>
+    </section>
+  </main>
+  <script type="module" src="/src/scripts/pages/portfolio/main.js"></script>
+</body>
+</html>
