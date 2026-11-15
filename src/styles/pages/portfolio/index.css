@@ -77,29 +77,24 @@
   object-fit: cover;
 }
 
-.portfolio-path--app {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+.portfolio-path-media.app-collection-preview {
+  height: auto;
 }
 
-.portfolio-path--app .portfolio-path-media {
-  aspect-ratio: 1092 / 1440;
-}
-
-.portfolio-path--app .portfolio-path-media img {
-  object-fit: cover;
-  object-position: center;
-}
-
-.portfolio-path--preview {
+.portfolio-path--project {
   grid-column: 1 / -1;
   grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
   scroll-margin-top: 7rem;
 }
 
-.portfolio-path--preview .portfolio-path-media {
-  aspect-ratio: 4 / 5;
+.portfolio-path--project .portfolio-path-media {
   height: auto;
   align-self: center;
+}
+
+.portfolio-path--project .portfolio-path-media img {
+  height: auto;
+  object-fit: contain;
 }
 
 .portfolio-path-content {
@@ -117,6 +112,16 @@
   font-family: var(--heading-font);
   font-size: clamp(1.45rem, 2vw, 2rem);
   line-height: 1.2;
+}
+
+.portfolio-path h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.portfolio-path h2 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .portfolio-path-content > p:not(.shop-card-eyebrow) {
@@ -321,17 +326,12 @@
 
 @media (max-width: 700px) {
   .portfolio-path,
-  .portfolio-path--app,
-  .portfolio-path--preview {
+  .portfolio-path--project {
     grid-template-columns: 1fr;
   }
 
   .portfolio-path-media {
     height: 210px;
-  }
-
-  .portfolio-path--app .portfolio-path-media {
-    height: auto;
   }
 
   .tallero-hero {

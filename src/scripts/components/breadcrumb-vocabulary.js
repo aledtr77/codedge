@@ -32,6 +32,7 @@ const IT_VOCABULARY = {
   "componenti-ui": "Componenti UI",
   "tutorial": "Tutorial",
   "template": "Template",
+  "app-android": "App Android",
   "percorsi-apprendimento": "Percorsi di Apprendimento",
 
   // Page-specific overrides
@@ -66,6 +67,7 @@ const EN_VOCABULARY = {
   "ui-components": "UI Components",
   "tutorials": "Tutorials",
   "templates": "Templates",
+  "android-apps": "Android apps",
 
   // Page-specific overrides
   "privacy-policy": "Privacy Policy",

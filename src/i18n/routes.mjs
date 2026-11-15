@@ -37,6 +37,7 @@ export const ROUTE_MAP = {
   '/it/termini-servizio/': '/terms-of-service/',
   '/it/portfolio/': '/portfolio/',
   '/it/portfolio/siti-template/': '/portfolio/websites-templates/',
+  '/it/portfolio/app-android/': '/portfolio/android-apps/',
   '/it/portfolio/tallero/': '/portfolio/tallero/',
 
   // Resources
