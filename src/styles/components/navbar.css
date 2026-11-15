@@ -308,6 +308,7 @@ body[data-css-ready="pending"] .lang-switch-thumb {
     flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
+    gap: 0.75rem;
     padding: 5px var(--mobile-page-gutter);
   }
 
@@ -406,14 +407,12 @@ body[data-css-ready="pending"] .lang-switch-thumb {
     text-decoration: none;
   }
 
-  /* Stays beside the logo on mobile too: it sits outside the dropdown, so the
-     language is switchable without opening the menu. The negative margin pulls
-     it back out of the container's 40px gap, which is far too wide here. */
+  /* Keep the language control beside the logo with a clear, even gap. */
   .lang-switch {
     --lang-seg-w: 1.9rem;
     --lang-seg-h: 1.68rem;
 
-    margin-left: -28px;
+    margin-left: 0;
   }
 
   .lang-switch-code {
