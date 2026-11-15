@@ -90,6 +90,18 @@
   object-position: center;
 }
 
+.portfolio-path--preview {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  scroll-margin-top: 7rem;
+}
+
+.portfolio-path--preview .portfolio-path-media {
+  aspect-ratio: 4 / 5;
+  height: auto;
+  align-self: center;
+}
+
 .portfolio-path-content {
   display: flex;
   flex-direction: column;
@@ -111,6 +123,11 @@
   margin: 1rem 0 1.5rem;
   color: var(--shop-muted);
   line-height: 1.7;
+}
+
+.portfolio-path-content > .portfolio-preview-note {
+  margin-bottom: 0;
+  font-size: 0.9rem;
 }
 
 .portfolio-footnote {
@@ -304,7 +321,8 @@
 
 @media (max-width: 700px) {
   .portfolio-path,
-  .portfolio-path--app {
+  .portfolio-path--app,
+  .portfolio-path--preview {
     grid-template-columns: 1fr;
   }
 
