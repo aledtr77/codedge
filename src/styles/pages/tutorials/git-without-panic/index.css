@@ -275,9 +275,8 @@
   font-size: 1.06rem;
   line-height: 1.76;
   color: var(--guide-text);
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
-  text-justify: inter-word;
   hyphens: auto;
   text-wrap: pretty;
 }
@@ -1620,8 +1619,7 @@
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-color);
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
   text-wrap: pretty;
 }
@@ -1682,8 +1680,7 @@
 /* Shared navigation and learning blocks for the CSS and JavaScript guides. */
 .guide-mobile-toc { display: none; }
 .learning-guide .guide-content .guide-block p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
 }
 .guide-toc .guide-toc-group {

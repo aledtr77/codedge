@@ -120,8 +120,7 @@ body > main .projects-shell {
 .intro p {
   font-size: clamp(1rem, 1.35vw, 1.12rem);
   line-height: 1.78;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
   max-width: 72ch;
   margin: 0;
@@ -318,8 +317,7 @@ body > main .projects-shell {
   }
 
   .intro p {
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
     text-align-last: left;
   }
 
@@ -467,4 +465,16 @@ body > main .projects-shell {
   .project-card__meta span {
     width: auto;
   }
+}
+
+/* Shared, restrained surface for the section landing pages. */
+body > main .projects-shell {
+  background: var(--background-three);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+body > main .projects-shell::before,
+body > main .projects-shell::after {
+  display: none;
 }

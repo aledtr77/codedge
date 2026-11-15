@@ -17,8 +17,7 @@
 /* Contact paragraphs follow the layout of their container, with the lead and
    short form notes setting their own alignment below. */
 .contact-page p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -50,8 +49,7 @@
   font-size: 1.05rem;
   line-height: 1.65;
   color: rgba(242, 242, 242, 0.85);
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: center;
 }
 

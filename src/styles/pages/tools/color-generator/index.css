@@ -800,7 +800,7 @@ body > main .section h2 {
 
 .seo-text-content p,
 .faq-content p {
-  text-align: justify;
+  text-align: left;
   line-height: 1.65;
   font-size: 0.95rem;
   margin-bottom: 1.2rem;

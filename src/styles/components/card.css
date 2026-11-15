@@ -4,8 +4,6 @@
   width: 100%;
   max-width: 340px;
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
   border-radius: var(--card-radius);
   padding: 1.5rem 1rem;
@@ -25,7 +23,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-three), rgba(255, 255, 255, 0.9));
+  background: var(--color-three);
   opacity: 0.95;
   transform: scaleX(0.35);
   transform-origin: left;
@@ -69,7 +67,7 @@
 
 .card:hover h4 i {
   transform: scale(1.22) translateY(-3px);
-  filter: drop-shadow(0 0 8px rgba(0, 132, 255, 0.7));
+
 }
 
 /* Content grows to fill, pinning the CTA to the bottom */

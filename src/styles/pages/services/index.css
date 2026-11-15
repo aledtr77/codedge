@@ -23,8 +23,7 @@
   .services-reference-label,
   .services-brief-note
 ) {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -601,4 +600,10 @@
   .services-entry {
     transition: none;
   }
+}
+
+.services-layout {
+  background: var(--background-three);
+  border-radius: var(--radius-md);
+  box-shadow: none;
 }

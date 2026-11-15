@@ -115,3 +115,21 @@ body {
       inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 }
+
+/* Shared controls: one clear fill and a subtle response to interaction. */
+.button-simple,
+.button-simple:hover,
+.button-simple:active {
+  background-image: none;
+  box-shadow: none;
+  letter-spacing: 0;
+  text-transform: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .button-simple,
+  .button-simple:hover,
+  .button-simple:active {
+    background-image: none;
+    box-shadow: none;
+  }
+}

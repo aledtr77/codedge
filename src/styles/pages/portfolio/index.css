@@ -34,9 +34,8 @@
   .tallero-personalize-copy > p:not(.shop-section-kicker),
   .tallero-rate-note > p
 ) {
-  text-align: justify !important;
+  text-align: left !important;
   text-align-last: left;
-  text-justify: inter-word;
   hyphens: auto;
 }
 

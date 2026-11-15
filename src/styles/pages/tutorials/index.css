@@ -120,8 +120,7 @@ body > main .learning-shell {
 .intro p {
   font-size: clamp(1rem, 1.35vw, 1.12rem);
   line-height: 1.78;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
   margin-bottom: 0;
 }
@@ -233,8 +232,7 @@ body > main .learning-shell {
 }
 
 .learning-card p {
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -459,8 +457,7 @@ body > main .learning-shell {
   }
 
   .intro p {
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: left;
     text-align-last: left;
   }
 
@@ -616,4 +613,16 @@ body > main .learning-shell {
   .learning-card__badge {
     animation: none;
   }
+}
+
+/* Shared, restrained surface for the section landing pages. */
+body > main .learning-shell {
+  background: var(--background-three);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+body > main .learning-shell::before,
+body > main .learning-shell::after {
+  display: none;
 }

@@ -803,7 +803,7 @@ body > main .section {
 
 .seo-text-content p,
 .faq-content p {
-  text-align: justify;
+  text-align: left;
   line-height: 1.65;
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.85);

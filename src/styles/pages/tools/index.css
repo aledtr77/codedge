@@ -118,8 +118,7 @@
       .intro p {
         font-size: clamp(1rem, 1.35vw, 1.12rem);
         line-height: 1.78;
-        text-align: justify;
-        text-justify: inter-word;
+        text-align: left;
         text-align-last: left;
         margin-bottom: 0;
       }
@@ -287,8 +286,7 @@
           text-align: left;
         }
         .intro p {
-          text-align: justify;
-          text-justify: inter-word;
+          text-align: left;
           text-align-last: left;
         }
         .intro-media {
@@ -341,3 +339,15 @@
           width: 100%;
         }
       }
+
+/* Shared, restrained surface for the section landing pages. */
+body > main .tools-shell {
+  background: var(--background-three);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+body > main .tools-shell::before,
+body > main .tools-shell::after {
+  display: none;
+}

@@ -114,9 +114,8 @@
   .about-intro-grid {
     grid-template-columns: 1fr;
     gap: 1.6rem;
-    text-align: justify;
-    text-justify: inter-word;
-  }
+    text-align: left;
+    }
 
   .about-square-img {
     max-width: 320px;

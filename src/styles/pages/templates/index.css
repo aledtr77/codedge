@@ -133,9 +133,8 @@
   .shop-card-content > p:not(.shop-card-eyebrow),
   .shop-custom-copy > p:not(.shop-section-kicker)
 ) {
-  text-align: justify !important;
+  text-align: left !important;
   text-align-last: left;
-  text-justify: inter-word;
   hyphens: auto;
 }
 
@@ -612,4 +611,14 @@
   .shop-custom-action {
     justify-self: start;
   }
+}
+
+.section.shop-layout {
+  background: var(--background-three);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+.section.shop-layout::before,
+.section.shop-layout::after {
+  display: none;
 }
