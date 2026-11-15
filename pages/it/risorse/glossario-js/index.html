@@ -74,6 +74,18 @@
                 <!-- Indice / sommario del glossario: struttura ad elenco per navigare i concetti -->
                 <!-- Le classi "clickable-item" probabilmente sono legate a script che filtrano o saltano ai contenuti -->
                 <ul class="concept-list">
+                        <li>Novità e funzionalità moderne</li>
+                        <ul>
+                            <li class="clickable-item">Object.groupBy()</li>
+                            <li class="clickable-item">Map.groupBy()</li>
+                            <li class="clickable-item">Promise.withResolvers()</li>
+                            <li class="clickable-item">Promise.try()</li>
+                            <li class="clickable-item">RegExp.escape()</li>
+                            <li class="clickable-item">Iterator helpers</li>
+                            <li class="clickable-item">Set methods</li>
+                            <li class="clickable-item">Import attributes</li>
+                            <li class="clickable-item">Array.toSorted()</li>
+                        </ul>
                     <ul>
                         <li>1. Variabili</li>
                         <ul>
@@ -296,6 +308,89 @@
 
         <div>
             <section>
+                <p class="glossary-update-note">Selezione di funzionalità moderne, verificata il 15 novembre 2026. Il supporto varia tra browser e versioni: ogni voce rimanda a MDN. Riferimento: <a href="https://tc39.es/ecma262/2026/">ECMAScript 2026</a>.</p>
+                <details>
+                    <summary>Object.groupBy()<span class="tag-description">Raggruppa elementi in un oggetto</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Raggruppa gli elementi di un iterabile secondo la chiave restituita dalla funzione, producendo un oggetto senza prototipo.</li>
+                        <li>Esempio: <code>Object.groupBy([1, 2, 3], n =&gt; n % 2 ? &quot;dispari&quot; : &quot;pari&quot;)</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Map.groupBy()<span class="tag-description">Raggruppa elementi in una Map</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Raggruppa un iterabile in una Map e consente di usare anche oggetti come chiavi.</li>
+                        <li>Esempio: <code>Map.groupBy([1, 2, 3], n =&gt; n % 2)</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/groupBy">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise.withResolvers()<span class="tag-description">Crea una Promise con i suoi controlli</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Restituisce promise, resolve e reject insieme, utile quando la risoluzione è gestita fuori dal costruttore.</li>
+                        <li>Esempio: <code>const { promise, resolve, reject } = Promise.withResolvers();</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Promise.try()<span class="tag-description">Avvia una funzione e restituisce una Promise</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Invoca subito una funzione e converte il risultato in una Promise; un’eccezione sincrona diventa un rifiuto.</li>
+                        <li>Esempio: <code>Promise.try(() =&gt; JSON.parse(testo)).catch(console.error);</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/try">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>RegExp.escape()<span class="tag-description">Testo letterale in una espressione regolare</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Effettua l’escape di una stringa affinché possa essere inserita come testo letterale in un pattern RegExp.</li>
+                        <li>Esempio: <code>new RegExp(RegExp.escape(&quot;a.b&quot;))</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/escape">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Iterator helpers<span class="tag-description">Trasforma iteratori senza creare array intermedi</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Metodi come map, filter e take producono iteratori elaborati progressivamente; toArray raccoglie i risultati.</li>
+                        <li>Esempio: <code>Iterator.from([1, 2, 3]).map(n =&gt; n * 2).toArray()</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Set methods<span class="tag-description">Operazioni tra insiemi</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Metodi come union, intersection e difference combinano o confrontano insiemi senza modificare quelli originali.</li>
+                        <li>Esempio: <code>new Set([1, 2]).intersection(new Set([2, 3]))</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#Set_composition">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Import attributes<span class="tag-description">Attributi per il caricamento dei moduli</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>La sintassi with comunica al runtime come trattare un modulo, per esempio un modulo JSON; le capacità dipendono dall’ambiente.</li>
+                        <li>Esempio: <code>import dati from &quot;./dati.json&quot; with { type: &quot;json&quot; };</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Array.toSorted()<span class="tag-description">Ordina una copia senza modificare l’array</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Restituisce un nuovo array ordinato; a differenza di sort non modifica l’array originale.</li>
+                        <li>Esempio: <code>[3, 1, 2].toSorted((a, b) =&gt; a - b)</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted">MDN</a>.</li>
+                    </ol>
+                </details>
+
+
                 <!-- Dettaglio di un termine del glossario: pannello espandibile -->
                 <!-- <summary> mostra l'etichetta e una breve descrizione -->
                 <details>

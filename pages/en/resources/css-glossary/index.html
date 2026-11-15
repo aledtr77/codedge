@@ -91,6 +91,17 @@
                 <div class="aside-content">
                 <!-- Elenco dei concetti del glossario; elementi .clickable-item gestiti via JS per il filtraggio/navigazione -->
                 <ul class="concept-list">
+                        <li>Recent and modern features</li>
+                        <ul>
+                            <li class="clickable-item">@scope</li>
+                            <li class="clickable-item">@starting-style</li>
+                            <li class="clickable-item">@property</li>
+                            <li class="clickable-item">CSS nesting</li>
+                            <li class="clickable-item">Container queries</li>
+                            <li class="clickable-item">Anchor positioning</li>
+                            <li class="clickable-item">animation-timeline</li>
+                            <li class="clickable-item">light-dark()</li>
+                        </ul>
                     <li>1. Concepts</li>
                     <ul>
                         <li class="clickable-item">CSS</li>
@@ -218,7 +229,6 @@
                         <li class="clickable-item">Media Queries</li>
                         <li class="clickable-item">Mobile First</li>
                         <li class="clickable-item">Responsive Images</li>
-                        <li class="clickable-item">Container queries</li>
                         <li class="clickable-item">@supports</li>
                     </ul>
                     <li>7. Transforms and animation</li>
@@ -277,6 +287,80 @@
             </aside>
             <div>
                 <section>
+                <p class="glossary-update-note">A selection of modern features, checked on November 15, 2026. Support varies across browsers and versions: each entry links to MDN. Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">CSS reference</a>.</p>
+                <details>
+                    <summary>@scope<span class="tag-description">Limits rules to a subtree</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Scopes selectors to a subtree, optionally with a boundary; it does not provide Shadow DOM isolation.</li>
+                        <li>Example: <code>@scope (.card) { p { color: navy; } }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@scope">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>@starting-style<span class="tag-description">Starting style for a transition</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Supplies a starting style when an element had no previous rendered style, such as on first display.</li>
+                        <li>Example: <code>@starting-style { .notice { opacity: 0; } }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@starting-style">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>@property<span class="tag-description">Registers a custom property</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Defines syntax, inheritance and an initial value for a custom property, also enabling typed animations.</li>
+                        <li>Example: <code>@property --angle { syntax: &quot;&lt;angle&gt;&quot;; inherits: false; initial-value: 0deg; }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@property">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>CSS nesting<span class="tag-description">Nested CSS rules</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Lets you write nested rules in native CSS; the &amp; selector refers to the outer rule’s selector.</li>
+                        <li>Example: <code>.card { &amp; a { color: blue; } }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Nesting">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Container queries<span class="tag-description">Styles based on a container</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Adapts a component to the size of its container instead of only the viewport.</li>
+                        <li>Example: <code>@container (min-width: 30rem) { .card { display: flex; } }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Anchor positioning<span class="tag-description">Positioning relative to an element</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Positions an element relative to an anchor, useful for tooltips and menus; check support for individual properties.</li>
+                        <li>Example: <code>.trigger { anchor-name: --trigger; } .tip { position: fixed; position-anchor: --trigger; position-area: bottom; }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>animation-timeline<span class="tag-description">Animations driven by scrolling</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Can tie animation progress to scrolling using scroll() or view(); check compatibility and respect prefers-reduced-motion.</li>
+                        <li>Example: <code>.progress { animation: grow linear; animation-timeline: scroll(); }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>light-dark()<span class="tag-description">Colors for light and dark themes</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Selects between two colors according to the element’s used color scheme; set an appropriate color-scheme.</li>
+                        <li>Example: <code>:root { color-scheme: light dark; color: light-dark(#222, #eee); }</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark">MDN</a>.</li>
+                    </ol>
+                </details>
+
+
                 <!-- Dettaglio espandibile che contiene la definizione iniziale del glossario -->
                 <details>
                     <!-- Summary: titolo breve visibile, include una breve descrizione (span) -->
@@ -1613,18 +1697,6 @@
                         <li>What it is: Responsive images are CSS and HTML techniques and tools that let you serve images optimised for the device's characteristics, such as the size of the...</li>
                         <li>What it's for: Improving performance, cutting data usage and ensuring images display optimally across different devices and connections.</li>
                         <li>When to use it: When you need to match images' size and resolution to the device.</li>
-                    </ol>
-                </details>
-
-                <details>
-                    <summary>Container Queries<span class="tag-description" aria-label="concept description">CSS technique for applying styles based on the parent container's dimensions</span>
-                        <div class="tag-group" aria-label="group">6. Responsive design — advanced</div>
-                    </summary>
-                    
-                    <ol>
-                        <li>What it is: Container queries are an emerging CSS technique that lets you apply styles to an element based on the dimensions of its parent container, rather than the dimensions...</li>
-                        <li>What it's for: Giving more granular, modular control over components' layout and styling, letting them respond to the context they are placed in,...</li>
-                        <li>When to use it: When you need to apply styles based on the parent container's dimensions.</li>
                     </ol>
                 </details>
 

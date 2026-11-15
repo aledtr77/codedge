@@ -94,6 +94,18 @@
                          Elementi con classe clickable-item vengono probabilmente usati dagli script
                          per navigare/filtrare il contenuto. -->
                     <ul class="concept-list">
+                        <li>Novità e funzionalità moderne</li>
+                        <ul>
+                            <li class="clickable-item">search</li>
+                            <li class="clickable-item">slot</li>
+                            <li class="clickable-item">popover</li>
+                            <li class="clickable-item">popovertarget</li>
+                            <li class="clickable-item">commandfor</li>
+                            <li class="clickable-item">selectedcontent</li>
+                            <li class="clickable-item">inert</li>
+                            <li class="clickable-item">loading</li>
+                            <li class="clickable-item">fetchpriority</li>
+                        </ul>
                         <li>1. Fondamenti HTML</li>
 
                         <ul>
@@ -230,6 +242,89 @@
 
             <div>
                 <section>
+                <p class="glossary-update-note">Selezione di funzionalità moderne, verificata il 15 novembre 2026. Il supporto varia tra browser e versioni: ogni voce rimanda a MDN. Riferimento: <a href="https://html.spec.whatwg.org/">HTML Living Standard</a>.</p>
+                <details>
+                    <summary>search<span class="tag-description">Area semantica per la ricerca</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Raggruppa i controlli che servono a cercare o filtrare contenuti; può contenere un modulo di ricerca.</li>
+                        <li>Esempio: <code>&lt;search&gt;&lt;form action=&quot;/cerca&quot;&gt;&lt;label&gt;Cerca &lt;input name=&quot;q&quot;&gt;&lt;/label&gt;&lt;button&gt;Cerca&lt;/button&gt;&lt;/form&gt;&lt;/search&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/search">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>slot<span class="tag-description">Segnaposto per contenuti di un componente</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>All’interno dello Shadow DOM indica dove inserire il contenuto fornito dall’esterno a un componente personalizzato.</li>
+                        <li>Esempio: <code>&lt;slot name=&quot;titolo&quot;&gt;Titolo predefinito&lt;/slot&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/slot">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>popover<span class="tag-description">Contenuto mostrato sopra la pagina</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>L’attributo globale crea un popover gestito dal browser; con auto può chiudersi facendo clic fuori.</li>
+                        <li>Esempio: <code>&lt;div id=&quot;info&quot; popover&gt;Dettagli&lt;/div&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/popover">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>popovertarget<span class="tag-description">Pulsante che controlla un popover</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Collega un pulsante a un elemento con popover tramite il suo id, senza richiedere JavaScript per aprirlo.</li>
+                        <li>Esempio: <code>&lt;button popovertarget=&quot;info&quot;&gt;Apri&lt;/button&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#popovertarget">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>commandfor<span class="tag-description">Comandi dichiarativi per dialog e popover</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Associa un pulsante a un elemento; command specifica l’azione, per esempio show-modal su un dialog.</li>
+                        <li>Esempio: <code>&lt;button commandfor=&quot;finestra&quot; command=&quot;show-modal&quot;&gt;Apri&lt;/button&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#commandfor">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>selectedcontent<span class="tag-description">Contenuto selezionato in una select personalizzabile</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Riflette l’opzione selezionata nel pulsante di una select personalizzabile. Il supporto varia: conserva un’alternativa funzionante.</li>
+                        <li>Esempio: <code>&lt;select&gt;&lt;button&gt;&lt;selectedcontent&gt;&lt;/selectedcontent&gt;&lt;/button&gt;&lt;option&gt;Uno&lt;/option&gt;&lt;/select&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>inert<span class="tag-description">Rende inattivo un sottoalbero della pagina</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Impedisce l’interazione e il focus sugli elementi del sottoalbero; sono anche esclusi dall’albero di accessibilità.</li>
+                        <li>Esempio: <code>&lt;section inert&gt;Contenuto non disponibile&lt;/section&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>loading<span class="tag-description">Caricamento differito di immagini e iframe</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Con lazy suggerisce al browser di attendere prima di caricare immagini o iframe fuori dalla vista; non usarlo per un’immagine principale visibile subito.</li>
+                        <li>Esempio: <code>&lt;img src=&quot;foto.jpg&quot; alt=&quot;Paesaggio&quot; loading=&quot;lazy&quot;&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>fetchpriority<span class="tag-description">Priorità relativa di una risorsa</span><div class="tag-group">Novità e funzionalità moderne</div></summary>
+                    <ol>
+                        <li>Suggerisce al browser la priorità di caricamento di una risorsa con high, low o auto. È un suggerimento, non una garanzia.</li>
+                        <li>Esempio: <code>&lt;img src=&quot;hero.jpg&quot; alt=&quot;Paesaggio&quot; fetchpriority=&quot;high&quot;&gt;</code></li>
+                        <li>Compatibilità e dettagli: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority">MDN</a>.</li>
+                    </ol>
+                </details>
+
+
 
                     <!--
                       Voce del glossario: ogni <details> rappresenta una voce espandibile.

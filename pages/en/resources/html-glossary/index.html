@@ -94,6 +94,18 @@
                          Elements with the clickable-item class are the ones the scripts read
                          to navigate and filter the content. -->
                     <ul class="concept-list">
+                        <li>Recent and modern features</li>
+                        <ul>
+                            <li class="clickable-item">search</li>
+                            <li class="clickable-item">slot</li>
+                            <li class="clickable-item">popover</li>
+                            <li class="clickable-item">popovertarget</li>
+                            <li class="clickable-item">commandfor</li>
+                            <li class="clickable-item">selectedcontent</li>
+                            <li class="clickable-item">inert</li>
+                            <li class="clickable-item">loading</li>
+                            <li class="clickable-item">fetchpriority</li>
+                        </ul>
                         <li>1. HTML fundamentals</li>
 
                         <ul>
@@ -230,6 +242,89 @@
 
             <div>
                 <section>
+                <p class="glossary-update-note">A selection of modern features, checked on November 15, 2026. Support varies across browsers and versions: each entry links to MDN. Reference: <a href="https://html.spec.whatwg.org/">HTML Living Standard</a>.</p>
+                <details>
+                    <summary>search<span class="tag-description">Semantic search area</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Groups controls used to search or filter content; it can contain a search form.</li>
+                        <li>Example: <code>&lt;search&gt;&lt;form action=&quot;/cerca&quot;&gt;&lt;label&gt;Cerca &lt;input name=&quot;q&quot;&gt;&lt;/label&gt;&lt;button&gt;Cerca&lt;/button&gt;&lt;/form&gt;&lt;/search&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/search">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>slot<span class="tag-description">Placeholder for component content</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Inside a shadow tree, indicates where content supplied to a custom component is inserted.</li>
+                        <li>Example: <code>&lt;slot name=&quot;titolo&quot;&gt;Titolo predefinito&lt;/slot&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/slot">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>popover<span class="tag-description">Content displayed above the page</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>The global attribute creates a browser-managed popover; auto popovers can be dismissed by clicking outside.</li>
+                        <li>Example: <code>&lt;div id=&quot;info&quot; popover&gt;Dettagli&lt;/div&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/popover">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>popovertarget<span class="tag-description">Button that controls a popover</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Connects a button to a popover by its id, allowing it to open without JavaScript.</li>
+                        <li>Example: <code>&lt;button popovertarget=&quot;info&quot;&gt;Apri&lt;/button&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#popovertarget">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>commandfor<span class="tag-description">Declarative commands for dialogs and popovers</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Associates a button with an element; command specifies an action, such as show-modal on a dialog.</li>
+                        <li>Example: <code>&lt;button commandfor=&quot;finestra&quot; command=&quot;show-modal&quot;&gt;Apri&lt;/button&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#commandfor">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>selectedcontent<span class="tag-description">Selected content in a customizable select</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Mirrors the selected option in a customizable select button. Support varies, so keep a working fallback.</li>
+                        <li>Example: <code>&lt;select&gt;&lt;button&gt;&lt;selectedcontent&gt;&lt;/selectedcontent&gt;&lt;/button&gt;&lt;option&gt;Uno&lt;/option&gt;&lt;/select&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>inert<span class="tag-description">Makes a page subtree inert</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Prevents interaction and focus within a subtree; its contents are also excluded from the accessibility tree.</li>
+                        <li>Example: <code>&lt;section inert&gt;Contenuto non disponibile&lt;/section&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>loading<span class="tag-description">Lazy loading for images and iframes</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>The lazy value hints that offscreen images or iframes can be loaded later; avoid it for an immediately visible hero image.</li>
+                        <li>Example: <code>&lt;img src=&quot;foto.jpg&quot; alt=&quot;Paesaggio&quot; loading=&quot;lazy&quot;&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading">MDN</a>.</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>fetchpriority<span class="tag-description">Relative priority of a resource</span><div class="tag-group">Recent and modern features</div></summary>
+                    <ol>
+                        <li>Hints to the browser that a resource has high, low or auto fetch priority. It is a hint, not a guarantee.</li>
+                        <li>Example: <code>&lt;img src=&quot;hero.jpg&quot; alt=&quot;Paesaggio&quot; fetchpriority=&quot;high&quot;&gt;</code></li>
+                        <li>Compatibility and details: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority">MDN</a>.</li>
+                    </ol>
+                </details>
+
+
 
                     <!--
                       Glossary entry: each <details> is one expandable entry.
