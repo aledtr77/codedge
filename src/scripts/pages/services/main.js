@@ -3,7 +3,6 @@ import "@/styles/components/navbar.css";
 import "@/styles/components/footer.css";
 import "@/styles/components/button.css";
 import "@/styles/pages/services/index.css";
-import "@/styles/components/app-collection-preview.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "@/scripts/components/navbar.js";
