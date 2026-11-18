@@ -63,15 +63,16 @@ function initFunnelCalculator() {
   update();
 }
 
-function syncDiagramLanguage() {
-  document.querySelectorAll('.indie-visual').forEach((visual) => {
-    const image = visual.querySelector('img');
-    const source = visual.querySelector('a[href]').getAttribute('href');
-    if (image.getAttribute('src') !== source) image.setAttribute('src', source);
+function syncTutorialImageLanguage() {
+  const language = document.documentElement.lang === 'it' ? 'it' : 'en';
+  document.querySelectorAll('[data-tutorial-image]').forEach((picture) => {
+    const imagePath = `/images/tutorials/indie-marketing/${picture.dataset.tutorialImage}-${language}`;
+    picture.querySelector('img').setAttribute('src', `${imagePath}.webp`);
+    picture.querySelector('source').setAttribute('srcset', `${imagePath}-mobile.webp`);
   });
 }
 
-window.addEventListener('codedge:lang-changed', syncDiagramLanguage);
+window.addEventListener('codedge:lang-changed', syncTutorialImageLanguage);
 
 document.addEventListener('DOMContentLoaded', () => {
   initGuideToc();

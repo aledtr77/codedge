@@ -1,4 +1,4 @@
-# Dal side project ai primi clienti — quaderno operativo
+# Digital marketing per indie developer — quaderno operativo
 
 Compila le schede per il tuo progetto. Le quantità e i limiti che scegli sono criteri operativi, non soglie universali di successo. Conserva anche risposte negative, cambiamenti del contesto e dati mancanti.
 

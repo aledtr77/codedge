@@ -1,4 +1,4 @@
-# From side project to first customers — working notebook
+# Digital marketing for indie developers — working notebook
 
 Complete the worksheets for your project. Your quantities and limits are working criteria rather than universal success thresholds. Keep negative responses, context changes and missing data visible.
 
