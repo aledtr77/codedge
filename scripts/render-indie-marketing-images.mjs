@@ -122,7 +122,8 @@ try {
         await page.setContent(`<!doctype html><html lang="${language}"><head><meta charset="UTF-8"><style>${styles}</style></head><body>${exampleMarkup(kind, language)}</body></html>`);
         await page.evaluate(() => document.fonts.ready);
         const bounds = await page.locator('.canvas').boundingBox();
-        const filename = `${kind}-${language}${mobile ? '-mobile' : ''}.webp`;
+        const assetName = kind === 'research' ? 'research-notes' : kind;
+        const filename = `${assetName}-${language}${mobile ? '-mobile' : ''}.webp`;
         const screenshot = await page.locator('.canvas').screenshot();
         await sharp(screenshot).webp({ quality: 88 }).toFile(`${output}${filename}`);
         dimensions[filename] = { width: bounds.width, height: Math.ceil(bounds.height) };

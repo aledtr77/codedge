@@ -2,7 +2,7 @@
 
 Quattro esempi originali, in italiano e inglese, ciascuno con composizione desktop e mobile:
 
-- `research`: appunti compilati, episodio recente, alternativa e conseguenza.
+- `research-notes`: appunti compilati, episodio recente, alternativa e conseguenza.
 - `offer`: confronto tra una proposta generica e una verificabile.
 - `activation`: registro degli eventi che distingue iscrizione e primo risultato utile.
 - `channels`: report di canali con visite, account, attivazioni, clienti e spesa.

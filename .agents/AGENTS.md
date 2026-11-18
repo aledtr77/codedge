@@ -14,7 +14,7 @@ another language: a second copy is a second thing to keep in sync, and the two d
 
 ## Code
 
-- **No decorative numbering.** Do not add section counters, leading-zero badges, numbered kickers or ornamental indexes to pages, diagrams or images. Keep numbers that carry information, such as quantities, prices, measurements and calculations.
+- **No decorative numbering.** Do not add section counters, leading-zero badges, numbered kickers or ornamental indexes to pages, diagrams or images. Keep normal chapter numbering in headings and the table of contents. Also keep numbers that carry information, such as quantities, prices, measurements and calculations.
 - **No `!important`.** If a rule needs it, the specificity underneath it is wrong — fix
   that instead.
 - **No duplicate CSS.** One rule, one place.
