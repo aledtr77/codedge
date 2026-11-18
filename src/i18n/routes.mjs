@@ -63,6 +63,7 @@ export const ROUTE_MAP = {
   '/it/componenti-ui/scroll-indicator/': '/ui-components/scroll-indicator/',
 
   // Tutorials
+  '/it/tutorial/marketing-indie-dev/': '/tutorials/indie-marketing/',
   '/it/tutorial/': '/tutorials/',
   '/it/tutorial/accessibilita-web-base/': '/tutorials/web-accessibility-basics/',
   '/it/tutorial/ai-sviluppo-solido/': '/tutorials/ai-assisted-development/',

@@ -7,6 +7,138 @@
 // parsed as real tags and break the quiz UI.
 
 export const quizzesData = {
+  "marketing-indie-dev": [
+    {
+      "q": "Three people say your idea is great. What is the most informative next step?",
+      "options": [
+        "Build every requested feature.",
+        "Propose a test on a real task with a clear commitment.",
+        "Treat paying demand as established."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "A concrete test distinguishes a positive reaction from actual commitment. Its result still needs context.",
+        "wrong": "A concrete test distinguishes a positive reaction from actual commitment. Its result still needs context."
+      }
+    },
+    {
+      "q": "In an interview, you want to understand whether the problem exists. What do you ask first?",
+      "options": [
+        "How did you complete this task last time?",
+        "Would you buy my app if it were cheap?",
+        "Wouldn’t my solution be easier?"
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "A recent incident reveals behavior and constraints without suggesting the answer.",
+        "wrong": "A recent incident reveals behavior and constraints without suggesting the answer."
+      }
+    },
+    {
+      "q": "You have spoken to ten people. What can you conclude?",
+      "options": [
+        "The market is statistically validated.",
+        "You should implement every request.",
+        "You have material for recognizing patterns and designing the next test."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "Ten is a working goal rather than a universal threshold or a guarantee of a representative sample.",
+        "wrong": "Ten is a working goal rather than a universal threshold or a guarantee of a representative sample."
+      }
+    },
+    {
+      "q": "Your landing offers a pilot still delivered partly by hand. How do you present it?",
+      "options": [
+        "Explain availability, scope, manual steps and terms.",
+        "Describe it as fully automated.",
+        "Hide the price until payment."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "People evaluating an offer need to know what they will actually receive and on which terms.",
+        "wrong": "People evaluating an offer need to know what they will actually receive and on which terms."
+      }
+    },
+    {
+      "q": "A post attracts developers, but your product serves professional studios. What do you check?",
+      "options": [
+        "Only the number of likes.",
+        "Whether visitors match the audience and take relevant actions.",
+        "Whether other developers like the logo."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "Audience relevance and subsequent behavior help you assess the channel.",
+        "wrong": "Audience relevance and subsequent behavior help you assess the channel."
+      }
+    },
+    {
+      "q": "From 200 visits in the same cohort you get 20 accounts and 2 customers. What is visit-to-customer conversion?",
+      "options": [
+        "10%.",
+        "25%.",
+        "1%."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "Two customers from 200 visits equal 1%. The 10% figure instead describes visit-to-account conversion.",
+        "wrong": "Two customers from 200 visits equal 1%. The 10% figure instead describes visit-to-account conversion."
+      }
+    },
+    {
+      "q": "Twenty users register but never complete the useful task. What do you investigate first?",
+      "options": [
+        "The obstacle between signup and the first result.",
+        "A new color palette for advertisements.",
+        "How many posts to publish on five more channels."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "Registration is not activation. Watching first use helps identify where the path stops.",
+        "wrong": "Registration is not activation. Watching first use helps identify where the path stops."
+      }
+    },
+    {
+      "q": "A cohort has not yet reached its second week. How do you record that window?",
+      "options": [
+        "As zero returning users.",
+        "As not yet observable, avoiding comparisons with complete windows.",
+        "As 100% retention."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "A period that has not elapsed is unavailable data, not zero or a forecast.",
+        "wrong": "A period that has not elapsed is unavailable data, not zero or a forecast."
+      }
+    },
+    {
+      "q": "You get two purchases before a change and three after. Have you proved the change works?",
+      "options": [
+        "Yes, the increase proves the cause.",
+        "Yes, any before-and-after comparison is an A/B test.",
+        "No: small counts and possible context changes make the conclusion uncertain."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "The comparison can suggest a hypothesis. Without an appropriate design, it does not isolate the cause.",
+        "wrong": "The comparison can suggest a hypothesis. Without an appropriate design, it does not isolate the cause."
+      }
+    },
+    {
+      "q": "A channel brings customers, but support and usage costs absorb revenue. What do you do before spending more?",
+      "options": [
+        "Check margins, retention and workload, then test a sustainable change.",
+        "Increase the budget anyway to get more traffic.",
+        "Treat founder time as free because you work alone."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "Growth needs to hold up in cost and required work. More revenue does not guarantee more margin.",
+        "wrong": "Growth needs to hold up in cost and required work. More revenue does not guarantee more margin."
+      }
+    }
+  ],
   "npm-vite-struttura-progetto": [
     {
       q: "What is NPM (Node Package Manager)?",

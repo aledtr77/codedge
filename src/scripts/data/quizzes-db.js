@@ -3,6 +3,138 @@
 // parsed as real tags and break the quiz UI.
 
 export const quizzesData = {
+  "marketing-indie-dev": [
+    {
+      "q": "Tre persone dicono che la tua idea è bella. Qual è il prossimo passo più informativo?",
+      "options": [
+        "Sviluppare tutte le funzioni richieste.",
+        "Proporre una prova su un compito reale, con un impegno chiaro.",
+        "Considerare dimostrata la domanda pagante."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "Una prova concreta distingue una reazione positiva da un impegno reale. Anche il suo risultato va letto nel contesto.",
+        "wrong": "Una prova concreta distingue una reazione positiva da un impegno reale. Anche il suo risultato va letto nel contesto."
+      }
+    },
+    {
+      "q": "Durante un’intervista vuoi capire se il problema esiste. Cosa chiedi per primo?",
+      "options": [
+        "Come hai completato questo lavoro l’ultima volta?",
+        "Compreresti la mia app se costasse poco?",
+        "La mia soluzione non sarebbe più comoda?"
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "Un episodio recente permette di ricostruire comportamenti e vincoli senza suggerire la risposta.",
+        "wrong": "Un episodio recente permette di ricostruire comportamenti e vincoli senza suggerire la risposta."
+      }
+    },
+    {
+      "q": "Hai parlato con dieci persone. Cosa puoi concludere?",
+      "options": [
+        "Il mercato è validato statisticamente.",
+        "Devi realizzare tutte le richieste emerse.",
+        "Hai materiale per riconoscere ricorrenze e formulare una prova successiva."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "Dieci è un obiettivo operativo: non è una soglia universale né garantisce un campione rappresentativo.",
+        "wrong": "Dieci è un obiettivo operativo: non è una soglia universale né garantisce un campione rappresentativo."
+      }
+    },
+    {
+      "q": "La landing presenta un pilota ancora gestito in parte a mano. Come lo mostri?",
+      "options": [
+        "Spieghi disponibilità, perimetro, passaggi manuali e condizioni.",
+        "Lo descrivi come completamente automatico.",
+        "Nascondi il prezzo fino al pagamento."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "Chi valuta l’offerta deve sapere cosa riceve davvero e a quali condizioni.",
+        "wrong": "Chi valuta l’offerta deve sapere cosa riceve davvero e a quali condizioni."
+      }
+    },
+    {
+      "q": "Un post porta molti sviluppatori, ma il prodotto serve a studi professionali. Cosa controlli?",
+      "options": [
+        "Solo il numero dei like.",
+        "Se le persone arrivate appartengono al pubblico e compiono azioni pertinenti.",
+        "Se il logo piace agli altri sviluppatori."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "La pertinenza del pubblico e il comportamento successivo contano per valutare il canale.",
+        "wrong": "La pertinenza del pubblico e il comportamento successivo contano per valutare il canale."
+      }
+    },
+    {
+      "q": "Su 200 visite della stessa coorte ottieni 20 account e 2 clienti. Qual è la conversione visita → cliente?",
+      "options": [
+        "10%.",
+        "25%.",
+        "1%."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "Due clienti su 200 visite equivalgono all’1%. Il 10% descrive invece la conversione da visita ad account.",
+        "wrong": "Due clienti su 200 visite equivalgono all’1%. Il 10% descrive invece la conversione da visita ad account."
+      }
+    },
+    {
+      "q": "Venti utenti si registrano ma non completano il lavoro utile. Cosa indaghi prima?",
+      "options": [
+        "L’ostacolo fra iscrizione e primo risultato.",
+        "Una nuova palette di colori per gli annunci.",
+        "Il numero di post da pubblicare su altri cinque canali."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "L’iscrizione non coincide con l’attivazione. Osservare il primo utilizzo aiuta a capire il punto di arresto.",
+        "wrong": "L’iscrizione non coincide con l’attivazione. Osservare il primo utilizzo aiuta a capire il punto di arresto."
+      }
+    },
+    {
+      "q": "Una coorte non ha ancora raggiunto la seconda settimana. Come registri quella finestra?",
+      "options": [
+        "Come zero utenti tornati.",
+        "Come non ancora osservabile, evitando confronti con finestre complete.",
+        "Come ritorno del 100%."
+      ],
+      "correct": 1,
+      "feedback": {
+        "correct": "Un periodo non ancora trascorso è un dato non disponibile, non uno zero o una previsione.",
+        "wrong": "Un periodo non ancora trascorso è un dato non disponibile, non uno zero o una previsione."
+      }
+    },
+    {
+      "q": "Ottieni due acquisti prima di una modifica e tre dopo. Hai dimostrato che la modifica funziona?",
+      "options": [
+        "Sì, l’aumento basta a provare la causa.",
+        "Sì, ogni confronto prima/dopo è un A/B test.",
+        "No: conteggi piccoli e possibili cambiamenti di contesto rendono la conclusione incerta."
+      ],
+      "correct": 2,
+      "feedback": {
+        "correct": "Il confronto può suggerire un’ipotesi. Senza un disegno adeguato non isola la causa dell’aumento.",
+        "wrong": "Il confronto può suggerire un’ipotesi. Senza un disegno adeguato non isola la causa dell’aumento."
+      }
+    },
+    {
+      "q": "Il canale porta clienti, ma assistenza e costi a consumo assorbono le entrate. Cosa fai prima di aumentare la spesa?",
+      "options": [
+        "Verifichi margini, ritorno e carico di lavoro, poi provi un cambiamento sostenibile.",
+        "Aumenti comunque il budget per avere più traffico.",
+        "Consideri gratuito il tuo tempo perché lavori da solo."
+      ],
+      "correct": 0,
+      "feedback": {
+        "correct": "La crescita deve reggere anche nei costi e nel lavoro necessario. Più ricavi non garantiscono più margine.",
+        "wrong": "La crescita deve reggere anche nei costi e nel lavoro necessario. Più ricavi non garantiscono più margine."
+      }
+    }
+  ],
   "html-fondamentali": [
     {
       q: "Qual è lo scopo primario dell'HTML Semantico?",

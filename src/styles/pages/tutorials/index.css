@@ -626,3 +626,7 @@ body > main .learning-shell::before,
 body > main .learning-shell::after {
   display: none;
 }
+
+.learning-card--marketing .learning-card__icon {
+  color: #f3cc79;
+}
