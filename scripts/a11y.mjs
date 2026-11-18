@@ -168,6 +168,9 @@ let failing = 0;
 
 for (const route of routes) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  await context.addInitScript((lang) => {
+    if (window === window.top) localStorage.setItem('codedge:lang', lang);
+  }, route.startsWith('/it/') ? 'it' : 'en');
   const page = await context.newPage();
   await page.goto(base + route + (PINNED[route] || ''), { waitUntil: 'load' });
   // The quiz and the breadcrumb are built after load; both have been wrong.

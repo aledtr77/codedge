@@ -10,10 +10,12 @@ export default function initAltComparator() {
   const infoBox = container.querySelector(".alt-info-content");
 
   const scenarios = {
+    // The displayed code teaches the missing-alt mistake; the actual bitmap
+    // is redundant with its caption and stays silent for assistive technology.
     missing: {
       visual: `
         <figure class="alt-example-figure">
-          <img src="${CAT_IMAGE_PATH}" width="800" height="600">
+          <img src="${CAT_IMAGE_PATH}" alt="" width="800" height="600">
           <figcaption>Un gatto rosso dorme su un divano grigio.</figcaption>
         </figure>
       `,

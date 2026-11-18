@@ -1,7 +1,7 @@
 # CODEDGE
 
 [![lint · tests · build · browser](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build%20%C2%B7%20browser)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
-[![282 tests](https://img.shields.io/badge/tests-282%20(Vitest)-3fb950)](tests/)
+[![318 tests](https://img.shields.io/badge/tests-318%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end learning
@@ -26,9 +26,9 @@ corrections are welcome through the repository issue tracker.
 
 - **Glossaries** — 418 entries across HTML, CSS and JavaScript, to open when a property
   or a method won't come back to you
-- **Tutorials** — 12 practical guides: Git and GitHub, browser DevTools, accessibility,
+- **Tutorials** — 13 practical guides: Git and GitHub, browser DevTools, accessibility,
   deployment, technical SEO, developing with AI, and the fundamentals of the three
-  languages
+  languages, and digital marketing for indie developers
 - **Tools** — four utilities that run entirely in the browser: colour and gradient
   generators, an image compressor, a palette extractor
 - **UI components** — four components with the full commented source, plus a snippet
@@ -48,6 +48,8 @@ A few things worth pointing at, because they show what the project currently ver
   attributes and keyboard focus handling from the start.
 - **The two languages are kept in sync by a script**, not by memory. It flags a page
   when it changes on one side only. English lives at the root, Italian under `/it/`.
+  The language switch preserves compatible pages in place; when authored block
+  structures differ, it loads the complete translated document.
 - **The logic that runs without a DOM is tested, and the tests block the deploy.**
   Colour conversion and quantisation, the route map the hreflang tags and the 301s
   come out of, the Italian-in-English detector, the runtime UI strings.
@@ -58,23 +60,43 @@ A few things worth pointing at, because they show what the project currently ver
   if the language lever stops swapping in place, or if the palette extractor and
   the glossary search stop doing their one job. Every one of those got past a
   green build once already.
-- **Accessibility is checked, not asserted.** All 68 pages, in the browser, on
+- **Accessibility is checked, not asserted.** All 80 paired pages, in the browser, on
   every push: contrast against the background actually painted behind the text,
   a name on every control, a label on every field, one h1 and one main, no
   skipped heading levels. It went in on 6 August 2026 and found four things on
   the first run — the fixes are in the same commit as the check.
+- **Security checks run before deployment and on pull requests.** The full npm
+  dependency tree is audited, including build tools. A weekly run detects newly
+  disclosed advisories; Dependabot proposes dependency and Action updates.
+  Browser checks enforce the production CSP, preview isolation and AVIF encoding.
+- **Offline caches follow the build.** A release fingerprint includes public
+  images as well as bundles. Mutable files are revalidated before reuse, runtime
+  storage is limited to 160 entries, and unvisited pages have an offline fallback.
 
 ## Run it locally
 
+Use Node 22.13 or later in the 22 series, or Node 24+. `nvm use` selects the
+same Node series as CI. Browser checks need Chrome or Chromium; set `CHROME_PATH`
+if it is outside the usual system locations.
+
 ```bash
-npm install
+npm ci              # install the reviewed lockfile
 npm run dev         # dev server
 npm test            # unit tests (Vitest)
 npm run lint        # ESLint
 npm run build       # static output in dist/
 npm run test:smoke  # drives a headless Chrome over dist/ — needs the build first
+npm run test:security # CSP, sandbox, AVIF, refreshed images and offline pages
+npm run test:css-labs # interactive lessons in both languages
+npm run test:a11y   # all 80 paired pages, pinned to the requested language
+npm run i18n:swap   # every language switch, compared with the target document
+npm audit           # runtime and development dependencies
 npm run preview     # serve the build
 ```
+
+The workflow checks pull requests without deploying them. Only pushes to `main`
+deploy to Cloudflare Pages after all blocking checks pass. See [SECURITY.md](SECURITY.md)
+for the maintenance process and vulnerability reporting.
 
 ## Licence
 

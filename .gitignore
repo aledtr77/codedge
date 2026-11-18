@@ -15,6 +15,12 @@ yarn-error.log*
 pnpm-debug.log*
 *.log
 
+# Local credentials must not enter source control. Document public settings
+# in an example file rather than committing an actual environment file.
+.env
+.env.*
+!.env.example
+
 # OS / editor
 .DS_Store
 Thumbs.db

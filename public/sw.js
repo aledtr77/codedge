@@ -1,13 +1,14 @@
-const SW_VERSION = "v9";
+const SW_VERSION = "__CODEDGE_BUILD_VERSION__";
 const STATIC_CACHE = `codedge-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `codedge-runtime-${SW_VERSION}`;
+const MAX_RUNTIME_ENTRIES = 160;
+const MAX_RESOURCE_BYTES = 8 * 1024 * 1024;
+const NETWORK_TIMEOUT_MS = 5000;
 
 const PRECACHE_URLS = [
-  // La home inglese sta alla radice: è quella che si apre senza aver scelto
-  // niente. Quella italiana serve lo stesso, o offline chi ha scelto l'italiano
-  // verrebbe mandato su una pagina non in cache.
   "/",
   "/it/",
+  "/offline.html",
   "/site.webmanifest",
   "/site.it.webmanifest",
   "/favicon.ico",
@@ -16,15 +17,12 @@ const PRECACHE_URLS = [
   "/icons/apple-touch-icon.png",
   "/icons/favicon-16.png",
   "/icons/favicon-32.png",
-  "/icons/favicon-mask.svg",
-  "/og/opengraph.jpg",
-  "/og/opengraph-1200x630.jpg"
+  "/icons/favicon-mask.svg"
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(STATIC_CACHE)
+    caches.open(STATIC_CACHE)
       .then((cache) => cache.addAll(PRECACHE_URLS))
       .then(() => self.skipWaiting())
   );
@@ -32,96 +30,88 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys
-            .filter((key) => key !== STATIC_CACHE && key !== RUNTIME_CACHE)
-            .map((key) => caches.delete(key))
-        )
-      )
+    caches.keys()
+      .then((keys) => Promise.all(keys
+        .filter((key) => key.startsWith("codedge-") && key !== STATIC_CACHE && key !== RUNTIME_CACHE)
+        .map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
 
-function isSameOrigin(request) {
-  return new URL(request.url).origin === self.location.origin;
-}
-
-async function networkFirst(request) {
-  const cache = await caches.open(RUNTIME_CACHE);
+async function cachedResponse(request) {
   try {
-    const response = await fetch(new Request(request, { cache: "no-store" }));
-    if (response && response.ok) {
-      cache.put(request, response.clone());
-    }
-    return response;
+    return await caches.match(request);
   } catch {
-    return (await cache.match(request)) || (await caches.match(request));
+    return undefined;
   }
 }
 
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(RUNTIME_CACHE);
-  const cached = await cache.match(request);
-  const fetchPromise = fetch(new Request(request, { cache: "no-store" }))
-    .then((response) => {
-      if (response && response.ok) {
-        cache.put(request, response.clone());
+// Serialize writes so concurrent image/font downloads cannot race eviction.
+// Storage failure must never prevent an otherwise successful network response.
+let pendingWrite = Promise.resolve();
+function remember(event, request, response) {
+  const size = Number(response.headers.get("content-length"));
+  const policy = response.headers.get("cache-control") || "";
+  if (!response.ok || response.redirected || size > MAX_RESOURCE_BYTES || /no-store|private/i.test(policy)) return;
+  const copy = response.clone();
+  pendingWrite = pendingWrite.then(async () => {
+    const cache = await caches.open(RUNTIME_CACHE);
+    await cache.delete(request);
+    await cache.put(request, copy);
+    const keys = await cache.keys();
+    await Promise.all(keys.slice(0, Math.max(0, keys.length - MAX_RUNTIME_ENTRIES)).map((key) => cache.delete(key)));
+  }).catch(() => {});
+  event.waitUntil(pendingWrite);
+}
+
+async function networkFirst(event) {
+  const { request } = event;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), NETWORK_TIMEOUT_MS);
+  try {
+    const response = await fetch(new Request(request, { cache: "no-cache", signal: controller.signal }));
+    if (response.status >= 500) {
+      const cached = await cachedResponse(request);
+      if (cached) return cached;
+    }
+    remember(event, request, response);
+    return response;
+  } catch {
+    const cached = await cachedResponse(request);
+    if (cached) return cached;
+    if (request.mode === "navigate") {
+      const offline = await cachedResponse("/offline.html");
+      if (offline) {
+        const headers = new Headers(offline.headers);
+        headers.delete("content-encoding");
+        headers.delete("content-length");
+        headers.set("Content-Type", "text/html; charset=utf-8");
+        headers.set("Cache-Control", "no-store");
+        return new Response(await offline.text(), { status: 503, headers });
       }
-      return response;
-    })
-    .catch(() => null);
-
-  return cached || fetchPromise || Response.error();
+    }
+    return Response.error();
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
-async function cacheFirst(request) {
-  const cache = await caches.open(RUNTIME_CACHE);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  try {
-    const response = await fetch(request);
-    if (response && response.ok) {
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    return Response.error();
-  }
+async function cacheFirst(event) {
+  const cached = await cachedResponse(event.request);
+  return cached || networkFirst(event);
 }
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  if (request.method !== "GET") return;
-  if (!isSameOrigin(request)) return;
-
   const url = new URL(request.url);
-  const isAsset = url.pathname.includes("/assets/");
+  if (request.method !== "GET" || url.origin !== self.location.origin || url.pathname.startsWith("/api/")) return;
+
   const destination = request.destination;
-
-  if (request.mode === "navigate") {
-    event.respondWith(networkFirst(request));
-    return;
-  }
-
-  // Se è un asset compilato da Vite (JS, CSS o Font in /assets/), usa Cache-First
-  if (isAsset && (destination === "script" || destination === "style" || destination === "font")) {
-    event.respondWith(cacheFirst(request));
-    return;
-  }
-
-  if (
-    destination === "script" ||
-    destination === "style" ||
-    destination === "manifest"
-  ) {
-    event.respondWith(networkFirst(request));
-    return;
-  }
-
-  if (destination === "image" || destination === "font") {
-    event.respondWith(staleWhileRevalidate(request));
+  // Vite fingerprints compiled files. Public files keep stable names and must
+  // be revalidated to show edits on the first visit after a release.
+  if (url.pathname.startsWith("/assets/") && ["script", "style", "font", "image"].includes(destination)) {
+    event.respondWith(cacheFirst(event));
+  } else if (request.mode === "navigate" || ["script", "style", "manifest", "image", "font"].includes(destination)) {
+    event.respondWith(networkFirst(event));
   }
 });

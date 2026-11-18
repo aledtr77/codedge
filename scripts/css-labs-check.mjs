@@ -28,6 +28,13 @@ try {
       await page.waitForFunction(() => [...document.querySelectorAll('.css-lab iframe')].every((f) => f.contentDocument?.getElementById('experiment')));
     };
     await ready();
+    if (route === routes[0]) {
+      await page.evaluate(() => sessionStorage.setItem('codedge:css-labs:language-transfer', JSON.stringify({ target: location.pathname, states: { box: { sizing: 'invalid; color: red' } } })));
+      await page.reload();
+      await ready();
+      assert.equal(await page.locator('[data-css-lab="box"] button[value="content-box"]').getAttribute('aria-pressed'), 'true');
+      assert.equal(await page.evaluate(() => sessionStorage.getItem('codedge:css-labs:language-transfer')), null);
+    }
     assert.equal(await page.locator('html').getAttribute('lang'), route.startsWith('/it/') ? 'it' : 'en');
     const lab = (key) => page.locator(`[data-css-lab="${key}"]`);
     const choose = (key, name, value) => lab(key).locator(`button[name="${name}"][value="${value}"]`).click();

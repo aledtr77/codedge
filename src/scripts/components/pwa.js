@@ -1,4 +1,4 @@
-if ("serviceWorker" in navigator) {
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
   // Reload once when a new service worker takes control, so installed PWAs
   // pick up fresh HTML/assets right after a deploy instead of showing the
   // previous cached version. Guarded to avoid reload loops, and skipped on

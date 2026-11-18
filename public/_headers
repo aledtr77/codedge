@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://cloudflareinsights.com; form-action 'self'; frame-src 'none'; manifest-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://cloudflareinsights.com; form-action 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), xr-spatial-tracking=()
@@ -19,3 +19,6 @@
 # of the build with the SHA-256 hashes of those four — see cspHashesPlugin in
 # vite.config.js. So 'unsafe-inline' in script-src holds for `npm run dev` only:
 # it is not in the published dist.
+
+# AVIF encoding runs locally in WebAssembly. wasm-unsafe-eval permits that
+# compiler without enabling JavaScript eval or Function constructors.

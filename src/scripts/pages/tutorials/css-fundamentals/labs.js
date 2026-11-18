@@ -29,8 +29,23 @@ function showCode(code, source, result) {
 }
 
 const instances = new Map();
+const TRANSFER_KEY = 'codedge:css-labs:language-transfer';
 
-export default function initCssLabs(savedStates = {}) {
+function readTransferredStates() {
+  try {
+    const transfer = JSON.parse(sessionStorage.getItem(TRANSFER_KEY) || 'null');
+    sessionStorage.removeItem(TRANSFER_KEY);
+    return transfer?.target === location.pathname ? transfer.states || {} : {};
+  } catch {
+    return {};
+  }
+}
+
+function currentStates() {
+  return Object.fromEntries([...instances].map(([key, instance]) => [key, { ...instance.state }]));
+}
+
+export default function initCssLabs(savedStates = readTransferredStates()) {
   const lang = document.documentElement.lang === "en" ? "en" : "it";
   const w = words[lang];
   const experiments = cssExperiments(lang);
@@ -40,7 +55,14 @@ export default function initCssLabs(savedStates = {}) {
     const experiment = experiments[key];
     if (!experiment) return;
     const initialState = { ...experiment.initial, ...Object.fromEntries(experiment.controls.map((c) => [c.name, String(c.value)])) };
-    const state = { ...initialState, ...savedStates[key] };
+    const state = { ...initialState };
+    for (const control of experiment.controls) {
+      const value = savedStates[key]?.[control.name];
+      // Session storage is reader-controlled. Restore only values that the
+      // current lesson's controls actually allow.
+      if (control.options?.some((option) => option.value === value)) state[control.name] = value;
+      else if (!control.options && Number.isFinite(Number(value)) && Number(value) >= control.min && Number(value) <= control.max) state[control.name] = value;
+    }
     const baseline = experiment.render(initialState);
     const initial = experiment.render(state);
     const body = document.createElement("div");
@@ -219,13 +241,23 @@ export default function initCssLabs(savedStates = {}) {
 // The site's language switch keeps the DOM alive. Rebuild generated labels
 // and frame content in the new language while retaining each reader choice.
 window.addEventListener("codedge:lang-changed", () => {
-  const states = {};
-  for (const [key, instance] of instances) {
-    states[key] = { ...instance.state };
+  const states = currentStates();
+  for (const instance of instances.values()) {
     instance.observer.disconnect();
     instance.body.remove();
     delete instance.lab.dataset.ready;
   }
   instances.clear();
   initCssLabs(states);
+});
+
+// When the authored pages differ, switching language loads a new document.
+// Carry lesson choices across that one navigation without retaining them for
+// future visits, and consume them only on the intended destination route.
+window.addEventListener('codedge:lang-will-navigate', (event) => {
+  try {
+    sessionStorage.setItem(TRANSFER_KEY, JSON.stringify({ target: event.detail.href, states: currentStates() }));
+  } catch {
+    // Lesson interaction still works when browser storage is disabled.
+  }
 });

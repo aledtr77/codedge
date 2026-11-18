@@ -51,7 +51,7 @@ export default [
   // page.evaluate() are executed in the page, so they legitimately reach for
   // document, location and NodeFilter from inside a Node file.
   {
-    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs', 'scripts/a11y.mjs', 'scripts/css-labs-check.mjs'],
+    files: ['scripts/i18n-swap.mjs', 'scripts/smoke.mjs', 'scripts/a11y.mjs', 'scripts/css-labs-check.mjs', 'scripts/security-check.mjs', 'scripts/render-indie-marketing-images.mjs'],
     languageOptions: {
       globals: { ...globals.node, ...globals.browser },
     },

@@ -1,4 +1,4 @@
-// Language switch that never navigates.
+// Language switch that preserves compatible documents in place.
 //
 // Both language versions of a page are separate documents — that is what keeps
 // them separately indexable, and the <a href> stays real so crawlers and
@@ -7,7 +7,7 @@
 // measured on this site, a plain navigation blanks for ~350ms and even a
 // cross-document view transition still blanks for ~50ms.
 //
-// So with JavaScript available we don't navigate at all. We fetch the twin
+// With compatible page structures we avoid navigation. We fetch the twin
 // page and copy across *only text node values and translatable attributes*,
 // leaving the tree itself alone. Nothing is destroyed, so every listener and
 // every initialised component (colour generator, playground, quiz) survives
@@ -18,10 +18,10 @@
 // arrange differently, where copying by position cannot work at all; there the
 // markup is replaced outright, and only where nothing but prose can live.
 //
-// This is safe because the two trees are structurally identical by
-// construction: English pages are scaffolded from the Italian ones. Where they
-// do diverge — JS-generated content such as a rendered quiz — the walk simply
-// stops descending that branch instead of corrupting it.
+// A build-generated signature checks the authored block structure before the
+// walk. If a language has gained or lost a lesson, a full navigation loads the
+// correct document instead of leaving branches in the previous language.
+// Runtime content such as quizzes is still handled by its own component.
 //
 // scripts/i18n-swap.mjs drives this in a browser over every pair and compares
 // the result against the real page; run it after touching anything here.
@@ -315,6 +315,14 @@ async function fetchTwin(href) {
 async function swapTo(href, control, { push = true } = {}) {
   const doc = await fetchTwin(href);
   if (!doc.body) throw new Error("no body in twin document");
+  const structureSelector = 'meta[name="codedge-page-structure"]';
+  const liveStructure = document.querySelector(structureSelector)?.content;
+  const nextStructure = doc.querySelector(structureSelector)?.content;
+  if (!liveStructure || !nextStructure || liveStructure !== nextStructure) {
+    window.dispatchEvent(new CustomEvent('codedge:lang-will-navigate', { detail: { href } }));
+    remember(doc.documentElement.lang);
+    throw new Error('The translated page has a different block structure');
+  }
 
   // Let DOM-rewriting components hand back the server-rendered shape, so the
   // positional walk can actually reach their text.
@@ -376,7 +384,7 @@ export default function initLangSwitch() {
     } catch {
       // Anything unexpected: fall back to the plain navigation the href
       // already describes, rather than leaving a half-translated page.
-      window.location.href = href;
+      window.location.href = href + location.search + location.hash;
     }
   });
 

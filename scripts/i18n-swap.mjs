@@ -18,13 +18,16 @@
 //   node scripts/i18n-swap.mjs snippet              only matching routes
 //   BASE=http://localhost:5199 node scripts/i18n-swap.mjs
 //
-// Needs a dev server (`npm run dev -- --port 5199`) and a local Chrome.
+// With no BASE override, serves dist/ with the production response headers.
+// Needs `npm run build` first and a local Chrome.
 
 import { chromium } from 'playwright-core';
 import { routePairs } from '../src/i18n/routes.mjs';
+import { chromePath, serveDist } from './lib/serve-dist.mjs';
 
-const BASE = process.env.BASE || 'http://localhost:5199';
-const CHROME = process.env.CHROME_PATH || '/usr/bin/google-chrome';
+const localServer = process.env.BASE ? null : await serveDist();
+const BASE = process.env.BASE || localServer.base;
+const CHROME = chromePath();
 // How many differing slots to print per direction; raise it while debugging.
 const SHOW = Number(process.env.SHOW) || 8;
 
@@ -250,6 +253,7 @@ for (const [itRoute, enRoute] of routePairs()) {
 }
 
 await browser.close();
+if (localServer) await new Promise((resolve) => localServer.server.close(resolve));
 
 console.log(`\n${checked} swap(s) checked · ${failures} failing`);
 process.exit(failures > 0 ? 1 : 0);

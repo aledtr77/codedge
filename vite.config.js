@@ -8,6 +8,8 @@ import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
 import { chromeI18nPlugin, hreflangPlugin, langPreferencePlugin } from './scripts/i18n-plugin.mjs';
 import { LANG_DIR, sourceDirForRoute } from './src/i18n/routes.mjs';
 import { CRAWLER_UA_PATTERN } from './scripts/crawler-ua.mjs';
+import serviceWorkerVersionPlugin from './scripts/service-worker-plugin.mjs';
+import pageStructurePlugin from './scripts/page-structure-plugin.mjs';
 
 const ENTRY_DIR = 'pages';
 
@@ -497,7 +499,9 @@ export default defineConfig(({ command }) => {
     plugins.push(htmlMinifierPlugin);
     plugins.push(movePagesToRootPlugin(outDir));
     plugins.push(cspHashesPlugin(outDir));
+    plugins.push(serviceWorkerVersionPlugin(outDir));
   }
+  plugins.push(pageStructurePlugin());
 
   return {
     root: process.cwd(),

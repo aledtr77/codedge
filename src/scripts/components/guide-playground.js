@@ -1,12 +1,11 @@
 import { t } from "@/i18n/ui.js";
+import playgroundHelperUrl from "./playground-helper.js?url&no-inline";
 // Injects interactive playgrounds (editor + sandboxed iframe preview) into
 // HTML and CSS code blocks. Inside .snippet-box the single "try it live"
 // button lives in the title-box; outside, a per-block toolbar is built.
 
-// The helper script is a string that runs inside the sandboxed iframe, so it
-// cannot import from the i18n module: its one visible string is baked in at
-// srcdoc-generation time instead. That happens on every preview refresh, so it
-// always carries the language in force when the preview was last rendered.
+// The helper is an external asset so it works under the production CSP.
+// Its translated label travels in a data attribute on each preview refresh.
 const injectHelperScript = (html) => {
   const helperStyle = `
   <style>
@@ -45,65 +44,21 @@ const injectHelperScript = (html) => {
   </style>
   `;
 
-  // The sandboxed iframe has an opaque origin, so the parent cannot read its
-  // content height: the document measures itself and reports via postMessage,
-  // letting the preview pane match its content instead of a fixed height.
-  const helperScript = `
-  <script>
-    (function() {
-      var report = function() {
-        var body = document.body;
-        if (!body) return;
-        var rect = body.getBoundingClientRect();
-        var cs = getComputedStyle(body);
-        var height = Math.ceil(rect.height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom));
-        parent.postMessage({ type: 'playground:height', height: height }, '*');
-      };
-      if ('ResizeObserver' in window) {
-        new ResizeObserver(report).observe(document.body);
-      }
-      window.addEventListener('load', report);
-      report();
-    })();
-  </script>
-  <script>
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a');
-      if (!link) return;
-      
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('javascript:')) {
-        return;
-      }
-      
-      e.preventDefault();
-      
-      let toast = document.getElementById('sandbox-toast');
-      if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'sandbox-toast';
-        toast.className = 'sandbox-toast';
-        toast.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>' + ${JSON.stringify(t("playground.externalLinksOff"))} + '</span>';
-        document.body.appendChild(toast);
-      }
-      
-      toast.classList.add('show');
-      
-      clearTimeout(window.sandboxToastTimeout);
-      window.sandboxToastTimeout = setTimeout(function() {
-        toast.classList.remove('show');
-      }, 2500);
-    });
-  </script>
-  `;
-
-  if (html.includes("</body>")) {
-    return html.replace("</body>", `${helperStyle}${helperScript}</body>`);
-  } else if (html.includes("</html>")) {
-    return html.replace("</html>", `${helperStyle}${helperScript}</html>`);
-  } else {
-    return `${html}${helperStyle}${helperScript}`;
-  }
+  const preview = new DOMParser().parseFromString(html, "text/html");
+  preview.querySelectorAll('meta[http-equiv]').forEach((meta) => meta.remove());
+  const helperUrl = new URL(playgroundHelperUrl, window.location.href).href;
+  const policy = preview.createElement("meta");
+  policy.httpEquiv = "Content-Security-Policy";
+  // Only our helper may execute. Reader HTML/CSS stays in an opaque sandbox
+  // with no forms, network connections, nested frames or access to the parent.
+  policy.content = `default-src 'none'; script-src ${helperUrl}; script-src-attr 'none'; style-src 'unsafe-inline'; img-src data: blob: https:; base-uri 'none'; form-action 'none'`;
+  preview.head.prepend(policy);
+  preview.body.insertAdjacentHTML("beforeend", helperStyle);
+  const helper = preview.createElement("script");
+  helper.src = helperUrl;
+  helper.dataset.externalLinksOff = t("playground.externalLinksOff");
+  preview.body.append(helper);
+  return `<!doctype html>${preview.documentElement.outerHTML}`;
 };
 
 
@@ -119,7 +74,7 @@ export default function initGuidePlayground() {
 
   window.addEventListener("message", (ev) => {
     const data = ev.data;
-    if (!data || data.type !== "playground:height" || typeof data.height !== "number") return;
+    if (!data || data.type !== "playground:height" || !Number.isFinite(data.height)) return;
     document.querySelectorAll(".playground-iframe").forEach((iframe) => {
       if (iframe.contentWindow !== ev.source) return;
       const pane = iframe.closest(".playground-preview-pane");
@@ -436,7 +391,7 @@ export default function initGuidePlayground() {
           <div class="playground-lang-tag">${lang}</div>
         </div>
         <div class="playground-preview-pane">
-          <iframe class="playground-iframe" sandbox="allow-scripts" title="${t("playground.iframeTitle")}"></iframe>
+          <iframe class="playground-iframe" sandbox="allow-scripts" referrerpolicy="no-referrer" title="${t("playground.iframeTitle")}"></iframe>
         </div>
       </div>
     `;

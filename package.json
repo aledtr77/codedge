@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": "^22.13.0 || >=24.0.0"
   },
   "private": true,
   "scripts": {
@@ -24,19 +24,20 @@
     "i18n:swap": "node scripts/i18n-swap.mjs",
     "i18n:scaffold": "node scripts/i18n-scaffold.mjs",
     "badge": "node scripts/sync-test-badge.mjs",
-    "badge:check": "node scripts/sync-test-badge.mjs --check"
+    "badge:check": "node scripts/sync-test-badge.mjs --check",
+    "test:security": "node scripts/security-check.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.8.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.15.0",
     "globals": "^17.9.0",
     "html-minifier-terser": "^7.2.0",
     "playwright-core": "^1.62.0",
-    "vite": "^8.0.7",
+    "vite": "^8.3.8",
     "vite-imagetools": "^10.0.1",
-    "vitest": "^4.1.10",
-    "wrangler": "^4.118.0"
+    "vitest": "^4.1.12",
+    "wrangler": "^4.164.0"
   },
   "homepage": "https://codedge.it/",
   "dependencies": {
@@ -49,7 +50,7 @@
   },
   "overrides": {
     "preact": "10.29.1",
-    "undici": "^7.29.0"
+    "undici": "^7.30.2"
   },
   "license": "MIT"
 }

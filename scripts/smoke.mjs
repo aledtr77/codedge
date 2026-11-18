@@ -44,7 +44,13 @@ const PAGES = [
 
 // A counter only a real navigation can increment. Runs before anything of the
 // page's own, on a context so fresh that document.documentElement is still null.
-const PROBE = 'window.__navigations = (window.__navigations || 0) + 1;';
+const PROBE = `
+  if (window === window.top) {
+    window.__navigations = Number(sessionStorage.getItem('codedge:smoke:navigations') || 0) + 1;
+    sessionStorage.setItem('codedge:smoke:navigations', window.__navigations);
+    localStorage.setItem('codedge:lang', location.pathname.startsWith('/it/') ? 'it' : 'en');
+  }
+`;
 
 const results = [];
 function record(name, detail) {
@@ -82,6 +88,7 @@ for (const route of PAGES) {
     page.on('requestfailed', (r) => errors.push(`request: ${r.url().replace(BASE, '')}`));
     const response = await page.goto(BASE + route, { waitUntil: 'load' });
     if (response.status() !== 200) errors.push(`HTTP ${response.status()}`);
+    if (new URL(page.url()).pathname !== route) errors.push('unexpected language redirect');
 
     // Not "is the body visible" but "did the browser record a contentful
     // paint": the way the opacity-0 body failed was by never producing one, and

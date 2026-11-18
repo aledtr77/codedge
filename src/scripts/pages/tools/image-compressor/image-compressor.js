@@ -66,13 +66,27 @@ export function initImageCompressor() {
     // two disagree the row goes back to showing an estimate.
     result: null,
     runId: 0,
-    working: false
+    working: false,
+    status: null,
+    rowPaint: null,
+    actionMode: "compress"
   };
 
   setupSlider(ui.qualitySlider, ui.qualityFill, ui.qualityValueInput, "%");
   setupSlider(ui.maxWidthSlider, ui.maxWidthFill, ui.maxWidthValueInput, "px");
   applyPreset("balanced");
   bindEvents();
+  window.addEventListener("codedge:lang-changed", () => {
+    updateStrategySummary();
+    if (state.status) setStatus(state.status.key, state.status.tone, state.status.params);
+    if (!state.row) return;
+    state.row.originalSize.textContent = t("tool.originalSize", { size: formatBytes(state.file.size) });
+    state.row.thumbnail.alt = state.result && state.row.thumbnail.src === state.outputUrl
+      ? t("tool.outputPreview", { format: formatLabel(state.result.blob.type) })
+      : t("tool.originalPreview");
+    if (state.rowPaint) paintRow(state.rowPaint);
+    setAction(state.actionMode);
+  });
 
   function bindEvents() {
     ui.uploadArea.addEventListener("click", () => ui.fileInput.click());
@@ -115,13 +129,13 @@ export function initImageCompressor() {
 
   async function loadFile(file) {
     if (!file.type.startsWith("image/") || !EXTENSIONS[file.type]) {
-      setStatus(t("tool.invalidImage"), "error");
+      setStatus("tool.invalidImage", "error");
       return;
     }
 
     ui.fileInput.value = "";
     const runId = ++state.runId;
-    setStatus(t("tool.decodingImage"), "warning");
+    setStatus("tool.decodingImage", "warning");
 
     try {
       const source = await createImageBitmap(file, { imageOrientation: "from-image" });
@@ -148,10 +162,10 @@ export function initImageCompressor() {
       showUploadPreview(file, source);
 
       renderEstimate();
-      setStatus(t("tool.readyToCompress"), "warning");
+      setStatus("tool.readyToCompress", "warning");
     } catch (error) {
       console.error(error);
-      setStatus(t("tool.compressError", { name: file.name, message: error.message }), "error");
+      setStatus("tool.compressError", "error", { name: file.name, message: error.message });
     }
   }
 
@@ -170,7 +184,7 @@ export function initImageCompressor() {
       state.runId += 1;
       state.working = false;
       dropResult();
-      setStatus(t("tool.settingsChanged"), "warning");
+      setStatus("tool.settingsChanged", "warning");
     } else if (state.result) {
       return;
     }
@@ -230,7 +244,7 @@ export function initImageCompressor() {
     const settings = currentSettings();
     state.working = true;
     setAction("busy");
-    setStatus(t("tool.compressing"), "warning");
+    setStatus("tool.compressing", "warning");
 
     try {
       // The encoders below hold the main thread; without this the spinner would
@@ -250,7 +264,7 @@ export function initImageCompressor() {
       console.error(error);
       paintRow({ error: true });
       setAction("compress");
-      setStatus(t("tool.compressError", { name: state.file.name, message: error.message }), "error");
+      setStatus("tool.compressError", "error", { name: state.file.name, message: error.message });
     }
   }
 
@@ -278,7 +292,7 @@ export function initImageCompressor() {
     });
     showOutputPreview(blob);
     setAction("download");
-    setStatus(t("tool.compressOk", { name }), "success");
+    setStatus("tool.compressOk", "success", { name });
   }
 
   function dropResult() {
@@ -322,6 +336,7 @@ export function initImageCompressor() {
   // One row, written in place. Rebuilding its markup on every change is what
   // made the panel flicker and the layout jump under a slider drag.
   function paintRow({ delta, detail, estimate, error }) {
+    state.rowPaint = { delta, detail, estimate, error };
     const { badge, details } = state.row;
     badge.classList.toggle("is-error", Boolean(error));
     badge.classList.toggle("is-estimate", Boolean(estimate) && !error);
@@ -341,6 +356,7 @@ export function initImageCompressor() {
   }
 
   function setAction(mode) {
+    state.actionMode = mode;
     const { action, actionIcon, actionLabel } = state.row;
     action.disabled = mode === "busy";
     action.classList.toggle("is-download", mode === "download");
@@ -433,9 +449,10 @@ export function initImageCompressor() {
     state[key] = null;
   }
 
-  function setStatus(message, tone) {
+  function setStatus(key, tone, params = {}) {
+    state.status = { key, tone, params };
     ui.resultBanner.style.display = "block";
-    ui.resultBanner.textContent = message;
+    ui.resultBanner.textContent = t(key, params);
     ui.resultBanner.classList.remove("is-success", "is-warning", "is-error");
     ui.resultBanner.classList.add(`is-${tone}`);
   }

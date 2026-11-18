@@ -9,6 +9,8 @@ import tutorialsIntroImageWebp from '@/assets/images/shop-template/tutorials.web
 import fallbackTutorialsIntroImage from '@/assets/images/shop-template/tutorials.webp?width=1200';
 
 import { setResponsiveImage } from '@/scripts/components/responsive-image.js';
+import { counterpartOf } from '@/i18n/routes.mjs';
+import { t } from '@/i18n/ui.js';
 import '@/styles/pages/tutorials/index.css';
 
 import "@/scripts/components/navbar.js";
@@ -25,27 +27,44 @@ if (introImage) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function renderQuizBadges() {
+  document.querySelectorAll('.learning-card__badge').forEach((badge) => badge.remove());
   // Quiz-passed badges on the tutorial cards
   const links = document.querySelectorAll('.learning-card a.button-simple');
   links.forEach(link => {
     const href = link.getAttribute('href');
     if (!href) return;
-    const match = href.match(/\/tutorial\/([^/]+)\/?$/);
+    const route = href.startsWith('/it/') ? href : counterpartOf(href);
+    const match = route?.match(/^\/it\/tutorial\/([^/]+)\/$/);
     if (match) {
       const quizId = match[1];
-      const isCompleted = localStorage.getItem(`quiz-completed-${quizId}`);
+      let isCompleted;
+      let score;
+      try {
+        isCompleted = localStorage.getItem(`quiz-completed-${quizId}`);
+        score = Number(localStorage.getItem(`quiz-score-${quizId}`));
+      } catch {
+        return;
+      }
       if (isCompleted === 'true') {
-        const score = localStorage.getItem(`quiz-score-${quizId}`) || '10';
+        if (!Number.isInteger(score) || score < 6 || score > 10) return;
         const card = link.closest('.learning-card');
         if (card) {
           const badge = document.createElement('div');
           badge.className = 'learning-card__badge';
-          badge.innerHTML = `<i class="fas fa-check-circle"></i> Quiz Superato: <strong>${score}/10</strong>`;
+          const icon = document.createElement('i');
+          icon.className = 'fas fa-check-circle';
+          icon.setAttribute('aria-hidden', 'true');
+          const result = document.createElement('strong');
+          result.textContent = `${score}/10`;
+          badge.append(icon, ` ${t('quiz.passedBadge')} `, result);
           
           link.parentNode.insertBefore(badge, link);
         }
       }
     }
   });
-});
+}
+
+document.addEventListener('DOMContentLoaded', renderQuizBadges);
+window.addEventListener('codedge:lang-changed', renderQuizBadges);
