@@ -24,7 +24,6 @@
 }
 
 .indie-eyebrow,
-.indie-guide .indie-step,
 .indie-label {
   color: var(--indie-accent);
   font-size: 0.8rem;
@@ -76,10 +75,6 @@
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--indie-line);
-}
-
-.indie-guide .indie-step {
-  margin: 0 0 0.7rem;
 }
 
 .indie-guide .guide-mobile-toc a {
@@ -170,17 +165,8 @@
 }
 
 .indie-guide .indie-diagram__steps li {
-  display: flex;
-  gap: 0.65rem;
   margin: 0;
   line-height: 1.5;
-}
-
-.indie-diagram__index {
-  padding-top: 0.1rem;
-  color: var(--indie-accent);
-  font-size: 0.75rem;
-  font-variant-numeric: tabular-nums;
 }
 
 .indie-diagram__steps strong,

@@ -2,7 +2,7 @@
 
 Complete the worksheets for your project. Your quantities and limits are working criteria rather than universal success thresholds. Keep negative responses, context changes and missing data visible.
 
-## 1. A conversation about the problem
+## A conversation about the problem
 
 - Date and context:
 - The group this person belongs to:
@@ -20,14 +20,14 @@ Complete the worksheets for your project. Your quantities and limits are working
 
 Starting questions:
 
-1. How did you complete this task last time?
-2. Which step was hardest, and what happened as a result?
-3. What do you use today, and who chooses which tools to buy?
-4. Have you looked for an alternative? What happened?
+- How did you complete this task last time?
+- Which step was hardest, and what happened as a result?
+- What do you use today, and who chooses which tools to buy?
+- Have you looked for an alternative? What happened?
 
 Listen to the process before introducing a solution. Keep only relevant information, avoiding unnecessary confidential data. Ten contacts can be a working goal rather than a representative market sample.
 
-## 2. An offer test
+## An offer test
 
 - Specific problem and audience:
 - Evidence available:
@@ -54,7 +54,7 @@ I help [person in a specific situation] achieve [result] through [mechanism], wi
 
 A compliment, a waiting-list signup, a trial and a payment represent different commitments. None alone establishes a sustainable market.
 
-## 3. Results and next decision
+## Results and next decision
 
 - Period and group observed:
 - Channel and contact source:

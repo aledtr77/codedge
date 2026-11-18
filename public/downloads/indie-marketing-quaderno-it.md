@@ -2,7 +2,7 @@
 
 Compila le schede per il tuo progetto. Le quantità e i limiti che scegli sono criteri operativi, non soglie universali di successo. Conserva anche risposte negative, cambiamenti del contesto e dati mancanti.
 
-## 1. Conversazione sul problema
+## Conversazione sul problema
 
 - Data e contesto:
 - Gruppo di persone a cui appartiene l’interlocutore:
@@ -20,14 +20,14 @@ Compila le schede per il tuo progetto. Le quantità e i limiti che scegli sono c
 
 Domande di partenza:
 
-1. Come hai completato l’ultimo lavoro di questo tipo?
-2. Quale passaggio è stato più difficile e che conseguenza ha avuto?
-3. Cosa usi oggi e chi sceglie di acquistare gli strumenti?
-4. Hai già cercato un’alternativa? Che cosa è successo?
+- Come hai completato l’ultimo lavoro di questo tipo?
+- Quale passaggio è stato più difficile e che conseguenza ha avuto?
+- Cosa usi oggi e chi sceglie di acquistare gli strumenti?
+- Hai già cercato un’alternativa? Che cosa è successo?
 
 Prima ascolta il procedimento, poi presenta eventualmente la soluzione. Conserva solo informazioni pertinenti; non annotare dati riservati non necessari. Dieci interlocutori sono un possibile obiettivo di lavoro, non un campione rappresentativo del mercato.
 
-## 2. Prova dell’offerta
+## Prova dell’offerta
 
 - Problema e pubblico preciso:
 - Evidenze disponibili:
@@ -54,7 +54,7 @@ Aiuto [persona nella situazione] a ottenere [risultato] con [meccanismo], entro 
 
 Un complimento, un indirizzo in lista d’attesa, una prova e un pagamento indicano impegni diversi. Nessuno dimostra da solo l’esistenza di un mercato sostenibile.
 
-## 3. Resoconto e prossima decisione
+## Resoconto e prossima decisione
 
 - Periodo e gruppo osservato:
 - Canale e provenienza dei contatti:

@@ -12,7 +12,7 @@ const copy = {
   it: {
     example: 'ESEMPIO SIMULATO',
     research: {
-      label: 'APPUNTI DI RICERCA', title: 'Studio web · conversazione 03',
+      label: 'APPUNTI DI RICERCA', title: 'Studio web · appunti della conversazione',
       rows: [
         ['Episodio recente', '“Venerdì ho cercato una conferma fra email e chat.”'],
         ['Soluzione attuale', 'Email, chat e un foglio condiviso.'],
@@ -45,7 +45,7 @@ const copy = {
   en: {
     example: 'SIMULATED EXAMPLE',
     research: {
-      label: 'RESEARCH NOTES', title: 'Web studio · conversation 03',
+      label: 'RESEARCH NOTES', title: 'Web studio · conversation notes',
       rows: [
         ['Recent incident', '“On Friday I searched email and chat for an approval.”'],
         ['Current workaround', 'Email, chat and a shared spreadsheet.'],
@@ -85,7 +85,7 @@ function exampleMarkup(kind, language) {
   const text = copy[language][kind];
   let body;
   if (kind === 'research') {
-    body = `<div class="research">${text.rows.map(([label, value], index) => `<div class="research-row"><span class="number">0${index + 1}</span><div><strong>${escape(label)}</strong><p>${escape(value)}</p></div></div>`).join('')}</div>${note(text.note, text.result)}`;
+    body = `<div class="research">${text.rows.map(([label, value]) => `<div class="research-row"><div><strong>${escape(label)}</strong><p>${escape(value)}</p></div></div>`).join('')}</div>${note(text.note, text.result)}`;
   } else if (kind === 'offer') {
     body = `<div class="comparison"><section class="offer offer--vague"><p class="offer-label">${escape(text.before)}</p><div class="offer-content"><h2>${escape(text.vague)}</h2><p>${escape(text.vagueBody)}</p><span class="example-action">${escape(text.vagueAction)}</span><div class="missing"><span>?</span><span>?</span><span>?</span></div></div></section><section class="offer"><p class="offer-label offer-label--clear">${escape(text.after)}</p><div class="offer-content"><p class="audience">${escape(text.audience)}</p><h2>${escape(text.clear)}</h2><p>${escape(text.clearBody)}</p><strong class="price">${escape(text.price)}</strong><p class="terms">${escape(text.terms)}</p><span class="example-action example-action--clear">${escape(text.action)}</span></div></section></div>`;
   } else if (kind === 'activation') {
@@ -101,12 +101,12 @@ const styles = `
 *{box-sizing:border-box}body{margin:0;background:#f4f6f8;color:#1b2936;font-family:Inter,Arial,sans-serif;font-size:15px;line-height:1.5}
 .canvas{padding:24px;width:760px}header{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #cbd4dc;color:#536574;font-size:10px;font-weight:650;letter-spacing:.055em}
 h1{margin:16px 0 20px;font-size:19px;line-height:1.35;letter-spacing:-.02em;font-weight:650}h2{margin:0;font-size:20px;line-height:1.35;font-weight:650;letter-spacing:-.02em}p{margin:0}strong{font-weight:650}
-.research{background:#fff;border:1px solid #cbd4dc;border-radius:6px}.research-row{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:14px 16px}.research-row+.research-row{border-top:1px solid #dce2e8}.number{color:#176787;font-size:12px;padding-top:2px}.research-row strong{display:block;font-size:12px;color:#536574;margin-bottom:3px}
+.research{background:#fff;border:1px solid #cbd4dc;border-radius:6px}.research-row{padding:14px 16px}.research-row+.research-row{border-top:1px solid #dce2e8}.research-row strong{display:block;font-size:12px;color:#536574;margin-bottom:3px}
 .note{margin-top:16px;padding:10px 12px;border-left:3px solid #387b9b;background:#e9f1f6}.note strong{display:block;color:#1f5a74;font-size:11px;margin-bottom:4px}.note p{font-size:14px}
 .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}.offer{background:#fff;border:1px solid #b9cbd6;border-radius:6px;overflow:hidden}.offer-label{padding:10px 14px;border-bottom:1px solid #d6dfe6;color:#5d6874;font-size:11px;font-weight:650}.offer-label--clear{background:#eaf3f9;color:#235f7d}.offer-content{padding:16px}.offer-content>p{margin-top:12px;font-size:14px;color:#4b5e6d}.offer-content .audience{margin:0 0 8px;color:#26627d;font-size:10px;font-weight:650;letter-spacing:.045em}.example-action{display:inline-block;margin-top:16px;padding:8px 12px;border:1px solid #9aacba;border-radius:4px;font-size:12px;font-weight:600;color:#465a6a}.example-action--clear{border-color:#256383;background:#256383;color:#fff}.price{display:block;margin-top:16px;font-size:14px}.offer-content .terms{margin-top:4px;font-size:12px}.missing{display:flex;gap:12px;margin-top:28px;color:#738494}.missing span{width:40px;height:24px;border-bottom:1px dashed #b7c3cc;text-align:center}
 .event-log{border:1px solid #cbd4dc;border-radius:6px;overflow:hidden;background:#fff}.event-heading,.event-row{display:grid;grid-template-columns:58px 200px 1fr;gap:16px;padding:12px 16px;align-items:center}.event-heading{background:#eaf0f4;font-size:11px;color:#536574}.event-row+.event-row{border-top:1px solid #dce2e8}.event-row time{font-variant-numeric:tabular-nums;color:#5b6b78;font-size:12px}.event-row code{font-size:13px;color:#2c4e65}.event-row>span{font-size:14px}.event-row--value{background:#edf7f0;border-top:1px solid #bbd9c4}.event-row--value code{color:#176444;font-weight:600}
 .channel-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #cbd4dc;font-size:13px;font-variant-numeric:tabular-nums}.channel-table :is(td,th){padding:13px 12px;text-align:left;border-bottom:1px solid #d6dfe6}.channel-table th{background:#eaf0f4;font-weight:500;font-size:11px;color:#526373}.channel-table .total{font-weight:650;background:#f6f8fa}.channel-mobile{display:none}
-@media(max-width:600px){body{font-size:15px}.canvas{width:320px;padding:16px}header{font-size:8px;gap:8px;letter-spacing:.02em}h1{font-size:17px;margin:14px 0 16px}.research-row{padding:13px 12px;grid-template-columns:20px 1fr;gap:8px}.research-row p{font-size:15px}.note{margin-top:14px;padding:10px}.note p{font-size:14px}.comparison{grid-template-columns:1fr;gap:14px}.offer-content{padding:14px}.offer-content h2{font-size:19px}.offer-label{padding:9px 14px}.missing{margin-top:14px}.event-heading{display:none}.event-row{grid-template-columns:40px minmax(0,1fr);gap:3px 10px;padding:13px 12px}.event-row code{font-size:13px}.event-row>span{grid-column:2;font-size:14px}.channel-table{display:none}.channel-mobile{display:grid;gap:12px}.channel-mobile section{padding:12px;border:1px solid #cbd4dc;border-radius:6px;background:#fff}.channel-mobile h2{font-size:15px;margin-bottom:10px}.channel-mobile dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}.channel-mobile dt{font-size:11px;color:#536574}.channel-mobile dd{margin:2px 0 0;font-size:15px;font-variant-numeric:tabular-nums}.channel-mobile dl>div:nth-child(4) dd{color:#176444;font-weight:650}}
+@media(max-width:600px){body{font-size:15px}.canvas{width:320px;padding:16px}header{font-size:8px;gap:8px;letter-spacing:.02em}h1{font-size:17px;margin:14px 0 16px}.research-row{padding:13px 12px}.research-row p{font-size:15px}.note{margin-top:14px;padding:10px}.note p{font-size:14px}.comparison{grid-template-columns:1fr;gap:14px}.offer-content{padding:14px}.offer-content h2{font-size:19px}.offer-label{padding:9px 14px}.missing{margin-top:14px}.event-heading{display:none}.event-row{grid-template-columns:40px minmax(0,1fr);gap:3px 10px;padding:13px 12px}.event-row code{font-size:13px}.event-row>span{grid-column:2;font-size:14px}.channel-table{display:none}.channel-mobile{display:grid;gap:12px}.channel-mobile section{padding:12px;border:1px solid #cbd4dc;border-radius:6px;background:#fff}.channel-mobile h2{font-size:15px;margin-bottom:10px}.channel-mobile dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}.channel-mobile dt{font-size:11px;color:#536574}.channel-mobile dd{margin:2px 0 0;font-size:15px;font-variant-numeric:tabular-nums}.channel-mobile dl>div:nth-child(4) dd{color:#176444;font-weight:650}}
 `;
 
 await mkdir(output, { recursive: true });
