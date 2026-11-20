@@ -349,32 +349,6 @@
   color: rgba(155, 211, 255, 0.55);
 }
 
-.shop-card-meta .badge-architecture {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: rgba(0, 168, 255, 0.12);
-  border: 1px solid rgba(0, 168, 255, 0.25);
-  color: #00a8ff;
-  padding: 0.12rem 0.45rem;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  vertical-align: middle;
-}
-
-.shop-card-meta .badge-architecture i {
-  font-size: 0.7rem;
-}
-
-.shop-card-meta .badge-architecture--lp {
-  background: rgba(255, 179, 130, 0.14);
-  border-color: rgba(255, 179, 130, 0.35);
-  color: #ffb382;
-}
-
 .shop-layout .shop-demo-link {
   align-self: flex-start;
   margin-top: auto;
