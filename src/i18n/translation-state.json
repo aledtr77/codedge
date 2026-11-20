@@ -2,10 +2,10 @@
   "version": 1,
   "routes": {
     "/it/": {
-      "translatedAt": "2026-10-17",
+      "translatedAt": "2026-11-20",
       "units": {
-        "meta": "725338416ef9",
-        "page": "1a0a5a29839e"
+        "meta": "bccfa370751f",
+        "page": "d4b4ddba05c0"
       }
     },
     "/it/chi-sono/": {
@@ -135,10 +135,10 @@
       }
     },
     "/it/portfolio/": {
-      "translatedAt": "2026-11-15",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "a5764c155b91",
-        "page": "b127371bbe3a"
+        "page": "5378114fa6b9"
       }
     },
     "/it/termini-servizio/": {
@@ -156,7 +156,7 @@
       }
     },
     "/it/tutorial/accessibilita-web-base/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "9a5ae34804e0",
         "chapter-01": "6d310e71ab50",
@@ -173,7 +173,7 @@
         "chapter-12": "ad8745d14007",
         "chapter-cheatsheet": "c64a6cff55bd",
         "chapter-challenge": "e31b7a941bf8",
-        "chapter-quiz": "8babee34bca6",
+        "chapter-quiz": "01a799bbd70a",
         "quiz": "a3bc038a52f8"
       }
     },
@@ -221,7 +221,7 @@
       }
     },
     "/it/tutorial/css-fondamentali/": {
-      "translatedAt": "2026-10-31",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "e01ddb022e40",
         "chapter-01": "0194b475ca3f",
@@ -247,12 +247,12 @@
         "chapter-11": "c4b359faa907",
         "chapter-13": "2838d2b55d34",
         "chapter-14": "151eee3598cb",
-        "chapter-15": "7dbfc6d11e9b",
+        "chapter-15": "9f23797af2f7",
         "quiz": "9bbdbef7d02b"
       }
     },
     "/it/tutorial/deploy-base/": {
-      "translatedAt": "2026-09-22",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "3c35490f249e",
         "chapter-01": "c3d9d92ede09",
@@ -268,12 +268,12 @@
         "chapter-11": "5e78d7be0133",
         "chapter-cheatsheet": "54786134e9eb",
         "chapter-challenge": "ff5fdaf32b95",
-        "chapter-quiz": "f268782518dc",
+        "chapter-quiz": "4b5dc2410c22",
         "quiz": "d7b03b3d0add"
       }
     },
     "/it/tutorial/git-pratico-senza-panico/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "a9f283bf9725",
         "chapter-01": "08d3354f95b5",
@@ -289,12 +289,12 @@
         "chapter-11": "96f07947e973",
         "chapter-cheatsheet": "57e4eca17e24",
         "chapter-challenge": "c29eeff0025b",
-        "chapter-quiz": "7e9fb6884127",
+        "chapter-quiz": "01a799bbd70a",
         "quiz": "3de847970175"
       }
     },
     "/it/tutorial/github-operativo/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "4094c9ec9809",
         "chapter-01": "142c83042e94",
@@ -317,12 +317,12 @@
         "chapter-23": "6a685481ced7",
         "chapter-cheatsheet": "65e03be7d505",
         "chapter-challenge": "350257b2f8aa",
-        "chapter-quiz": "6eb574bf49b8",
+        "chapter-quiz": "4e93a4fbd468",
         "quiz": "0fb23355521e"
       }
     },
     "/it/tutorial/html-fondamentali/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "47b168f29bc8",
         "chapter-01": "e9fa3357e586",
@@ -344,12 +344,12 @@
         "chapter-cheatsheet": "01f81c322145",
         "chapter-challenge": "fbaff155f0f3",
         "chapter-18": "fbb6a69c7d9b",
-        "chapter-quiz": "2ec25ca4768d",
+        "chapter-quiz": "dc7377e2569b",
         "quiz": "4471f688d381"
       }
     },
     "/it/tutorial/javascript-fondamentali/": {
-      "translatedAt": "2026-11-01",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "21adfc1a4639",
         "chapter-01": "2d2ee322fe94",
@@ -402,12 +402,12 @@
         "chapter-comments": "870e44709731",
         "chapter-recap": "23a195e098fe",
         "chapter-quiz": "5cd6f61dc5ee",
-        "chapter-next": "ff726e7a3daa",
+        "chapter-next": "fb20f1524503",
         "quiz": "22af1798c218"
       }
     },
     "/it/tutorial/npm-vite-struttura-progetto/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "6bc361f754f6",
         "chapter-01": "f531588607fa",
@@ -422,12 +422,12 @@
         "chapter-10": "aaf19972a365",
         "chapter-cheatsheet": "e7f8778f4a1d",
         "chapter-challenge": "9a8a0f70609b",
-        "chapter-quiz": "e00e794ccc71",
+        "chapter-quiz": "1cc5e19165e6",
         "quiz": "a14344196343"
       }
     },
     "/it/tutorial/seo-tecnico-base/": {
-      "translatedAt": "2026-10-27",
+      "translatedAt": "2026-11-20",
       "units": {
         "meta": "874fede788ca",
         "chapter-01": "7b6ebf9973be",
@@ -444,7 +444,7 @@
         "chapter-12": "b5b692f308fe",
         "chapter-cheatsheet": "c4b3faaf08b8",
         "chapter-challenge": "ca2bd10bc102",
-        "chapter-quiz": "8babee34bca6",
+        "chapter-quiz": "01a799bbd70a",
         "quiz": "1d81c1e58ed6"
       }
     },
@@ -468,10 +468,10 @@
       }
     },
     "/it/portfolio/siti-template/": {
-      "translatedAt": "2026-11-15",
+      "translatedAt": "2026-11-20",
       "units": {
-        "meta": "13013fa1c88f",
-        "page": "664070b0b286"
+        "meta": "50267f4a3b06",
+        "page": "f9cc40354c78"
       }
     },
     "/it/portfolio/tallero/": {
