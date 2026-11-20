@@ -98,8 +98,7 @@
    1600px del contenitore: la pagina resta piena, ma nessuna riga supera la
    settantina di caratteri, che è il punto oltre il quale l'occhio perde il capo
    quando torna a sinistra. */
-.shop-hero-body,
-.shop-section-body {
+.shop-hero-body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.75rem, 3.5vw, 4rem);
@@ -118,8 +117,7 @@
   text-wrap: pretty;
 }
 
-.shop-hero-notes p,
-.shop-section-body > p:not(.shop-lead) {
+.shop-hero-notes p {
   margin: 0 0 1rem;
   color: var(--shop-muted);
   font-size: clamp(0.95rem, 1.1vw, 1.04rem);
@@ -129,7 +127,6 @@
 .shop-layout :is(
   .shop-hero-main .shop-lead,
   .shop-hero-notes p,
-  .shop-section-body p,
   .shop-card-content > p:not(.shop-card-eyebrow),
   .shop-custom-copy > p:not(.shop-section-kicker)
 ) {
@@ -138,8 +135,7 @@
   hyphens: auto;
 }
 
-.shop-hero-notes p:last-child,
-.shop-section-body > p:last-child {
+.shop-hero-notes p:last-child {
   margin-bottom: 0;
 }
 
@@ -186,20 +182,38 @@
   line-height: 1.08;
 }
 
-/* Vale per ogni paragrafo del blocco, non solo per l'ultimo: la regola era
-   nata quando il testo introduttivo era uno soltanto, e con un secondo
-   paragrafo il primo restava senza margine, senza larghezza massima e con il
-   colore pieno invece di quello attenuato. */
-.shop-section-heading > p {
-  margin: 1.25rem 0 0;
-  color: var(--shop-muted);
-  line-height: 1.65;
+.shop-section-intro {
+  max-width: 52rem;
+  margin-top: 1rem;
 }
 
-/* Meno dello stacco dal titolo: i paragrafi si leggono come un blocco solo,
-   staccato dall'h2, invece che come tre elementi equidistanti. */
-.shop-section-heading > p + p {
-  margin-top: 0.95rem;
+.shop-project-overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 2rem);
+  margin: clamp(1.6rem, 3vw, 2.4rem) 0 0;
+  padding: 1.15rem 0 0;
+  border-top: 1px solid var(--shop-line);
+  list-style: none;
+}
+
+.shop-project-overview li {
+  min-width: 0;
+}
+
+.shop-project-overview h3 {
+  margin: 0 0 0.45rem;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.shop-project-overview p {
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
 .grid.shop-grid {
@@ -531,9 +545,13 @@
 
 @media (max-width: 900px) {
   .shop-hero-body,
-  .shop-section-body,
   .shop-custom {
     grid-template-columns: 1fr;
+  }
+
+  .shop-project-overview {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
   }
 
   .shop-custom-action {
