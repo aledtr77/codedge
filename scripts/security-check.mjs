@@ -65,8 +65,14 @@ try {
       const frame = await (await iframe.elementHandle()).contentFrame();
       await page.waitForFunction(() => window.previewMessages.some((data) => data.type === 'playground:height'));
       assert.ok(await frame.locator('h1').textContent());
-      await frame.locator('a').first().click();
-      assert.ok(await frame.locator('#sandbox-toast').textContent());
+      const externalLink = '<a href="https://example.com/private">External link</a>';
+      await page.locator('.playground-editor').fill(externalLink);
+      const previewLink = frame.locator('a[href="https://example.com/private"]');
+      await previewLink.waitFor();
+      await previewLink.click();
+      const sandboxToast = frame.locator('#sandbox-toast');
+      await sandboxToast.waitFor({ state: 'visible' });
+      assert.ok(await sandboxToast.textContent());
       assert.equal(await frame.evaluate(() => {
         try { return Boolean(parent.document); } catch { return false; }
       }), false);
