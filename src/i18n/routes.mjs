@@ -10,8 +10,8 @@
 // written with a leading and a trailing slash, exactly as they appear in URLs.
 //
 // The Italian URLs used to be the ones at the root. They moved on 29/07/2026,
-// and every one of them is answered by a 301 in public/_redirects — that file
-// and this map have to be changed together, or an indexed URL dies quietly.
+// and published routes are answered by a 301 in public/_redirects. Suspended
+// routes stay mapped for restoration but are omitted from the build and sitemap.
 
 // The language served from the site root: the one a reader gets without asking
 // for anything (see langPreferencePlugin in scripts/i18n-plugin.mjs).
@@ -112,7 +112,8 @@ export const LEGACY_REDIRECTS = {
 };
 
 // Keep suspended pages in the source map so they can be restored without
-// recreating their translations. They are excluded from publishing instead.
+// recreating their translations. Their URLs are intentionally left without a
+// redirect or published file, so Cloudflare Pages answers with its 404 page.
 export const SUSPENDED_ROUTES = {
   '/it/servizi/': '/it/contatti/',
   '/services/': '/contact/'
@@ -120,20 +121,6 @@ export const SUSPENDED_ROUTES = {
 
 export function isPublishedRoute(route) {
   return !Object.hasOwn(SUSPENDED_ROUTES, normalizeRoute(route));
-}
-
-/** Temporary redirects include the URL shapes used before the language move. */
-export function suspendedRedirects() {
-  return Object.entries(SUSPENDED_ROUTES).flatMap(([route, destination]) => {
-    const previous = langOf(route) === 'it'
-      ? route.slice(IT_PREFIX.length)
-      : `/en${route}`;
-    return [route, previous].flatMap((alias) => [
-      [alias, destination],
-      [alias.slice(0, -1), destination],
-      [`${alias}index.html`, destination]
-    ]);
-  });
 }
 
 const EN_TO_IT = Object.fromEntries(

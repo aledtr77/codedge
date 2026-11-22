@@ -8,8 +8,7 @@ import {
   ROUTE_MAP,
   LEGACY_REDIRECTS,
   IT_PREFIX,
-  isPublishedRoute,
-  suspendedRedirects
+  isPublishedRoute
 } from '../src/i18n/routes.mjs';
 import { collectPageSources } from './page-sources.mjs';
 import { fileDates, toRelative } from './lib/git-dates.mjs';
@@ -373,9 +372,6 @@ function buildRedirects() {
     '# On 29 July 2026 English and Italian swapped places: the root answers in',
     '# English and Italian lives under /it/. These rules keep the URLs from',
     '# before that day alive.',
-    '',
-    '# Suspended pages: temporary redirects, before the legacy wildcard.',
-    ...suspendedRedirects().map(([from, to]) => `${from} ${to} 302`),
     '',
     '# English: drops the prefix and nothing else, the slugs are unchanged.',
     '/en/* /:splat 301',

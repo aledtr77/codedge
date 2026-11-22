@@ -17,7 +17,6 @@ import {
   routeFromSourceDir,
   routePairs,
   sourceDirForRoute,
-  suspendedRedirects,
   SUSPENDED_ROUTES,
 } from '@/i18n/routes.mjs';
 
@@ -35,22 +34,16 @@ describe('suspended routes', () => {
     expect(published).toContain('/contact/');
   });
 
-  it('redirects every URL spelling directly to a published contact page', () => {
-    const redirects = new Map(suspendedRedirects());
-    for (const [alias, target] of [
-      ['/it/servizi/', '/it/contatti/'],
-      ['/servizi/', '/it/contatti/'],
-      ['/services/', '/contact/'],
-      ['/en/services/', '/contact/']
-    ]) {
-      for (const url of [alias, alias.slice(0, -1), `${alias}index.html`]) {
-        expect(redirects.get(url)).toBe(target);
-        expect(isPublishedRoute(target)).toBe(true);
-        expect(allRoutes).toContain(target);
-        expect(redirects.has(target)).toBe(false);
+  it('keeps all suspended URL spellings out of the published route map', () => {
+    const published = new Set(routePairs().flat());
+    for (const route of Object.keys(SUSPENDED_ROUTES)) {
+      const previous = route.startsWith('/it/') ? route.slice(3) : `/en${route}`;
+      for (const alias of [route, previous]) {
+        for (const url of [alias, alias.slice(0, -1), `${alias}index.html`]) {
+          expect(published.has(url)).toBe(false);
+        }
       }
     }
-    expect(redirects.size).toBe(suspendedRedirects().length);
   });
 });
 

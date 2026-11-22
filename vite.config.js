@@ -11,7 +11,6 @@ import {
   LANG_DIR,
   routeFromSourceDir,
   sourceDirForRoute,
-  suspendedRedirects,
   SUSPENDED_ROUTES
 } from './src/i18n/routes.mjs';
 import { CRAWLER_UA_PATTERN } from './scripts/crawler-ua.mjs';
@@ -299,7 +298,6 @@ function imagetoolsCacheFallback() {
 
 // Dev only: rewrites clean URLs (/risorse/) to pages/<route>/index.html
 function devPagesRewrite() {
-  const redirects = new Map(suspendedRedirects());
   return {
     name: 'dev-pages-rewrite',
     apply: 'serve',
@@ -314,9 +312,8 @@ function devPagesRewrite() {
         const sourceRoute = pathname.startsWith('/pages/')
           ? routeFromSourceDir(pathname.slice('/pages/'.length).replace(/\/index\.html$/, '').replace(/\/+$/, ''))
           : null;
-        const destination = redirects.get(pathname) || SUSPENDED_ROUTES[sourceRoute];
-        if (destination) {
-          res.writeHead(302, { Location: destination });
+        if (sourceRoute && SUSPENDED_ROUTES[sourceRoute]) {
+          res.writeHead(404);
           res.end();
           return;
         }
@@ -342,6 +339,11 @@ function devPagesRewrite() {
         const candidate = path.join(process.cwd(), ENTRY_DIR, sourceDir, 'index.html');
 
         if (fs.existsSync(candidate)) {
+          if (!isPublishedRoute(routeFromSourceDir(sourceDir))) {
+            res.writeHead(404);
+            res.end();
+            return;
+          }
           const rewritten = `/${ENTRY_DIR}/${sourceDir}/index.html`;
           req.url = query ? `${rewritten}?${query}` : rewritten;
         }
