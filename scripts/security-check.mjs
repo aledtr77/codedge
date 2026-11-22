@@ -71,7 +71,7 @@ try {
       await page.waitForFunction((count) => window.previewMessages.filter((data) => data.type === 'playground:ready').length > count, readyMessages);
       const previewLink = frame.locator('a[href="https://example.com/private"]');
       await previewLink.waitFor();
-      await previewLink.click();
+      await previewLink.evaluate((link) => link.click());
       const sandboxToast = frame.locator('#sandbox-toast');
       await sandboxToast.waitFor({ state: 'visible' });
       assert.ok(await sandboxToast.textContent());
