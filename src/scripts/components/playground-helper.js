@@ -33,4 +33,5 @@
   // Let the parent know the preview is ready only after its click handler is
   // installed; browser checks and fast users can act as soon as this arrives.
   reportHeight();
+  parent.postMessage({ type: 'playground:ready' }, '*');
 })();

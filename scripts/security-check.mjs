@@ -66,7 +66,9 @@ try {
       await page.waitForFunction(() => window.previewMessages.some((data) => data.type === 'playground:height'));
       assert.ok(await frame.locator('h1').textContent());
       const externalLink = '<a href="https://example.com/private">External link</a>';
+      const readyMessages = await page.evaluate(() => window.previewMessages.filter((data) => data.type === 'playground:ready').length);
       await page.locator('.playground-editor').fill(externalLink);
+      await page.waitForFunction((count) => window.previewMessages.filter((data) => data.type === 'playground:ready').length > count, readyMessages);
       const previewLink = frame.locator('a[href="https://example.com/private"]');
       await previewLink.waitFor();
       await previewLink.click();
