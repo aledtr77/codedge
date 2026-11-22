@@ -278,6 +278,19 @@
     rgba(10, 15, 22, 0.74);
 }
 
+.shop-card--nero-filo .shop-card-media {
+  overflow: hidden;
+  padding: 0;
+}
+
+.shop-card--nero-filo .shop-card-media img {
+  width: 100%;
+  max-height: none;
+  border-radius: 0;
+  clip-path: inset(0 0 9%);
+  transform: scale(1.18);
+}
+
 .shop-card-media picture {
   display: grid;
   width: 100%;
