@@ -9,7 +9,6 @@
   }
   if ('ResizeObserver' in window) new ResizeObserver(reportHeight).observe(document.body);
   window.addEventListener('load', reportHeight);
-  reportHeight();
 
   let toastTimer;
   document.addEventListener('click', (event) => {
@@ -30,4 +29,8 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
   }, true);
+
+  // Let the parent know the preview is ready only after its click handler is
+  // installed; browser checks and fast users can act as soon as this arrives.
+  reportHeight();
 })();
