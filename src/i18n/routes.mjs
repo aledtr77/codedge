@@ -111,6 +111,31 @@ export const LEGACY_REDIRECTS = {
   '/html/footer/termini-servizio.html': '/it/termini-servizio/'
 };
 
+// Keep suspended pages in the source map so they can be restored without
+// recreating their translations. They are excluded from publishing instead.
+export const SUSPENDED_ROUTES = {
+  '/it/servizi/': '/it/contatti/',
+  '/services/': '/contact/'
+};
+
+export function isPublishedRoute(route) {
+  return !Object.hasOwn(SUSPENDED_ROUTES, normalizeRoute(route));
+}
+
+/** Temporary redirects include the URL shapes used before the language move. */
+export function suspendedRedirects() {
+  return Object.entries(SUSPENDED_ROUTES).flatMap(([route, destination]) => {
+    const previous = langOf(route) === 'it'
+      ? route.slice(IT_PREFIX.length)
+      : `/en${route}`;
+    return [route, previous].flatMap((alias) => [
+      [alias, destination],
+      [alias.slice(0, -1), destination],
+      [`${alias}index.html`, destination]
+    ]);
+  });
+}
+
 const EN_TO_IT = Object.fromEntries(
   Object.entries(ROUTE_MAP).map(([it, en]) => [en, it])
 );
@@ -152,9 +177,9 @@ export function alternatesOf(route) {
   return out;
 }
 
-/** Every route that has a translated twin, as [itRoute, enRoute] pairs. */
+/** Published routes with a translated twin, as [itRoute, enRoute] pairs. */
 export function routePairs() {
-  return Object.entries(ROUTE_MAP);
+  return Object.entries(ROUTE_MAP).filter(([it, en]) => isPublishedRoute(it) && isPublishedRoute(en));
 }
 
 /**

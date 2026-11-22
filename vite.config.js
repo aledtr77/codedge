@@ -6,7 +6,14 @@ import { minify } from 'html-minifier-terser';
 import { imagetools } from 'vite-imagetools';
 import seoJsonLdPlugin from './scripts/seo-jsonld-plugin.mjs';
 import { chromeI18nPlugin, hreflangPlugin, langPreferencePlugin } from './scripts/i18n-plugin.mjs';
-import { LANG_DIR, sourceDirForRoute } from './src/i18n/routes.mjs';
+import {
+  isPublishedRoute,
+  LANG_DIR,
+  routeFromSourceDir,
+  sourceDirForRoute,
+  suspendedRedirects,
+  SUSPENDED_ROUTES
+} from './src/i18n/routes.mjs';
 import { CRAWLER_UA_PATTERN } from './scripts/crawler-ua.mjs';
 import serviceWorkerVersionPlugin from './scripts/service-worker-plugin.mjs';
 import pageStructurePlugin from './scripts/page-structure-plugin.mjs';
@@ -25,6 +32,7 @@ function scanEntries(dir) {
       if (it.isDirectory()) walk(full);
       else if (it.isFile() && it.name === 'index.html') {
         const relDir = path.relative(root, path.dirname(full)).split(path.sep).join('/');
+        if (!isPublishedRoute(routeFromSourceDir(relDir))) continue;
         const key = relDir === '' ? 'index' : relDir;
         inputs[key] = path.resolve(full);
       }
@@ -291,16 +299,27 @@ function imagetoolsCacheFallback() {
 
 // Dev only: rewrites clean URLs (/risorse/) to pages/<route>/index.html
 function devPagesRewrite() {
+  const redirects = new Map(suspendedRedirects());
   return {
     name: 'dev-pages-rewrite',
     apply: 'serve',
     configureServer(server) {
-      server.middlewares.use((req, _res, next) => {
-        if (req.method !== 'GET') return next();
+      server.middlewares.use((req, res, next) => {
+        if (req.method !== 'GET' && req.method !== 'HEAD') return next();
         if (!req.url) return next();
 
         const [pathname, query = ''] = req.url.split('?');
         if (!pathname || pathname.startsWith('//')) return next();
+
+        const sourceRoute = pathname.startsWith('/pages/')
+          ? routeFromSourceDir(pathname.slice('/pages/'.length).replace(/\/index\.html$/, '').replace(/\/+$/, ''))
+          : null;
+        const destination = redirects.get(pathname) || SUSPENDED_ROUTES[sourceRoute];
+        if (destination) {
+          res.writeHead(302, { Location: destination });
+          res.end();
+          return;
+        }
 
         const skipPrefixes = [
           '/pages/',

@@ -1,7 +1,7 @@
 # CODEDGE
 
 [![lint · tests · build · browser](https://img.shields.io/github/actions/workflow/status/aledtr77/codedge/deploy.yml?branch=main&label=lint%20%C2%B7%20tests%20%C2%B7%20build%20%C2%B7%20browser)](https://github.com/aledtr77/codedge/actions/workflows/deploy.yml)
-[![318 tests](https://img.shields.io/badge/tests-318%20(Vitest)-3fb950)](tests/)
+[![320 tests](https://img.shields.io/badge/tests-320%20(Vitest)-3fb950)](tests/)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-0969da)](LICENSE)
 
 Source of **[codedge.it](https://codedge.it)** — a bilingual front-end learning
@@ -88,7 +88,7 @@ npm run build       # static output in dist/
 npm run test:smoke  # drives a headless Chrome over dist/ — needs the build first
 npm run test:security # CSP, sandbox, AVIF, refreshed images and offline pages
 npm run test:css-labs # interactive lessons in both languages
-npm run test:a11y   # all 80 paired pages, pinned to the requested language
+npm run test:a11y   # all published paired pages, pinned to the requested language
 npm run i18n:swap   # every language switch, compared with the target document
 npm audit           # runtime and development dependencies
 npm run preview     # serve the build
@@ -97,6 +97,11 @@ npm run preview     # serve the build
 The workflow checks pull requests without deploying them. Only pushes to `main`
 deploy to Cloudflare Pages after all blocking checks pass. See [SECURITY.md](SECURITY.md)
 for the maintenance process and vulnerability reporting.
+
+The Services pages are temporarily suspended through `SUSPENDED_ROUTES` in
+`src/i18n/routes.mjs`. Their sources remain in `pages/`, but the build and sitemap
+exclude them and their URLs redirect to Contact with a 302. To restore them,
+remove the suspension entries and restore their navigation and internal links.
 
 ## Licence
 

@@ -9,6 +9,7 @@ import {
   alternatesOf,
   counterpartOf,
   IT_PREFIX,
+  isPublishedRoute,
   langOf,
   LEGACY_REDIRECTS,
   normalizeRoute,
@@ -16,9 +17,42 @@ import {
   routeFromSourceDir,
   routePairs,
   sourceDirForRoute,
+  suspendedRedirects,
+  SUSPENDED_ROUTES,
 } from '@/i18n/routes.mjs';
 
 const allRoutes = [...Object.keys(ROUTE_MAP), ...Object.values(ROUTE_MAP)];
+
+describe('suspended routes', () => {
+  it('preserves the source mapping but excludes suspended pairs from publishing', () => {
+    expect(ROUTE_MAP['/it/servizi/']).toBe('/services/');
+    const published = routePairs().flat();
+    for (const route of Object.keys(SUSPENDED_ROUTES)) {
+      expect(isPublishedRoute(`${route}index.html?preview=1`)).toBe(false);
+      expect(published).not.toContain(route);
+    }
+    expect(published).toContain('/it/contatti/');
+    expect(published).toContain('/contact/');
+  });
+
+  it('redirects every URL spelling directly to a published contact page', () => {
+    const redirects = new Map(suspendedRedirects());
+    for (const [alias, target] of [
+      ['/it/servizi/', '/it/contatti/'],
+      ['/servizi/', '/it/contatti/'],
+      ['/services/', '/contact/'],
+      ['/en/services/', '/contact/']
+    ]) {
+      for (const url of [alias, alias.slice(0, -1), `${alias}index.html`]) {
+        expect(redirects.get(url)).toBe(target);
+        expect(isPublishedRoute(target)).toBe(true);
+        expect(allRoutes).toContain(target);
+        expect(redirects.has(target)).toBe(false);
+      }
+    }
+    expect(redirects.size).toBe(suspendedRedirects().length);
+  });
+});
 
 describe('normalizeRoute', () => {
   it('settles every spelling of the same page on one form', () => {

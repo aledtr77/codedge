@@ -7,7 +7,9 @@ import {
   routeFromSourceDir,
   ROUTE_MAP,
   LEGACY_REDIRECTS,
-  IT_PREFIX
+  IT_PREFIX,
+  isPublishedRoute,
+  suspendedRedirects
 } from '../src/i18n/routes.mjs';
 import { collectPageSources } from './page-sources.mjs';
 import { fileDates, toRelative } from './lib/git-dates.mjs';
@@ -150,7 +152,7 @@ const pages = walkIndexFiles(pagesRoot).map((filePath) => ({
   filePath,
   route: routeFromFile(filePath),
   noindex: hasNoindexMeta(filePath)
-}));
+})).filter(({ route }) => route && isPublishedRoute(route));
 
 // A redirect that lands nowhere is worse than no redirect at all: the reader
 // gets a 404 and the credit the old URL had built up is thrown away instead of
@@ -334,6 +336,7 @@ function buildRedirects() {
   const collisions = [];
 
   for (const route of italianRoutes) {
+    if (!isPublishedRoute(route)) continue;
     // The Italian home is not a redirect: the root now answers in English, and
     // that is the whole point of the move.
     if (route === `${IT_PREFIX}/`) continue;
@@ -370,6 +373,9 @@ function buildRedirects() {
     '# On 29 July 2026 English and Italian swapped places: the root answers in',
     '# English and Italian lives under /it/. These rules keep the URLs from',
     '# before that day alive.',
+    '',
+    '# Suspended pages: temporary redirects, before the legacy wildcard.',
+    ...suspendedRedirects().map(([from, to]) => `${from} ${to} 302`),
     '',
     '# English: drops the prefix and nothing else, the slugs are unchanged.',
     '/en/* /:splat 301',

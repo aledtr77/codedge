@@ -4,6 +4,20 @@
 # English and Italian lives under /it/. These rules keep the URLs from
 # before that day alive.
 
+# Suspended pages: temporary redirects, before the legacy wildcard.
+/it/servizi/ /it/contatti/ 302
+/it/servizi /it/contatti/ 302
+/it/servizi/index.html /it/contatti/ 302
+/servizi/ /it/contatti/ 302
+/servizi /it/contatti/ 302
+/servizi/index.html /it/contatti/ 302
+/services/ /contact/ 302
+/services /contact/ 302
+/services/index.html /contact/ 302
+/en/services/ /contact/ 302
+/en/services /contact/ 302
+/en/services/index.html /contact/ 302
+
 # English: drops the prefix and nothing else, the slugs are unchanged.
 /en/* /:splat 301
 
@@ -23,7 +37,6 @@
 /risorse/glossario-html/ /it/risorse/glossario-html/ 301
 /risorse/glossario-js/ /it/risorse/glossario-js/ 301
 /risorse/snippet-library/ /it/risorse/snippet-library/ 301
-/servizi/ /it/servizi/ 301
 /strumenti/ /it/strumenti/ 301
 /strumenti/compressore-immagini/ /it/strumenti/compressore-immagini/ 301
 /strumenti/estrattore-palette/ /it/strumenti/estrattore-palette/ 301

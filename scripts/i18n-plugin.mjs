@@ -16,6 +16,7 @@ import fs from 'fs';
 import path from 'path';
 import {
   counterpartOf,
+  isPublishedRoute,
   langOf,
   normalizeRoute,
   routeFromSourceDir,
@@ -70,7 +71,6 @@ const NAV_HREFS = {
     TOOLS_HREF: '/it/strumenti/',
     COMPONENTS_HREF: '/it/componenti-ui/',
     TUTORIALS_HREF: '/it/tutorial/',
-    SERVICES_HREF: '/it/servizi/',
     TEMPLATES_HREF: '/it/portfolio/'
   },
   en: {
@@ -79,7 +79,6 @@ const NAV_HREFS = {
     TOOLS_HREF: '/tools/',
     COMPONENTS_HREF: '/ui-components/',
     TUTORIALS_HREF: '/tutorials/',
-    SERVICES_HREF: '/services/',
     TEMPLATES_HREF: '/portfolio/'
   }
 };
@@ -111,6 +110,7 @@ const NOINDEX = /<meta\b[^>]*name\s*=\s*["']robots["'][^>]*noindex/i;
  * the other language's version of a page — to a crawler or to a reader.
  */
 function twinIsPublishable(route) {
+  if (!isPublishedRoute(route)) return false;
   const file = path.resolve(process.cwd(), ENTRY_DIR, sourceDirForRoute(route), 'index.html');
   try {
     return !NOINDEX.test(fs.readFileSync(file, 'utf8'));
@@ -141,7 +141,6 @@ function navbarTokens(route, lang) {
     NAV_TOOLS: s['nav.tools'],
     NAV_COMPONENTS: s['nav.uiComponents'],
     NAV_TUTORIALS: s['nav.tutorials'],
-    NAV_SERVICES: s['nav.services'],
     NAV_TEMPLATES: s['nav.templates'],
     SWITCH_HREF: twin || fallbackHome,
     SWITCH_LANG: other,
